@@ -12,11 +12,10 @@ Each line is a system and a one-line "our version" idea.
   forces choices about what to do.
 - **Seasons and weather.** Seasons change what can grow and what is available.
   Weather could also affect water levels.
-- **Farming.** Plant, tend, harvest, sell. Open: what is the beaver twist
-  (for example, water channels and ponds instead of simple watering)?
-- **Building and crafting.** A chain from raw materials (logs, branches, mud,
-  reeds, stone) through processing to built structures and goods. Generic item
-  names, our own quantities.
+- **Farming.** Plant, tend, harvest, sell. Open: what is our own twist on
+  the basic loop?
+- **Building and crafting.** A chain from raw materials through processing to
+  built structures and goods. Generic item names, our own quantities.
 - **Foraging, fishing, mining.** Secondary ways to gather resources and vary
   the day.
 - **Animals.** Care for animals for regular output. Open: which animals.
@@ -28,7 +27,8 @@ Each line is a system and a one-line "our version" idea.
 
 ## Open questions
 
-- Is the beaver and water twist the central hook, or one feature among many?
+- Theme and hook: what makes this game its own? The working name is only a
+  placeholder and no theme is chosen.
 - Which systems are in the first playable and which come later?
 - Engine and language (needs an ADR when chosen).
 - Single player only, or multiplayer later?
