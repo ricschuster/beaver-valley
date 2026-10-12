@@ -33,6 +33,11 @@ comfort under quiet threat, in a generic high-fantasy setting. The setting must
 use original names, places, characters and lore. It must not use the names or
 specific content of any existing fantasy franchise.
 
+Tone (not decided): warm, wry comic fantasy, with affectionate humor about
+everyday life and eccentric villagers. Humor could also take the edge off the
+ambient threat. As with the setting, all names, places, characters and jokes
+must be original.
+
 ## Threat model (open)
 
 A growing threat conflicts with the relaxed, no-pressure feel we want. Options
