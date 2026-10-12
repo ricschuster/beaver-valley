@@ -25,6 +25,14 @@ Each line is a system and a one-line "our version" idea.
   Open: what the goal is.
 - **Progression.** Tool and building upgrades that open new areas.
 
+## Candidate hook (not decided)
+
+A cozy farming life as a home base, with expeditions into a larger and more
+dangerous world and a distant threat that slowly grows. The mood is pastoral
+comfort under quiet threat, in a generic high-fantasy setting. The setting must
+use original names, places, characters and lore. It must not use the names or
+specific content of any existing fantasy franchise.
+
 ## Open questions
 
 - Theme and hook: what makes this game its own? The working name is only a
