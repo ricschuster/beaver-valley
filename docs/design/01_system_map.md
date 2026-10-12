@@ -33,6 +33,24 @@ comfort under quiet threat, in a generic high-fantasy setting. The setting must
 use original names, places, characters and lore. It must not use the names or
 specific content of any existing fantasy franchise.
 
+## Threat model (open)
+
+A growing threat conflicts with the relaxed, no-pressure feel we want. Options
+under consideration:
+
+1. Backdrop only: the danger shapes the story and mood, but nothing worsens if
+   ignored.
+2. Progress-driven: the threat advances only when the player expands or
+   explores, never with time alone.
+3. Soft consequences: visible effects (quieter village, scarcer goods) that
+   ease when pushed back, with no game over.
+4. Real clock with an off switch: a true deadline for players who want
+   tension.
+
+Leaning toward 1, with some of 3. Options 2 and 3 can be added later without
+reworking the base. Questions: can the player lose anything permanently, is
+the threat a goal to defeat or just ambient, and do expeditions carry risk?
+
 ## Open questions
 
 - Theme and hook: what makes this game its own? The working name is only a
