@@ -48,8 +48,15 @@ under consideration:
    tension.
 
 Leaning toward 1, with some of 3. Options 2 and 3 can be added later without
-reworking the base. Questions: can the player lose anything permanently, is
-the threat a goal to defeat or just ambient, and do expeditions carry risk?
+reworking the base.
+
+Current answers (still draft):
+
+- Losses are mild and recoverable, like passing out in the original: a setback
+  such as waking up back home, not a permanent loss.
+- The threat is ambient. It is not a goal to defeat.
+- Expeditions carry risk, such as dropping some items on failure. Some items
+  are protected and cannot be lost this way.
 
 ## Open questions
 
