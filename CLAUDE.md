@@ -25,6 +25,10 @@ what the next milestone is. Open GitHub issues are the live task tracker;
 Do not expand scope without a design note in `docs/design/` or an ADR in
 `docs/decisions/`.}}
 
+This project is Stardew Valley inspired. Do not copy its name, art, audio,
+characters, text or code. See
+`docs/decisions/0002-stardew-valley-inspired.md`.
+
 ## Stack
 
 {{Languages, frameworks, test runner, deployment target, and any hard
