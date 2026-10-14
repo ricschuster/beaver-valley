@@ -52,6 +52,8 @@ when in doubt, explore the tree rather than trusting this section.}}
 
 - Branch from `main`; one short-lived branch per change. Open a pull request
   into `main`; CI must pass before merge.
+- After opening a pull request, enable auto-merge with squash
+  (`gh pr merge --auto --squash <number>`) without being asked.
 - Conventional Commits (for example `feat: ...`, `fix: ...`, `chore: ...`,
   `docs: ...`).
 - No em dashes in code, comments, docs, commit messages, or user-facing text.
