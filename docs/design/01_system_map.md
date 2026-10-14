@@ -21,8 +21,8 @@ Each line is a system and a one-line "our version" idea.
 - **Animals.** Care for animals for regular output. Open: which animals.
 - **Relationships.** Villagers with routines, gifts and growing friendship.
   Open: cast, personalities and how deep this goes.
-- **Goals and events.** A long-term community goal plus seasonal events.
-  Open: what the goal is.
+- **Goals and events.** A chain of community projects plus seasonal events.
+  See "Community project chain" below.
 - **Progression.** Tool and building upgrades that open new areas.
 
 ## Candidate hook (not decided)
@@ -37,6 +37,83 @@ Tone (not decided): warm, wry comic fantasy, with affectionate humor about
 everyday life and eccentric villagers. Humor could also take the edge off the
 ambient threat. As with the setting, all names, places, characters and jokes
 must be original.
+
+## Community project chain (draft)
+
+In the original, finishing the community centre ends the main loop. We want a
+chain of community projects ("community centre after community centre"), at
+least 2 and possibly 3, so the game keeps a main goal after the first is done.
+
+Agreed so far:
+
+- **Centre 1, village hall.** Local and cozy. Gather from the farm, foraging and
+  the seasons.
+- **Centre 2, regional project.** Bundles need expedition goods, which is what
+  gives the larger world a purpose.
+- **Order and unlocking.** Finishing one is required before the next. The next
+  does not open automatically; it needs a trigger (for example meeting a
+  character or reaching a region).
+- **Pacing target.** If centre 1 takes about 1.5 years for an experienced
+  player, centre 2 takes about the same, and centre 3 about 1 year. Three may
+  be enough in total, depending on the architecture.
+- **Centre 3 exists.** Decided. What it is remains open.
+
+Open (see issue #5):
+
+- What is centre 3, and how does it differ from centres 1 and 2 in mechanics
+  rather than just scale? A frontier project that pushes back the ambient
+  threat is one idea but is not a settled fit.
+- Does each centre change the bundle format (gather-and-hand-in checklist,
+  multi-step build and stock, long-running supply chain), or keep one format at
+  a bigger scale?
+- How a centre relates to the ambient threat without adding a timer.
+
+Draft leanings for the larger world, not confirmed: a ring of distinct regions
+around the home valley unlocked by tool or bridge upgrades; expeditions as day
+trips with limited energy and pack slots; the threat shown as a visible
+corruption at the edges that recedes as areas are restored.
+
+## Spatial structure (draft, NOT settled)
+
+Status: recorded for reference only. This is important and needs several more
+design sessions before anything here is treated as decided.
+
+The world is a set of concentric rings, with the hub-and-spoke feel of the
+original (screen-edge links, gates by tool or event). The shape is a general
+pastoral home, varied middle, dark edge arc. Every name, place and lore piece
+must be original.
+
+- **Ring 1, home valley.** Farm, village, village hall (centre 1), basic
+  foraging, fishing and animals. Open from the start. Safe, cozy, funny.
+- **Ring 2, the regions.** Roughly 4 or 5 distinct biomes, each gated by a tool
+  or bridge upgrade. Each has its own identity, gathering and crafting
+  specialties and characters. Centre 2 sits at a crossroads or waystation where
+  ring 1 meets ring 2, and its bundles draw on several regions. Regions link to
+  2 or 3 neighbours, not only the hub, and unlocked waystations give fast
+  travel late.
+- **Ring 3, the dark edge.** The source of the ambient threat, with visible
+  corruption that creeps toward unrestored ring 2 regions. Centre 3 would sit
+  here, but what centre 3 is remains open (issue #5).
+
+Leaning for ring 3 (not settled): something like the original's late-game
+volcano. Optional, late, entered in runs, high risk and high reward, with rare
+goods that feed centre 3 and late crafting. It is a destination to push into,
+not a quest that ends the game. The threat stays ambient, and pushing it back
+is partial. Failure costs follow the existing mild, recoverable answers. The
+tone could make the dark edge absurd more than grim (for example a menace run
+like an overworked bureaucracy).
+
+Open for further discussion:
+
+- Whether ring 3 has combat, and if so how much. Real-time action is the
+  largest scope item, so the first playable should stay simple.
+- Whether ring 3 is a dungeon of floors or something else (hazard navigation,
+  puzzles).
+- Map style: discrete screens joined by warps, or one continuous world.
+- Whether the farm is fixed or outposts can be set up in other regions.
+- Hand-built regions for the first playable, with generated content possibly
+  later.
+- How the three centres differ in mechanics, not just scale.
 
 ## Threat model (open)
 
