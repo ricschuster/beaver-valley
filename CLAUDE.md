@@ -15,9 +15,11 @@ brief.}}
 
 ## Project status
 
-{{Where things stand right now: design, pre-build, MVP in progress, etc., and
-what the next milestone is. Open GitHub issues are the live task tracker;
-`docs/design/03_milestones.md` (if present) is the shape of the plan.}}
+Design phase, no code or engine chosen yet. Current milestone: M1, define the
+first playable. The roadmap is `docs/design/03_milestones.md`; GitHub issues
+are the live tracker, grouped by milestone. The issues labelled `next-payoff`
+are the few items that matter most right now. Start each session by reading
+the latest handoff in `docs/handoffs/` and that label.
 
 ## Scope
 
