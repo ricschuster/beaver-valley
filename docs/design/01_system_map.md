@@ -192,8 +192,20 @@ Decided in discussion on 2026-10-14.
 - **Eventually.** Build out to four full seasons. Content added later should
   slot into the same structure without rework.
 
-Still open under #14: what fills the morning, main stretch and evening in the
-first playable.
+### A typical day (draft, issue #14)
+
+Decided in discussion on 2026-10-14.
+
+- **Morning.** Water and tend crops. This takes a small slice of energy.
+- **Main stretch.** Forage in the valley, or work the farm further. This is the
+  main choice of the day.
+- **Evening.** Sell goods, hand items in at the village hall, and plan the next
+  day's planting.
+- **Clock stays simple.** No shop hours or villager schedules in the first
+  playable. The village hall is open whenever the player is there.
+
+Issue #14 is settled for the first playable. Shop hours and schedules can be
+revisited once there are villagers to schedule.
 
 ## Threat model (open)
 
