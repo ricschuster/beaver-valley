@@ -1,54 +1,98 @@
-# 00 Project Brief
+# 00 Project Brief (draft)
+
+Status: draft. The pillars and non-goals below are proposals drawn from
+`docs/design/01_system_map.md`, not decisions. Sections marked TBD are still
+template placeholders.
 
 ## What this is
 
-{{One or two sentences: what {{PROJECT_NAME}} is and the problem it addresses.}}
+TBD. The project name is a placeholder.
 
-It is {{a teaching tool / an internal tool / a production service / ...}}, not
-{{whatever it is explicitly not}}. The goal is to {{the outcome for the person
-using it}}.
+A cozy farming-life game, inspired by Stardew Valley but with its own setting,
+names, art, audio and text (see `docs/decisions/0002-stardew-valley-inspired.md`).
+The player runs a home farm, helps a village finish a chain of community
+projects, and ventures into a wider world under a quiet, ambient threat.
 
 ## Who it is for
 
-- {{Primary audience or user.}}
-- {{Secondary audience, if any.}}
-
-{{Any assumptions about the audience: technical level, prior knowledge, access
-requirements.}}
+TBD.
 
 ## The core idea (one screen)
 
-{{Describe the central loop or workflow in a few sentences, as if explaining it
-to someone seeing the project for the first time. What does the user do, what
-does the system do in response, what do they see change?}}
+Each day the player spends a limited amount of energy on the farm and in the
+nearby world, then gathers, grows and makes goods. Those goods go toward
+community project bundles. Finishing a project opens the next one, which
+reaches further out. The farm is a safe, funny home base. The wider world is
+where the bigger rewards and the quiet threat are.
 
-## Scope layers (if applicable)
+## Pillars (draft)
 
-{{If the project has a staged or layered scope (an MVP plus deeper layers over
-the same core), describe each layer briefly and how they share the same
-underlying engine or model. Delete this section if the project is a single
-flat scope.}}
+These are the ideas every design choice should be checked against.
+
+1. **Cozy first.** The default feel is relaxed and low-pressure. Losses are
+   mild and recoverable, and nothing worsens just because time passes.
+2. **A day is a set of choices.** Limited energy makes each day a small
+   decision about what to do, rather than a to-do list that clears itself.
+3. **Always a next goal.** A chain of community projects keeps a main goal in
+   view after the first one is done. Each project must feel different in
+   mechanics, not only bigger.
+4. **Home base, wider world.** The farm and village are the heart. Expeditions
+   are day trips that feed back into home, not a replacement for it.
+5. **Warm, wry humour.** Affectionate comedy about everyday life and eccentric
+   villagers. The ambient threat can be absurd as much as grim.
+6. **Original throughout.** All names, places, characters, text and art are our
+   own.
+
+## Scope layers
+
+Layers share one core: the day cycle, farming, and community bundles.
+
+1. **Layer 1, home valley (ring 1).** Farm, village, village hall (centre 1),
+   basic foraging, fishing and animals. Open from the start.
+2. **Layer 2, the regions (ring 2).** About 4 or 5 biomes gated by tool or
+   bridge upgrades. Centre 2 sits at a crossroads and draws on several regions.
+3. **Layer 3, the dark edge (ring 3).** Optional, late, high risk, entered in
+   runs. Centre 3 may sit here. Not settled.
+
+Pacing target for an experienced player: about 1.5 years in game for centre 1,
+about the same for centre 2, about 1 year for centre 3.
 
 ## MVP scope
 
-{{The smallest version that proves the core idea. Enumerate the concrete
-pieces.}}
-
-1.
-2.
-3.
-
-See `docs/design/03_milestones.md` (if present) for the phased plan.
+TBD. Proposed starting point, to be confirmed and recorded in
+`docs/design/03_milestones.md`: the day and energy cycle, farming, selling, and
+a small version of centre 1, all in the home valley only.
 
 ## Explicit non-goals (for now)
 
-- {{What this project is deliberately not trying to be or do, and why.}}
+"For now" means not before the earlier layers are playable and fun. None of
+these is ruled out forever.
+
+- **Ring 3 and centre 3.** No dark edge until layers 1 and 2 work.
+- **Real-time combat.** The largest scope item. The first playable has none.
+- **A real-time threat clock.** The threat is ambient. No timers or game overs.
+- **Multiplayer.** Single player only for the first playable.
+- **Generated content.** Regions are hand-built first.
+- **Deep relationship systems.** The first playable has at most a few simple
+  villagers.
+- **Copying the original.** No Stardew Valley names, art, audio, characters,
+  text or code.
+- **Final name, polish and store release.** Not before there is a fun
+  playable.
 
 ## Design principles
 
-1. {{A principle that should guide tradeoffs, and why it matters here.}}
-2. {{...}}
+1. Prove the core loop with rough art before adding systems.
+2. Cut or defer before adding. New ideas become issues, not scope.
+3. Prefer systems that can be added later without reworking the base (for
+   example the threat options in the system map).
+4. Record big decisions in an ADR and design notes in `docs/design/`.
 
 ## Open questions
 
-- {{Anything still undecided that a reader should know is open, not settled.}}
+- Project name and theme. Avoid names that sit close to the original's branding.
+- Audience.
+- Engine and language (needs an ADR).
+- What centre 3 is (issue #5).
+- Whether ring 3 has combat, and how much.
+- Whether the repo `LICENSE` (GPL-3.0 template default) stays.
