@@ -115,6 +115,37 @@ Open for further discussion:
   later.
 - How the three centres differ in mechanics, not just scale.
 
+## Ring design notes (2026-10-14, draft)
+
+Ring 1 is designed first. Nothing below blocks it.
+
+Leanings so far:
+
+- **Ring 2 shape.** Leaning hybrid: a haven (waystation) at the crossroads plus
+  about 2 regions at first, structured so more regions can be added later. The
+  final region count waits until the first ones have been played.
+- **Ring 3 bastion.** Logistics only. The player keeps a frontier outpost
+  supplied and pushes the corruption back by supplying it. No defence, no
+  attacks, no time pressure. Goods can travel by caravan or supply route, so the
+  player rarely has to walk there.
+- **Home base vs distance.** Leaning Option A: the first trip to each ring is a
+  story journey of a few days. The farm waits safely because nothing spoils
+  while away. Waystations then make later visits day trips.
+
+Still open:
+
+- **Option B, outposts.** A small bed or cabin in other rings so the player can
+  sleep away from home. It fits distance better but splits the player's
+  attention across places (the Ginger Island problem). Not ruled out. The
+  pull between coming home every night and staying in different places stays
+  unresolved for now.
+- **Absence rules.** Crops waiting without spoiling and animals coping for a few
+  days are part of the A leaning. They also help B. Not confirmed.
+
+Player evidence on the home base problem: some players feel anxiety visiting
+Ginger Island because the main farm keeps needing attention, and the common fix
+is to automate the home farm first. Sources were thin (forum and Reddit posts).
+
 ## Threat model (open)
 
 A growing threat conflicts with the relaxed, no-pressure feel we want. Options
