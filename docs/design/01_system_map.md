@@ -146,6 +146,29 @@ Player evidence on the home base problem: some players feel anxiety visiting
 Ginger Island because the main farm keeps needing attention, and the common fix
 is to automate the home farm first. Sources were thin (forum and Reddit posts).
 
+## Day cycle (draft, issue #14)
+
+Decided in discussion on 2026-10-14. Still draft until the first playable is
+played.
+
+- **Energy plus a clock.** The day has a limited energy budget and a running
+  clock. Time and energy both shape what the player can do.
+- **Passing out.** Running out of energy or time ends the day. The player
+  passes out and wakes at home, with a small cost (a little money or a few
+  items, and a later start). The cost stays low and never feels like a
+  punishment, in line with the mild, recoverable losses above.
+- **Clock behaviour.** The clock runs through the day and stops in menus and
+  conversations (single player). The original behaves this way too.
+- **Numbers are our own.** Day length and clock speed are tunable constants,
+  set by playtesting. They are not copied from the original (see
+  `docs/decisions/0002-stardew-valley-inspired.md`). The original's day runs
+  about 14 real minutes, which is a rough reference only.
+- **First playable.** The clock only passes time and ends the day late at
+  night. Shop hours and villager schedules come later.
+
+Still open under #14: the main choices in a typical day, and what fills the
+morning, main stretch and evening in the first playable.
+
 ## Threat model (open)
 
 A growing threat conflicts with the relaxed, no-pressure feel we want. Options
