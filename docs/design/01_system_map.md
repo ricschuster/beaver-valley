@@ -54,13 +54,15 @@ Agreed so far:
   does not open automatically; it needs a trigger (for example meeting a
   character or reaching a region).
 - **Pacing target.** If centre 1 takes about 1.5 years for an experienced
-  player, centre 2 takes about the same, and a centre 3 (if it exists) about
-  1 year. Three may be enough in total, depending on the architecture.
+  player, centre 2 takes about the same, and centre 3 about 1 year. Three may
+  be enough in total, depending on the architecture.
+- **Centre 3 exists.** Decided. What it is remains open.
 
 Open (see issue #5):
 
-- Do we want a centre 3 at all? A frontier project that pushes back the ambient
-  threat is not a settled fit.
+- What is centre 3, and how does it differ from centres 1 and 2 in mechanics
+  rather than just scale? A frontier project that pushes back the ambient
+  threat is one idea but is not a settled fit.
 - Does each centre change the bundle format (gather-and-hand-in checklist,
   multi-step build and stock, long-running supply chain), or keep one format at
   a bigger scale?
