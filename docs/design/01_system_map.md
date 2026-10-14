@@ -21,8 +21,8 @@ Each line is a system and a one-line "our version" idea.
 - **Animals.** Care for animals for regular output. Open: which animals.
 - **Relationships.** Villagers with routines, gifts and growing friendship.
   Open: cast, personalities and how deep this goes.
-- **Goals and events.** A long-term community goal plus seasonal events.
-  Open: what the goal is.
+- **Goals and events.** A chain of community projects plus seasonal events.
+  See "Community project chain" below.
 - **Progression.** Tool and building upgrades that open new areas.
 
 ## Candidate hook (not decided)
@@ -37,6 +37,39 @@ Tone (not decided): warm, wry comic fantasy, with affectionate humor about
 everyday life and eccentric villagers. Humor could also take the edge off the
 ambient threat. As with the setting, all names, places, characters and jokes
 must be original.
+
+## Community project chain (draft)
+
+In the original, finishing the community centre ends the main loop. We want a
+chain of community projects ("community centre after community centre"), at
+least 2 and possibly 3, so the game keeps a main goal after the first is done.
+
+Agreed so far:
+
+- **Centre 1, village hall.** Local and cozy. Gather from the farm, foraging and
+  the seasons.
+- **Centre 2, regional project.** Bundles need expedition goods, which is what
+  gives the larger world a purpose.
+- **Order and unlocking.** Finishing one is required before the next. The next
+  does not open automatically; it needs a trigger (for example meeting a
+  character or reaching a region).
+- **Pacing target.** If centre 1 takes about 1.5 years for an experienced
+  player, centre 2 takes about the same, and a centre 3 (if it exists) about
+  1 year. Three may be enough in total, depending on the architecture.
+
+Open (see issue #5):
+
+- Do we want a centre 3 at all? A frontier project that pushes back the ambient
+  threat is not a settled fit.
+- Does each centre change the bundle format (gather-and-hand-in checklist,
+  multi-step build and stock, long-running supply chain), or keep one format at
+  a bigger scale?
+- How a centre relates to the ambient threat without adding a timer.
+
+Draft leanings for the larger world, not confirmed: a ring of distinct regions
+around the home valley unlocked by tool or bridge upgrades; expeditions as day
+trips with limited energy and pack slots; the threat shown as a visible
+corruption at the edges that recedes as areas are restored.
 
 ## Threat model (open)
 
