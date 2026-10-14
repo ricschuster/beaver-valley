@@ -166,8 +166,26 @@ played.
 - **First playable.** The clock only passes time and ends the day late at
   night. Shop hours and villager schedules come later.
 
-Still open under #14: the main choices in a typical day, and what fills the
-morning, main stretch and evening in the first playable.
+### Activities and skills (draft, issue #14)
+
+Decided in discussion on 2026-10-14.
+
+- **Skill categories.** Each activity belongs to a skill category, and doing the
+  activity trains the skill. Higher levels unlock better tools, recipes and
+  options. Skills level up by doing, like the original.
+- **Categories.** Farming, foraging, fishing and mining. Combat is kept out for
+  now (a non-goal in the project brief). Mining should work without it.
+- **No always-best activity.** What matters changes with the season, the
+  current bundle and what the player needs (money, materials, a tool upgrade).
+  Players can lean on different activities. For example, one player may forage
+  as the main activity and treat farming as the money maker, and another may do
+  the opposite. The design must allow both.
+- **First playable.** Foraging plus farming only. The skill system is set up for
+  them, and fishing and mining are added once the loop proves fun.
+
+Still open under #14: what fills the morning, main stretch and evening in the
+first playable, and how seasons work at first (one or two short seasons or the
+full cycle).
 
 ## Threat model (open)
 

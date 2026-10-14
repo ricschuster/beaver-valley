@@ -60,8 +60,9 @@ about the same for centre 2, about 1 year for centre 3.
 ## MVP scope
 
 TBD. Proposed starting point, to be confirmed and recorded in
-`docs/design/03_milestones.md`: the day and energy cycle, farming, selling, and
-a small version of centre 1, all in the home valley only.
+`docs/design/03_milestones.md`: the day and energy cycle, farming and
+foraging with their skills, selling, and a small version of centre 1, all in
+the home valley only.
 
 ## Explicit non-goals (for now)
 
