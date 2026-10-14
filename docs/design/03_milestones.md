@@ -28,6 +28,7 @@ In:
 - Farming: plant, tend, harvest.
 - Foraging: wild goods found near the farm.
 - Skills for farming and foraging, leveled by doing.
+- Two short seasons with different crops and foraging goods.
 - Selling goods.
 - A small version of centre 1 (village hall) with a few bundles.
 - Rough placeholder art.

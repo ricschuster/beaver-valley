@@ -183,9 +183,17 @@ Decided in discussion on 2026-10-14.
 - **First playable.** Foraging plus farming only. The skill system is set up for
   them, and fishing and mining are added once the loop proves fun.
 
+### Seasons (draft, issue #14)
+
+Decided in discussion on 2026-10-14.
+
+- **First playable.** Two short seasons, with different crops and foraging
+  goods in each, so the player sees what matters shift over time.
+- **Eventually.** Build out to four full seasons. Content added later should
+  slot into the same structure without rework.
+
 Still open under #14: what fills the morning, main stretch and evening in the
-first playable, and how seasons work at first (one or two short seasons or the
-full cycle).
+first playable.
 
 ## Threat model (open)
 
