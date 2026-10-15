@@ -238,7 +238,6 @@ Current answers (still draft):
   placeholder and no theme is chosen.
 - Which systems are in the first playable and which come later?
 - Engine and language (needs an ADR when chosen).
-- Single player only, or multiplayer later?
 
 ## Next steps
 
