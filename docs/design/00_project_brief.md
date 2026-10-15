@@ -15,7 +15,19 @@ projects, and ventures into a wider world under a quiet, ambient threat.
 
 ## Who it is for
 
-TBD.
+Decided 2026-10-15 (issue #13, draft like the rest of this brief):
+
+- Release intent: a free hobby release, not a commercial Steam game. The
+  Steam EULA and a commercial name check are therefore low priority. Art,
+  audio, text and names must still be original or properly licensed (ADR 0002).
+- Team: solo.
+- Time: about 5 to 10 hours per week.
+- Target length: a long playthrough, 40+ hours, as the eventual goal.
+
+Tension to manage: a solo developer at 5 to 10 hours per week cannot build a
+40+ hour game quickly. The long length is the destination, not the first
+playable. The first playable stays small and content is added in layers
+(see Scope layers and `03_milestones.md`).
 
 ## The core idea (one screen)
 
@@ -92,7 +104,6 @@ these is ruled out forever.
 ## Open questions
 
 - Project name and theme. Avoid names that sit close to the original's branding.
-- Audience.
 - Engine and language (needs an ADR).
 - What centre 3 is (issue #5).
 - Whether ring 3 has combat, and how much.
