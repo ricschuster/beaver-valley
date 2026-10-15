@@ -4,3 +4,4 @@ package-lock.json
 *.md
 .github
 .claude
+public/spike/spike-map.json
