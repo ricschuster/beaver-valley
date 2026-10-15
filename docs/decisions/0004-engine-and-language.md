@@ -31,7 +31,7 @@ Options considered:
 
 ## Decision
 
-Use **TypeScript with Phaser 3**, built and served with **Vite**, with maps
+Use **TypeScript with Phaser**, built and served with **Vite**, with maps
 authored in **Tiled** and loaded as JSON.
 
 Game rules (day clock, energy, inventory, bundles, skills, selling, save data)

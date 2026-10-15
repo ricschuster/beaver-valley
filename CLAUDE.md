@@ -15,8 +15,8 @@ brief.}}
 
 ## Project status
 
-Design phase, engine chosen (ADR 0004), no code yet. Current milestone: M2, build the
-first playable. The roadmap is `docs/design/03_milestones.md`; GitHub issues
+Engine chosen (ADR 0004) and project skeleton in place. Current milestone: M2,
+build the first playable. The roadmap is `docs/design/03_milestones.md`; GitHub issues
 are the live tracker, grouped by milestone. The issues labelled `next-payoff`
 are the few items that matter most right now. Start each session by reading
 the latest handoff in `docs/handoffs/` and that label.
@@ -40,9 +40,15 @@ is data files, not code. See `docs/decisions/0004-engine-and-language.md`.
 
 ## Commands
 
-{{The everyday commands: run, test, lint/typecheck, build. One line each, and
-mark which ones are gates (non-zero exit blocks a merge). Fill in once the
-stack is chosen; `CONTRIBUTING.md` Setup should match.}}
+Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
+
+- `npm run dev`: run the game locally with hot reload.
+- `npm run format:check` (gate), `npm run format`: Prettier.
+- `npm run lint` (gate): ESLint.
+- `npm run typecheck` (gate): TypeScript.
+- `npm test` (gate): Vitest unit tests under `tests/`.
+- `npm run build` (gate): typecheck and production build to `dist/`.
+- `npm run check`: all of the gates in order. Run before pushing.
 
 ## Repo structure
 
