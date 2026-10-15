@@ -1,0 +1,13 @@
+import Phaser from "phaser";
+import { FarmScene } from "./scenes/FarmScene";
+
+new Phaser.Game({
+  type: Phaser.AUTO,
+  parent: "game",
+  width: 960,
+  height: 540,
+  backgroundColor: "#2f4a35",
+  pixelArt: true,
+  scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
+  scene: [FarmScene],
+});
