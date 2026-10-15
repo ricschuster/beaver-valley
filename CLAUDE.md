@@ -15,7 +15,7 @@ brief.}}
 
 ## Project status
 
-Design phase, no code or engine chosen yet. Current milestone: M1, define the
+Design phase, no code or engine chosen yet. Current milestone: M2, build the
 first playable. The roadmap is `docs/design/03_milestones.md`; GitHub issues
 are the live tracker, grouped by milestone. The issues labelled `next-payoff`
 are the few items that matter most right now. Start each session by reading
