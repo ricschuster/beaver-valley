@@ -15,7 +15,7 @@ brief.}}
 
 ## Project status
 
-Design phase, no code or engine chosen yet. Current milestone: M2, build the
+Design phase, engine chosen (ADR 0004), no code yet. Current milestone: M2, build the
 first playable. The roadmap is `docs/design/03_milestones.md`; GitHub issues
 are the live tracker, grouped by milestone. The issues labelled `next-payoff`
 are the few items that matter most right now. Start each session by reading
@@ -33,10 +33,10 @@ characters, text or code. See
 
 ## Stack
 
-{{Languages, frameworks, test runner, deployment target, and any hard
-architectural constraints (for example: "business logic stays framework-free
-under `src/core/` so it is unit-testable"). Link to the relevant ADR(s) in
-`docs/decisions/` for the reasoning.}}
+TypeScript, Phaser 3, Vite, and Tiled maps (JSON). Installed apps wrap the web
+build; the wrapper is a later ADR. Game rules stay free of Phaser and the DOM
+under `src/core/` so they are unit-testable. Content (items, crops, bundles)
+is data files, not code. See `docs/decisions/0004-engine-and-language.md`.
 
 ## Commands
 
