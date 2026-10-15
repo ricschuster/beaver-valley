@@ -22,7 +22,8 @@ Decided 2026-10-15 (issue #13, draft like the rest of this brief):
   audio, text and names must still be original or properly licensed (ADR 0002).
 - Team: solo.
 - Time: about 5 to 10 hours per week.
-- Target length: a long playthrough, 40+ hours, as the eventual goal.
+- Target length: 40+ hours for the main arc (the chain of community
+  projects), and open ended after that, so play can continue past the ending.
 
 Tension to manage: a solo developer at 5 to 10 hours per week cannot build a
 40+ hour game quickly. The long length is the destination, not the first
