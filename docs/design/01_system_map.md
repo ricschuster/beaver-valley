@@ -234,8 +234,8 @@ Current answers (still draft):
 
 ## Open questions
 
-- Theme and hook: what makes this game its own? The working name is only a
-  placeholder and no theme is chosen.
+- Name and world: the hook and setting are in the project brief (issue #15).
+  The working name is only a placeholder and the world is not yet invented.
 - Which systems are in the first playable and which come later?
 - Engine and language (needs an ADR when chosen).
 
