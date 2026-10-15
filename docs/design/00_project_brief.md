@@ -13,6 +13,26 @@ names, art, audio and text (see `docs/decisions/0002-stardew-valley-inspired.md`
 The player runs a home farm, helps a village finish a chain of community
 projects, and ventures into a wider world under a quiet, ambient threat.
 
+## Identity (draft, issue #15)
+
+Decided in discussion on 2026-10-15.
+
+- **Two halves of the hook.** The community project chain is a big part of
+  what the game is. Almost as important is the setting: a Middle-earth style
+  fantasy world, in the spirit of The Lord of the Rings.
+- **Core game stays close to Stardew Valley.** Day cycle, farming, foraging,
+  skills, selling and bundles follow the original's approach (see ADR 0002).
+- **Setting from the fantasy tradition.** Shire-like homeliness, old roads and
+  ruins, a wider world beyond the valley. The content is our own: world, names,
+  peoples and lore are invented (see
+  `docs/decisions/0003-middle-earth-style-setting.md`).
+- **Mood is much lighter.** Funny, warm and gentle, not epic or grim. The
+  shadow in the wider world is backdrop, not a threat to the player.
+- **No urgency.** No pressure to finish tasks beyond what the original does:
+  seasons turn, and that is all.
+- **A good evening feels** cozy and unhurried, with progress, curiosity and
+  some humour.
+
 ## Who it is for
 
 Decided 2026-10-15 (issue #13, draft like the rest of this brief):
@@ -106,7 +126,8 @@ these is ruled out forever.
 
 ## Open questions
 
-- Project name and theme. Avoid names that sit close to the original's branding.
+- Project name. Avoid names that sit close to the original's branding or to
+  Tolkien's names.
 - Engine and language (needs an ADR).
 - What centre 3 is (issue #5).
 - Whether ring 3 has combat, and how much.
