@@ -52,6 +52,8 @@ Source: `src/core/calendar.ts`, `src/core/weather.ts`.
   length.
 - Chance of rain per day is 20 percent in spring and 15 percent in summer. The
   first day of a season is always sunny. Ours.
+- Tomorrow's weather is rolled a day ahead and shown when the player uses the
+  bed, like Stardew's TV forecast.
 
 ## Foraging
 
