@@ -30,7 +30,7 @@ Source: `src/core/save.ts`, `src/core/toolbar.ts`, `src/content/crops.json`.
 - A new game starts with 500g and 15 parsnip seeds. Money from memory, seeds
   ours.
 - Seeds cost the listed seed price and goods sell for the listed sell price.
-  There is no buy or sell spread beyond that.
+  Seeds can be sold back for half the price they cost (rounded down). Ours.
 
 Crops (season, days to grow, seed price, sell price):
 
@@ -87,6 +87,10 @@ Source: `src/content/bundles.json`.
   in 2000 runs. A real player walks and spends time, so expect longer.
 
 ## Open questions for playtests
+
+First answers are in `08_playtest_personas.md`: 500g is far more than enough
+(a parsnip returns 35g on a 20g seed in 4 days) and an expert finishes all five
+bundles on day 41 of 56.
 
 - Is 14 real minutes a day too long on a tablet?
 - Does energy set the pace, now that forage is plentiful?
