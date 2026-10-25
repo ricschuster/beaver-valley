@@ -17,6 +17,8 @@ import { seedStock, sellAll } from "../src/core/shop";
 
 const spots = Array.from({ length: 40 }, (_, i) => ({ x: i, y: 5 }));
 const never = () => 0;
+/** A roll that never earns a better quality. */
+const plain = () => 0.99;
 
 function readyFarm() {
   const g = newGame();
@@ -66,11 +68,14 @@ describe("actions", () => {
       water(g, 0, 0);
       sleep(g, spots, never);
     }
-    const r = harvest(g, 0, 0);
+    const r = harvest(g, 0, 0, plain);
     expect(r).toMatchObject({ ok: true, item: "parsnip" });
     expect(g.inventory.count("parsnip")).toBe(1);
     expect(g.skills.xpOf("farming")).toBeGreaterThan(0);
-    expect(harvest(g, 0, 0)).toEqual({ ok: false, reason: "nothing ripe" });
+    expect(harvest(g, 0, 0, plain)).toEqual({
+      ok: false,
+      reason: "nothing ripe",
+    });
   });
 
   it("reports a level up", () => {
@@ -80,7 +85,7 @@ describe("actions", () => {
       water(g, 0, 0);
       sleep(g, spots, never);
     }
-    expect(harvest(g, 0, 0)).toMatchObject({
+    expect(harvest(g, 0, 0, plain)).toMatchObject({
       levelUp: { skill: "farming", level: 1 },
     });
   });
@@ -92,7 +97,10 @@ describe("actions", () => {
       sleep(g, spots, never);
     }
     for (let i = 0; i < g.inventory.size; i++) g.inventory.add(`junk${i}`);
-    expect(harvest(g, 0, 0)).toEqual({ ok: false, reason: "backpack full" });
+    expect(harvest(g, 0, 0, plain)).toEqual({
+      ok: false,
+      reason: "backpack full",
+    });
     expect(g.farm.isRipe(0, 0)).toBe(true);
   });
 
@@ -100,9 +108,9 @@ describe("actions", () => {
     const g = newGame();
     g.forage.respawn("spring", spots, () => 0.99);
     const at = spots.find((s) => g.forage.itemAt(s.x, s.y))!;
-    expect(forage(g, at.x, at.y)).toMatchObject({ ok: true });
+    expect(forage(g, at.x, at.y, plain)).toMatchObject({ ok: true });
     expect(g.skills.xpOf("foraging")).toBe(7);
-    expect(forage(g, at.x, at.y)).toEqual({
+    expect(forage(g, at.x, at.y, plain)).toEqual({
       ok: false,
       reason: "nothing here",
     });
@@ -112,7 +120,7 @@ describe("actions", () => {
     const g = newGame();
     g.day.energy.spend(MAX_ENERGY);
     expect(till(g, 0, 0)).toEqual({ ok: false, reason: "exhausted" });
-    expect(harvest(g, 0, 0)).toEqual({ ok: false, reason: "exhausted" });
+    expect(harvest(g, 0, 0, plain)).toEqual({ ok: false, reason: "exhausted" });
   });
 });
 

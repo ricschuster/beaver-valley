@@ -1,6 +1,7 @@
 import { dateOf } from "./calendar";
 import { cropById } from "./crops";
 import { cropOfSeed } from "./items";
+import { cropQuality, forageQuality, withQuality } from "./quality";
 import { FORAGE_XP, harvestXp, type Skill } from "./skills";
 import type { GameState } from "./save";
 
@@ -59,23 +60,41 @@ export function plant(
   return { ok: true };
 }
 
-export function harvest(g: GameState, x: number, y: number): Outcome {
+export function harvest(
+  g: GameState,
+  x: number,
+  y: number,
+  random: () => number = Math.random,
+): Outcome {
   if (g.day.over) return fail("exhausted");
   const cropId = g.farm.plotAt(x, y)?.crop?.id;
   if (!cropId || !g.farm.isRipe(x, y)) return fail("nothing ripe");
-  if (g.inventory.room(cropId) < 1) return fail("backpack full");
+  const item = withQuality(
+    cropId,
+    cropQuality(g.skills.level("farming"), random()),
+  );
+  if (g.inventory.room(item) < 1) return fail("backpack full");
   g.farm.harvest(x, y);
-  g.inventory.add(cropId);
+  g.inventory.add(item);
   const price = cropById(cropId)?.sellPrice ?? 0;
-  return award(g, "farming", harvestXp(price), cropId);
+  return award(g, "farming", harvestXp(price), item);
 }
 
-export function forage(g: GameState, x: number, y: number): Outcome {
+export function forage(
+  g: GameState,
+  x: number,
+  y: number,
+  random: () => number = Math.random,
+): Outcome {
   if (g.day.over) return fail("exhausted");
   const id = g.forage.itemAt(x, y);
   if (!id) return fail("nothing here");
-  if (g.inventory.room(id) < 1) return fail("backpack full");
+  const item = withQuality(
+    id,
+    forageQuality(g.skills.level("foraging"), random()),
+  );
+  if (g.inventory.room(item) < 1) return fail("backpack full");
   g.forage.collect(x, y);
-  g.inventory.add(id);
-  return award(g, "foraging", FORAGE_XP, id);
+  g.inventory.add(item);
+  return award(g, "foraging", FORAGE_XP, item);
 }

@@ -1,12 +1,13 @@
 import bundleData from "../content/bundles.json";
 import type { Inventory } from "./inventory";
 import { itemById } from "./items";
+import { splitQuality } from "./quality";
 import type { Wallet } from "./shop";
 
 export interface BundleDef {
   id: string;
   name: string;
-  /** Goods the bundle accepts. */
+  /** Goods the bundle accepts, at any quality. */
   items: string[];
   /** How many different goods from `items` must be handed in. */
   required: number;
@@ -55,13 +56,14 @@ export class Hall {
     inv: Inventory,
     wallet: Wallet,
     bundleId: string,
-    itemId: string,
+    stackId: string,
   ): HandIn {
+    const itemId = splitQuality(stackId).base;
     const def = this.bundles.find((b) => b.id === bundleId);
     if (!def || this.complete(bundleId) || !def.items.includes(itemId))
       return "rejected";
     const set = this.given.get(bundleId) ?? new Set<string>();
-    if (set.has(itemId) || !inv.remove(itemId)) return "rejected";
+    if (set.has(itemId) || !inv.remove(stackId)) return "rejected";
     set.add(itemId);
     this.given.set(bundleId, set);
     if (set.size < def.required) return "accepted";
@@ -78,14 +80,15 @@ export class Hall {
   problem(
     inv: Inventory,
     bundleId: string,
-    itemId: string,
+    stackId: string,
   ): string | undefined {
+    const itemId = splitQuality(stackId).base;
     const def = this.bundles.find((b) => b.id === bundleId);
     if (!def) return "There is no such bundle.";
     if (this.complete(bundleId)) return "That bundle is already done.";
     if (!def.items.includes(itemId)) return "This bundle does not take that.";
     if (this.handedIn(bundleId).includes(itemId)) return "Already handed in.";
-    if (inv.count(itemId) < 1) return "You do not have one.";
+    if (inv.count(stackId) < 1) return "You do not have one.";
     return undefined;
   }
 

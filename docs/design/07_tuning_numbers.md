@@ -71,7 +71,21 @@ Source: `src/core/skills.ts`.
   10000, 15000. From memory.
 - A forage pickup gives 7 XP. A harvest gives `floor(16 * ln(0.018 * price + 1))`.
   From memory.
-- Levels have no effect yet (no perks or gates in the first playable).
+- Levels raise the chance of better quality goods (next section). They have no
+  other effect yet.
+
+## Quality
+
+Source: `src/core/quality.ts`. Quality is part of the item id (`parsnip@gold`),
+so each tier stacks and sells separately. Bundles take any tier.
+
+- Tiers: normal, silver (x1.25 price), gold (x1.5 price). Iridium is left out
+  until there is a source for it. From memory.
+- Crops: gold chance is `0.2 * farmingLevel / 10 + 0.01`; silver chance is twice
+  that, so a level 10 farmer gets about 21 percent gold and 21 percent silver.
+  Stardew's fertiliser term is left out. From memory.
+- Forage: gold chance is `foragingLevel / 30`, silver up to `foragingLevel / 15`.
+  From memory.
 
 ## Village hall
 

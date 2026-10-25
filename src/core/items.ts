@@ -1,5 +1,6 @@
 import { CROPS, cropById } from "./crops";
 import { FORAGE } from "./forage";
+import { QUALITY_MULTIPLIER, splitQuality } from "./quality";
 
 /** Item ids: a crop's produce uses the crop id, its seed uses `<id>-seed`. */
 export const seedId = (cropId: string) => `${cropId}-seed`;
@@ -26,8 +27,18 @@ for (const f of FORAGE) {
   items.set(f.id, { id: f.id, name: f.name, sellPrice: f.sellPrice });
 }
 
+const QUALITY_NAME = { silver: "Silver", gold: "Gold" } as const;
+
+/** An item by id. A good with a quality suffix sells for more, per tier. */
 export function itemById(id: string): ItemDef | undefined {
-  return items.get(id);
+  const { base, quality } = splitQuality(id);
+  const def = items.get(base);
+  if (!def || quality === "normal") return def;
+  return {
+    id,
+    name: `${QUALITY_NAME[quality]} ${def.name.toLowerCase()}`,
+    sellPrice: Math.floor(def.sellPrice * QUALITY_MULTIPLIER[quality]),
+  };
 }
 
 /** The crop a seed item plants, if any. */
