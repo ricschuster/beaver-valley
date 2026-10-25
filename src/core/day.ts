@@ -1,10 +1,13 @@
 import { Clock, DAY_END } from "./clock";
 import { Energy, MAX_ENERGY } from "./energy";
 
-/** Passing out is a mild, recoverable loss: a little money and a later start. */
-export const PASS_OUT_MONEY_COST = 50;
-export const PASS_OUT_WAKE_MINUTES = 8 * 60;
-export const PASS_OUT_WAKE_ENERGY = 75;
+/**
+ * Passing out is a mild, recoverable loss: a share of money, capped, and a
+ * reduced morning. Numbers match Stardew for now and are tunable.
+ */
+export const PASS_OUT_MONEY_SHARE = 0.1;
+export const PASS_OUT_MONEY_CAP = 1000;
+export const PASS_OUT_WAKE_ENERGY = { energy: 0.5, time: 0.75 };
 
 export type DayEnd =
   | { passedOut: false }
@@ -39,12 +42,14 @@ export class Day {
       this.energy.restore(MAX_ENERGY);
       return { passedOut: false };
     }
-    this.clock.minutes = PASS_OUT_WAKE_MINUTES;
-    this.energy.current = PASS_OUT_WAKE_ENERGY;
+    this.energy.current = Math.round(MAX_ENERGY * PASS_OUT_WAKE_ENERGY[reason]);
     return {
       passedOut: true,
       reason,
-      moneyLost: Math.min(Math.max(money, 0), PASS_OUT_MONEY_COST),
+      moneyLost: Math.min(
+        Math.floor(Math.max(money, 0) * PASS_OUT_MONEY_SHARE),
+        PASS_OUT_MONEY_CAP,
+      ),
     };
   }
 }

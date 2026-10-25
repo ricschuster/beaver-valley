@@ -159,10 +159,13 @@ played.
   punishment, in line with the mild, recoverable losses above.
 - **Clock behaviour.** The clock runs through the day and stops in menus and
   conversations (single player). The original behaves this way too.
-- **Numbers are our own.** Day length and clock speed are tunable constants,
-  set by playtesting. They are not copied from the original (see
-  `docs/decisions/0002-stardew-valley-inspired.md`). The original's day runs
-  about 14 real minutes, which is a rough reference only.
+- **Numbers match the original for now.** Day length, clock speed, energy and
+  the pass-out rules are tunable constants. Until playtesting says otherwise
+  the day runs 6:00 am to 2:00 am, energy is 270, and passing out costs 10
+  percent of money (up to 1000) and gives a 6:00 am wake with half energy
+  (exhaustion) or 75 percent (2:00 am). These are numbers only; no name, art,
+  text or code is copied (see `docs/decisions/0002-stardew-valley-inspired.md`).
+  The original's day runs about 14 real minutes.
 - **First playable.** The clock only passes time and ends the day late at
   night. Shop hours and villager schedules come later.
 
