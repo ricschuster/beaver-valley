@@ -32,3 +32,19 @@ describe("toolbar", () => {
     expect(cycle(3, 1)).toBe(4);
   });
 });
+
+describe("backpack rows", () => {
+  it("cycles through every slot and jumps rows with nextRow", async () => {
+    const { toolbarSize, nextRow, rowOf } = await import("../src/core/toolbar");
+    const g = startGame();
+    expect(toolbarSize(g)).toBe(TOOLBAR_SIZE);
+    expect(nextRow(g, 3)).toBe(3);
+    g.inventory.grow(24);
+    expect(toolbarSize(g)).toBe(27);
+    expect(nextRow(g, 5)).toBe(15);
+    expect(nextRow(g, 15)).toBe(3);
+    expect(rowOf(14)).toBe(0);
+    expect(rowOf(15)).toBe(1);
+    expect(cycle(26, 1, 27)).toBe(0);
+  });
+});

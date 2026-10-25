@@ -55,3 +55,32 @@ describe("tool upgrades", () => {
     });
   });
 });
+
+describe("backpack", () => {
+  it("grows 12, 24, 36 for 2000g then 10000g, and stops", async () => {
+    const { Inventory } = await import("../src/core/inventory");
+    const { nextBackpack, upgradeBackpack } =
+      await import("../src/core/upgrades");
+    const inv = new Inventory();
+    const wallet = { money: 1999 };
+    expect(nextBackpack(inv)).toEqual({ size: 24, cost: 2000 });
+    expect(upgradeBackpack(inv, wallet)).toBe(false);
+    wallet.money = 12000;
+    expect(upgradeBackpack(inv, wallet)).toBe(true);
+    expect(inv.size).toBe(24);
+    expect(wallet.money).toBe(10000);
+    expect(upgradeBackpack(inv, wallet)).toBe(true);
+    expect(inv.size).toBe(36);
+    expect(nextBackpack(inv)).toBeUndefined();
+    expect(upgradeBackpack(inv, wallet)).toBe(false);
+  });
+
+  it("keeps its size and contents through a save", () => {
+    const g = newGame();
+    g.inventory.grow(24);
+    g.inventory.add("parsnip", 1500);
+    const back = deserialize(serialize(g))!;
+    expect(back.inventory.size).toBe(24);
+    expect(back.inventory.count("parsnip")).toBe(1500);
+  });
+});

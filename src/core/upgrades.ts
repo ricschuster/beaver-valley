@@ -1,3 +1,4 @@
+import { BACKPACK_SIZES, type Inventory } from "./inventory";
 import type { Wallet } from "./shop";
 
 /** The tools that can be upgraded, and what each tier is called. */
@@ -42,4 +43,27 @@ export function upgrade(
   wallet.money -= cost;
   tiers[tool] += 1;
   return true;
+}
+
+/** Price to grow the backpack to 24 and then 36 slots. From memory. */
+export const BACKPACK_COST = [2000, 10000];
+
+/** The next size and its price, or undefined at the biggest backpack. */
+export function nextBackpack(
+  inv: Inventory,
+): { size: number; cost: number } | undefined {
+  const step = BACKPACK_SIZES.findIndex((n) => n > inv.size);
+  const cost = BACKPACK_COST[step - 1];
+  const size = BACKPACK_SIZES[step];
+  return step < 1 || size === undefined || cost === undefined
+    ? undefined
+    : { size, cost };
+}
+
+/** Buy the next backpack size. Returns false if maxed or too dear. */
+export function upgradeBackpack(inv: Inventory, wallet: Wallet): boolean {
+  const next = nextBackpack(inv);
+  if (!next || wallet.money < next.cost) return false;
+  wallet.money -= next.cost;
+  return inv.grow(next.size);
 }

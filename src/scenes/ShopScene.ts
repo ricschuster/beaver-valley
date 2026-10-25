@@ -1,11 +1,17 @@
 import Phaser from "phaser";
 import { dateOf } from "../core/calendar";
-import { SLOT_COUNT } from "../core/inventory";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
 import { sellMultiplier } from "../core/professions";
 import { buy, sell, sellAll, seedStock } from "../core/shop";
-import { TIER_NAMES, UPGRADABLE, upgrade, upgradeCost } from "../core/upgrades";
+import {
+  nextBackpack,
+  TIER_NAMES,
+  UPGRADABLE,
+  upgrade,
+  upgradeBackpack,
+  upgradeCost,
+} from "../core/upgrades";
 import { frame, Menu, type Row } from "./panel";
 import { STATE_KEY } from "./state";
 
@@ -125,10 +131,33 @@ export class ShopScene extends Phaser.Scene {
         ],
       };
     });
-    this.buyMenu.setRows([...buyRows, ...toolRows]);
+    const pack = nextBackpack(g.inventory);
+    const packRow: Row = pack
+      ? {
+          label: `Backpack (${g.inventory.size} slots)`,
+          detail: `${pack.size} slots: ${pack.cost}g`,
+          buttons: [
+            {
+              text: "Upgrade",
+              run: () =>
+                this.say(
+                  upgradeBackpack(g.inventory, g)
+                    ? `Your backpack now holds ${pack.size} things.`
+                    : "Not enough money.",
+                ),
+            },
+          ],
+        }
+      : {
+          label: `Backpack (${g.inventory.size} slots)`,
+          detail: "Biggest",
+          dim: true,
+          buttons: [],
+        };
+    this.buyMenu.setRows([...buyRows, ...toolRows, packRow]);
 
     const ids: string[] = [];
-    for (let i = 0; i < SLOT_COUNT; i++) {
+    for (let i = 0; i < g.inventory.size; i++) {
       const slot = g.inventory.slot(i);
       if (slot && !ids.includes(slot.id)) ids.push(slot.id);
     }

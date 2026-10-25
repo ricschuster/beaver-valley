@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import { sleep } from "../core/sleep";
 import type { GameState } from "../core/save";
-import { cycle, heldAt, TOOLBAR_SIZE } from "../core/toolbar";
+import { cycle, heldAt, nextRow, toolbarSize } from "../core/toolbar";
 import { pendingChoice } from "../core/professions";
 import { eat } from "../core/actions";
 import { itemById } from "../core/items";
@@ -23,6 +23,7 @@ import { Controls } from "./controls";
 import { browserStore } from "./storage";
 import { saveGame } from "../core/save";
 import { SELECTED_KEY, STATE_KEY } from "./state";
+import { cropKey, forageKey, stageOf } from "./art";
 import { Hud } from "./hud";
 import {
   makePlaceholderTextures,
@@ -66,6 +67,8 @@ export class FarmScene extends Phaser.Scene {
   private holds = new Set<string>();
   private message = "";
   private hud!: Hud;
+  private uiCamera!: Phaser.Cameras.Scene2D.Camera;
+  private sprites!: Phaser.GameObjects.Container;
   private ground!: Phaser.GameObjects.Graphics;
   private map!: FarmMap;
   private controls!: Controls;
@@ -117,7 +120,8 @@ export class FarmScene extends Phaser.Scene {
     const ts = this.map.tileSize;
     // Plots and forage sit on the tiles, under the player.
     this.ground = this.add.graphics();
-    world.push(this.ground);
+    this.sprites = this.add.container(0, 0);
+    world.push(this.ground, this.sprites);
     const spawn = this.map.entry(this.entryName)!;
     this.pos = { x: (spawn.x + 0.5) * ts, y: (spawn.y + 1) * ts - 2 };
     this.player = this.add
@@ -136,12 +140,14 @@ export class FarmScene extends Phaser.Scene {
       () => this.use(),
       () => this.eatHeld(),
       () => this.open("skills"),
+      () => this.select(nextRow(this.state, this.selected)),
     );
     this.controls = new Controls(this, (p) => this.hud.covers(p.x, p.y));
     const ui = [this.controls.stick, ...this.hud.objects];
 
     const { width, height } = this.scale.gameSize;
     const uiCamera = this.cameras.add(0, 0, width, height);
+    this.uiCamera = uiCamera;
     uiCamera.ignore(world);
     // A map smaller than the view is centred rather than pinned to a corner.
     const mapW = this.map.width * ts;
@@ -179,11 +185,17 @@ export class FarmScene extends Phaser.Scene {
         run();
       });
     press("SPACE", () => this.use());
+    kb?.addCapture("TAB");
+    press("TAB", () => this.select(nextRow(this.state, this.selected)));
     press("F", () => this.eatHeld());
     press("K", () => this.open("skills"));
     press("Z", () => this.endDay());
-    press("Q", () => this.select(cycle(this.selected, -1)));
-    press("E", () => this.select(cycle(this.selected, 1)));
+    press("Q", () =>
+      this.select(cycle(this.selected, -1, toolbarSize(this.state))),
+    );
+    press("E", () =>
+      this.select(cycle(this.selected, 1, toolbarSize(this.state))),
+    );
     const digits = "ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE".split(",");
     digits.forEach((name, i) => press(name, () => this.select(i)));
     // Restarting the scene keeps its event listeners, so drop this one on
@@ -263,7 +275,7 @@ export class FarmScene extends Phaser.Scene {
   }
 
   private select(index: number): void {
-    if (index < 0 || index >= TOOLBAR_SIZE) return;
+    if (index < 0 || index >= toolbarSize(this.state)) return;
     this.selected = index;
     this.registry.set(SELECTED_KEY, index);
     this.message = "";
@@ -329,11 +341,17 @@ export class FarmScene extends Phaser.Scene {
     this.open("report", { report });
   }
 
-  /** Draw plots and forage as flat shapes, until the art pass. */
+  /** Draw plots, crops and forage on the tiles. */
   private drawGround(): void {
     const g = this.ground.clear();
+    this.sprites.removeAll(true);
     if (!this.map.hasSoil) return;
     const ts = this.map.tileSize;
+    const put = (x: number, y: number, key: string) => {
+      const image = this.add.image(x * ts, y * ts, key).setOrigin(0);
+      this.uiCamera.ignore(image); // the UI camera does not draw the world
+      this.sprites.add(image);
+    };
     for (const { x, y, plot } of this.state.farm.each()) {
       g.fillStyle(plot.wateredToday ? 0x4a3420 : 0x9a7a4c).fillRect(
         x * ts + 1,
@@ -344,22 +362,14 @@ export class FarmScene extends Phaser.Scene {
       const crop = plot.crop;
       const def = crop && cropById(crop.id);
       if (!crop || !def) continue;
-      const cx = x * ts + ts / 2;
-      const cy = y * ts + ts / 2;
-      if (this.state.farm.isRipe(x, y)) {
-        g.fillStyle(0xf0d040).fillCircle(cx, cy, 5);
-        g.lineStyle(1, 0xffffff, 1).strokeCircle(cx, cy, 5);
-      } else {
-        const stage = Math.min(crop.daysGrown / def.growDays, 1);
-        g.fillStyle(0x6fcf5a).fillCircle(cx, cy + 3, 1.5 + stage * 3.5);
-      }
+      const stage = stageOf(
+        crop.daysGrown / def.growDays,
+        this.state.farm.isRipe(x, y),
+      );
+      put(x, y, cropKey(crop.id, stage));
     }
-    for (const { x, y } of this.state.forage.each()) {
-      g.fillStyle(0xe58fd0)
-        .fillCircle(x * ts + ts / 2, y * ts + ts / 2, 3)
-        .lineStyle(1, 0xffffff, 1)
-        .strokeCircle(x * ts + ts / 2, y * ts + ts / 2, 3);
-    }
+    for (const { x, y, id } of this.state.forage.each())
+      put(x, y, forageKey(id));
   }
 
   private render(): void {
