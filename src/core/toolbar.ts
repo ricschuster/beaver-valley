@@ -6,8 +6,26 @@ import { newGame, type GameState } from "./save";
 export const TOOLS = ["hoe", "can", "hand"] as const;
 export type Tool = (typeof TOOLS)[number];
 
-/** The toolbar is the three tools, then the backpack slots in order. */
+/** One row of the toolbar: the three tools, then twelve backpack slots. */
 export const TOOLBAR_SIZE = TOOLS.length + SLOT_COUNT;
+
+/** Everything that can be selected: the tools and every backpack slot. */
+export function toolbarSize(g: GameState): number {
+  return TOOLS.length + g.inventory.size;
+}
+
+/** Which row of backpack slots a selection is in (0 for the tools). */
+export function rowOf(index: number): number {
+  return index < TOOLS.length
+    ? 0
+    : Math.floor((index - TOOLS.length) / SLOT_COUNT);
+}
+
+/** The first slot of the next backpack row, wrapping (Stardew's Tab). */
+export function nextRow(g: GameState, index: number): number {
+  const rows = Math.ceil(g.inventory.size / SLOT_COUNT);
+  return TOOLS.length + ((rowOf(index) + 1) % rows) * SLOT_COUNT;
+}
 
 /** What the player is holding. An item is a backpack stack: seeds, produce or forage. */
 export type Held =
@@ -24,8 +42,12 @@ export function heldAt(g: GameState, index: number): Held {
 }
 
 /** Step the selection by one, wrapping at both ends. */
-export function cycle(index: number, step: 1 | -1): number {
-  return (index + step + TOOLBAR_SIZE) % TOOLBAR_SIZE;
+export function cycle(
+  index: number,
+  step: 1 | -1,
+  size = TOOLBAR_SIZE,
+): number {
+  return (index + step + size) % size;
 }
 
 /** Seeds a new game starts with, so the first day can be played at once. */

@@ -109,6 +109,13 @@ Source: `src/core/actions.ts` (`eat`), `energy` fields in the content files.
   not food.
 - Silver restores x1.4, gold x1.8.
 
+## Backpack
+
+Source: `src/core/inventory.ts`, `src/core/upgrades.ts`. The backpack starts at
+12 slots and can grow to 24 (2000g) and then 36 (10000g), bought in the shop.
+Sizes and prices from memory. The toolbar shows 12 slots at a time; Tab or the
+Row button moves to the next row, as in Stardew.
+
 ## Quality
 
 Source: `src/core/quality.ts`. Quality is part of the item id (`parsnip@gold`),

@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 import { sleep } from "../core/sleep";
 import type { GameState } from "../core/save";
-import { cycle, heldAt, TOOLBAR_SIZE } from "../core/toolbar";
+import { cycle, heldAt, nextRow, toolbarSize } from "../core/toolbar";
 import { eat } from "../core/actions";
 import { itemById } from "../core/items";
 import { reasonText, useHeld } from "../core/tools";
@@ -135,6 +135,7 @@ export class FarmScene extends Phaser.Scene {
       () => this.use(),
       () => this.eatHeld(),
       () => this.open("skills"),
+      () => this.select(nextRow(this.state, this.selected)),
     );
     this.controls = new Controls(this, (p) => this.hud.covers(p.x, p.y));
     const ui = [this.controls.stick, ...this.hud.objects];
@@ -178,11 +179,17 @@ export class FarmScene extends Phaser.Scene {
         run();
       });
     press("SPACE", () => this.use());
+    kb?.addCapture("TAB");
+    press("TAB", () => this.select(nextRow(this.state, this.selected)));
     press("F", () => this.eatHeld());
     press("K", () => this.open("skills"));
     press("Z", () => this.endDay());
-    press("Q", () => this.select(cycle(this.selected, -1)));
-    press("E", () => this.select(cycle(this.selected, 1)));
+    press("Q", () =>
+      this.select(cycle(this.selected, -1, toolbarSize(this.state))),
+    );
+    press("E", () =>
+      this.select(cycle(this.selected, 1, toolbarSize(this.state))),
+    );
     const digits = "ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE".split(",");
     digits.forEach((name, i) => press(name, () => this.select(i)));
     // Restarting the scene keeps its event listeners, so drop this one on
@@ -262,7 +269,7 @@ export class FarmScene extends Phaser.Scene {
   }
 
   private select(index: number): void {
-    if (index < 0 || index >= TOOLBAR_SIZE) return;
+    if (index < 0 || index >= toolbarSize(this.state)) return;
     this.selected = index;
     this.registry.set(SELECTED_KEY, index);
     this.message = "";

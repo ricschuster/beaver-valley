@@ -1,12 +1,26 @@
 export const SLOT_COUNT = 12;
+/** Slots after each backpack upgrade, as in Stardew (12, 24, 36). */
+export const BACKPACK_SIZES = [12, 24, 36];
+export const MAX_SLOTS = 36;
 export const STACK_SIZE = 999;
 
 /** The player's backpack: a fixed number of slots, each a stack of one item. */
 export class Inventory {
   private slots: ({ id: string; count: number } | undefined)[];
 
-  constructor(readonly size = SLOT_COUNT) {
+  constructor(size = SLOT_COUNT) {
     this.slots = Array.from({ length: size }, () => undefined);
+  }
+
+  get size(): number {
+    return this.slots.length;
+  }
+
+  /** Make the backpack bigger. Never shrinks it. Returns false if it did not grow. */
+  grow(size: number): boolean {
+    if (size <= this.size || size > MAX_SLOTS) return false;
+    while (this.slots.length < size) this.slots.push(undefined);
+    return true;
   }
 
   /** The slots as plain data. */
@@ -15,7 +29,8 @@ export class Inventory {
   }
 
   load(saved: ({ id: string; count: number } | null)[]): void {
-    this.slots = Array.from({ length: this.size }, (_, i) => {
+    const size = Math.min(Math.max(saved.length, SLOT_COUNT), MAX_SLOTS);
+    this.slots = Array.from({ length: size }, (_, i) => {
       const s = saved[i];
       return s ? { ...s } : undefined;
     });
