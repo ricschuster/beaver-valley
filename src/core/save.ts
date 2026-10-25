@@ -5,6 +5,7 @@ import { type Weather, WEATHERS } from "./weather";
 import { Hall, type HallProgress } from "./bundles";
 import { Inventory } from "./inventory";
 import { Skills, SKILLS } from "./skills";
+import { UPGRADABLE, MAX_TIER, type ToolTiers } from "./upgrades";
 
 /** Everything the player owns and has done. The scene holds one of these. */
 export interface GameState {
@@ -13,9 +14,13 @@ export interface GameState {
   inventory: Inventory;
   farm: Farm;
   skills: Skills;
+  /** Tier of the hoe and can, 0 for basic. */
+  toolTiers: ToolTiers;
   hall: Hall;
   /** Today's weather. */
   weather: Weather;
+  /** Tomorrow's weather, known a day ahead (the forecast). */
+  tomorrow: Weather;
   /** True once the end screen has been shown, so it shows only once. */
   endSeen: boolean;
   /** Wild goods on the ground today. Not saved: it respawns each morning. */
@@ -32,8 +37,10 @@ export function newGame(): GameState {
     inventory: new Inventory(),
     farm: new Farm(),
     skills: new Skills(),
+    toolTiers: { hoe: 0, can: 0 },
     hall: new Hall(),
     weather: "sunny",
+    tomorrow: "sunny",
     endSeen: false,
     forage: new ForageField(),
   };
@@ -52,7 +59,11 @@ interface SaveData {
   farm: ReturnType<Farm["save"]>;
   skills: ReturnType<Skills["save"]>;
   hall: HallProgress;
+  /** Absent in saves made before tool upgrades existed. */
+  toolTiers?: ToolTiers;
   weather: Weather;
+  /** Absent in saves made before the forecast existed. */
+  tomorrow?: Weather;
   /** Absent in saves made before the end screen existed. */
   endSeen?: boolean;
 }
@@ -75,7 +86,9 @@ export function serialize(g: GameState): string {
     farm: g.farm.save(),
     skills: g.skills.save(),
     hall: g.hall.save(),
+    toolTiers: { ...g.toolTiers },
     weather: g.weather,
+    tomorrow: g.tomorrow,
     endSeen: g.endSeen,
   };
   return JSON.stringify(data);
@@ -129,6 +142,15 @@ export function deserialize(text: string): GameState | undefined {
   g.farm.load(farm as ReturnType<Farm["save"]>);
   g.skills.load(skills as ReturnType<Skills["save"]>);
   g.hall = new Hall(undefined, hall as HallProgress);
+  const tiers = raw.toolTiers;
+  if (isObject(tiers)) {
+    for (const t of UPGRADABLE) {
+      const v = tiers[t];
+      if (isCount(v)) g.toolTiers[t] = Math.min(Math.floor(v), MAX_TIER);
+    }
+  }
+  if (WEATHERS.includes(raw.tomorrow as Weather))
+    g.tomorrow = raw.tomorrow as Weather;
   g.endSeen = raw.endSeen === true;
   return g;
 }

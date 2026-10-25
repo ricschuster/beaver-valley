@@ -4,6 +4,7 @@ import { plant, till } from "../src/core/actions";
 import { deserialize, newGame, serialize } from "../src/core/save";
 import { sleep } from "../src/core/sleep";
 import { seedId } from "../src/core/items";
+import { DAYS_PER_SEASON } from "../src/core/calendar";
 
 const spots = [{ x: 0, y: 5 }];
 
@@ -26,7 +27,8 @@ describe("rain", () => {
     g.inventory.add(seedId("parsnip"));
     till(g, 0, 0);
     plant(g, 0, 0, seedId("parsnip"));
-    const r = sleep(g, spots, () => 0);
+    g.tomorrow = "rainy";
+    const r = sleep(g, spots, () => 0.99);
     expect(r.weather).toBe("rainy");
     expect(g.weather).toBe("rainy");
     expect(g.farm.plotAt(0, 0)?.wateredToday).toBe(true);
@@ -47,5 +49,32 @@ describe("rain", () => {
     expect(deserialize(serialize(g))?.weather).toBe("rainy");
     const bad = { ...JSON.parse(serialize(g)), weather: "snow" };
     expect(deserialize(JSON.stringify(bad))).toBeUndefined();
+  });
+});
+
+describe("forecast", () => {
+  it("tomorrow becomes today after sleeping, and a new tomorrow is rolled", () => {
+    const g = newGame();
+    g.tomorrow = "rainy";
+    const report = sleep(g, [], () => 0.99);
+    expect(report.weather).toBe("rainy");
+    expect(g.weather).toBe("rainy");
+    expect(g.tomorrow).toBe("sunny");
+  });
+
+  it("the forecast for a season's first day is always clear", () => {
+    const g = newGame();
+    g.day.clock.day = DAYS_PER_SEASON - 1;
+    sleep(g, [], () => 0);
+    expect(g.tomorrow).toBe("sunny");
+  });
+
+  it("is saved, and old saves still load", () => {
+    const g = newGame();
+    g.tomorrow = "rainy";
+    expect(deserialize(serialize(g))!.tomorrow).toBe("rainy");
+    const raw = JSON.parse(serialize(g));
+    delete raw.tomorrow;
+    expect(deserialize(JSON.stringify(raw))!.tomorrow).toBe("sunny");
   });
 });
