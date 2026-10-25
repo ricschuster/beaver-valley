@@ -18,6 +18,31 @@ export function harvestXp(sellPrice: number): number {
 /** Skills level by doing. No gates or perks yet. */
 export class Skills {
   private xp: Record<Skill, number> = { farming: 0, foraging: 0 };
+  private chosen: Partial<Record<Skill, string>> = {};
+
+  /** Every skill, for code that loops over them. */
+  readonly skills = SKILLS;
+
+  professionOf(skill: Skill): string | undefined {
+    return this.chosen[skill];
+  }
+
+  /** True if the player picked this profession. */
+  has(professionId: string): boolean {
+    return Object.values(this.chosen).includes(professionId);
+  }
+
+  setProfession(skill: Skill, id: string): void {
+    this.chosen[skill] = id;
+  }
+
+  saveProfessions(): Partial<Record<Skill, string>> {
+    return { ...this.chosen };
+  }
+
+  loadProfessions(saved: Partial<Record<Skill, string>>): void {
+    this.chosen = { ...saved };
+  }
 
   save(): Record<Skill, number> {
     return { ...this.xp };

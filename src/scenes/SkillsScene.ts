@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import type { GameState } from "../core/save";
+import { professionById } from "../core/professions";
 import { MAX_LEVEL, skillRows } from "../core/skills";
 import { frame } from "./panel";
 import { STATE_KEY } from "./state";
@@ -17,10 +18,13 @@ export class SkillsScene extends Phaser.Scene {
     frame(this, "Skills", () => this.close());
     skillRows(g.skills).forEach((row, i) => {
       const y = 110 + i * 110;
-      this.add.text(48, y, `${NAMES[row.skill]}  level ${row.level}`, {
-        fontSize: "28px",
-        color: "#ffffff",
-      });
+      const pro = professionById(g.skills.professionOf(row.skill) ?? "");
+      this.add.text(
+        48,
+        y,
+        `${NAMES[row.skill]}  level ${row.level}${pro ? `  ${pro.name}` : ""}`,
+        { fontSize: "28px", color: "#ffffff" },
+      );
       const bar = 600;
       this.add.rectangle(48, y + 50, bar, 18, 0x000000, 0.5).setOrigin(0);
       const share = row.next === undefined ? 1 : Math.min(row.xp / row.next, 1);

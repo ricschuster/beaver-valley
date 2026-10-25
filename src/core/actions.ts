@@ -2,6 +2,7 @@ import { dateOf } from "./calendar";
 import { cropById } from "./crops";
 import { cropOfSeed, itemById } from "./items";
 import { MAX_ENERGY } from "./energy";
+import { doubleForageChance, forageFloor } from "./professions";
 import { cropQuality, forageQuality, withQuality } from "./quality";
 import { FORAGE_XP, harvestXp, type Skill } from "./skills";
 import type { GameState } from "./save";
@@ -98,11 +99,13 @@ export function forage(
   if (!id) return fail("nothing here");
   const item = withQuality(
     id,
-    forageQuality(g.skills.level("foraging"), random()),
+    forageFloor(g.skills, forageQuality(g.skills.level("foraging"), random())),
   );
   if (g.inventory.room(item) < 1) return fail("backpack full");
   g.forage.collect(x, y);
   g.inventory.add(item);
+  // Gatherers sometimes find a second one, if it fits.
+  if (random() < doubleForageChance(g.skills)) g.inventory.add(item);
   return award(g, "foraging", FORAGE_XP, item);
 }
 

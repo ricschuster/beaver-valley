@@ -4,7 +4,8 @@ import { ForageField } from "./forage";
 import { type Weather, WEATHERS } from "./weather";
 import { Hall, type HallProgress } from "./bundles";
 import { Inventory } from "./inventory";
-import { Skills, SKILLS } from "./skills";
+import { Skills, SKILLS, type Skill } from "./skills";
+import { professionById } from "./professions";
 import { UPGRADABLE, MAX_TIER, type ToolTiers } from "./upgrades";
 
 /** Everything the player owns and has done. The scene holds one of these. */
@@ -59,6 +60,8 @@ interface SaveData {
   farm: ReturnType<Farm["save"]>;
   skills: ReturnType<Skills["save"]>;
   hall: HallProgress;
+  /** Absent in saves made before professions existed. */
+  professions?: ReturnType<Skills["saveProfessions"]>;
   /** Absent in saves made before tool upgrades existed. */
   toolTiers?: ToolTiers;
   weather: Weather;
@@ -85,6 +88,7 @@ export function serialize(g: GameState): string {
     inventory: g.inventory.save(),
     farm: g.farm.save(),
     skills: g.skills.save(),
+    professions: g.skills.saveProfessions(),
     hall: g.hall.save(),
     toolTiers: { ...g.toolTiers },
     weather: g.weather,
@@ -142,6 +146,15 @@ export function deserialize(text: string): GameState | undefined {
   g.farm.load(farm as ReturnType<Farm["save"]>);
   g.skills.load(skills as ReturnType<Skills["save"]>);
   g.hall = new Hall(undefined, hall as HallProgress);
+  if (isObject(raw.professions)) {
+    const picked: Partial<Record<Skill, string>> = {};
+    for (const k of SKILLS) {
+      const id = raw.professions[k];
+      if (typeof id === "string" && professionById(id)?.skill === k)
+        picked[k] = id;
+    }
+    g.skills.loadProfessions(picked);
+  }
   const tiers = raw.toolTiers;
   if (isObject(tiers)) {
     for (const t of UPGRADABLE) {

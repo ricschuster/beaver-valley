@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { sleep } from "../core/sleep";
 import type { GameState } from "../core/save";
 import { cycle, heldAt, TOOLBAR_SIZE } from "../core/toolbar";
+import { pendingChoice } from "../core/professions";
 import { eat } from "../core/actions";
 import { itemById } from "../core/items";
 import { reasonText, useHeld } from "../core/tools";
@@ -310,6 +311,7 @@ export class FarmScene extends Phaser.Scene {
 
   private afterAction(): void {
     if (this.state.day.over) this.endDay();
+    else if (pendingChoice(this.state.skills)) this.open("profession");
     else this.render();
   }
 
