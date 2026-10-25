@@ -1,7 +1,9 @@
 import Phaser from "phaser";
 import { Day } from "../core/day";
 import { MAX_ENERGY } from "../core/energy";
-import { FarmMap, type TiledMapJson } from "../core/map";
+import { mapFiles, maps } from "../content/maps";
+import { START } from "../core/maps";
+import type { FarmMap } from "../core/map";
 import {
   facingFrom,
   facingTile,
@@ -18,14 +20,6 @@ import {
   TILES_KEY,
   TILESET_NAME,
 } from "./placeholder-textures";
-
-/**
- * PLACEHOLDER map. The real map design is still open; see
- * docs/design/05_farm_map_placeholder.md. To swap in a real map, change this
- * path and run the tests.
- */
-const MAP_PATH = "maps/farm-placeholder.json";
-const MAP_KEY = "farm";
 
 /** Real milliseconds per 10 game minutes (Stardew pace). */
 const TICK_MS = 7000;
@@ -50,26 +44,27 @@ export class FarmScene extends Phaser.Scene {
   private target!: Phaser.GameObjects.Rectangle;
   private pos: Vec = { x: 0, y: 0 };
   private facing: Facing = "down";
-  private door: string | undefined;
+  private exitId: string | undefined;
 
   constructor() {
     super("farm");
   }
 
-  preload(): void {
-    this.load.tilemapTiledJSON(MAP_KEY, MAP_PATH);
-  }
-
   create(): void {
     makePlaceholderTextures(this);
 
-    const json = this.cache.tilemap.get(MAP_KEY).data as TiledMapJson;
-    this.map = FarmMap.fromTiled(json);
-    const problems = this.map.problems();
+    const problems = maps.problems();
     if (problems.length > 0) console.warn("Map problems:", problems.join("; "));
+    const id = START.map;
+    const json = mapFiles[id]!;
+    this.map = maps.get(id);
+    this.cache.tilemap.add(id, {
+      format: Phaser.Tilemaps.Formats.TILED_JSON,
+      data: json,
+    });
 
     // World objects: the tile layers, the player and the facing marker.
-    const tilemap = this.make.tilemap({ key: MAP_KEY });
+    const tilemap = this.make.tilemap({ key: id });
     const tileset = tilemap.addTilesetImage(TILESET_NAME, TILES_KEY)!;
     const world: Phaser.GameObjects.GameObject[] = [];
     for (const layer of json.layers) {
@@ -79,7 +74,7 @@ export class FarmScene extends Phaser.Scene {
     }
 
     const ts = this.map.tileSize;
-    const spawn = this.map.spawn;
+    const spawn = this.map.entry(START.entry)!;
     this.pos = { x: (spawn.x + 0.5) * ts, y: (spawn.y + 1) * ts - 2 };
     this.player = this.add
       .image(this.pos.x, this.pos.y, PLAYER_KEY)
@@ -133,7 +128,7 @@ export class FarmScene extends Phaser.Scene {
         tile: tileOf(this.pos, PLAYER, ts),
         facing: this.facing,
         target: facingTile(this.pos, PLAYER, this.facing, ts),
-        door: this.door ?? null,
+        exit: this.exitId ?? null,
         zoom: this.cameras.main.zoom,
       });
   }
@@ -157,9 +152,9 @@ export class FarmScene extends Phaser.Scene {
     this.target.setPosition(front.x * ts, front.y * ts);
 
     const here = tileOf(this.pos, PLAYER, ts);
-    const door = this.map.doorAt(here.x, here.y);
-    if (door !== this.door) {
-      this.door = door;
+    const exitId = this.map.exitAt(here.x, here.y)?.id;
+    if (exitId !== this.exitId) {
+      this.exitId = exitId;
       this.render();
     }
   }
@@ -187,7 +182,7 @@ export class FarmScene extends Phaser.Scene {
         `Day ${clock.day}  ${clock.format()}`,
         `Energy ${energy.current}/${MAX_ENERGY}  Money ${this.money}g`,
         "Move: arrows, WASD or drag left side   Space: work   Z: sleep",
-        this.door ? `At the ${this.door} door.` : this.message,
+        this.exitId ? `At the ${this.exitId} exit.` : this.message,
       ].join("\n"),
     );
   }

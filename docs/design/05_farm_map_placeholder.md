@@ -5,7 +5,7 @@ design for the real game is important and is still open.
 
 ## What this is
 
-`public/maps/farm-placeholder.json` is a small, generated map that exists only
+`src/content/maps/farm.json` and `house.json` are small, generated maps that exists only
 so the scene work can proceed: a player that walks, a camera that follows, and
 spots where the farming, shop and hall work packages can attach. Its layout,
 size, proportions, names and look are throwaway. Nothing about it is a
@@ -42,38 +42,44 @@ discrete screens joined by warps, or one continuous world" in
 ## The map contract
 
 The code needs a few things from any map, placeholder or real. This is a
-technical interface, not a design. It can change through a design note or ADR
-when the real map design lands.
+technical interface, not a design (see `docs/design/06_map_style.md` and ADR
+0005). It can change through a design note or ADR when the real map design
+lands.
 
-Format: Tiled JSON, orthogonal, finite.
+Format: Tiled JSON, orthogonal, finite. One file per map in
+`src/content/maps/`. The map id is the file name without extension.
 
 Tile layers (all the same size as the map):
 
 | Layer       | Required | Meaning                                              |
 | ----------- | -------- | ---------------------------------------------------- |
 | `collision` | yes      | Any non-empty tile blocks the player. Not drawn.     |
-| `soil`      | yes      | Any non-empty tile can be tilled. Not drawn.         |
+| `soil`      | no       | Any non-empty tile can be tilled. Not drawn.         |
 | others      | no       | Every other visible tile layer is drawn, in order.   |
 
 Objects (any object layer, matched by `class`):
 
-| Class    | Required | Meaning                                                                  |
-| -------- | -------- | ------------------------------------------------------------------------ |
-| `spawn`  | one      | Where the player starts a new game. A point or a rectangle.              |
-| `door`   | any      | A rectangle. Its `name` says where it leads (`house`, `shop`, `hall`).   |
-| `forage` | any      | A point. A tile where wild goods may appear (`ForageField` spot).        |
+| Class    | Required | Meaning                                                                                         |
+| -------- | -------- | ----------------------------------------------------------------------------------------------- |
+| `entry`  | one+     | A tile where the player can arrive. Its `name` is unique on the map.                            |
+| `exit`   | any      | A rectangle. Properties `map` and `entry` say where it leads. Optional `requires` names a gate. |
+| `forage` | any      | A point. A tile where wild goods may appear (`ForageField` spot).                               |
 
-Checks (`mapProblems` in `src/core/map.ts`, run by the tests and at scene
-load): the layers exist and are the right size, there is exactly one spawn,
-door names are unique, the spawn and forage spots are not blocked, and every
-door and forage spot can be reached on foot from the spawn.
+A new game starts at entry `start` on map `farm` (`START` in `src/core/maps.ts`).
+Place an entry beside an exit, not inside it, so arriving does not trigger the
+exit again.
+
+Checks (`problems` in `src/core/map.ts` per map, and `MapRegistry.problems` in
+`src/core/maps.ts` across maps, run by the tests and at scene load): the layers
+exist and are the right size, entries and exits are named and unique, entries
+are free and outside exits, every exit leads to a map and entry that exist, and
+every exit and forage spot can be reached on foot from every entry.
 
 ## How to replace it
 
-1. Author the real map in Tiled to the contract above.
-2. Put it in `public/maps/` and change the one map path constant in
-   `src/scenes/FarmScene.ts`.
-3. Run `npm test`. The contract tests run against the real file.
+1. Author the real maps in Tiled to the contract above.
+2. Put them in `src/content/maps/`, replacing the placeholder files.
+3. Run `npm test`. The contract tests run against the real files.
 4. Delete `scripts/gen-farm-map.mjs`, the placeholder JSON and this note's
    "placeholder" status, and record the map design in a design note or ADR.
 
