@@ -47,5 +47,56 @@
     "growDays": 6,
     "seedPrice": 40,
     "sellPrice": 90
+  },
+  {
+    "id": "green-bean",
+    "name": "Green bean",
+    "seasons": ["spring"],
+    "growDays": 10,
+    "regrowDays": 3,
+    "seedPrice": 60,
+    "sellPrice": 40
+  },
+  {
+    "id": "kale",
+    "name": "Kale",
+    "seasons": ["spring"],
+    "growDays": 6,
+    "seedPrice": 70,
+    "sellPrice": 110
+  },
+  {
+    "id": "garlic",
+    "name": "Garlic",
+    "seasons": ["spring"],
+    "growDays": 4,
+    "seedPrice": 40,
+    "sellPrice": 60
+  },
+  {
+    "id": "hot-pepper",
+    "name": "Hot pepper",
+    "seasons": ["summer"],
+    "growDays": 5,
+    "regrowDays": 3,
+    "seedPrice": 40,
+    "sellPrice": 40
+  },
+  {
+    "id": "corn",
+    "name": "Corn",
+    "seasons": ["summer"],
+    "growDays": 14,
+    "regrowDays": 4,
+    "seedPrice": 150,
+    "sellPrice": 50
+  },
+  {
+    "id": "red-cabbage",
+    "name": "Red cabbage",
+    "seasons": ["summer"],
+    "growDays": 9,
+    "seedPrice": 100,
+    "sellPrice": 260
   }
 ]

@@ -40,6 +40,12 @@ Crops (season, days to grow, seed price, sell price):
 - Melon: summer, 12 days, 80g, 250g. From memory.
 - Tomato: summer, 11 days, 50g, 60g. From memory.
 - Radish: summer, 6 days, 40g, 90g. From memory.
+- Green bean: spring, 10 days then regrows every 3, 60g, 40g. From memory.
+- Kale: spring, 6 days, 70g, 110g. From memory.
+- Garlic: spring, 4 days, 40g, 60g. From memory.
+- Hot pepper: summer, 5 days then regrows every 3, 40g, 40g. From memory.
+- Corn: summer, 14 days then regrows every 4, 150g, 50g. From memory.
+- Red cabbage: summer, 9 days, 100g, 260g. From memory.
 
 A crop grows one day for each day it was watered. It does not regrow after
 harvest, and it withers when its season ends. Rain waters every plot overnight.
@@ -62,7 +68,8 @@ Source: `src/core/forage.ts`, `src/content/forage.json`.
 - Up to a quarter of the farm's forage spots hold a good each morning, and the
   count is random from none to that cap. Ours.
 - Spring goods: daffodil 30g, wild leek 60g, dandelion 40g, wild horseradish
-  50g. Summer goods: wild grape 80g, spice berry 80g, sweet pea 50g. The prices
+  50g. Summer goods: wild grape 80g, spice berry 80g, sweet pea 50g. Later additions: spring onion 8g, salmonberry 5g (spring) and
+  fiddlehead fern 90g (summer). The prices
   are ours and unchecked.
 
 ## Skills
