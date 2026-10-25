@@ -95,13 +95,13 @@ export class Hud {
     }
 
     this.rowButton = scene.add
-      .rectangle(left, BAR_Y - 36, 90, 30, 0x000000, 0.5)
+      .rectangle(left, BAR_Y - 46, 90, 40, 0x000000, 0.5)
       .setOrigin(0)
       .setStrokeStyle(2, 0xffffff, 0.5)
       .setInteractive({ useHandCursor: true })
       .on("pointerdown", onRow);
     this.rowText = scene.add
-      .text(left + 45, BAR_Y - 21, "Row", {
+      .text(left + 45, BAR_Y - 26, "Row", {
         fontSize: "16px",
         color: "#ffffff",
       })
