@@ -1,0 +1,51 @@
+[
+  {
+    "id": "parsnip",
+    "name": "Parsnip",
+    "seasons": ["spring"],
+    "growDays": 4,
+    "seedPrice": 20,
+    "sellPrice": 35
+  },
+  {
+    "id": "potato",
+    "name": "Potato",
+    "seasons": ["spring"],
+    "growDays": 6,
+    "seedPrice": 50,
+    "sellPrice": 80
+  },
+  {
+    "id": "cauliflower",
+    "name": "Cauliflower",
+    "seasons": ["spring"],
+    "growDays": 12,
+    "seedPrice": 80,
+    "sellPrice": 175
+  },
+  {
+    "id": "melon",
+    "name": "Melon",
+    "seasons": ["summer"],
+    "growDays": 12,
+    "seedPrice": 80,
+    "sellPrice": 250
+  },
+  {
+    "id": "tomato",
+    "name": "Tomato",
+    "seasons": ["summer"],
+    "growDays": 11,
+    "regrowDays": 4,
+    "seedPrice": 50,
+    "sellPrice": 60
+  },
+  {
+    "id": "radish",
+    "name": "Radish",
+    "seasons": ["summer"],
+    "growDays": 6,
+    "seedPrice": 40,
+    "sellPrice": 90
+  }
+]
