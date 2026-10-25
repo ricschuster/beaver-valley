@@ -16,6 +16,8 @@ export interface GameState {
   hall: Hall;
   /** Today's weather. */
   weather: Weather;
+  /** True once the end screen has been shown, so it shows only once. */
+  endSeen: boolean;
   /** Wild goods on the ground today. Not saved: it respawns each morning. */
   forage: ForageField;
 }
@@ -32,6 +34,7 @@ export function newGame(): GameState {
     skills: new Skills(),
     hall: new Hall(),
     weather: "sunny",
+    endSeen: false,
     forage: new ForageField(),
   };
 }
@@ -48,6 +51,8 @@ interface SaveData {
   skills: ReturnType<Skills["save"]>;
   hall: HallProgress;
   weather: Weather;
+  /** Absent in saves made before the end screen existed. */
+  endSeen?: boolean;
 }
 
 /** Where saves live. The scene supplies one backed by the browser. */
@@ -68,6 +73,7 @@ export function serialize(g: GameState): string {
     skills: g.skills.save(),
     hall: g.hall.save(),
     weather: g.weather,
+    endSeen: g.endSeen,
   };
   return JSON.stringify(data);
 }
@@ -120,6 +126,7 @@ export function deserialize(text: string): GameState | undefined {
   g.farm.load(farm as ReturnType<Farm["save"]>);
   g.skills.load(skills as ReturnType<Skills["save"]>);
   g.hall = new Hall(undefined, hall as HallProgress);
+  g.endSeen = raw.endSeen === true;
   return g;
 }
 

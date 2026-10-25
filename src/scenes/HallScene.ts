@@ -3,6 +3,9 @@ import { rewardText } from "../core/bundles";
 import { SLOT_COUNT } from "../core/inventory";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
+import { endDue } from "../core/sleep";
+import { saveGame } from "../core/save";
+import { browserStore } from "./storage";
 import { frame, Menu, type Row } from "./panel";
 import { STATE_KEY } from "./state";
 
@@ -146,6 +149,12 @@ export class HallScene extends Phaser.Scene {
 
   private close(): void {
     this.scene.stop();
-    this.scene.resume("farm");
+    if (endDue(this.state)) {
+      this.state.endSeen = true;
+      this.scene.launch("end");
+    } else {
+      this.scene.resume("farm");
+    }
+    saveGame(browserStore, this.state);
   }
 }
