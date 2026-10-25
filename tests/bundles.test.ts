@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { BUNDLES, Hall } from "../src/core/bundles";
+import { BUNDLES, Hall, rewardText } from "../src/core/bundles";
 import { Inventory } from "../src/core/inventory";
 import { itemById } from "../src/core/items";
 
@@ -93,5 +93,58 @@ describe("Hall", () => {
       }
     }
     expect(again.allComplete).toBe(true);
+  });
+});
+
+describe("Hall.problem", () => {
+  const setup = () => {
+    const hall = new Hall();
+    const inv = new Inventory();
+    inv.add("parsnip");
+    inv.add("daffodil");
+    return { hall, inv, wallet: { money: 0 } };
+  };
+
+  it("is silent when the item would be taken", () => {
+    const { hall, inv } = setup();
+    expect(hall.problem(inv, "spring-crops", "parsnip")).toBeUndefined();
+  });
+
+  it("says why an item is refused", () => {
+    const { hall, inv, wallet } = setup();
+    expect(hall.problem(inv, "nope", "parsnip")).toMatch(/no such bundle/);
+    expect(hall.problem(inv, "spring-crops", "daffodil")).toMatch(
+      /does not take/,
+    );
+    expect(hall.problem(inv, "spring-crops", "potato")).toMatch(/do not have/);
+    hall.handIn(inv, wallet, "spring-crops", "parsnip");
+    inv.add("parsnip");
+    expect(hall.problem(inv, "spring-crops", "parsnip")).toMatch(
+      /already handed in/i,
+    );
+  });
+
+  it("refuses everything once a bundle is done", () => {
+    const { hall, inv, wallet } = setup();
+    for (const id of ["parsnip", "potato", "cauliflower"]) {
+      inv.add(id);
+      hall.handIn(inv, wallet, "spring-crops", id);
+    }
+    inv.add("parsnip");
+    expect(hall.problem(inv, "spring-crops", "parsnip")).toMatch(/done/);
+  });
+});
+
+describe("rewardText", () => {
+  it("names money and items", () => {
+    const by = (id: string) => BUNDLES.find((b) => b.id === id)!;
+    expect(rewardText(by("spring-crops"))).toBe("300g");
+    expect(rewardText(by("spring-foraging"))).toBe("15 Parsnip seeds");
+    expect(
+      rewardText({
+        ...by("pantry"),
+        reward: { money: 5, item: { id: "leek", count: 2 } },
+      }),
+    ).toBe("5g and 2 Wild leek");
   });
 });

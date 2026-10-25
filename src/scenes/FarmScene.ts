@@ -18,6 +18,8 @@ import {
   type Vec,
 } from "../core/movement";
 import { Controls } from "./controls";
+import { browserStore } from "./storage";
+import { loadGame, saveGame } from "../core/save";
 import { SELECTED_KEY, STATE_KEY } from "./state";
 import { Hud } from "./hud";
 import {
@@ -79,7 +81,11 @@ export class FarmScene extends Phaser.Scene {
     this.mapId = data.map ?? START.map;
     this.entryName = data.entry ?? START.entry;
     if (!this.registry.has(STATE_KEY)) {
-      const fresh = startGame();
+      // A saved game resumes on its morning. `?new` starts over.
+      const resume = location.search.includes("new")
+        ? undefined
+        : loadGame(browserStore);
+      const fresh = resume ?? startGame();
       fresh.forage.respawn(
         dateOf(fresh.day.clock.day).season,
         maps.get(START.map).forageSpots,
@@ -181,6 +187,7 @@ export class FarmScene extends Phaser.Scene {
       kb?.on(`keydown-${name}`, () => this.select(i)),
     );
     this.events.on("resume", () => {
+      this.save();
       this.message = "";
       this.render();
     });
@@ -260,10 +267,6 @@ export class FarmScene extends Phaser.Scene {
 
   /** Open a screen over the farm. The farm is paused until it closes. */
   private open(kind: string): void {
-    if (kind !== "shop") {
-      this.message = "Closed for now.";
-      return this.render();
-    }
     this.scene.launch(kind);
     this.scene.pause();
   }
@@ -292,14 +295,20 @@ export class FarmScene extends Phaser.Scene {
     else this.render();
   }
 
+  /** Save to the browser. The clock is not saved, so a reload is a new morning. */
+  private save(): void {
+    saveGame(browserStore, this.state);
+  }
+
   private endDay(): void {
     const g = this.state;
-    const report = sleep(g, this.map.forageSpots, Math.random);
+    const report = sleep(g, maps.get(START.map).forageSpots, Math.random);
     if (report.passedOut) {
       this.message = `You passed out and lost ${report.moneyLost}g.`;
     } else {
       this.message = "You slept well.";
     }
+    this.save();
     this.render();
   }
 

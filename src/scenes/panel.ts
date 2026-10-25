@@ -22,6 +22,8 @@ export interface MenuOptions {
   rowH?: number;
   /** Rows shown at once; the list scrolls to keep the cursor in view. */
   visible?: number;
+  /** Called with the new cursor row whenever the cursor moves. */
+  onCursor?: (row: number) => void;
 }
 
 /**
@@ -73,6 +75,7 @@ export class Menu {
       0,
       this.rows.length - 1,
     );
+    this.opts.onCursor?.(this.cursor);
     this.draw();
   }
 
@@ -113,6 +116,7 @@ export class Menu {
         .setInteractive();
       bg.on("pointerdown", () => {
         this.cursor = index;
+        this.opts.onCursor?.(index);
         this.draw();
       });
       const alpha = row.dim ? 0.45 : 1;
@@ -147,6 +151,7 @@ export class Menu {
           box.setInteractive({ useHandCursor: true });
           box.on("pointerdown", () => {
             this.cursor = index;
+            this.opts.onCursor?.(index);
             b.run();
           });
         }
