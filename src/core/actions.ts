@@ -27,6 +27,7 @@ function award(g: GameState, skill: Skill, xp: number, item?: string): Outcome {
 export function till(g: GameState, x: number, y: number): Outcome {
   if (g.day.over) return fail("exhausted");
   if (!g.farm.till(x, y)) return fail("already tilled");
+  if (g.weather === "rainy") g.farm.water(x, y);
   swing(g);
   return { ok: true };
 }

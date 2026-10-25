@@ -1,6 +1,7 @@
 import { Day } from "./day";
 import { Farm } from "./farm";
 import { ForageField } from "./forage";
+import { type Weather, WEATHERS } from "./weather";
 import { Hall, type HallProgress } from "./bundles";
 import { Inventory } from "./inventory";
 import { Skills, SKILLS } from "./skills";
@@ -13,6 +14,8 @@ export interface GameState {
   farm: Farm;
   skills: Skills;
   hall: Hall;
+  /** Today's weather. */
+  weather: Weather;
   /** Wild goods on the ground today. Not saved: it respawns each morning. */
   forage: ForageField;
 }
@@ -28,11 +31,12 @@ export function newGame(): GameState {
     farm: new Farm(),
     skills: new Skills(),
     hall: new Hall(),
+    weather: "sunny",
     forage: new ForageField(),
   };
 }
 
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 
 interface SaveData {
   version: number;
@@ -43,6 +47,7 @@ interface SaveData {
   farm: ReturnType<Farm["save"]>;
   skills: ReturnType<Skills["save"]>;
   hall: HallProgress;
+  weather: Weather;
 }
 
 /** Where saves live. The scene supplies one backed by the browser. */
@@ -62,6 +67,7 @@ export function serialize(g: GameState): string {
     farm: g.farm.save(),
     skills: g.skills.save(),
     hall: g.hall.save(),
+    weather: g.weather,
   };
   return JSON.stringify(data);
 }
@@ -83,9 +89,10 @@ export function deserialize(text: string): GameState | undefined {
     return undefined;
   }
   if (!isObject(raw) || raw.version !== SAVE_VERSION) return undefined;
-  const { day, energy, money, inventory, farm, skills, hall } = raw;
+  const { day, energy, money, inventory, farm, skills, hall, weather } = raw;
   if (!isCount(day) || day < 1 || !isCount(energy) || !isCount(money))
     return undefined;
+  if (!WEATHERS.includes(weather as Weather)) return undefined;
   if (
     !Array.isArray(inventory) ||
     !isObject(farm) ||
@@ -108,6 +115,7 @@ export function deserialize(text: string): GameState | undefined {
   const g = newGame();
   g.day.restore(day, energy);
   g.money = money;
+  g.weather = weather as Weather;
   g.inventory.load(inventory as ReturnType<Inventory["save"]>);
   g.farm.load(farm as ReturnType<Farm["save"]>);
   g.skills.load(skills as ReturnType<Skills["save"]>);

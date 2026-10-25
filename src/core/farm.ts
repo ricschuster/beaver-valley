@@ -43,6 +43,11 @@ export class Farm {
     return true;
   }
 
+  /** Water every plot, as rain does. */
+  waterAll(): void {
+    for (const plot of this.plots.values()) plot.wateredToday = true;
+  }
+
   /** True if the plot holds a crop ready to harvest. */
   isRipe(x: number, y: number): boolean {
     const crop = this.plotAt(x, y)?.crop;

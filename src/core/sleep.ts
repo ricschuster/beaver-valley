@@ -1,4 +1,5 @@
 import { dateOf, type Season } from "./calendar";
+import { rollWeather, type Weather } from "./weather";
 import type { Spot } from "./forage";
 import type { GameState } from "./save";
 
@@ -9,6 +10,8 @@ export interface SleepReport {
   moneyLost: number;
   /** Set when the new day starts a different season. */
   newSeason?: Season;
+  /** Weather for the new day. */
+  weather: Weather;
   /** Crops that died overnight because their season ended. */
   withered: number;
 }
@@ -29,14 +32,17 @@ export function sleep(
   const moneyLost = end.passedOut ? end.moneyLost : 0;
   g.money -= moneyLost;
 
-  const { season } = dateOf(g.day.clock.day);
+  const { season, dayOfSeason } = dateOf(g.day.clock.day);
   g.farm.endDay(season);
+  g.weather = rollWeather(season, dayOfSeason, random);
+  if (g.weather === "rainy") g.farm.waterAll();
   g.forage.respawn(season, spots, random);
 
   return {
     passedOut: end.passedOut,
     reason: end.passedOut ? end.reason : undefined,
     moneyLost,
+    weather: g.weather,
     newSeason: season !== before ? season : undefined,
     withered: cropsBefore - g.farm.cropCount,
   };
