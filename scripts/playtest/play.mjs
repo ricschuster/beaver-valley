@@ -150,9 +150,14 @@ function giveList() {
     const out = [];
     s.hall.bundles.forEach((b, bi) => {
       if (s.hall.complete(b.id)) return;
-      for (const id of b.items)
-        if (s.inventory.count(id) > 0 && !s.hall.problem(s.inventory, b.id, id))
-          out.push([bi, b.id, id]);
+      for (const base of b.items) {
+        // Hand in whichever quality stack is held (ids look like `leek@gold`).
+        const stack = s.inventory
+          .save()
+          .find((sl) => sl && sl.id.split("@")[0] === base);
+        if (stack && !s.hall.problem(s.inventory, b.id, stack.id))
+          out.push([bi, b.id, stack.id]);
+      }
     });
     return out;
   });
@@ -285,7 +290,8 @@ async function visitShop(day) {
     .filter((id) => !id.endsWith("-seed"))
     .map((id) => [
       id,
-      bot.count(s0, id) - Math.min(keep[id] ?? 0, bot.count(s0, id)),
+      bot.count(s0, id) -
+        Math.min(keep[id.split("@")[0]] ?? 0, bot.count(s0, id)),
     ])
     .filter(([, n]) => n > 0);
   const def = seedDeficit(s0);
@@ -367,7 +373,10 @@ async function harvestRipe() {
     const before = await bot.snap();
     await bot.useAt(p.x, p.y, { x: p.x, y: 12 });
     const after = await bot.snap();
-    if (bot.count(after, p.crop.id) !== bot.count(before, p.crop.id) + 1) {
+    if (
+      bot.countBase(after, p.crop.id) !==
+      bot.countBase(before, p.crop.id) + 1
+    ) {
       const m = (await bot.dbg()).message;
       finding(
         `harvest at ${p.x},${p.y} (${p.crop.id}) did not add one item; message "${m}"`,
@@ -396,7 +405,7 @@ async function forageSweep(max = 99) {
     const before = await bot.snap();
     await bot.useAt(f.x, f.y);
     const after = await bot.snap();
-    if (bot.count(after, f.id) !== bot.count(before, f.id) + 1) {
+    if (bot.countBase(after, f.id) !== bot.countBase(before, f.id) + 1) {
       const m = (await bot.dbg()).message;
       finding(`forage ${f.id} at ${f.x},${f.y} not collected; message "${m}"`);
     }
