@@ -1,5 +1,5 @@
-/** Player energy. Whole points; tunable constants, to be set by playtesting. */
-export const MAX_ENERGY = 100;
+/** Player energy. Whole points; tunable constants, set to match Stardew for now. */
+export const MAX_ENERGY = 270;
 
 export class Energy {
   current = MAX_ENERGY;
