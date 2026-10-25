@@ -65,18 +65,21 @@ for (let y = 10; y <= 17; y++)
   }
 
 // Buildings: a block of wall with a door in one tile of the chosen row.
-const building = (x0, y0, w, h, doorX, doorY) => {
+const services = [];
+const building = (x0, y0, w, h, doorX, doorY, service) => {
   for (let y = y0; y < y0 + h; y++)
     for (let x = x0; x < x0 + w; x++) {
       objects[idx(x, y)] = y === y0 ? ROOF : WALL;
       block(x, y);
     }
   objects[idx(doorX, doorY)] = DOOR;
-  collision[idx(doorX, doorY)] = 0;
+  // A service door is faced and used, not walked through, so it stays blocked.
+  if (service) services.push({ kind: service, x: doorX, y: doorY });
+  else collision[idx(doorX, doorY)] = 0;
 };
 building(4, 2, 6, 4, 6, 5); // house, door on its south face
-building(4, 22, 6, 4, 6, 22); // hall, door on its north face
-building(31, 20, 6, 4, 33, 20); // shop, door on its north face
+building(4, 22, 6, 4, 6, 22, "hall"); // hall, door on its north face
+building(31, 20, 6, 4, 33, 20, "shop"); // shop, door on its north face
 
 // Dirt paths joining the doors.
 const path = (x, y) => {
@@ -143,6 +146,10 @@ const point = (cls, name, x, y) => ({
   rotation: 0,
   visible: true,
 });
+const service = (kind, x, y) => ({
+  ...point("service", kind, x, y),
+  properties: [{ name: "kind", type: "string", value: kind }],
+});
 const exit = (name, x, y, target, entry) => ({
   id: objectId++,
   name,
@@ -204,6 +211,7 @@ const farm = {
         point("entry", "start", 6, 7),
         point("entry", "from_house", 6, 6),
         exit("house", 6, 5, "house", "door"),
+        ...services.map((s) => service(s.kind, s.x, s.y)),
         ...forage.map((f) => point("forage", "forage", f.x, f.y)),
       ],
     },

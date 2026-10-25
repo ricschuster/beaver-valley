@@ -64,6 +64,7 @@ Objects (any object layer, matched by `class`):
 | `entry`  | one+     | A tile where the player can arrive. Its `name` is unique on the map.                            |
 | `exit`   | any      | A rectangle. Properties `map` and `entry` say where it leads. Optional `requires` names a gate. |
 | `forage` | any      | A point. A tile where wild goods may appear (`ForageField` spot).                               |
+| `service` | any     | A point. The player faces the tile and uses it to open a screen. Property `kind` is `shop` or `hall`. |
 
 A new game starts at entry `start` on map `farm` (`START` in `src/core/maps.ts`).
 Place an entry beside an exit, not inside it, so arriving does not trigger the
@@ -73,7 +74,9 @@ Checks (`problems` in `src/core/map.ts` per map, and `MapRegistry.problems` in
 `src/core/maps.ts` across maps, run by the tests and at scene load): the layers
 exist and are the right size, entries and exits are named and unique, entries
 are free and outside exits, every exit leads to a map and entry that exist, and
-every exit and forage spot can be reached on foot from every entry.
+every exit and forage spot can be reached on foot from every entry, and every
+service has a walkable tile beside it. Make a service tile blocked so the
+player stands next to it.
 
 ## How to replace it
 
