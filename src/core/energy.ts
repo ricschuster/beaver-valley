@@ -1,4 +1,4 @@
-/** Player energy. Whole points; tunable constants, set to match Stardew for now. */
+/** Player energy. Can be fractional (tool upgrades and skills trim swings). Constants match Stardew for now. */
 export const MAX_ENERGY = 270;
 
 export class Energy {

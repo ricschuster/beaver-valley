@@ -4,6 +4,7 @@ import { cropOfSeed } from "./items";
 import { cropQuality, forageQuality, withQuality } from "./quality";
 import { FORAGE_XP, harvestXp, type Skill } from "./skills";
 import type { GameState } from "./save";
+import { swingCost, type Upgradable } from "./upgrades";
 
 /** Energy per tool swing (hoe, watering can), as in Stardew. Seeds, picking and harvesting are free. */
 export const TOOL_ENERGY = 2;
@@ -15,8 +16,13 @@ export type Outcome =
 const fail = (reason: string): Outcome => ({ ok: false, reason });
 
 /** Spend tool energy. The clock runs in real time, so actions take no game minutes. */
-function swing(g: GameState): void {
-  g.day.act(TOOL_ENERGY, 0);
+function swing(g: GameState, tool: Upgradable): void {
+  const cost = swingCost(
+    TOOL_ENERGY,
+    g.toolTiers[tool],
+    g.skills.level("farming"),
+  );
+  g.day.act(cost, 0);
 }
 
 function award(g: GameState, skill: Skill, xp: number, item?: string): Outcome {
@@ -29,7 +35,7 @@ export function till(g: GameState, x: number, y: number): Outcome {
   if (g.day.over) return fail("exhausted");
   if (!g.farm.till(x, y)) return fail("already tilled");
   if (g.weather === "rainy") g.farm.water(x, y);
-  swing(g);
+  swing(g, "hoe");
   return { ok: true };
 }
 
@@ -39,7 +45,7 @@ export function water(g: GameState, x: number, y: number): Outcome {
   if (!plot) return fail("nothing to water");
   if (plot.wateredToday) return fail("already watered");
   g.farm.water(x, y);
-  swing(g);
+  swing(g, "can");
   return { ok: true };
 }
 
