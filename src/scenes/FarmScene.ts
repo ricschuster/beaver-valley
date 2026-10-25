@@ -3,7 +3,7 @@ import { Day } from "../core/day";
 import { MAX_ENERGY } from "../core/energy";
 import { mapFiles, maps } from "../content/maps";
 import { START } from "../core/maps";
-import type { FarmMap } from "../core/map";
+import { exitOpen, type Exit, type FarmMap } from "../core/map";
 import {
   facingFrom,
   facingTile,
@@ -32,10 +32,29 @@ const PLAYER: Body = { hw: 5, h: 6 };
 /** The world is drawn at this zoom; the HUD is not. */
 const WORLD_ZOOM = 2;
 
-/** A walkable farm map, a player and a day clock. Space works, Z sleeps. */
+/** Fade time when the player walks through an exit, in milliseconds. */
+const FADE_MS = 200;
+
+/** Where the scene starts, and the state it carries between maps. */
+interface SceneData {
+  map: string;
+  entry: string;
+  day: Day;
+  money: number;
+}
+
+/**
+ * A walkable map, a player and a day clock. Space works, Z sleeps. Walking
+ * through an exit restarts the scene on the next map, carrying the day on.
+ */
 export class FarmScene extends Phaser.Scene {
   private day = new Day();
   private money = 500;
+  private mapId: string = START.map;
+  private entryName: string = START.entry;
+  private leaving = false;
+  /** Conditions that currently hold, for gated exits. None exist yet. */
+  private holds = new Set<string>();
   private message = "";
   private label!: Phaser.GameObjects.Text;
   private map!: FarmMap;
@@ -50,18 +69,29 @@ export class FarmScene extends Phaser.Scene {
     super("farm");
   }
 
+  init(data: Partial<SceneData>): void {
+    this.mapId = data.map ?? START.map;
+    this.entryName = data.entry ?? START.entry;
+    if (data.day) this.day = data.day;
+    if (data.money !== undefined) this.money = data.money;
+    this.leaving = false;
+    this.exitId = undefined;
+    this.message = "";
+  }
+
   create(): void {
-    makePlaceholderTextures(this);
+    if (!this.textures.exists(PLAYER_KEY)) makePlaceholderTextures(this);
 
     const problems = maps.problems();
     if (problems.length > 0) console.warn("Map problems:", problems.join("; "));
-    const id = START.map;
+    const id = this.mapId;
     const json = mapFiles[id]!;
     this.map = maps.get(id);
-    this.cache.tilemap.add(id, {
-      format: Phaser.Tilemaps.Formats.TILED_JSON,
-      data: json,
-    });
+    if (!this.cache.tilemap.exists(id))
+      this.cache.tilemap.add(id, {
+        format: Phaser.Tilemaps.Formats.TILED_JSON,
+        data: json,
+      });
 
     // World objects: the tile layers, the player and the facing marker.
     const tilemap = this.make.tilemap({ key: id });
@@ -74,7 +104,7 @@ export class FarmScene extends Phaser.Scene {
     }
 
     const ts = this.map.tileSize;
-    const spawn = this.map.entry(START.entry)!;
+    const spawn = this.map.entry(this.entryName)!;
     this.pos = { x: (spawn.x + 0.5) * ts, y: (spawn.y + 1) * ts - 2 };
     this.player = this.add
       .image(this.pos.x, this.pos.y, PLAYER_KEY)
@@ -91,7 +121,7 @@ export class FarmScene extends Phaser.Scene {
       fontSize: "24px",
       color: "#ffffff",
     });
-    const note = this.add.text(16, 512, "Placeholder map", {
+    const note = this.add.text(16, 512, `Placeholder map: ${id}`, {
       fontSize: "14px",
       color: "#ffffffaa",
     });
@@ -100,12 +130,23 @@ export class FarmScene extends Phaser.Scene {
     const { width, height } = this.scale.gameSize;
     const uiCamera = this.cameras.add(0, 0, width, height);
     uiCamera.ignore(world);
+    // A map smaller than the view is centred rather than pinned to a corner.
+    const mapW = this.map.width * ts;
+    const mapH = this.map.height * ts;
+    const viewW = width / WORLD_ZOOM;
+    const viewH = height / WORLD_ZOOM;
     this.cameras.main
-      .setBounds(0, 0, this.map.width * ts, this.map.height * ts)
+      .setBounds(
+        Math.min(0, (mapW - viewW) / 2),
+        Math.min(0, (mapH - viewH) / 2),
+        Math.max(mapW, viewW),
+        Math.max(mapH, viewH),
+      )
       .setZoom(WORLD_ZOOM)
       .startFollow(this.player, true)
       .ignore(ui);
 
+    this.cameras.main.fadeIn(FADE_MS);
     this.time.addEvent({
       delay: TICK_MS,
       loop: true,
@@ -128,6 +169,7 @@ export class FarmScene extends Phaser.Scene {
         tile: tileOf(this.pos, PLAYER, ts),
         facing: this.facing,
         target: facingTile(this.pos, PLAYER, this.facing, ts),
+        map: this.mapId,
         exit: this.exitId ?? null,
         zoom: this.cameras.main.zoom,
       });
@@ -152,11 +194,28 @@ export class FarmScene extends Phaser.Scene {
     this.target.setPosition(front.x * ts, front.y * ts);
 
     const here = tileOf(this.pos, PLAYER, ts);
-    const exitId = this.map.exitAt(here.x, here.y)?.id;
-    if (exitId !== this.exitId) {
-      this.exitId = exitId;
+    const exit = this.map.exitAt(here.x, here.y);
+    if (exit?.id !== this.exitId) {
+      this.exitId = exit?.id;
+      this.message = exit && !exitOpen(exit, this.holds) ? "It is shut." : "";
       this.render();
+      if (exit && exitOpen(exit, this.holds)) this.leave(exit);
     }
+  }
+
+  private leave(exit: Exit): void {
+    if (this.leaving) return;
+    this.leaving = true;
+    const data: SceneData = {
+      map: exit.map,
+      entry: exit.entry,
+      day: this.day,
+      money: this.money,
+    };
+    this.cameras.main.fadeOut(FADE_MS);
+    this.cameras.main.once("camerafadeoutcomplete", () =>
+      this.scene.restart(data),
+    );
   }
 
   private afterAction(): void {
@@ -182,7 +241,7 @@ export class FarmScene extends Phaser.Scene {
         `Day ${clock.day}  ${clock.format()}`,
         `Energy ${energy.current}/${MAX_ENERGY}  Money ${this.money}g`,
         "Move: arrows, WASD or drag left side   Space: work   Z: sleep",
-        this.exitId ? `At the ${this.exitId} exit.` : this.message,
+        this.message,
       ].join("\n"),
     );
   }

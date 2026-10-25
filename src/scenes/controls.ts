@@ -22,7 +22,8 @@ export class Controls {
       >;
     }
     // A second finger is needed for the stick and a tool at the same time.
-    scene.input.addPointer(1);
+    // The input manager outlives a scene restart, so add it only once.
+    if (scene.input.manager.pointers.length < 3) scene.input.addPointer(1);
     this.stick = scene.add.graphics().setDepth(1000);
 
     scene.input.on("pointerdown", (p: Phaser.Input.Pointer) => {
