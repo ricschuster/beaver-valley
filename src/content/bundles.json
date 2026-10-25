@@ -1,0 +1,45 @@
+[
+  {
+    "id": "spring-foraging",
+    "name": "Spring Foraging",
+    "items": ["daffodil", "leek", "dandelion", "horseradish"],
+    "required": 4,
+    "reward": { "item": { "id": "parsnip-seed", "count": 15 } }
+  },
+  {
+    "id": "summer-foraging",
+    "name": "Summer Foraging",
+    "items": ["grape", "spice-berry", "sweet-pea"],
+    "required": 3,
+    "reward": { "item": { "id": "radish-seed", "count": 15 } }
+  },
+  {
+    "id": "spring-crops",
+    "name": "Spring Crops",
+    "items": ["parsnip", "potato", "cauliflower"],
+    "required": 3,
+    "reward": { "money": 300 }
+  },
+  {
+    "id": "summer-crops",
+    "name": "Summer Crops",
+    "items": ["melon", "tomato", "radish"],
+    "required": 3,
+    "reward": { "money": 400 }
+  },
+  {
+    "id": "pantry",
+    "name": "Pantry",
+    "items": [
+      "parsnip",
+      "leek",
+      "potato",
+      "melon",
+      "grape",
+      "tomato",
+      "sweet-pea"
+    ],
+    "required": 4,
+    "reward": { "money": 500 }
+  }
+]
