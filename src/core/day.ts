@@ -1,4 +1,4 @@
-import { Clock, DAY_END } from "./clock";
+import { Clock, DAY_END, DAY_START } from "./clock";
 import { Energy, MAX_ENERGY } from "./energy";
 
 /**
@@ -17,6 +17,13 @@ export type DayEnd =
 export class Day {
   readonly clock = new Clock();
   readonly energy = new Energy();
+
+  /** Put the player at the start of a saved day: morning, with saved energy. */
+  restore(day: number, energy: number): void {
+    this.clock.day = day;
+    this.clock.minutes = DAY_START;
+    this.energy.current = Math.min(Math.max(energy, 0), MAX_ENERGY);
+  }
 
   /** True once energy or time has run out, so the day must end. */
   get over(): boolean {

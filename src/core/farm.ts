@@ -13,6 +13,15 @@ const key = (x: number, y: number) => `${x},${y}`;
 export class Farm {
   private plots = new Map<string, Plot>();
 
+  /** Plots keyed by "x,y", as plain data. */
+  save(): Record<string, Plot> {
+    return structuredClone(Object.fromEntries(this.plots));
+  }
+
+  load(saved: Record<string, Plot>): void {
+    this.plots = new Map(Object.entries(structuredClone(saved)));
+  }
+
   plotAt(x: number, y: number): Plot | undefined {
     return this.plots.get(key(x, y));
   }
