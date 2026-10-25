@@ -95,6 +95,20 @@ memory for prices; Stardew also needs bars and a wait, which we skip.
   fractional and the HUD rounds up.
 - With 500g to start, an upgrade is a mid game goal.
 
+## Eating
+
+Source: `src/core/actions.ts` (`eat`), `energy` fields in the content files.
+
+- The player eats the held item with F or the Eat button. It takes no game time
+  and is refused at full energy, so food is not wasted.
+- Crops and most forage restore energy, with values from memory of Stardew:
+  parsnip 25, potato 25, cauliflower 75, melon 113, tomato 20, radish 45,
+  green bean 25, kale 50, garlic 20, hot pepper 13, corn 25, red cabbage 75,
+  leek 40, dandelion 25, horseradish 13, wild grape 38, spice berry 25,
+  salmonberry 25, fiddlehead fern 25, spring onion 5. Daffodil and sweet pea are
+  not food.
+- Silver restores x1.4, gold x1.8.
+
 ## Quality
 
 Source: `src/core/quality.ts`. Quality is part of the item id (`parsnip@gold`),

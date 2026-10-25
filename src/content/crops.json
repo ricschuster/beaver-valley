@@ -5,7 +5,8 @@
     "seasons": ["spring"],
     "growDays": 4,
     "seedPrice": 20,
-    "sellPrice": 35
+    "sellPrice": 35,
+    "energy": 25
   },
   {
     "id": "potato",
@@ -13,7 +14,8 @@
     "seasons": ["spring"],
     "growDays": 6,
     "seedPrice": 50,
-    "sellPrice": 80
+    "sellPrice": 80,
+    "energy": 25
   },
   {
     "id": "cauliflower",
@@ -21,7 +23,8 @@
     "seasons": ["spring"],
     "growDays": 12,
     "seedPrice": 80,
-    "sellPrice": 175
+    "sellPrice": 175,
+    "energy": 75
   },
   {
     "id": "melon",
@@ -29,7 +32,8 @@
     "seasons": ["summer"],
     "growDays": 12,
     "seedPrice": 80,
-    "sellPrice": 250
+    "sellPrice": 250,
+    "energy": 113
   },
   {
     "id": "tomato",
@@ -38,7 +42,8 @@
     "growDays": 11,
     "regrowDays": 4,
     "seedPrice": 50,
-    "sellPrice": 60
+    "sellPrice": 60,
+    "energy": 20
   },
   {
     "id": "radish",
@@ -46,7 +51,8 @@
     "seasons": ["summer"],
     "growDays": 6,
     "seedPrice": 40,
-    "sellPrice": 90
+    "sellPrice": 90,
+    "energy": 45
   },
   {
     "id": "green-bean",
@@ -55,7 +61,8 @@
     "growDays": 10,
     "regrowDays": 3,
     "seedPrice": 60,
-    "sellPrice": 40
+    "sellPrice": 40,
+    "energy": 25
   },
   {
     "id": "kale",
@@ -63,7 +70,8 @@
     "seasons": ["spring"],
     "growDays": 6,
     "seedPrice": 70,
-    "sellPrice": 110
+    "sellPrice": 110,
+    "energy": 50
   },
   {
     "id": "garlic",
@@ -71,7 +79,8 @@
     "seasons": ["spring"],
     "growDays": 4,
     "seedPrice": 40,
-    "sellPrice": 60
+    "sellPrice": 60,
+    "energy": 20
   },
   {
     "id": "hot-pepper",
@@ -80,7 +89,8 @@
     "growDays": 5,
     "regrowDays": 3,
     "seedPrice": 40,
-    "sellPrice": 40
+    "sellPrice": 40,
+    "energy": 13
   },
   {
     "id": "corn",
@@ -89,7 +99,8 @@
     "growDays": 14,
     "regrowDays": 4,
     "seedPrice": 150,
-    "sellPrice": 50
+    "sellPrice": 50,
+    "energy": 25
   },
   {
     "id": "red-cabbage",
@@ -97,6 +108,7 @@
     "seasons": ["summer"],
     "growDays": 9,
     "seedPrice": 100,
-    "sellPrice": 260
+    "sellPrice": 260,
+    "energy": 75
   }
 ]

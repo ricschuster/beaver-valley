@@ -1,6 +1,7 @@
 import { dateOf } from "./calendar";
 import { cropById } from "./crops";
-import { cropOfSeed } from "./items";
+import { cropOfSeed, itemById } from "./items";
+import { MAX_ENERGY } from "./energy";
 import { cropQuality, forageQuality, withQuality } from "./quality";
 import { FORAGE_XP, harvestXp, type Skill } from "./skills";
 import type { GameState } from "./save";
@@ -103,4 +104,15 @@ export function forage(
   g.forage.collect(x, y);
   g.inventory.add(item);
   return award(g, "foraging", FORAGE_XP, item);
+}
+
+/** Eat one of an item from the backpack to restore energy. Takes no game time. */
+export function eat(g: GameState, itemId: string): Outcome {
+  const gain = itemById(itemId)?.energy;
+  if (gain === undefined) return fail("not food");
+  if (g.inventory.count(itemId) < 1) return fail("nothing to eat");
+  if (g.day.energy.current >= MAX_ENERGY) return fail("not hungry");
+  g.inventory.remove(itemId);
+  g.day.energy.restore(gain);
+  return { ok: true, item: itemId };
 }

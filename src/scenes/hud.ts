@@ -8,9 +8,10 @@ const GAP = 4;
 const BAR_W = TOOLBAR_SIZE * (SLOT + GAP) - GAP;
 const BAR_Y = 540 - SLOT - 8;
 const USE_R = 52;
+const EAT_R = 36;
 
 const HINT =
-  "Move: arrows/WASD or drag left   Use: Space   Sleep: bed or Z   Tools: 1-9, Q/E";
+  "Move: arrows/WASD or drag left   Use: Space   Eat: F   Sleep: bed or Z   Tools: 1-9, Q/E";
 
 const TOOL_LABEL = { hoe: "Hoe", can: "Can", hand: "Hand" } as const;
 
@@ -39,6 +40,7 @@ export class Hud {
     scene: Phaser.Scene,
     onSelect: (index: number) => void,
     onUse: () => void,
+    onEat: () => void,
   ) {
     this.status = scene.add.text(16, 16, "", {
       fontSize: "24px",
@@ -85,7 +87,15 @@ export class Hud {
     const useText = scene.add
       .text(use.x, use.y, "Use", { fontSize: "22px", color: "#ffffff" })
       .setOrigin(0.5);
-    this.objects.push(use, useText);
+    const eat = scene.add
+      .circle(use.x, use.y - USE_R - 44, EAT_R, 0x8fd18a, 0.45)
+      .setStrokeStyle(3, 0xffffff, 0.7)
+      .setInteractive({ useHandCursor: true });
+    eat.on("pointerdown", onEat);
+    const eatText = scene.add
+      .text(eat.x, eat.y, "Eat", { fontSize: "18px", color: "#ffffff" })
+      .setOrigin(0.5);
+    this.objects.push(use, useText, eat, eatText);
   }
 
   /** True if a screen point falls on the toolbar, which owns its touches. */

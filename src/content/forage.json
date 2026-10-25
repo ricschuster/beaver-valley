@@ -9,31 +9,36 @@
     "id": "leek",
     "name": "Wild leek",
     "seasons": ["spring"],
-    "sellPrice": 60
+    "sellPrice": 60,
+    "energy": 40
   },
   {
     "id": "dandelion",
     "name": "Dandelion",
     "seasons": ["spring"],
-    "sellPrice": 40
+    "sellPrice": 40,
+    "energy": 25
   },
   {
     "id": "horseradish",
     "name": "Wild horseradish",
     "seasons": ["spring"],
-    "sellPrice": 50
+    "sellPrice": 50,
+    "energy": 13
   },
   {
     "id": "grape",
     "name": "Wild grape",
     "seasons": ["summer"],
-    "sellPrice": 80
+    "sellPrice": 80,
+    "energy": 38
   },
   {
     "id": "spice-berry",
     "name": "Spice berry",
     "seasons": ["summer"],
-    "sellPrice": 80
+    "sellPrice": 80,
+    "energy": 25
   },
   {
     "id": "sweet-pea",
@@ -45,18 +50,21 @@
     "id": "spring-onion",
     "name": "Spring onion",
     "seasons": ["spring"],
-    "sellPrice": 8
+    "sellPrice": 8,
+    "energy": 5
   },
   {
     "id": "salmonberry",
     "name": "Salmonberry",
     "seasons": ["spring"],
-    "sellPrice": 5
+    "sellPrice": 5,
+    "energy": 25
   },
   {
     "id": "fiddlehead-fern",
     "name": "Fiddlehead fern",
     "seasons": ["summer"],
-    "sellPrice": 90
+    "sellPrice": 90,
+    "energy": 25
   }
 ]
