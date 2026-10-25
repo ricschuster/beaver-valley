@@ -1,5 +1,6 @@
 import Phaser from "phaser";
-import { heldAt, TOOLBAR_SIZE, type Held } from "../core/toolbar";
+import { heldAt, rowOf, TOOLS, TOOLBAR_SIZE, type Held } from "../core/toolbar";
+import { SLOT_COUNT } from "../core/inventory";
 import { dateText } from "../core/calendar";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
@@ -13,7 +14,7 @@ const USE_R = 52;
 const EAT_R = 36;
 
 const HINT =
-  "Move: arrows/WASD or drag left   Use: Space   Eat: F   Skills: K   Sleep: bed or Z   Tools: 1-9, Q/E";
+  "Move: arrows/WASD or drag left   Use: Space   Eat: F   Skills: K   Sleep: bed or Z   Tools: 1-9, Q/E, Tab: row";
 
 const TOOL_LABEL = { hoe: "Hoe", can: "Can", hand: "Hand" } as const;
 
@@ -43,6 +44,10 @@ export class Hud {
   private readonly hint: Phaser.GameObjects.Text;
   private readonly slots: Phaser.GameObjects.Rectangle[] = [];
   private readonly captions: Phaser.GameObjects.Text[] = [];
+  private readonly rowButton: Phaser.GameObjects.Rectangle;
+  private readonly rowText: Phaser.GameObjects.Text;
+  /** Which row of backpack slots the bar is showing. */
+  private row = 0;
 
   constructor(
     scene: Phaser.Scene,
@@ -50,6 +55,7 @@ export class Hud {
     onUse: () => void,
     onEat: () => void,
     onSkills: () => void,
+    onRow: () => void,
   ) {
     this.status = scene.add.text(16, 16, "", {
       fontSize: "24px",
@@ -74,7 +80,7 @@ export class Hud {
         .setOrigin(0)
         .setStrokeStyle(2, 0xffffff, 0.3)
         .setInteractive({ useHandCursor: true });
-      box.on("pointerdown", () => onSelect(i));
+      box.on("pointerdown", () => onSelect(this.indexOf(i)));
       const text = scene.add
         .text(x + SLOT / 2, BAR_Y + SLOT / 2, "", {
           fontSize: "10px",
@@ -87,6 +93,20 @@ export class Hud {
       this.captions.push(text);
       this.objects.push(box, text);
     }
+
+    this.rowButton = scene.add
+      .rectangle(left, BAR_Y - 36, 90, 30, 0x000000, 0.5)
+      .setOrigin(0)
+      .setStrokeStyle(2, 0xffffff, 0.5)
+      .setInteractive({ useHandCursor: true })
+      .on("pointerdown", onRow);
+    this.rowText = scene.add
+      .text(left + 45, BAR_Y - 21, "Row", {
+        fontSize: "16px",
+        color: "#ffffff",
+      })
+      .setOrigin(0.5);
+    this.objects.push(this.rowButton, this.rowText);
 
     const use = scene.add
       .circle(960 - USE_R - 24, BAR_Y - USE_R - 16, USE_R, 0xf2d16b, 0.45)
@@ -116,6 +136,11 @@ export class Hud {
     this.objects.push(use, useText, eat, eatText, skills, skillsText);
   }
 
+  /** The toolbar index that bar slot i stands for, given the row shown. */
+  private indexOf(i: number): number {
+    return i < TOOLS.length ? i : i + this.row * SLOT_COUNT;
+  }
+
   /** True if a screen point falls on the toolbar, which owns its touches. */
   covers(x: number, y: number): boolean {
     const left = (960 - BAR_W) / 2;
@@ -128,11 +153,16 @@ export class Hud {
       `${dateText(clock.day)}  ${clock.format()}\nEnergy ${Math.ceil(energy.current)}  ${g.money}g`,
     );
     this.message.setText(message);
+    if (selected >= TOOLS.length) this.row = rowOf(selected);
+    const multiRow = g.inventory.size > SLOT_COUNT;
+    this.rowButton.setVisible(multiRow);
+    this.rowText.setVisible(multiRow);
     this.slots.forEach((box, i) => {
-      const on = i === selected;
+      const index = this.indexOf(i);
+      const on = index === selected;
       box.setStrokeStyle(on ? 3 : 2, 0xffffff, on ? 1 : 0.3);
       box.setFillStyle(on ? 0xf2d16b : 0x000000, on ? 0.45 : 0.5);
-      this.captions[i]!.setText(caption(heldAt(g, i), g));
+      this.captions[i]!.setText(caption(heldAt(g, index), g));
     });
   }
 }

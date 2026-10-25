@@ -1,6 +1,5 @@
 import Phaser from "phaser";
 import { rewardText } from "../core/bundles";
-import { SLOT_COUNT } from "../core/inventory";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
 import { endDue } from "../core/sleep";
@@ -119,7 +118,7 @@ export class HallScene extends Phaser.Scene {
     this.detail.setText(lines.join("\n"));
 
     const ids: string[] = [];
-    for (let i = 0; i < SLOT_COUNT; i++) {
+    for (let i = 0; i < g.inventory.size; i++) {
       const slot = g.inventory.slot(i);
       if (slot && !ids.includes(slot.id)) ids.push(slot.id);
     }
