@@ -90,7 +90,7 @@ These are suggestions. The bundle questions belong to issue #21.
 Owner decisions (2026-10-25): no sell warning for now, since the game this one
 is inspired by does not warn either; revisit if real players get caught. The
 Spring Crops bundle stays as it is. A bundle missed in year 1 can be finished in
-a later year. The money sink is still open.
+a later year. No money sink for now; it will come with more game complexity.
 
 - Mark items the hall still needs in the shop sell list, or ask before selling
   them. Cheap and removes the worst casual trap.
