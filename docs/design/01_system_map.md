@@ -109,7 +109,8 @@ Open for further discussion:
   largest scope item, so the first playable should stay simple.
 - Whether ring 3 is a dungeon of floors or something else (hazard navigation,
   puzzles).
-- Map style: discrete screens joined by warps, or one continuous world.
+- Map style: decided in ADR 0005 (separate areas joined by exits, buildings as
+  interior maps). See `docs/design/06_map_style.md`. The valley layout is open.
 - Whether the farm is fixed or outposts can be set up in other regions.
 - Hand-built regions for the first playable, with generated content possibly
   later.
