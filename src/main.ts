@@ -3,6 +3,7 @@ import { BedScene } from "./scenes/BedScene";
 import { EndScene } from "./scenes/EndScene";
 import { FarmScene } from "./scenes/FarmScene";
 import { HallScene } from "./scenes/HallScene";
+import { ProfessionScene } from "./scenes/ProfessionScene";
 import { ReportScene } from "./scenes/ReportScene";
 import { TitleScene } from "./scenes/TitleScene";
 import { ShopScene } from "./scenes/ShopScene";
@@ -25,5 +26,6 @@ new Phaser.Game({
     ReportScene,
     BedScene,
     SkillsScene,
+    ProfessionScene,
   ],
 });

@@ -1,4 +1,5 @@
 import { dateOf, type Season } from "./calendar";
+import { growthRate } from "./professions";
 import { rollWeather, type Weather } from "./weather";
 import type { Spot } from "./forage";
 import type { GameState } from "./save";
@@ -33,7 +34,7 @@ export function sleep(
   g.money -= moneyLost;
 
   const { season } = dateOf(g.day.clock.day);
-  g.farm.endDay(season);
+  g.farm.endDay(season, growthRate(g.skills));
   g.weather = g.tomorrow;
   const next = dateOf(g.day.clock.day + 1);
   g.tomorrow = rollWeather(next.season, next.dayOfSeason, random);

@@ -9,6 +9,9 @@ export interface Plot {
 
 const key = (x: number, y: number) => `${x},${y}`;
 
+/** Slack for fractional growth, such as 9 days at 10 percent faster. */
+const EPSILON = 1e-9;
+
 /** The farm's soil and crops. Pure rules; the scene draws it. */
 export class Farm {
   private plots = new Map<string, Plot>();
@@ -60,7 +63,7 @@ export class Farm {
   isRipe(x: number, y: number): boolean {
     const crop = this.plotAt(x, y)?.crop;
     const def = crop && cropById(crop.id);
-    return !!crop && !!def && crop.daysGrown >= def.growDays;
+    return !!crop && !!def && crop.daysGrown >= def.growDays - EPSILON;
   }
 
   /** Number of crops growing on the farm. */
@@ -83,7 +86,7 @@ export class Farm {
     const plot = this.plotAt(x, y);
     const crop = plot?.crop;
     const def = crop && cropById(crop.id);
-    if (!plot || !crop || !def || crop.daysGrown < def.growDays)
+    if (!plot || !crop || !def || crop.daysGrown < def.growDays - EPSILON)
       return undefined;
     if (def.regrowDays !== undefined) {
       crop.daysGrown = def.growDays - def.regrowDays;
@@ -98,13 +101,13 @@ export class Farm {
    * Overnight: watered crops grow a day, then all plots dry out. Crops whose
    * season has ended wither. Pass the season of the new day.
    */
-  endDay(newSeason: Season): void {
+  endDay(newSeason: Season, growth = 1): void {
     for (const plot of this.plots.values()) {
       const crop = plot.crop;
       if (crop) {
         const def = cropById(crop.id);
         if (!def || !def.seasons.includes(newSeason)) delete plot.crop;
-        else if (plot.wateredToday) crop.daysGrown += 1;
+        else if (plot.wateredToday) crop.daysGrown += growth;
       }
       plot.wateredToday = false;
     }

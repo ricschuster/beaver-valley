@@ -13,10 +13,11 @@ export function sell(
   wallet: Wallet,
   id: string,
   n = 1,
+  multiplier = 1,
 ): number {
   const def = itemById(id);
   if (!def || !inv.remove(id, n)) return 0;
-  const earned = def.sellPrice * n;
+  const earned = Math.floor(def.sellPrice * multiplier) * n;
   wallet.money += earned;
   return earned;
 }
@@ -37,8 +38,13 @@ export function buy(
 }
 
 /** Sell every unit of an item. Returns the money earned. */
-export function sellAll(inv: Inventory, wallet: Wallet, id: string): number {
-  return sell(inv, wallet, id, inv.count(id));
+export function sellAll(
+  inv: Inventory,
+  wallet: Wallet,
+  id: string,
+  multiplier = 1,
+): number {
+  return sell(inv, wallet, id, inv.count(id), multiplier);
 }
 
 /** Seeds on sale in a season: those of crops that grow in it. */
