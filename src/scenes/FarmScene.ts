@@ -134,6 +134,7 @@ export class FarmScene extends Phaser.Scene {
       (i) => this.select(i),
       () => this.use(),
       () => this.eatHeld(),
+      () => this.open("skills"),
     );
     this.controls = new Controls(this, (p) => this.hud.covers(p.x, p.y));
     const ui = [this.controls.stick, ...this.hud.objects];
@@ -178,6 +179,7 @@ export class FarmScene extends Phaser.Scene {
       });
     press("SPACE", () => this.use());
     press("F", () => this.eatHeld());
+    press("K", () => this.open("skills"));
     press("Z", () => this.endDay());
     press("Q", () => this.select(cycle(this.selected, -1)));
     press("E", () => this.select(cycle(this.selected, 1)));

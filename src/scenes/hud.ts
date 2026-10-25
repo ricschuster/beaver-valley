@@ -13,7 +13,7 @@ const USE_R = 52;
 const EAT_R = 36;
 
 const HINT =
-  "Move: arrows/WASD or drag left   Use: Space   Eat: F   Sleep: bed or Z   Tools: 1-9, Q/E";
+  "Move: arrows/WASD or drag left   Use: Space   Eat: F   Skills: K   Sleep: bed or Z   Tools: 1-9, Q/E";
 
 const TOOL_LABEL = { hoe: "Hoe", can: "Can", hand: "Hand" } as const;
 
@@ -49,6 +49,7 @@ export class Hud {
     onSelect: (index: number) => void,
     onUse: () => void,
     onEat: () => void,
+    onSkills: () => void,
   ) {
     this.status = scene.add.text(16, 16, "", {
       fontSize: "24px",
@@ -103,7 +104,16 @@ export class Hud {
     const eatText = scene.add
       .text(eat.x, eat.y, "Eat", { fontSize: "18px", color: "#ffffff" })
       .setOrigin(0.5);
-    this.objects.push(use, useText, eat, eatText);
+    const skills = scene.add
+      .rectangle(960 - 16, 16, 90, 40, 0x000000, 0.5)
+      .setOrigin(1, 0)
+      .setStrokeStyle(2, 0xffffff, 0.5)
+      .setInteractive({ useHandCursor: true });
+    skills.on("pointerdown", onSkills);
+    const skillsText = scene.add
+      .text(skills.x - 45, 36, "Skills", { fontSize: "18px", color: "#ffffff" })
+      .setOrigin(0.5);
+    this.objects.push(use, useText, eat, eatText, skills, skillsText);
   }
 
   /** True if a screen point falls on the toolbar, which owns its touches. */
