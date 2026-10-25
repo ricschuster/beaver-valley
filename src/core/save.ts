@@ -52,6 +52,8 @@ interface SaveData {
   version: number;
   day: number;
   energy: number;
+  /** Minutes since midnight. Absent in saves made before the clock was saved. */
+  minutes?: number;
   money: number;
   inventory: ReturnType<Inventory["save"]>;
   farm: ReturnType<Farm["save"]>;
@@ -72,12 +74,13 @@ export interface SaveStore {
   write(text: string): void;
 }
 
-/** Save as text. Saving happens between days, so the clock is not stored. */
+/** Save as text, including the time of day, so a reload mid day resumes it. */
 export function serialize(g: GameState): string {
   const data: SaveData = {
     version: SAVE_VERSION,
     day: g.day.clock.day,
     energy: g.day.energy.current,
+    minutes: g.day.clock.minutes,
     money: g.money,
     inventory: g.inventory.save(),
     farm: g.farm.save(),
@@ -132,7 +135,7 @@ export function deserialize(text: string): GameState | undefined {
   if (!Object.values(hall).every((v) => Array.isArray(v))) return undefined;
 
   const g = newGame();
-  g.day.restore(day, energy);
+  g.day.restore(day, energy, isCount(raw.minutes) ? raw.minutes : undefined);
   g.money = money;
   g.weather = weather as Weather;
   g.inventory.load(inventory as ReturnType<Inventory["save"]>);
