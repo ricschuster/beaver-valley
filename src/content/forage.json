@@ -5,7 +5,12 @@
     "seasons": ["spring"],
     "sellPrice": 30
   },
-  { "id": "leek", "name": "Wild leek", "seasons": ["spring"], "sellPrice": 60 },
+  {
+    "id": "leek",
+    "name": "Wild leek",
+    "seasons": ["spring"],
+    "sellPrice": 60
+  },
   {
     "id": "dandelion",
     "name": "Dandelion",
@@ -35,5 +40,23 @@
     "name": "Sweet pea",
     "seasons": ["summer"],
     "sellPrice": 50
+  },
+  {
+    "id": "spring-onion",
+    "name": "Spring onion",
+    "seasons": ["spring"],
+    "sellPrice": 8
+  },
+  {
+    "id": "salmonberry",
+    "name": "Salmonberry",
+    "seasons": ["spring"],
+    "sellPrice": 5
+  },
+  {
+    "id": "fiddlehead-fern",
+    "name": "Fiddlehead fern",
+    "seasons": ["summer"],
+    "sellPrice": 90
   }
 ]
