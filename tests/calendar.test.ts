@@ -25,3 +25,13 @@ describe("dateOf", () => {
     });
   });
 });
+
+describe("dateText", () => {
+  it("names the weekday and season, in a seven day week", async () => {
+    const { dateText } = await import("../src/core/calendar");
+    expect(dateText(1)).toBe("Mon. Spring 1");
+    expect(dateText(8)).toBe("Mon. Spring 8");
+    expect(dateText(28)).toBe("Sun. Spring 28");
+    expect(dateText(29)).toBe("Mon. Summer 1");
+  });
+});

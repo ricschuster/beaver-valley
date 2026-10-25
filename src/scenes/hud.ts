@@ -1,7 +1,9 @@
 import Phaser from "phaser";
 import { heldAt, TOOLBAR_SIZE, type Held } from "../core/toolbar";
+import { dateText } from "../core/calendar";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
+import { TIER_NAMES, type Upgradable } from "../core/upgrades";
 
 const SLOT = 44;
 const GAP = 4;
@@ -16,8 +18,14 @@ const HINT =
 const TOOL_LABEL = { hoe: "Hoe", can: "Can", hand: "Hand" } as const;
 
 /** Short text for a slot, until the art pass gives items icons. */
-function caption(held: Held): string {
-  if (held.kind === "tool") return TOOL_LABEL[held.tool];
+function caption(held: Held, g: GameState): string {
+  if (held.kind === "tool") {
+    const tier =
+      held.tool === "hand" ? 0 : g.toolTiers[held.tool as Upgradable];
+    return tier > 0
+      ? `${TIER_NAMES[tier]} ${TOOL_LABEL[held.tool].toLowerCase()}`
+      : TOOL_LABEL[held.tool];
+  }
   if (held.kind === "empty") return "";
   const name = itemById(held.id)?.name ?? held.id;
   return `${name}\n${held.count}`;
@@ -107,14 +115,14 @@ export class Hud {
   update(g: GameState, selected: number, message: string): void {
     const { clock, energy } = g.day;
     this.status.setText(
-      `Day ${clock.day}  ${clock.format()}\nEnergy ${Math.ceil(energy.current)}  ${g.money}g`,
+      `${dateText(clock.day)}  ${clock.format()}\nEnergy ${Math.ceil(energy.current)}  ${g.money}g`,
     );
     this.message.setText(message);
     this.slots.forEach((box, i) => {
       const on = i === selected;
       box.setStrokeStyle(on ? 3 : 2, 0xffffff, on ? 1 : 0.3);
       box.setFillStyle(on ? 0xf2d16b : 0x000000, on ? 0.45 : 0.5);
-      this.captions[i]!.setText(caption(heldAt(g, i)));
+      this.captions[i]!.setText(caption(heldAt(g, i), g));
     });
   }
 }
