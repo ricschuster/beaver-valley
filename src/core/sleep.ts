@@ -32,9 +32,11 @@ export function sleep(
   const moneyLost = end.passedOut ? end.moneyLost : 0;
   g.money -= moneyLost;
 
-  const { season, dayOfSeason } = dateOf(g.day.clock.day);
+  const { season } = dateOf(g.day.clock.day);
   g.farm.endDay(season);
-  g.weather = rollWeather(season, dayOfSeason, random);
+  g.weather = g.tomorrow;
+  const next = dateOf(g.day.clock.day + 1);
+  g.tomorrow = rollWeather(next.season, next.dayOfSeason, random);
   if (g.weather === "rainy") g.farm.waterAll();
   g.forage.respawn(season, spots, random);
 

@@ -1,4 +1,6 @@
 import Phaser from "phaser";
+import type { GameState } from "../core/save";
+import { STATE_KEY } from "./state";
 
 /**
  * Asked when the player uses the bed: go to sleep now, or not. The farm is
@@ -18,9 +20,10 @@ export class BedScene extends Phaser.Scene {
       .text(480, 200, "Go to sleep?", { fontSize: "36px", color: "#ffe9a0" })
       .setOrigin(0.5);
     this.add
-      .text(480, 250, "The day ends and the night passes.", {
+      .text(480, 250, this.forecast(), {
         fontSize: "18px",
         color: "#ffffff",
+        align: "center",
       })
       .setOrigin(0.5);
     this.button(340, 340, "Yes", 0x3f7d3a, () => this.close(true));
@@ -34,6 +37,12 @@ export class BedScene extends Phaser.Scene {
     const kb = this.input.keyboard;
     kb?.on("keydown-ENTER", () => this.close(true));
     kb?.on("keydown-ESC", () => this.close(false));
+  }
+
+  /** Tomorrow's weather, as Stardew's TV forecast gives it. */
+  private forecast(): string {
+    const g = this.registry.get(STATE_KEY) as GameState;
+    return `The day ends and the night passes.\nForecast for tomorrow: ${g.tomorrow === "rainy" ? "rain" : "clear skies"}.`;
   }
 
   private button(
