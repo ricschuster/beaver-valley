@@ -71,8 +71,20 @@ Source: `src/core/skills.ts`.
   10000, 15000. From memory.
 - A forage pickup gives 7 XP. A harvest gives `floor(16 * ln(0.018 * price + 1))`.
   From memory.
-- Levels raise the chance of better quality goods (next section). They have no
-  other effect yet.
+- Levels raise the chance of better quality goods, and farming levels trim
+  swing energy (see below). Professions (the level 5 and 10 choices) are not
+  built.
+
+## Tool upgrades and energy
+
+Source: `src/core/upgrades.ts`. The hoe and watering can have four tiers (basic,
+copper, steel, gold) bought in the shop for 2000g, 5000g and 10000g. From
+memory for prices; Stardew also needs bars and a wait, which we skip.
+
+- A swing costs `2 - 0.25 * tier - 0.1 * farmingLevel`, never under 0.5. The
+  level term is from memory, the tier term is ours. Energy can now be
+  fractional and the HUD rounds up.
+- With 500g to start, an upgrade is a mid game goal.
 
 ## Quality
 
