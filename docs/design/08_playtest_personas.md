@@ -123,10 +123,10 @@ errors. Two things came out of it:
 - The run also found a bug: after any map change the farm scene kept a stale
   resume listener per restart, so a resume ran twice (sleep skipped a day).
   Fixed.
-- Buttons in the shop (Buy 1, Sell all, about 33 CSS pixels tall) and the hall
-  (Hand in, 30; backpack rows, 38) are under the 40 pixel line the script uses.
-  They work, but they are small for a finger. Not fixed; it is a layout change
-  for the art pass or a screen redesign.
+- Buttons in the shop and hall were 30 to 38 CSS pixels tall, under the 40
+  pixel line the script uses. Menu rows are now taller and tapping a row does
+  its main action (Buy 1, Sell 1, Hand in), as in the Stardew mobile menus. The
+  second button (Buy 5, Sell all) stays. The rerun has no findings.
 
 An emulator cannot judge feel, frame rate or Android Chrome's address bar and
 zoom behaviour, so a short check on the real tablet is still worth doing before
