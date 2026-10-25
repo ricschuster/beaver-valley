@@ -57,7 +57,8 @@ fails the performance spike below.
   Tiled map, a few hundred sprites and a day tick, tested on a real target
   tablet. Initial target is a steady 60 fps on desktop and 30 fps or better on
   an older tablet, with art in compact texture atlases and areas loaded on
-  demand. The minimum tablet is still to be chosen.
+  demand. The minimum tablet is a Galaxy Tab A7 10.4 (2020) class device; the
+  spike passed on it with large headroom, see `docs/design/04_performance_spike.md`.
 - Saves are plain data, so a save export and import path is needed in case a
   wrapper's storage is cleared.
 - iOS builds will need a Mac and an Apple developer account when tablets start.
