@@ -19,6 +19,14 @@ export function harvestXp(sellPrice: number): number {
 export class Skills {
   private xp: Record<Skill, number> = { farming: 0, foraging: 0 };
 
+  save(): Record<Skill, number> {
+    return { ...this.xp };
+  }
+
+  load(saved: Record<Skill, number>): void {
+    this.xp = { ...saved };
+  }
+
   xpOf(skill: Skill): number {
     return this.xp[skill];
   }

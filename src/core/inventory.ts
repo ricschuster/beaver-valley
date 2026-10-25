@@ -9,6 +9,18 @@ export class Inventory {
     this.slots = Array.from({ length: size }, () => undefined);
   }
 
+  /** The slots as plain data. */
+  save(): ({ id: string; count: number } | null)[] {
+    return this.slots.map((s) => (s ? { ...s } : null));
+  }
+
+  load(saved: ({ id: string; count: number } | null)[]): void {
+    this.slots = Array.from({ length: this.size }, (_, i) => {
+      const s = saved[i];
+      return s ? { ...s } : undefined;
+    });
+  }
+
   count(id: string): number {
     return this.slots.reduce((n, s) => (s?.id === id ? n + s.count : n), 0);
   }
