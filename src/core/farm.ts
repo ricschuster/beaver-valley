@@ -43,6 +43,20 @@ export class Farm {
     return true;
   }
 
+  /** True if the plot holds a crop ready to harvest. */
+  isRipe(x: number, y: number): boolean {
+    const crop = this.plotAt(x, y)?.crop;
+    const def = crop && cropById(crop.id);
+    return !!crop && !!def && crop.daysGrown >= def.growDays;
+  }
+
+  /** Number of crops growing on the farm. */
+  get cropCount(): number {
+    let n = 0;
+    for (const p of this.plots.values()) if (p.crop) n += 1;
+    return n;
+  }
+
   /** Water a plot. Returns false if there is nothing to water. */
   water(x: number, y: number): boolean {
     const plot = this.plotAt(x, y);

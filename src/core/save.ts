@@ -1,5 +1,6 @@
 import { Day } from "./day";
 import { Farm } from "./farm";
+import { ForageField } from "./forage";
 import { Hall, type HallProgress } from "./bundles";
 import { Inventory } from "./inventory";
 import { Skills, SKILLS } from "./skills";
@@ -12,6 +13,8 @@ export interface GameState {
   farm: Farm;
   skills: Skills;
   hall: Hall;
+  /** Wild goods on the ground today. Not saved: it respawns each morning. */
+  forage: ForageField;
 }
 
 /** Starting cash for a new game. */
@@ -25,6 +28,7 @@ export function newGame(): GameState {
     farm: new Farm(),
     skills: new Skills(),
     hall: new Hall(),
+    forage: new ForageField(),
   };
 }
 

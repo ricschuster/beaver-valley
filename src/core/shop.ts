@@ -1,4 +1,6 @@
-import { itemById } from "./items";
+import type { Season } from "./calendar";
+import { CROPS } from "./crops";
+import { itemById, seedId } from "./items";
 import type { Inventory } from "./inventory";
 
 export interface Wallet {
@@ -32,4 +34,16 @@ export function buy(
   if (wallet.money < cost || !inv.add(id, n)) return false;
   wallet.money -= cost;
   return true;
+}
+
+/** Sell every unit of an item. Returns the money earned. */
+export function sellAll(inv: Inventory, wallet: Wallet, id: string): number {
+  return sell(inv, wallet, id, inv.count(id));
+}
+
+/** Seeds on sale in a season: those of crops that grow in it. */
+export function seedStock(season: Season): string[] {
+  return CROPS.filter((c) => c.seasons.includes(season)).map((c) =>
+    seedId(c.id),
+  );
 }
