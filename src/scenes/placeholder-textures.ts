@@ -11,7 +11,7 @@ export const TILESET_NAME = "placeholder";
 export const PLAYER_KEY = "player";
 export const TILE = 16;
 
-/** grass, grass2, path, water, soil, tree, wall, roof, door */
+/** grass, grass2, path, water, soil, tree, wall, roof, door, bed */
 const TILE_COLOURS = [
   "#3f7d3a",
   "#468a40",
@@ -22,6 +22,7 @@ const TILE_COLOURS = [
   "#8d7b6a",
   "#a0482e",
   "#f0c75e",
+  "#c9a0dc",
 ];
 
 export function makePlaceholderTextures(scene: Phaser.Scene): void {

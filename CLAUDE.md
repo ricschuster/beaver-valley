@@ -58,6 +58,7 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
 - `npm run check`: all of the gates in order. Run before pushing.
 - `npm run playtest -- <expert|intermediate|casual>`, `npm run playtest:late`:
   scripted playthroughs in a browser. Manual only, not a gate and not in CI.
+  `npm run playtest:touch` is a short touch-only run in a tablet-sized browser.
   Needs `npm run dev` running. See `scripts/playtest/README.md`.
 
 ## Repo structure

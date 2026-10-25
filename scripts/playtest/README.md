@@ -19,6 +19,12 @@ errors. The game's weather and forage are random, so reruns differ.
 4. `npm run playtest:late` leaves a new game standing until 2 am and checks the
    pass-out. It takes about 14 minutes.
 
+5. `npm run playtest:touch` plays one short loop with touch events only, in a
+   tablet-sized touch browser (1200x700 CSS pixels, like the SM-T500): the
+   stick, the toolbar, till, plant, water and harvest, a second finger on Use
+   while the stick is held, the shop, the hall, the bed in the house, the report and Continue
+   on the title screen. It also checks touch target sizes. About 40 seconds.
+
 Screenshots and saves go to `playtest-out/` (git-ignored).
 
 Settings, as environment variables:
@@ -47,6 +53,9 @@ all three after a change to prices, bundles, growth or energy.
 - `lib.mjs`: browser launch, pathfinding walk, facing and tool use.
 - `play.mjs`: the daily routine and the personas.
 - `late.mjs`: the stay-up-late test.
+- `touch.mjs`: the touch persona. It uses the Chrome DevTools protocol to send
+  real multi-touch events. It is an emulator: it cannot judge how the targets
+  feel under a finger, the frame rate, or Android Chrome's own behaviour.
 
 The farm layout in `play.mjs` (soil rows at y 11 and 13, aisle at y 12) and the
 door tile in `lib.mjs` match `src/content/maps/farm.json`. Update them if the

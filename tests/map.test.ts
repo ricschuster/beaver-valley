@@ -263,6 +263,13 @@ describe("the maps in use", () => {
     expect(farm.exits.length).toBeGreaterThan(0);
   });
 
+  it("have a bed to sleep in", () => {
+    const beds = maps.ids.flatMap((id) =>
+      maps.get(id).services.filter((s) => s.kind === "bed"),
+    );
+    expect(beds.length).toBeGreaterThan(0);
+  });
+
   it("have one file per map id", () => {
     expect(maps.ids.sort()).toEqual(Object.keys(mapFiles).sort());
   });

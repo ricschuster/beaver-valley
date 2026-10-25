@@ -14,7 +14,8 @@
     "format:check": "prettier --check .",
     "check": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run build",
     "playtest": "node scripts/playtest/play.mjs",
-    "playtest:late": "node scripts/playtest/late.mjs"
+    "playtest:late": "node scripts/playtest/late.mjs",
+    "playtest:touch": "node scripts/playtest/touch.mjs"
   },
   "dependencies": {
     "phaser": "^4.2.1"

@@ -10,7 +10,7 @@ const BAR_Y = 540 - SLOT - 8;
 const USE_R = 52;
 
 const HINT =
-  "Move: arrows/WASD or drag left   Use: Space   Sleep: Z   Tools: 1-9, Q/E";
+  "Move: arrows/WASD or drag left   Use: Space   Sleep: bed or Z   Tools: 1-9, Q/E";
 
 const TOOL_LABEL = { hoe: "Hoe", can: "Can", hand: "Hand" } as const;
 

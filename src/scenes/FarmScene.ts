@@ -179,11 +179,16 @@ export class FarmScene extends Phaser.Scene {
     press("E", () => this.select(cycle(this.selected, 1)));
     const digits = "ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE".split(",");
     digits.forEach((name, i) => press(name, () => this.select(i)));
-    this.events.on("resume", () => {
+    // Restarting the scene keeps its event listeners, so drop this one on
+    // shutdown or each map change would add another and run it twice.
+    const resumed = (_sys: unknown, data?: { sleep?: boolean }) => {
+      if (data?.sleep) return this.endDay();
       this.save();
       this.message = "";
       this.render();
-    });
+    };
+    this.events.on("resume", resumed);
+    this.events.once("shutdown", () => this.events.off("resume", resumed));
     this.render();
 
     if (import.meta.env.DEV)

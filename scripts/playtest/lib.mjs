@@ -33,11 +33,21 @@ export function log(...a) {
   console.log(`[${s}s]`, ...a);
 }
 
-export async function launch({ fresh }) {
+/** A Galaxy Tab A 10.4 (SM-T500) in landscape: 1200x700 CSS pixels with browser bars. */
+export const TABLET = {
+  viewport: { width: 1200, height: 700 },
+  deviceScaleFactor: 1.67,
+  hasTouch: true,
+  isMobile: true,
+};
+
+export async function launch({ fresh, context }) {
   const b = await chromium.launch({
     executablePath: process.env.CHROMIUM_PATH || undefined,
   });
-  const p = await b.newPage({ viewport: { width: 960, height: 540 } });
+  const p = await b.newPage(
+    context ?? { viewport: { width: 960, height: 540 } },
+  );
   const errs = [];
   p.on("pageerror", (e) => errs.push(e.message));
   p.on("console", (m) => {

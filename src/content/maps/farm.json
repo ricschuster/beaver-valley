@@ -536,10 +536,10 @@
       "name": "placeholder",
       "tilewidth": 16,
       "tileheight": 16,
-      "tilecount": 9,
-      "columns": 9,
+      "tilecount": 10,
+      "columns": 10,
       "image": "placeholder-tiles.png",
-      "imagewidth": 144,
+      "imagewidth": 160,
       "imageheight": 16
     }
   ]

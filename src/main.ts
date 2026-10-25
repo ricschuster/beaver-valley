@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { BedScene } from "./scenes/BedScene";
 import { EndScene } from "./scenes/EndScene";
 import { FarmScene } from "./scenes/FarmScene";
 import { HallScene } from "./scenes/HallScene";
@@ -14,5 +15,13 @@ new Phaser.Game({
   backgroundColor: "#2f4a35",
   pixelArt: true,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-  scene: [TitleScene, FarmScene, ShopScene, HallScene, EndScene, ReportScene],
+  scene: [
+    TitleScene,
+    FarmScene,
+    ShopScene,
+    HallScene,
+    EndScene,
+    ReportScene,
+    BedScene,
+  ],
 });

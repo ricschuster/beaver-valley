@@ -109,7 +109,30 @@ types. Add a persona only for a new system, for example a tablet touch player
 once the tablet pass starts, or a fishing persona if fishing is added. Rerun the
 three after any change to prices, bundles, growth or energy.
 
+## Touch persona (emulated tablet)
+
+`npm run playtest:touch` drives the game with touch events only, in a touch
+browser sized like the SM-T500 (1200x700 CSS pixels, the game scaled 1.25x).
+Result: the farm loop, shop, hall, report and Continue all work by touch, the
+stick keeps working while a second finger taps Use, and there were no console
+errors. Two things came out of it:
+
+- There was no touch way to sleep (only Z). Sleeping is now done in a bed in
+  the house: use the bed and a Yes or No prompt asks. Z still works as a
+  keyboard shortcut.
+- The run also found a bug: after any map change the farm scene kept a stale
+  resume listener per restart, so a resume ran twice (sleep skipped a day).
+  Fixed.
+- Buttons in the shop (Buy 1, Sell all, about 33 CSS pixels tall) and the hall
+  (Hand in, 30; backpack rows, 38) are under the 40 pixel line the script uses.
+  They work, but they are small for a finger. Not fixed; it is a layout change
+  for the art pass or a screen redesign.
+
+An emulator cannot judge feel, frame rate or Android Chrome's address bar and
+zoom behaviour, so a short check on the real tablet is still worth doing before
+the tablet pass is called done.
+
 ## Not covered
 
-Touch input and the tablet, the Start over button, saving the clock (a reload
+The real tablet (see above), the Start over button, saving the clock (a reload
 mid day restarts at 6 am), and anything on a second map beyond the house.
