@@ -18,10 +18,10 @@ export class Day {
   readonly clock = new Clock();
   readonly energy = new Energy();
 
-  /** Put the player at the start of a saved day: morning, with saved energy. */
-  restore(day: number, energy: number): void {
+  /** Put the player back in a saved day, at the saved time (morning if none). */
+  restore(day: number, energy: number, minutes = DAY_START): void {
     this.clock.day = day;
-    this.clock.minutes = DAY_START;
+    this.clock.minutes = Math.min(Math.max(minutes, DAY_START), DAY_END);
     this.energy.current = Math.min(Math.max(energy, 0), MAX_ENERGY);
   }
 
