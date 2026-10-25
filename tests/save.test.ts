@@ -88,3 +88,18 @@ describe("save and load", () => {
     expect(deserialize(serialize(played()))!.endSeen).toBe(false);
   });
 });
+
+describe("saving the clock", () => {
+  it("resumes at the saved time of day", () => {
+    const g = newGame();
+    g.day.clock.advance(150);
+    const back = deserialize(serialize(g))!;
+    expect(back.day.clock.minutes).toBe(g.day.clock.minutes);
+  });
+
+  it("a save without a time starts in the morning", () => {
+    const raw = JSON.parse(serialize(newGame()));
+    delete raw.minutes;
+    expect(deserialize(JSON.stringify(raw))!.day.clock.minutes).toBe(6 * 60);
+  });
+});
