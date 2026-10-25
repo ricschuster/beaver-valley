@@ -63,8 +63,8 @@ export class HallScene extends Phaser.Scene {
       y: 262,
       w: 486,
       title: "Your backpack",
-      visible: 5,
-      rowH: 34,
+      visible: 4,
+      rowH: 42,
     });
     const kb = this.input.keyboard;
     kb?.on("keydown-UP", () => this.active.move(-1));

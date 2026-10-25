@@ -302,15 +302,26 @@ if (!(await sceneNow()).includes("shop"))
 else {
   await checkSizes("shop");
   const m = (await bot.snap()).money;
-  await tapLabel("shop", "Buy 1");
+  // Tapping a row does its main action; the buttons do the rest.
+  const buyRow = (await targets("shop")).find(
+    (t) => t.label === "Parsnip seeds",
+  );
+  await tap(buyRow.cx, buyRow.cy, 200);
   const m2 = (await bot.snap()).money;
-  if (m2 >= m) finding("tapping Buy 1 did not spend money");
+  if (m2 >= m) finding("tapping a buy row did not buy one");
+  await tapLabel("shop", "Buy 5");
+  const m3 = (await bot.snap()).money;
+  if (m3 >= m2) finding("tapping Buy 5 did not spend money");
   const have = bot.count(await bot.snap(), "parsnip");
   if (have > 0) {
+    const sellRow = (await targets("shop")).find((t) =>
+      t.label.startsWith("Parsnip  x"),
+    );
+    await tap(sellRow.cx, sellRow.cy, 200);
+    const m4 = (await bot.snap()).money;
+    if (m4 <= m3) finding("tapping a sell row did not sell one");
     const rows = (await targets("shop")).filter((t) => t.label === "Sell all");
     if (rows.length) await tap(rows[0].cx, rows[0].cy, 200);
-    const m3 = (await bot.snap()).money;
-    if (m3 <= m2) finding("tapping Sell all did not earn money");
   }
   await tapLabel("shop", "Close");
   await sleepMs(300);

@@ -27,9 +27,10 @@ export interface MenuOptions {
 }
 
 /**
- * A titled list of rows, each with buttons. Works by touch (tap a button) and
- * by keyboard (move the cursor, press a button by number). It is rebuilt from
- * scratch by `setRows`, which is plenty for lists this small.
+ * A titled list of rows, each with buttons. Works by touch (tap a row for its
+ * first button, or tap any button) and by keyboard (move the cursor, press a
+ * button by number). It is rebuilt from scratch by `setRows`, which is plenty
+ * for lists this small.
  */
 export class Menu {
   focused = false;
@@ -45,8 +46,8 @@ export class Menu {
     private readonly scene: Phaser.Scene,
     private readonly opts: MenuOptions,
   ) {
-    this.rowH = opts.rowH ?? 36;
-    this.visible = opts.visible ?? 9;
+    this.rowH = opts.rowH ?? 44;
+    this.visible = opts.visible ?? 7;
     this.title = scene.add.text(opts.x, opts.y, opts.title, {
       fontSize: "22px",
       color: "#ffe9a0",
@@ -114,10 +115,12 @@ export class Menu {
         )
         .setOrigin(0)
         .setInteractive();
+      // Tapping a row does its main action, so the whole row is the target.
       bg.on("pointerdown", () => {
         this.cursor = index;
         this.opts.onCursor?.(index);
         this.draw();
+        this.press(0);
       });
       const alpha = row.dim ? 0.45 : 1;
       const label = this.scene.add
@@ -144,7 +147,7 @@ export class Menu {
         const bx = x + w - (row.buttons.length - n) * (bw + 4);
         const usable = b.enabled !== false && !row.dim;
         const box = this.scene.add
-          .rectangle(bx, ry + 3, bw, this.rowH - 10, 0x3f7d3a, usable ? 1 : 0.3)
+          .rectangle(bx, ry + 1, bw, this.rowH - 6, 0x3f7d3a, usable ? 1 : 0.3)
           .setOrigin(0)
           .setStrokeStyle(1, 0xffffff, usable ? 0.8 : 0.2);
         if (usable) {
