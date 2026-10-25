@@ -89,6 +89,6 @@ export class EndScene extends Phaser.Scene {
   /** Replace the save with a new game and reload, so every scene resets. */
   private startOver(): void {
     saveGame(browserStore, newGame());
-    location.href = location.pathname;
+    location.href = `${location.pathname}?new`;
   }
 }

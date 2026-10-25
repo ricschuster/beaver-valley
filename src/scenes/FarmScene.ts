@@ -1,8 +1,7 @@
 import Phaser from "phaser";
-import { dateOf } from "../core/calendar";
 import { sleep } from "../core/sleep";
 import type { GameState } from "../core/save";
-import { cycle, heldAt, startGame, TOOLBAR_SIZE } from "../core/toolbar";
+import { cycle, heldAt, TOOLBAR_SIZE } from "../core/toolbar";
 import { reasonText, useHeld } from "../core/tools";
 import { cropById } from "../core/crops";
 import { mapFiles, maps } from "../content/maps";
@@ -19,7 +18,7 @@ import {
 } from "../core/movement";
 import { Controls } from "./controls";
 import { browserStore } from "./storage";
-import { loadGame, saveGame } from "../core/save";
+import { saveGame } from "../core/save";
 import { SELECTED_KEY, STATE_KEY } from "./state";
 import { Hud } from "./hud";
 import {
@@ -80,19 +79,6 @@ export class FarmScene extends Phaser.Scene {
   init(data: Partial<SceneData>): void {
     this.mapId = data.map ?? START.map;
     this.entryName = data.entry ?? START.entry;
-    if (!this.registry.has(STATE_KEY)) {
-      // A saved game resumes on its morning. `?new` starts over.
-      const resume = location.search.includes("new")
-        ? undefined
-        : loadGame(browserStore);
-      const fresh = resume ?? startGame();
-      fresh.forage.respawn(
-        dateOf(fresh.day.clock.day).season,
-        maps.get(START.map).forageSpots,
-        Math.random,
-      );
-      this.registry.set(STATE_KEY, fresh);
-    }
     this.state = this.registry.get(STATE_KEY) as GameState;
     this.selected =
       (this.registry.get(SELECTED_KEY) as number | undefined) ?? 0;
@@ -273,8 +259,8 @@ export class FarmScene extends Phaser.Scene {
   }
 
   /** Open a screen over the farm. The farm is paused until it closes. */
-  private open(kind: string): void {
-    this.scene.launch(kind);
+  private open(kind: string, data?: object): void {
+    this.scene.launch(kind, data);
     this.scene.pause();
   }
 
@@ -310,13 +296,10 @@ export class FarmScene extends Phaser.Scene {
   private endDay(): void {
     const g = this.state;
     const report = sleep(g, maps.get(START.map).forageSpots, Math.random);
-    if (report.passedOut) {
-      this.message = `You passed out and lost ${report.moneyLost}g.`;
-    } else {
-      this.message = "You slept well.";
-    }
+    this.message = "";
     this.save();
     this.render();
+    this.open("report", { report });
   }
 
   /** Draw plots and forage as flat shapes, until the art pass. */
