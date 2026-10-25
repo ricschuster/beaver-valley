@@ -1,22 +1,31 @@
 import Phaser from "phaser";
 import { heldAt, TOOLBAR_SIZE, type Held } from "../core/toolbar";
+import { dateText } from "../core/calendar";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
+import { TIER_NAMES, type Upgradable } from "../core/upgrades";
 
 const SLOT = 44;
 const GAP = 4;
 const BAR_W = TOOLBAR_SIZE * (SLOT + GAP) - GAP;
 const BAR_Y = 540 - SLOT - 8;
 const USE_R = 52;
+const EAT_R = 36;
 
 const HINT =
-  "Move: arrows/WASD or drag left   Use: Space   Sleep: bed or Z   Tools: 1-9, Q/E";
+  "Move: arrows/WASD or drag left   Use: Space   Eat: F   Skills: K   Sleep: bed or Z   Tools: 1-9, Q/E";
 
 const TOOL_LABEL = { hoe: "Hoe", can: "Can", hand: "Hand" } as const;
 
 /** Short text for a slot, until the art pass gives items icons. */
-function caption(held: Held): string {
-  if (held.kind === "tool") return TOOL_LABEL[held.tool];
+function caption(held: Held, g: GameState): string {
+  if (held.kind === "tool") {
+    const tier =
+      held.tool === "hand" ? 0 : g.toolTiers[held.tool as Upgradable];
+    return tier > 0
+      ? `${TIER_NAMES[tier]} ${TOOL_LABEL[held.tool].toLowerCase()}`
+      : TOOL_LABEL[held.tool];
+  }
   if (held.kind === "empty") return "";
   const name = itemById(held.id)?.name ?? held.id;
   return `${name}\n${held.count}`;
@@ -39,6 +48,8 @@ export class Hud {
     scene: Phaser.Scene,
     onSelect: (index: number) => void,
     onUse: () => void,
+    onEat: () => void,
+    onSkills: () => void,
   ) {
     this.status = scene.add.text(16, 16, "", {
       fontSize: "24px",
@@ -85,7 +96,24 @@ export class Hud {
     const useText = scene.add
       .text(use.x, use.y, "Use", { fontSize: "22px", color: "#ffffff" })
       .setOrigin(0.5);
-    this.objects.push(use, useText);
+    const eat = scene.add
+      .circle(use.x, use.y - USE_R - 44, EAT_R, 0x8fd18a, 0.45)
+      .setStrokeStyle(3, 0xffffff, 0.7)
+      .setInteractive({ useHandCursor: true });
+    eat.on("pointerdown", onEat);
+    const eatText = scene.add
+      .text(eat.x, eat.y, "Eat", { fontSize: "18px", color: "#ffffff" })
+      .setOrigin(0.5);
+    const skills = scene.add
+      .rectangle(960 - 16 - 90, 16, 90, 40, 0x000000, 0.5)
+      .setOrigin(0)
+      .setStrokeStyle(2, 0xffffff, 0.5)
+      .setInteractive({ useHandCursor: true });
+    skills.on("pointerdown", onSkills);
+    const skillsText = scene.add
+      .text(skills.x + 45, 36, "Skills", { fontSize: "18px", color: "#ffffff" })
+      .setOrigin(0.5);
+    this.objects.push(use, useText, eat, eatText, skills, skillsText);
   }
 
   /** True if a screen point falls on the toolbar, which owns its touches. */
@@ -97,14 +125,14 @@ export class Hud {
   update(g: GameState, selected: number, message: string): void {
     const { clock, energy } = g.day;
     this.status.setText(
-      `Day ${clock.day}  ${clock.format()}\nEnergy ${Math.ceil(energy.current)}  ${g.money}g`,
+      `${dateText(clock.day)}  ${clock.format()}\nEnergy ${Math.ceil(energy.current)}  ${g.money}g`,
     );
     this.message.setText(message);
     this.slots.forEach((box, i) => {
       const on = i === selected;
       box.setStrokeStyle(on ? 3 : 2, 0xffffff, on ? 1 : 0.3);
       box.setFillStyle(on ? 0xf2d16b : 0x000000, on ? 0.45 : 0.5);
-      this.captions[i]!.setText(caption(heldAt(g, i)));
+      this.captions[i]!.setText(caption(heldAt(g, i), g));
     });
   }
 }

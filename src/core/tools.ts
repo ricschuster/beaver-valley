@@ -45,6 +45,9 @@ const REASONS: Record<string, string> = {
   "cannot dig here": "The ground is too hard here.",
   "nothing to do here": "Nothing to do here.",
   "nothing held": "Select a tool or item.",
+  "not food": "That cannot be eaten.",
+  "nothing to eat": "Select food to eat.",
+  "not hungry": "You are not tired.",
 };
 
 /** Words for a refused action, for the player. */

@@ -43,3 +43,19 @@ export class Skills {
     return after > before ? after : undefined;
   }
 }
+
+export interface SkillRow {
+  skill: Skill;
+  level: number;
+  xp: number;
+  /** XP total for the next level, or undefined at the top. */
+  next?: number;
+}
+
+/** Every skill with its level and progress, for the skills screen. */
+export function skillRows(skills: Skills): SkillRow[] {
+  return SKILLS.map((skill) => {
+    const level = skills.level(skill);
+    return { skill, level, xp: skills.xpOf(skill), next: LEVEL_XP[level] };
+  });
+}

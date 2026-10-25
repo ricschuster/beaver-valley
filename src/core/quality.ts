@@ -9,6 +9,13 @@ export const QUALITY_MULTIPLIER: Record<Quality, number> = {
   gold: 1.5,
 };
 
+/** Energy multiplier when eaten, per tier. From memory. */
+export const ENERGY_MULTIPLIER: Record<Quality, number> = {
+  normal: 1,
+  silver: 1.4,
+  gold: 1.8,
+};
+
 const SEP = "@";
 
 /** The item id of a good at a quality: `parsnip`, `parsnip@silver`. */

@@ -6,6 +6,8 @@ export interface ForageDef {
   name: string;
   seasons: Season[];
   sellPrice: number;
+  /** Energy restored when eaten. Absent for goods that are not food. */
+  energy?: number;
 }
 
 export const FORAGE = forageData as ForageDef[];

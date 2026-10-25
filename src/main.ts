@@ -6,6 +6,7 @@ import { HallScene } from "./scenes/HallScene";
 import { ReportScene } from "./scenes/ReportScene";
 import { TitleScene } from "./scenes/TitleScene";
 import { ShopScene } from "./scenes/ShopScene";
+import { SkillsScene } from "./scenes/SkillsScene";
 
 new Phaser.Game({
   type: Phaser.AUTO,
@@ -23,5 +24,6 @@ new Phaser.Game({
     EndScene,
     ReportScene,
     BedScene,
+    SkillsScene,
   ],
 });

@@ -31,3 +31,22 @@ describe("Skills", () => {
     expect(harvestXp(250)).toBeGreaterThan(harvestXp(35));
   });
 });
+
+describe("skillRows", () => {
+  it("shows level, xp and the next threshold", async () => {
+    const { skillRows, Skills, LEVEL_XP } = await import("../src/core/skills");
+    const s = new Skills();
+    s.gain("farming", 150);
+    const farming = skillRows(s).find((r) => r.skill === "farming")!;
+    expect(farming).toEqual({
+      skill: "farming",
+      level: 1,
+      xp: 150,
+      next: LEVEL_XP[1],
+    });
+    s.gain("foraging", 99999);
+    expect(
+      skillRows(s).find((r) => r.skill === "foraging")!.next,
+    ).toBeUndefined();
+  });
+});

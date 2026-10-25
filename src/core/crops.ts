@@ -11,6 +11,8 @@ export interface CropDef {
   regrowDays?: number;
   seedPrice: number;
   sellPrice: number;
+  /** Energy restored when eaten. */
+  energy?: number;
 }
 
 export const CROPS = cropData as CropDef[];

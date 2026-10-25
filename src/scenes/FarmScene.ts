@@ -2,6 +2,8 @@ import Phaser from "phaser";
 import { sleep } from "../core/sleep";
 import type { GameState } from "../core/save";
 import { cycle, heldAt, TOOLBAR_SIZE } from "../core/toolbar";
+import { eat } from "../core/actions";
+import { itemById } from "../core/items";
 import { reasonText, useHeld } from "../core/tools";
 import { cropById } from "../core/crops";
 import { mapFiles, maps } from "../content/maps";
@@ -131,6 +133,8 @@ export class FarmScene extends Phaser.Scene {
       this,
       (i) => this.select(i),
       () => this.use(),
+      () => this.eatHeld(),
+      () => this.open("skills"),
     );
     this.controls = new Controls(this, (p) => this.hud.covers(p.x, p.y));
     const ui = [this.controls.stick, ...this.hud.objects];
@@ -174,6 +178,8 @@ export class FarmScene extends Phaser.Scene {
         run();
       });
     press("SPACE", () => this.use());
+    press("F", () => this.eatHeld());
+    press("K", () => this.open("skills"));
     press("Z", () => this.endDay());
     press("Q", () => this.select(cycle(this.selected, -1)));
     press("E", () => this.select(cycle(this.selected, 1)));
@@ -285,6 +291,20 @@ export class FarmScene extends Phaser.Scene {
     } else {
       this.message = "";
     }
+    this.afterAction();
+  }
+
+  /** Eat the held item, if it is food. */
+  private eatHeld(): void {
+    if (this.leaving) return;
+    const held = heldAt(this.state, this.selected);
+    const result =
+      held.kind === "item"
+        ? eat(this.state, held.id)
+        : { ok: false as const, reason: "not food" };
+    this.message = result.ok
+      ? `Ate ${itemById(held.kind === "item" ? held.id : "")?.name.toLowerCase()}.`
+      : reasonText(result.reason);
     this.afterAction();
   }
 

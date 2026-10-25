@@ -24,3 +24,21 @@ export function dateOf(day: number): CalendarDate {
     year: Math.floor(index / (DAYS_PER_SEASON * SEASONS.length)) + 1,
   };
 }
+
+export const WEEKDAYS = [
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thu",
+  "Fri",
+  "Sat",
+  "Sun",
+] as const;
+
+/** Date in words, such as "Mon. Spring 1", with a seven day week as in Stardew. */
+export function dateText(day: number): string {
+  const { season, dayOfSeason } = dateOf(day);
+  const weekday = WEEKDAYS[(dayOfSeason - 1) % WEEKDAYS.length];
+  const name = season.charAt(0).toUpperCase() + season.slice(1);
+  return `${weekday}. ${name} ${dayOfSeason}`;
+}
