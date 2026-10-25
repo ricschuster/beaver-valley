@@ -5,27 +5,34 @@ context automatically, so keep it to direction and rules, not a task list.
 
 ## Project name
 
-{{PROJECT_NAME}}
+Beaver Valley (working title; the name is still a placeholder, see
+`docs/design/00_project_brief.md`).
 
 ## Project purpose
 
-{{One or two paragraphs: what this project is, who it is for, and the core
-idea in plain terms. See `docs/design/00_project_brief.md` for the full
-brief.}}
+A cozy farming-life game with its own setting, played in the browser and on
+tablets. The player farms, forages and hands goods in to the village hall to
+finish a chain of community projects. It is a free hobby project by a solo
+developer. See `docs/design/00_project_brief.md` for the full brief.
 
 ## Project status
 
-Engine chosen (ADR 0004) and project skeleton in place. Current milestone: M2,
-build the first playable. The roadmap is `docs/design/03_milestones.md`; GitHub issues
+Engine chosen (ADR 0004). Current milestone: M2, the first playable. Every
+feature on its done list works in the browser (farming, foraging, shop, hall,
+save, title and end screens) with placeholder art. Left: the tablet pass, the
+art pass (#58) and open design questions. Placeholder numbers are listed in
+`docs/design/07_tuning_numbers.md`. The roadmap is `docs/design/03_milestones.md`; GitHub issues
 are the live tracker, grouped by milestone. The issues labelled `next-payoff`
 are the few items that matter most right now. Start each session by reading
 the latest handoff in `docs/handoffs/` and that label.
 
 ## Scope
 
-{{What this project is, and just as importantly, what it deliberately is NOT.
-Do not expand scope without a design note in `docs/design/` or an ADR in
-`docs/decisions/`.}}
+The first playable is one farm, two seasons, selling, farming and foraging
+skills, and five village hall bundles. It is deliberately NOT: regions beyond
+the home valley, combat, multiplayer, deep relationships, generated content,
+or final art and name. Do not expand scope without a design note in
+`docs/design/` or an ADR in `docs/decisions/`.
 
 This project is Stardew Valley inspired. Do not copy its name, art, audio,
 characters, text or code. See
