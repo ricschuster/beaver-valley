@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { dateOf } from "../core/calendar";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
+import { sellMultiplier } from "../core/professions";
 import { buy, sell, sellAll, seedStock } from "../core/shop";
 import {
   nextBackpack,
@@ -163,22 +164,23 @@ export class ShopScene extends Phaser.Scene {
     const sellRows: Row[] = ids.map((id) => {
       const def = itemById(id);
       const count = g.inventory.count(id);
+      const mult = sellMultiplier(g.skills, id);
       return {
         label: `${def?.name ?? id}  x${count}`,
-        detail: `${def?.sellPrice ?? 0}g`,
+        detail: `${Math.floor((def?.sellPrice ?? 0) * mult)}g`,
         dim: !def,
         buttons: [
           {
             text: "Sell 1",
             run: () => {
-              const earned = sell(g.inventory, g, id, 1);
+              const earned = sell(g.inventory, g, id, 1, mult);
               this.say(`Sold 1 ${def?.name} for ${earned}g.`);
             },
           },
           {
             text: "Sell all",
             run: () => {
-              const earned = sellAll(g.inventory, g, id);
+              const earned = sellAll(g.inventory, g, id, mult);
               this.say(`Sold ${count} ${def?.name} for ${earned}g.`);
             },
           },

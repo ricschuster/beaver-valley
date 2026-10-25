@@ -81,8 +81,20 @@ Source: `src/core/skills.ts`.
 - A forage pickup gives 7 XP. A harvest gives `floor(16 * ln(0.018 * price + 1))`.
   From memory.
 - Levels raise the chance of better quality goods, and farming levels trim
-  swing energy (see below). Professions (the level 5 and 10 choices) are not
-  built.
+  swing energy (see below). At level 5 each skill asks for a profession (see
+  Professions). Stardew's level 10 choices are not built.
+
+## Professions
+
+Source: `src/core/professions.ts`. One choice per skill at level 5, permanent.
+After Stardew's level 5 choices, but with the animal and wood options replaced
+by ones that fit our game. Ours, unchecked.
+
+- Farming: Tiller (crops sell for 10 percent more) or Agriculturist (crops grow
+  10 percent faster, which saves a day on a 12 day crop and nothing on a 4 day
+  one).
+- Foraging: Gatherer (20 percent chance of a second good) or Botanist (forage is
+  never plain, at least silver).
 
 ## Tool upgrades and energy
 
