@@ -59,6 +59,7 @@ export class FarmScene extends Phaser.Scene {
   private mapId: string = START.map;
   private entryName: string = START.entry;
   private leaving = false;
+  private sleepArmed = false;
   /** Conditions that currently hold, for gated exits. None exist yet. */
   private holds = new Set<string>();
   private message = "";
@@ -83,6 +84,7 @@ export class FarmScene extends Phaser.Scene {
     this.selected =
       (this.registry.get(SELECTED_KEY) as number | undefined) ?? 0;
     this.leaving = false;
+    this.sleepArmed = false;
     this.exitId = undefined;
     this.message = "";
   }
@@ -131,6 +133,7 @@ export class FarmScene extends Phaser.Scene {
       this,
       (i) => this.select(i),
       () => this.use(),
+      () => this.sleepTapped(),
     );
     this.controls = new Controls(this, (p) => this.hud.covers(p.x, p.y));
     const ui = [this.controls.stick, ...this.hud.objects];
@@ -283,6 +286,21 @@ export class FarmScene extends Phaser.Scene {
     this.afterAction();
   }
 
+  /** The Sleep button asks twice, so one stray touch cannot end the day. */
+  private sleepTapped(): void {
+    if (this.leaving) return;
+    if (!this.sleepArmed) {
+      this.sleepArmed = true;
+      this.message = "Tap Sleep again to end the day.";
+      this.render();
+      this.time.delayedCall(3000, () => {
+        this.sleepArmed = false;
+      });
+      return;
+    }
+    this.endDay();
+  }
+
   private afterAction(): void {
     if (this.state.day.over) this.endDay();
     else this.render();
@@ -294,6 +312,7 @@ export class FarmScene extends Phaser.Scene {
   }
 
   private endDay(): void {
+    this.sleepArmed = false;
     const g = this.state;
     const report = sleep(g, maps.get(START.map).forageSpots, Math.random);
     this.message = "";
