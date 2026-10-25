@@ -117,9 +117,12 @@ Result: the farm loop, shop, hall, report and Continue all work by touch, the
 stick keeps working while a second finger taps Use, and there were no console
 errors. Two things came out of it:
 
-- There was no touch way to sleep (only Z). A Sleep button now sits at the top
-  right. It asks for a second tap within 3 seconds, so a stray touch cannot end
-  the day.
+- There was no touch way to sleep (only Z). Sleeping is now done in a bed in
+  the house: use the bed and a Yes or No prompt asks. Z still works as a
+  keyboard shortcut.
+- The run also found a bug: after any map change the farm scene kept a stale
+  resume listener per restart, so a resume ran twice (sleep skipped a day).
+  Fixed.
 - Buttons in the shop (Buy 1, Sell all, about 33 CSS pixels tall) and the hall
   (Hand in, 30; backpack rows, 38) are under the 40 pixel line the script uses.
   They work, but they are small for a finger. Not fixed; it is a layout change

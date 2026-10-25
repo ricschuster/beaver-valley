@@ -22,7 +22,7 @@ errors. The game's weather and forage are random, so reruns differ.
 5. `npm run playtest:touch` plays one short loop with touch events only, in a
    tablet-sized touch browser (1200x700 CSS pixels, like the SM-T500): the
    stick, the toolbar, till, plant, water and harvest, a second finger on Use
-   while the stick is held, the shop, the hall, Sleep, the report and Continue
+   while the stick is held, the shop, the hall, the bed in the house, the report and Continue
    on the title screen. It also checks touch target sizes. About 40 seconds.
 
 Screenshots and saves go to `playtest-out/` (git-ignored).

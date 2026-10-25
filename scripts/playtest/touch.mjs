@@ -348,24 +348,43 @@ else {
   await sleepMs(300);
 }
 
-// 6. Sleep by touch, then the morning report.
-const sleepBtn = (await targets("farm")).find((t) => t.label === "Sleep");
-if (!sleepBtn) finding("there is no Sleep control on the touch screen");
+// 6. Sleep by touch: walk into the house, use the bed, answer Yes.
+await walkTo(6, 6);
+await holdAxis("y", cy(5));
+await sleepMs(900);
+if ((await bot.dbg()).map !== "house")
+  finding("walking into the house door did not enter the house");
 else {
+  await holdAxis("y", cy(2));
+  await holdAxis("x", cx(2));
+  await faceTo("up");
   const day = (await bot.snap()).day;
-  await tap(sleepBtn.cx, sleepBtn.cy, 200);
-  if ((await sceneNow()).includes("report"))
-    finding("one tap on Sleep ended the day (expected a confirm)");
-  await tap(sleepBtn.cx, sleepBtn.cy, 400);
-  if (!(await sceneNow()).includes("report"))
-    finding("the second tap on Sleep did not end the day");
+  await useTool();
+  await sleepMs(300);
+  if (!(await sceneNow()).includes("bed"))
+    finding("Use facing the bed did not ask about sleeping");
   else {
-    await checkSizes("report");
-    await tapLabel("report", "Start the day");
+    await checkSizes("bed");
+    // No first: the day must go on, then ask again and say Yes.
+    await tapLabel("bed", "No");
     await sleepMs(300);
-    const d2 = (await bot.snap()).day;
-    if (d2 !== day + 1) finding(`sleeping moved the day from ${day} to ${d2}`);
-    else log("sleep by touch: report and next morning done");
+    if ((await sceneNow()).includes("report") || (await bot.snap()).day !== day)
+      finding("answering No to the bed ended the day");
+    await useTool();
+    await sleepMs(300);
+    await tapLabel("bed", "Yes");
+    await sleepMs(400);
+    if (!(await sceneNow()).includes("report"))
+      finding("answering Yes to the bed did not end the day");
+    else {
+      await checkSizes("report");
+      await tapLabel("report", "Start the day");
+      await sleepMs(300);
+      const d2 = (await bot.snap()).day;
+      if (d2 !== day + 1)
+        finding(`sleeping moved the day from ${day} to ${d2}`);
+      else log("sleep by touch: bed, Yes, report and next morning done");
+    }
   }
 }
 

@@ -24,7 +24,7 @@
       "opacity": 1,
       "visible": true,
       "data": [
-        7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3,
+        7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 3, 10, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3,
         3, 3, 3, 3, 3, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3, 3, 3, 3, 3,
         3, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 7,
         7, 7, 7, 9, 7, 7, 7, 7
@@ -41,7 +41,7 @@
       "opacity": 1,
       "visible": false,
       "data": [
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
         0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0,
         0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
         1, 1, 1, 0, 1, 1, 1, 1
@@ -85,6 +85,20 @@
             { "name": "map", "type": "string", "value": "farm" },
             { "name": "entry", "type": "string", "value": "from_house" }
           ]
+        },
+        {
+          "id": 22,
+          "name": "bed",
+          "class": "service",
+          "type": "service",
+          "x": 40,
+          "y": 24,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true,
+          "properties": [{ "name": "kind", "type": "string", "value": "bed" }]
         }
       ]
     }
@@ -95,10 +109,10 @@
       "name": "placeholder",
       "tilewidth": 16,
       "tileheight": 16,
-      "tilecount": 9,
-      "columns": 9,
+      "tilecount": 10,
+      "columns": 10,
       "image": "placeholder-tiles.png",
-      "imagewidth": 144,
+      "imagewidth": 160,
       "imageheight": 16
     }
   ]

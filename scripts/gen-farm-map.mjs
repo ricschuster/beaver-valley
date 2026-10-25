@@ -24,6 +24,7 @@ const TREE = 6;
 const WALL = 7;
 const ROOF = 8;
 const DOOR = 9;
+const BED = 10;
 
 const idx = (x, y) => y * W + x;
 const grid = () => new Array(W * H).fill(0);
@@ -172,10 +173,10 @@ const tileset = {
   name: "placeholder",
   tilewidth: T,
   tileheight: T,
-  tilecount: 9,
-  columns: 9,
+  tilecount: 10,
+  columns: 10,
   image: "placeholder-tiles.png",
-  imagewidth: 9 * T,
+  imagewidth: 10 * T,
   imageheight: T,
 };
 
@@ -232,6 +233,9 @@ for (let y = 0; y < HH; y++)
     }
 hground[(HH - 1) * HW + 5] = DOOR;
 hcollision[(HH - 1) * HW + 5] = 0;
+// A bed against the north wall. Use it from the tile below to sleep.
+hground[1 * HW + 2] = BED;
+hcollision[1 * HW + 2] = 1;
 
 const house = {
   ...farm,
@@ -245,6 +249,7 @@ const house = {
       objects: [
         point("entry", "door", 5, HH - 2),
         exit("door", 5, HH - 1, "farm", "from_house"),
+        service("bed", 2, 1),
       ],
     },
   ],

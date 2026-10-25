@@ -10,7 +10,7 @@ const BAR_Y = 540 - SLOT - 8;
 const USE_R = 52;
 
 const HINT =
-  "Move: arrows/WASD or drag left   Use: Space   Sleep: Z or button   Tools: 1-9, Q/E";
+  "Move: arrows/WASD or drag left   Use: Space   Sleep: bed or Z   Tools: 1-9, Q/E";
 
 const TOOL_LABEL = { hoe: "Hoe", can: "Can", hand: "Hand" } as const;
 
@@ -39,7 +39,6 @@ export class Hud {
     scene: Phaser.Scene,
     onSelect: (index: number) => void,
     onUse: () => void,
-    onSleep: () => void,
   ) {
     this.status = scene.add.text(16, 16, "", {
       fontSize: "24px",
@@ -87,20 +86,6 @@ export class Hud {
       .text(use.x, use.y, "Use", { fontSize: "22px", color: "#ffffff" })
       .setOrigin(0.5);
     this.objects.push(use, useText);
-
-    const sleep = scene.add
-      .rectangle(960 - 116, 16, 100, 44, 0x2f4a7a, 0.8)
-      .setOrigin(0)
-      .setStrokeStyle(2, 0xffffff, 0.7)
-      .setInteractive({ useHandCursor: true });
-    sleep.on("pointerdown", onSleep);
-    const sleepText = scene.add
-      .text(sleep.x + 50, sleep.y + 22, "Sleep", {
-        fontSize: "20px",
-        color: "#ffffff",
-      })
-      .setOrigin(0.5);
-    this.objects.push(sleep, sleepText);
   }
 
   /** True if a screen point falls on the toolbar, which owns its touches. */

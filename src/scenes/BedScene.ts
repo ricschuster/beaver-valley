@@ -1,0 +1,60 @@
+import Phaser from "phaser";
+
+/**
+ * Asked when the player uses the bed: go to sleep now, or not. The farm is
+ * paused behind it. Yes hands the farm a sleep request when it resumes.
+ */
+export class BedScene extends Phaser.Scene {
+  constructor() {
+    super("bed");
+  }
+
+  create(): void {
+    this.add
+      .rectangle(0, 0, 960, 540, 0x10201a, 0.8)
+      .setOrigin(0)
+      .setInteractive();
+    this.add
+      .text(480, 200, "Go to sleep?", { fontSize: "36px", color: "#ffe9a0" })
+      .setOrigin(0.5);
+    this.add
+      .text(480, 250, "The day ends and the night passes.", {
+        fontSize: "18px",
+        color: "#ffffff",
+      })
+      .setOrigin(0.5);
+    this.button(340, 340, "Yes", 0x3f7d3a, () => this.close(true));
+    this.button(620, 340, "No", 0xa0482e, () => this.close(false));
+    this.add
+      .text(480, 500, "Enter: yes   Esc: no", {
+        fontSize: "13px",
+        color: "#ffffffaa",
+      })
+      .setOrigin(0.5);
+    const kb = this.input.keyboard;
+    kb?.on("keydown-ENTER", () => this.close(true));
+    kb?.on("keydown-ESC", () => this.close(false));
+  }
+
+  private button(
+    x: number,
+    y: number,
+    text: string,
+    color: number,
+    run: () => void,
+  ): void {
+    this.add
+      .rectangle(x, y, 220, 60, color, 1)
+      .setStrokeStyle(2, 0xffffff, 0.8)
+      .setInteractive({ useHandCursor: true })
+      .on("pointerdown", run);
+    this.add
+      .text(x, y, text, { fontSize: "24px", color: "#ffffff" })
+      .setOrigin(0.5);
+  }
+
+  private close(sleep: boolean): void {
+    this.scene.stop();
+    this.scene.resume("farm", { sleep });
+  }
+}
