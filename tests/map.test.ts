@@ -54,6 +54,12 @@ function fixture(objects: TiledObject[], overrides = {}): TiledMapJson {
   };
 }
 
+const service = (name: string, x: number, y: number, kind = "shop") =>
+  ({
+    ...object("service", name, x, y),
+    properties: [{ name: "kind", value: kind }],
+  }) as TiledObject;
+
 const good = [
   object("entry", "start", 0, 0),
   exit("shop", 4, 0, { map: "shop", entry: "door", requires: "bridge" }),
@@ -96,6 +102,17 @@ describe("FarmMap.fromTiled", () => {
     expect(map.forageSpots).toEqual([{ x: 4, y: 2 }]);
     expect(map.exitAt(4, 0)?.id).toBe("shop");
     expect(map.exitAt(3, 0)).toBeUndefined();
+  });
+
+  it("reads services and finds them by tile", () => {
+    const withService = FarmMap.fromTiled(
+      fixture([...good, service("counter", 3, 1, "hall")]),
+    );
+    expect(withService.services).toEqual([
+      { id: "counter", kind: "hall", x: 3, y: 1 },
+    ]);
+    expect(withService.serviceAt(3, 1)?.kind).toBe("hall");
+    expect(withService.serviceAt(3, 2)).toBeUndefined();
   });
 
   it("opens an exit only when its condition holds", () => {
@@ -170,6 +187,20 @@ describe("FarmMap.problems", () => {
     expect(
       problems([object("entry", "a", 0, 0), exit("x", 0, 1), exit("x", 0, 2)]),
     ).toContain("exit names must be unique");
+  });
+
+  it("flags a service with no name or kind, or a duplicate", () => {
+    const entry = object("entry", "a", 0, 0);
+    expect(problems([entry, service("", 3, 0)])).toContain(
+      "every service needs a name",
+    );
+    expect(problems([entry, service("c", 3, 0, "")])).toContain(
+      'service "c" needs a kind',
+    );
+    expect(problems([entry, service("c", 3, 0), service("c", 4, 0)])).toContain(
+      "service names must be unique",
+    );
+    expect(problems([entry, service("c", 3, 0)])).toEqual([]);
   });
 
   it("flags a blocked entry or one inside an exit", () => {

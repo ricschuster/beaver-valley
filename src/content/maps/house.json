@@ -58,7 +58,7 @@
       "y": 0,
       "objects": [
         {
-          "id": 18,
+          "id": 20,
           "name": "door",
           "class": "entry",
           "type": "entry",
@@ -71,7 +71,7 @@
           "visible": true
         },
         {
-          "id": 19,
+          "id": 21,
           "name": "door",
           "class": "exit",
           "type": "exit",

@@ -53,6 +53,15 @@ export interface Exit {
   requires?: string;
 }
 
+/**
+ * A tile the player faces and uses to open a screen, such as a shop counter or
+ * the village hall. `kind` names the screen; the map does not know the kinds.
+ */
+export interface Service extends Spot {
+  id: string;
+  kind: string;
+}
+
 /** Whether the player may use an exit, given the conditions that hold. */
 export function exitOpen(exit: Exit, holds: ReadonlySet<string>): boolean {
   return exit.requires === undefined || holds.has(exit.requires);
@@ -81,6 +90,7 @@ export class FarmMap {
     readonly entries: Entry[],
     readonly exits: Exit[],
     readonly forageSpots: Spot[],
+    readonly services: Service[] = [],
   ) {}
 
   /** Read a Tiled map. Throws with a clear message if it breaks the contract. */
@@ -105,6 +115,7 @@ export class FarmMap {
     const entries: Entry[] = [];
     const exits: Exit[] = [];
     const forageSpots: Spot[] = [];
+    const services: Service[] = [];
     for (const layer of json.layers) {
       if (layer.type !== "objectgroup") continue;
       for (const o of layer.objects ?? []) {
@@ -112,6 +123,8 @@ export class FarmMap {
         const spot = { x: tile(o.x), y: tile(o.y) };
         if (cls === "entry") entries.push({ name: o.name, ...spot });
         else if (cls === "forage") forageSpots.push(spot);
+        else if (cls === "service")
+          services.push({ id: o.name, kind: text(o, "kind") ?? "", ...spot });
         else if (cls === "exit") {
           const w = Math.max(1, Math.round((o.width ?? size) / size));
           const h = Math.max(1, Math.round((o.height ?? size) / size));
@@ -137,6 +150,7 @@ export class FarmMap {
       entries,
       exits,
       forageSpots,
+      services,
     );
   }
 
@@ -159,6 +173,11 @@ export class FarmMap {
     return this.exits.find(
       (e) => x >= e.x && x < e.x + e.w && y >= e.y && y < e.y + e.h,
     );
+  }
+
+  /** The service on this tile, if any. */
+  serviceAt(x: number, y: number): Service | undefined {
+    return this.services.find((s) => s.x === x && s.y === y);
   }
 
   /** Tiles that can be walked to from `from`, four ways. */
@@ -202,6 +221,12 @@ export class FarmMap {
     for (const exit of this.exits)
       if (exit.map === "" || exit.entry === "")
         out.push(`exit "${exit.id}" needs a map and an entry`);
+    const serviceIds = this.services.map((s) => s.id);
+    if (serviceIds.includes("")) out.push("every service needs a name");
+    if (new Set(serviceIds).size !== serviceIds.length)
+      out.push("service names must be unique");
+    for (const service of this.services)
+      if (service.kind === "") out.push(`service "${service.id}" needs a kind`);
     for (const entry of this.entries) {
       if (this.exitAt(entry.x, entry.y))
         out.push(`entry "${entry.name}" is inside an exit`);
@@ -219,6 +244,20 @@ export class FarmMap {
         if (!ok)
           out.push(
             `exit "${exit.id}" cannot be reached from entry "${entry.name}"`,
+          );
+      }
+      for (const service of this.services) {
+        const beside = [
+          [1, 0],
+          [-1, 0],
+          [0, 1],
+          [0, -1],
+        ].some(([dx, dy]) =>
+          walkable.has(`${service.x + dx!},${service.y + dy!}`),
+        );
+        if (!beside)
+          out.push(
+            `service "${service.id}" cannot be reached from entry "${entry.name}"`,
           );
       }
       for (const s of this.forageSpots)

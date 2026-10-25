@@ -18,6 +18,7 @@ import {
   type Vec,
 } from "../core/movement";
 import { Controls } from "./controls";
+import { SELECTED_KEY, STATE_KEY } from "./state";
 import { Hud } from "./hud";
 import {
   makePlaceholderTextures,
@@ -45,9 +46,6 @@ interface SceneData {
   map: string;
   entry: string;
 }
-
-const STATE_KEY = "state";
-const SELECTED_KEY = "selected";
 
 /**
  * A walkable map, a player and one `GameState`. Space uses the held tool, Z
@@ -182,8 +180,20 @@ export class FarmScene extends Phaser.Scene {
     digits.forEach((name, i) =>
       kb?.on(`keydown-${name}`, () => this.select(i)),
     );
+    this.events.on("resume", () => {
+      this.message = "";
+      this.render();
+    });
     this.render();
 
+    if (import.meta.env.DEV)
+      (window as unknown as { farmGive: unknown }).farmGive = (
+        id: string,
+        n: number,
+      ) => {
+        this.state.inventory.add(id, n);
+        this.render();
+      };
     if (import.meta.env.DEV)
       (window as unknown as { farmDebug: () => unknown }).farmDebug = () => ({
         pos: this.pos,
@@ -248,10 +258,22 @@ export class FarmScene extends Phaser.Scene {
     this.render();
   }
 
+  /** Open a screen over the farm. The farm is paused until it closes. */
+  private open(kind: string): void {
+    if (kind !== "shop") {
+      this.message = "Closed for now.";
+      return this.render();
+    }
+    this.scene.launch(kind);
+    this.scene.pause();
+  }
+
   /** Use the held tool on the tile the player faces. */
   private use(): void {
     if (this.leaving) return;
     const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
+    const service = this.map.serviceAt(front.x, front.y);
+    if (service) return this.open(service.kind);
     const held = heldAt(this.state, this.selected);
     const result = useHeld(this.state, this.map, held, front.x, front.y);
     if (!result.ok) {
