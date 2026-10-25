@@ -59,12 +59,12 @@ Tile layers (all the same size as the map):
 
 Objects (any object layer, matched by `class`):
 
-| Class    | Required | Meaning                                                                                         |
-| -------- | -------- | ----------------------------------------------------------------------------------------------- |
-| `entry`  | one+     | A tile where the player can arrive. Its `name` is unique on the map.                            |
-| `exit`   | any      | A rectangle. Properties `map` and `entry` say where it leads. Optional `requires` names a gate. |
-| `forage` | any      | A point. A tile where wild goods may appear (`ForageField` spot).                               |
-| `service` | any     | A point. The player faces the tile and uses it to open a screen. Property `kind` is `shop` or `hall`. |
+| Class     | Required | Meaning                                                                                               |
+| --------- | -------- | ----------------------------------------------------------------------------------------------------- |
+| `entry`   | one+     | A tile where the player can arrive. Its `name` is unique on the map.                                  |
+| `exit`    | any      | A rectangle. Properties `map` and `entry` say where it leads. Optional `requires` names a gate.       |
+| `forage`  | any      | A point. A tile where wild goods may appear (`ForageField` spot).                                     |
+| `service` | any      | A point. The player faces the tile and uses it to open a screen. Property `kind` is `shop` or `hall`. |
 
 A new game starts at entry `start` on map `farm` (`START` in `src/core/maps.ts`).
 Place an entry beside an exit, not inside it, so arriving does not trigger the
