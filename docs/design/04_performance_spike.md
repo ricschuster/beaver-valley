@@ -1,6 +1,7 @@
 # 04 Performance spike
 
-Status: desktop result in, tablet result pending. Required by ADR 0004.
+Status: passed on desktop, phone, emulator and a 2020 tablet (2026-10-25). To be
+repeated on a real scene once the scene work lands. Required by ADR 0004.
 
 ## What it is
 
@@ -18,7 +19,10 @@ sets the camera zoom (default 3). Drag to pan.
 - Desktop: steady 60 fps.
 - Older tablet: 30 fps or better, no frame over about 50 ms, no browser or
   webview crash from memory.
-- The oldest tablet to support is still to be chosen.
+- Oldest tablet to support (chosen 2026-10-25): the Samsung Galaxy Tab A7 10.4
+  (SM-T500, 2020, Snapdragon 662, 3 GB RAM) or better. It is the oldest device
+  tested and it passes with large headroom. A tablet older or weaker than this
+  is not a target.
 
 ## Results
 
@@ -26,12 +30,49 @@ sets the camera zoom (default 3). Drag to pan.
 | --- | --- | --- | --- | --- | --- | --- |
 | 2026-10-15 | Linux desktop, headless Chromium, software GL | 300 | 60 | 17 ms | 30 MB | Not a real GPU, so a floor on rendering and not a tablet proxy |
 | 2026-10-15 | Same | 1000 | 60 | 17 ms | n/a | Same caveat |
+| 2026-10-25 | Android 36 emulator, 2560x1600, 1.5 GB RAM, x86 host with KVM | 300 | 60 | 17 ms | 87 MB | Smoke test only: the host is far faster than a tablet |
+| 2026-10-25 | Same | 1000 | 60 | 17 ms | 82 MB | Same caveat |
+| 2026-10-25 | Pixel 9 Pro, Chrome, landscape 2142x960 | 300 | 60 | 17 ms | 61 MB | Unthrottled |
+| 2026-10-25 | Same | 1000 | 60 | 17 ms | 69 MB | Unthrottled |
+| 2026-10-25 | Same | 1000 | 60 | 17 ms | 69 MB | CPU throttled 6x and 20x over the DevTools protocol (main thread only, GPU not throttled) |
+| 2026-10-25 | Samsung SM-T500, Chrome, Android 12 | 300 | 60 | 17 ms | 65 MB | Real tablet, native 60 Hz, unthrottled |
+| 2026-10-25 | Same | 1000 | 60 | 17 ms | 61 MB | Same |
+| 2026-10-25 | Same | 3000 | 60 | 17 ms | 61 MB | Same, stress case |
 
 The map is a 2048 by 2048 pixel world and the camera only draws the visible
-part, so the test mostly checks sprite count and loading. A real tablet run is
-the part that decides this.
+part, so the test mostly checks sprite count and loading.
+
+## Conclusion
+
+The budget is met with large headroom on the oldest tablet tested, so the
+Godot fallback in ADR 0004 is not needed on this evidence. The overlay reports
+a flat 60 fps and 17 ms worst frame at every sprite count up to 3000, so the
+limit was not found.
+
+Limits of this result:
+
+- The scene is synthetic: flat colour sprites, one simple map, no lighting or
+  weather effects, no text or UI layers, no real texture atlases. Fill rate,
+  texture memory and text rendering are likelier to cost frames than sprite
+  count. Repeat the run on the SM-T500 once the farm scene has real content
+  (work packages #52 and #53, then the art pass #58).
+- Numbers come from the page's own overlay. Battery and heat over a long
+  session are not measured.
+- Chrome only. Installed wrappers use the system webview, which can differ.
+  The wrapper ADR should repeat the run in the chosen wrapper.
+- The Samsung SM-X200 and SM-X210 were not run. They are newer than the
+  SM-T500 and are expected to do at least as well.
 
 ## Running it on a tablet
+
+With a USB cable, enable USB debugging, run `npm run dev`, then
+`adb reverse tcp:5173 tcp:5173` and open `http://localhost:5173/spike.html` in
+Chrome on the device. This needs no shared Wi-Fi. To throttle the CPU, forward
+the DevTools socket (`adb forward tcp:9222 localabstract:chrome_devtools_remote`)
+and call `Emulation.setCPUThrottlingRate` on the spike tab only, since the
+listing exposes every open tab. Remove the forward afterwards.
+
+Over Wi-Fi instead:
 
 1. On the development machine run `npm run dev -- --host`.
 2. On a tablet on the same Wi-Fi, open `http://<machine address>:5173/spike.html`.
