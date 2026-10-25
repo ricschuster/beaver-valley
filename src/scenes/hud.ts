@@ -1,7 +1,9 @@
 import Phaser from "phaser";
 import { heldAt, rowOf, TOOLS, TOOLBAR_SIZE, type Held } from "../core/toolbar";
 import { SLOT_COUNT } from "../core/inventory";
+import { iconKey as itemIcon, TOOL_ICONS } from "./art";
 import { dateText } from "../core/calendar";
+import { splitQuality } from "../core/quality";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
 import { TIER_NAMES, type Upgradable } from "../core/upgrades";
@@ -16,6 +18,8 @@ const EAT_R = 36;
 const HINT =
   "Move: arrows/WASD or drag left   Use: Space   Eat: F   Skills: K   Sleep: bed or Z   Tools: 1-9, Q/E, Tab: row";
 
+const QUALITY_TINT = { normal: 0xffffff, silver: 0xc8d8ff, gold: 0xffd860 };
+
 const TOOL_LABEL = { hoe: "Hoe", can: "Can", hand: "Hand" } as const;
 
 /** Short text for a slot, until the art pass gives items icons. */
@@ -28,8 +32,7 @@ function caption(held: Held, g: GameState): string {
       : TOOL_LABEL[held.tool];
   }
   if (held.kind === "empty") return "";
-  const name = itemById(held.id)?.name ?? held.id;
-  return `${name}\n${held.count}`;
+  return String(held.count);
 }
 
 /**
@@ -44,6 +47,8 @@ export class Hud {
   private readonly hint: Phaser.GameObjects.Text;
   private readonly slots: Phaser.GameObjects.Rectangle[] = [];
   private readonly captions: Phaser.GameObjects.Text[] = [];
+  private readonly icons: Phaser.GameObjects.Image[] = [];
+  private readonly heldName: Phaser.GameObjects.Text;
   private readonly rowButton: Phaser.GameObjects.Rectangle;
   private readonly rowText: Phaser.GameObjects.Text;
   /** Which row of backpack slots the bar is showing. */
@@ -73,6 +78,10 @@ export class Hud {
     this.objects.push(this.status, this.hint, this.message);
 
     const left = (960 - BAR_W) / 2;
+    this.heldName = scene.add
+      .text(480, BAR_Y - 14, "", { fontSize: "16px", color: "#ffffff" })
+      .setOrigin(0.5, 1);
+    this.objects.push(this.heldName);
     for (let i = 0; i < TOOLBAR_SIZE; i++) {
       const x = left + i * (SLOT + GAP);
       const box = scene.add
@@ -82,16 +91,20 @@ export class Hud {
         .setInteractive({ useHandCursor: true });
       box.on("pointerdown", () => onSelect(this.indexOf(i)));
       const text = scene.add
-        .text(x + SLOT / 2, BAR_Y + SLOT / 2, "", {
+        .text(x + SLOT / 2, BAR_Y + SLOT - 2, "", {
           fontSize: "10px",
           color: "#ffffff",
           align: "center",
           wordWrap: { width: SLOT - 4 },
         })
-        .setOrigin(0.5);
+        .setOrigin(0.5, 1);
+      const icon = scene.add
+        .image(x + SLOT / 2, BAR_Y + 15, TOOL_ICONS.hand)
+        .setVisible(false);
       this.slots.push(box);
       this.captions.push(text);
-      this.objects.push(box, text);
+      this.icons.push(icon);
+      this.objects.push(box, icon, text);
     }
 
     this.rowButton = scene.add
@@ -153,6 +166,10 @@ export class Hud {
       `${dateText(clock.day)}  ${clock.format()}\nEnergy ${Math.ceil(energy.current)}  ${g.money}g`,
     );
     this.message.setText(message);
+    const now = heldAt(g, selected);
+    this.heldName.setText(
+      now.kind === "item" ? (itemById(now.id)?.name ?? now.id) : "",
+    );
     if (selected >= TOOLS.length) this.row = rowOf(selected);
     const multiRow = g.inventory.size > SLOT_COUNT;
     this.rowButton.setVisible(multiRow);
@@ -162,7 +179,20 @@ export class Hud {
       const on = index === selected;
       box.setStrokeStyle(on ? 3 : 2, 0xffffff, on ? 1 : 0.3);
       box.setFillStyle(on ? 0xf2d16b : 0x000000, on ? 0.45 : 0.5);
-      this.captions[i]!.setText(caption(heldAt(g, index), g));
+      const held = heldAt(g, index);
+      const iconKey =
+        held.kind === "tool"
+          ? TOOL_ICONS[held.tool]
+          : held.kind === "item"
+            ? itemIcon(held.id)
+            : undefined;
+      const icon = this.icons[i]!;
+      icon.setVisible(iconKey !== undefined);
+      if (iconKey) icon.setTexture(iconKey);
+      const quality =
+        held.kind === "item" ? splitQuality(held.id).quality : "normal";
+      icon.setTint(QUALITY_TINT[quality]);
+      this.captions[i]!.setText(caption(held, g));
     });
   }
 }
