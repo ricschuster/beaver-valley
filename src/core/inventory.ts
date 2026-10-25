@@ -21,6 +21,12 @@ export class Inventory {
     });
   }
 
+  /** The stack in a slot, if any. */
+  slot(i: number): { id: string; count: number } | undefined {
+    const s = this.slots[i];
+    return s ? { ...s } : undefined;
+  }
+
   count(id: string): number {
     return this.slots.reduce((n, s) => (s?.id === id ? n + s.count : n), 0);
   }
