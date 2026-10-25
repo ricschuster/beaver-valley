@@ -19,8 +19,10 @@ developer. See `docs/design/00_project_brief.md` for the full brief.
 
 Engine chosen (ADR 0004). Current milestone: M2, the first playable. Every
 feature on its done list works in the browser (farming, foraging, shop, hall,
-save, title and end screens) with placeholder art. Left: the tablet pass, the
-art pass (#58) and open design questions. Placeholder numbers are listed in
+save, title and end screens) with placeholder art. Some M3 items were built
+early: quality tiers, tool upgrades, eating, a weather forecast and more crops
+and forage. Left: the real-tablet check, the art pass (#58) and open design
+questions. Placeholder numbers are listed in
 `docs/design/07_tuning_numbers.md`. The roadmap is `docs/design/03_milestones.md`; GitHub issues
 are the live tracker, grouped by milestone. The issues labelled `next-payoff`
 are the few items that matter most right now. Start each session by reading
@@ -63,9 +65,11 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
 
 ## Repo structure
 
-{{Optional: a short map of top-level directories, only if it adds real
-orientation beyond exploring the tree. Keep it brief and expect it to drift;
-when in doubt, explore the tree rather than trusting this section.}}
+- `src/core/`: game rules, free of Phaser and the DOM (unit tested).
+- `src/content/`: data files (crops, forage, bundles, maps).
+- `src/scenes/`: Phaser scenes and the on-screen interface.
+- `tests/`: Vitest unit tests. `scripts/playtest/`: manual browser playtests.
+- `docs/`: `design/` notes, `decisions/` ADRs, `handoffs/` session notes.
 
 ## Working rules
 

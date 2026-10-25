@@ -53,7 +53,9 @@ multiplayer, generated content, deep relationships, final name and polish.
 - **Rewards.** Finishing a bundle gives a small reward (placeholder: seeds or a
   little money, to be tuned). Finishing all five ends the first playable with a
   simple end screen.
-- **Quality tiers, skill gates, tool upgrades.** Not in the first playable.
+- **Quality tiers, skill gates, tool upgrades.** Planned for M3, but quality
+  tiers and tool upgrades were built early (#94, #97). Skill gates and
+  professions are not built.
 
 ### Done list
 
@@ -73,6 +75,22 @@ The first playable is done when all of these are true:
 9. It runs with rough placeholder art and no audio requirement.
 
 A new idea during the build becomes an issue, not scope.
+
+### Early M3 work
+
+Built during M2 because it needed no design input and copies Stardew: quality
+tiers, tool upgrades, eating, a weather forecast, a skills screen, a weekday
+date, six more crops and three more forage goods. Numbers are in
+`07_tuning_numbers.md`. This does not move the M3 scope, which is still fixed
+by a design note before building.
+
+### CI and the build check
+
+The `build` job in `.github/workflows/ci.yml` runs format, lint, typecheck,
+tests and the production build. On 2026-10-25 the `main` branch protection
+required only `repo-hygiene`, so auto-merge does not wait for `build`. Making
+`build` required is a repository setting left to the owner. Until then, run
+`npm run check` before pushing.
 
 ## Scope control
 
