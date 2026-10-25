@@ -15,7 +15,7 @@ the dark edge is Could.
 | # | Milestone | Payoff (done when) | Status | Main blocker |
 | --- | --- | --- | --- | --- |
 | M1 | Define the first playable | The first playable's scope and done list are written below, and the audience, identity, core loop of a day and multiplayer questions are answered. | Done | None |
-| M2 | First playable | Day and energy cycle, farming, selling and a small centre 1 run in the home valley, with rough art. Engine chosen in an ADR. | In progress | Project skeleton and performance spike |
+| M2 | First playable | Day and energy cycle, farming, selling and a small centre 1 run in the home valley, with rough art. Engine chosen in an ADR. | In progress | Tablet pass and placeholder art (#58) |
 | M3 | Vertical slice | One full cycle of centre 1, near-final quality. Scope fixed before building. | Not started | M2, bundle format (#21) |
 | M4 | Ring 2 prototype | A haven and about 2 regions reachable from the home valley. Centre 2 in small form. | Not started | M3, ring 2 shape (#20) |
 | M5 | Ring 3 and centre 3 | A logistics-only frontier outpost. Optional, late. Only if M1 to M4 prove fun. | Not started | M4, centre 3 (#5) |

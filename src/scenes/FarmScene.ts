@@ -164,14 +164,21 @@ export class FarmScene extends Phaser.Scene {
       },
     });
     const kb = this.input.keyboard;
-    kb?.on("keydown-SPACE", () => this.use());
-    kb?.on("keydown-Z", () => this.endDay());
-    kb?.on("keydown-Q", () => this.select(cycle(this.selected, -1)));
-    kb?.on("keydown-E", () => this.select(cycle(this.selected, 1)));
+    // Phaser can deliver one key press twice (seen after walking, in headless
+    // Chromium), which used a tool twice. Run each press once per event.
+    const seen = new Map<string, number>();
+    const press = (name: string, run: () => void) =>
+      kb?.on(`keydown-${name}`, (e: KeyboardEvent) => {
+        if (seen.get(name) === e.timeStamp) return;
+        seen.set(name, e.timeStamp);
+        run();
+      });
+    press("SPACE", () => this.use());
+    press("Z", () => this.endDay());
+    press("Q", () => this.select(cycle(this.selected, -1)));
+    press("E", () => this.select(cycle(this.selected, 1)));
     const digits = "ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE".split(",");
-    digits.forEach((name, i) =>
-      kb?.on(`keydown-${name}`, () => this.select(i)),
-    );
+    digits.forEach((name, i) => press(name, () => this.select(i)));
     this.events.on("resume", () => {
       this.save();
       this.message = "";
