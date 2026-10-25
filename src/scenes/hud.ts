@@ -105,13 +105,13 @@ export class Hud {
       .text(eat.x, eat.y, "Eat", { fontSize: "18px", color: "#ffffff" })
       .setOrigin(0.5);
     const skills = scene.add
-      .rectangle(960 - 16, 16, 90, 40, 0x000000, 0.5)
-      .setOrigin(1, 0)
+      .rectangle(960 - 16 - 90, 16, 90, 40, 0x000000, 0.5)
+      .setOrigin(0)
       .setStrokeStyle(2, 0xffffff, 0.5)
       .setInteractive({ useHandCursor: true });
     skills.on("pointerdown", onSkills);
     const skillsText = scene.add
-      .text(skills.x - 45, 36, "Skills", { fontSize: "18px", color: "#ffffff" })
+      .text(skills.x + 45, 36, "Skills", { fontSize: "18px", color: "#ffffff" })
       .setOrigin(0.5);
     this.objects.push(use, useText, eat, eatText, skills, skillsText);
   }
