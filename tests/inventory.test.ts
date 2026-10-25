@@ -61,8 +61,8 @@ describe("items and shop", () => {
     expect(buy(inv, w, seedId("parsnip"), 2)).toBe(true);
     expect(w.money).toBe(10);
     expect(inv.count(seedId("parsnip"))).toBe(2);
-    expect(buy(inv, w, seedId("parsnip"), 1)).toBe(true);
     expect(buy(inv, w, seedId("parsnip"), 1)).toBe(false);
+    expect(w.money).toBe(10);
     expect(buy(inv, w, "parsnip")).toBe(false);
   });
 });
