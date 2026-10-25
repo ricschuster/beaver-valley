@@ -105,11 +105,14 @@ so each tier stacks and sells separately. Bundles take any tier.
 
 Source: `src/content/bundles.json`.
 
-- Five bundles: Spring Foraging (all 4 goods, reward 15 parsnip seeds), Summer
-  Foraging (all 3, 15 radish seeds), Spring Crops (any 3 of 3, 300g), Summer
-  Crops (any 3 of 3, 400g) and Pantry (any 4 of 7 mixed goods, 500g). Contents
-  and rewards are ours.
-- Foraging bundles are easy. A simulation of a player who sweeps all 14 farm
+- Five bundles: Spring Foraging (any 4 of 6 goods, reward 15 parsnip seeds),
+  Summer Foraging (any 3 of 4, 15 radish seeds), Spring Crops (any 3 of 3,
+  300g), Summer Crops (any 3 of 3, 400g) and Pantry (any 4 of 9 mixed goods,
+  500g). Contents and rewards are ours. The foraging bundles and the Pantry
+  took the new goods; the crop bundles are unchanged, as decided in
+  `08_playtest_personas.md`.
+- Foraging bundles are easy (the simulation below ran before the extra goods
+  made them easier). A simulation of a player who sweeps all 14 farm
   spots every morning finished Spring Foraging in a median of 5 days (90th
   percentile 9) and Summer Foraging in 3 (90th percentile 6), with no failures
   in 2000 runs. A real player walks and spends time, so expect longer.

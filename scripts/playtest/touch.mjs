@@ -266,7 +266,8 @@ await selectSlot(2); // hand
 const before = (await bot.snap()).inv;
 await useTool();
 s = await bot.snap();
-if (bot.count(s, "parsnip") < 1) finding("Use with the hand did not harvest");
+if (bot.countBase(s, "parsnip") < 1)
+  finding("Use with the hand did not harvest");
 else log("harvest by touch: done");
 void before;
 
@@ -312,7 +313,7 @@ else {
   await tapLabel("shop", "Buy 5");
   const m3 = (await bot.snap()).money;
   if (m3 >= m2) finding("tapping Buy 5 did not spend money");
-  const have = bot.count(await bot.snap(), "parsnip");
+  const have = bot.countBase(await bot.snap(), "parsnip");
   if (have > 0) {
     const sellRow = (await targets("shop")).find((t) =>
       t.label.startsWith("Parsnip  x"),

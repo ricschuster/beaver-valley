@@ -111,6 +111,13 @@ export class Bot {
   count(snap, id) {
     return snap.inv.reduce((n, s) => (s && s.id === id ? n + s.count : n), 0);
   }
+  /** Count of a good at any quality (`parsnip`, `parsnip@gold`, ...). */
+  countBase(snap, id) {
+    return snap.inv.reduce(
+      (n, s) => (s && s.id.split("@")[0] === id ? n + s.count : n),
+      0,
+    );
+  }
   async key(k, wait = 60) {
     await this.p.keyboard.press(k);
     await sleepMs(wait);

@@ -2,30 +2,51 @@
   {
     "id": "spring-foraging",
     "name": "Spring Foraging",
-    "items": ["daffodil", "leek", "dandelion", "horseradish"],
+    "items": [
+      "daffodil",
+      "leek",
+      "dandelion",
+      "horseradish",
+      "spring-onion",
+      "salmonberry"
+    ],
     "required": 4,
-    "reward": { "item": { "id": "parsnip-seed", "count": 15 } }
+    "reward": {
+      "item": {
+        "id": "parsnip-seed",
+        "count": 15
+      }
+    }
   },
   {
     "id": "summer-foraging",
     "name": "Summer Foraging",
-    "items": ["grape", "spice-berry", "sweet-pea"],
+    "items": ["grape", "spice-berry", "sweet-pea", "fiddlehead-fern"],
     "required": 3,
-    "reward": { "item": { "id": "radish-seed", "count": 15 } }
+    "reward": {
+      "item": {
+        "id": "radish-seed",
+        "count": 15
+      }
+    }
   },
   {
     "id": "spring-crops",
     "name": "Spring Crops",
     "items": ["parsnip", "potato", "cauliflower"],
     "required": 3,
-    "reward": { "money": 300 }
+    "reward": {
+      "money": 300
+    }
   },
   {
     "id": "summer-crops",
     "name": "Summer Crops",
     "items": ["melon", "tomato", "radish"],
     "required": 3,
-    "reward": { "money": 400 }
+    "reward": {
+      "money": 400
+    }
   },
   {
     "id": "pantry",
@@ -37,9 +58,13 @@
       "melon",
       "grape",
       "tomato",
-      "sweet-pea"
+      "sweet-pea",
+      "kale",
+      "corn"
     ],
     "required": 4,
-    "reward": { "money": 500 }
+    "reward": {
+      "money": 500
+    }
   }
 ]
