@@ -10,7 +10,7 @@ import {
 import { MAX_ENERGY } from "../src/core/energy";
 import { newGame } from "../src/core/save";
 import { seedId } from "../src/core/items";
-import { sleep, finished } from "../src/core/sleep";
+import { sleep, finished, endDue } from "../src/core/sleep";
 import { BUNDLES } from "../src/core/bundles";
 import { DAYS_PER_SEASON } from "../src/core/calendar";
 import { seedStock, sellAll } from "../src/core/shop";
@@ -172,5 +172,19 @@ describe("selling and finishing", () => {
       }
     }
     expect(finished(g)).toBe(true);
+  });
+
+  it("shows the end screen once", () => {
+    const g = newGame();
+    expect(endDue(g)).toBe(false);
+    for (const b of BUNDLES) {
+      for (const id of b.items) {
+        g.inventory.add(id);
+        g.hall.handIn(g.inventory, g, b.id, id);
+      }
+    }
+    expect(endDue(g)).toBe(true);
+    g.endSeen = true;
+    expect(endDue(g)).toBe(false);
   });
 });

@@ -52,3 +52,8 @@ export function sleep(
 export function finished(g: GameState): boolean {
   return g.hall.allComplete;
 }
+
+/** True when the end screen is due: all bundles done and not shown yet. */
+export function endDue(g: GameState): boolean {
+  return finished(g) && !g.endSeen;
+}

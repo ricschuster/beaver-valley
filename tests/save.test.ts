@@ -80,4 +80,11 @@ describe("save and load", () => {
     saveGame(store, played());
     expect(loadGame(store)?.money).toBe(1234);
   });
+
+  it("remembers that the end screen was shown", () => {
+    const g = played();
+    g.endSeen = true;
+    expect(deserialize(serialize(g))!.endSeen).toBe(true);
+    expect(deserialize(serialize(played()))!.endSeen).toBe(false);
+  });
 });
