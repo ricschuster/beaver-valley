@@ -1,7 +1,7 @@
 // PLACEHOLDER. Writes a small Tiled-format farm map (JSON) so the scene work
 // has something to walk on. The layout is throwaway and is not a design; see
 // docs/design/05_farm_map_placeholder.md for what is undecided and for the map
-// contract any real map must meet.
+// contract any real map must meet. Writes the farm and a small house interior.
 // Run: node scripts/gen-farm-map.mjs
 import { mkdirSync, writeFileSync } from "node:fs";
 
@@ -143,20 +143,36 @@ const point = (cls, name, x, y) => ({
   rotation: 0,
   visible: true,
 });
-const door = (name, x, y) => ({
+const exit = (name, x, y, target, entry) => ({
   id: objectId++,
   name,
-  class: "door",
-  type: "door",
+  class: "exit",
+  type: "exit",
   x: x * T,
   y: y * T,
   width: T,
   height: T,
   rotation: 0,
   visible: true,
+  properties: [
+    { name: "map", type: "string", value: target },
+    { name: "entry", type: "string", value: entry },
+  ],
 });
 
-const map = {
+const tileset = {
+  firstgid: 1,
+  name: "placeholder",
+  tilewidth: T,
+  tileheight: T,
+  tilecount: 9,
+  columns: 9,
+  image: "placeholder-tiles.png",
+  imagewidth: 9 * T,
+  imageheight: T,
+};
+
+const farm = {
   type: "map",
   version: "1.10",
   tiledversion: "1.10.2",
@@ -185,31 +201,49 @@ const map = {
       x: 0,
       y: 0,
       objects: [
-        point("spawn", "spawn", 6, 7),
-        door("house", 6, 5),
-        door("hall", 6, 22),
-        door("shop", 33, 20),
+        point("entry", "start", 6, 7),
+        point("entry", "from_house", 6, 6),
+        exit("house", 6, 5, "house", "door"),
         ...forage.map((f) => point("forage", "forage", f.x, f.y)),
       ],
     },
   ],
-  tilesets: [
+  tilesets: [tileset],
+};
+
+// A small house interior: a floor inside a wall, with the door in the south wall.
+const HW = 10;
+const HH = 8;
+const hground = new Array(HW * HH).fill(PATH);
+const hcollision = new Array(HW * HH).fill(0);
+for (let y = 0; y < HH; y++)
+  for (let x = 0; x < HW; x++)
+    if (x === 0 || y === 0 || x === HW - 1 || y === HH - 1) {
+      hground[y * HW + x] = WALL;
+      hcollision[y * HW + x] = 1;
+    }
+hground[(HH - 1) * HW + 5] = DOOR;
+hcollision[(HH - 1) * HW + 5] = 0;
+
+const house = {
+  ...farm,
+  width: HW,
+  height: HH,
+  layers: [
+    { ...tileLayer(1, "ground", hground), width: HW, height: HH },
+    { ...tileLayer(2, "collision", hcollision, false), width: HW, height: HH },
     {
-      firstgid: 1,
-      name: "placeholder",
-      tilewidth: T,
-      tileheight: T,
-      tilecount: 9,
-      columns: 9,
-      image: "placeholder-tiles.png",
-      imagewidth: 9 * T,
-      imageheight: T,
+      ...farm.layers[4],
+      objects: [
+        point("entry", "door", 5, HH - 2),
+        exit("door", 5, HH - 1, "farm", "from_house"),
+      ],
     },
   ],
 };
 
-mkdirSync("public/maps", { recursive: true });
-writeFileSync("public/maps/farm-placeholder.json", JSON.stringify(map));
-console.log(
-  `wrote public/maps/farm-placeholder.json (${W}x${H} tiles, placeholder)`,
-);
+const dir = "src/content/maps";
+mkdirSync(dir, { recursive: true });
+writeFileSync(`${dir}/farm.json`, JSON.stringify(farm));
+writeFileSync(`${dir}/house.json`, JSON.stringify(house));
+console.log(`wrote ${dir}/farm.json and ${dir}/house.json (placeholders)`);

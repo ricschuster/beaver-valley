@@ -13,6 +13,8 @@ export interface TiledObject {
   y: number;
   width?: number;
   height?: number;
+  /** Tiled custom properties. */
+  properties?: { name: string; value: unknown }[];
 }
 
 export interface TiledLayer {
@@ -31,20 +33,42 @@ export interface TiledMapJson {
   layers: TiledLayer[];
 }
 
-/** A door, in tiles. `id` says where it leads (for example "shop"). */
-export interface Door {
+/** A named place where the player can arrive, in tiles. */
+export interface Entry extends Spot {
+  name: string;
+}
+
+/**
+ * A way out of the map, in tiles: a rectangle that leads to entry `entry` of
+ * map `map`. `requires` names a condition that must hold before it opens.
+ */
+export interface Exit {
   id: string;
   x: number;
   y: number;
   w: number;
   h: number;
+  map: string;
+  entry: string;
+  requires?: string;
+}
+
+/** Whether the player may use an exit, given the conditions that hold. */
+export function exitOpen(exit: Exit, holds: ReadonlySet<string>): boolean {
+  return exit.requires === undefined || holds.has(exit.requires);
 }
 
 /** Layers the game reads for rules; they are never drawn. */
 export const COLLISION_LAYER = "collision";
+/** Optional: a map without it has no tillable soil. */
 export const SOIL_LAYER = "soil";
 
 const objectClass = (o: TiledObject) => o.class ?? o.type ?? "";
+
+const text = (o: TiledObject, key: string): string | undefined => {
+  const value = o.properties?.find((p) => p.name === key)?.value;
+  return typeof value === "string" && value !== "" ? value : undefined;
+};
 
 /** What the rules need to know about a map, in tile units. */
 export class FarmMap {
@@ -54,8 +78,8 @@ export class FarmMap {
     readonly tileSize: number,
     private readonly blocked: boolean[],
     private readonly soil: boolean[],
-    readonly spawns: Spot[],
-    readonly doors: Door[],
+    readonly entries: Entry[],
+    readonly exits: Exit[],
     readonly forageSpots: Spot[],
   ) {}
 
@@ -65,10 +89,12 @@ export class FarmMap {
     if (json.tilewidth !== json.tileheight)
       throw new Error("map tiles must be square");
     const size = json.tilewidth;
-    const grid = (name: string): boolean[] => {
+    const grid = (name: string, optional = false): boolean[] => {
       const layer = json.layers.find(
         (l) => l.name === name && l.type === "tilelayer",
       );
+      if (!layer?.data && optional)
+        return new Array(width * height).fill(false);
       if (!layer?.data) throw new Error(`map needs a tile layer "${name}"`);
       if (layer.data.length !== width * height)
         throw new Error(`layer "${name}" is not the size of the map`);
@@ -76,20 +102,29 @@ export class FarmMap {
     };
     const tile = (px: number) => Math.floor(px / size);
 
-    const spawns: Spot[] = [];
-    const doors: Door[] = [];
+    const entries: Entry[] = [];
+    const exits: Exit[] = [];
     const forageSpots: Spot[] = [];
     for (const layer of json.layers) {
       if (layer.type !== "objectgroup") continue;
       for (const o of layer.objects ?? []) {
         const cls = objectClass(o);
         const spot = { x: tile(o.x), y: tile(o.y) };
-        if (cls === "spawn") spawns.push(spot);
+        if (cls === "entry") entries.push({ name: o.name, ...spot });
         else if (cls === "forage") forageSpots.push(spot);
-        else if (cls === "door") {
+        else if (cls === "exit") {
           const w = Math.max(1, Math.round((o.width ?? size) / size));
           const h = Math.max(1, Math.round((o.height ?? size) / size));
-          doors.push({ id: o.name, ...spot, w, h });
+          const requires = text(o, "requires");
+          exits.push({
+            id: o.name,
+            ...spot,
+            w,
+            h,
+            map: text(o, "map") ?? "",
+            entry: text(o, "entry") ?? "",
+            ...(requires === undefined ? {} : { requires }),
+          });
         }
       }
     }
@@ -98,9 +133,9 @@ export class FarmMap {
       height,
       size,
       grid(COLLISION_LAYER),
-      grid(SOIL_LAYER),
-      spawns,
-      doors,
+      grid(SOIL_LAYER, true),
+      entries,
+      exits,
       forageSpots,
     );
   }
@@ -114,16 +149,16 @@ export class FarmMap {
     return this.inside(x, y) && this.soil[y * this.width + x] === true;
   }
 
-  /** The tile where a new game starts. Valid maps have exactly one. */
-  get spawn(): Spot {
-    return this.spawns[0] as Spot;
+  /** The entry with this name, if the map has one. */
+  entry(name: string): Entry | undefined {
+    return this.entries.find((e) => e.name === name);
   }
 
-  /** The id of the door covering this tile, if any. */
-  doorAt(x: number, y: number): string | undefined {
-    return this.doors.find(
-      (d) => x >= d.x && x < d.x + d.w && y >= d.y && y < d.y + d.h,
-    )?.id;
+  /** The exit covering this tile, if any. */
+  exitAt(x: number, y: number): Exit | undefined {
+    return this.exits.find(
+      (e) => x >= e.x && x < e.x + e.w && y >= e.y && y < e.y + e.h,
+    );
   }
 
   /** Tiles that can be walked to from `from`, four ways. */
@@ -150,29 +185,54 @@ export class FarmMap {
     return seen;
   }
 
-  /** Everything wrong with the map, in words. Empty when it is usable. */
+  /**
+   * Everything wrong with this map on its own, in words. Empty when it is
+   * usable. Whether exit targets exist is checked across maps (`MapRegistry`).
+   */
   problems(): string[] {
     const out: string[] = [];
-    if (this.spawns.length !== 1)
-      out.push(`needs exactly one spawn, found ${this.spawns.length}`);
-    const ids = this.doors.map((d) => d.id);
-    if (new Set(ids).size !== ids.length) out.push("door names must be unique");
-    if (this.spawns.length === 0) return out;
-
-    const walkable = this.reachable(this.spawn);
-    if (walkable.size === 0) out.push("the spawn is blocked");
-    for (const door of this.doors) {
-      let ok = false;
-      for (let y = door.y; y < door.y + door.h; y++)
-        for (let x = door.x; x < door.x + door.w; x++)
-          if (walkable.has(`${x},${y}`)) ok = true;
-      if (!ok) out.push(`door "${door.id}" cannot be reached from the spawn`);
+    if (this.entries.length === 0) out.push("needs at least one entry");
+    const names = this.entries.map((e) => e.name);
+    if (names.includes("")) out.push("every entry needs a name");
+    if (new Set(names).size !== names.length)
+      out.push("entry names must be unique");
+    const ids = this.exits.map((e) => e.id);
+    if (ids.includes("")) out.push("every exit needs a name");
+    if (new Set(ids).size !== ids.length) out.push("exit names must be unique");
+    for (const exit of this.exits)
+      if (exit.map === "" || exit.entry === "")
+        out.push(`exit "${exit.id}" needs a map and an entry`);
+    for (const entry of this.entries) {
+      if (this.exitAt(entry.x, entry.y))
+        out.push(`entry "${entry.name}" is inside an exit`);
+      if (this.isBlocked(entry.x, entry.y))
+        out.push(`entry "${entry.name}" is blocked`);
     }
-    for (const s of this.forageSpots)
-      if (!walkable.has(`${s.x},${s.y}`))
-        out.push(`forage spot ${s.x},${s.y} cannot be reached from the spawn`);
-    if (!this.soil.some(Boolean)) out.push("the map has no tillable soil");
+
+    for (const entry of this.entries) {
+      const walkable = this.reachable(entry);
+      for (const exit of this.exits) {
+        let ok = false;
+        for (let y = exit.y; y < exit.y + exit.h; y++)
+          for (let x = exit.x; x < exit.x + exit.w; x++)
+            if (walkable.has(`${x},${y}`)) ok = true;
+        if (!ok)
+          out.push(
+            `exit "${exit.id}" cannot be reached from entry "${entry.name}"`,
+          );
+      }
+      for (const s of this.forageSpots)
+        if (!walkable.has(`${s.x},${s.y}`))
+          out.push(
+            `forage spot ${s.x},${s.y} cannot be reached from entry "${entry.name}"`,
+          );
+    }
     return out;
+  }
+
+  /** Whether any tile can be tilled. */
+  get hasSoil(): boolean {
+    return this.soil.some(Boolean);
   }
 
   private inside(x: number, y: number): boolean {

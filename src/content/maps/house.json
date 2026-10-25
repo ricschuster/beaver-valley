@@ -1,0 +1,105 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.10.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "width": 10,
+  "height": 8,
+  "tilewidth": 16,
+  "tileheight": 16,
+  "nextlayerid": 7,
+  "nextobjectid": 100,
+  "properties": [{ "name": "placeholder", "type": "bool", "value": true }],
+  "layers": [
+    {
+      "id": 1,
+      "name": "ground",
+      "type": "tilelayer",
+      "width": 10,
+      "height": 8,
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "data": [
+        7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3,
+        3, 3, 3, 3, 3, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3, 3, 3, 3, 3,
+        3, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 7,
+        7, 7, 7, 9, 7, 7, 7, 7
+      ]
+    },
+    {
+      "id": 2,
+      "name": "collision",
+      "type": "tilelayer",
+      "width": 10,
+      "height": 8,
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": false,
+      "data": [
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+        0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0,
+        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+        1, 1, 1, 0, 1, 1, 1, 1
+      ]
+    },
+    {
+      "id": 5,
+      "name": "markers",
+      "type": "objectgroup",
+      "draworder": "topdown",
+      "opacity": 1,
+      "visible": true,
+      "x": 0,
+      "y": 0,
+      "objects": [
+        {
+          "id": 18,
+          "name": "door",
+          "class": "entry",
+          "type": "entry",
+          "x": 88,
+          "y": 104,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 19,
+          "name": "door",
+          "class": "exit",
+          "type": "exit",
+          "x": 80,
+          "y": 112,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            { "name": "map", "type": "string", "value": "farm" },
+            { "name": "entry", "type": "string", "value": "from_house" }
+          ]
+        }
+      ]
+    }
+  ],
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "name": "placeholder",
+      "tilewidth": 16,
+      "tileheight": 16,
+      "tilecount": 9,
+      "columns": 9,
+      "image": "placeholder-tiles.png",
+      "imagewidth": 144,
+      "imageheight": 16
+    }
+  ]
+}
