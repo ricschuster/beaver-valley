@@ -58,6 +58,8 @@ Source: `src/core/calendar.ts`, `src/core/weather.ts`.
   length.
 - Chance of rain per day is 20 percent in spring and 15 percent in summer. The
   first day of a season is always sunny. Ours.
+- Tomorrow's weather is rolled a day ahead and shown when the player uses the
+  bed, like Stardew's TV forecast.
 
 ## Foraging
 
@@ -78,7 +80,33 @@ Source: `src/core/skills.ts`.
   10000, 15000. From memory.
 - A forage pickup gives 7 XP. A harvest gives `floor(16 * ln(0.018 * price + 1))`.
   From memory.
-- Levels have no effect yet (no perks or gates in the first playable).
+- Levels raise the chance of better quality goods, and farming levels trim
+  swing energy (see below). Professions (the level 5 and 10 choices) are not
+  built.
+
+## Tool upgrades and energy
+
+Source: `src/core/upgrades.ts`. The hoe and watering can have four tiers (basic,
+copper, steel, gold) bought in the shop for 2000g, 5000g and 10000g. From
+memory for prices; Stardew also needs bars and a wait, which we skip.
+
+- A swing costs `2 - 0.25 * tier - 0.1 * farmingLevel`, never under 0.5. The
+  level term is from memory, the tier term is ours. Energy can now be
+  fractional and the HUD rounds up.
+- With 500g to start, an upgrade is a mid game goal.
+
+## Quality
+
+Source: `src/core/quality.ts`. Quality is part of the item id (`parsnip@gold`),
+so each tier stacks and sells separately. Bundles take any tier.
+
+- Tiers: normal, silver (x1.25 price), gold (x1.5 price). Iridium is left out
+  until there is a source for it. From memory.
+- Crops: gold chance is `0.2 * farmingLevel / 10 + 0.01`; silver chance is twice
+  that, so a level 10 farmer gets about 21 percent gold and 21 percent silver.
+  Stardew's fertiliser term is left out. From memory.
+- Forage: gold chance is `foragingLevel / 30`, silver up to `foragingLevel / 15`.
+  From memory.
 
 ## Village hall
 

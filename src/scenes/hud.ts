@@ -97,7 +97,7 @@ export class Hud {
   update(g: GameState, selected: number, message: string): void {
     const { clock, energy } = g.day;
     this.status.setText(
-      `Day ${clock.day}  ${clock.format()}\nEnergy ${energy.current}  ${g.money}g`,
+      `Day ${clock.day}  ${clock.format()}\nEnergy ${Math.ceil(energy.current)}  ${g.money}g`,
     );
     this.message.setText(message);
     this.slots.forEach((box, i) => {

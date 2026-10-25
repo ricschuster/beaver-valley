@@ -1,8 +1,10 @@
 import { dateOf } from "./calendar";
 import { cropById } from "./crops";
 import { cropOfSeed } from "./items";
+import { cropQuality, forageQuality, withQuality } from "./quality";
 import { FORAGE_XP, harvestXp, type Skill } from "./skills";
 import type { GameState } from "./save";
+import { swingCost, type Upgradable } from "./upgrades";
 
 /** Energy per tool swing (hoe, watering can), as in Stardew. Seeds, picking and harvesting are free. */
 export const TOOL_ENERGY = 2;
@@ -14,8 +16,13 @@ export type Outcome =
 const fail = (reason: string): Outcome => ({ ok: false, reason });
 
 /** Spend tool energy. The clock runs in real time, so actions take no game minutes. */
-function swing(g: GameState): void {
-  g.day.act(TOOL_ENERGY, 0);
+function swing(g: GameState, tool: Upgradable): void {
+  const cost = swingCost(
+    TOOL_ENERGY,
+    g.toolTiers[tool],
+    g.skills.level("farming"),
+  );
+  g.day.act(cost, 0);
 }
 
 function award(g: GameState, skill: Skill, xp: number, item?: string): Outcome {
@@ -28,7 +35,7 @@ export function till(g: GameState, x: number, y: number): Outcome {
   if (g.day.over) return fail("exhausted");
   if (!g.farm.till(x, y)) return fail("already tilled");
   if (g.weather === "rainy") g.farm.water(x, y);
-  swing(g);
+  swing(g, "hoe");
   return { ok: true };
 }
 
@@ -38,7 +45,7 @@ export function water(g: GameState, x: number, y: number): Outcome {
   if (!plot) return fail("nothing to water");
   if (plot.wateredToday) return fail("already watered");
   g.farm.water(x, y);
-  swing(g);
+  swing(g, "can");
   return { ok: true };
 }
 
@@ -59,23 +66,41 @@ export function plant(
   return { ok: true };
 }
 
-export function harvest(g: GameState, x: number, y: number): Outcome {
+export function harvest(
+  g: GameState,
+  x: number,
+  y: number,
+  random: () => number = Math.random,
+): Outcome {
   if (g.day.over) return fail("exhausted");
   const cropId = g.farm.plotAt(x, y)?.crop?.id;
   if (!cropId || !g.farm.isRipe(x, y)) return fail("nothing ripe");
-  if (g.inventory.room(cropId) < 1) return fail("backpack full");
+  const item = withQuality(
+    cropId,
+    cropQuality(g.skills.level("farming"), random()),
+  );
+  if (g.inventory.room(item) < 1) return fail("backpack full");
   g.farm.harvest(x, y);
-  g.inventory.add(cropId);
+  g.inventory.add(item);
   const price = cropById(cropId)?.sellPrice ?? 0;
-  return award(g, "farming", harvestXp(price), cropId);
+  return award(g, "farming", harvestXp(price), item);
 }
 
-export function forage(g: GameState, x: number, y: number): Outcome {
+export function forage(
+  g: GameState,
+  x: number,
+  y: number,
+  random: () => number = Math.random,
+): Outcome {
   if (g.day.over) return fail("exhausted");
   const id = g.forage.itemAt(x, y);
   if (!id) return fail("nothing here");
-  if (g.inventory.room(id) < 1) return fail("backpack full");
+  const item = withQuality(
+    id,
+    forageQuality(g.skills.level("foraging"), random()),
+  );
+  if (g.inventory.room(item) < 1) return fail("backpack full");
   g.forage.collect(x, y);
-  g.inventory.add(id);
-  return award(g, "foraging", FORAGE_XP, id);
+  g.inventory.add(item);
+  return award(g, "foraging", FORAGE_XP, item);
 }
