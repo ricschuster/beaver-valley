@@ -1,6 +1,8 @@
 import Phaser from "phaser";
-import { Day } from "../core/day";
-import { MAX_ENERGY } from "../core/energy";
+import { dateOf } from "../core/calendar";
+import { sleep } from "../core/sleep";
+import type { GameState } from "../core/save";
+import { cycle, startGame, TOOLBAR_SIZE } from "../core/toolbar";
 import { mapFiles, maps } from "../content/maps";
 import { START } from "../core/maps";
 import { exitOpen, type Exit, type FarmMap } from "../core/map";
@@ -14,6 +16,7 @@ import {
   type Vec,
 } from "../core/movement";
 import { Controls } from "./controls";
+import { Hud } from "./hud";
 import {
   makePlaceholderTextures,
   PLAYER_KEY,
@@ -35,28 +38,30 @@ const WORLD_ZOOM = 2;
 /** Fade time when the player walks through an exit, in milliseconds. */
 const FADE_MS = 200;
 
-/** Where the scene starts, and the state it carries between maps. */
+/** Where the scene starts. Game state lives in the game registry, not here. */
 interface SceneData {
   map: string;
   entry: string;
-  day: Day;
-  money: number;
 }
 
+const STATE_KEY = "state";
+const SELECTED_KEY = "selected";
+
 /**
- * A walkable map, a player and a day clock. Space works, Z sleeps. Walking
- * through an exit restarts the scene on the next map, carrying the day on.
+ * A walkable map, a player and one `GameState`. Space uses the held tool, Z
+ * sleeps. Walking through an exit restarts the scene on the next map; the
+ * state and the selected toolbar slot survive in the game registry.
  */
 export class FarmScene extends Phaser.Scene {
-  private day = new Day();
-  private money = 500;
+  private state!: GameState;
+  private selected = 0;
   private mapId: string = START.map;
   private entryName: string = START.entry;
   private leaving = false;
   /** Conditions that currently hold, for gated exits. None exist yet. */
   private holds = new Set<string>();
   private message = "";
-  private label!: Phaser.GameObjects.Text;
+  private hud!: Hud;
   private map!: FarmMap;
   private controls!: Controls;
   private player!: Phaser.GameObjects.Image;
@@ -72,8 +77,18 @@ export class FarmScene extends Phaser.Scene {
   init(data: Partial<SceneData>): void {
     this.mapId = data.map ?? START.map;
     this.entryName = data.entry ?? START.entry;
-    if (data.day) this.day = data.day;
-    if (data.money !== undefined) this.money = data.money;
+    if (!this.registry.has(STATE_KEY)) {
+      const fresh = startGame();
+      fresh.forage.respawn(
+        dateOf(fresh.day.clock.day).season,
+        maps.get(START.map).forageSpots,
+        Math.random,
+      );
+      this.registry.set(STATE_KEY, fresh);
+    }
+    this.state = this.registry.get(STATE_KEY) as GameState;
+    this.selected =
+      (this.registry.get(SELECTED_KEY) as number | undefined) ?? 0;
     this.leaving = false;
     this.exitId = undefined;
     this.message = "";
@@ -116,16 +131,13 @@ export class FarmScene extends Phaser.Scene {
     world.push(this.player, this.target);
 
     // UI objects, drawn by a second camera that does not zoom.
-    this.controls = new Controls(this);
-    this.label = this.add.text(16, 16, "", {
-      fontSize: "24px",
-      color: "#ffffff",
-    });
-    const note = this.add.text(16, 512, `Placeholder map: ${id}`, {
-      fontSize: "14px",
-      color: "#ffffffaa",
-    });
-    const ui = [this.controls.stick, this.label, note];
+    this.hud = new Hud(
+      this,
+      (i) => this.select(i),
+      () => this.use(),
+    );
+    this.controls = new Controls(this, (p) => this.hud.covers(p.x, p.y));
+    const ui = [this.controls.stick, ...this.hud.objects];
 
     const { width, height } = this.scale.gameSize;
     const uiCamera = this.cameras.add(0, 0, width, height);
@@ -151,16 +163,19 @@ export class FarmScene extends Phaser.Scene {
       delay: TICK_MS,
       loop: true,
       callback: () => {
-        this.day.act(0, TICK_MINUTES);
+        this.state.day.act(0, TICK_MINUTES);
         this.afterAction();
       },
     });
-    this.input.keyboard?.on("keydown-SPACE", () => {
-      this.message = "";
-      this.day.act(10, TICK_MINUTES);
-      this.afterAction();
-    });
-    this.input.keyboard?.on("keydown-Z", () => this.endDay());
+    const kb = this.input.keyboard;
+    kb?.on("keydown-SPACE", () => this.use());
+    kb?.on("keydown-Z", () => this.endDay());
+    kb?.on("keydown-Q", () => this.select(cycle(this.selected, -1)));
+    kb?.on("keydown-E", () => this.select(cycle(this.selected, 1)));
+    const digits = "ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE".split(",");
+    digits.forEach((name, i) =>
+      kb?.on(`keydown-${name}`, () => this.select(i)),
+    );
     this.render();
 
     if (import.meta.env.DEV)
@@ -206,28 +221,37 @@ export class FarmScene extends Phaser.Scene {
   private leave(exit: Exit): void {
     if (this.leaving) return;
     this.leaving = true;
-    const data: SceneData = {
-      map: exit.map,
-      entry: exit.entry,
-      day: this.day,
-      money: this.money,
-    };
+    const data: SceneData = { map: exit.map, entry: exit.entry };
     this.cameras.main.fadeOut(FADE_MS);
     this.cameras.main.once("camerafadeoutcomplete", () =>
       this.scene.restart(data),
     );
   }
 
+  private select(index: number): void {
+    if (index < 0 || index >= TOOLBAR_SIZE) return;
+    this.selected = index;
+    this.registry.set(SELECTED_KEY, index);
+    this.message = "";
+    this.render();
+  }
+
+  /** Use the held tool on the facing tile. Wired up in the next change. */
+  private use(): void {
+    this.message = "Nothing happens yet.";
+    this.render();
+  }
+
   private afterAction(): void {
-    if (this.day.over) this.endDay();
+    if (this.state.day.over) this.endDay();
     else this.render();
   }
 
   private endDay(): void {
-    const end = this.day.end(this.money);
-    if (end.passedOut) {
-      this.money -= end.moneyLost;
-      this.message = `You passed out and lost ${end.moneyLost}g.`;
+    const g = this.state;
+    const report = sleep(g, this.map.forageSpots, Math.random);
+    if (report.passedOut) {
+      this.message = `You passed out and lost ${report.moneyLost}g.`;
     } else {
       this.message = "You slept well.";
     }
@@ -235,14 +259,6 @@ export class FarmScene extends Phaser.Scene {
   }
 
   private render(): void {
-    const { clock, energy } = this.day;
-    this.label.setText(
-      [
-        `Day ${clock.day}  ${clock.format()}`,
-        `Energy ${energy.current}/${MAX_ENERGY}  Money ${this.money}g`,
-        "Move: arrows, WASD or drag left side   Space: work   Z: sleep",
-        this.message,
-      ].join("\n"),
-    );
+    this.hud.update(this.state, this.selected, this.message);
   }
 }

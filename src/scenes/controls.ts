@@ -13,7 +13,11 @@ export class Controls {
   private anchor: Vec = { x: 0, y: 0 };
   private current: Vec = { x: 0, y: 0 };
 
-  constructor(private scene: Phaser.Scene) {
+  /** `ignore` lets the HUD claim a touch, so it does not start the stick. */
+  constructor(
+    private scene: Phaser.Scene,
+    ignore: (p: Phaser.Input.Pointer) => boolean = () => false,
+  ) {
     const kb = scene.input.keyboard;
     if (kb) {
       this.keys = kb.addKeys("W,A,S,D,UP,DOWN,LEFT,RIGHT") as Record<
@@ -28,6 +32,7 @@ export class Controls {
 
     scene.input.on("pointerdown", (p: Phaser.Input.Pointer) => {
       if (this.stickId !== -1 || p.x >= scene.scale.gameSize.width / 2) return;
+      if (ignore(p)) return;
       this.stickId = p.id;
       this.anchor = { x: p.x, y: p.y };
       this.current = { ...this.anchor };
