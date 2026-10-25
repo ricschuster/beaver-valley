@@ -94,6 +94,11 @@ memory for prices; Stardew also needs bars and a wait, which we skip.
   level term is from memory, the tier term is ours. Energy can now be
   fractional and the HUD rounds up.
 - With 500g to start, an upgrade is a mid game goal.
+- Playtest check (expert run, no upgrades bought): 7322g in hand when the last
+  bundle was handed in on day 41 and 8297g after the end screen. So the 2000g
+  and 5000g tiers are reachable well inside two seasons. The 10000g tier
+  is not reached by day 41 by an expert who also funds every bundle; it is a
+  late goal, which fits. A casual player will not reach it.
 
 ## Eating
 
