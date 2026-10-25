@@ -1,0 +1,39 @@
+[
+  {
+    "id": "daffodil",
+    "name": "Daffodil",
+    "seasons": ["spring"],
+    "sellPrice": 30
+  },
+  { "id": "leek", "name": "Wild leek", "seasons": ["spring"], "sellPrice": 60 },
+  {
+    "id": "dandelion",
+    "name": "Dandelion",
+    "seasons": ["spring"],
+    "sellPrice": 40
+  },
+  {
+    "id": "horseradish",
+    "name": "Wild horseradish",
+    "seasons": ["spring"],
+    "sellPrice": 50
+  },
+  {
+    "id": "grape",
+    "name": "Wild grape",
+    "seasons": ["summer"],
+    "sellPrice": 80
+  },
+  {
+    "id": "spice-berry",
+    "name": "Spice berry",
+    "seasons": ["summer"],
+    "sellPrice": 80
+  },
+  {
+    "id": "sweet-pea",
+    "name": "Sweet pea",
+    "seasons": ["summer"],
+    "sellPrice": 50
+  }
+]

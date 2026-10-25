@@ -1,4 +1,5 @@
 import { CROPS, cropById } from "./crops";
+import { FORAGE } from "./forage";
 
 /** Item ids: a crop's produce uses the crop id, its seed uses `<id>-seed`. */
 export const seedId = (cropId: string) => `${cropId}-seed`;
@@ -19,6 +20,10 @@ for (const c of CROPS) {
     sellPrice: Math.floor(c.seedPrice / 2),
     buyPrice: c.seedPrice,
   });
+}
+
+for (const f of FORAGE) {
+  items.set(f.id, { id: f.id, name: f.name, sellPrice: f.sellPrice });
 }
 
 export function itemById(id: string): ItemDef | undefined {
