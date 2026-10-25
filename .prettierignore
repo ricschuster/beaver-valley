@@ -5,3 +5,4 @@ package-lock.json
 .github
 .claude
 public/spike/spike-map.json
+public/maps/farm-placeholder.json
