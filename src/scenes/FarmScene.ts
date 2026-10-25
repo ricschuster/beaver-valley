@@ -2,7 +2,9 @@ import Phaser from "phaser";
 import { dateOf } from "../core/calendar";
 import { sleep } from "../core/sleep";
 import type { GameState } from "../core/save";
-import { cycle, startGame, TOOLBAR_SIZE } from "../core/toolbar";
+import { cycle, heldAt, startGame, TOOLBAR_SIZE } from "../core/toolbar";
+import { reasonText, useHeld } from "../core/tools";
+import { cropById } from "../core/crops";
 import { mapFiles, maps } from "../content/maps";
 import { START } from "../core/maps";
 import { exitOpen, type Exit, type FarmMap } from "../core/map";
@@ -62,6 +64,7 @@ export class FarmScene extends Phaser.Scene {
   private holds = new Set<string>();
   private message = "";
   private hud!: Hud;
+  private ground!: Phaser.GameObjects.Graphics;
   private map!: FarmMap;
   private controls!: Controls;
   private player!: Phaser.GameObjects.Image;
@@ -119,6 +122,9 @@ export class FarmScene extends Phaser.Scene {
     }
 
     const ts = this.map.tileSize;
+    // Plots and forage sit on the tiles, under the player.
+    this.ground = this.add.graphics();
+    world.push(this.ground);
     const spawn = this.map.entry(this.entryName)!;
     this.pos = { x: (spawn.x + 0.5) * ts, y: (spawn.y + 1) * ts - 2 };
     this.player = this.add
@@ -187,6 +193,12 @@ export class FarmScene extends Phaser.Scene {
         map: this.mapId,
         exit: this.exitId ?? null,
         zoom: this.cameras.main.zoom,
+        energy: this.state.day.energy.current,
+        plots: [...this.state.farm.each()].length,
+        seeds: this.state.inventory.count("parsnip-seed"),
+        harvested: this.state.inventory.count("parsnip"),
+        message: this.message,
+        day: this.state.day.clock.day,
       });
   }
 
@@ -236,10 +248,21 @@ export class FarmScene extends Phaser.Scene {
     this.render();
   }
 
-  /** Use the held tool on the facing tile. Wired up in the next change. */
+  /** Use the held tool on the tile the player faces. */
   private use(): void {
-    this.message = "Nothing happens yet.";
-    this.render();
+    if (this.leaving) return;
+    const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
+    const held = heldAt(this.state, this.selected);
+    const result = useHeld(this.state, this.map, held, front.x, front.y);
+    if (!result.ok) {
+      this.message = reasonText(result.reason);
+    } else if (result.levelUp) {
+      const { skill, level } = result.levelUp;
+      this.message = `${skill} is now level ${level}.`;
+    } else {
+      this.message = "";
+    }
+    this.afterAction();
   }
 
   private afterAction(): void {
@@ -258,7 +281,41 @@ export class FarmScene extends Phaser.Scene {
     this.render();
   }
 
+  /** Draw plots and forage as flat shapes, until the art pass. */
+  private drawGround(): void {
+    const g = this.ground.clear();
+    if (!this.map.hasSoil) return;
+    const ts = this.map.tileSize;
+    for (const { x, y, plot } of this.state.farm.each()) {
+      g.fillStyle(plot.wateredToday ? 0x4a3420 : 0x9a7a4c).fillRect(
+        x * ts + 1,
+        y * ts + 1,
+        ts - 2,
+        ts - 2,
+      );
+      const crop = plot.crop;
+      const def = crop && cropById(crop.id);
+      if (!crop || !def) continue;
+      const cx = x * ts + ts / 2;
+      const cy = y * ts + ts / 2;
+      if (this.state.farm.isRipe(x, y)) {
+        g.fillStyle(0xf0d040).fillCircle(cx, cy, 5);
+        g.lineStyle(1, 0xffffff, 1).strokeCircle(cx, cy, 5);
+      } else {
+        const stage = Math.min(crop.daysGrown / def.growDays, 1);
+        g.fillStyle(0x6fcf5a).fillCircle(cx, cy + 3, 1.5 + stage * 3.5);
+      }
+    }
+    for (const { x, y } of this.state.forage.each()) {
+      g.fillStyle(0xe58fd0)
+        .fillCircle(x * ts + ts / 2, y * ts + ts / 2, 3)
+        .lineStyle(1, 0xffffff, 1)
+        .strokeCircle(x * ts + ts / 2, y * ts + ts / 2, 3);
+    }
+  }
+
   private render(): void {
+    this.drawGround();
     this.hud.update(this.state, this.selected, this.message);
   }
 }

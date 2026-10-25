@@ -30,6 +30,14 @@ export class ForageField {
     return this.found.get(`${x},${y}`);
   }
 
+  /** Every good on the ground with its tile, for drawing. */
+  *each(): Generator<{ x: number; y: number; id: string }> {
+    for (const [k, id] of this.found) {
+      const [x, y] = k.split(",").map(Number) as [number, number];
+      yield { x, y, id };
+    }
+  }
+
   get count(): number {
     return this.found.size;
   }

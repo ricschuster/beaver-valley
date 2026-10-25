@@ -22,6 +22,14 @@ export class Farm {
     this.plots = new Map(Object.entries(structuredClone(saved)));
   }
 
+  /** Every plot with its tile, for drawing. */
+  *each(): Generator<{ x: number; y: number; plot: Plot }> {
+    for (const [k, plot] of this.plots) {
+      const [x, y] = k.split(",").map(Number) as [number, number];
+      yield { x, y, plot };
+    }
+  }
+
   plotAt(x: number, y: number): Plot | undefined {
     return this.plots.get(key(x, y));
   }
