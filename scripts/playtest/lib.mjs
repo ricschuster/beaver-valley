@@ -130,6 +130,30 @@ export class Bot {
   async key(k, wait = 60) {
     await this.p.keyboard.press(k);
     await sleepMs(wait);
+    // A level 5 skill opens the profession scene after the action that earned
+    // it, and the farm stays paused until one is chosen.
+    if (k === "Space") await this.pickProfession();
+  }
+  /** Answer the profession scene if it is open: key 1, or 2 with PROFESSION=2. */
+  async pickProfession() {
+    const open = await this.p.evaluate(() =>
+      window.__game.scene.isActive("profession"),
+    );
+    if (!open) return;
+    const pick = process.env.PROFESSION === "2" ? "2" : "1";
+    const before = await this.snap();
+    await this.p.keyboard.press(pick);
+    await sleepMs(150);
+    const after = await this.snap();
+    if (after.scenes.includes("profession"))
+      finding(`profession scene stayed open after key ${pick}`);
+    else
+      log(
+        `profession chosen with key ${pick}:`,
+        JSON.stringify(after.skills),
+        "was",
+        JSON.stringify(before.skills),
+      );
   }
   async shot(name) {
     await this.p.screenshot({
