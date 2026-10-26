@@ -31,6 +31,12 @@ Settings, as environment variables:
 
 - `BASE_URL`: the dev server, default `http://localhost:5173/`.
 - `CHROMIUM_PATH`: use this browser instead of the one Playwright installed.
+- `DEVICE_CDP`: drive Chrome on a real Android tablet instead of a headless
+  browser. Connect it with USB debugging, then run
+  `adb reverse tcp:5173 tcp:5173`, open `http://localhost:5173/` in Chrome on
+  it, and `adb forward tcp:9222 localabstract:chrome_devtools_remote`. Set
+  `DEVICE_CDP=http://localhost:9222`. Close other game tabs on the device
+  first. Works for `npm run playtest:touch`.
 - `MAX_DAY`: stop after this day, default 84 (the calendar wraps into year 2).
 
 The three runs can go at the same time against one dev server.

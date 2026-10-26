@@ -128,7 +128,9 @@ async function holdAxis(axis, target) {
     const dir =
       axis === "x" ? (diff > 0 ? "right" : "left") : diff > 0 ? "down" : "up";
     await stickDown();
-    await stickPush(dir);
+    // Crawl for a short last step: on a real device the position poll lags a
+    // few frames, which at full speed overshoots by more than the tolerance.
+    await stickPush(dir, Math.abs(diff) < 12 ? 14 : 45);
     const limit = Date.now() + (Math.abs(diff) / 80) * 1000 + 1500;
     for (;;) {
       const c = (await bot.dbg()).pos[axis];
@@ -362,10 +364,16 @@ else {
 
 // 6. Sleep by touch: walk into the house, use the bed, answer Yes.
 await walkTo(6, 6);
+// Square up on the door first: the doorway is one tile wide, so a few pixels
+// of sideways drift from the walk puts the player against the wall.
+await holdAxis("x", cx(6));
 await holdAxis("y", cy(5));
 await sleepMs(900);
-if ((await bot.dbg()).map !== "house")
-  finding("walking into the house door did not enter the house");
+const atDoor = await bot.dbg();
+if (atDoor.map !== "house")
+  finding(
+    `walking into the house door did not enter the house (map ${atDoor.map}, tile ${atDoor.tile.x},${atDoor.tile.y}, pos ${atDoor.pos.x.toFixed(1)},${atDoor.pos.y.toFixed(1)}, exit ${atDoor.exit})`,
+  );
 else {
   await holdAxis("y", cy(2));
   await holdAxis("x", cx(2));
