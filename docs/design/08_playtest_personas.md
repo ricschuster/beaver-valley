@@ -132,6 +132,38 @@ An emulator cannot judge feel, frame rate or Android Chrome's address bar and
 zoom behaviour, so a short check on the real tablet is still worth doing before
 the tablet pass is called done.
 
+## Rerun on 2026-10-26
+
+The three keyboard personas were run again on `main` after quality tiers, tool
+upgrades, professions, more crops and forage, and the forecast landed. One run
+each, the same scripts, no console errors and no findings.
+
+| | Expert | Intermediate | Casual |
+| --- | --- | --- | --- |
+| All five bundles done | day 41 | day 45 | not by day 85 |
+| Spring Foraging | day 4 | day 10 | day 32 |
+| Spring Crops | day 14 | day 16 | stuck at 2 of 3 |
+| Pantry | day 34 | day 37 | day 49 |
+| Summer Foraging | day 33 | day 40 | stuck at 2 of 3 |
+| Money at day 28 | 4718g | 3635g | about 800g |
+
+- Almost nothing moved. The expert and intermediate finish on the same days as
+  the first runs. The small differences in single bundles and in money look like
+  forage and weather luck, not a change in the rules.
+- The casual floor still fails. Spring Crops is stuck at 2 of 3 again (the
+  cauliflower), and this time Summer Foraging is stuck at 2 of 3 as well. Spring
+  Foraging came in much earlier (day 32, was day 84), which is luck.
+- These runs say nothing about upgrade prices, red cabbage or professions. The
+  bots never buy a tool upgrade or red cabbage seed, and no run reached a
+  profession. The seeds they bought were parsnip, potato, cauliflower, radish,
+  tomato and melon.
+- Money still has no use. The expert ended with 8003g. Any upgrade at the current
+  prices would be an easy purchase for a player who farms well. This agrees with
+  the owner decision above to wait for more complexity before adding a money
+  sink.
+- To tune upgrade prices and red cabbage, a persona that buys them on purpose is
+  needed. That is not built.
+
 ## Not covered
 
 The real tablet (see above), the Start over button, saving the clock (a reload
