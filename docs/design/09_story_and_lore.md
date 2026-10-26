@@ -68,13 +68,18 @@ remains of an old waystation, and finishing the hall bundles restores it.
   fantasy trope.
 - Off limits: a ring, an eye, a tower, orcs, "one thing that must be
   destroyed", and any name close to a Tolkien name.
-- Open: his own name, look and method. His distinctiveness has to come from
-  those, since his aim is generic.
+- Direction: the Hollow Crown, an empty crown and robes that rule without a
+  body, with shadow and a great voice mixed in. Working title only.
+- Open: his proper name and method. His distinctiveness has to come from those,
+  since his aim is generic.
 
 ### The relative
 
 - A gardener who went adventuring, a keeper of rare seeds who left to find more.
-- Open: their name and personality.
+- Quiet and shrewd, with a deep curiosity about the world and its history. Did
+  go on a long adventure in the past.
+- The player and the relative share one family name. Leaning toward a name with
+  a moss ending. Open: the exact name, and the relative's first name.
 - Legacy is a light steer only: a trunk of odd seeds and one note, a plain
   welcome. For example "The soil is good, the neighbours are better, do come and
   meet them." Nothing tells the player what to do.
@@ -117,7 +122,8 @@ Not hobbits. An invented small, homely people. Working traits:
   friendship together.
 - Avoid anything specific to hobbits: hairy feet, pipe-weed, second breakfast,
   hillside burrows.
-- Open: what the folk are called, and what they look like beyond the hats.
+- They are called Brimmers (from the brim of a hat).
+- Open: what they look like beyond the hats.
 
 Naming style: mixed by place. Plain, cozy names in the valley, odder ones in
 the crossroads town, strange ones in ring 2 and beyond.
@@ -139,9 +145,9 @@ the same kind are not alike.
 
 ## The crossroads town
 
-A mixed town on the road, in the role of a Bree-like waystation town. Own
-name needed. Stardew-like in layout. It holds the old waystation, now the
-village hall. The farm sits out in the quiet valley as a home base.
+A mixed town on the road, in the role of a Bree-like waystation town. Its name
+is Hearthwell. Stardew-like in layout. It holds the old waystation, now the
+village hall, called The Long Table. The farm sits out in the quiet valley as a home base.
 
 Buildings chosen:
 
@@ -161,12 +167,13 @@ Open: the full list of building types, and how big the town is.
 
 ## Open questions
 
-- The relative's name and personality.
-- The dark lord's name, look and method.
-- The folk's name and fuller look.
+- The family name and the relative's first name.
+- The dark lord's proper name and method.
+- The Brimmers' look beyond the hats.
 - What the bundles give for tools and bridges.
 - How to phase the cast toward the long-term size.
 - The wizard, dwarf and elf groups: how many, and what sets each apart.
-- The crossroads town's name and full building list.
+- The wardens' group name (two words, one meaning carrier).
+- The crossroads town's full building list.
 - The shadow in ring 3 (issue #5, what centre 3 is).
 - Whether any of this needs an ADR once settled.
