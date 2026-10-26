@@ -37,6 +37,8 @@ Settings, as environment variables:
   it, and `adb forward tcp:9222 localabstract:chrome_devtools_remote`. Set
   `DEVICE_CDP=http://localhost:9222`. Close other game tabs on the device
   first. Works for `npm run playtest:touch`.
+- `PROFESSION`: `1` (default) or `2`, the key pressed when a skill reaches level 5
+  and the profession scene opens.
 - `MAX_DAY`: stop after this day, default 84 (the calendar wraps into year 2).
 
 The three runs can go at the same time against one dev server.
@@ -56,7 +58,8 @@ all three after a change to prices, bundles, growth or energy.
 
 ## Files
 
-- `lib.mjs`: browser launch, pathfinding walk, facing and tool use.
+- `lib.mjs`: browser launch, pathfinding walk, facing and tool use. It also
+  answers the profession scene (key 1, or `PROFESSION=2`) after a Space press.
 - `play.mjs`: the daily routine and the personas.
 - `late.mjs`: the stay-up-late test.
 - `touch.mjs`: the touch persona. It uses the Chrome DevTools protocol to send
