@@ -42,12 +42,21 @@ export const TABLET = {
 };
 
 export async function launch({ fresh, context }) {
-  const b = await chromium.launch({
-    executablePath: process.env.CHROMIUM_PATH || undefined,
-  });
-  const p = await b.newPage(
-    context ?? { viewport: { width: 960, height: 540 } },
-  );
+  // DEVICE_CDP: drive Chrome on a real device (adb forward tcp:9222
+  // localabstract:chrome_devtools_remote) instead of a headless browser.
+  const device = process.env.DEVICE_CDP;
+  const b = device
+    ? await chromium.connectOverCDP(device)
+    : await chromium.launch({
+        executablePath: process.env.CHROMIUM_PATH || undefined,
+      });
+  const p = device
+    ? b
+        .contexts()[0]
+        .pages()
+        .find((q) => q.url().startsWith(GAME_URL.slice(0, 22)))
+    : await b.newPage(context ?? { viewport: { width: 960, height: 540 } });
+  if (device) await p.bringToFront();
   const errs = [];
   p.on("pageerror", (e) => errs.push(e.message));
   p.on("console", (m) => {
