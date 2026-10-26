@@ -59,7 +59,7 @@ remains of an old waystation, and finishing the hall bundles restores it.
   ate and were seen on their way. That is what the hall bundles (crops, goods,
   cooking) literally restore.
 - Secret wardens still watch the road. They pass as ordinary carriers and
-  couriers, moving post and parcels between towns. They are cheerful in cover
+  couriers, under the name the Dawn Carriers, moving post and parcels between towns. They are cheerful in cover
   and quietly dutiful underneath. They must not read as Tolkien's Rangers.
 
 ### The dark lord
@@ -78,8 +78,8 @@ remains of an old waystation, and finishing the hall bundles restores it.
 - A gardener who went adventuring, a keeper of rare seeds who left to find more.
 - Quiet and shrewd, with a deep curiosity about the world and its history. Did
   go on a long adventure in the past.
-- The player and the relative share one family name. Leaning toward a name with
-  a moss ending. Open: the exact name, and the relative's first name.
+- The player and the relative share one family name. The family name is
+  Thimblemoss. Open: the relative's first name.
 - Legacy is a light steer only: a trunk of odd seeds and one note, a plain
   welcome. For example "The soil is good, the neighbours are better, do come and
   meet them." Nothing tells the player what to do.
@@ -123,7 +123,8 @@ Not hobbits. An invented small, homely people. Working traits:
 - Avoid anything specific to hobbits: hairy feet, pipe-weed, second breakfast,
   hillside burrows.
 - They are called Brimmers (from the brim of a hat).
-- Open: what they look like beyond the hats.
+- Small, with long ears that poke through or around the hats. This keeps them
+  clearly apart from hobbits.
 
 Naming style: mixed by place. Plain, cozy names in the valley, odder ones in
 the crossroads town, strange ones in ring 2 and beyond.
@@ -167,13 +168,11 @@ Open: the full list of building types, and how big the town is.
 
 ## Open questions
 
-- The family name and the relative's first name.
+- The relative's first name.
 - The dark lord's proper name and method.
-- The Brimmers' look beyond the hats.
 - What the bundles give for tools and bridges.
 - How to phase the cast toward the long-term size.
 - The wizard, dwarf and elf groups: how many, and what sets each apart.
-- The wardens' group name (two words, one meaning carrier).
 - The crossroads town's full building list.
 - The shadow in ring 3 (issue #5, what centre 3 is).
 - Whether any of this needs an ADR once settled.
