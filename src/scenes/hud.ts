@@ -70,7 +70,9 @@ export class Hud {
       fontSize: "14px",
       color: "#ffffffcc",
     });
-    this.hint.setText(HINT);
+    // The hint is for a keyboard; a tablet has the stick and the buttons.
+    const { os, input } = scene.sys.game.device;
+    this.hint.setText(input.touch && !os.desktop ? "" : HINT);
     this.message = scene.add.text(16, 106, "", {
       fontSize: "18px",
       color: "#ffe9a0",
