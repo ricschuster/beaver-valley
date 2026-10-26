@@ -93,8 +93,13 @@ bundle of centre 1 is done, and play goes on afterwards.
   5), so the player can go out while the hall is unfinished. Individual regions
   are then gated by their own tool or bridge upgrade.
 - Ring 3 stays behind centre 2, optional and late.
-- Open: which bundle opens the road, and what the bundles give for tools and
-  bridges.
+- The bridge bundle opens the road: mending the old bridge. This ties to the
+  bridge-upgrade gating and is easy to read on the map.
+- Open: what the other bundles give for tools and bridges.
+- First signs of the shadow: a courier breaks cover to warn that the road is
+  not as safe as it was, which reveals the wardens as a story beat. After that,
+  strange creatures appear at the edges of the new regions as the player
+  travels.
 - Ring 1 is peaceful. The shadow first appears when the road opens. Before that,
   the lore reaches the player through customs and the relative's note, not
   through danger.
@@ -123,7 +128,9 @@ General fantasy types, written our own way. They can use the plain words
 (wizard, dwarf, elf), with our own traits for each group so that two groups of
 the same kind are not alike.
 
-- A wizard-like figure living in the woods.
+- A wizard-like figure living in the woods. An absent-minded hermit who forgets
+  things and gives odd requests, and who also knew the vanished gardener and is
+  the closest thing to an answer about where they went.
 - Dwarves in the mountains.
 - Elves.
 - Tall road-folk, stout craftspeople, fey wanderers and odd one-offs also pass
@@ -145,12 +152,19 @@ Buildings chosen:
 
 Open: the full list of building types, and how big the town is.
 
+## Festivals
+
+- The first seasonal festival is a hat parade: everyone shows off their best hat
+  and their standing in the ledger. It shows the folk's culture and is good for
+  sprites.
+- Open: the rest of the festival calendar.
+
 ## Open questions
 
 - The relative's name and personality.
 - The dark lord's name, look and method.
 - The folk's name and fuller look.
-- Which bundle opens the road, and what the later bundles give.
+- What the bundles give for tools and bridges.
 - How to phase the cast toward the long-term size.
 - The wizard, dwarf and elf groups: how many, and what sets each apart.
 - The crossroads town's name and full building list.
