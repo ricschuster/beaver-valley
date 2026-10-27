@@ -93,6 +93,23 @@ Cozy-game fan. Has played Stardew Valley for "way more than 250 hrs".
   skipped.
 - No death, no jump scares.
 
+## What we decided from reader 1 (2026-10-27)
+
+One reader, so these are direction, not evidence. The owner judged the feedback
+good enough to act on because the reader knows the genre well.
+
+| Point | Decision | Where |
+| ----- | -------- | ----- |
+| Cast size | Keep close to Stardew for ring 1. Rings 2 and 3 add people, with only a few full relationships each. Marriage to be built later. | `09_story_and_lore.md` |
+| Hollow Crown unclear | Never seen directly; his effects are. | `09_story_and_lore.md` |
+| Beaver-free name | Build from the lore names. | `00_project_brief.md` |
+| No punishment for neglect | Neglect costs only potential. Animals as in Stardew. Villager decay still open. | `09_story_and_lore.md` |
+| Hints on bundles | M3 candidate. | `03_milestones.md` |
+| Festivals | Two per season, from M3. | `09_story_and_lore.md` |
+| Decoration | New design note. Stardew-like: bundles, tailoring. | `10_customisation.md` |
+| Minigames | New design note. A few, all optional and cozy. | `11_minigames.md` |
+| No death, no scares | Written as tone rules. | `09_story_and_lore.md` |
+
 ## Tally (points raised by three or more readers)
 
 Only one reader so far. Nothing has reached the bar yet.

@@ -127,7 +127,9 @@ these is ruled out forever.
 ## Open questions
 
 - Project name. Avoid names that sit close to the original's branding or to
-  Tolkien's names.
+  Tolkien's names. Also avoid anything beaver related (reader 1, 2026-10-27).
+  Direction: build the name from the lore names (Brimmers, Thimblemoss,
+  Hearthwell, The Long Table), which the reader liked.
 - Engine and language (needs an ADR).
 - What centre 3 is (issue #5).
 - Whether ring 3 has combat, and how much.

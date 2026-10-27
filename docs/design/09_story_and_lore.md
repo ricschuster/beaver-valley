@@ -30,12 +30,29 @@ Relationships timing:
 
 Cast size:
 
-- The long-term target is about the size of Stardew Valley's cast (roughly 30
-  named villagers). This is a destination, not the first playable, which keeps
-  "a few simple villagers" (see the brief).
+- Ring 1 (the home valley and Hearthwell) aims at about the size of Stardew
+  Valley's cast (roughly 30 named villagers). Decided 2026-10-27. This is a
+  destination, not the first playable, which keeps "a few simple villagers"
+  (see the brief). Reader 1 thought 10 to 20 was right and 40 too many; we keep
+  closer to Stardew and treat that as a cap on how the cast is shown, not a
+  target to shrink to.
+- Rings 2 and 3 add more people, but only a few in each get the full
+  relationship treatment (hearts, events, gifts, marriage). The rest are
+  traders, quest givers and passers-by.
 - Open: how to phase it. Writing and art cost for a solo developer at 5 to 10
   hours a week is large. Candidate: a few full villagers first, with more added
   in layers.
+
+Marriage:
+
+- To be built eventually, in the Stardew Valley manner: marriage candidates, a
+  courtship that gates on hearts, a wedding, and a spouse who lives on the
+  farm. It is not in the first playable or M3.
+- Needs its own design note before building: who can marry (and whom), what a
+  spouse does day to day, children or not, and how it fits the favour-ledger
+  and hat customs of the Brimmers.
+- Villager data should leave room for it now: a marriage-candidate flag and a
+  heart cap that a courtship raises.
 
 ## The story (issue #16)
 
@@ -70,6 +87,10 @@ remains of an old waystation, and finishing the hall bundles restores it.
   destroyed", and any name close to a Tolkien name.
 - Direction: the Hollow Crown, an empty crown and robes that rule without a
   body, with shadow and a great voice mixed in. Working title only.
+- Seen or unseen (decided 2026-10-27, after a reader could not tell): he is
+  never seen directly. The player meets his effects: shadow, a voice, the
+  creatures at the edges of the regions. The empty crown shows only at the end,
+  if at all. The lore note and any packet text should say this plainly.
 - Open: his proper name and method. His distinctiveness has to come from those,
   since his aim is generic.
 
@@ -161,10 +182,51 @@ Open: the full list of building types, and how big the town is.
 
 ## Festivals
 
+- Two festivals per season (decided 2026-10-27, from reader 1's request for
+  "lots or a few"). The first playable has none; plan them from M3.
 - The first seasonal festival is a hat parade: everyone shows off their best hat
   and their standing in the ledger. It shows the folk's culture and is good for
   sprites.
-- Open: the rest of the festival calendar.
+- A second candidate, from reader 1: a Brimmer "cake day" where everyone dresses
+  in food-looking clothes. It suits the folk's hospitality and gives a reason
+  for clothes and hats (see `10_customisation.md`).
+- A festival can hold a minigame and a prize counter (see `11_minigames.md`).
+- Open: the rest of the festival calendar, including which seasons the two above
+  fall in.
+
+## Tone rules
+
+- No scares. No jump scares and no frightening creatures. Ring 2 and ring 3
+  creatures are odd, funny or eerie at most.
+- No lose state. Passing out means starting a new day at home with a small
+  cost, as in Stardew Valley. Nothing ends the game or deletes progress.
+- The dark lord is never seen (see above).
+
+## Neglect
+
+Checked against Stardew Valley on 2026-10-27 (wiki and forum sources):
+
+- Villagers. Stardew does decay friendship a little for each day the player does
+  not talk to a villager, until a cap (about 10 hearts for friends, 8 for
+  unmarried candidates, none for a full meter). It is slow, and nobody gets
+  angry. A spouse and a bouquet-holder lose more.
+- Animals. Stardew lowers an animal's friendship and mood if it is not fed,
+  not petted, or left out at night or in bad weather. Friendship and mood only
+  affect the quality of what it produces. They do not hurt the player.
+
+Rule for this game, in the same spirit:
+
+- Neglect costs only potential: lower quality, a slower gain, a pause in
+  progress. It never removes a thing the player already has.
+- No villager or animal gets angry, scolds the player or refuses to deal with
+  them. No dialogue punishes absence.
+- Animals: neglect lowers the quality of their products, as in Stardew.
+- Villagers: open. Friendship decay is a Stardew feature, but reader 1 listed
+  "people mad at you for skipping a day" as a chore. Options: no decay at all,
+  or a very slow decay that stops at a floor and never drops a heart the player
+  has already earned. Decide when friendship is built (M3).
+- Crops wait without spoiling and animals cope for a few days of absence (see
+  the absence rules in `01_system_map.md`).
 
 ## Open questions
 
@@ -172,6 +234,10 @@ Open: the full list of building types, and how big the town is.
 - The dark lord's proper name and method.
 - What the bundles give for tools and bridges.
 - How to phase the cast toward the long-term size.
+- Marriage: the design note (see Marriage above).
+- The villager friendship decay rule (see Neglect above).
+- Which seasons the hat parade and cake day fall in, and the rest of the
+  calendar.
 - The wizard, dwarf and elf groups: how many, and what sets each apart.
 - The crossroads town's full building list.
 - The shadow in ring 3 (issue #5, what centre 3 is).
