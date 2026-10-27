@@ -96,7 +96,18 @@ remains of an old waystation, and finishing the hall bundles restores it.
   scares. Crops grow a little odd, lamps gutter, hats go grey, a voice hums
   near the road at night. Eerie or funny at most, in line with the tone rules.
   Ring 2 creatures and visuals follow the same register.
-- Open: his proper name and method. His distinctiveness has to come from those,
+- Name and element (decided 2026-10-27): his name is Surt, from the Norse fire
+  giant Surtr, and folk call him "the Smoulderer". Norse myth is old and
+  shared, but Tolkien also mined it, so we avoid the Norse dwarf-name list and
+  any wizard names from it. The element is embers and ash, kept subtle: a
+  banked fire that never quite went out. No volcano, lava, fire eye or fiery
+  demon, since those are Tolkien's pictures. The small wrongs fit it: grey
+  hats are ash, lamps flicker, bread scorches, a smudge of smoke on the horizon.
+  It is the dark mirror of the Hearthwell hearth.
+- Tone: the game is lighthearted. The dark parts are very minor and stay in the
+  background. The empty crown remains his emblem and the Hollow Crown is an
+  old-book title for him. Open: whether the Hollow Crown title stays at all.
+- Open: his method. His distinctiveness has to come from his method and image,
   since his aim is generic.
 
 ### The relative
@@ -105,7 +116,8 @@ remains of an old waystation, and finishing the hall bundles restores it.
 - Quiet and shrewd, with a deep curiosity about the world and its history. Did
   go on a long adventure in the past.
 - The player and the relative share one family name. The family name is
-  Thimblemoss. Open: the relative's first name.
+  Thimblemoss. The relative's first name is Oriel (decided 2026-10-27, an owl-like name for age
+  and wisdom): Oriel Thimblemoss.
 - Why they left (decided 2026-10-27): ring 2 is a place the relative knew
   from their adventuring days, and they loved the company of its elves. When
   they felt it was time to leave the farm, they went there to retire. The
@@ -142,6 +154,10 @@ the quiet counter to the shadow's small wrongs.
 - Ring 2 opens partway through the bundle chain (for example after bundle 3 of
   5), so the player can go out while the hall is unfinished. Individual regions
   are then gated by their own tool or bridge upgrade.
+- Ring 2 regions (decided 2026-10-27): all four kinds are wanted, with about
+  two reachable first. An elven woodland haven (where the relative retired), a
+  mountain pass (dwarves, ore, mushrooms), a river marsh and a coast or lake.
+  Which two come first, and how each is gated, is for the ring 2 design (#20).
 - Ring 3 stays behind centre 2, optional and late.
 - The bridge bundle opens the road: mending the old bridge. This ties to the
   bridge-upgrade gating and is easy to read on the map.
@@ -197,7 +213,11 @@ the same kind are not alike.
   a gentle push toward ring 2 (a letter or a clue he forgot to hand over), but
   it is light and optional: the game is mostly about play, and no villager
   pushes the player into a story line.
-- Dwarves in the mountains.
+- Dwarves in the mountains (decided 2026-10-27): two groups, so there is more
+  than one dwarf NPC. Stonekeepers of the road, who built and maintain its
+  bridges and stonework (and so tie to the bridge bundle). Smiths and
+  lamp-makers, who make tools and the lamps the Smoulderer's ash dims (and so
+  tie to tool upgrades).
 - Elves (decided 2026-10-27): kept broad on purpose. An ancient people who like
   many things and act as stewards of land and creatures. Gardens and seeds are
   one hook, and the arts are another: music, weaving and decoration, which fit
@@ -275,8 +295,8 @@ Rule for this game, in the same spirit:
 
 ## Open questions
 
-- The relative's first name.
-- The dark lord's proper name and method.
+- The dark lord's method, and whether the Hollow Crown title stays.
+- The name of the ring 2 elven haven (not close to a Tolkien place name).
 - What the bundles give for tools and bridges.
 - How to phase the cast toward the long-term size.
 - Marriage: the open questions in `12_marriage.md`.
