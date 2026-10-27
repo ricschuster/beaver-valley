@@ -3,6 +3,7 @@ import { heldAt, rowOf, TOOLS, TOOLBAR_SIZE, type Held } from "../core/toolbar";
 import { SLOT_COUNT } from "../core/inventory";
 import { iconKey as itemIcon, TOOL_ICONS } from "./art";
 import { dateText } from "../core/calendar";
+import { festivalToday } from "../core/festivals";
 import { splitQuality } from "../core/quality";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
@@ -165,7 +166,7 @@ export class Hud {
   update(g: GameState, selected: number, message: string): void {
     const { clock, energy } = g.day;
     this.status.setText(
-      `${dateText(clock.day)}  ${clock.format()}\nEnergy ${Math.ceil(energy.current)}  ${g.money}g`,
+      `${dateText(clock.day)}  ${clock.format()}${festivalToday(clock.day) ? "  Festival" : ""}\nEnergy ${Math.ceil(energy.current)}  ${g.money}g`,
     );
     this.message.setText(message);
     const now = heldAt(g, selected);

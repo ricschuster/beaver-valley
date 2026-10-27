@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { festivalToday } from "../core/festivals";
 import type { GameState } from "../core/save";
 import { STATE_KEY } from "./state";
 
@@ -42,7 +43,9 @@ export class BedScene extends Phaser.Scene {
   /** Tomorrow's weather, as Stardew's TV forecast gives it. */
   private forecast(): string {
     const g = this.registry.get(STATE_KEY) as GameState;
-    return `The day ends and the night passes.\nForecast for tomorrow: ${g.tomorrow === "rainy" ? "rain" : "clear skies"}.`;
+    const f = festivalToday(g.day.clock.day + 1);
+    const festival = f ? `\nTomorrow is the ${f.name}.` : "";
+    return `The day ends and the night passes.\nForecast for tomorrow: ${g.tomorrow === "rainy" ? "rain" : "clear skies"}.${festival}`;
   }
 
   private button(

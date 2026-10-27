@@ -4,6 +4,8 @@ import type { GameState } from "../core/save";
 import { cycle, heldAt, nextRow, toolbarSize } from "../core/toolbar";
 import { pendingChoice } from "../core/professions";
 import { eat } from "../core/actions";
+import { clockText } from "../core/clock";
+import { festivalOpen, festivalToday } from "../core/festivals";
 import { itemById } from "../core/items";
 import { reasonText, useHeld } from "../core/tools";
 import { cropById } from "../core/crops";
@@ -293,6 +295,7 @@ export class FarmScene extends Phaser.Scene {
     if (this.leaving) return;
     const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
     const service = this.map.serviceAt(front.x, front.y);
+    if (service?.kind === "festival") return this.openFestival();
     if (service) return this.open(service.kind);
     const held = heldAt(this.state, this.selected);
     const result = useHeld(this.state, this.map, held, front.x, front.y);
@@ -305,6 +308,17 @@ export class FarmScene extends Phaser.Scene {
       this.message = "";
     }
     this.afterAction();
+  }
+
+  /** The festival green: open only while today's festival is on. */
+  private openFestival(): void {
+    const f = festivalToday(this.state.day.clock.day);
+    if (f && festivalOpen(f, this.state.day.clock.minutes))
+      return this.open("festival");
+    this.message = f
+      ? `${f.name} runs from ${clockText(f.opens)} to ${clockText(f.closes)}.`
+      : "The green is quiet today.";
+    this.render();
   }
 
   /** Eat the held item, if it is food. */
@@ -370,6 +384,30 @@ export class FarmScene extends Phaser.Scene {
     }
     for (const { x, y, id } of this.state.forage.each())
       put(x, y, forageKey(id));
+    this.drawBunting();
+  }
+
+  /** On a festival day, hang flags over the green so the village looks changed. */
+  private drawBunting(): void {
+    if (!festivalToday(this.state.day.clock.day)) return;
+    const green = this.map.services.find((s) => s.kind === "festival");
+    if (!green) return;
+    const ts = this.map.tileSize;
+    const colors = [0xd8503c, 0xf2d16b, 0x4a9fd8, 0x7ac05a];
+    const g = this.ground;
+    for (let i = -3; i <= 3; i++) {
+      const x = (green.x + i) * ts;
+      const y = (green.y - 1) * ts;
+      g.fillStyle(0x6b4a2a).fillRect(x, y, ts, 2);
+      g.fillStyle(colors[(i + 3) % colors.length]!).fillTriangle(
+        x + 2,
+        y + 2,
+        x + ts - 2,
+        y + 2,
+        x + ts / 2,
+        y + 10,
+      );
+    }
   }
 
   private render(): void {
