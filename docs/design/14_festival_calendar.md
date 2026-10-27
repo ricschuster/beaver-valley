@@ -12,13 +12,15 @@ cheap to change; change them with a new dated decision here.
 - A festival falls on a fixed day of the season, every year.
 - Not on day 1 (the always sunny start of a season) and not in the last week,
   so a festival never competes with the end-of-season crop rush.
-- Festival days are always sunny, like day 1. A festival never costs the
-  player a crop or a lost chance to water.
+- Festival days are always sunny, like day 1, so rain never decides whether to go.
 - The village changes for the day (decoration, villagers gathered at the
   green). The festival is open from noon to 6 pm so the player can still do the
-  morning chores. Joining takes two hours and costs no energy, and does not
-  end the day (changed from the first proposal during #132). Nothing is lost by
-  skipping it.
+  morning chores. As in Stardew, time stands still while the player is at the
+  festival. Leaving puts the player back where they went in, with the clock at
+  10 pm (from memory of Stardew; the day does not end, so the player can still
+  water and then sleep). The game asks before going in, since the lost
+  afternoon cannot be undone. Nothing is lost by skipping it (revised during
+  #132).
 - No pressure: no timer on joining, no penalty for missing one, no score
   required. A prize counter or minigame is a bonus (`11_minigames.md`).
 

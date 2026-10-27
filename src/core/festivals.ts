@@ -12,9 +12,9 @@ export interface Festival {
   /** Minutes since midnight when the festival opens and closes. */
   opens: number;
   closes: number;
+  /** Time of day when the player is back outside after leaving (10 pm). */
+  ends: number;
   blurb: string;
-  /** Game minutes the player spends joining in. */
-  joinMinutes: number;
   /** Prize counter stock (item ids). Empty until a festival has prizes. */
   prizes: string[];
   /** Id of the festival game, or null for none (see `11_minigames.md`). */
@@ -54,33 +54,39 @@ export function nextFestival(
   return undefined;
 }
 
-/** Key for "joined this festival this year", stored in the save. */
+/**
+ * Leave the festival. As in Stardew the player is put back where they went in,
+ * and the clock has moved on to the festival's end. The day does not end.
+ */
+export function leaveFestival(g: GameState): void {
+  const f = festivalToday(g.day.clock.day);
+  if (f) g.day.clock.advance(Math.max(f.ends - g.day.clock.minutes, 0));
+}
+
+/** Key for "went to this festival this year", stored in the save. */
 export function joinKey(f: Festival, day: number): string {
   return `${f.id}:${dateOf(day).year}`;
 }
 
-/** Why the player cannot join a festival now, or undefined if they can. */
-export function joinProblem(g: GameState): string | undefined {
-  const day = g.day.clock.day;
-  const f = festivalToday(day);
+/** Why the player cannot go to a festival now, or undefined if they can. */
+export function enterProblem(g: GameState): string | undefined {
+  const f = festivalToday(g.day.clock.day);
   if (!f) return "There is no festival today.";
   if (g.day.clock.minutes < f.opens) return `${f.name} has not started yet.`;
   if (g.day.clock.minutes >= f.closes) return `${f.name} is over for today.`;
-  if (g.festivalsJoined.includes(joinKey(f, day)))
-    return "You have already joined in today.";
   return undefined;
 }
 
 /**
- * Join today's festival: it takes the festival's time and is remembered for
- * the year. Costs no energy and gives nothing to lose. Returns the festival,
- * or undefined (with nothing changed) if the player cannot join.
+ * Go to today's festival and remember it for the year. As in Stardew, time
+ * stands still while the player is there; see `leaveFestival`. Returns the festival, or undefined (nothing changed) if
+ * the player cannot go.
  */
-export function joinFestival(g: GameState): Festival | undefined {
-  if (joinProblem(g)) return undefined;
+export function enterFestival(g: GameState): Festival | undefined {
+  if (enterProblem(g)) return undefined;
   const day = g.day.clock.day;
   const f = festivalToday(day)!;
-  g.festivalsJoined.push(joinKey(f, day));
-  g.day.clock.advance(f.joinMinutes);
+  const key = joinKey(f, day);
+  if (!g.festivalsJoined.includes(key)) g.festivalsJoined.push(key);
   return f;
 }

@@ -5,8 +5,9 @@ import {
   festivalOn,
   festivalOpen,
   festivalToday,
-  joinFestival,
-  joinProblem,
+  enterFestival,
+  enterProblem,
+  leaveFestival,
   nextFestival,
 } from "../src/core/festivals";
 import { itemById } from "../src/core/items";
@@ -29,7 +30,7 @@ describe("festival data", () => {
       expect(f.day, f.id).toBeGreaterThan(1);
       expect(f.day, f.id).toBeLessThanOrEqual(DAYS_PER_SEASON - 7);
       expect(f.opens, f.id).toBeLessThan(f.closes);
-      expect(f.joinMinutes, f.id).toBeGreaterThan(0);
+      expect(f.ends, f.id).toBeGreaterThanOrEqual(f.closes);
       for (const p of f.prizes) expect(itemById(p), p).toBeDefined();
     }
   });
@@ -77,7 +78,7 @@ describe("weather", () => {
   });
 });
 
-describe("joining", () => {
+describe("going", () => {
   const onParade = (minutes: number) => {
     const g = newGame();
     g.day.clock.day = dayOf("spring", parade.day);
@@ -86,30 +87,39 @@ describe("joining", () => {
   };
 
   it("needs a festival today", () => {
-    expect(joinProblem(newGame())).toMatch(/no festival/);
+    expect(enterProblem(newGame())).toMatch(/no festival/);
   });
 
   it("waits for opening and ends at closing", () => {
-    expect(joinProblem(onParade(parade.opens - 10))).toMatch(/not started/);
-    expect(joinProblem(onParade(parade.closes))).toMatch(/over/);
+    expect(enterProblem(onParade(parade.opens - 10))).toMatch(/not started/);
+    expect(enterProblem(onParade(parade.closes))).toMatch(/over/);
   });
 
-  it("takes time, costs no energy, and works once a year", () => {
+  it("stops time and costs no energy, and is remembered once a year", () => {
     const g = onParade(parade.opens);
     const energy = g.day.energy.current;
-    expect(joinFestival(g)?.id).toBe("hat-parade");
-    expect(g.day.clock.minutes).toBe(parade.opens + parade.joinMinutes);
+    expect(enterFestival(g)?.id).toBe("hat-parade");
+    expect(g.day.clock.minutes).toBe(parade.opens);
     expect(g.day.energy.current).toBe(energy);
-    expect(joinProblem(g)).toMatch(/already/);
-    expect(joinFestival(g)).toBeUndefined();
+    expect(enterFestival(g)?.id).toBe("hat-parade");
+    expect(g.festivalsJoined).toEqual(["hat-parade:1"]);
   });
 
-  it("can be joined again next year", () => {
+  it("sets the clock to the festival's end on leaving, without ending the day", () => {
     const g = onParade(parade.opens);
-    joinFestival(g);
+    enterFestival(g);
+    leaveFestival(g);
+    expect(g.day.clock.minutes).toBe(parade.ends);
+    expect(g.day.clock.day).toBe(dayOf("spring", parade.day));
+    expect(g.day.over).toBe(false);
+  });
+
+  it("is remembered separately each year", () => {
+    const g = onParade(parade.opens);
+    enterFestival(g);
     g.day.clock.day += DAYS_PER_SEASON * SEASONS.length;
-    g.day.clock.minutes = parade.opens;
-    expect(joinProblem(g)).toBeUndefined();
+    enterFestival(g);
+    expect(g.festivalsJoined).toEqual(["hat-parade:1", "hat-parade:2"]);
   });
 });
 
