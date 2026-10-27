@@ -84,6 +84,19 @@ date, six more crops and three more forage goods. Numbers are in
 `07_tuning_numbers.md`. This does not move the M3 scope, which is still fixed
 by a design note before building.
 
+### M3 candidates from reader feedback
+
+Decided 2026-10-27 from reader 1's feedback. None are built, and the M3 scope
+is still fixed by a design note before building.
+
+- Two festivals per season (`09_story_and_lore.md`).
+- Bundle hints: a short hint per bundle, from a villager line or a tooltip.
+- Customisation, first slice: house furniture and hats
+  (`10_customisation.md`).
+- Minigames, starting with a festival game (`11_minigames.md`).
+- The neglect rules and tone rules in `09_story_and_lore.md`.
+- Later, not M3: marriage, which needs its own design note.
+
 ### CI and the build check
 
 The `build` job in `.github/workflows/ci.yml` runs format, lint, typecheck,
