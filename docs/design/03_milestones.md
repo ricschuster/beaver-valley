@@ -86,8 +86,8 @@ by a design note before building.
 
 ### M3 candidates from reader feedback
 
-Decided 2026-10-27 from reader 1's feedback. None are built, and the M3 scope
-is still fixed by a design note before building.
+Decided 2026-10-27 from reader 1's feedback. None are built. The proposed M3
+scope is in `13_m3_scope.md` (draft, #130).
 
 - Two festivals per season (`09_story_and_lore.md`): calendar #131, system
   #132.
