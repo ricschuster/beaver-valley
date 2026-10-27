@@ -89,13 +89,17 @@ by a design note before building.
 Decided 2026-10-27 from reader 1's feedback. None are built, and the M3 scope
 is still fixed by a design note before building.
 
-- Two festivals per season (`09_story_and_lore.md`).
+- Two festivals per season (`09_story_and_lore.md`): calendar #131, system
+  #132.
 - Bundle hints: a short hint per bundle, from a villager line or a tooltip.
+  Part of the bundle format, #21.
 - Customisation, first slice: house furniture and hats
-  (`10_customisation.md`).
-- Minigames, starting with a festival game (`11_minigames.md`).
-- The neglect rules and tone rules in `09_story_and_lore.md`.
-- Later, not M3: marriage, which needs its own design note.
+  (`10_customisation.md`): #133. Furniture rewards are part of #21.
+- Minigames, starting with a festival game (`11_minigames.md`): #134.
+- The neglect rules and tone rules in `09_story_and_lore.md`: #135.
+- The scope note that picks what is in and out of M3: #130.
+- Later, not M3: marriage, which needs its own design note (#137, parked).
+  Also unscheduled: the ring 1 cast list (#136) and the final name (#138).
 
 ### CI and the build check
 
