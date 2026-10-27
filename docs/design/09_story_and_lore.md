@@ -266,8 +266,8 @@ Open: the full list of building types, and how big the town is.
   in food-looking clothes. It suits the folk's hospitality and gives a reason
   for clothes and hats (see `10_customisation.md`).
 - A festival can hold a minigame and a prize counter (see `11_minigames.md`).
-- Open: the rest of the festival calendar, including which seasons the two above
-  fall in.
+- Calendar proposed 2026-10-27 in `14_festival_calendar.md`: Hat Parade spring
+  day 10, Cake Day summer day 8, and two placeholder festivals.
 
 ## Tone rules
 
@@ -310,8 +310,7 @@ Rule for this game, in the same spirit:
 - The exact mapping of the five bundles to unlocks (#21).
 - How to phase the cast toward the long-term size.
 - Marriage: the open questions in `12_marriage.md`.
-- Which seasons the hat parade and cake day fall in, and the rest of the
-  calendar.
+- Final names for the two placeholder festivals (`14_festival_calendar.md`).
 - The wizard, dwarf and elf groups: how many, and what sets each apart.
 - The crossroads town's full building list.
 - The shadow in ring 3 (issue #5, what centre 3 is).
