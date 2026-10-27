@@ -1,9 +1,8 @@
-# 13 M3 scope (draft)
+# 13 M3 scope
 
-Status: draft, for issue #130. The roadmap says the M3 scope is fixed by a
-design note before building. This is that note. It is a proposal until the
-owner accepts it; the "Decisions needed" list at the end is what is left to
-settle.
+Status: accepted 2026-10-27 (issue #130). The roadmap says the M3 scope is
+fixed by a design note before building. This is that note. Change it only
+with a new dated decision here.
 
 ## What M3 is for
 
@@ -17,9 +16,9 @@ the hall bundles twice.
 Rule from the scope section of the roadmap: the slice often feels nearly done
 but is about 20 percent of the work, so cut early.
 
-## Candidates and proposal
+## Candidates and decisions
 
-| Candidate | Issue | Proposal | Why |
+| Candidate | Issue | Decision | Why |
 | --- | --- | --- | --- |
 | Bundle format: hint field and furniture rewards | #21 | In. First. | Needed by the slice itself, and the hint and furniture rewards are small data changes. Unblocks customisation. |
 | Festival calendar | #131 | In (design only). | Cheap, and the festival system waits on it. |
@@ -71,10 +70,9 @@ cut, iterate or ship, as the roadmap asks. The first item, #21, is small
 enough to act as the check: if it takes much longer than a session, the rest
 of this list is too big.
 
-## Decisions needed
+## Decisions (2026-10-27)
 
-- Accept or change the in and out column above, in particular: one festival
-  and not two, and no animal neglect work in M3.
-- Hats in the world sprite or portrait only (open in `10_customisation.md`).
-  Proposal: portrait only for M3, since a world sprite costs more art.
-- Whether the festival game is a promise or a stretch goal. Proposal: stretch.
+- One festival in M3, the hat parade. The second is a stretch goal. No animal
+  work in M3.
+- Hats show in a portrait only. The world sprite is not changed in M3.
+- The festival game is a stretch goal, not a promise.
