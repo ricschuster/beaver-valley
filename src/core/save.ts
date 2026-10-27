@@ -24,6 +24,8 @@ export interface GameState {
   tomorrow: Weather;
   /** True once the end screen has been shown, so it shows only once. */
   endSeen: boolean;
+  /** Festivals joined, as `joinKey` strings. */
+  festivalsJoined: string[];
   /** Wild goods on the ground today. Not saved: it respawns each morning. */
   forage: ForageField;
 }
@@ -43,6 +45,7 @@ export function newGame(): GameState {
     weather: "sunny",
     tomorrow: "sunny",
     endSeen: false,
+    festivalsJoined: [],
     forage: new ForageField(),
   };
 }
@@ -69,6 +72,8 @@ interface SaveData {
   tomorrow?: Weather;
   /** Absent in saves made before the end screen existed. */
   endSeen?: boolean;
+  /** Absent in saves made before festivals existed. */
+  festivalsJoined?: string[];
 }
 
 /** Where saves live. The scene supplies one backed by the browser. */
@@ -94,6 +99,7 @@ export function serialize(g: GameState): string {
     weather: g.weather,
     tomorrow: g.tomorrow,
     endSeen: g.endSeen,
+    festivalsJoined: [...g.festivalsJoined],
   };
   return JSON.stringify(data);
 }
@@ -165,6 +171,10 @@ export function deserialize(text: string): GameState | undefined {
   if (WEATHERS.includes(raw.tomorrow as Weather))
     g.tomorrow = raw.tomorrow as Weather;
   g.endSeen = raw.endSeen === true;
+  if (Array.isArray(raw.festivalsJoined))
+    g.festivalsJoined = raw.festivalsJoined.filter(
+      (k): k is string => typeof k === "string",
+    );
   return g;
 }
 

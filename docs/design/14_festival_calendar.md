@@ -1,6 +1,6 @@
 # 14 Festival calendar
 
-Status: proposed 2026-10-27 (issue #131). Design only. The festival system
+Status: accepted 2026-10-27 (issue #131). Design only. The festival system
 (#132) builds from this. Dates and the two placeholder festivals are ours and
 cheap to change; change them with a new dated decision here.
 
@@ -15,8 +15,10 @@ cheap to change; change them with a new dated decision here.
 - Festival days are always sunny, like day 1. A festival never costs the
   player a crop or a lost chance to water.
 - The village changes for the day (decoration, villagers gathered at the
-  green). The festival opens at midday so the player can still do the morning
-  chores, and it ends the day when it finishes. Nothing is lost by skipping it.
+  green). The festival is open from noon to 6 pm so the player can still do the
+  morning chores. Joining takes two hours and costs no energy, and does not
+  end the day (changed from the first proposal during #132). Nothing is lost by
+  skipping it.
 - No pressure: no timer on joining, no penalty for missing one, no score
   required. A prize counter or minigame is a bonus (`11_minigames.md`).
 

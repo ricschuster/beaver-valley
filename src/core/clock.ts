@@ -20,10 +20,15 @@ export class Clock {
 
   /** Clock text such as "6:00 am". */
   format(): string {
-    const h24 = Math.floor(this.minutes / 60) % 24;
-    const m = this.minutes % 60;
-    const suffix = h24 >= 12 ? "pm" : "am";
-    const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
-    return `${h12}:${String(m).padStart(2, "0")} ${suffix}`;
+    return clockText(this.minutes);
   }
+}
+
+/** Clock text such as "6:00 am" for minutes since midnight. */
+export function clockText(minutes: number): string {
+  const h24 = Math.floor(minutes / 60) % 24;
+  const m = minutes % 60;
+  const suffix = h24 >= 12 ? "pm" : "am";
+  const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
+  return `${h12}:${String(m).padStart(2, "0")} ${suffix}`;
 }

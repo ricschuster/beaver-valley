@@ -10,7 +10,7 @@
   "tilewidth": 16,
   "tileheight": 16,
   "nextlayerid": 7,
-  "nextobjectid": 100,
+  "nextobjectid": 101,
   "properties": [{ "name": "placeholder", "type": "bool", "value": true }],
   "layers": [
     {
@@ -330,6 +330,22 @@
           "rotation": 0,
           "visible": true,
           "properties": [{ "name": "kind", "type": "string", "value": "hall" }]
+        },
+        {
+          "id": 100,
+          "name": "festival",
+          "class": "service",
+          "type": "service",
+          "x": 200,
+          "y": 344,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            { "name": "kind", "type": "string", "value": "festival" }
+          ]
         },
         {
           "id": 5,

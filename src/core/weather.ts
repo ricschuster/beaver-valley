@@ -1,4 +1,5 @@
 import type { Season } from "./calendar";
+import { festivalOn } from "./festivals";
 
 export const WEATHERS = ["sunny", "rainy"] as const;
 export type Weather = (typeof WEATHERS)[number];
@@ -10,7 +11,8 @@ export const RAIN_CHANCE: Record<Season, number> = {
 };
 
 /**
- * Weather for a new day. The first day of a season is always sunny. Rain
+ * Weather for a new day. The first day of a season and festival days are
+ * always sunny. Rain
  * waters every plot overnight (see `sleep`).
  */
 export function rollWeather(
@@ -18,6 +20,6 @@ export function rollWeather(
   dayOfSeason: number,
   random: () => number,
 ): Weather {
-  if (dayOfSeason === 1) return "sunny";
+  if (dayOfSeason === 1 || festivalOn(season, dayOfSeason)) return "sunny";
   return random() < RAIN_CHANCE[season] ? "rainy" : "sunny";
 }
