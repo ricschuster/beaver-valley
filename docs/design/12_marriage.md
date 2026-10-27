@@ -32,13 +32,46 @@ treatment, and some of those can be marriage candidates.
 
 - No decay and no anger, as for every villager. A spouse never nags,
   scolds or leaves.
-- No divorce. Nothing a player does breaks a marriage. Leaving it out is
-  simpler and fits the cozy tone. Revisit if readers ask for it.
+- Divorce is possible, but only the player can start it (decided 2026-10-27).
+  The spouse never leaves, however the player plays. The cost and the aftermath
+  are open (see Stardew mechanics below). Keep the aftermath gentle: no
+  anger, and the ex-spouse stays a friendly villager.
 - Optional. Nothing in the bundles, the hall or the ending requires marriage.
 - Who can be a candidate is a matter of cast writing, not code. The player
   character's look and the candidates' roles stay open to any pairing the
   writing supports; this should be decided when the cast is written, not here.
 - Children: not planned. Open.
+
+## Stardew mechanics as ideas
+
+Ideas to borrow or reject, noted 2026-10-27. Items marked (checked) came from
+the Stardew Valley wiki via search; the rest are recalled from memory and need
+checking before use.
+
+- Spouse chores (checked): the spouse waters crops in the growing seasons, feeds
+  animals and repairs fences. A good fit for a gentle bonus. Decide which jobs
+  we want so the farm is not made too easy.
+- Spouse perk (checked): a late-heart gift, a Stardrop at 12.5 hearts, a
+  rare permanent boost. We could give a rare, one-off item.
+- Roommate (checked): a character who shares the house, does not marry or have
+  children, and pays a little rent each week. A useful option for characters
+  who are not meant as romance, and it could cover friendship without romance.
+- Children (checked, thinly): a crib in the house, then the spouse has a child
+  after a few days. Children are optional, and we have not decided to include
+  them. They add art and writing cost.
+- Divorce (partly checked): one source says a fee is paid at an office, another
+  claims a friendship loss; neither was confirmed. Our rule is
+  player-only, with a gentle aftermath.
+- A bouquet starts courtship and a pendant-like item proposes (memory). Both are
+  items that gate on hearts. Ours would be our own items and names.
+- A wedding happens a few days after the proposal, with a short scene (memory).
+- Spouse room or corner in the house, with daily lines and events by heart
+  level (memory).
+- House size gates having children, through upgrades (memory). Ties to house
+  upgrades in `10_customisation.md`.
+
+Anything we copy must be our own expression: items, names, text and art, per
+ADR 0002.
 
 ## Fit with the lore
 
@@ -73,7 +106,10 @@ treatment, and some of those can be marriage candidates.
 - Number of candidates in ring 1, and in rings 2 and 3.
 - What the courtship gift and the proposal item are.
 - Whether the spouse helps with farm work, and how much.
-- Whether children exist.
+- Whether children exist (a Stardew idea, see above).
+- Divorce: its cost, and what stays of the friendship.
+- Whether a roommate option exists.
 - Whether the player can have a second home or the spouse can visit other
   rings.
 - The look of the wedding scene and festival.
+- Which spouse chores, if any, and how to keep them from trivialising the farm.
