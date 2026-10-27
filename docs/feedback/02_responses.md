@@ -15,7 +15,8 @@ Cozy-game fan. Has played Stardew Valley for "way more than 250 hrs".
 - **Likes in the genre:** farming, collecting, decorating, characters, "and I
   think everything else".
 - **What is this game:** "It's like a kind of endless game with no real
-  threats, like you die and start over." Elsewhere: "like both Stardew Valley
+  threats, like you die and start over." Meant as passing out and starting a
+  new day, as in Stardew Valley. Elsewhere: "like both Stardew Valley
   and Lord of the Rings".
 - **Would you play it:** Definitely.
 - **Most made you want to play:** "That it's like Stardew Valley and Lord of
@@ -81,9 +82,8 @@ Cozy-game fan. Has played Stardew Valley for "way more than 250 hrs".
 ## Notes from reader 1
 
 - Hollow Crown is unclear: unseen or seen? The lore note should say.
-- The reader read the game as endless with no real threats, and also as
-  "you die and start over". That conflicts with the cozy scope; check whether
-  the packet implies a death loop anywhere.
+- The reader read the game as endless with no real threats. "You die and start
+  over" means passing out and starting a new day, so it fits the cozy scope.
 - Festivals raised twice (a Brimmer "cake day", and festivals in general).
 - Decorating raised three times (genre likes, expeditions, 40-hour question).
   Home and character decoration is outside the first playable's scope.
