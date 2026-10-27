@@ -86,10 +86,10 @@ by a design note before building.
 
 ### M3 candidates from reader feedback
 
-Decided 2026-10-27 from reader 1's feedback. None are built. The proposed M3
-scope is in `13_m3_scope.md` (draft, #130).
+Decided 2026-10-27 from reader 1's feedback. None are built. The M3
+scope is in `13_m3_scope.md` (accepted, #130).
 
-- Two festivals per season (`09_story_and_lore.md`): calendar #131, system
+- Two festivals per season, one in M3 (`09_story_and_lore.md`): calendar #131, system
   #132.
 - Bundle hints: a short hint per bundle, from a villager line or a tooltip.
   Part of the bundle format, #21.
