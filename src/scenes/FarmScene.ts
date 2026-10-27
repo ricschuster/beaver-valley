@@ -315,9 +315,11 @@ export class FarmScene extends Phaser.Scene {
     const f = festivalToday(this.state.day.clock.day);
     if (f && festivalOpen(f, this.state.day.clock.minutes))
       return this.open("festival");
-    this.message = f
-      ? `${f.name} runs from ${clockText(f.opens)} to ${clockText(f.closes)}.`
-      : "The green is quiet today.";
+    if (!f) this.message = "The green is quiet today.";
+    else if (this.state.day.clock.minutes >= f.closes)
+      this.message = `${f.name} is over for today.`;
+    else
+      this.message = `${f.name} runs from ${clockText(f.opens)} to ${clockText(f.closes)}.`;
     this.render();
   }
 

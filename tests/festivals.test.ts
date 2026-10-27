@@ -7,6 +7,7 @@ import {
   festivalToday,
   enterFestival,
   enterProblem,
+  leaveFestival,
   nextFestival,
 } from "../src/core/festivals";
 import { itemById } from "../src/core/items";
@@ -29,6 +30,7 @@ describe("festival data", () => {
       expect(f.day, f.id).toBeGreaterThan(1);
       expect(f.day, f.id).toBeLessThanOrEqual(DAYS_PER_SEASON - 7);
       expect(f.opens, f.id).toBeLessThan(f.closes);
+      expect(f.ends, f.id).toBeGreaterThanOrEqual(f.closes);
       for (const p of f.prizes) expect(itemById(p), p).toBeDefined();
     }
   });
@@ -101,6 +103,15 @@ describe("going", () => {
     expect(g.day.energy.current).toBe(energy);
     expect(enterFestival(g)?.id).toBe("hat-parade");
     expect(g.festivalsJoined).toEqual(["hat-parade:1"]);
+  });
+
+  it("sets the clock to the festival's end on leaving, without ending the day", () => {
+    const g = onParade(parade.opens);
+    enterFestival(g);
+    leaveFestival(g);
+    expect(g.day.clock.minutes).toBe(parade.ends);
+    expect(g.day.clock.day).toBe(dayOf("spring", parade.day));
+    expect(g.day.over).toBe(false);
   });
 
   it("is remembered separately each year", () => {

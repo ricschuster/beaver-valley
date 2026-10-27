@@ -1,13 +1,18 @@
 import Phaser from "phaser";
 import { itemById } from "../core/items";
-import { enterFestival, enterProblem, festivalToday } from "../core/festivals";
+import {
+  enterFestival,
+  enterProblem,
+  festivalToday,
+  leaveFestival,
+} from "../core/festivals";
 import type { GameState } from "../core/save";
 import { frame } from "./panel";
 import { STATE_KEY } from "./state";
 
 /**
  * Today's festival, drawn over the farm. As in Stardew, time stands still
- * while the player is here and leaving ends the day. It first asks, since
+ * while the player is here, and leaving puts them back outside at 10 pm. It first asks, since
  * leaving cannot be undone. The prize counter and the festival game are hooks:
  * a festival lists them in its data and they show here once it has any.
  */
@@ -32,7 +37,7 @@ export class FestivalScene extends Phaser.Scene {
       .text(
         480,
         200,
-        `Go to the ${f.name}?\nTime stops while you are there, and when you leave the day ends.`,
+        `Go to the ${f.name}?\nTime stops while you are there, and it is 10 pm when you leave.`,
         { fontSize: "22px", color: "#ffffff", align: "center" },
       )
       .setOrigin(0.5);
@@ -80,9 +85,7 @@ export class FestivalScene extends Phaser.Scene {
       fontSize: "18px",
       color: "#ffe9a0",
     });
-    this.button(480, 440, "Leave (ends the day)", 0xa0482e, () =>
-      this.close(true),
-    );
+    this.button(480, 440, "Leave", 0xa0482e, () => this.close(true));
   }
 
   private button(
@@ -103,9 +106,10 @@ export class FestivalScene extends Phaser.Scene {
     return [box, label];
   }
 
-  /** Close the screen. Leaving a festival you went to ends the day. */
-  private close(endDay: boolean): void {
+  /** Close the screen. Leaving a festival you went to moves the clock on. */
+  private close(left: boolean): void {
+    if (left) leaveFestival(this.state);
     this.scene.stop();
-    this.scene.resume("farm", { sleep: endDay });
+    this.scene.resume("farm");
   }
 }

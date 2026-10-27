@@ -12,6 +12,8 @@ export interface Festival {
   /** Minutes since midnight when the festival opens and closes. */
   opens: number;
   closes: number;
+  /** Time of day when the player is back outside after leaving (10 pm). */
+  ends: number;
   blurb: string;
   /** Prize counter stock (item ids). Empty until a festival has prizes. */
   prizes: string[];
@@ -52,6 +54,15 @@ export function nextFestival(
   return undefined;
 }
 
+/**
+ * Leave the festival. As in Stardew the player is put back where they went in,
+ * and the clock has moved on to the festival's end. The day does not end.
+ */
+export function leaveFestival(g: GameState): void {
+  const f = festivalToday(g.day.clock.day);
+  if (f) g.day.clock.advance(Math.max(f.ends - g.day.clock.minutes, 0));
+}
+
 /** Key for "went to this festival this year", stored in the save. */
 export function joinKey(f: Festival, day: number): string {
   return `${f.id}:${dateOf(day).year}`;
@@ -68,8 +79,7 @@ export function enterProblem(g: GameState): string | undefined {
 
 /**
  * Go to today's festival and remember it for the year. As in Stardew, time
- * stands still while the player is there and leaving ends the day; the screen
- * does that, not this. Returns the festival, or undefined (nothing changed) if
+ * stands still while the player is there; see `leaveFestival`. Returns the festival, or undefined (nothing changed) if
  * the player cannot go.
  */
 export function enterFestival(g: GameState): Festival | undefined {
