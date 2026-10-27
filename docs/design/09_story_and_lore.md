@@ -92,6 +92,10 @@ remains of an old waystation, and finishing the hall bundles restores it.
   never seen directly. The player meets his effects: shadow, a voice, the
   creatures at the edges of the regions. The empty crown shows only at the end,
   if at all. The lore note and any packet text should say this plainly.
+- How he shows (decided 2026-10-27): in small things going wrong, never in
+  scares. Crops grow a little odd, lamps gutter, hats go grey, a voice hums
+  near the road at night. Eerie or funny at most, in line with the tone rules.
+  Ring 2 creatures and visuals follow the same register.
 - Open: his proper name and method. His distinctiveness has to come from those,
   since his aim is generic.
 
@@ -102,6 +106,16 @@ remains of an old waystation, and finishing the hall bundles restores it.
   go on a long adventure in the past.
 - The player and the relative share one family name. The family name is
   Thimblemoss. Open: the relative's first name.
+- Why they left (decided 2026-10-27): ring 2 is a place the relative knew
+  from their adventuring days, and they loved the company of its elves. When
+  they felt it was time to leave the farm, they went there to retire. The
+  player does not learn this at the start. It is answered later, as a gentle
+  push toward ring 2. It is a warm reason, not a danger: the relative is not
+  lost, only far away and happy. Ring 2 is therefore a haven in the lore, not
+  only a frontier (see `03_milestones.md`, M4).
+- Naming: the ring 2 haven is a placeholder idea modelled on an elven refuge.
+  Its name must be our own and not close to any Tolkien place name (ADR 0003).
+  Open: its name.
 - Legacy is a light steer only: a trunk of odd seeds and one note, a plain
   welcome. For example "The soil is good, the neighbours are better, do come and
   meet them." Nothing tells the player what to do.
@@ -123,6 +137,8 @@ bundle of centre 1 is done, and play goes on afterwards.
 - The bridge bundle opens the road: mending the old bridge. This ties to the
   bridge-upgrade gating and is easy to read on the map.
 - Open: what the other bundles give for tools and bridges.
+- Wardens (decided 2026-10-27): the Dawn Carriers reveal themselves when the
+  road opens, as below.
 - First signs of the shadow: a courier breaks cover to warn that the road is
   not as safe as it was, which reveals the wardens as a story beat. After that,
   strange creatures appear at the edges of the new regions as the player
@@ -142,6 +158,12 @@ Not hobbits. An invented small, homely people. Working traits:
   plain cap, a respected host wears something elaborate, and the player's own
   hat grows as they do favours. This ties hats, ledgers, hospitality and
   friendship together.
+- Decided 2026-10-27: hat standing is a light mechanic that rides on the
+  friendship system. A hat is a visible readout of the player's overall
+  standing among the Brimmers, a cosmetic tier. There is no separate favour
+  currency and no ledger screen. Ledgers stay as flavour in dialogue and
+  decoration. This works with the M3 plan of hats shown in a portrait only
+  (`13_m3_scope.md`).
 - Avoid anything specific to hobbits: hairy feet, pipe-weed, second breakfast,
   hillside burrows.
 - They are called Brimmers (from the brim of a hat).
