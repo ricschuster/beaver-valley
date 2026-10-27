@@ -95,7 +95,8 @@ remains of an old waystation, and finishing the hall bundles restores it.
 - How he shows (decided 2026-10-27): in small things going wrong, never in
   scares. Crops grow a little odd, lamps gutter, hats go grey, a voice hums
   near the road at night. Eerie or funny at most, in line with the tone rules.
-  Ring 2 creatures and visuals follow the same register.
+  Ring 2 creatures and visuals follow the same register. None of it appears in
+  ring 1 (see Method below).
 - Name and element (decided 2026-10-27): his name is Surt, from the Norse fire
   giant Surtr, and folk call him "the Smoulderer". Norse myth is old and
   shared, but Tolkien also mined it, so we avoid the Norse dwarf-name list and
@@ -106,7 +107,9 @@ remains of an old waystation, and finishing the hall bundles restores it.
   It is the dark mirror of the Hearthwell hearth.
 - Tone: the game is lighthearted. The dark parts are very minor and stay in the
   background. The empty crown remains his emblem and the Hollow Crown is an
-  old-book title for him. Open: whether the Hollow Crown title stays at all.
+  old-book title for him. The Hollow Crown stays as an old-book name (decided 2026-10-27): folk say
+  "the Smoulderer", while old books and the elves say "the Hollow Crown". Two
+  names also show how the valley folk forgot.
 - Open: his method. His distinctiveness has to come from his method and image,
   since his aim is generic.
 
@@ -127,7 +130,7 @@ remains of an old waystation, and finishing the hall bundles restores it.
   only a frontier (see `03_milestones.md`, M4).
 - Naming: the ring 2 haven is a placeholder idea modelled on an elven refuge.
   Its name must be our own and not close to any Tolkien place name (ADR 0003).
-  Open: its name.
+  Its name is Evenglade (decided 2026-10-27).
 - Legacy is a light steer only: a trunk of odd seeds and one note, a plain
   welcome. For example "The soil is good, the neighbours are better, do come and
   meet them." Nothing tells the player what to do.
@@ -161,13 +164,22 @@ the quiet counter to the shadow's small wrongs.
 - Ring 3 stays behind centre 2, optional and late.
 - The bridge bundle opens the road: mending the old bridge. This ties to the
   bridge-upgrade gating and is easy to read on the map.
-- Open: what the other bundles give for tools and bridges.
+- Bundles (decided 2026-10-27): each bundle unlocks one thing. For example
+  one gives a tool upgrade tier, another mends the bridge to the first ring 2
+  region. Stonekeeper dwarves relate to the bridges and smith dwarves to the
+  tools. Open: the exact mapping of the five bundles to unlocks.
 - Wardens (decided 2026-10-27): the Dawn Carriers reveal themselves when the
   road opens, as below.
 - First signs of the shadow: a courier breaks cover to warn that the road is
   not as safe as it was, which reveals the wardens as a story beat. After that,
   strange creatures appear at the edges of the new regions as the player
   travels.
+- Method (decided 2026-10-27): spark-borne rot, and very gentle. Cinders drift
+  on the wind from the far edge and settle on things: a grey fleck on a hat, a
+  scorch on bread, a crop that ripens too fast and thin. Each is a tiny wrong
+  the player can brush off or fix. Ring 1 has none of it and stays very cozy.
+  At the very most, ring 1 has old stories and whispers with no name. The
+  player's real awareness of Surt begins only when ring 2 opens.
 - Ring 1 is peaceful. The shadow first appears when the road opens. Before that,
   the lore reaches the player through customs and the relative's note, not
   through danger.
@@ -295,9 +307,7 @@ Rule for this game, in the same spirit:
 
 ## Open questions
 
-- The dark lord's method, and whether the Hollow Crown title stays.
-- The name of the ring 2 elven haven (not close to a Tolkien place name).
-- What the bundles give for tools and bridges.
+- The exact mapping of the five bundles to unlocks (#21).
 - How to phase the cast toward the long-term size.
 - Marriage: the open questions in `12_marriage.md`.
 - Which seasons the hat parade and cake day fall in, and the rest of the
