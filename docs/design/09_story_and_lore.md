@@ -128,6 +128,15 @@ remains of an old waystation, and finishing the hall bundles restores it.
 No real ending. A celebration (a village feast and a short scene) when the last
 bundle of centre 1 is done, and play goes on afterwards.
 
+Decided 2026-10-27: the feast is a thank-you scene, then play goes on. The
+village gathers and the hats are worn. It sets up ring 2 and, where it fits,
+hints at the answer about the relative. No credits and no end state.
+
+Restoring The Long Table (decided 2026-10-27) makes the valley visibly warmer.
+Each finished bundle brings a visible change: lit windows, travellers on the
+road, a new stall. The hall's restoration is the progress bar, and it is also
+the quiet counter to the shadow's small wrongs.
+
 ### When rings 2 and 3 open
 
 - Ring 2 opens partway through the bundle chain (for example after bundle 3 of
@@ -182,8 +191,19 @@ the same kind are not alike.
 - A wizard-like figure living in the woods. An absent-minded hermit who forgets
   things and gives odd requests, and who also knew the vanished gardener and is
   the closest thing to an answer about where they went.
+  Role (decided 2026-10-27): mainly a teacher of the old customs. He explains
+  why the Brimmers keep hats and ledgers, so the lore reaches the player in
+  character. Secondarily, odd requests and rare items. Eventually he can give
+  a gentle push toward ring 2 (a letter or a clue he forgot to hand over), but
+  it is light and optional: the game is mostly about play, and no villager
+  pushes the player into a story line.
 - Dwarves in the mountains.
-- Elves.
+- Elves (decided 2026-10-27): kept broad on purpose. An ancient people who like
+  many things and act as stewards of land and creatures. Gardens and seeds are
+  one hook, and the arts are another: music, weaving and decoration, which fit
+  tailoring and furnishing (`10_customisation.md`). Not tied to Tolkien's
+  elves; the traits are our own and get fixed when ring 1 and ring 2 are
+  designed (M4). Elves live in the ring 2 haven.
 - Tall road-folk, stout craftspeople, fey wanderers and odd one-offs also pass
   through the crossroads town.
 - The valley village is mostly the hatted folk.
