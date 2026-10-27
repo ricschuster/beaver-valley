@@ -51,6 +51,7 @@ Marriage:
 - Needs its own design note before building: who can marry (and whom), what a
   spouse does day to day, children or not, and how it fits the favour-ledger
   and hat customs of the Brimmers.
+- See `12_marriage.md` for the working design.
 - Villager data should leave room for it now: a marriage-candidate flag and a
   heart cap that a courtship raises.
 
@@ -221,10 +222,12 @@ Rule for this game, in the same spirit:
 - No villager or animal gets angry, scolds the player or refuses to deal with
   them. No dialogue punishes absence.
 - Animals: neglect lowers the quality of their products, as in Stardew.
-- Villagers: open. Friendship decay is a Stardew feature, but reader 1 listed
-  "people mad at you for skipping a day" as a chore. Options: no decay at all,
-  or a very slow decay that stops at a floor and never drops a heart the player
-  has already earned. Decide when friendship is built (M3).
+- Villagers: no friendship decay at all (decided 2026-10-27). Skipping days
+  never costs a heart. This departs from Stardew Valley on purpose, because
+  reader 1 listed angry people as a chore.
+- Animals: follow Stardew. Unfed, unpetted or out-at-night animals lose
+  friendship and mood, which lowers the quality of their products. Nothing
+  else happens to them.
 - Crops wait without spoiling and animals cope for a few days of absence (see
   the absence rules in `01_system_map.md`).
 
@@ -234,8 +237,7 @@ Rule for this game, in the same spirit:
 - The dark lord's proper name and method.
 - What the bundles give for tools and bridges.
 - How to phase the cast toward the long-term size.
-- Marriage: the design note (see Marriage above).
-- The villager friendship decay rule (see Neglect above).
+- Marriage: the open questions in `12_marriage.md`.
 - Which seasons the hat parade and cake day fall in, and the rest of the
   calendar.
 - The wizard, dwarf and elf groups: how many, and what sets each apart.
