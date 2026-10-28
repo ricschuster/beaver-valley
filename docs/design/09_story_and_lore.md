@@ -245,22 +245,33 @@ the same kind are not alike.
   ring 2 belongs to the Wanderer, not to her (decided 2026-10-27). The
   game is mostly about play, and no villager pushes the player into a story
   line.
-  Obelisks (decided 2026-10-28): she builds obelisks, in the way of the
-  Wizard's Tower in Stardew Valley. The player pays for them with rare items,
-  many of them the ones her odd requests bring in.
+  Fairy rings (decided 2026-10-28; first called obelisks, in the way of the
+  Wizard's Tower in Stardew Valley, then changed so the idea is our own). She
+  teaches the player to grow rings of toadstools on the farm. Each ring
+  carries the player to a matching ring far away. The player pays for them
+  with rare items, many of them the ones her odd requests bring in, and each
+  is built from something local: mountain stone, beach shells, elf-garden
+  moss.
   There are four, set on the farm (decided 2026-10-28): mountain (the
   dwarves' mountains), beach, island (warps to the elf part of ring 2) and one
   for ring 3. The ring 3 one has no destination until ring 3 is designed. The
   Hearth's carts already link farm, hall, town and mines (`16_bundles.md`), so
-  those need no obelisk. A fifth is held open: if ring 2 has another region
-  beyond the elves (#20), it is the natural fifth. Her home is a tower or
-  something like it in the woods; the look is open.
-  Getting back (decided 2026-10-28): obelisks only go out from the farm, as in
-  Stardew Valley. The way home is a consumable warp totem to the farm, and a
-  permanent version that a one-off seller offers, in the way Krobus sells the
-  Return Scepter. Who sells it is open. Candidates: the warden head (couriers
-  and travel), the hermit, or an odd one-off of the road. None of this is needed
-  for the first playable.
+  those need no ring. A fifth is held open: if ring 2 has another region
+  beyond the elves (#20), it is the natural fifth. Her home is in the woods;
+  the look is open.
+  Getting back (decided 2026-10-28): rings only go out from the farm, as
+  Stardew Valley's obelisks do. The way home is a consumable warp totem to
+  the farm, and a permanent version that a one-off seller offers, in the way
+  Krobus sells the Return Scepter.
+  The permanent item (proposed 2026-10-28): a homecoming pin, a brooch or
+  feather that clips onto any hat. It is not a hat, because hats are a
+  feature (hat standing), and changing hats to go home would be awkward. It
+  sits in its own cosmetic slot and is used from the toolbar. It could double
+  as a ledger stamp. Who sells it is open. Candidates: the warden head
+  (couriers and travel), the hermit, or an odd one-off of the road. Other
+  ideas from the same talk, in case the pin is dropped: a hearth lantern, a
+  latchkey, a farm bell, a homing pigeon. None of this is needed for the first
+  playable.
   Manner (decided 2026-10-27): the owner likened her to Radagast, a gentle,
   scatty woodland hermit at home with animals and plants. Shorthand for feel
   only; her name, look and habits must be our own (ADR 0003). The pencil
@@ -464,7 +475,7 @@ Rule for this game, in the same spirit:
   3). The dwarf groups are decided above.
 - The Wanderer's true name, what he gives at each road, and how he differs
   from Tolkien's Gandalf.
-- The hermit witch's name, look and tower, what the obelisks do and cost, and
+- The hermit witch's name, look and tower, what the fairy rings cost and what makes them look different from each other, and
   how she differs from Radagast.
 - The warden head: her name and look, what she asks of the player, how late
   she appears, and whether she should be a woman.
