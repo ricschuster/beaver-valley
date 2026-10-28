@@ -13,6 +13,9 @@ One short paragraph: what this session was about and where things stand.
 - What works, and the current shape of the code / docs.
 - Known limits or simplifications.
 
+- Design overview updated (`docs/overview.json`, then `npm run overview`) for
+  any decision or open question that changed this session.
+
 ## Next actions
 
 1. The most useful thing to pick up next, and why.
