@@ -165,20 +165,21 @@ the quiet counter to the shadow's small wrongs.
 
 ### When rings 2 and 3 open
 
-- Ring 2 opens partway through the bundle chain (for example after bundle 3 of
-  5), so the player can go out while the hall is unfinished. Individual regions
-  are then gated by their own tool or bridge upgrade.
+- Ring 2 opens when the last room of the hall is finished (decided 2026-10-28):
+  that room mends the bridge, with one gate and no second room behind it. It is
+  the hardest and latest thing in ring 1. Individual regions are then gated by
+  their own tool or bridge upgrade. See `16_bundles.md`.
 - Ring 2 regions (decided 2026-10-27): all four kinds are wanted, with about
   two reachable first. An elven woodland haven (where the relative retired), a
   mountain pass (dwarves, ore, mushrooms), a river marsh and a coast or lake.
   Which two come first, and how each is gated, is for the ring 2 design (#20).
 - Ring 3 stays behind centre 2, optional and late.
-- The bridge bundle opens the road: mending the old bridge. This ties to the
-  bridge-upgrade gating and is easy to read on the map.
-- Bundles (decided 2026-10-27): each bundle unlocks one thing. For example
-  one gives a tool upgrade tier, another mends the bridge to the first ring 2
-  region. Stonekeeper dwarves relate to the bridges and smith dwarves to the
-  tools. Open: the exact mapping of the five bundles to unlocks.
+- The last room opens the road by mending the old bridge. This ties to the
+  bridge-upgrade gating and is easy to read on the map. Its last bundle, The
+  Long Road, gives a letter to the elves from Old Greencoat.
+- Bundles (decided 2026-10-27): each bundle unlocks one thing. Stonekeeper
+  dwarves relate to the bridges and smith dwarves to the tools. The mapping to
+  unlocks is now set per room (decided 2026-10-28): see `16_bundles.md`.
 - Wardens (decided 2026-10-27): the Dawn Carriers reveal themselves when the
   road opens, as below.
 - First signs of the shadow: a courier breaks cover to warn that the road is
@@ -189,8 +190,8 @@ the quiet counter to the shadow's small wrongs.
   on the wind from the far edge and settle on things: a grey fleck on a hat, a
   scorch on bread, a crop that ripens too fast and thin. Each is a tiny wrong
   the player can brush off or fix. Ring 1 has none of it and stays very cozy.
-  At the very most, ring 1 has old stories and whispers with no name. The
-  player's real awareness of Surt begins only when ring 2 opens.
+  Ring 1 does not mention him at all, even as a whisper (see the Method note
+  above). The player's real awareness of Surt begins only when ring 2 opens.
 - Ring 1 is peaceful. The shadow first appears when the road opens. Before that,
   the lore reaches the player through customs and the relative's note, not
   through danger.
