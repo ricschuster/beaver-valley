@@ -8,6 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "overview": "node scripts/overview/build.mjs",
+    "overview:refresh": "node scripts/overview/build.mjs --refresh",
     "overview:check": "node scripts/overview/build.mjs --check",
     "test": "vitest run",
     "lint": "eslint .",
