@@ -233,14 +233,14 @@ General fantasy types, written our own way. They can use the plain words
 the same kind are not alike.
 
 - A wizard-like figure living in the woods. An absent-minded hermit who forgets
-  things and gives odd requests, and who also knew the vanished gardener and is
-  the closest thing to an answer about where they went.
+  things and gives odd requests. He does not know Oriel (decided 2026-10-27).
+  The Wanderer, below, is the one who knows the relative.
   Role (decided 2026-10-27): mainly a teacher of the old customs. He explains
   why the Brimmers keep hats and ledgers, so the lore reaches the player in
-  character. Secondarily, odd requests and rare items. Eventually he can give
-  a gentle push toward ring 2 (a letter or a clue he forgot to hand over), but
-  it is light and optional: the game is mostly about play, and no villager
-  pushes the player into a story line.
+  character. Secondarily, odd requests and rare items. The gentle push toward
+  ring 2 now belongs to the Wanderer, not to him (decided 2026-10-27). The
+  game is mostly about play, and no villager pushes the player into a story
+  line.
   Manner (decided 2026-10-27): the owner likened him to Radagast, a gentle,
   scatty woodland hermit at home with animals and plants. Shorthand for feel
   only; his name, look and habits must be our own (ADR 0003).
@@ -259,7 +259,9 @@ the same kind are not alike.
   "The character" is the player character (decided 2026-10-27): he gets to
   know the player over time, more than a trader would. He also knows Oriel
   well (decided 2026-10-27), so he can tell stories about the relative. That
-  gives the player a gentle way to learn who Oriel was.
+  gives the player a gentle way to learn who Oriel was. He is also the one who
+  knows where Oriel went (decided 2026-10-27), so he, not the hermit, can
+  give the light, optional push toward ring 2 when the player is ready.
 - Dwarves in the mountains (decided 2026-10-27): two groups, so there is more
   than one dwarf NPC. Stonekeepers of the road, who built and maintain its
   bridges and stonework (and so tie to the bridge bundle). Smiths and
