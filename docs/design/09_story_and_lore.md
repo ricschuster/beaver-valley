@@ -250,6 +250,13 @@ the same kind are not alike.
   and method, and no staff-and-grey-cloak shorthand. His name, appearance and
   what he does for the player are open. Keep him light too: a guide, not a
   quest giver who pushes the player.
+  Kind (decided 2026-10-27): a storytelling wizard who also carries goods,
+  mostly herbs and seeds. He keeps the old stories alive, which suits the
+  fading from memory to myth (see the dark lord's method), and his seeds tie
+  to the farm. Role (decided 2026-10-27): he opens each road in a small way,
+  and he also helps the player connect with the character. His part grows with
+  the rings: a little in ring 1, more in ring 2 and more again in ring 3.
+  Open: what "the character" means here, the player or the relative Oriel.
 - Dwarves in the mountains (decided 2026-10-27): two groups, so there is more
   than one dwarf NPC. Stonekeepers of the road, who built and maintain its
   bridges and stonework (and so tie to the bridge bundle). Smiths and
@@ -342,8 +349,8 @@ Rule for this game, in the same spirit:
 - Final names for the two placeholder festivals (`14_festival_calendar.md`).
 - The number of elf houses, and what sets each apart (settled with rings 2 and
   3). The dwarf groups are decided above.
-- The wandering wizard's name, look and role between rings, and how he differs
-  from Tolkien's Gandalf.
+- The wandering wizard's name and look, what he gives at each road, and how he
+  differs from Tolkien's Gandalf.
 - The hermit wizard's name and quirks, and how he differs from Radagast.
 - The crossroads town's full building list.
 - The shadow in ring 3 (issue #5, what centre 3 is).
