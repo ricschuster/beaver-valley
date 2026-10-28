@@ -354,14 +354,31 @@ change a role to fit a number. The state so far:
 | The hermit | Female | Changed from a wizard to a witch on 2026-10-28 |
 | The Wanderer (Old Greencoat) | Male | Set, with a look (green coat, beard) |
 | The warden head | Female (for now) | Leader of the couriers, Qi-type, Aragorn-like |
-| Smithy and mender | Open | A stout craftsperson |
-| Elf house heads | Open | Settled with rings 2 and 3 |
-| Dwarf groups | Open | Two groups, so at least two named dwarves |
-| Marriage candidates | Open | See `12_marriage.md` |
 
-Open slots (smithy, inn, healer, library, the dwarves and elf houses) should be
-filled with the balance in mind when they are named. The valley village has no
-named list yet.
+Open slots. The gender column is a suggestion (proposed 2026-10-28), not a
+decision. With these, the named cast is about six women and five men, plus the
+mixed groups.
+
+| Slot | Where | Suggested gender |
+| --- | --- | --- |
+| Smithy and mender (stout craftsperson, tool upgrades) | Hearthwell | Female |
+| Inn and kitchen keeper | Hearthwell | Male |
+| General store and carrier post keeper | Hearthwell | Female |
+| Healer | Hearthwell | Female |
+| Librarian | Hearthwell | Male |
+| Smith dwarf (tools and lamps) | Mountains | Female |
+| Stonekeeper dwarf (bridges and stonework) | Mountains | Male |
+| Elf house heads (the number is not fixed) | Ring 2 | Mixed |
+| Valley Brimmers (the hatted folk) | Valley | Mixed, no list yet |
+| Other couriers (the Dawn Carriers) | The road | Mixed |
+| Marriage candidates | Rings 1 to 3 | Open, see `12_marriage.md` |
+
+Two gaps need an owner decision. The valley village has no named list (#136),
+and it is where most marriage candidates will come from. The number of
+candidates is open, and `12_marriage.md` leaves their pairings to the cast
+writing.
+
+Fill the open slots with the balance in mind when they are named.
 
 ## The crossroads town
 
