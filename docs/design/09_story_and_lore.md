@@ -257,7 +257,9 @@ the same kind are not alike.
   and he also helps the player connect with the character. His part grows with
   the rings: a little in ring 1, more in ring 2 and more again in ring 3.
   "The character" is the player character (decided 2026-10-27): he gets to
-  know the player, so he is a mentor and a friend, not only a trader.
+  know the player over time, more than a trader would. He also knows Oriel
+  well (decided 2026-10-27), so he can tell stories about the relative. That
+  gives the player a gentle way to learn who Oriel was.
 - Dwarves in the mountains (decided 2026-10-27): two groups, so there is more
   than one dwarf NPC. Stonekeepers of the road, who built and maintain its
   bridges and stonework (and so tie to the bridge bundle). Smiths and
