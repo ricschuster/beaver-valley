@@ -295,17 +295,27 @@
       "pos": [740, 190],
       "built": "none",
       "builtNote": "",
-      "summary": "A voice per character, so variant lines do not sound fake.",
+      "summary": "Authored lines in priority tiers, capped branching talks, and a voice sheet per character.",
       "items": [
         {
-          "s": "proposed",
+          "s": "decided",
+          "t": "Authored lines only, no runtime generation",
+          "ref": "18_dialogue.md"
+        },
+        {
+          "s": "decided",
+          "t": "Base pool plus reactive layer, strict priority tiers, capped branching graphs, four release layers",
+          "ref": "18_dialogue.md"
+        },
+        {
+          "s": "decided",
           "t": "A voice sheet per character before any variant lines",
-          "ref": "17_call_feedback_2026-10-28.md#Generated dialogue needs a voice per character"
+          "ref": "18_dialogue.md"
         },
         {
           "s": "open",
-          "t": "Generated at runtime, or authored variants only (leaning: authored)",
-          "ref": "17_call_feedback_2026-10-28.md#Generated dialogue needs a voice per character"
+          "t": "Condition vocabulary, heart thresholds, global flags, journal design",
+          "ref": "18_dialogue.md"
         }
       ],
       "deps": [],
