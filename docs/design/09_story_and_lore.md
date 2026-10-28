@@ -263,17 +263,22 @@ the same kind are not alike.
   Stardew Valley's obelisks do. The way home is a consumable warp totem to
   the farm, and a permanent version that a one-off seller offers, in the way
   Krobus sells the Return Scepter.
-  The permanent item (decided 2026-10-28): a homecoming pin, a brooch or
+  The permanent item (decided 2026-10-28): the Homeward pin, a brooch or
   feather. It is not a hat, because hats are a feature (hat standing), and
   changing hats to go home would be awkward. It is an inventory item that
   takes a slot, like Stardew Valley's Return Scepter, so the player can select
-  it on the toolbar and use it. It could double as a ledger stamp. The name is
-  ours and still open: "pin" is a working name, and the Stardew name must not
-  be used (see `docs/decisions/0002-stardew-valley-inspired.md`). Who sells it
-  is open. Candidates: the warden head (couriers and travel), the hermit, or
-  an odd one-off of the road. Other ideas from the same talk, in case the pin
-  is dropped: a hearth lantern, a latchkey, a farm bell, a homing pigeon.
-  None of this is needed for the first playable.
+  it on the toolbar and use it. It could double as a ledger stamp. The name
+  Homeward pin is chosen. The Stardew name must not be used (see
+  `docs/decisions/0002-stardew-valley-inspired.md`).
+  Seller (decided 2026-10-28): an odd one-off elf, a woman, who is not one of
+  the elf house heads. She sells the pin once the player reaches a friendship
+  level with her, in the way of Krobus's shop. Where she lives is open. The
+  elves live in the ring 2 haven, so she is either there, which puts the pin
+  after ring 2 opens, or a wanderer who is met earlier. Warp totems cover the
+  way home until then. Her name, look and why she is odd are open. Other ideas
+  from the same talk, in case the pin is dropped: a hearth lantern, a
+  latchkey, a farm bell, a homing pigeon. None of this is needed for the first
+  playable.
   Manner (decided 2026-10-27): the owner likened her to Radagast, a gentle,
   scatty woodland hermit at home with animals and plants. Shorthand for feel
   only; her name, look and habits must be our own (ADR 0003). The pencil
@@ -378,7 +383,7 @@ change a role to fit a number. The state so far:
 | The warden head | Female (for now) | Leader of the couriers, Qi-type, Aragorn-like |
 
 Open slots. The gender column is a suggestion (proposed 2026-10-28), not a
-decision. With these, the named cast is about six women and five men, plus the
+decision. With these, the named cast is about seven women and five men, plus the
 mixed groups.
 
 | Slot | Where | Suggested gender |
@@ -391,6 +396,7 @@ mixed groups.
 | Smith dwarf (tools and lamps) | Mountains | Female |
 | Stonekeeper dwarf (bridges and stonework) | Mountains | Male |
 | Elf house heads (the number is not fixed) | Ring 2 | Mixed |
+| Odd one-off elf, sells the Homeward pin | Open, see the hermit's entry | Female (decided) |
 | Valley Brimmers (the hatted folk) | Valley | Mixed, no list yet |
 | Other couriers (the Dawn Carriers) | The road | Mixed |
 | Marriage candidates | Rings 1 to 3 | Open, see `12_marriage.md` |
