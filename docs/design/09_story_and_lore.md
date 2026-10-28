@@ -79,6 +79,10 @@ remains of an old waystation, and finishing the hall bundles restores it.
 - Secret wardens still watch the road. They pass as ordinary carriers and
   couriers, under the name the Dawn Carriers, moving post and parcels between towns. They are cheerful in cover
   and quietly dutiful underneath. They must not read as Tolkien's Rangers.
+- Reveal (decided 2026-10-27): the Dawn Carriers are not mentioned in ring 1.
+  At the start of ring 2 they reveal themselves to the player, and one of them
+  helps the player reach the elves. Before then they are only ordinary
+  couriers.
 
 ### The dark lord
 
@@ -110,8 +114,15 @@ remains of an old waystation, and finishing the hall bundles restores it.
   old-book title for him. The Hollow Crown stays as an old-book name (decided 2026-10-27): folk say
   "the Smoulderer", while old books and the elves say "the Hollow Crown". Two
   names also show how the valley folk forgot.
-- Open: his method. His distinctiveness has to come from his method and image,
-  since his aim is generic.
+- Method (decided 2026-10-27): his power and his story fade together. In the
+  old days he was a known terror. Since then the truth has slipped from memory
+  to story, from story to myth, from myth to a whisper, and in ring 1 to
+  nothing at all. Nobody in the valley remembers him, and the game does not
+  mention him there. His distinctiveness is that he is almost forgotten, and
+  that forgetting is part of how he survives. Only the Dawn Carriers still
+  remember. The owner described him as like Sauron in many ways. That is
+  shorthand for the feel only. Under ADR 0003 his image and method stay our
+  own (see the off limits list above).
 
 ### The relative
 
@@ -225,6 +236,15 @@ the same kind are not alike.
   a gentle push toward ring 2 (a letter or a clue he forgot to hand over), but
   it is light and optional: the game is mostly about play, and no villager
   pushes the player into a story line.
+  Manner (decided 2026-10-27): the owner likened him to Radagast, a gentle,
+  scatty woodland hermit at home with animals and plants. Shorthand for feel
+  only; his name, look and habits must be our own (ADR 0003).
+- A second wizard (decided 2026-10-27): a wandering wizard who acts as a guide
+  between the rings. The owner likened this one to Gandalf. This is the figure
+  most at risk of reading as Tolkien's, so he needs our own name, look, voice
+  and method, and no staff-and-grey-cloak shorthand. His name, appearance and
+  what he does for the player are open. Keep him light too: a guide, not a
+  quest giver who pushes the player.
 - Dwarves in the mountains (decided 2026-10-27): two groups, so there is more
   than one dwarf NPC. Stonekeepers of the road, who built and maintain its
   bridges and stonework (and so tie to the bridge bundle). Smiths and
@@ -236,6 +256,10 @@ the same kind are not alike.
   tailoring and furnishing (`10_customisation.md`). Not tied to Tolkien's
   elves; the traits are our own and get fixed when ring 1 and ring 2 are
   designed (M4). Elves live in the ring 2 haven.
+  One people, several houses (decided 2026-10-27): the elves are one people
+  split into houses, in the way of Tolkien's elves. The number of houses is
+  not fixed. It is settled when rings 2 and 3 are designed. Each house needs
+  its own traits and names, so two houses are not alike.
 - Tall road-folk, stout craftspeople, fey wanderers and odd one-offs also pass
   through the crossroads town.
 - The valley village is mostly the hatted folk.
@@ -311,7 +335,11 @@ Rule for this game, in the same spirit:
 - How to phase the cast toward the long-term size.
 - Marriage: the open questions in `12_marriage.md`.
 - Final names for the two placeholder festivals (`14_festival_calendar.md`).
-- The wizard, dwarf and elf groups: how many, and what sets each apart.
+- The number of elf houses, and what sets each apart (settled with rings 2 and
+  3). The dwarf groups are decided above.
+- The wandering wizard's name, look and role between rings, and how he differs
+  from Tolkien's Gandalf.
+- The hermit wizard's name and quirks, and how he differs from Radagast.
 - The crossroads town's full building list.
 - The shadow in ring 3 (issue #5, what centre 3 is).
 - Whether any of this needs an ADR once settled.
