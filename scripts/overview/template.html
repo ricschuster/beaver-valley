@@ -192,7 +192,7 @@
         <span class="dot" style="background: var(--decided)"></span>decided
         <span class="dot" style="background: var(--proposed)"></span>proposed
         <span class="dot" style="background: var(--open)"></span>open &nbsp; Arrows point from
-        what an area needs to the area that needs it. Bottom edge of a box: built state.
+        what an area needs to the area that needs it. Bottom edge of a box: built state. Star: has an open next-payoff issue.
       </div>
       <svg id="map" viewBox="0 0 960 820" role="img" aria-label="Design areas and dependencies">
         <defs>
@@ -213,7 +213,10 @@
       const NS = "http://www.w3.org/2000/svg";
       const byId = Object.fromEntries(DATA.areas.map((a) => [a.id, a]));
       const count = (a, s) => a.items.filter((i) => i.s === s).length;
-      const needed = {};
+      const issueOf = (n) => DATA.issueInfo[n];
+const openIssues = (a) => a.issueNums.filter((n) => issueOf(n).state === "open");
+const isPayoff = (a) => openIssues(a).some((n) => issueOf(n).labels.includes("next-payoff"));
+const needed = {};
       DATA.areas.forEach((a) => a.deps.forEach((d) => (needed[d] = (needed[d] || 0) + 1)));
       let filter = "all";
       let selected = null;
@@ -236,6 +239,7 @@
         open: ["Has open questions", (a) => count(a, "open") > 0],
         unbuilt: ["Not built", (a) => a.built !== "done"],
         blockers: ["Blocks other areas", (a) => (needed[a.id] || 0) > 0],
+        payoff: ["Next payoff", isPayoff],
       };
 
       function drawBar() {
@@ -317,6 +321,15 @@
           }
           el("text", { class: "sm", x: 10, y: 55 }, g).textContent =
             `${count(a, "decided")} / ${count(a, "proposed")} / ${count(a, "open")}`;
+          const oi = openIssues(a).length;
+          const tot = a.issueNums.length;
+          if (tot) {
+            el("text", { class: "sm", x: W - 10, y: 55, "text-anchor": "end" }, g).textContent =
+              `${oi} open / ${tot} issues`;
+          }
+          if (isPayoff(a)) {
+            el("text", { x: W - 14, y: 22, "text-anchor": "end", fill: "#d9a441" }, g).textContent = "★";
+          }
           const bw = { none: 0, partial: 0.5, done: 1 }[a.built] * W;
           el("rect", { x: 0, y: H - 4, width: W, height: 4, fill: "#e6e0cf" }, g);
           if (bw) el("rect", { x: 0, y: H - 4, width: bw, height: 4, fill: "#2a5d9f" }, g);
@@ -366,6 +379,13 @@
           h("span", { className: "tag", textContent: DATA.groups[a.group] }),
         );
         if (a.builtNote) p.append(h("p", { className: "ref", textContent: a.builtNote }));
+        if (a.issueNums.length) {
+          const wp = a.issueNums.filter((n) => issueOf(n).labels.includes("work-package"));
+          const done = wp.filter((n) => issueOf(n).state === "closed").length;
+          if (wp.length) {
+            p.append(h("p", { className: "ref", textContent: `Work packages: ${done} of ${wp.length} closed.` }));
+          }
+        }
         const link = (id) => {
           const b = h("a", { href: "#", textContent: byId[id].name });
           b.onclick = (e) => {
@@ -382,6 +402,25 @@
           p.append(h("h3", { textContent: label }));
           const ul = h("ul");
           list.forEach((id) => ul.append(h("li", { className: "decided" }, [link(id)])));
+          p.append(ul);
+        }
+        if (a.issueNums.length) {
+          p.append(h("h3", { textContent: `GitHub issues (${openIssues(a).length} open)` }));
+          const ul = h("ul");
+          const sorted = [...a.issueNums].sort(
+            (x, y) => (issueOf(x).state === "open" ? 0 : 1) - (issueOf(y).state === "open" ? 0 : 1),
+          );
+          for (const n of sorted) {
+            const info = issueOf(n);
+            const kids = [
+              h("a", { href: `${REPO}/issues/${n}`, textContent: `#${n}` }),
+              " " + info.t,
+            ];
+            info.labels.forEach((l) => kids.push(h("span", { className: "tag", textContent: l })));
+            const li = h("li", { className: info.state === "open" ? "open" : "decided" }, kids);
+            if (info.state !== "open") li.style.opacity = "0.6";
+            ul.append(li);
+          }
           p.append(ul);
         }
         for (const s of ["open", "proposed", "decided"]) {
@@ -418,7 +457,7 @@
         drawPanel();
       }
       document.getElementById("sub").textContent =
-        `Hand-kept in docs/overview.json. Last updated ${DATA.updated}.`;
+        `Hand-kept in docs/overview.json. Last updated ${DATA.updated}. Issues as of ${DATA.fetched}.`;
       draw();
     </script>
   </body>

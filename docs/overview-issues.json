@@ -1,0 +1,215 @@
+{
+  "fetched": "2026-10-28",
+  "issues": {
+    "5": {
+      "t": "Design: what is the third community project?",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "12": {
+      "t": "Design: define the first playable scope",
+      "state": "closed",
+      "labels": ["enhancement"]
+    },
+    "13": {
+      "t": "Design: audience and size",
+      "state": "closed",
+      "labels": ["design-question", "next-payoff"]
+    },
+    "14": {
+      "t": "Design: the core loop of one day",
+      "state": "closed",
+      "labels": ["design-question", "next-payoff"]
+    },
+    "15": {
+      "t": "Design: identity, what makes this game its own?",
+      "state": "closed",
+      "labels": ["design-question"]
+    },
+    "16": {
+      "t": "Design: the player's story and ending",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "17": {
+      "t": "Design: emphasis between farming, relationships and expeditions",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "18": {
+      "t": "Design: single player or multiplayer",
+      "state": "closed",
+      "labels": ["design-question"]
+    },
+    "19": {
+      "t": "Decision: choose engine and language (ADR)",
+      "state": "closed",
+      "labels": ["enhancement", "next-payoff"]
+    },
+    "20": {
+      "t": "Design: ring 2 shape and travel between rings",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "21": {
+      "t": "Design: bundle format for each centre",
+      "state": "closed",
+      "labels": ["design-question"]
+    },
+    "38": {
+      "t": "Run the performance spike on a real tablet",
+      "state": "closed",
+      "labels": ["enhancement", "next-payoff", "work-package"]
+    },
+    "52": {
+      "t": "WP1: Farm map and player movement",
+      "state": "closed",
+      "labels": ["next-payoff", "work-package"]
+    },
+    "53": {
+      "t": "WP2: Wire GameState and tools into the scene",
+      "state": "closed",
+      "labels": ["work-package"]
+    },
+    "54": {
+      "t": "WP3: Day end, sleep and save/load in the scene",
+      "state": "closed",
+      "labels": ["work-package"]
+    },
+    "55": {
+      "t": "WP4: Shop screen",
+      "state": "closed",
+      "labels": ["work-package"]
+    },
+    "56": {
+      "t": "WP5: Village hall screen",
+      "state": "closed",
+      "labels": ["work-package"]
+    },
+    "57": {
+      "t": "WP6: End screen and first-playable completion",
+      "state": "closed",
+      "labels": ["work-package"]
+    },
+    "58": {
+      "t": "WP7: Placeholder art pass",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "59": {
+      "t": "WP8: Housekeeping: roadmap, status and tuning numbers",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "60": {
+      "t": "WP9: Quality tiers, skill perks and tool upgrades",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "61": {
+      "t": "WP10: Seasonal forage and crop expansion",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "62": {
+      "t": "WP11: ADR for the installed-app wrapper",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "63": {
+      "t": "WP12: Choose and apply the project licence",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "67": {
+      "t": "Design: the home valley map and map style",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "69": {
+      "t": "WP13: Load maps by id with entries and exits",
+      "state": "closed",
+      "labels": ["work-package"]
+    },
+    "130": {
+      "t": "Design: M3 scope note",
+      "state": "closed",
+      "labels": ["design-question", "next-payoff"]
+    },
+    "131": {
+      "t": "Design: festival calendar",
+      "state": "closed",
+      "labels": ["design-question"]
+    },
+    "132": {
+      "t": "WP13: Festival system",
+      "state": "closed",
+      "labels": ["work-package"]
+    },
+    "133": {
+      "t": "WP14: Customisation first slice (furniture and hats)",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "134": {
+      "t": "WP15: First minigame (festival game)",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "135": {
+      "t": "WP16: Neglect and tone rules (villagers and tone only; animals later)",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "136": {
+      "t": "Design: ring 1 cast list",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "137": {
+      "t": "Design: marriage open questions",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "138": {
+      "t": "Design: final game name",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "155": {
+      "t": "Festival marker does nothing before opening time and gives no message",
+      "state": "open",
+      "labels": ["bug"]
+    },
+    "176": {
+      "t": "Design: the sea elf and the Homeward pin",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "177": {
+      "t": "Design: the warden head and her staged reveal",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "178": {
+      "t": "Design: the hermit witch, her name and tower",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "179": {
+      "t": "WP17: Bundle data model: rooms, N-of-M rules, hints and the soft gate",
+      "state": "open",
+      "labels": ["next-payoff", "work-package"]
+    },
+    "180": {
+      "t": "WP18: Hall rooms screen and the first buildable bundles",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "181": {
+      "t": "Design: bundle item pools, Last Seat numbers and pacing",
+      "state": "open",
+      "labels": ["design-question"]
+    }
+  }
+}

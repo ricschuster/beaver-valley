@@ -1,6 +1,6 @@
 {
   "updated": "2026-10-28",
-  "about": "Hand-kept map of the design. Edit this file, then run npm run overview. npm run overview:check fails if a note, heading or area reference is wrong, or if overview.html is stale.",
+  "about": "Hand-kept map of the design. Edit this file, then run npm run overview. Issue titles and states come from docs/overview-issues.json, refreshed with npm run overview:refresh (needs gh). npm run overview:check fails if a note, heading, area or issue reference is wrong, or if overview.html is stale.",
   "groups": {
     "core": "Core loop",
     "world": "World and story",
@@ -34,7 +34,8 @@
           "ref": "07_tuning_numbers.md#Open questions for playtests"
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": [12, 14, 52, 53, 54]
     },
     {
       "id": "seasons-forage",
@@ -56,7 +57,8 @@
           "issue": 61
         }
       ],
-      "deps": ["day-farming"]
+      "deps": ["day-farming"],
+      "issues": [61]
     },
     {
       "id": "skills-tools",
@@ -78,7 +80,8 @@
           "ref": "16_bundles.md#Systems this note depends on"
         }
       ],
-      "deps": ["day-farming"]
+      "deps": ["day-farming"],
+      "issues": [60]
     },
     {
       "id": "hall-bundles",
@@ -128,7 +131,8 @@
         "mines-combat",
         "processing-animals",
         "customisation"
-      ]
+      ],
+      "issues": [21, 55, 56, 57, 179, 180, 181]
     },
     {
       "id": "valley-map",
@@ -156,7 +160,8 @@
           "ref": "09_story_and_lore.md#The crossroads town"
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": [67, 69]
     },
     {
       "id": "story",
@@ -194,7 +199,8 @@
           "issue": 138
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": [15, 16, 17, 138]
     },
     {
       "id": "rings",
@@ -231,7 +237,8 @@
           "issue": 5
         }
       ],
-      "deps": ["hall-bundles", "story"]
+      "deps": ["hall-bundles", "story"],
+      "issues": [5, 20]
     },
     {
       "id": "cast",
@@ -278,7 +285,8 @@
           "issue": 176
         }
       ],
-      "deps": ["valley-map", "dialogue"]
+      "deps": ["valley-map", "dialogue"],
+      "issues": [135, 136, 176, 177, 178]
     },
     {
       "id": "dialogue",
@@ -300,7 +308,8 @@
           "ref": "17_call_feedback_2026-10-28.md#Generated dialogue needs a voice per character"
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": []
     },
     {
       "id": "marriage",
@@ -328,7 +337,8 @@
           "ref": "12_marriage.md#Open"
         }
       ],
-      "deps": ["cast"]
+      "deps": ["cast"],
+      "issues": [137]
     },
     {
       "id": "mines-combat",
@@ -359,7 +369,8 @@
           "t": "The mines design note: size, creatures, penalty when beaten, opening day"
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": []
     },
     {
       "id": "fishing",
@@ -386,7 +397,8 @@
           "t": "Fishing design note"
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": []
     },
     {
       "id": "processing-animals",
@@ -408,7 +420,8 @@
           "issue": 135
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": []
     },
     {
       "id": "puzzles",
@@ -429,7 +442,8 @@
           "t": "Puzzle design note: where they live and what kinds"
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": []
     },
     {
       "id": "customisation",
@@ -452,7 +466,8 @@
           "issue": 133
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": [133]
     },
     {
       "id": "festivals",
@@ -489,7 +504,8 @@
           "ref": "17_call_feedback_2026-10-28.md#Late-game surprises"
         }
       ],
-      "deps": ["cast"]
+      "deps": ["cast"],
+      "issues": [131, 132, 134, 155]
     },
     {
       "id": "art-audio",
@@ -520,7 +536,8 @@
           "issue": 58
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": [58]
     },
     {
       "id": "platform",
@@ -552,7 +569,8 @@
           "ref": "08_playtest_personas.md#Touch persona"
         }
       ],
-      "deps": []
+      "deps": [],
+      "issues": [19, 38, 59, 62, 63]
     }
   ]
 }
