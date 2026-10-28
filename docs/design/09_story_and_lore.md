@@ -256,7 +256,8 @@ the same kind are not alike.
   to the farm. Role (decided 2026-10-27): he opens each road in a small way,
   and he also helps the player connect with the character. His part grows with
   the rings: a little in ring 1, more in ring 2 and more again in ring 3.
-  Open: what "the character" means here, the player or the relative Oriel.
+  "The character" is the player character (decided 2026-10-27): he gets to
+  know the player, so he is a mentor and a friend, not only a trader.
 - Dwarves in the mountains (decided 2026-10-27): two groups, so there is more
   than one dwarf NPC. Stonekeepers of the road, who built and maintain its
   bridges and stonework (and so tie to the bridge bundle). Smiths and
