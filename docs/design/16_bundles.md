@@ -1,6 +1,6 @@
 # 16 Village hall bundles: rooms, rewards and unlocks
 
-Status: proposed 2026-10-28. The structure, unlocks, rules and the Long Table
+Status: proposed 2026-10-28. The structure, unlocks, rules and the Last Seat
 were decided with the owner in conversation. Every item, count and reward below
 is a placeholder to be tuned. Nothing here is built in the game. It answers
 issue #21 (bundle format for centre 1) and extends the five-bundle first
@@ -21,15 +21,18 @@ here are our own.
    and 4.
 2. **Rooms appear by the total number of bundles finished**, not by finishing a
    whole room. Only the Foragers' Shelf is open at the start.
-3. **One gate to ring 2.** Finishing the Long Table room mends the bridge and
+3. **One gate to ring 2.** Finishing the Last Seat mends the bridge and
    opens the road. There is no second room behind it.
-4. **The Long Table room is the last and hardest thing in ring 1.** Its bundles
+4. **The Last Seat is the last and hardest thing in ring 1.** Its bundles
    ask for finished goods from three or four other rooms, so they cannot be
    filled early.
 5. **Each bundle gives a useful item.** Finishing a whole room gives a larger
    unlock. Rewards lean towards machines and tools, seeds and consumables, and
    wearable equipment.
-6. **Rewards are designed in full now and tagged with the system they need.**
+6. **The last room is called The Last Seat** (decided 2026-10-28), to avoid
+   clashing with the hall, which keeps the name The Long Table. The name hints
+   at a place left at the table for someone still to come.
+7. **Rewards are designed in full now and tagged with the system they need.**
    A reward whose system does not exist yet stays a placeholder until that
    system has a design note.
 
@@ -42,7 +45,7 @@ here are our own.
 | Water room | 6 | 1 bundle done |
 | Hearth | 3 | 2 bundles done |
 | Guests' Board | 5 | 3 bundles done |
-| Long Table | 4 | 20 of the other 26 bundles done |
+| The Last Seat | 4 | 20 of the other 26 bundles done |
 
 - Stardew's own thresholds (1, 2, 3 and 4 for its later rooms) come from one
   forum reply and were not checked against the wiki or the game data. Ours
@@ -50,7 +53,7 @@ here are our own.
 - A player may skip up to 6 of the other 26 bundles and still reach the Long
   Table. They will miss the room reward of any room left unfinished.
 - A room reward needs every bundle in that room finished.
-- The Long Table room needs all four of its own bundles for the bridge.
+- The Last Seat needs all four of its own bundles for the bridge.
 - Open: whether to require at least one bundle from every room before the Long
   Table appears. The default is no.
 
@@ -132,7 +135,7 @@ Room reward: a hat standing boost, plus festival extras.
 Storyteller's pool: rare herbs, an old seed packet, a carved bead, a faded
 ribbon, a pressed flower.
 
-### 6. Long Table (last and hardest)
+### 6. The Last Seat (last and hardest)
 
 Room reward: the bridge is mended and the road to ring 2 opens.
 
@@ -203,14 +206,11 @@ current rewards (seeds and money) stay until the systems above exist.
 
 ## Open questions
 
-- **Name clash.** The village hall is called The Long Table
-  (`09_story_and_lore.md`), and this note also uses the Long Table for the
-  last room. One of them needs a different name.
 - Whether a player must finish at least one bundle in every room before the
   last room appears.
 - The opening day of the mines.
 - The pool of items for bundles 3, 4, 6, 11 to 18, 22 to 24 and 26.
-- The Long Table quantities and the bridge cost, once wood, stone and bars
+- The Last Seat quantities and the bridge cost, once wood, stone and bars
   have real production rates.
 - Whether 30 bundles fit the 1.5 year pacing target. This needs a playtest
   once enough of them exist.

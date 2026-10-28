@@ -168,10 +168,10 @@ Source: `16_bundles.md`. All placeholders, ours unless marked.
 
 - 30 bundles in six rooms (6, 6, 6, 3, 5, 4). The counts follow Stardew.
 - Rooms appear by bundles finished: Foragers' Shelf at the start, Larder and
-  Water room after 1, Hearth after 2, Guests' Board after 3, Long Table after
+  Water room after 1, Hearth after 2, Guests' Board after 3, The Last Seat after
   20 of the other 26. Stardew's pattern comes from a forum reply and is
   unchecked.
-- The Long Table asks for 3 of each of four dishes, four gold fish, 10 bars, 5
+- The Last Seat asks for 3 of each of four dishes, four gold fish, 10 bars, 5
   lamps, 5 bolts of cloth, 3 dyes, and for the last bundle 100 wood, 100
   stone, 20 bars, 10 bolts of cloth and 5,000g.
 - The mines open on a fixed day announced by Old Greencoat. The day is not
