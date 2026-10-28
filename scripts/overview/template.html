@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beaver Valley design overview</title>
+    <style>
+      :root {
+        --bg: #faf7f0;
+        --ink: #2b2a26;
+        --muted: #6f6a5e;
+        --decided: #4f8a5b;
+        --proposed: #d9a441;
+        --open: #c4564a;
+        --line: #cfc8b6;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font: 15px/1.45 system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        height: 100vh;
+      }
+      main {
+        overflow: auto;
+        padding: 16px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0 0 4px;
+      }
+      .sub {
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+      .bar {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      button {
+        font: inherit;
+        padding: 4px 10px;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 14px;
+        cursor: pointer;
+      }
+      button[aria-pressed="true"] {
+        background: var(--ink);
+        color: #fff;
+      }
+      .legend {
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+      .dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: 0 4px 0 10px;
+      }
+      svg {
+        width: 100%;
+        max-width: 960px;
+        height: auto;
+      }
+      .node {
+        cursor: pointer;
+      }
+      .node rect.box {
+        fill: #fff;
+        stroke: var(--line);
+        stroke-width: 1.5;
+      }
+      .node.sel rect.box {
+        stroke: var(--ink);
+        stroke-width: 3;
+      }
+      .node.dim {
+        opacity: 0.25;
+      }
+      .node text {
+        font-size: 13px;
+        fill: var(--ink);
+      }
+      .node text.sm {
+        font-size: 11px;
+        fill: var(--muted);
+      }
+      .edge {
+        stroke: #b9b19c;
+        stroke-width: 1.5;
+        fill: none;
+        marker-end: url(#arr);
+      }
+      .edge.dim {
+        opacity: 0.12;
+      }
+      .edge.hot {
+        stroke: var(--ink);
+        stroke-width: 2.5;
+      }
+      aside {
+        border-left: 1px solid var(--line);
+        background: #fff;
+        overflow: auto;
+        padding: 16px;
+      }
+      aside h2 {
+        font-size: 17px;
+        margin: 0 0 4px;
+      }
+      aside h3 {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        margin: 14px 0 4px;
+      }
+      ul {
+        padding-left: 0;
+        list-style: none;
+        margin: 0;
+      }
+      li {
+        margin: 0 0 8px;
+        padding-left: 14px;
+        position: relative;
+      }
+      li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 7px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--c);
+      }
+      li.decided {
+        --c: var(--decided);
+      }
+      li.proposed {
+        --c: var(--proposed);
+      }
+      li.open {
+        --c: var(--open);
+      }
+      .ref {
+        font-size: 12px;
+        color: var(--muted);
+        display: block;
+      }
+      a {
+        color: #2a5d9f;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 12px;
+        padding: 0 8px;
+        border-radius: 10px;
+        background: #eee9db;
+        margin-right: 4px;
+      }
+      @media (max-width: 800px) {
+        body {
+          grid-template-columns: 1fr;
+          height: auto;
+        }
+        aside {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Beaver Valley design overview</h1>
+      <p class="sub" id="sub"></p>
+      <div class="bar" id="bar"></div>
+      <div class="legend">
+        <span class="dot" style="background: var(--decided)"></span>decided
+        <span class="dot" style="background: var(--proposed)"></span>proposed
+        <span class="dot" style="background: var(--open)"></span>open &nbsp; Arrows point from
+        what an area needs to the area that needs it. Bottom edge of a box: built state.
+      </div>
+      <svg id="map" viewBox="0 0 960 820" role="img" aria-label="Design areas and dependencies">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0 0L10 5L0 10z" fill="#b9b19c" />
+          </marker>
+        </defs>
+        <g id="edges"></g>
+        <g id="nodes"></g>
+      </svg>
+    </main>
+    <aside id="panel"></aside>
+    <script>
+      const DATA = /*DATA*/null;
+      const REPO = "https://github.com/ricschuster/beaver-valley";
+      const W = 200;
+      const H = 62;
+      const NS = "http://www.w3.org/2000/svg";
+      const byId = Object.fromEntries(DATA.areas.map((a) => [a.id, a]));
+      const count = (a, s) => a.items.filter((i) => i.s === s).length;
+      const needed = {};
+      DATA.areas.forEach((a) => a.deps.forEach((d) => (needed[d] = (needed[d] || 0) + 1)));
+      let filter = "all";
+      let selected = null;
+
+      const el = (tag, attrs = {}, parent) => {
+        const e = document.createElementNS(NS, tag);
+        for (const k in attrs) e.setAttribute(k, attrs[k]);
+        if (parent) parent.appendChild(e);
+        return e;
+      };
+      const h = (tag, props = {}, kids = []) => {
+        const e = document.createElement(tag);
+        Object.assign(e, props);
+        kids.forEach((k) => e.append(k));
+        return e;
+      };
+
+      const filters = {
+        all: ["All", () => true],
+        open: ["Has open questions", (a) => count(a, "open") > 0],
+        unbuilt: ["Not built", (a) => a.built !== "done"],
+        blockers: ["Blocks other areas", (a) => (needed[a.id] || 0) > 0],
+      };
+
+      function drawBar() {
+        const bar = document.getElementById("bar");
+        bar.replaceChildren();
+        for (const k in filters) {
+          const b = h("button", { textContent: filters[k][0] });
+          b.setAttribute("aria-pressed", String(filter === k));
+          b.onclick = () => {
+            filter = k;
+            draw();
+          };
+          bar.append(b);
+        }
+      }
+
+      function drawMap() {
+        const edges = document.getElementById("edges");
+        const nodes = document.getElementById("nodes");
+        edges.replaceChildren();
+        nodes.replaceChildren();
+        const keep = filters[filter][1];
+        const rel = new Set();
+        if (selected) {
+          rel.add(selected);
+          byId[selected].deps.forEach((d) => rel.add(d));
+          DATA.areas.forEach((a) => a.deps.includes(selected) && rel.add(a.id));
+        }
+        for (const a of DATA.areas) {
+          for (const d of a.deps) {
+            const from = byId[d];
+            const to = a;
+            const x1 = from.pos[0] + W / 2;
+            const y1 = from.pos[1] + H / 2;
+            const x2 = to.pos[0] + W / 2;
+            const y2 = to.pos[1] + H / 2;
+            const dx = x2 - x1;
+            const dy = y2 - y1;
+            const t = Math.min(
+              dx ? (W / 2 + 6) / Math.abs(dx) : Infinity,
+              dy ? (H / 2 + 6) / Math.abs(dy) : Infinity,
+            );
+            const hot = selected && (a.id === selected || d === selected);
+            const dim = (selected && !hot) || !(keep(a) && keep(from));
+            el(
+              "line",
+              {
+                class: "edge" + (hot ? " hot" : "") + (dim ? " dim" : ""),
+                x1: x1 + dx * t,
+                y1: y1 + dy * t,
+                x2: x2 - dx * t,
+                y2: y2 - dy * t,
+              },
+              edges,
+            );
+          }
+        }
+        for (const a of DATA.areas) {
+          const dim = (selected && !rel.has(a.id)) || !keep(a);
+          const g = el(
+            "g",
+            {
+              class: "node" + (selected === a.id ? " sel" : "") + (dim ? " dim" : ""),
+              transform: `translate(${a.pos[0]} ${a.pos[1]})`,
+              tabindex: 0,
+              role: "button",
+              "aria-label": a.name,
+            },
+            nodes,
+          );
+          el("rect", { class: "box", width: W, height: H, rx: 8 }, g);
+          el("text", { x: 10, y: 22 }, g).textContent = a.name.length > 28 ? a.name.slice(0, 27) + "…" : a.name;
+          const total = a.items.length || 1;
+          let x = 10;
+          for (const s of ["decided", "proposed", "open"]) {
+            const w = ((W - 20) * count(a, s)) / total;
+            if (w) el("rect", { x, y: 32, width: w, height: 8, fill: `var(--${s})` }, g);
+            x += w;
+          }
+          el("text", { class: "sm", x: 10, y: 55 }, g).textContent =
+            `${count(a, "decided")} / ${count(a, "proposed")} / ${count(a, "open")}`;
+          const bw = { none: 0, partial: 0.5, done: 1 }[a.built] * W;
+          el("rect", { x: 0, y: H - 4, width: W, height: 4, fill: "#e6e0cf" }, g);
+          if (bw) el("rect", { x: 0, y: H - 4, width: bw, height: 4, fill: "#2a5d9f" }, g);
+          const pick = () => {
+            selected = selected === a.id ? null : a.id;
+            draw();
+          };
+          g.onclick = pick;
+          g.onkeydown = (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), pick());
+        }
+      }
+
+      function drawPanel() {
+        const p = document.getElementById("panel");
+        p.replaceChildren();
+        if (!selected) {
+          p.append(
+            h("h2", { textContent: "Overview" }),
+            h("p", {
+              textContent:
+                "Click an area to see what is decided, proposed and open, with links to the notes and issues. Boxes show decided / proposed / open counts.",
+            }),
+          );
+          const open = DATA.areas
+            .flatMap((a) => a.items.filter((i) => i.s === "open").map((i) => ({ a, i })))
+            .length;
+          p.append(h("p", { textContent: `${open} open questions across ${DATA.areas.length} areas.` }));
+          const rank = [...DATA.areas].sort((x, y) => (needed[y.id] || 0) - (needed[x.id] || 0)).slice(0, 5);
+          p.append(h("h3", { textContent: "Most depended on" }));
+          const ul = h("ul");
+          rank.forEach((a) => {
+            const b = h("a", { href: "#", textContent: a.name });
+            b.onclick = (e) => {
+              e.preventDefault();
+              selected = a.id;
+              draw();
+            };
+            ul.append(h("li", { className: "decided" }, [b, ` (${needed[a.id] || 0})`]));
+          });
+          p.append(ul);
+          return;
+        }
+        const a = byId[selected];
+        p.append(h("h2", { textContent: a.name }), h("p", { textContent: a.summary }));
+        p.append(
+          h("span", { className: "tag", textContent: "Built: " + a.built }),
+          h("span", { className: "tag", textContent: DATA.groups[a.group] }),
+        );
+        if (a.builtNote) p.append(h("p", { className: "ref", textContent: a.builtNote }));
+        const link = (id) => {
+          const b = h("a", { href: "#", textContent: byId[id].name });
+          b.onclick = (e) => {
+            e.preventDefault();
+            selected = id;
+            draw();
+          };
+          return b;
+        };
+        const needs = a.deps;
+        const usedBy = DATA.areas.filter((x) => x.deps.includes(a.id)).map((x) => x.id);
+        for (const [label, list] of [["Needs", needs], ["Needed by", usedBy]]) {
+          if (!list.length) continue;
+          p.append(h("h3", { textContent: label }));
+          const ul = h("ul");
+          list.forEach((id) => ul.append(h("li", { className: "decided" }, [link(id)])));
+          p.append(ul);
+        }
+        for (const s of ["open", "proposed", "decided"]) {
+          const items = a.items.filter((i) => i.s === s);
+          if (!items.length) continue;
+          p.append(h("h3", { textContent: `${s} (${items.length})` }));
+          const ul = h("ul");
+          for (const i of items) {
+            const li = h("li", { className: s }, [i.t]);
+            if (i.ref) {
+              const [file, heading] = i.ref.split("#");
+              const src = h("span", { className: "ref" }, [
+                h("a", { href: "design/" + file, textContent: file }),
+                heading ? " > " + heading : "",
+              ]);
+              li.append(src);
+            }
+            if (i.issue) {
+              li.append(
+                h("span", { className: "ref" }, [
+                  h("a", { href: `${REPO}/issues/${i.issue}`, textContent: "#" + i.issue }),
+                ]),
+              );
+            }
+            ul.append(li);
+          }
+          p.append(ul);
+        }
+      }
+
+      function draw() {
+        drawBar();
+        drawMap();
+        drawPanel();
+      }
+      document.getElementById("sub").textContent =
+        `Hand-kept in docs/overview.json. Last updated ${DATA.updated}.`;
+      draw();
+    </script>
+  </body>
+</html>

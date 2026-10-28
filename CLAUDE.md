@@ -57,6 +57,9 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
 - `npm run typecheck` (gate): TypeScript.
 - `npm test` (gate): Vitest unit tests under `tests/`.
 - `npm run build` (gate): typecheck and production build to `dist/`.
+- `npm run overview` (gate: `overview:check`): rebuild `docs/overview.html`, the
+  clickable design map, from the hand-kept `docs/overview.json`. Update the JSON
+  when a design decision or open question changes. Open the HTML from disk.
 - `npm run check`: all of the gates in order. Run before pushing.
 - `npm run playtest -- <expert|intermediate|casual>`, `npm run playtest:late`:
   scripted playthroughs in a browser. Manual only, not a gate and not in CI.

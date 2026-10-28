@@ -6,3 +6,5 @@ package-lock.json
 .claude
 public/spike/spike-map.json
 public/maps/farm-placeholder.json
+docs/overview.html
+scripts/overview/template.html
