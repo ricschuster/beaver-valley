@@ -83,3 +83,8 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
 - Significant technical or design decisions get an ADR in `docs/decisions/`.
 - Design notes live in `docs/design/`; session handoffs in `docs/handoffs/`.
 - Keep changes small and focused; update docs when behaviour or design changes.
+- Design before build. Settle a system's design in a note before building it,
+  and do not propose small pilots to avoid the design work. The owner wants the
+  big picture first, so features do not feel bolted on
+  (`docs/design/17_call_feedback_2026-10-28.md`). Start new sessions by asking
+  what to design, not by offering to build.
