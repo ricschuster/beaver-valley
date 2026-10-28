@@ -82,7 +82,9 @@ remains of an old waystation, and finishing the hall bundles restores it.
 - Reveal (decided 2026-10-27): the Dawn Carriers are not mentioned in ring 1.
   At the start of ring 2 they reveal themselves to the player, and one of them
   helps the player reach the elves. Before then they are only ordinary
-  couriers.
+  couriers. Changed 2026-10-28 for their leader only: she appears early and is
+  revealed bit by bit (see the warden head under Other peoples). The group
+  stays unnamed and unexplained in ring 1.
 
 ### The dark lord
 
@@ -233,19 +235,31 @@ General fantasy types, written our own way. They can use the plain words
 (wizard, dwarf, elf), with our own traits for each group so that two groups of
 the same kind are not alike.
 
-- A wizard-like figure living in the woods. An absent-minded hermit who forgets
-  things and gives odd requests. He does not know Oriel (decided 2026-10-27).
+- The hermit is a witch (decided 2026-10-28; she was a wizard before). A
+  witch-like figure living in the woods. An absent-minded hermit who forgets
+  things and gives odd requests. She does not know Oriel (decided 2026-10-27).
   The Wanderer, below, is the one who knows the relative.
-  Role (decided 2026-10-27): mainly a teacher of the old customs. He explains
+  Role (decided 2026-10-27): mainly a teacher of the old customs. She explains
   why the Brimmers keep hats and ledgers, so the lore reaches the player in
   character. Secondarily, odd requests and rare items. The gentle push toward
-  ring 2 now belongs to the Wanderer, not to him (decided 2026-10-27). The
+  ring 2 belongs to the Wanderer, not to her (decided 2026-10-27). The
   game is mostly about play, and no villager pushes the player into a story
   line.
-  Manner (decided 2026-10-27): the owner likened him to Radagast, a gentle,
+  Obelisks (decided 2026-10-28): she builds obelisks, in the way of the
+  Wizard's Tower in Stardew Valley. The player pays for them with rare items,
+  many of them the ones her odd requests bring in. The obelisk design is open:
+  what it does must differ from the Hearth's carts and the ferry
+  (`16_bundles.md`), for example by reaching places the carts do not, such as
+  the farm or ring 2 spots. Her home is a tower or something like it in the
+  woods; the look is open.
+  Manner (decided 2026-10-27): the owner likened her to Radagast, a gentle,
   scatty woodland hermit at home with animals and plants. Shorthand for feel
-  only; his name, look and habits must be our own (ADR 0003).
-- A second wizard (decided 2026-10-27): a wandering wizard who acts as a guide
+  only; her name, look and habits must be our own (ADR 0003). The pencil
+  drawing of a witch in `15_character_art.md` is the starting look.
+- The Wanderer (decided 2026-10-27; the earlier text called him "a second
+  wizard"). The Wanderer and Old Greencoat are one character: the notes say
+  "the Wanderer", and valley folk say "Old Greencoat" (see Name and look
+  below). He is a wandering wizard who acts as a guide
   between the rings. The owner likened this one to Gandalf. This is the figure
   most at risk of reading as Tolkien's, so he needs our own name, look, voice
   and method, and no staff-and-grey-cloak shorthand. His name, appearance and
@@ -271,8 +285,23 @@ the same kind are not alike.
   are needed, since little of this shows in game. Keep his names tied to what
   he did for each people, not a puzzle of names to collect, so he does not
   read as Tolkien's Gandalf (ADR 0003).
-- The hermit's quirk (decided 2026-10-27): he talks to the animals and mixes
+- The hermit's quirk (decided 2026-10-27): she talks to the animals and mixes
   them up.
+- The warden head, a Qi-type figure (decided 2026-10-28): the leader of the
+  couriers, who are the secret wardens (see The crossroads town). She is a
+  third person, not the Wanderer, whose part is a light guide. The owner wants
+  one character with a long story arc who gives optional challenges, in the way
+  of Qi in Stardew Valley, and likened her to Aragorn. Aragorn is shorthand for
+  feel only: a quiet leader who has walked the road a long time and carries
+  more than she shows. Her name, look, voice and method must be our own (ADR
+  0003), so no ranger's cloak, no hidden crown and no sword-reforged plot. This
+  keeps to the rule that the wardens must not read as Tolkien's Rangers. She
+  appears early and is revealed over time (decided 2026-10-28), as Qi is in
+  Stardew Valley: mysterious first, then a little more each stage. Everything
+  she offers is optional. Her arc is the long one: the wardens, the Dawn
+  Carriers and what is left of the dark lord's story. Her name, look and what
+  she asks are open. Her gender is not fixed. She is written as a woman for now, to
+  match the cast balance below, and the owner can change it.
 - Dwarves in the mountains (decided 2026-10-27): two groups, so there is more
   than one dwarf NPC. Stonekeepers of the road, who built and maintain its
   bridges and stonework (and so tie to the bridge bundle). Smiths and
@@ -291,6 +320,48 @@ the same kind are not alike.
 - Tall road-folk, stout craftspeople, fey wanderers and odd one-offs also pass
   through the crossroads town.
 - The valley village is mostly the hatted folk.
+
+### The warden head's reveal (proposed 2026-10-28)
+
+Stages, each optional and each only adding to what the player knows. The
+timings are placeholders, to be tuned against the seasons we have.
+
+1. Ring 1, first year: a courier at the carrier post in Hearthwell who is a
+   little too watchful. She says little and gives no name. Her only offer is
+   a small, odd errand now and then. Nothing marks her as a warden.
+2. Ring 1, later: a mystery-note thread. Short notes arrive in the farm
+   mailbox, signed with a mark and not a name, with small gifts or odd asks
+   (a favour for the road, a lost parcel). Following them leads back to her.
+   She gives a name that is plainly an alias. No mention of the Dawn Carriers
+   yet, and no dark lord (ring 1 has no whispers of him).
+3. Start of ring 2: the Dawn Carriers reveal themselves, and she is shown to
+   be their head. Her real name is given and the aliases make sense. Her
+   optional challenges open here.
+4. Ring 2 onward: her past and her tie to the old story, a little at a time.
+5. Ring 3: the long arc closes, in step with the ending.
+
+Tone: no scares and no pressure. A note unread or an errand skipped costs
+nothing and she never mentions it (see Neglect).
+
+## Cast balance
+
+The owner wants more women in the cast (2026-10-28). Rule of thumb for new
+named characters: lean female until the cast is roughly even, and do not
+change a role to fit a number. The state so far:
+
+| Character | Gender | Note |
+| --- | --- | --- |
+| The hermit | Female | Changed from a wizard to a witch on 2026-10-28 |
+| The Wanderer (Old Greencoat) | Male | Set, with a look (green coat, beard) |
+| The warden head | Female (for now) | Leader of the couriers, Qi-type, Aragorn-like |
+| Smithy and mender | Open | A stout craftsperson |
+| Elf house heads | Open | Settled with rings 2 and 3 |
+| Dwarf groups | Open | Two groups, so at least two named dwarves |
+| Marriage candidates | Open | See `12_marriage.md` |
+
+Open slots (smithy, inn, healer, library, the dwarves and elf houses) should be
+filled with the balance in mind when they are named. The valley village has no
+named list yet.
 
 ## The crossroads town
 
@@ -365,9 +436,13 @@ Rule for this game, in the same spirit:
 - Final names for the two placeholder festivals (`14_festival_calendar.md`).
 - The number of elf houses, and what sets each apart (settled with rings 2 and
   3). The dwarf groups are decided above.
-- The wandering wizard's name and look, what he gives at each road, and how he
-  differs from Tolkien's Gandalf.
-- The hermit wizard's name and quirks, and how he differs from Radagast.
+- The Wanderer's true name, what he gives at each road, and how he differs
+  from Tolkien's Gandalf.
+- The hermit witch's name, look and tower, what the obelisks do and cost, and
+  how she differs from Radagast.
+- The warden head: her name and look, what she asks of the player, how late
+  she appears, and whether she should be a woman.
+- Who fills the open named slots in the cast balance table.
 - The crossroads town's full building list.
 - The shadow in ring 3 (issue #5, what centre 3 is).
 - Whether any of this needs an ADR once settled.
