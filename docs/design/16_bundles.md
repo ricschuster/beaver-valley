@@ -39,7 +39,7 @@ here are our own.
 ## Room appearance (the soft gate)
 
 | Room | Bundles | Appears after |
-|---|---|---|
+| --- | --- | --- |
 | Foragers' Shelf | 6 | Open at the start |
 | Larder | 6 | 1 bundle done |
 | Water room | 6 | 1 bundle done |
@@ -69,7 +69,7 @@ today.
 Room reward: Old Greencoat sets up a herb and seed stall at the hall.
 
 | # | Bundle | Rule | Reward | Needs |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 1 | Spring Foraging | 4 of 6 | 15 parsnip seeds | Exists |
 | 2 | Summer Foraging | 3 of 4 | 15 radish seeds | Exists |
 | 3 | Autumn Foraging | 4 of 6 | 15 autumn seeds | Autumn forage and crop |
@@ -82,7 +82,7 @@ Room reward: Old Greencoat sets up a herb and seed stall at the hall.
 Room reward: the greenhouse.
 
 | # | Bundle | Rule | Reward | Needs |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 7 | Spring Crops | 4 of 6 | 20 fast-grow fertiliser | Exists (crops), fertiliser |
 | 8 | Summer Crops | 4 of 6 | 20 quality fertiliser | Exists (crops), fertiliser |
 | 9 | Autumn Crops | 4 of 6 | Bee house | Autumn crops, bee house |
@@ -100,7 +100,7 @@ replaces Stardew's panning, which the owner dislikes. Ring 1 also has a coast
 (decided 2026-10-28), which the Sea Fish bundle uses.
 
 | # | Bundle | Rule | Reward | Needs |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 13 | Stream Fish | 3 of 5 | 30 bait | Fishing |
 | 14 | Lake Fish | 3 of 4 | Lure | Fishing, lake cove |
 | 15 | Sea Fish | 4 of 6 | 5 warp charms | Fishing, a coast, travel |
@@ -113,7 +113,7 @@ replaces Stardew's panning, which the owner dislikes. Ring 1 also has a coast
 Room reward: carts between the farm, the hall, the town and the mines.
 
 | # | Bundle | Rule | Reward | Needs |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 19 | Smith's | All: 5 copper bars, 5 iron bars, 3 gold bars | Furnace | Smelting, ore from the mines |
 | 20 | Lamplighter's | 2 of 3: 3 lamps, 10 oil, 20 torches | Torches for the mines | Light, crafting |
 | 21 | Weaver's | Both: 10 cloth, 5 thread | Loom | Cloth, tailoring |
@@ -125,7 +125,7 @@ The mines are not unlocked by the Hearth (see "The mines" below).
 Room reward: a hat standing boost, plus festival extras.
 
 | # | Bundle | Rule | Reward | Needs |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 22 | Cook's | 3 of 5 dishes | 3 feast dishes | Cooking |
 | 23 | Dyer's | 4 of 6 dyes | Dye vat | Dyes, tailoring |
 | 24 | Host's | 3 of 4: bread, cake, tea, a festival treat | Set of festival hats | Cooking, hats, festivals |
@@ -140,7 +140,7 @@ ribbon, a pressed flower.
 Room reward: the bridge is mended and the road to ring 2 opens.
 
 | # | Bundle | Asks for | Reward | Needs |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 27 | Harvest Feast | All 4: a cooked meal, a preserve, a cheese, a honey. 3 of each. | Duplicator | Cooking, preserves, animals, bee house |
 | 28 | The Catch | All 4: a stream, lake, sea and night fish, each gold quality | Magnet ring | Fishing, fish quality, equipment slot, mines |
 | 29 | The Hearth Fire | All 4: 10 bars, 5 lamps, 5 bolts of cloth, 3 dyes | Large chest or storage shed | Smelting, light, cloth, dyes |
