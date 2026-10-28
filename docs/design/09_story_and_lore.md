@@ -247,11 +247,20 @@ the same kind are not alike.
   line.
   Obelisks (decided 2026-10-28): she builds obelisks, in the way of the
   Wizard's Tower in Stardew Valley. The player pays for them with rare items,
-  many of them the ones her odd requests bring in. The obelisk design is open:
-  what it does must differ from the Hearth's carts and the ferry
-  (`16_bundles.md`), for example by reaching places the carts do not, such as
-  the farm or ring 2 spots. Her home is a tower or something like it in the
-  woods; the look is open.
+  many of them the ones her odd requests bring in.
+  There are four, set on the farm (decided 2026-10-28): mountain (the
+  dwarves' mountains), beach, island (warps to the elf part of ring 2) and one
+  for ring 3. The ring 3 one has no destination until ring 3 is designed. The
+  Hearth's carts already link farm, hall, town and mines (`16_bundles.md`), so
+  those need no obelisk. A fifth is held open: if ring 2 has another region
+  beyond the elves (#20), it is the natural fifth. Her home is a tower or
+  something like it in the woods; the look is open.
+  Getting back (decided 2026-10-28): obelisks only go out from the farm, as in
+  Stardew Valley. The way home is a consumable warp totem to the farm, and a
+  permanent version that a one-off seller offers, in the way Krobus sells the
+  Return Scepter. Who sells it is open. Candidates: the warden head (couriers
+  and travel), the hermit, or an odd one-off of the road. None of this is needed
+  for the first playable.
   Manner (decided 2026-10-27): the owner likened her to Radagast, a gentle,
   scatty woodland hermit at home with animals and plants. Shorthand for feel
   only; her name, look and habits must be our own (ADR 0003). The pencil
