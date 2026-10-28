@@ -1,8 +1,9 @@
 # Asset licences
 
-Every picture in the game is drawn in code at start up, in
+Almost every picture in the game is drawn in code at start up, in
 `src/scenes/art.ts`. It is original work for this project and covered by the
-project licence in `LICENSE`. There are no image files.
+project licence in `LICENSE`. The one exception is the hand-drawn witch test
+(see the table).
 
 | Asset                                      | Source                  | Licence         |
 | ------------------------------------------ | ----------------------- | --------------- |
@@ -12,6 +13,7 @@ project licence in `LICENSE`. There are no image files.
 | Forage pictures                            | `src/scenes/art.ts`     | Project licence |
 | Tool icons                                 | `src/scenes/art.ts`     | Project licence |
 | UI frames and buttons                      | Plain shapes in scenes  | Project licence |
+| Witch drawing (test only, not used in game yet) | Hand drawn by the project owner: `art-source/witch-drawing.jpg`, cut out to `public/art/witch-portrait.png` | Project licence |
 | Fonts                                      | The browser's monospace | Not shipped     |
 | Audio                                      | None                    | None            |
 
