@@ -272,13 +272,19 @@ the same kind are not alike.
   `docs/decisions/0002-stardew-valley-inspired.md`).
   Seller (decided 2026-10-28): an odd one-off elf, a woman, who is not one of
   the elf house heads. She sells the pin once the player reaches a friendship
-  level with her, in the way of Krobus's shop. Where she lives is open. The
-  elves live in the ring 2 haven, so she is either there, which puts the pin
-  after ring 2 opens, or a wanderer who is met earlier. Warp totems cover the
-  way home until then. Her name, look and why she is odd are open. Other ideas
-  from the same talk, in case the pin is dropped: a hearth lantern, a
-  latchkey, a farm bell, a homing pigeon. None of this is needed for the first
-  playable.
+  level with her, in the way of Krobus's shop. She lives by the sea in ring 1,
+  so she is the first elf the player meets and the pin is available in ring 1.
+  The owner likened her harbour to the one in the west in The Lord of the
+  Rings. That is shorthand for feel only: the harbour, the ship and her look
+  must be our own (ADR 0003). Backstory so far: she was on her way to leave by
+  ship, and found she could not leave yet. That is why she stayed at the beach,
+  or close to it, for now. The owner will develop the rest. Open: why she
+  could not go, where the ship would have taken her, whether she knew Oriel,
+  and where exactly she lives. Ring 1 has no whispers of the dark lord, so
+  her reason cannot rest on him. Her name, look and why she is odd are open.
+  Other ideas for the return item, in case the pin is dropped: a hearth
+  lantern, a latchkey, a farm bell, a homing pigeon. None of this is needed
+  for the first playable.
   Manner (decided 2026-10-27): the owner likened her to Radagast, a gentle,
   scatty woodland hermit at home with animals and plants. Shorthand for feel
   only; her name, look and habits must be our own (ADR 0003). The pencil
@@ -396,7 +402,7 @@ mixed groups.
 | Smith dwarf (tools and lamps) | Mountains | Female |
 | Stonekeeper dwarf (bridges and stonework) | Mountains | Male |
 | Elf house heads (the number is not fixed) | Ring 2 | Mixed |
-| Odd one-off elf, sells the Homeward pin | Open, see the hermit's entry | Female (decided) |
+| Odd one-off elf, sells the Homeward pin | The beach, ring 1 | Female (decided) |
 | Valley Brimmers (the hatted folk) | Valley | Mixed, no list yet |
 | Other couriers (the Dawn Carriers) | The road | Mixed |
 | Marriage candidates | Rings 1 to 3 | Open, see `12_marriage.md` |
