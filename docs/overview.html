@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Beaver Valley design overview</title>
+    <style>
+      :root {
+        --bg: #faf7f0;
+        --ink: #2b2a26;
+        --muted: #6f6a5e;
+        --decided: #4f8a5b;
+        --proposed: #d9a441;
+        --open: #c4564a;
+        --line: #cfc8b6;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font: 15px/1.45 system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        height: 100vh;
+      }
+      main {
+        overflow: auto;
+        padding: 16px;
+      }
+      h1 {
+        font-size: 20px;
+        margin: 0 0 4px;
+      }
+      .sub {
+        color: var(--muted);
+        margin: 0 0 12px;
+      }
+      .bar {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      button {
+        font: inherit;
+        padding: 4px 10px;
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 14px;
+        cursor: pointer;
+      }
+      button[aria-pressed="true"] {
+        background: var(--ink);
+        color: #fff;
+      }
+      .legend {
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+      .dot {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin: 0 4px 0 10px;
+      }
+      svg {
+        width: 100%;
+        max-width: 960px;
+        height: auto;
+      }
+      .node {
+        cursor: pointer;
+      }
+      .node rect.box {
+        fill: #fff;
+        stroke: var(--line);
+        stroke-width: 1.5;
+      }
+      .node.sel rect.box {
+        stroke: var(--ink);
+        stroke-width: 3;
+      }
+      .node.dim {
+        opacity: 0.25;
+      }
+      .node text {
+        font-size: 13px;
+        fill: var(--ink);
+      }
+      .node text.sm {
+        font-size: 11px;
+        fill: var(--muted);
+      }
+      .edge {
+        stroke: #b9b19c;
+        stroke-width: 1.5;
+        fill: none;
+        marker-end: url(#arr);
+      }
+      .edge.dim {
+        opacity: 0.12;
+      }
+      .edge.hot {
+        stroke: var(--ink);
+        stroke-width: 2.5;
+      }
+      aside {
+        border-left: 1px solid var(--line);
+        background: #fff;
+        overflow: auto;
+        padding: 16px;
+      }
+      aside h2 {
+        font-size: 17px;
+        margin: 0 0 4px;
+      }
+      aside h3 {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+        margin: 14px 0 4px;
+      }
+      ul {
+        padding-left: 0;
+        list-style: none;
+        margin: 0;
+      }
+      li {
+        margin: 0 0 8px;
+        padding-left: 14px;
+        position: relative;
+      }
+      li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 7px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--c);
+      }
+      li.decided {
+        --c: var(--decided);
+      }
+      li.proposed {
+        --c: var(--proposed);
+      }
+      li.open {
+        --c: var(--open);
+      }
+      .ref {
+        font-size: 12px;
+        color: var(--muted);
+        display: block;
+      }
+      a {
+        color: #2a5d9f;
+      }
+      .tag {
+        display: inline-block;
+        font-size: 12px;
+        padding: 0 8px;
+        border-radius: 10px;
+        background: #eee9db;
+        margin-right: 4px;
+      }
+      @media (max-width: 800px) {
+        body {
+          grid-template-columns: 1fr;
+          height: auto;
+        }
+        aside {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Beaver Valley design overview</h1>
+      <p class="sub" id="sub"></p>
+      <div class="bar" id="bar"></div>
+      <div class="legend">
+        <span class="dot" style="background: var(--decided)"></span>decided
+        <span class="dot" style="background: var(--proposed)"></span>proposed
+        <span class="dot" style="background: var(--open)"></span>open &nbsp; Arrows point from
+        what an area needs to the area that needs it. Bottom edge of a box: built state.
+      </div>
+      <svg id="map" viewBox="0 0 960 820" role="img" aria-label="Design areas and dependencies">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0 0L10 5L0 10z" fill="#b9b19c" />
+          </marker>
+        </defs>
+        <g id="edges"></g>
+        <g id="nodes"></g>
+      </svg>
+    </main>
+    <aside id="panel"></aside>
+    <script>
+      const DATA = {"updated":"2026-10-28","about":"Hand-kept map of the design. Edit this file, then run npm run overview. npm run overview:check fails if a note, heading or area reference is wrong, or if overview.html is stale.","groups":{"core":"Core loop","world":"World and story","people":"People","systems":"Later systems","craft":"Art, sound, platform"},"areas":[{"id":"day-farming","name":"Farming and the day","group":"core","pos":[20,190],"built":"done","builtNote":"Farming, energy, clock, sleep and save work in the browser.","summary":"Plant, tend, harvest and sell inside a day with an energy budget and a clock.","items":[{"s":"decided","t":"Energy plus a running clock; passing out is a small cost, never a lose state","ref":"01_system_map.md#Day cycle"},{"s":"decided","t":"Numbers are placeholders listed in one note","ref":"07_tuning_numbers.md#Day and energy"},{"s":"open","t":"Tuning needs more playtests","ref":"07_tuning_numbers.md#Open questions for playtests"}],"deps":[]},{"id":"seasons-forage","name":"Seasons, weather, foraging","group":"core","pos":[20,320],"built":"partial","builtNote":"Two seasons, forecast, spring and summer forage and crops. Autumn and winter not built (#61).","summary":"What grows and what can be found changes with the season.","items":[{"s":"decided","t":"First playable has two seasons","ref":"03_milestones.md#First playable scope"},{"s":"open","t":"Autumn and winter crops and forage","issue":61}],"deps":["day-farming"]},{"id":"skills-tools","name":"Skills, tools and quality","group":"core","pos":[20,60],"built":"done","builtNote":"Skills, professions, tool upgrades, quality tiers and eating are built (#60).","summary":"Progression inside the farm loop.","items":[{"s":"decided","t":"Tool upgrades, skill perks and quality tiers","ref":"07_tuning_numbers.md#Tool upgrades and energy"},{"s":"open","t":"A minimum-quality rule on a bundle item is not designed","ref":"16_bundles.md#Systems this note depends on"}],"deps":["day-farming"]},{"id":"hall-bundles","name":"Village hall and bundles","group":"core","pos":[260,330],"built":"partial","builtNote":"Five first-slice bundles work. The 30-bundle design is not built (#179, #180).","summary":"Six rooms, 30 bundles, ending at The Last Seat, the one gate to ring 2.","items":[{"s":"decided","t":"Six rooms, 30 bundles, rooms appear by total bundles done","ref":"16_bundles.md#Decisions"},{"s":"decided","t":"The Last Seat is the single gate to ring 2","ref":"16_bundles.md#Decisions"},{"s":"proposed","t":"Every item, count and reward is a placeholder","ref":"16_bundles.md#Rooms and bundles"},{"s":"open","t":"Item pools, Last Seat numbers and pacing","issue":181},{"s":"open","t":"Does the Last Seat need a bundle from every room?","ref":"16_bundles.md#Open questions","issue":181},{"s":"open","t":"Bundle data model (the next-payoff item)","issue":179}],"deps":["day-farming","seasons-forage","fishing","mines-combat","processing-animals","customisation"]},{"id":"valley-map","name":"Valley and town map","group":"world","pos":[260,60],"built":"partial","builtNote":"A placeholder farm map and map loader exist. No valley or Hearthwell layout.","summary":"Separate areas joined by exits, buildings as interiors. The layout is open.","items":[{"s":"decided","t":"Map style: separate areas, exits, interiors (ADR 0005)","ref":"06_map_style.md#Decisions"},{"s":"open","t":"Valley layout: areas, and where farm, village, shop and hall sit","ref":"06_map_style.md#Still open","issue":67},{"s":"open","t":"Hearthwell building list and size","ref":"09_story_and_lore.md#The crossroads town"}],"deps":[]},{"id":"story","name":"Story, lore and ending","group":"world","pos":[500,60],"built":"none","builtNote":"","summary":"A cozy valley, a missing relative, the Dawn Carriers and a dark lord who is never seen in ring 1.","items":[{"s":"decided","t":"Ring 1 has no whispers of the dark lord","ref":"09_story_and_lore.md#The dark lord"},{"s":"decided","t":"No lose state; tone rules","ref":"09_story_and_lore.md#Tone rules"},{"s":"proposed","t":"The warden head's five-stage reveal","ref":"09_story_and_lore.md#The warden head's reveal","issue":177},{"s":"open","t":"The player's story and ending","issue":16},{"s":"open","t":"Final game name","issue":138}],"deps":[]},{"id":"rings","name":"Rings, travel, expeditions","group":"world","pos":[500,330],"built":"none","builtNote":"","summary":"Ring 1 is the home valley and Hearthwell. Ring 2 is a haven; ring 3 is late and optional.","items":[{"s":"decided","t":"Ring 2 opens when The Last Seat is finished","ref":"09_story_and_lore.md#When rings 2 and 3 open"},{"s":"decided","t":"Fairy rings carry the player out from the farm; no second farm","ref":"17_call_feedback_2026-10-28.md#Travel and the second farm"},{"s":"open","t":"Home base: come home each night, or outposts","ref":"01_system_map.md#Spatial structure"},{"s":"open","t":"Ring 2 shape and travel","issue":20},{"s":"open","t":"What is community centre 3?","issue":5}],"deps":["hall-bundles","story"]},{"id":"cast","name":"Cast and villagers","group":"people","pos":[740,330],"built":"none","builtNote":"No villager data exists yet.","summary":"About 30 named villagers in ring 1. Almost none are named.","items":[{"s":"decided","t":"Ring 1 cast near Stardew's size; every villager has a saved friendship","ref":"09_story_and_lore.md#Emphasis"},{"s":"decided","t":"Hermit is a witch; Old Greencoat is the Wanderer; sea elf sells the pin","ref":"09_story_and_lore.md#Cast balance"},{"s":"proposed","t":"Suggested gender for each open slot","ref":"09_story_and_lore.md#Cast balance"},{"s":"open","t":"Ring 1 cast list: smithy, inn, store, healer, library, valley village","issue":136},{"s":"open","t":"The hermit's name and tower","issue":178},{"s":"open","t":"The warden head","issue":177},{"s":"open","t":"The sea elf and the Homeward pin price","issue":176}],"deps":["valley-map","dialogue"]},{"id":"dialogue","name":"Dialogue and voice","group":"people","pos":[740,190],"built":"none","builtNote":"","summary":"A voice per character, so variant lines do not sound fake.","items":[{"s":"proposed","t":"A voice sheet per character before any variant lines","ref":"17_call_feedback_2026-10-28.md#Generated dialogue needs a voice per character"},{"s":"open","t":"Generated at runtime, or authored variants only (leaning: authored)","ref":"17_call_feedback_2026-10-28.md#Generated dialogue needs a voice per character"}],"deps":[]},{"id":"marriage","name":"Friendship and marriage","group":"people","pos":[740,520],"built":"none","builtNote":"","summary":"Friendship rides on the cast; marriage follows Stardew's shape in our own content.","items":[{"s":"decided","t":"Hat standing is a light cosmetic readout of friendship","ref":"09_story_and_lore.md#The valley folk"},{"s":"open","t":"Number of candidates and their genders","ref":"12_marriage.md#Open","issue":137},{"s":"open","t":"Courtship gift, spouse chores, children, divorce","ref":"12_marriage.md#Open"}],"deps":["cast"]},{"id":"mines-combat","name":"Mines and gentle combat","group":"systems","pos":[260,520],"built":"none","builtNote":"","summary":"Opens early on a fixed day, not through the hall. Combat is optional and gentle.","items":[{"s":"decided","t":"Mines open on a fixed day; Old Greencoat says the way is clear","ref":"16_bundles.md#The mines"},{"s":"decided","t":"A training dummy; no boss fights","ref":"17_call_feedback_2026-10-28.md#Training dummy"},{"s":"proposed","t":"Dry-streak odds for rare finds","ref":"17_call_feedback_2026-10-28.md#Dry-streak protection for rare finds"},{"s":"open","t":"The mines design note: size, creatures, penalty when beaten, opening day"}],"deps":[]},{"id":"fishing","name":"Fishing and the water","group":"systems","pos":[20,580],"built":"none","builtNote":"","summary":"Six Water room bundles and one Last Seat bundle depend on it.","items":[{"s":"decided","t":"Ring 1 has a coast; the ferry opens a lake cove","ref":"16_bundles.md#Rooms and bundles"},{"s":"open","t":"Shrink the Water room, or make fishing a gentle minigame","ref":"17_call_feedback_2026-10-28.md#Fishing","issue":181},{"s":"open","t":"Fishing design note"}],"deps":[]},{"id":"processing-animals","name":"Processing and animals","group":"systems","pos":[500,520],"built":"none","builtNote":"","summary":"Machines, cooking, coops and bees. Needed by many bundles.","items":[{"s":"open","t":"Processing machines and cooking design"},{"s":"open","t":"Animals and coops; neglect rules wait on them","ref":"09_story_and_lore.md#Neglect","issue":135}],"deps":[]},{"id":"puzzles","name":"Puzzles","group":"systems","pos":[740,680],"built":"none","builtNote":"","summary":"Optional logic puzzles, never gating and never punishing.","items":[{"s":"decided","t":"Optional only, bonus rewards","ref":"17_call_feedback_2026-10-28.md#Puzzles"},{"s":"open","t":"Puzzle design note: where they live and what kinds"}],"deps":[]},{"id":"customisation","name":"Customisation and hats","group":"systems","pos":[20,440],"built":"none","builtNote":"","summary":"Furniture, clothing, dyes and hats.","items":[{"s":"decided","t":"M3 shows hats in a portrait only","ref":"13_m3_scope.md#Decisions (2026-10-27)"},{"s":"open","t":"World sprite change, grid size, sewing machine cost","ref":"10_customisation.md#Open","issue":133}],"deps":[]},{"id":"festivals","name":"Festivals and minigames","group":"systems","pos":[500,680],"built":"partial","builtNote":"A festival calendar and a festival marker exist; no minigame (#134, bug #155).","summary":"Two festivals a season; the Hat Parade comes first.","items":[{"s":"decided","t":"One festival in M3, the hat parade; the minigame is a stretch goal","ref":"13_m3_scope.md#Decisions (2026-10-27)"},{"s":"proposed","t":"Calendar dates and placeholder festivals","ref":"14_festival_calendar.md#The calendar"},{"s":"open","t":"Does a festival close the shop?","ref":"14_festival_calendar.md#Open"},{"s":"open","t":"Prize counter, scores, touch controls","ref":"11_minigames.md#Open"},{"s":"proposed","t":"Random seasonal events with positive or neutral results","ref":"17_call_feedback_2026-10-28.md#Late-game surprises"}],"deps":["cast"]},{"id":"art-audio","name":"Art and sound","group":"craft","pos":[740,60],"built":"partial","builtNote":"Placeholder art. A portrait and shared sprite body is designed (#58).","summary":"Portraits over a shared sprite body; sound has no plan yet.","items":[{"s":"decided","t":"Portraits plus a shared sprite body","ref":"15_character_art.md#Decisions"},{"s":"open","t":"Who draws the final body; frame size","ref":"15_character_art.md#Open"},{"s":"open","t":"Sound: sourcing and describing the feel"},{"s":"open","t":"Art pass may be redone once bundles and cast settle","issue":58}],"deps":[]},{"id":"platform","name":"Platform and release","group":"craft","pos":[20,740],"built":"partial","builtNote":"Runs in the browser. The real-tablet check is not done.","summary":"Browser and tablet; installed wrapper later.","items":[{"s":"decided","t":"TypeScript, Phaser, Vite, Tiled (ADR 0004)","ref":"../decisions/0004-engine-and-language.md"},{"s":"open","t":"Installed-app wrapper ADR","issue":62},{"s":"open","t":"Project licence","issue":63},{"s":"open","t":"Real-tablet check","ref":"08_playtest_personas.md#Touch persona"}],"deps":[]}]};
+      const REPO = "https://github.com/ricschuster/beaver-valley";
+      const W = 200;
+      const H = 62;
+      const NS = "http://www.w3.org/2000/svg";
+      const byId = Object.fromEntries(DATA.areas.map((a) => [a.id, a]));
+      const count = (a, s) => a.items.filter((i) => i.s === s).length;
+      const needed = {};
+      DATA.areas.forEach((a) => a.deps.forEach((d) => (needed[d] = (needed[d] || 0) + 1)));
+      let filter = "all";
+      let selected = null;
+
+      const el = (tag, attrs = {}, parent) => {
+        const e = document.createElementNS(NS, tag);
+        for (const k in attrs) e.setAttribute(k, attrs[k]);
+        if (parent) parent.appendChild(e);
+        return e;
+      };
+      const h = (tag, props = {}, kids = []) => {
+        const e = document.createElement(tag);
+        Object.assign(e, props);
+        kids.forEach((k) => e.append(k));
+        return e;
+      };
+
+      const filters = {
+        all: ["All", () => true],
+        open: ["Has open questions", (a) => count(a, "open") > 0],
+        unbuilt: ["Not built", (a) => a.built !== "done"],
+        blockers: ["Blocks other areas", (a) => (needed[a.id] || 0) > 0],
+      };
+
+      function drawBar() {
+        const bar = document.getElementById("bar");
+        bar.replaceChildren();
+        for (const k in filters) {
+          const b = h("button", { textContent: filters[k][0] });
+          b.setAttribute("aria-pressed", String(filter === k));
+          b.onclick = () => {
+            filter = k;
+            draw();
+          };
+          bar.append(b);
+        }
+      }
+
+      function drawMap() {
+        const edges = document.getElementById("edges");
+        const nodes = document.getElementById("nodes");
+        edges.replaceChildren();
+        nodes.replaceChildren();
+        const keep = filters[filter][1];
+        const rel = new Set();
+        if (selected) {
+          rel.add(selected);
+          byId[selected].deps.forEach((d) => rel.add(d));
+          DATA.areas.forEach((a) => a.deps.includes(selected) && rel.add(a.id));
+        }
+        for (const a of DATA.areas) {
+          for (const d of a.deps) {
+            const from = byId[d];
+            const to = a;
+            const x1 = from.pos[0] + W / 2;
+            const y1 = from.pos[1] + H / 2;
+            const x2 = to.pos[0] + W / 2;
+            const y2 = to.pos[1] + H / 2;
+            const dx = x2 - x1;
+            const dy = y2 - y1;
+            const t = Math.min(
+              dx ? (W / 2 + 6) / Math.abs(dx) : Infinity,
+              dy ? (H / 2 + 6) / Math.abs(dy) : Infinity,
+            );
+            const hot = selected && (a.id === selected || d === selected);
+            const dim = (selected && !hot) || !(keep(a) && keep(from));
+            el(
+              "line",
+              {
+                class: "edge" + (hot ? " hot" : "") + (dim ? " dim" : ""),
+                x1: x1 + dx * t,
+                y1: y1 + dy * t,
+                x2: x2 - dx * t,
+                y2: y2 - dy * t,
+              },
+              edges,
+            );
+          }
+        }
+        for (const a of DATA.areas) {
+          const dim = (selected && !rel.has(a.id)) || !keep(a);
+          const g = el(
+            "g",
+            {
+              class: "node" + (selected === a.id ? " sel" : "") + (dim ? " dim" : ""),
+              transform: `translate(${a.pos[0]} ${a.pos[1]})`,
+              tabindex: 0,
+              role: "button",
+              "aria-label": a.name,
+            },
+            nodes,
+          );
+          el("rect", { class: "box", width: W, height: H, rx: 8 }, g);
+          el("text", { x: 10, y: 22 }, g).textContent = a.name.length > 28 ? a.name.slice(0, 27) + "…" : a.name;
+          const total = a.items.length || 1;
+          let x = 10;
+          for (const s of ["decided", "proposed", "open"]) {
+            const w = ((W - 20) * count(a, s)) / total;
+            if (w) el("rect", { x, y: 32, width: w, height: 8, fill: `var(--${s})` }, g);
+            x += w;
+          }
+          el("text", { class: "sm", x: 10, y: 55 }, g).textContent =
+            `${count(a, "decided")} / ${count(a, "proposed")} / ${count(a, "open")}`;
+          const bw = { none: 0, partial: 0.5, done: 1 }[a.built] * W;
+          el("rect", { x: 0, y: H - 4, width: W, height: 4, fill: "#e6e0cf" }, g);
+          if (bw) el("rect", { x: 0, y: H - 4, width: bw, height: 4, fill: "#2a5d9f" }, g);
+          const pick = () => {
+            selected = selected === a.id ? null : a.id;
+            draw();
+          };
+          g.onclick = pick;
+          g.onkeydown = (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), pick());
+        }
+      }
+
+      function drawPanel() {
+        const p = document.getElementById("panel");
+        p.replaceChildren();
+        if (!selected) {
+          p.append(
+            h("h2", { textContent: "Overview" }),
+            h("p", {
+              textContent:
+                "Click an area to see what is decided, proposed and open, with links to the notes and issues. Boxes show decided / proposed / open counts.",
+            }),
+          );
+          const open = DATA.areas
+            .flatMap((a) => a.items.filter((i) => i.s === "open").map((i) => ({ a, i })))
+            .length;
+          p.append(h("p", { textContent: `${open} open questions across ${DATA.areas.length} areas.` }));
+          const rank = [...DATA.areas].sort((x, y) => (needed[y.id] || 0) - (needed[x.id] || 0)).slice(0, 5);
+          p.append(h("h3", { textContent: "Most depended on" }));
+          const ul = h("ul");
+          rank.forEach((a) => {
+            const b = h("a", { href: "#", textContent: a.name });
+            b.onclick = (e) => {
+              e.preventDefault();
+              selected = a.id;
+              draw();
+            };
+            ul.append(h("li", { className: "decided" }, [b, ` (${needed[a.id] || 0})`]));
+          });
+          p.append(ul);
+          return;
+        }
+        const a = byId[selected];
+        p.append(h("h2", { textContent: a.name }), h("p", { textContent: a.summary }));
+        p.append(
+          h("span", { className: "tag", textContent: "Built: " + a.built }),
+          h("span", { className: "tag", textContent: DATA.groups[a.group] }),
+        );
+        if (a.builtNote) p.append(h("p", { className: "ref", textContent: a.builtNote }));
+        const link = (id) => {
+          const b = h("a", { href: "#", textContent: byId[id].name });
+          b.onclick = (e) => {
+            e.preventDefault();
+            selected = id;
+            draw();
+          };
+          return b;
+        };
+        const needs = a.deps;
+        const usedBy = DATA.areas.filter((x) => x.deps.includes(a.id)).map((x) => x.id);
+        for (const [label, list] of [["Needs", needs], ["Needed by", usedBy]]) {
+          if (!list.length) continue;
+          p.append(h("h3", { textContent: label }));
+          const ul = h("ul");
+          list.forEach((id) => ul.append(h("li", { className: "decided" }, [link(id)])));
+          p.append(ul);
+        }
+        for (const s of ["open", "proposed", "decided"]) {
+          const items = a.items.filter((i) => i.s === s);
+          if (!items.length) continue;
+          p.append(h("h3", { textContent: `${s} (${items.length})` }));
+          const ul = h("ul");
+          for (const i of items) {
+            const li = h("li", { className: s }, [i.t]);
+            if (i.ref) {
+              const [file, heading] = i.ref.split("#");
+              const src = h("span", { className: "ref" }, [
+                h("a", { href: "design/" + file, textContent: file }),
+                heading ? " > " + heading : "",
+              ]);
+              li.append(src);
+            }
+            if (i.issue) {
+              li.append(
+                h("span", { className: "ref" }, [
+                  h("a", { href: `${REPO}/issues/${i.issue}`, textContent: "#" + i.issue }),
+                ]),
+              );
+            }
+            ul.append(li);
+          }
+          p.append(ul);
+        }
+      }
+
+      function draw() {
+        drawBar();
+        drawMap();
+        drawPanel();
+      }
+      document.getElementById("sub").textContent =
+        `Hand-kept in docs/overview.json. Last updated ${DATA.updated}.`;
+      draw();
+    </script>
+  </body>
+</html>
