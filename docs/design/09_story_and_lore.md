@@ -215,6 +215,11 @@ Not hobbits. An invented small, homely people. Working traits:
 - Avoid anything specific to hobbits: hairy feet, pipe-weed, second breakfast,
   hillside burrows.
 - They are called Brimmers (from the brim of a hat).
+- Type (decided 2026-10-27): in plain words the Brimmers are halflings, in the
+  way that other peoples are elves or dwarves (see Other peoples). Brimmers
+  stays their own name. The type word is general fantasy, but the traits above
+  are what make them ours, so keep them (hats, ledgers, long ears, no hobbit
+  habits).
 - Small, with long ears that poke through or around the hats. This keeps them
   clearly apart from hobbits.
 
