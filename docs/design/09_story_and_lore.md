@@ -263,15 +263,17 @@ the same kind are not alike.
   Stardew Valley's obelisks do. The way home is a consumable warp totem to
   the farm, and a permanent version that a one-off seller offers, in the way
   Krobus sells the Return Scepter.
-  The permanent item (proposed 2026-10-28): a homecoming pin, a brooch or
-  feather that clips onto any hat. It is not a hat, because hats are a
-  feature (hat standing), and changing hats to go home would be awkward. It
-  sits in its own cosmetic slot and is used from the toolbar. It could double
-  as a ledger stamp. Who sells it is open. Candidates: the warden head
-  (couriers and travel), the hermit, or an odd one-off of the road. Other
-  ideas from the same talk, in case the pin is dropped: a hearth lantern, a
-  latchkey, a farm bell, a homing pigeon. None of this is needed for the first
-  playable.
+  The permanent item (decided 2026-10-28): a homecoming pin, a brooch or
+  feather. It is not a hat, because hats are a feature (hat standing), and
+  changing hats to go home would be awkward. It is an inventory item that
+  takes a slot, like Stardew Valley's Return Scepter, so the player can select
+  it on the toolbar and use it. It could double as a ledger stamp. The name is
+  ours and still open: "pin" is a working name, and the Stardew name must not
+  be used (see `docs/decisions/0002-stardew-valley-inspired.md`). Who sells it
+  is open. Candidates: the warden head (couriers and travel), the hermit, or
+  an odd one-off of the road. Other ideas from the same talk, in case the pin
+  is dropped: a hearth lantern, a latchkey, a farm bell, a homing pigeon.
+  None of this is needed for the first playable.
   Manner (decided 2026-10-27): the owner likened her to Radagast, a gentle,
   scatty woodland hermit at home with animals and plants. Shorthand for feel
   only; her name, look and habits must be our own (ADR 0003). The pencil
