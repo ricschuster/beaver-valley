@@ -104,7 +104,7 @@ than the player have fixed looks in content data.
 
 `13_m3_scope.md` already cuts "hats in the world sprite (use a portrait only)"
 last. That stays. The body and layer system should be built only as far as
-#133 needs: body, one hair style and a few hats.
+issue 133 needs: body, one hair style and a few hats.
 
 ## Open
 
