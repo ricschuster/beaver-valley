@@ -262,6 +262,16 @@ the same kind are not alike.
   gives the player a gentle way to learn who Oriel was. He is also the one who
   knows where Oriel went (decided 2026-10-27), so he, not the hermit, can
   give the light, optional push toward ring 2 when the player is ready.
+  Name and look (decided 2026-10-27): valley folk call him "Old Greencoat",
+  and his true name changes with the people and place, with old names to be
+  written for the other rings. Ring 1 does not talk about his age, since he is
+  much older than people and that stays in the background. Look: tall and lean
+  with a bushy beard, a green coat and a wide-brimmed hat. No special props
+  are needed, since little of this shows in game. Keep his names tied to what
+  he did for each people, not a puzzle of names to collect, so he does not
+  read as Tolkien's Gandalf (ADR 0003).
+- The hermit's quirk (decided 2026-10-27): he talks to the animals and mixes
+  them up.
 - Dwarves in the mountains (decided 2026-10-27): two groups, so there is more
   than one dwarf NPC. Stonekeepers of the road, who built and maintain its
   bridges and stonework (and so tie to the bridge bundle). Smiths and
