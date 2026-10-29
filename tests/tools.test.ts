@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { FarmMap, type TiledMapJson } from "../src/core/map";
 import { startGame, heldAt } from "../src/core/toolbar";
 import { reasonText, useHeld } from "../src/core/tools";
@@ -46,7 +46,10 @@ describe("useHeld", () => {
       expect(useHeld(g, map, can, 0, 0).ok).toBe(true);
       g.farm.endDay("spring");
     }
+    // Harvest quality rolls Math.random; pin it so the item is always normal.
+    vi.spyOn(Math, "random").mockReturnValue(0.99);
     const got = useHeld(g, map, hand, 0, 0);
+    vi.restoreAllMocks();
     expect(got).toMatchObject({ ok: true, item: "parsnip" });
     expect(g.inventory.count("parsnip")).toBe(1);
   });
