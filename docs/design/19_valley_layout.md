@@ -33,7 +33,7 @@ Buildings are interior maps. Ring 2 lies beyond them.
 
 ## The map
 
-```
+```text
  [Secret Woods]--[FOREST]--------[MOUNTAIN]----[Mines]
                     |                 ~
                     |                 ~  river

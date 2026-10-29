@@ -13,6 +13,10 @@ about a dozen had a role. The valley layout (`19_valley_layout.md`) gave every
 person a place. This note fills the places with people, so the dialogue
 (`18_dialogue.md`) and voice sheet work has a cast to write.
 
+The cast was worked out in `docs/tools/cast-planner.html`, a single page that
+opens from disk. It keeps edits in the browser and produces a text summary to
+copy out. Reset it to its defaults to see this note's cast.
+
 ## Decisions
 
 1. **30 named people**: 8 outside Hearthwell, the courier, and 21 in 11

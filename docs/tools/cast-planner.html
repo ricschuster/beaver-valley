@@ -1,0 +1,1389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Valley Cast Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Layout idea: a sticky tally on top, one card per map area, tap chips to change a person. */
+      :root {
+        --bg: #eef2f1;
+        --surface: #ffffff;
+        --ink: #17262b;
+        --muted: #5b6e73;
+        --line: #d3dcdb;
+        --accent: #0f766e;
+        --accent-ink: #ffffff;
+        --placed: #2f7d4f;
+        --placed-bg: #e0f1e6;
+        --new: #9a5b00;
+        --new-bg: #fbeccb;
+        --open: #52606b;
+        --open-bg: #e4e8ec;
+        --warn: #b3261e;
+        --warn-bg: #fbe3e1;
+        --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+        --body:
+          "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0f1a1d;
+          --surface: #17262b;
+          --ink: #e4eeee;
+          --muted: #93a8ac;
+          --line: #2b3f45;
+          --accent: #3cc3b6;
+          --accent-ink: #072320;
+          --placed: #6fd196;
+          --placed-bg: #1b3a2a;
+          --new: #f0b44c;
+          --new-bg: #3d2e0f;
+          --open: #aab6c2;
+          --open-bg: #26333d;
+          --warn: #ff8a80;
+          --warn-bg: #4a1f1c;
+          color-scheme: dark;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #0f1a1d;
+        --surface: #17262b;
+        --ink: #e4eeee;
+        --muted: #93a8ac;
+        --line: #2b3f45;
+        --accent: #3cc3b6;
+        --accent-ink: #072320;
+        --placed: #6fd196;
+        --placed-bg: #1b3a2a;
+        --new: #f0b44c;
+        --new-bg: #3d2e0f;
+        --open: #aab6c2;
+        --open-bg: #26333d;
+        --warn: #ff8a80;
+        --warn-bg: #4a1f1c;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--body);
+        font-size: 16px;
+        line-height: 1.45;
+        padding-bottom: 48px;
+      }
+      button,
+      input {
+        font: inherit;
+        color: inherit;
+      }
+      button:focus-visible,
+      input:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .tally {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        padding: 10px 16px 12px;
+      }
+      .tally-in {
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      .tally-row {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .big {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 30px;
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+      .big small {
+        font-size: 16px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .tally-meta {
+        color: var(--muted);
+        font-size: 14px;
+        font-variant-numeric: tabular-nums;
+      }
+      .bar {
+        height: 8px;
+        background: var(--open-bg);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+      .bar > i {
+        display: block;
+        height: 100%;
+        background: var(--accent);
+        width: 0;
+        transition: width 0.2s;
+      }
+      .bar.over > i {
+        background: var(--warn);
+      }
+
+      main {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      h1 {
+        font-family: var(--display);
+        font-size: 26px;
+        margin: 4px 0 2px;
+        text-wrap: balance;
+      }
+      h2 {
+        font-family: var(--display);
+        font-size: 19px;
+        margin: 0;
+        text-wrap: balance;
+      }
+      .lede {
+        color: var(--muted);
+        margin: 0;
+        max-width: 65ch;
+      }
+
+      .legend {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .card-head {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .where {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .empty {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 0;
+      }
+
+      .person {
+        border-top: 1px solid var(--line);
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .person.out .name-in {
+        opacity: 0.45;
+        text-decoration: line-through;
+      }
+      .name-in {
+        width: 100%;
+        min-height: 42px;
+        padding: 6px 10px;
+        background: transparent;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .chips {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        min-height: 38px;
+        padding: 4px 12px;
+        border-radius: 19px;
+        border: 1px solid transparent;
+        background: var(--open-bg);
+        color: var(--open);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .chip.placed {
+        background: var(--placed-bg);
+        color: var(--placed);
+      }
+      .chip.new {
+        background: var(--new-bg);
+        color: var(--new);
+      }
+      .chip.open {
+        background: var(--open-bg);
+        color: var(--open);
+      }
+      .chip.deep {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .chip.off {
+        background: transparent;
+        border-color: var(--line);
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .chip.on {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .chip.del {
+        margin-left: auto;
+        background: transparent;
+        border-color: var(--line);
+        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .add {
+        align-self: flex-start;
+        min-height: 40px;
+        padding: 4px 14px;
+        border-radius: 8px;
+        border: 1px dashed var(--muted);
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .hh {
+        border-top: 1px solid var(--line);
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .svc {
+        border-top: 1px solid var(--line);
+        padding-top: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: 14px;
+      }
+      .svc b {
+        font-weight: 600;
+      }
+      .svc .miss {
+        color: var(--warn);
+        font-weight: 600;
+      }
+      .steps {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .step b {
+        min-width: 18px;
+        text-align: center;
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+      }
+      .sbtn {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 1;
+      }
+
+      .decide {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .decide-label {
+        font-weight: 600;
+      }
+      .seg {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .seg .chip {
+        background: transparent;
+        border-color: var(--line);
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .seg .chip.on {
+        background: var(--accent);
+        color: var(--accent-ink);
+        border-color: var(--accent);
+      }
+      .note {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .warnbox {
+        background: var(--warn-bg);
+        color: var(--warn);
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 14px;
+        display: none;
+      }
+      .warnbox.show {
+        display: block;
+      }
+
+      textarea#out {
+        width: 100%;
+        min-height: 220px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--bg);
+        color: var(--ink);
+        font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        min-height: 44px;
+        padding: 6px 18px;
+        border-radius: 8px;
+        border: 1px solid var(--accent);
+        background: var(--accent);
+        color: var(--accent-ink);
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn.ghost {
+        background: transparent;
+        color: var(--ink);
+        border-color: var(--line);
+        font-weight: 500;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .bar > i {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tally" role="status" aria-live="polite">
+      <div class="tally-in">
+        <div class="tally-row">
+          <div class="big">
+            <span id="t-total">0</span> <small>of 30 named</small>
+          </div>
+          <div class="tally-meta" id="t-meta"></div>
+        </div>
+        <div class="bar" id="t-bar"><i></i></div>
+      </div>
+    </div>
+
+    <main>
+      <div>
+        <h1>Valley Cast Planner</h1>
+        <p class="lede">
+          Ring 1 aims at about 30 named villagers. Each card is a map area.
+          Hearthwell shops are staffed by households that live above or behind
+          them, and by people from other homes. Tap a chip to change it, edit a
+          name, then copy the summary at the bottom and paste it back to me.
+        </p>
+      </div>
+
+      <div class="legend">
+        <span class="chip placed" style="min-height: 28px; cursor: default"
+          >placed</span
+        >
+        already in the lore notes
+        <span class="chip new" style="min-height: 28px; cursor: default"
+          >new</span
+        >
+        my suggestion
+        <span class="chip open" style="min-height: 28px; cursor: default"
+          >open</span
+        >
+        a slot to fill
+      </div>
+
+      <section class="card" aria-labelledby="dec-h">
+        <h2 id="dec-h">Decisions</h2>
+        <div class="decide">
+          <div class="decide-label">Children in the cast</div>
+          <div class="seg" id="seg-kids"></div>
+          <p class="note">
+            Children add sprites and writing. Keep them at the basic dialogue
+            tier.
+          </p>
+        </div>
+        <div class="decide">
+          <div class="decide-label">
+            Is the carrier post courier the warden head under an alias?
+          </div>
+          <div class="seg" id="seg-courier"></div>
+          <p class="note">
+            The lore already treats them as one person: the courier is her early
+            form, revealed when ring 2 opens.
+          </p>
+        </div>
+        <p class="note">
+          Marriage candidates: any adult can be marked. Marking a candidate sets
+          the deep dialogue tier (branching talks, events, courtship). Gender
+          and race are yours to set on each person. The number is open (#137).
+        </p>
+        <div class="warnbox" id="warn-kids"></div>
+      </section>
+
+      <div
+        id="areas"
+        style="display: flex; flex-direction: column; gap: 14px"
+      ></div>
+
+      <section class="card" aria-labelledby="sum-h">
+        <h2 id="sum-h">Summary to paste back</h2>
+        <textarea id="out" readonly aria-label="Summary text"></textarea>
+        <div class="actions">
+          <button class="btn" id="copy" type="button">Copy summary</button>
+          <button class="btn ghost" id="reset" type="button">
+            Reset to draft
+          </button>
+        </div>
+        <p class="note" id="copy-note">
+          Your changes stay in this browser only. Copy the summary to send them
+          to me.
+        </p>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var KEY = "bv-cast-v5";
+        var TARGET = 30;
+        var SERVICES = [
+          "Smithy and mender",
+          "Inn and kitchen",
+          "Store and carrier post",
+          "Healer",
+          "Library",
+          "Sawmill and carpenter",
+          "The Long Table (hall, east end)",
+        ];
+
+        function P(name, status, depth, cand) {
+          return {
+            name: name,
+            status: status,
+            depth: cand ? "deep" : depth || "standard",
+            cand: !!cand,
+            on: true,
+            gender: "",
+            race: "",
+          };
+        }
+        function M(name, kind, cand, deep) {
+          return {
+            name: name,
+            kind: kind || "adult",
+            cand: !!cand,
+            deep: !!(cand || deep),
+            gender: "",
+            race: "",
+          };
+        }
+        function H(name, folk, runs, works, members) {
+          return {
+            name: name,
+            folk: folk,
+            runs: runs,
+            works: works,
+            members: members,
+          };
+        }
+
+        function defaults() {
+          var d = {
+            kids: "four",
+            courier: "yes",
+            areas: [
+              {
+                id: "farm",
+                name: "Farm",
+                where: "Exits: Forest, Hearthwell, River delta",
+                blurb: "Nobody at the start. A spouse moves in later.",
+                people: [],
+              },
+              {
+                id: "forest",
+                name: "Forest",
+                where: "Exits: Farm, Secret Woods, Mountain. Has a lake.",
+                people: [
+                  P("The hermit (witch)", "placed", "deep"),
+                  P("The Wanderer (Old Greencoat)", "placed", "deep"),
+                  P("Keeper of the animal farmstead", "new", "standard", true),
+                ],
+              },
+              {
+                id: "woods",
+                name: "Secret Woods",
+                where: "Exit: Forest, behind a massive log",
+                blurb: "Kept empty and quiet.",
+                people: [],
+              },
+              {
+                id: "mountain",
+                name: "Mountain",
+                where:
+                  "Exits: Forest, Mines, Hearthwell. Has a lake and the river source.",
+                people: [
+                  P("Smith dwarf (tools and lamps)", "placed", "deep", true),
+                  P(
+                    "Stonekeeper dwarf (bridges and stonework)",
+                    "placed",
+                    "deep",
+                    true,
+                  ),
+                ],
+              },
+              {
+                id: "mines",
+                name: "Mines",
+                where: "Exit: Mountain. Ring 1, gentle combat.",
+                people: [
+                  P("Trainer for the practice dummy", "new", "standard", true),
+                ],
+              },
+              {
+                id: "delta",
+                name: "River delta",
+                where: "Exits: Hearthwell, Farm, Beach, Lake cove by ferry",
+                people: [P("Ferry keeper or fisher", "new", "standard", true)],
+              },
+              {
+                id: "beach",
+                name: "Beach",
+                where: "Exit: River delta",
+                people: [
+                  P(
+                    "The odd elf (sells the Homeward pin)",
+                    "placed",
+                    "deep",
+                    true,
+                  ),
+                ],
+              },
+              {
+                id: "shops",
+                name: "Hearthwell, shops and services",
+                where:
+                  "Each shop family lives above or behind it. Other households can work there too. Set it under the homes.",
+                services: true,
+                people: [
+                  P(
+                    "Courier at the carrier post (lodges at the inn)",
+                    "placed",
+                    "deep",
+                  ),
+                ],
+              },
+              {
+                id: "homes",
+                name: "Hearthwell, households",
+                where: "Brimmers and road folk. Counted by household.",
+                households: true,
+                people: [],
+              },
+            ],
+            homes: [
+              H("Smith household", "road", "Smithy and mender", "", [
+                M("Smith", "adult", true),
+              ]),
+              H(
+                "Inn keeper's family (kitchen, Cake Day)",
+                "brimmer",
+                "Inn and kitchen",
+                "",
+                [M("Inn keeper"), M("Partner"), M("Child", "child")],
+              ),
+              H(
+                "Store and post keeper",
+                "brimmer",
+                "Store and carrier post",
+                "",
+                [M("Store and post keeper"), M("Partner"), M("Child", "child")],
+              ),
+              H("Healer", "road", "Healer", "", [M("Healer", "adult", true)]),
+              H("Librarian (favour ledgers)", "brimmer", "Library", "", [
+                M("Librarian", "adult", true),
+              ]),
+              H("Carpenter household", "brimmer", "Sawmill and carpenter", "", [
+                M("Carpenter", "adult", false, true),
+                M("Partner"),
+                M("Child", "child"),
+              ]),
+              H(
+                "Hall steward (lives above the hall)",
+                "brimmer",
+                "The Long Table (hall, east end)",
+                "",
+                [M("Hall steward", "adult", false, true)],
+              ),
+              H(
+                "Hat-maker household (hats, the Hat Parade)",
+                "brimmer",
+                "",
+                "",
+                [M("Hat-maker", "adult", true), M("Sibling", "adult", true)],
+              ),
+              H(
+                "Two young adults sharing a house",
+                "brimmer",
+                "",
+                "Inn and kitchen",
+                [
+                  M("Young adult A", "adult", true),
+                  M("Young adult B", "adult", true),
+                ],
+              ),
+              H("Retired couple and grandchild", "brimmer", "", "", [
+                M("Retiree A"),
+                M("Retiree B"),
+                M("Grandchild", "child"),
+              ]),
+              H(
+                "Gardener or farmhand household (crop hints)",
+                "brimmer",
+                "",
+                "Store and carrier post",
+                [M("Gardener", "adult", true)],
+              ),
+            ],
+          };
+          var humans = { "Smith household": 1, Healer: 1 };
+          var byName = {
+            "The hermit (witch)": "wizard",
+            "The Wanderer (Old Greencoat)": "wizard",
+            "Smith dwarf (tools and lamps)": "dwarf",
+            "Stonekeeper dwarf (bridges and stonework)": "dwarf",
+            "Trainer for the practice dummy": "human",
+            "The odd elf (sells the Homeward pin)": "elf",
+            "Keeper of the animal farmstead": "halfling",
+            "Ferry keeper or fisher": "halfling",
+            "Courier at the carrier post (lodges at the inn)": "human",
+          };
+          d.areas.forEach(function (a) {
+            a.people.forEach(function (p) {
+              p.race = byName[p.name] || "";
+            });
+          });
+          d.homes.forEach(function (h) {
+            h.members.forEach(function (m) {
+              m.race = humans[h.name] ? "human" : "halfling";
+            });
+          });
+          return d;
+        }
+
+        var S;
+        try {
+          S = JSON.parse(localStorage.getItem(KEY) || "null");
+        } catch (e) {
+          S = null;
+        }
+        if (!S || !S.areas) S = defaults();
+        function save() {
+          try {
+            localStorage.setItem(KEY, JSON.stringify(S));
+          } catch (e) {}
+        }
+
+        var KIDS = [
+          ["none", "None"],
+          ["two", "Up to two"],
+          ["four", "Up to four"],
+          ["open", "Open"],
+        ];
+        var KIDCAP = { none: 0, two: 2, four: 4 };
+        var RACES = ["", "human", "elf", "dwarf", "wizard", "halfling"];
+        function raceSelect(act, at, v) {
+          return (
+            '<select class="name-in" style="flex:1;min-width:140px;width:auto" data-act="' +
+            act +
+            '" ' +
+            at +
+            ' aria-label="Race">' +
+            RACES.map(function (o) {
+              return (
+                '<option value="' +
+                o +
+                '"' +
+                (o === v ? " selected" : "") +
+                ">" +
+                (o || "race: not set") +
+                "</option>"
+              );
+            }).join("") +
+            "</select>"
+          );
+        }
+        var GENDERS = ["", "F", "M", "Other"];
+        function glabel(g) {
+          return g ? "gender: " + g : "gender: ?";
+        }
+        function ppl(n) {
+          return n + (n === 1 ? " person" : " people");
+        }
+        function hn(h) {
+          return {
+            n: h.members.length,
+            kids: h.members.filter(function (m) {
+              return m.kind === "child";
+            }).length,
+            cand: h.members.filter(function (m) {
+              return m.cand;
+            }).length,
+          };
+        }
+        var COURIER = [
+          ["undecided", "Undecided"],
+          ["yes", "Yes, same person"],
+          ["no", "No, two people"],
+        ];
+        var STATUS = ["placed", "new", "open"];
+        var FOLK = { brimmer: "Brimmer", road: "Road folk" };
+
+        function esc(s) {
+          return String(s)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function seg(el, list, key) {
+          el.innerHTML = list
+            .map(function (o) {
+              return (
+                '<button type="button" class="chip' +
+                (S[key] === o[0] ? " on" : "") +
+                '" data-act="dec" data-key="' +
+                key +
+                '" data-val="' +
+                o[0] +
+                '" aria-pressed="' +
+                (S[key] === o[0]) +
+                '">' +
+                o[1] +
+                "</button>"
+              );
+            })
+            .join("");
+        }
+
+        function servicesHtml() {
+          return SERVICES.map(function (sv) {
+            var run = S.homes.filter(function (h) {
+              return h.runs === sv;
+            });
+            var staff = S.homes.filter(function (h) {
+              return h.works === sv;
+            });
+            var line = run.length
+              ? "Run by " +
+                run
+                  .map(function (h) {
+                    return esc(h.name);
+                  })
+                  .join("; ")
+              : '<span class="miss">No household runs it</span>';
+            if (run.length > 1)
+              line += ' <span class="miss">(more than one)</span>';
+            if (staff.length)
+              line +=
+                ". Staff from " +
+                staff
+                  .map(function (h) {
+                    return esc(h.name);
+                  })
+                  .join("; ");
+            return (
+              '<div class="svc"><b>' +
+              esc(sv) +
+              "</b><span>" +
+              line +
+              "</span></div>"
+            );
+          }).join("");
+        }
+
+        function cycleSvc(v) {
+          var i = SERVICES.indexOf(v);
+          return i + 1 >= SERVICES.length ? "" : SERVICES[i + 1];
+        }
+
+        function render() {
+          seg(document.getElementById("seg-kids"), KIDS, "kids");
+          seg(document.getElementById("seg-courier"), COURIER, "courier");
+          var html = "";
+          S.areas.forEach(function (a, ai) {
+            html +=
+              '<section class="card" aria-label="' +
+              esc(a.name) +
+              '"><div class="card-head"><h2>' +
+              esc(a.name) +
+              '</h2><div class="where">' +
+              esc(a.where) +
+              "</div></div>";
+            if (a.households) {
+              S.homes.forEach(function (h, hi) {
+                html +=
+                  '<div class="hh"><input class="name-in" data-act="hname" data-h="' +
+                  hi +
+                  '" value="' +
+                  esc(h.name) +
+                  '" aria-label="Household">' +
+                  '<div class="chips">' +
+                  '<button type="button" class="chip ' +
+                  (h.runs ? "on" : "off") +
+                  '" data-act="hruns" data-h="' +
+                  hi +
+                  '">Runs: ' +
+                  esc(h.runs || "nothing") +
+                  "</button>" +
+                  '<button type="button" class="chip ' +
+                  (h.works ? "new" : "off") +
+                  '" data-act="hworks" data-h="' +
+                  hi +
+                  '">Works at: ' +
+                  esc(h.works || "nowhere") +
+                  "</button>" +
+                  "</div>" +
+                  h.members
+                    .map(function (m, mi) {
+                      var at = 'data-h="' + hi + '" data-m="' + mi + '"';
+                      return (
+                        '<div class="chips" style="align-items:center"><input class="name-in" style="flex:1;min-width:140px;width:auto" data-act="mname" ' +
+                        at +
+                        ' value="' +
+                        esc(m.name) +
+                        '" aria-label="Person">' +
+                        '<button type="button" class="chip ' +
+                        (m.kind === "child" ? "new" : "off") +
+                        '" data-act="mkind" ' +
+                        at +
+                        ">" +
+                        m.kind +
+                        "</button>" +
+                        (m.kind === "child"
+                          ? ""
+                          : '<button type="button" class="chip ' +
+                            (m.cand ? "on" : "off") +
+                            '" data-act="mcand" ' +
+                            at +
+                            ' aria-pressed="' +
+                            m.cand +
+                            '">candidate</button>') +
+                        '<button type="button" class="chip ' +
+                        (m.deep ? "deep" : "off") +
+                        '" data-act="mdeep" ' +
+                        at +
+                        ' aria-pressed="' +
+                        m.deep +
+                        '">' +
+                        (m.deep ? "deep" : "standard") +
+                        "</button>" +
+                        '<button type="button" class="chip del" style="margin-left:0" data-act="mdel" ' +
+                        at +
+                        ' aria-label="Remove person">x</button></div>' +
+                        '<div class="chips" style="align-items:center"><button type="button" class="chip ' +
+                        (m.gender ? "on" : "off") +
+                        '" data-act="mgender" ' +
+                        at +
+                        ">" +
+                        glabel(m.gender) +
+                        "</button>" +
+                        "" +
+                        raceSelect("mrace", at, m.race) +
+                        "</div>"
+                      );
+                    })
+                    .join("") +
+                  '<div class="steps"><button type="button" class="add" data-act="madd" data-h="' +
+                  hi +
+                  '">Add a person</button>' +
+                  '<button type="button" class="chip del" data-act="hdel" data-h="' +
+                  hi +
+                  '">Remove household</button></div></div>';
+              });
+              html +=
+                '<button type="button" class="add" data-act="hadd">Add a household</button>';
+            } else {
+              if (a.services) html += servicesHtml();
+              if (!a.people.length && !a.services)
+                html +=
+                  '<p class="empty">' + esc(a.blurb || "Nobody yet.") + "</p>";
+              a.people.forEach(function (p, pi) {
+                var at = 'data-a="' + ai + '" data-p="' + pi + '"';
+                html +=
+                  '<div class="person' +
+                  (p.on ? "" : " out") +
+                  '"><input class="name-in" data-act="pname" ' +
+                  at +
+                  ' value="' +
+                  esc(p.name) +
+                  '" aria-label="Name or role">' +
+                  '<div class="chips">' +
+                  '<button type="button" class="chip ' +
+                  p.status +
+                  '" data-act="status" ' +
+                  at +
+                  ">" +
+                  p.status +
+                  "</button>" +
+                  '<button type="button" class="chip ' +
+                  (p.depth === "deep" ? "deep" : "off") +
+                  '" data-act="depth" ' +
+                  at +
+                  ' aria-pressed="' +
+                  (p.depth === "deep") +
+                  '">' +
+                  (p.depth === "deep" ? "deep" : "standard") +
+                  "</button>" +
+                  '<button type="button" class="chip ' +
+                  (p.cand ? "on" : "off") +
+                  '" data-act="cand" ' +
+                  at +
+                  ' aria-pressed="' +
+                  p.cand +
+                  '">candidate</button>' +
+                  '<button type="button" class="chip ' +
+                  (p.on ? "on" : "off") +
+                  '" data-act="on" ' +
+                  at +
+                  ' aria-pressed="' +
+                  p.on +
+                  '">' +
+                  (p.on ? "counted" : "left out") +
+                  "</button>" +
+                  '<button type="button" class="chip del" data-act="del" ' +
+                  at +
+                  ">Remove</button></div>" +
+                  '<div class="chips" style="align-items:center"><button type="button" class="chip ' +
+                  (p.gender ? "on" : "off") +
+                  '" data-act="gender" ' +
+                  at +
+                  ">" +
+                  glabel(p.gender) +
+                  "</button>" +
+                  "" +
+                  raceSelect("prace", at, p.race) +
+                  "</div></div>";
+              });
+              html +=
+                '<button type="button" class="add" data-act="add" data-a="' +
+                ai +
+                '">Add a person</button>';
+            }
+            html += "</section>";
+          });
+          document.getElementById("areas").innerHTML = html;
+          tally();
+        }
+
+        function counts() {
+          var total = 0,
+            cand = 0,
+            kids = 0,
+            road = 0,
+            races = {},
+            deep = 0,
+            g = { F: 0, M: 0, Other: 0, unset: 0 };
+          S.areas.forEach(function (a) {
+            a.people.forEach(function (p) {
+              if (!p.on) return;
+              total++;
+              if (p.cand) cand++;
+              if (p.depth === "deep") deep++;
+              g[p.gender || "unset"]++;
+              races[p.race || "not set"] =
+                (races[p.race || "not set"] || 0) + 1;
+            });
+          });
+          S.homes.forEach(function (h) {
+            var c = hn(h);
+            total += c.n;
+            cand += c.cand;
+            kids += c.kids;
+            if (h.folk === "road") road += c.n;
+            h.members.forEach(function (m) {
+              if (m.deep) deep++;
+              g[m.gender || "unset"]++;
+              races[m.race || "not set"] =
+                (races[m.race || "not set"] || 0) + 1;
+            });
+          });
+          return {
+            total: total,
+            cand: cand,
+            kids: kids,
+            road: road,
+            deep: deep,
+            g: g,
+            races: races,
+          };
+        }
+
+        function tally() {
+          var c = counts();
+          document.getElementById("t-total").textContent = c.total;
+          var left = TARGET - c.total;
+          document.getElementById("t-meta").textContent =
+            c.cand +
+            " candidates, " +
+            c.deep +
+            " deep, " +
+            c.kids +
+            " children, " +
+            (left >= 0 ? left + " to reach 30" : -left + " over 30");
+          var bar = document.getElementById("t-bar");
+          bar.className = "bar" + (c.total > TARGET ? " over" : "");
+          bar.firstElementChild.style.width =
+            Math.min(100, Math.round((c.total / TARGET) * 100)) + "%";
+          var w = document.getElementById("warn-kids");
+          var msg = "";
+          if (KIDCAP[S.kids] !== undefined && c.kids > KIDCAP[S.kids])
+            msg =
+              "Children are capped at " +
+              KIDCAP[S.kids] +
+              ", but households include " +
+              c.kids +
+              ". Remove a child or raise the cap.";
+          w.textContent = msg;
+          w.className = "warnbox" + (msg ? " show" : "");
+          var svcEl = document.querySelector(
+            '[aria-label="Hearthwell, shops and services"]',
+          );
+          if (svcEl) {
+            var old = svcEl.querySelectorAll(".svc");
+            if (old.length) {
+              var tmp = document.createElement("div");
+              tmp.innerHTML = servicesHtml();
+              old.forEach(function (n, i) {
+                n.innerHTML = tmp.children[i].innerHTML;
+              });
+            }
+          }
+          document.getElementById("out").value = summary(c);
+          save();
+        }
+
+        function summary(c) {
+          var L = [];
+          L.push("Cast per area, draft: " + c.total + " of 30 named");
+          L.push(
+            "Marriage candidates marked: " +
+              c.cand +
+              " (the number is still open, #137)",
+          );
+          var names = [];
+          S.areas.forEach(function (a) {
+            a.people.forEach(function (p) {
+              if (p.on && p.cand) names.push(p.name);
+            });
+          });
+          S.homes.forEach(function (h) {
+            h.members.forEach(function (m) {
+              if (m.cand) names.push(m.name + " (" + h.name + ")");
+            });
+          });
+          L.push("Candidates: " + (names.length ? names.join("; ") : "none"));
+          L.push("Deep dialogue tier: " + c.deep + " of " + c.total);
+          L.push(
+            "Gender: " +
+              c.g.F +
+              " F, " +
+              c.g.M +
+              " M, " +
+              c.g.Other +
+              " other, " +
+              c.g.unset +
+              " not set",
+          );
+          L.push(
+            "Children: " +
+              c.kids +
+              " (setting: " +
+              (S.kids === "none"
+                ? "none"
+                : S.kids === "two"
+                  ? "up to two"
+                  : S.kids === "four"
+                    ? "up to four"
+                    : "open") +
+              ")",
+          );
+          L.push(
+            "Race: " +
+              Object.keys(c.races)
+                .map(function (k) {
+                  return k + " " + c.races[k];
+                })
+                .join(", "),
+          );
+          L.push("Courier is the warden head under an alias: " + S.courier);
+          S.areas.forEach(function (a) {
+            L.push("");
+            L.push(a.name.toUpperCase());
+            if (a.households) {
+              S.homes.forEach(function (h) {
+                var c = hn(h);
+                var t = [ppl(c.n)];
+                if (h.runs)
+                  t.push("runs " + h.runs + ", lives above or behind it");
+                if (h.works) t.push("works at " + h.works);
+                L.push("- " + h.name + " [" + t.join(", ") + "]");
+                h.members.forEach(function (m) {
+                  L.push(
+                    "    * " +
+                      m.name +
+                      " (" +
+                      [
+                        m.kind,
+                        m.cand ? "candidate" : "",
+                        m.deep ? "deep" : "standard",
+                        m.gender,
+                        m.race,
+                      ]
+                        .filter(Boolean)
+                        .join(", ") +
+                      ")",
+                  );
+                });
+              });
+            } else {
+              if (a.services) {
+                SERVICES.forEach(function (sv) {
+                  var run = S.homes
+                    .filter(function (h) {
+                      return h.runs === sv;
+                    })
+                    .map(function (h) {
+                      return h.name;
+                    });
+                  var staff = S.homes
+                    .filter(function (h) {
+                      return h.works === sv;
+                    })
+                    .map(function (h) {
+                      return h.name;
+                    });
+                  L.push(
+                    "- " +
+                      sv +
+                      ": " +
+                      (run.length
+                        ? "run by " + run.join("; ")
+                        : "NO HOUSEHOLD RUNS IT") +
+                      (staff.length ? "; staff from " + staff.join("; ") : ""),
+                  );
+                });
+              }
+              if (!a.people.length && !a.services) L.push("- nobody");
+              a.people.forEach(function (p) {
+                var t = [p.status, p.depth];
+                if (p.gender) t.push(p.gender);
+                if (p.race) t.push(p.race);
+                if (p.cand) t.push("candidate");
+                if (!p.on) t.push("LEFT OUT");
+                L.push("- " + p.name + " [" + t.join(", ") + "]");
+              });
+            }
+          });
+          return L.join("\n");
+        }
+
+        function next(list, v) {
+          return list[(list.indexOf(v) + 1) % list.length];
+        }
+
+        document.addEventListener("click", function (e) {
+          var b = e.target.closest("[data-act]");
+          if (!b || b.tagName === "INPUT") return;
+          var act = b.dataset.act,
+            a = +b.dataset.a,
+            pi = +b.dataset.p,
+            h = +b.dataset.h;
+          var person = S.areas[a] && S.areas[a].people[pi];
+          if (act === "dec") {
+            S[b.dataset.key] = b.dataset.val;
+          } else if (act === "status") {
+            person.status = next(STATUS, person.status);
+          } else if (act === "depth") {
+            person.depth = person.depth === "deep" ? "standard" : "deep";
+          } else if (act === "cand") {
+            person.cand = !person.cand;
+            if (person.cand) person.depth = "deep";
+          } else if (act === "gender") {
+            person.gender =
+              GENDERS[(GENDERS.indexOf(person.gender) + 1) % GENDERS.length];
+          } else if (act === "on") {
+            person.on = !person.on;
+          } else if (act === "del") {
+            S.areas[a].people.splice(pi, 1);
+          } else if (act === "add") {
+            S.areas[a].people.push(P("New person", "open"));
+          } else if (act === "mkind") {
+            var mm = S.homes[h].members[+b.dataset.m];
+            mm.kind = mm.kind === "child" ? "adult" : "child";
+            if (mm.kind === "child") {
+              mm.cand = false;
+              mm.deep = false;
+            }
+          } else if (act === "mcand") {
+            var m2 = S.homes[h].members[+b.dataset.m];
+            m2.cand = !m2.cand;
+            if (m2.cand) m2.deep = true;
+          } else if (act === "mdeep") {
+            var m3 = S.homes[h].members[+b.dataset.m];
+            m3.deep = !m3.deep;
+          } else if (act === "mgender") {
+            var m4 = S.homes[h].members[+b.dataset.m];
+            m4.gender =
+              GENDERS[(GENDERS.indexOf(m4.gender) + 1) % GENDERS.length];
+          } else if (act === "mdel") {
+            S.homes[h].members.splice(+b.dataset.m, 1);
+            if (!S.homes[h].members.length) S.homes.splice(h, 1);
+          } else if (act === "madd") {
+            S.homes[h].members.push(M("New person"));
+          } else if (act === "hfolk") {
+            S.homes[h].folk =
+              S.homes[h].folk === "brimmer" ? "road" : "brimmer";
+          } else if (act === "hruns") {
+            S.homes[h].runs = S.homes[h].runs
+              ? cycleSvc(S.homes[h].runs)
+              : SERVICES[0];
+          } else if (act === "hworks") {
+            S.homes[h].works = S.homes[h].works
+              ? cycleSvc(S.homes[h].works)
+              : SERVICES[0];
+          } else if (act === "hdel") {
+            S.homes.splice(h, 1);
+          } else if (act === "hadd") {
+            S.homes.push(
+              H("New household", "brimmer", "", "", [M("New person")]),
+            );
+          } else return;
+          render();
+        });
+
+        document.addEventListener("input", function (e) {
+          var t = e.target;
+          if (t.dataset.act === "pname")
+            S.areas[+t.dataset.a].people[+t.dataset.p].name = t.value;
+          else if (t.dataset.act === "hname")
+            S.homes[+t.dataset.h].name = t.value;
+          else if (t.dataset.act === "prace")
+            S.areas[+t.dataset.a].people[+t.dataset.p].race = t.value;
+          else if (t.dataset.act === "mrace")
+            S.homes[+t.dataset.h].members[+t.dataset.m].race = t.value;
+          else if (t.dataset.act === "mname")
+            S.homes[+t.dataset.h].members[+t.dataset.m].name = t.value;
+          else return;
+          tally();
+        });
+
+        document.getElementById("copy").addEventListener("click", function () {
+          var out = document.getElementById("out"),
+            note = document.getElementById("copy-note");
+          out.focus();
+          out.select();
+          var done = function () {
+            note.textContent = "Copied. Paste it into the chat.";
+          };
+          var fail = function () {
+            note.textContent =
+              "Copy was blocked. The text is selected, so use your device's copy command.";
+          };
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText)
+              navigator.clipboard.writeText(out.value).then(done, fail);
+            else fail();
+          } catch (err) {
+            fail();
+          }
+        });
+
+        var armed = false,
+          rb = document.getElementById("reset");
+        rb.addEventListener("click", function () {
+          if (!armed) {
+            armed = true;
+            rb.textContent = "Tap again to reset";
+            setTimeout(function () {
+              armed = false;
+              rb.textContent = "Reset to draft";
+            }, 3000);
+            return;
+          }
+          armed = false;
+          rb.textContent = "Reset to draft";
+          S = defaults();
+          render();
+        });
+
+        render();
+      })();
+    </script>
+  </body>
+</html>
