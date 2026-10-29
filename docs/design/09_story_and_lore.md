@@ -270,6 +270,9 @@ the same kind are not alike.
   it on the toolbar and use it. It could double as a ledger stamp. The name
   Homeward pin is chosen. The Stardew name must not be used (see
   `docs/decisions/0002-stardew-valley-inspired.md`).
+  Price and level (decided 2026-10-29): the pin opens at 3 hearts with her, and
+  the price is high, a little under Stardew's, so that year 1 is unlikely.
+  Exact numbers come at tuning (`07_tuning_numbers.md`).
   Seller (decided 2026-10-28): an odd one-off elf, a woman, who is not one of
   the elf house heads. She sells the pin once the player reaches a friendship
   level with her, in the way of Krobus's shop. She lives by the sea in ring 1,
@@ -354,26 +357,29 @@ the same kind are not alike.
   through the crossroads town.
 - The valley village is mostly the hatted folk.
 
-### The warden head's reveal (proposed 2026-10-28)
+### The warden head's reveal (revised 2026-10-29)
 
 Stages, each optional and each only adding to what the player knows. The
-timings are placeholders, to be tuned against the seasons we have.
+timings are placeholders, to be tuned against the seasons we have. The
+mailbox note thread was dropped on 2026-10-29, so no mailbox system is needed.
 
 1. Ring 1, first year: a courier at the carrier post in Hearthwell who is a
    little too watchful. She says little and gives no name. Her only offer is
    a small, odd errand now and then. Nothing marks her as a warden.
-2. Ring 1, later: a mystery-note thread. Short notes arrive in the farm
-   mailbox, signed with a mark and not a name, with small gifts or odd asks
-   (a favour for the road, a lost parcel). Following them leads back to her.
-   She gives a name that is plainly an alias. No mention of the Dawn Carriers
-   yet, and no dark lord (ring 1 has no whispers of him).
-3. Start of ring 2: the Dawn Carriers reveal themselves, and she is shown to
+2. Ring 1, middle: one small glimpse at the carrier post, such as a mark she
+   leaves on the board. No ask, no new system. It sets up stage 3.
+3. End of ring 1, the morning after the bridge is mended (the Last Seat): she
+   comes to the farm to talk to the player. She shares a bit more about who she
+   is and gives a name that is plainly an alias. No mention of the Dawn
+   Carriers yet, and no dark lord (ring 1 has no whispers of him).
+4. Start of ring 2: the Dawn Carriers reveal themselves, and she is shown to
    be their head. Her real name is given and the aliases make sense. Her
    optional challenges open here.
-4. Ring 2 onward: her past and her tie to the old story, a little at a time.
-5. Ring 3: the long arc closes, in step with the ending.
+5. Ring 2 onward: her past and her tie to the old story, a little at a time.
+   More Qi-type mysteries for her are to be designed (#177).
+6. Ring 3: the long arc closes, in step with the ending.
 
-Tone: no scares and no pressure. A note unread or an errand skipped costs
+Tone: no scares and no pressure. A visit declined, a glimpse missed or an errand skipped costs
 nothing and she never mentions it (see Neglect).
 
 ## Cast balance

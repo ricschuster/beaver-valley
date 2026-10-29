@@ -26,7 +26,7 @@ Buildings are interior maps. Ring 2 lies beyond them.
 | Mountain | A mountain lake. The smith dwarf and the stonekeeper dwarf. The source of the river. |
 | Mines | Off the Mountain. Ring 1, gentle combat, open early on a fixed day (`16_bundles.md`). |
 | Hearthwell | The crossroads town. Every Brimmer lives here. The shops and services listed below. The river runs through it. |
-| River delta | Where the river ends. Fishing. The ferry landing for the Lake cove. |
+| River delta | Where the river ends. A marsh lake, open from the start. Fishing. The ferry landing for the Lake cove. |
 | Beach | The sea. The odd elf who sells the Homeward pin. |
 | Lake cove | Off the River delta, by ferry. Opened by the Water room reward (`16_bundles.md`). |
 | Ring 2 | Across the river, reached by the bridge in Hearthwell (see below). |
@@ -89,7 +89,9 @@ The farm has three exits, so it is a home between places and not a dead end.
     named the Lake cove here. It hangs off the River delta and is reached by the
     ferry. There is no second cove on the Beach.
 12. **Water bodies for fishing:** the river, the Forest lake, the Mountain lake,
-    the Lake cove and the sea at the Beach. Which fish live where, and what
+    the delta marsh lake (added 2026-10-29), the Lake cove and the sea at the
+    Beach. Three lakes are open from the start. The cove is the Water room
+    reward, so no Water room bundle may need cove fish. Which fish live where, and what
     makes the cove special, belong to the fishing note (#181).
 
 ## Hearthwell buildings

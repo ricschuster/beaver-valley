@@ -136,12 +136,10 @@ steward, the carpenter, partners and retirees are not candidates.
 
 - Names, ages and looks for everyone. The voice sheet template comes with the
   first names (`18_dialogue.md`).
-- Humans are only two of 30, yet the lore has tall road-folk passing through the
-  crossroads town. They may appear as travellers and festival visitors, not as
-  residents. Decide when the town's traffic is designed.
-- Whether any of the 21 halflings in Hearthwell should be humans, so the town
-  reads as mixed.
+- Humans stay visitors (decided 2026-10-29): travellers and festival guests,
+  not residents. The two human residents stay as they are, and no halfling
+  household is converted. Traffic of road-folk is designed with the town.
 - Writing load: 19 deep people. Hold to layer 1 for everyone before layer 3 for
   anyone.
 - The warden head's name and look (#177), the hermit's name and tower (#178)
-  and the Homeward pin price (#176).
+  and the Homeward pin's exact price (#176, level set at 3 hearts).
