@@ -412,14 +412,25 @@
           "ref": "16_bundles.md#Rooms and bundles"
         },
         {
-          "s": "open",
-          "t": "Shrink the Water room, or make fishing a gentle minigame",
-          "ref": "17_call_feedback_2026-10-28.md#Fishing",
+          "s": "decided",
+          "t": "A softened bar with an assist toggle; a third skill; rod, bait and lure",
+          "ref": "21_fishing.md#Decided"
+        },
+        {
+          "s": "decided",
+          "t": "Own rod line, two assist levels, legend at dusk in rain, a fifth tool tier from a deep mine metal",
+          "ref": "21_fishing.md#Decided"
+        },
+        {
+          "s": "decided",
+          "t": "About 45 fish, shellfish-only traps, the legend is a post-room goal",
+          "ref": "21_fishing.md#Decided",
           "issue": 181
         },
         {
           "s": "open",
-          "t": "Fishing design note"
+          "t": "Owner edits to the draft roster, rod names and prices, the legend and its reward",
+          "ref": "21_fishing.md#Open"
         }
       ],
       "deps": [],

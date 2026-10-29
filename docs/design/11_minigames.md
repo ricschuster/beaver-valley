@@ -35,7 +35,7 @@ a score and a prize.
 3. **A festival game.** A skill or luck game at each festival, such as a
    hat-toss or a cake-sorting round. These double as festival content.
 4. **Fishing.** If fishing is added to the farm loop, a catch minigame is the
-   usual form. Decided separately.
+   usual form. Decided: a softened bar with an assist toggle (`21_fishing.md`).
 5. **A rhythm or memory game.** A hearth song at the inn. Low priority.
 
 ## Suggested order

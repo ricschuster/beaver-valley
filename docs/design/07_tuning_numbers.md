@@ -101,6 +101,8 @@ by ones that fit our game. Ours, unchecked.
 Source: `src/core/upgrades.ts`. The hoe and watering can have four tiers (basic,
 copper, steel, gold) bought in the shop for 2000g, 5000g and 10000g. From
 memory for prices; Stardew also needs bars and a wait, which we skip.
+A fifth tier above gold is planned (decided 2026-10-29, `21_fishing.md`): a rare
+metal from the deepest mine levels. Not built, and its price is open (#194).
 
 - A swing costs `2 - 0.25 * tier - 0.1 * farmingLevel`, never under 0.5. The
   level term is from memory, the tier term is ours. Energy can now be

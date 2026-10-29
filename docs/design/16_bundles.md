@@ -107,7 +107,7 @@ replaces Stardew's panning, which the owner dislikes. Ring 1 also has a coast
 | 14 | Lake Fish | 3 of 4 | Lure | Fishing, the Forest, Mountain and delta lakes |
 | 15 | Sea Fish | 4 of 6 | 5 warp charms | Fishing, a coast, travel |
 | 16 | Night Fishing | 3 of 4 | Glow ring | Fishing, night, equipment slot |
-| 17 | Specialty Fish | All 4: one rare fish each from stream, lake and sea, plus one legend | 5 fish dishes | Fishing, cooking |
+| 17 | Specialty Fish | All 4: one rare fish each from stream, lake and sea, plus one rare shellfish | 5 fish dishes | Fishing, cooking |
 | 18 | Trap Catch | 5 of 8, fresh and salt water | 3 crab pots | Fishing, traps |
 
 ### 4. Hearth
