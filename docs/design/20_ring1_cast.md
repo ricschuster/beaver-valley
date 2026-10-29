@@ -90,6 +90,9 @@ Placeholder names such as "Partner" and "Child" stay until the names are written
 
 ## Marriage candidates (14)
 
+The count of 14 is final, with no pairing limits (`12_marriage.md`, decided
+2026-10-29).
+
 | Person | Area | Gender | Race |
 | --- | --- | --- | --- |
 | Keeper of the animal farmstead | Forest | F | halfling |
@@ -133,7 +136,6 @@ steward, the carpenter, partners and retirees are not candidates.
 
 - Names, ages and looks for everyone. The voice sheet template comes with the
   first names (`18_dialogue.md`).
-- The final number of marriage candidates (#137), and any pairing limits.
 - Humans are only two of 30, yet the lore has tall road-folk passing through the
   crossroads town. They may appear as travellers and festival visitors, not as
   residents. Decide when the town's traffic is designed.

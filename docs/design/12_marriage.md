@@ -1,6 +1,7 @@
 # 12 Marriage (draft)
 
-Status: draft. Written from the design talk of 2026-10-27. Nothing here is
+Status: draft. Written from the design talk of 2026-10-27; the open questions
+were settled on 2026-10-29 (see Decided). Nothing here is
 built. Marriage is not in the first playable or M3; it follows once the
 friendship system (M3) and ring 1's cast exist. Needs this note before any
 code (see CLAUDE.md, Scope). Target: after M3, with the ring 1 cast.
@@ -40,7 +41,7 @@ treatment, and some of those can be marriage candidates.
 - Who can be a candidate is a matter of cast writing, not code. The player
   character's look and the candidates' roles stay open to any pairing the
   writing supports; this should be decided when the cast is written, not here.
-- Children: not planned. Open.
+- Children: in, by player choice only (see Decided).
 
 ## Stardew mechanics as ideas
 
@@ -101,15 +102,45 @@ ADR 0002.
 3. Spouse routine and small helping jobs.
 4. More candidates, as the cast is written.
 
+## Decided (2026-10-29)
+
+Settled with the owner, closing issue #137.
+
+- **Candidates in ring 1: 14** (9 women, 5 men), as listed in
+  `20_ring1_cast.md`. Any player character can court any candidate, whatever
+  the player's gender. Writing load is held by doing layer 1 for everyone before
+  layer 3 for anyone (`18_dialogue.md`).
+- **Pairing limits: none, and one spouse at a time.** Relatives and friends of a
+  candidate (the hat-maker and their sibling, say) stay courtable.
+- **Courtship gift: flowers.** A bouquet, made from our own flowers. The
+  traditional gesture, kept simple.
+- **Proposal item: a ring-like token that is not worn.** Our own object, not
+  wearable, so the item set has no clothing in it. Its form and name are open
+  until the item notes (a placeholder is "promise token"). The wedding as a
+  joining of ledgers (see Fit with the lore) is kept as flavour, not as an item.
+- **Spouse chores: small helps only.** The spouse feeds animals and waters a few
+  crops near the house. The cap keeps the farm from becoming too easy. No
+  repairs, no full watering.
+- **Divorce: player-only, a small gold fee, friendship stays.** A short ledger
+  scene. The ex-spouse stays a friendly villager at their old heart level, with
+  no anger and no loss.
+- **Roommate option: not in.** Left out to hold scope.
+- **Children: in, by player choice.** Offered only once a house upgrade adds a
+  spare room (`10_customisation.md`). Never automatic and never pressed. Costs
+  a crib, child sprites and writing, which go in the art and writing plans.
+- **The spouse stays on the farm.** The spouse never travels to other rings and
+  there is no second home. Candidates in rings 2 and 3 can still exist; their
+  counts are set in those ring notes.
+- **Wedding look: left to the art pass** (#58). It is a ledger-joining scene
+  with a day off.
+
 ## Open
 
-- Number of candidates in ring 1, and in rings 2 and 3.
-- What the courtship gift and the proposal item are.
-- Whether the spouse helps with farm work, and how much.
-- Whether children exist (a Stardew idea, see above).
-- Divorce: its cost, and what stays of the friendship.
-- Whether a roommate option exists.
-- Whether the player can have a second home or the spouse can visit other
-  rings.
-- The look of the wedding scene and festival.
-- Which spouse chores, if any, and how to keep them from trivialising the farm.
+- Candidate counts for rings 2 and 3, set in those ring notes.
+- The proposal item's form and name, and the flower types, set in the item
+  notes.
+- The fee amount for divorce, and the size of the spouse's helps (placeholder
+  numbers in `07_tuning_numbers.md` when built).
+- The house upgrade that adds the child's room, and what the child does day to
+  day.
+- The look of the wedding scene and festival (art pass, #58).

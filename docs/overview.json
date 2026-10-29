@@ -342,14 +342,23 @@
           "ref": "09_story_and_lore.md#The valley folk"
         },
         {
-          "s": "open",
-          "t": "Number of candidates and their genders",
-          "ref": "12_marriage.md#Open",
-          "issue": 137
+          "s": "decided",
+          "t": "Ring 1 has 14 candidates, any player can court any, no pairing limits",
+          "ref": "12_marriage.md#Decided (2026-10-29)"
+        },
+        {
+          "s": "decided",
+          "t": "Flowers to court, a non-worn ring-like token to propose",
+          "ref": "12_marriage.md#Decided (2026-10-29)"
+        },
+        {
+          "s": "decided",
+          "t": "Small spouse helps, gentle divorce with a fee, children by choice, no roommate",
+          "ref": "12_marriage.md#Decided (2026-10-29)"
         },
         {
           "s": "open",
-          "t": "Courtship gift, spouse chores, children, divorce",
+          "t": "Item forms, divorce fee, child room upgrade, ring 2 and 3 counts",
           "ref": "12_marriage.md#Open"
         }
       ],
