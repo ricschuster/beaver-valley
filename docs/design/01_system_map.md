@@ -110,7 +110,7 @@ Open for further discussion:
 - Whether ring 3 is a dungeon of floors or something else (hazard navigation,
   puzzles).
 - Map style: decided in ADR 0005 (separate areas joined by exits, buildings as
-  interior maps). See `docs/design/06_map_style.md`. The valley layout is open.
+  interior maps). See `docs/design/06_map_style.md`. The valley layout is in `docs/design/19_valley_layout.md`.
 - Whether the farm is fixed or outposts can be set up in other regions.
 - Hand-built regions for the first playable, with generated content possibly
   later.

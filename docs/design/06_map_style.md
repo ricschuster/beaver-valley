@@ -55,8 +55,8 @@ the scene moves to multiple maps. They are a technical interface, not layout.
 
 ## Still open
 
-- The valley layout: how many areas, their shapes, and where the farm, village,
-  shop and hall sit. Tracked in #67.
+- The valley layout is decided in `19_valley_layout.md` (areas, exits, river).
+  Area sizes and the real Tiled maps are still to do (#67).
 - The minimum visible tile count for the zoom rule.
 - The transition look (fade length, a peek at the neighbouring area).
 - Whether the first playable uses a menu stand-in for building interiors.
