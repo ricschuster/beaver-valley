@@ -95,14 +95,16 @@ pool: melon, tomato, radish, hot pepper, corn, red cabbage.
 
 ### 3. Water room
 
-Room reward: the ferry is repaired and a lake cove opens inside ring 1. It
+Room reward: the ferry is repaired and a lake cove opens inside ring 1. No
+bundle in this room may need cove fish, since the cove opens only when the
+room is done (decided 2026-10-29). Lake fish come from the three open lakes. It
 replaces Stardew's panning, which the owner dislikes. Ring 1 also has a coast
 (decided 2026-10-28), which the Sea Fish bundle uses.
 
 | # | Bundle | Rule | Reward | Needs |
 | --- | --- | --- | --- | --- |
 | 13 | Stream Fish | 3 of 5 | 30 bait | Fishing |
-| 14 | Lake Fish | 3 of 4 | Lure | Fishing, lake cove |
+| 14 | Lake Fish | 3 of 4 | Lure | Fishing, the Forest, Mountain and delta lakes |
 | 15 | Sea Fish | 4 of 6 | 5 warp charms | Fishing, a coast, travel |
 | 16 | Night Fishing | 3 of 4 | Glow ring | Fishing, night, equipment slot |
 | 17 | Specialty Fish | All 4: one rare fish each from stream, lake and sea, plus one legend | 5 fish dishes | Fishing, cooking |
