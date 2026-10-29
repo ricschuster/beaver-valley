@@ -140,8 +140,8 @@
       "group": "world",
       "pos": [260, 60],
       "built": "partial",
-      "builtNote": "A placeholder farm map and map loader exist. No valley or Hearthwell layout.",
-      "summary": "Separate areas joined by exits, buildings as interiors. The layout is open.",
+      "builtNote": "A placeholder farm map and map loader exist. The layout is designed but no real map is authored.",
+      "summary": "Separate areas joined by exits, buildings as interiors. Nine valley areas, one river line, ring 2 across the bridge.",
       "items": [
         {
           "s": "decided",
@@ -149,15 +149,20 @@
           "ref": "06_map_style.md#Decisions"
         },
         {
-          "s": "open",
-          "t": "Valley layout: areas, and where farm, village, shop and hall sit",
-          "ref": "06_map_style.md#Still open",
+          "s": "decided",
+          "t": "Valley layout: nine areas, river from Mountain to delta, farm with three exits",
+          "ref": "19_valley_layout.md#The areas",
           "issue": 67
         },
         {
+          "s": "decided",
+          "t": "Hearthwell holds all Brimmers; hall at its east end; sawmill; log gates the Secret Woods",
+          "ref": "19_valley_layout.md#Decisions"
+        },
+        {
           "s": "open",
-          "t": "Hearthwell building list and size",
-          "ref": "09_story_and_lore.md#The crossroads town"
+          "t": "Hearthwell size and home count, the Water room ferry route",
+          "ref": "19_valley_layout.md#Still open"
         }
       ],
       "deps": [],
@@ -260,14 +265,15 @@
           "ref": "09_story_and_lore.md#Cast balance"
         },
         {
-          "s": "proposed",
-          "t": "Suggested gender for each open slot",
-          "ref": "09_story_and_lore.md#Cast balance"
+          "s": "decided",
+          "t": "Ring 1 cast structure: 30 people, races, genders, households, 14 candidates",
+          "ref": "20_ring1_cast.md#Decisions",
+          "issue": 136
         },
         {
           "s": "open",
-          "t": "Ring 1 cast list: smithy, inn, store, healer, library, valley village",
-          "issue": 136
+          "t": "Names, ages and looks for the ring 1 cast",
+          "ref": "20_ring1_cast.md#Still open"
         },
         {
           "s": "open",

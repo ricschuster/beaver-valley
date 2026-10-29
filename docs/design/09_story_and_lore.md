@@ -378,6 +378,9 @@ nothing and she never mentions it (see Neglect).
 
 ## Cast balance
 
+The current state of the ring 1 cast, with races, genders and households, is in
+`20_ring1_cast.md`. The tables below are the older draft.
+
 The owner wants more women in the cast (2026-10-28). Rule of thumb for new
 named characters: lean female until the cast is roughly even, and do not
 change a role to fit a number. The state so far:
@@ -417,8 +420,10 @@ Fill the open slots with the balance in mind when they are named.
 ## The crossroads town
 
 A mixed town on the road, in the role of a Bree-like waystation town. Its name
-is Hearthwell. Stardew-like in layout. It holds the old waystation, now the
-village hall, called The Long Table. The farm sits out in the quiet valley as a home base.
+is Hearthwell. Stardew-like in layout. The old waystation, now the village
+hall called The Long Table, stands a short way outside town on the road to the
+bridge (decided 2026-10-28, see `19_valley_layout.md`). All the Brimmers live in
+Hearthwell. The farm sits out in the quiet valley as a home base.
 
 Buildings chosen:
 
@@ -426,8 +431,9 @@ Buildings chosen:
 - Smithy and mender (tool upgrades, run by a stout craftsperson).
 - Inn and kitchen.
 - Healer, library and a festival green.
+- Sawmill and carpenter on the river (house upgrades and farm buildings).
 
-Open: the full list of building types, and how big the town is.
+Open: how big the town is and how many homes it needs (see the cast list, #136).
 
 ## Festivals
 
