@@ -54,7 +54,7 @@ Anecdotal, from forums and press, not a survey.
    leaves the zone) lifts silver or gold by one grade. There is no iridium
    tier. This is an extension of the crop and forage roll in
    `src/core/quality.ts`.
-8. **Roster: about 45 fish** in ring 1, sketched below. Each needs an icon and
+8. **Roster: 46 fish** in ring 1, sketched below. Each needs an icon and
    a bar motion.
 9. **Traps (bundle 18): a passive way to fish, for shellfish only, and
    optional.** A pot at the water gives crabs and the like the next day, never
@@ -65,12 +65,23 @@ Anecdotal, from forums and press, not a survey.
 11. **The Water room keeps all six bundles** (13 to 18). The N-of-M rules give
     choice of fish.
 12. **The cove is for the rarest fish.** The Lake cove holds the rarest
-    ordinary fish and the one legend. It opens only when the Water room is done.
+    ordinary fish and the legends. It opens only when the Water room is done.
     No Water room bundle needs cove fish, including the legend.
-13. **One legend fish, caught under a set condition**: the cove, one season,
-    dusk, rain, and the top rod. The forecast shows the rain, so it can be
-    planned for, and it can be caught again each year for a small reward. It is
+13. **The first legend is the Hearthwell Carp** (decided 2026-10-29): an
+    enormous carp of the same kind as the common Carp, caught in the cove in
+    **autumn**, at **dusk in rain**, with the top rod. The forecast shows the
+    rain, so it can be planned for. **The reward is the fish itself**: it is very
+    valuable to sell, cook or keep, and it can be caught again each year. It is
     a post-room goal and is not in a bundle.
+13a. **Four more legends follow once the fishing bundles are done** (13 to
+    18), in the Stardew way, five in all. The Hearthwell Carp is the only cove
+    legend. Each of the others has its own water, season, time and weather, and
+    each is worth a lot. See "The legends" below. Every legend counts toward
+    the completion tracker.
+13b. **Completion tracker (to design, #196).** All fish, the legends included, count
+    toward a Perfection-style total for the whole game. Other things will count
+    too (bundles, skills, collections), so this is a game-wide system and not a
+    fishing rule. It needs its own design note before anything is built.
 14. **Assist has two levels.** The first is a bigger bar and calmer fish. The
     second skips the fight. A skipped fight gives a normal-grade catch from the
     size roll and no perfect bonus, and gold stays reachable through the level
@@ -86,27 +97,27 @@ Anecdotal, from forums and press, not a survey.
 
 ## The waters
 
-| Water | Open | Sketch of the fish | Placeholder count |
+| Water | Open | Sketch of the fish | Count |
 | --- | --- | --- | --- |
-| River (Mountain, Hearthwell, delta) | From the start | Stream fish, bundle 13 | 8 |
+| River (Mountain, Hearthwell, delta) | From the start | Stream fish, bundle 13 | 9 |
 | Forest lake | From the start | Lake fish, bundle 14 | 6 |
 | Mountain lake | From the start | Lake fish, bundle 14 | 6 |
-| Delta marsh lake | From the start | Lake fish, bundle 14 | 6 |
-| Sea (Beach) | From the start | Sea fish, bundle 15; night fish | 9 |
+| Delta marsh lake | From the start | Lake fish, bundle 14; night fish | 7 |
+| Sea (Beach) | From the start | Sea fish, bundle 15; night fish | 10 |
 | Lake cove | Water room reward | The rarest ordinary fish and the legend | 8 |
 
-Total 43 fish plus the legend: about 45. Night fish for bundle 16 are drawn
-from the sea and the lakes. Crab pot catches are separate and are not counted.
+Total 46 fish plus the legend. Night fish for bundle 16 are drawn from the sea
+and the lakes. Crab pot catches are separate and are not counted.
 
-## Draft roster (placeholder names, 2026-10-29)
+## Draft roster (2026-10-29, edited with the owner)
 
-A first draft for the owner to edit. All names are placeholders of our own, and
-none are taken from Stardew. Season names follow the calendar, and the first
-playable has two seasons, so fish in other seasons wait. Rarity is common,
-uncommon or rare. Time is dawn, day, dusk, night, or any. Bundle numbers show
-which bundle a fish can fill (`16_bundles.md`).
+Names are a mix on purpose: real, well-known fish for the common ones (Carp,
+Salmon, Cod) and our own funny or whimsical names for the rest. None are taken
+from Stardew. All four seasons are planned for. Rarity is common, uncommon or
+rare. Time is dawn, day, dusk, night, rain, or any. Bundle numbers show which
+bundle a fish can fill (`16_bundles.md`).
 
-### River (8)
+### River (9)
 
 | Fish | Season | Time | Rarity | Bundle |
 | --- | --- | --- | --- | --- |
@@ -114,8 +125,9 @@ which bundle a fish can fill (`16_bundles.md`).
 | Brookslip | Spring | Day | Common | 13 |
 | Millrun | Summer | Day | Common | 13 |
 | Ferrywhisker | Autumn | Any | Uncommon | 13 |
+| Salmon | Autumn | Day | Uncommon | 13 |
 | Hearthside Dace | All | Dusk | Uncommon | 13 |
-| Tallow Eel | Winter | Night | Uncommon | 16 |
+| Tallow Eel | Winter | Night | Uncommon | 13, 16 |
 | Silverthread | All | Dawn | Rare | 17 (stream) |
 | Old Mossback | Autumn | Rain | Rare | spare |
 
@@ -123,9 +135,9 @@ which bundle a fish can fill (`16_bundles.md`).
 
 | Fish | Season | Time | Rarity | Bundle |
 | --- | --- | --- | --- | --- |
-| Pondling | All | Day | Common | 14 |
-| Hollow Perch | Spring | Day | Common | spare |
-| Fernfin | Summer | Day | Uncommon | spare |
+| Carp | All | Day | Common | 14 |
+| Perch | Spring | Day | Common | spare |
+| Fernfin | Summer | Day | Uncommon | 14 |
 | Mushroom Loach | Autumn | Dusk | Uncommon | spare |
 | Moonmirror | All | Night | Uncommon | 16 |
 | Hermit Trout | All | Rain | Rare | 17 (lake) |
@@ -135,36 +147,38 @@ which bundle a fish can fill (`16_bundles.md`).
 | Fish | Season | Time | Rarity | Bundle |
 | --- | --- | --- | --- | --- |
 | Cold Quill | All | Day | Common | 14 |
-| Snowmelt Char | Winter, Spring | Day | Common | spare |
+| Arctic Char | Winter, Spring | Day | Common | 14 |
 | Granite Gudgeon | All | Any | Uncommon | spare |
 | Echo Pike | All | Rain | Uncommon | spare |
 | Ember Trout | Summer | Dusk | Uncommon | spare |
-| Glacier Ghost | Winter | Night | Rare | spare |
+| Glacier Ghost | Winter | Night | Rare | 16 |
 
-### Delta marsh lake (6)
+### Delta marsh lake (7)
 
 | Fish | Season | Time | Rarity | Bundle |
 | --- | --- | --- | --- | --- |
 | Marshlight | All | Day | Common | 14 |
-| Bogwhisker | Spring, Summer | Day | Common | spare |
+| Bogwhisker | Spring, Summer | Day | Common | 14 |
 | Sunk Boot Loach | All | Any | Common | spare |
-| Reed Cat | All | Night | Uncommon | spare |
-| Mirelurker | All | Rain | Uncommon | spare |
+| Reed Cat | All | Night | Uncommon | 16 |
+| Catfish | All | Dusk | Uncommon | spare |
+| Bullhead | All | Rain | Uncommon | spare |
 | Glassy Elver | Spring | Dawn | Rare | spare |
 
-### Sea, at the Beach (9)
+### Sea, at the Beach (10)
 
 | Fish | Season | Time | Rarity | Bundle |
 | --- | --- | --- | --- | --- |
-| Tidepenny | All | Day | Common | 15 |
+| Sardine | All | Day | Common | 15 |
 | Skiff Sprat | All | Day | Common | 15 |
-| Saltbeard | Summer, Autumn | Day | Common | 15 |
-| Dune Mullet | Spring | Dawn | Common | 15 |
+| Mackerel | Summer, Autumn | Day | Common | 15 |
+| Mullet | Spring | Dawn | Common | 15 |
+| Cod | Winter | Day | Common | 15 |
 | Kelp Ribbon | All | Dusk | Uncommon | 15 |
 | Harbour Ray | Summer | Any | Uncommon | 15 |
-| Pale Moonfish | All | Night | Uncommon | 16 |
+| Herring | All | Night | Uncommon | 16 |
 | Lantern Squid | Autumn, Winter | Night | Uncommon | 16 |
-| Crowned Tunny | Summer | Day | Rare | 17 (sea) |
+| Crowned Tunny | Summer, Autumn | Day | Rare | 17 (sea) |
 
 ### Lake cove, after the Water room (8, plus the legend)
 
@@ -178,26 +192,55 @@ which bundle a fish can fill (`16_bundles.md`).
 | Dusk Opal | All | Dusk | Rare | none |
 | Deepglow | Winter | Night | Rare | none |
 | Shell Ghost | All | Rain | Rare | none |
-| The legend (unnamed) | One season | Dusk, rain | Legend | none (top rod) |
+| The Hearthwell Carp | Autumn | Dusk, rain | Legend | none (top rod) |
 
-### What the draft covers
+### What the roster covers
 
-- Bundle 13 has five stream fish, 14 has four lake fish, 15 has six sea fish
-  and 16 has four night fish, so every N-of-M rule has exactly its M. Add a
-  spare or two per bundle if the rules should leave a choice of fish.
+- Bundle 13 has seven eligible fish for 3 of 5, 14 has six for 3 of 4, 15 has
+  seven for 4 of 6 and 16 has six for 3 of 4, so every rule leaves a choice.
+- No season blocks a bundle. In the worst season there are still enough fish:
+  13 has three in winter, 14 has four in winter, 15 has four in winter and 16
+  has three in spring.
 - Bundle 17 takes Silverthread, Hermit Trout and Crowned Tunny, plus the rare
-  shellfish.
+  shellfish. Crowned Tunny runs Summer and Autumn.
 - The Catch (28) needs a gold fish of the stream, lake, sea and night kinds.
   Any fish in those groups counts, and gold stays reachable through the level
   roll on assist.
 - No Water room bundle uses a cove fish.
+- Rarity mix: 15 common, 20 uncommon, 11 rare.
+
+## The legends (decided 2026-10-29, conditions are placeholders)
+
+Five in all. The first is open once the Water room is done (it needs the cove).
+The other four open after the fishing bundles (13 to 18) are done. Each is worth
+a lot as the fish itself, and can be caught again each year.
+
+| Legend | Water | Season | Time and weather | Idea |
+| --- | --- | --- | --- | --- |
+| The Hearthwell Carp | Cove | Autumn | Dusk, rain | An enormous carp. |
+| Grandmother Hush | Forest lake | Spring | Dusk, rain | A huge old fish, kin to the cove's Hush. |
+| The Valley King | River | Summer | Dawn, rain | The king of the river. |
+| Moonlit Mother | Mountain lake | Winter | Night, clear | A pale giant char. |
+| Great Hearthfin | Sea | Summer | Day, any weather | A huge sea fish, the easy one with no weather. |
+
+Two legends fall in summer, at different times of day. Move the Valley King if
+that feels crowded. The delta marsh lake has no legend.
+
+## The rare shellfish
+
+The **Pearl Lobster** (decided 2026-10-29) fills the shellfish slot of bundle 17.
+It is a rare lobster that carries a small pearl. It is caught in the sea in any
+season and at any time, so no season blocks the bundle. A rod catches it at low
+odds (placeholder: about 3 in 100 sea bites), and a salt water pot catches it
+more often (placeholder: about 1 in 5 a day). A pot is never required. The odds
+go into `07_tuning_numbers.md` before any build.
 
 ## Changes to bundle 17 (Specialty Fish)
 
 Bundle 17 was "one rare fish each from stream, lake and sea, plus one legend".
 The legend lives in the cove, and the cove opens only after the Water room, so
 the legend cannot be in the room's own bundle. It is now **one rare fish each
-from stream, lake and sea, plus one rare shellfish**, such as a giant crab,
+from stream, lake and sea, plus one rare shellfish**, the Pearl Lobster,
 decided 2026-10-29. Pots are optional, so the shellfish can also be caught on
 the rod, at low odds, in the sea. Reward unchanged: 5 fish dishes.
 
@@ -220,8 +263,11 @@ the rod, at low odds, in the sea. Reward unchanged: 5 fish dishes.
 
 - Rod names, prices and how many, and the bait and lure types.
 - Owner edits to the draft roster, and a spare fish or two per bundle.
-- The legend's name and reward.
-- The rare shellfish's name and its rod odds.
+- The four new legends: final seasons, times and weather, and their sell
+  prices.
+- The completion tracker: what counts, the weights and the reward (a note of its
+  own).
+- The Pearl Lobster's final rod and pot odds (tuning).
 - Fishing professions (deferred).
 - The fifth tool tier: its metal's name, the mine depth, the price and which
   tools use it.
