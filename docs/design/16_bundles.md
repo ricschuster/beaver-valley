@@ -116,7 +116,7 @@ Room reward: carts between the farm, the hall, the town and the mines.
 
 | # | Bundle | Rule | Reward | Needs |
 | --- | --- | --- | --- | --- |
-| 19 | Smith's | All: 5 copper bars, 5 iron bars, 3 gold bars | Furnace | Smelting, ore from the mines |
+| 19 | Smith's | All: 5 copper bars, 5 iron bars, 3 gold bars | Charcoal kiln and its recipe | Smelting, ore from the mines or the smith |
 | 20 | Lamplighter's | 2 of 3: 3 lamps, 10 oil, 20 torches | Torches for the mines | Light, crafting |
 | 21 | Weaver's | Both: 10 cloth, 5 thread | Loom | Cloth, tailoring |
 
@@ -192,8 +192,9 @@ Decided 2026-10-28. The mines open early, on a fixed day, and not through the
 hall. A rockfall blocks the entrance until then. Old Greencoat comes to the
 door and says the way is clear, which fits his part of opening each road in a
 small way. In Stardew the mines open on Spring day 5 by a letter, and the
-Boiler Room only adds a minecart. The opening day is a placeholder for
-`07_tuning_numbers.md`. This lets the Hearth's metal come from the mines
+Boiler Room only adds a minecart. The opening day is Spring day 5 (decided
+2026-10-30, `22_mines.md`). The furnace is now a gift from the smith dwarf, not
+the Smith's bundle reward, and the big furnace is a ring 2 reward. This lets the Hearth's metal come from the mines
 before its carts arrive. Combat is wanted in the mines but must stay gentle
 (cartoonish creatures, a soft penalty when beaten). That, and the mines' size,
 belong in the mines note.
@@ -210,7 +211,6 @@ current rewards (seeds and money) stay until the systems above exist.
 
 - Whether a player must finish at least one bundle in every room before the
   last room appears.
-- The opening day of the mines.
 - The pool of items for bundles 3, 4, 6, 11 to 18, 22 to 24 and 26.
 - The Last Seat quantities and the bridge cost, once wood, stone and bars
   have real production rates.

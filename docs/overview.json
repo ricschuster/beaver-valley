@@ -372,56 +372,66 @@
       "pos": [260, 520],
       "built": "none",
       "builtNote": "",
-      "summary": "Open early on a fixed day, 120 floors in three bands. Combat is real-time, gentle and optional, and mining works without it.",
+      "summary": "Opens Spring day 5, 120 floors in three bands. Combat is real-time, gentle and optional, and mining works without it.",
       "items": [
         {
           "s": "decided",
-          "t": "Mines open on a fixed day; Old Greencoat says the way is clear",
-          "ref": "16_bundles.md#The mines"
+          "t": "Mines open on Spring day 5; Old Greencoat says the way is clear and gives nothing else",
+          "ref": "22_mines.md#Opening the mines"
         },
         {
           "s": "decided",
-          "t": "A training dummy and a trainer; no boss fights",
-          "ref": "22_mines.md#The training dummy and the trainer"
+          "t": "Real-time, forgiving combat; one health bar shown only where health can be lost; Assist toggle and a no-creatures setting",
+          "ref": "22_mines.md#Gentle combat"
         },
         {
           "s": "decided",
-          "t": "Real-time, forgiving combat (owner, 2026-10-30)",
-          "ref": "22_mines.md#Decided with the owner (2026-10-30)"
-        },
-        {
-          "s": "decided",
-          "t": "Defeat the Stardew way: carried out, 10 percent money (cap 1000g) and a few items lost, one posted back",
+          "t": "Defeat the Stardew way: carried out, 10 percent money (cap 1000g) and up to 3 bag stacks lost, one posted back by the trainer",
           "ref": "22_mines.md#Defeat (decided with the owner, Stardew's way)"
         },
         {
           "s": "decided",
-          "t": "Stardew-sized mine: 120 floors in three bands, a lift every 5 floors",
+          "t": "Stardew-sized mine: 120 floors in three bands, a lift stop at every floor reached, a loot chest camp every 10th floor, a dangerous mode switch at the bottom",
           "ref": "22_mines.md#The mine, floor by floor"
         },
         {
-          "s": "proposed",
-          "t": "Mining works without fighting; any pickaxe digs any ore; dry-streak odds for ladders and rare finds",
-          "ref": "22_mines.md#Rules for the whole mine"
-        },
-        {
-          "s": "proposed",
-          "t": "Three weapon families, seven gentle creatures, Combat as a fifth skill, an Assist toggle",
+          "s": "decided",
+          "t": "Three weapon families, Combat as a fifth skill, a training dummy and a trainer; no boss fights",
           "ref": "22_mines.md#Gentle combat"
         },
         {
-          "s": "proposed",
-          "t": "Deepglim, the fifth tool tier metal, on floors 100 to 120 (answers part of #194)",
+          "s": "decided",
+          "t": "Creatures from cozy to a little edgy: gloop, moths, crabs, beetles, bats, thieves and old miner skeletons",
+          "ref": "22_mines.md#Creatures"
+        },
+        {
+          "s": "decided",
+          "t": "Any pickaxe digs any ore; the pickaxe and farm rocks from the start",
+          "ref": "22_mines.md#Mining"
+        },
+        {
+          "s": "decided",
+          "t": "The smith dwarf sells ore and coal, not bars; she gifts the furnace after the first copper ore; the Smith's bundle gives a charcoal kiln",
+          "ref": "22_mines.md#Ore, coal and bars"
+        },
+        {
+          "s": "decided",
+          "t": "Fifth tool tier metal Hearthsilver, floors 100 to 120, bars only, no gold (answers part of #194)",
           "ref": "22_mines.md#The fifth tool tier (answers part of #194)"
         },
         {
           "s": "proposed",
-          "t": "The smith dwarf smelts bars before the furnace exists (fixes the Smith's bundle circle)",
-          "ref": "22_mines.md#Ore, coal and bars"
+          "t": "Dry-streak odds for ladders (also on a kill) and rare finds",
+          "ref": "22_mines.md#Finding the way down (dry streak)"
         },
         {
           "s": "open",
-          "t": "Owner review of the drafted mines note, a second endless cavern, and the farm pickaxe",
+          "t": "A Skull Cavern style dig, likely in ring 2, and the big furnace as a ring 2 reward",
+          "ref": "22_mines.md#Open"
+        },
+        {
+          "s": "open",
+          "t": "Nabbler loss path, ore prices, the furnace craft route and the dangerous mode rules",
           "ref": "22_mines.md#Open"
         }
       ],
