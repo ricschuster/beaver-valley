@@ -418,18 +418,24 @@
         },
         {
           "s": "decided",
-          "t": "Own rod line, two assist levels, legend at dusk in rain, a fifth tool tier from a deep mine metal",
+          "t": "Own rod line, two assist levels, the Hearthwell Carp legend at dusk in rain, a fifth tool tier from a deep mine metal",
           "ref": "21_fishing.md#Decided"
         },
         {
           "s": "decided",
-          "t": "About 45 fish, shellfish-only traps, the legend is a post-room goal",
+          "t": "46 fish, shellfish-only traps, five legends (the Hearthwell Carp first) and the Pearl Lobster",
           "ref": "21_fishing.md#Decided",
           "issue": 181
         },
         {
+          "s": "decided",
+          "t": "A game-wide completion tracker (Perfection-style) is wanted; every fish and legend counts toward it",
+          "ref": "21_fishing.md#Decided",
+          "issue": 196
+        },
+        {
           "s": "open",
-          "t": "Owner edits to the draft roster, rod names and prices, the legend and its reward",
+          "t": "Rod names and prices, legend conditions, and the tracker design (what counts, weights, reward)",
           "ref": "21_fishing.md#Open"
         }
       ],

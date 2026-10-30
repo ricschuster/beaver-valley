@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-10-28",
+  "fetched": "2026-10-30",
   "issues": {
     "5": {
       "t": "Design: what is the third community project?",
@@ -168,7 +168,7 @@
     },
     "137": {
       "t": "Design: marriage open questions",
-      "state": "open",
+      "state": "closed",
       "labels": ["design-question"]
     },
     "138": {
@@ -210,6 +210,16 @@
       "t": "Design: bundle item pools, Last Seat numbers and pacing",
       "state": "open",
       "labels": ["design-question"]
+    },
+    "194": {
+      "t": "Design: the fifth tool tier above gold",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "196": {
+      "t": "Design: a completion tracker (Perfection-style) for the whole game",
+      "state": "open",
+      "labels": []
     }
   }
 }
