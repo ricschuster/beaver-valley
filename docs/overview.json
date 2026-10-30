@@ -435,9 +435,15 @@
           "ref": "22_mines.md#Open"
         },
         {
-          "s": "open",
-          "t": "Nabbler loss path, ore prices, the furnace craft route and the dangerous mode rules",
-          "ref": "22_mines.md#Open"
+          "s": "decided",
+          "t": "Smith ore at about 2.5 times a bar's value; Nabbler steals nothing; the furnace craft makes more furnaces",
+          "ref": "22_mines.md#Ore, coal and bars"
+        },
+        {
+          "s": "decided",
+          "t": "Dangerous mode lever on floor 120, gated by reaching 120 and an errand from the warden head",
+          "ref": "22_mines.md#Dangerous mode",
+          "issue": 177
         }
       ],
       "deps": [],

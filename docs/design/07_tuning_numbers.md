@@ -221,7 +221,10 @@ are from memory and unchecked.
 - Smelting: 5 ore and 1 coal a bar (2 coal for Hearthsilver), a day per batch.
   The smith dwarf sells copper, iron and gold ore and coal, never bars. She gifts
   the furnace the morning after the first copper ore is handed over. Crafting it
-  at mining level 4 is an alternative.
+  at mining level 4 makes more furnaces.
+- Smith ore prices: copper ore 25g, iron ore 50g, gold ore 100g, coal 50g (about
+  2.5 times the bar's sale value). Bars sell for about 60g, 120g and 250g, from
+  memory.
 - Charcoal kiln (Smith's bundle reward): 10 wood for 1 coal. Craft cost 2 copper
   bars and wood.
 - Health 100, plus 5 per combat level. A touch costs 4 to 12. Grace after a hit is

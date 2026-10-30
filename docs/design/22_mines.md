@@ -62,6 +62,18 @@ Second round:
 19. **Dry-streak numbers and special floors (about 1 in 15) are kept.**
 20. **The mines open on Spring day 5.**
 
+Third round (the small open items):
+
+21. **Ore prices at the smith are about 2.5 times the bar's sale value.** Copper
+    ore 25g, iron ore 50g, gold ore 100g, coal 50g (placeholders).
+22. **The Nabbler steals nothing.** It is a hit-and-run nuisance that costs health
+    only. Defeat is the only way to lose items.
+23. **The furnace the smith gifts is the first.** Crafting at mining level 4 is
+    kept to make more furnaces.
+24. **The dangerous mode lever is on floor 120 only,** and is gated by reaching
+    floor 120 and then a short errand from the warden head (see "Dangerous
+    mode"). The lift can bring the player back up afterwards.
+
 Already decided elsewhere and kept: the mines are in ring 1, off the Mountain,
 and open on a fixed day announced by Old Greencoat (`16_bundles.md`, "The
 mines"). A training dummy and no boss fights. The trainer is a human woman, deep
@@ -128,10 +140,17 @@ ladders, from memory. Numbers go in `07_tuning_numbers.md`.
 
 ### Dangerous mode
 
-Once the player has reached floor 120, a switch at the bottom (placeholder: a
-lever in the last hall) turns the mine into a harder version, like Stardew's
-toggle. It can be flipped back at any time.
+A lever in the last hall of floor 120 (decided: floor 120 only) turns the mine
+into a harder version, like Stardew's toggle. The player can flip it back at any
+time, and the lift can bring them up afterwards.
 
+- **The gate (decided).** Reach floor 120, then do a short errand for the warden
+  head. She sets the player a task ("prove you can make the descent again within a
+  week") and the lever then works. This is our version of Stardew's quest, where
+  Mr. Qi's "Danger in the Deep" asks the player to reach floor 120 within a week
+  and a shrine on that floor then switches on the dangerous mines (fan guides,
+  unverified). The errand is a placeholder until the warden head's note
+  (#177) exists. Until then the lever works once the bottom is reached.
 - More creatures per floor, with harder hits.
 - Better drops and more ore per node.
 - The Assist settings still apply, so the dangerous mine is reachable for
@@ -175,8 +194,11 @@ from Gloop. A furnace takes a day per batch, as in Stardew.
 coal. She does not sell bars and does not sell Hearthsilver ore. Stardew's
 blacksmith sells ore and coal too, from memory. A non-miner can therefore
 buy ore, smelt it and finish the Smith's bundle without fighting or digging.
-Prices are placeholders and must make ore dearer to buy than the bar is worth to
-sell, so mining stays the better route for money (see "Tuning").
+Prices (decided, placeholders): copper ore 25g, iron ore 50g, gold ore 100g, coal
+50g, about 2.5 times the bar's sale value (60g, 120g and 250g, from memory). A bar
+then costs about 175g, 300g and 550g to buy and smelt, so buying never beats
+digging. A non-miner finishing bundle 19 by buying pays about 4000g, a real
+stretch but within reach late in the first two seasons.
 
 **The furnace (decided).**
 
@@ -184,9 +206,8 @@ sell, so mining stays the better route for money (see "Tuning").
   hands over copper ore (a short scene at the farm door, Stardew's pattern as
   search results show it, unverified), she brings a furnace. A non-miner buys the
   ore from her and hands it over, so the gift is open to everyone.
-- **It can also be crafted** at mining level 4 (placeholder), for a player who
-  digs before they meet her. In practice the gift comes first, so this route may
-  be redundant. See "Open".
+- **More furnaces can be crafted** at mining level 4 (placeholder, decided), so a
+  player can run several batches at once. The gift is the first furnace.
 - **The Smith's bundle needs bars, so the furnace comes first,** which breaks the
   old circle where the bundle gave the furnace.
 - **The big furnace is a ring 2 reward** (smelts more at once). It is too early
@@ -273,7 +294,7 @@ no gore, and no shadow or Surt creatures in ring 1 (`09_story_and_lore.md`).
 | Frostnibbler | 2 | Scurries in a line, then stops to wriggle | Iron ore, frost berry (food) |
 | Icicle Hopper | 2 | Hops in a fixed three step pattern | Ice shard (lamp good) |
 | Cave Bat | 2 | Hangs, then swoops in a long clear arc and retreats. Fast, so the arc is shown first | Bat wing (a crafting good), a little coal |
-| Nabbler | 2 | A goblin-ish thief. Grabs one stack and runs for a hole. Hit it before it gets there to drop the stack | The stack it took, a pocket coin |
+| Nabbler | 2 | A goblin-ish thief that darts in, bumps you with a cheeky grab at your pockets, and scampers off. It takes nothing | A pocket coin |
 | Cinder Pup | 3 | A little ember dog that charges after a clear bark | Coal, a warm ember (a lamp good) |
 | Lanternmoth | 3 | Floats in a ring around a light, shoots a slow glow | Oil, a little gold ore |
 | Old Digger | 3 | A skeleton of a long dead miner that shuffles, swings a pickaxe with a comic wind up, and falls apart in a pile of bones that reassembles if left alone | Old tools (a lore item), a little gold ore |
@@ -283,10 +304,8 @@ no gore, and no shadow or Surt creatures in ring 1 (`09_story_and_lore.md`).
   completion tracker (#196).
 - **Count per floor** is small: 2 to 5 early, 4 to 8 deep (placeholder). A floor
   never feels like a swarm.
-- **The Nabbler is a loss path outside defeat.** It takes one eligible stack,
-  never a safe type, and the stack stays on the floor if it escapes into a hole
-  (it is gone when the player leaves the floor). It is soft, and it makes the
-  edgy creature a nuisance, not a danger. See "Open".
+- **The Nabbler steals nothing** (decided). It only costs a little health, so
+  it is the cheeky edge of the roster without a second loss rule.
 
 ### Combat skill
 
@@ -440,16 +459,15 @@ activity"). A first check, to test in a playtest:
   design.
 - **The big furnace** is a ring 2 reward. Its exact source is for the ring 2
   notes.
-- **The furnace craft route** (mining level 4) may be redundant, as the gift
-  arrives first. Keep it, or drop it.
-- **The Nabbler's loss path:** keep, change or drop. It is our addition.
-- **Ore prices** at the smith, and the price of a bar against the bought ore.
+- **Ore prices** are a first guess, checked against bar sale values from memory.
 - **Hearthsilver:** the name is decided, but the lore line about the old lamps
   needs the smith dwarf's voice sheet.
 - **How the Weaver's loom and the charcoal kiln** fit the machines note
   (processing, not yet written).
-- **The dangerous mode's exact rules,** and whether its lever is at the last
-  floor or the entrance.
+- **The warden head's errand** that gates the dangerous mode lever (#177), and
+  the exact dangerous mode numbers.
+- **The Skull Key analogue:** in Stardew, floor 120 also yields the key to the
+  Skull Cavern. Ours may use the same beat to open the ring 2 deep dig.
 - **The lift at every floor** and its effect on pacing, to test.
 - **Names:** the creatures, the weapons and the bands. All placeholders.
 - **Stardew facts used from memory or from unverified search results** (the
