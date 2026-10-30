@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28",
+  "updated": "2026-10-30",
   "about": "Hand-kept map of the design. Edit this file, then run npm run overview. Issue titles and states come from docs/overview-issues.json, refreshed with npm run overview:refresh (needs gh). npm run overview:check fails if a note, heading, area or issue reference is wrong, or if overview.html is stale.",
   "groups": {
     "core": "Core loop",
@@ -372,7 +372,7 @@
       "pos": [260, 520],
       "built": "none",
       "builtNote": "",
-      "summary": "Opens early on a fixed day, not through the hall. Combat is optional and gentle.",
+      "summary": "Open early on a fixed day, 120 floors in three bands. Combat is real-time, gentle and optional, and mining works without it.",
       "items": [
         {
           "s": "decided",
@@ -381,21 +381,52 @@
         },
         {
           "s": "decided",
-          "t": "A training dummy; no boss fights",
-          "ref": "17_call_feedback_2026-10-28.md#Training dummy"
+          "t": "A training dummy and a trainer; no boss fights",
+          "ref": "22_mines.md#The training dummy and the trainer"
+        },
+        {
+          "s": "decided",
+          "t": "Real-time, forgiving combat (owner, 2026-10-30)",
+          "ref": "22_mines.md#Decided with the owner (2026-10-30)"
+        },
+        {
+          "s": "decided",
+          "t": "Defeat the Stardew way: carried out, 10 percent money (cap 1000g) and a few items lost, one posted back",
+          "ref": "22_mines.md#Defeat (decided with the owner, Stardew's way)"
+        },
+        {
+          "s": "decided",
+          "t": "Stardew-sized mine: 120 floors in three bands, a lift every 5 floors",
+          "ref": "22_mines.md#The mine, floor by floor"
         },
         {
           "s": "proposed",
-          "t": "Dry-streak odds for rare finds",
-          "ref": "17_call_feedback_2026-10-28.md#Dry-streak protection for rare finds"
+          "t": "Mining works without fighting; any pickaxe digs any ore; dry-streak odds for ladders and rare finds",
+          "ref": "22_mines.md#Rules for the whole mine"
+        },
+        {
+          "s": "proposed",
+          "t": "Three weapon families, seven gentle creatures, Combat as a fifth skill, an Assist toggle",
+          "ref": "22_mines.md#Gentle combat"
+        },
+        {
+          "s": "proposed",
+          "t": "Deepglim, the fifth tool tier metal, on floors 100 to 120 (answers part of #194)",
+          "ref": "22_mines.md#The fifth tool tier (answers part of #194)"
+        },
+        {
+          "s": "proposed",
+          "t": "The smith dwarf smelts bars before the furnace exists (fixes the Smith's bundle circle)",
+          "ref": "22_mines.md#Ore, coal and bars"
         },
         {
           "s": "open",
-          "t": "The mines design note: size, creatures, penalty when beaten, opening day"
+          "t": "Owner review of the drafted mines note, a second endless cavern, and the farm pickaxe",
+          "ref": "22_mines.md#Open"
         }
       ],
       "deps": [],
-      "issues": []
+      "issues": [194]
     },
     {
       "id": "fishing",
