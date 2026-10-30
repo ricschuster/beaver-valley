@@ -209,6 +209,14 @@ current rewards (seeds and money) stay until the systems above exist.
 
 ## Open questions
 
+- **Revisit every bundle reward once more of the design is settled** (noted
+  2026-10-30). Rewards were chosen before the mines, fishing, processing,
+  animals, cooking and the completion tracker were designed, and several have
+  already moved (bundle 19 gave the furnace and now gives a charcoal kiln, see
+  `22_mines.md`). Expect to rebalance them against what each system can supply
+  and when, so no reward arrives too early or too late, and none duplicates a
+  gift from an NPC. Do this after the processing, animals and cooking notes
+  exist, and before the bundle data (#179, #180) is final.
 - Whether a player must finish at least one bundle in every room before the
   last room appears.
 - The pool of items for bundles 3, 4, 6, 11 to 18, 22 to 24 and 26.

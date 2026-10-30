@@ -122,6 +122,11 @@
           "s": "open",
           "t": "Bundle data model (the next-payoff item)",
           "issue": 179
+        },
+        {
+          "s": "open",
+          "t": "Revisit every bundle reward once more systems are designed; some will need rebalancing",
+          "ref": "16_bundles.md#Open questions"
         }
       ],
       "deps": [
