@@ -1,0 +1,183 @@
+# 25 Stardew system review (step 1: the system list)
+
+Status: **working draft, 2026-10-30.** Nothing here is decided. This is a list
+of Stardew's systems laid against our own design, to show what we have covered,
+what we have only half covered and what nobody has discussed. It is step 1 of a
+review plan. Steps 2 to 4 (read the saved wiki pages one at a time, record the
+gaps, choose what to design next) wait for the owner.
+
+The system names come from the wiki's main page index, which groups the game
+into Basics, Farm, Environment, Gameplay, Items, the Valley and Beyond. The
+notes are in our own words. No wiki text is copied here
+(`docs/decisions/0002-stardew-valley-inspired.md`).
+
+## How to read this
+
+Status words:
+
+- **Covered**: decided in a note, or built.
+- **Partial**: some of it is decided, or a piece is missing.
+- **Absent**: no note or code mentions it as a system.
+- **Out**: excluded by the brief or an earlier decision.
+- **Unclear**: a search found hints but no clear answer. Needs a closer look.
+
+The "Our area" column uses the area names in `docs/overview.json`. The "Where"
+column points at the note or code. The statuses come from a keyword search of
+`docs/design/`, `docs/decisions/`, `src/` and the overview, plus the notes read
+in earlier sessions. They are a first pass and the page-by-page reads in step 2
+will correct them.
+
+## Basics
+
+| Stardew system | Our area | Status | Where, and what is missing |
+| --- | --- | --- | --- |
+| Getting started, player, controls | Platform and release | Partial | Browser and touch controls work. The real-tablet check is not done (#59). |
+| Energy | Farming and the day | Covered | Built. `07_tuning_numbers.md`. |
+| Health | Mines and gentle combat | Covered | One health bar shown only where health can be lost (`22_mines.md`). |
+| Skills | Skills, tools and quality | Partial | Farming and foraging built. Fishing decided (`21_fishing.md`), combat skill drafted (`22_mines.md`). Level 10 professions not built. |
+| Day cycle | Farming and the day | Covered | Built. |
+| Inventory and backpack | Skills, tools and quality | Covered | Built, backpack upgrades in `07_tuning_numbers.md`. |
+| Farm maps (several farm types) | Valley and town map | Gap, to design | Owner decision 2026-10-30: farm type choices will happen. We have one fixed farm (`19_valley_layout.md`). Which parts of the map are set and which are generated is open. |
+
+## The farm
+
+| Stardew system | Our area | Status | Where, and what is missing |
+| --- | --- | --- | --- |
+| Crops | Farming and the day | Covered | Built for two seasons. Autumn and winter crops are #61. |
+| Selling and the shipping bin | Farming and the day | Gap, to design | Owner decision 2026-10-30: add a shipping bin. Selling at the shop is built. The bin's rules (what it takes, when it pays, how it sits beside the shop) need a note. |
+| Animals | Processing and animals | Covered | `23_animals.md`. Not built. |
+| Fruit trees | none | Absent | Orchards are not mentioned anywhere. Tree growth over several days or seasons is a different loop from crops. |
+| Artisan goods and machines | Processing and animals | Partial | Open. Recommendations exist in the 2026-10-30b handoff. The note is `24_processing_and_cooking.md`, not written. |
+| Sprinklers, scarecrows, irrigation | none | Absent | No automation of watering or crop defence exists. The watering can has four tiers (`07_tuning_numbers.md`). This is the main way Stardew lets a farm grow past what one player can water by hand. |
+| Fertilizer and soil quality | Farming and the day | Partial | Two fertilizers appear only as bundle items (`16_bundles.md`). The farming feature itself is not designed. |
+| Farmhouse and upgrades | Customisation and hats | Partial | Furniture and decoration are in `10_customisation.md`. House upgrades (kitchen, extra rooms, child room) are mentioned in pieces only. |
+| The farm cave | none | Absent | A first-year cave with a choice of produce is not mentioned. |
+| Greenhouse | Village hall and bundles | Partial | It is a room reward in `16_bundles.md`. How it works is not designed. |
+| Cabins and multiplayer | none | Out | The brief rules out multiplayer. |
+
+## Environment
+
+| Stardew system | Our area | Status | Where, and what is missing |
+| --- | --- | --- | --- |
+| Weather | Seasons, weather, foraging | Covered | Built, with a forecast. |
+| Seasons | Seasons, weather, foraging | Partial | Two of four built. Four are planned (#61). |
+| Festivals | Festivals and minigames | Partial | Calendar in `14_festival_calendar.md`. Hat Parade first, minigame a stretch goal. |
+| Monsters | Mines and gentle combat | Covered | `22_mines.md`. Not built. |
+| Television | Seasons, weather, foraging | Partial | The forecast is covered, shown at the bed (`07_tuning_numbers.md`). The other uses (tips, recipes) are not mentioned. |
+
+## Gameplay
+
+| Stardew system | Our area | Status | Where, and what is missing |
+| --- | --- | --- | --- |
+| Villagers | Cast and villagers | Covered | 30 people, 14 candidates (`20_ring1_cast.md`). Names open. |
+| Friendship | Friendship and marriage | Partial | Decided to exist. Gift tastes, heart events and the mechanics are not written down. Page to read: Friendship. |
+| Marriage | Friendship and marriage | Covered | `12_marriage.md`. |
+| Children | Friendship and marriage | Covered | By player choice only (`12_marriage.md`). Child room upgrade open. |
+| Quests, help-wanted requests | Dialogue and voice | Unclear | Hints only: the hermit's requests, the warden head's errands (`17_call_feedback_2026-10-28.md`). No request board or repeatable quest system is described. |
+| Bundles and the community center | Village hall and bundles | Covered | `16_bundles.md`. Five bundles built, thirty designed. |
+| Achievements and a completion total | Fishing and the water | Partial | Decided as a game-wide tracker (#196). Needs its own note. |
+| Multiplayer | none | Out | The brief rules it out. |
+| Modding | none | Under discussion | Owner wants to discuss (2026-10-30). Content is data files, which helps. See "Modding, to discuss". |
+
+## Items
+
+| Stardew system | Our area | Status | Where, and what is missing |
+| --- | --- | --- | --- |
+| Tools | Skills, tools and quality | Covered | Built. A fifth tier is planned (#194). |
+| Weapons | Mines and gentle combat | Covered | `22_mines.md`. |
+| Hats | Customisation and hats | Covered | Portrait only in M3 (`13_m3_scope.md`). |
+| Footwear | none | Absent | Boots as an equipment slot are not mentioned. |
+| Rings (equipment) | none | Absent | The only rings in our notes are the marriage token. A slot for worn bonuses is not mentioned. |
+| Foraging | Seasons, weather, foraging | Covered | Built for two seasons. |
+| Fish, bait and tackle | Fishing and the water | Covered | `21_fishing.md`. Not built. |
+| Cooking and recipes | Processing and animals | Partial | Open. Part of the note still to write. |
+| Crafting (craftable items) | none | Partial | Machines and furnace are planned. A general craftable list (chests, fences, paths, lamps) has no note. |
+| Trees and wood | Valley and town map | Partial | The axe fells a tree (`22_mines.md`) and there is a sawmill (`19_valley_layout.md`). Growing, tapping and replanting trees are not mentioned. |
+| Secret notes and books | none | Absent | A hidden-notes collection and skill books are not mentioned. |
+| Artifacts and minerals | Mines and gentle combat | Partial | Geodes, gems and found things are covered in `22_mines.md`. Digging artifact spots on the surface and a place to donate them are not. |
+| Museum | none | Absent | The valley has a library (`20_ring1_cast.md`) but no collection hall. The completion tracker may take this role. |
+| Furniture, wallpaper, flooring | Customisation and hats | Covered | `10_customisation.md`. |
+
+## The valley and beyond
+
+| Stardew place | Our equivalent | Status | Where, and what is missing |
+| --- | --- | --- | --- |
+| Town (Pelican Town) | Hearthwell | Covered | `19_valley_layout.md`. |
+| Clinic | Healer | Partial | A healer is listed (`09_story_and_lore.md`). Healing as a service is not described. |
+| Corporate rival store | none | Absent | No antagonist business that competes with the hall. Probably intentional given our tone, but it is not recorded. |
+| Saloon | Inn and kitchen | Covered | In the cast (`20_ring1_cast.md`). |
+| Forest, Secret Woods, Beach | Valley areas | Covered | `19_valley_layout.md`. |
+| Ranch (animal seller) | Carpenter and coop | Partial | The carpenter builds the coop and barn (`23_animals.md`). Who sells the young animals is not stated. |
+| Traveling cart | none | Absent | A visiting rare-goods seller is not mentioned. The cart in `11_minigames.md` is a ride, not a merchant. |
+| Wizard's tower | Hermit's tower | Covered | The hermit is a witch (`20_ring1_cast.md`). Tower design open (#178). |
+| Fish shop | River delta fisher | Covered | `21_fishing.md`. |
+| Mountain, quarry, mines | Mountain and mines | Covered | `22_mines.md`. |
+| Adventurer's guild | Trainer and training dummy | Partial | A trainer is in the mines note. Selling monster loot there is not described. |
+| Blacksmith | Smith dwarf | Covered | Tool upgrades, geode cracking (`22_mines.md`). |
+| Spa, railroad, desert, casino, bus and warps | Ring 2 | Out for now | Ring 2 is open (#20). |
+| Ginger Island style late region | Ring 3 | Out for now | Ring 3 is late and optional. |
+| Skull Cavern style dig | Ring 2 | Covered in intent | Owner confirmed 2026-10-30: it is a ring 2 feature (#20). Its design waits for the ring 2 note. |
+
+## Things Stardew has that the wiki index does not list
+
+Added from what we know of the game, so these need a source check too:
+
+| System | Status | Note |
+| --- | --- | --- |
+| Pets | Absent | No farm pet is mentioned. |
+| Horse | Absent | No mount is mentioned. Our valley is small. |
+| Mail | Out | The mailbox idea was dropped on 2026-10-29 (`09_story_and_lore.md`). |
+| Calendar board | Partial | The festival calendar exists. The in-world board is not described. |
+| Dating events and gift tastes | Absent | Part of Friendship. Page to read. |
+
+## Owner decisions, 2026-10-30
+
+- **The gaps below are added to the game.** Each gets a design note before any
+  build, as `CLAUDE.md` requires. The first pass at the list was "for
+  discussion"; it is now the to-design list.
+- **A shipping bin is added.** Rules to be settled in a note.
+- **Farm type choices are added.** The note must say which parts of the map are
+  fixed and which are generated.
+- **Modding is to be discussed**, not yet decided.
+- **Skull Cavern is a ring 2 thing.** Earlier listed as unclear in error.
+
+## What stands out
+
+These are the gaps that look biggest from a game-level view, in no order. All
+are now on the to-design list (see the decisions above), together with the
+shipping bin and farm types.
+
+1. **Farm growth tools** (sprinklers, scarecrows, fruit trees, fertilizer,
+   greenhouse). Farming is the core loop and none of its growth systems are
+   designed beyond the plain crop.
+2. **A general crafting list**, beyond the eight machines.
+3. **A collection hall or museum**, tied to the completion tracker (#196).
+4. **Request and quest system**, and whether there is a request board.
+5. **Equipment slots** (footwear, rings), if any.
+6. **Visitors and surprise** (traveling cart, pets), the small things that make
+   a year feel alive.
+
+## Order of the design notes (agreed 2026-10-30)
+
+One note at a time, each settled with the owner before the next.
+
+1. **Farm note.** Shipping bin, sprinklers and scarecrows, fruit trees,
+   fertilizer, greenhouse and farm cave. These change the core loop, so they are
+   designed together.
+2. **Farm types note.** Needs the owner's answer on what is fixed and what is
+   generated (the brief lists generated content as out of scope).
+3. **Crafting list**, alongside `24_processing_and_cooking.md`.
+4. **Collection hall and quests**, tied to the completion tracker (#196). Whether
+   there is a request board belongs here.
+5. **Equipment slots, visitors and pets.**
+
+Modding is a separate discussion. Starting point: keep the data schemas clean so
+data-only mods are possible later, and defer any loader or script support.
+
+## Next steps (from the plan)
+
+- Step 2: read the saved pages one at a time and compare. Order proposed:
+  farm and economy, people, calendar, goals, combat, fishing.
+- Step 3: keep a running gap list in this note, tagged build it, design it or
+  skip it, with the owner's decision beside each.
+- Step 4: choose what to design next, and update the handoff.
