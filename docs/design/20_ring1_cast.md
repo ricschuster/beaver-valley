@@ -81,7 +81,7 @@ Placeholder names such as "Partner" and "Child" stay until the names are written
 | Store and post keeper | Store keeper (F), partner (F), child (M), all halfling | Runs the store and carrier post | |
 | Healer | Healer (F, elf, candidate) | Runs the healer | |
 | Librarian | Librarian (M, dwarf, candidate) | Runs the library | Favour ledgers |
-| Carpenter household | Carpenter (F, deep), partner (M), child (F), all halfling | Runs the sawmill | |
+| Carpenter household | Carpenter (F, deep), partner (M), child (F), all halfling | Runs the sawmill. Builds and upgrades the coop and barn (`23_animals.md`) | |
 | Hall steward | Hall steward (M, halfling, deep) | Runs The Long Table | Lives above the hall. Gives the hint toward the hall |
 | Hat-maker household | Hat-maker (F, candidate), sibling (M, candidate), both halfling | none | Hats, the Hat Parade |
 | Two young adults | Young adult A (F), young adult B (F), both halfling and candidates | Works at the inn | |

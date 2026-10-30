@@ -96,6 +96,11 @@ by ones that fit our game. Ours, unchecked.
 - Foraging: Gatherer (20 percent chance of a second good) or Botanist (forage is
   never plain, at least silver).
 
+Planned, not built (`23_animals.md`, decided 2026-10-30): Stardew's tree for
+farming. Level 5 is Rancher (animal goods sell for 20 percent more) or Tiller.
+Level 10 is Coopmaster or Shepherd under Rancher, Artisan (artisan goods 40
+percent more) or Agriculturist under Tiller. Agriculturist moves to level 10.
+
 ## Tool upgrades and energy
 
 Source: `src/core/upgrades.ts`. The hoe and watering can have four tiers (basic,
@@ -237,6 +242,21 @@ are from memory and unchecked.
 - Fifth tool tier: 5 Hearthsilver bars per tool, no gold. Any pickaxe digs it.
 - Weapons: three families, four tiers each. The first build has the starter and
   copper tier of each.
+
+## Animals (draft, not built)
+
+Source: `23_animals.md`. All of these are placeholders. Stardew facts were
+checked against the Stardew Valley Wiki on 2026-10-30.
+
+- Coop and barn, three tiers each, holding 4, 8 and 12. Building costs start near
+  Stardew's: 4000g, 10000g and 20000g, plus wood and stone.
+- Animals: chicken 800g, cow 1500g, duck 1200g, goat 4000g, rabbit and sheep
+  8000g, pig 16000g. Each tier opens its species.
+- Timers: chicken and cow daily, duck and goat every 2 days, sheep every 3 days,
+  rabbit every 4 days, pig daily when let out (none in winter or rain).
+- Friendship 0 to 1000 and mood 0 to 255, as in Stardew. Sleeping outside costs
+  mood and that day's product, never friendship.
+- A young animal grows up in about 4 to 5 days. The incubator hatches in about 6.
 
 ## Open questions for playtests
 

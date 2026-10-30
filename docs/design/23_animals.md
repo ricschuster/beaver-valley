@@ -1,0 +1,207 @@
+# 23 Animals
+
+Status: **decided with the owner on 2026-10-30**, in two rounds of questions.
+The species, buildings and professions are settled. The numbers under "Placeholder
+numbers" are our draft and are listed under "Open". Every number is a
+placeholder. Nothing here is built. Stardew facts
+were checked against the Stardew Valley Wiki "Animals" page on 2026-10-30.
+
+## Why
+
+Bundles 11, 25 and 27 already assume animal goods and a coop, and the loom, the
+cheese press and the dyer need wool and milk (`16_bundles.md`). The neglect rule
+is written (`09_story_and_lore.md`). The animals' farmstead and its keeper sit in
+the Forest (`19_valley_layout.md`, `20_ring1_cast.md`). This note settles the
+animals before any code, so they do not feel bolted on.
+
+## Decided with the owner (2026-10-30)
+
+- **Buildings stand on the home farm.** A coop and a barn, each upgradable. A
+  carpenter in Hearthwell builds and upgrades them (an existing cast member,
+  see "Cast"). The Forest farmstead keeper sells animals and gives advice.
+- **Care is Stardew-like:** feed, pet, let out.
+- **Products come on a timer per species.** Auto-collect can come later, not in
+  the first build.
+- **Hay comes from grass and a silo.** No treats: grain and root crops do not
+  raise mood. Bundle 25 (Fodder) stays as written, because its items are goods
+  to hand in, not feed.
+- **Winter needs the coop heater to keep mood up,** as in Stardew. The heater is
+  the bundle 25 reward.
+- **A spouse feeds hay only.** You still pet, let out and collect.
+- **Animal professions follow Stardew's tree** (see "Professions").
+- **No animal of our own in the first build.** The slot is left for the art
+  pass (#58).
+- **Animals are bought young and grow up, and an incubator hatches eggs.** Same
+  system as Stardew.
+- **Animals are named by the player and show a heart meter.**
+- **Left outside at night, an animal sleeps outside.** The door stays shut. It
+  costs mood and the next day's product, nothing else. It costs no friendship.
+  No animal is ever lost or hurt.
+
+## What Stardew has (checked against the wiki, 2026-10-30)
+
+| Building | Animals | Products |
+| --- | --- | --- |
+| Coop, 3 tiers | Chicken, duck, rabbit, plus incubated void chicken, dinosaur, golden chicken | Egg daily, duck egg every 2 days, wool every 4 days |
+| Barn, 3 tiers | Cow, goat, sheep, pig | Milk, goat milk, wool every 3 days, truffles on clear non-winter days |
+
+- Friendship runs 0 to 1000 (5 hearts). Petting is +15, milking or shearing +5,
+  outdoor grass +8. At day end, not fed is -20, trapped outside is -20, and not
+  petted is -5 to -10. Mood runs 0 to 255.
+- Mood: petting +32 to +36, outdoor grass sets it to 255, not fed -100, not
+  petted -20 to -40, slept outside halves it. Rain and winter outdoors, and
+  outdoors after 7pm, drain it.
+- A fed animal with under 70 mood may make nothing (chance is mood / 70). Quality
+  and large products need 150 mood or more, with some chance below that.
+- Quality score is friendship / 1000 - (1 - mood / 225). Large products need 200
+  friendship. Duck feathers and rabbit's feet also use daily luck.
+- Sheep regrow wool every 3rd day, fed and at 70 mood or more, and every 2nd day
+  at 900 friendship. Pigs find truffles only when let outdoors, so none in winter
+  or rain.
+- Hay goes on a bench, with a silo behind it and an auto-feeder at the deluxe
+  tier. Animals prefer fresh grass, and stay in when it is winter or wet. Newly
+  arrived animals need no feeding on the first day, and babies who go unfed do
+  not grow.
+- Stardew loses an animal only when it is trapped outside with the doors closed,
+  and then only on a random night event. We do not copy that.
+- Stardew also has ostriches, golden animal crackers and optional pregnancy for
+  barn animals. We take none of them for now.
+
+## Animals
+
+Seven species, in two buildings. Prices and days are placeholders.
+
+| Animal | Building | Product | Days between |
+| --- | --- | --- | --- |
+| Chicken | Coop | Egg | 1 |
+| Duck | Big coop | Duck egg, feather at high friendship | 2 |
+| Rabbit | Deluxe coop | Wool | 4 |
+| Cow | Big barn | Milk | 1 |
+| Goat | Big barn | Goat milk | 2 |
+| Sheep | Deluxe barn | Wool | 3 |
+| Pig | Deluxe barn | Truffle, when let out (not winter or rain) | 1 |
+
+- **Cut:** void chicken, dinosaur and golden chicken. They are secret finds and
+  belong with the completion tracker (#196).
+- **Why these:** eggs feed bundle 11, milk feeds the cheese press, wool feeds the
+  loom and dyer (bundle 23), and truffles need a processing machine for the
+  processing note.
+- **A valley animal of our own** is wanted for the setting's own character. It is
+  optional and not designed here.
+
+## Buildings
+
+- **Coop and barn, three tiers each**, after Stardew: base, big, deluxe. Each tier
+  raises capacity and unlocks more species. The deluxe tier adds an auto-feeder.
+- Capacity per tier, prices and build times go in `07_tuning_numbers.md`.
+- The incubator comes with the big coop.
+- Building runs through the keeper or the carpenter. Who builds is open.
+
+## Care loop
+
+Daily, in the morning and evening:
+
+1. **Feed.** Hay goes on the bench. Grass-fed hay fills the silo.
+2. **Pet.** Petting adds friendship and mood.
+3. **Let out.** An animal outside on grass on a clear day eats free and gains
+   mood.
+4. **Bring in, close up.** The evening choice. An animal left out sleeps out.
+
+Neglect follows the written rule:
+
+- Unfed animals make nothing that day.
+- Unpetted animals lose a little friendship and mood. Left-out animals lose mood
+  only. Both lower product quality.
+- Nothing is removed, nobody scolds, nobody gets angry. Animals cope with a few
+  days of absence (`01_system_map.md`).
+
+## Products and quality
+
+- Each species has its own timer. Quality tiers follow friendship and mood and
+  reuse the existing quality system.
+- High friendship and mood give a chance of a large or rare product, such as the
+  duck feather.
+- The first build collects by hand. Auto-collect is a later upgrade.
+
+## Feed and the silo
+
+- Cutting grass with the scythe fills the silo with hay. The keeper sells hay as a
+  backstop.
+- The silo holds hay for winter and rain, when there is little grass.
+- No treats. Grain and root crops are not feed. Bundle 25 uses them only as goods.
+
+## Young animals and the incubator
+
+- Young animals are bought from the keeper, and grow into adults in a few days.
+  They make nothing until grown.
+- Eggs hatch in the incubator, as in Stardew (about six days there).
+- Animals do not breed on their own.
+
+## Names and hearts
+
+- The player names each animal when it arrives.
+- Friendship shows as hearts, up to five. The meter shows only on the animal's
+  own card, not in the main interface.
+- A few lines per species in the voice sheet style are possible later, not
+  settled here.
+
+## Professions
+
+Decided with the owner: Stardew's tree. Checked against the Stardew Valley Wiki
+"Skills" page (saved by the owner on 2026-10-30).
+
+- **Level 5, farming:** Rancher (animal goods sell for 20 percent more) or Tiller
+  (crops sell for 10 percent more). Agriculturist moves to level 10.
+- **Level 10, under Rancher:** Coopmaster (befriend coop animals faster, coop
+  goods are better quality, the incubator takes half the time) or Shepherd
+  (befriend barn animals faster, barn goods are better quality, sheep regrow
+  wool a day sooner).
+- **Level 10, under Tiller:** Artisan (artisan goods sell for 40 percent more) or
+  Agriculturist (crops grow 10 percent faster).
+- This needs a level 10 choice, which `professions.ts` does not have yet. Today
+  the farming choice is Tiller or Agriculturist at level 5, so building this
+  changes that file, its tests and the skills screen. Artisan needs the
+  processing note.
+
+## Cast
+
+The carpenter is already on the cast list (`20_ring1_cast.md`, the carpenter
+household, deep tier, runs the sawmill). The carpenter now also builds and
+upgrades the coop and barn. The farmstead keeper sells animals, hay and the
+incubator eggs. No new cast slot is needed.
+
+## Placeholder numbers
+
+Our draft, to be tuned in playtests and copied into `07_tuning_numbers.md`.
+
+| Building | Tier | Holds | Opens |
+| --- | --- | --- | --- |
+| Coop | Coop | 4 | Chicken |
+| Coop | Big coop | 8 | Duck, incubator |
+| Coop | Deluxe coop | 12 | Rabbit, auto-feeder |
+| Barn | Barn | 4 | Cow |
+| Barn | Big barn | 8 | Goat |
+| Barn | Deluxe barn | 12 | Sheep, pig, auto-feeder |
+
+- Each tier costs money and wood and stone, and takes a few days to build. Prices
+  start near Stardew's and are rebalanced to our economy: coop 4000g, big coop
+  10000g, deluxe coop 20000g, with the same for the barn. Animals cost 800g
+  (chicken) to 16000g (pig), as in the table above.
+- Tiers open with money and materials only. No hall gating yet.
+- The keeper sells whichever species the owned building can hold, so each tier
+  opens its animals.
+- Young animals grow up in about 4 to 5 days. The incubator hatches in about 6.
+
+## Open
+
+- Prices, wood and stone costs, build times and the grow-up days are
+  placeholders to rebalance. Animal prices need checking against bundle rewards
+  (`16_bundles.md`, "Open questions", issue #201).
+- Whether the carpenter also builds other things (the silo, the stable, a fish
+  pond).
+- The level 10 tier of professions: the choice screen, the file change, and how
+  it ties to the processing note for Artisan.
+- Whether pigs also need rain and winter rules beyond "let out" in the code.
+- Whether the keeper or the carpenter sells the silo.
+- A valley animal of our own, with the art pass (#58).
+- Whether hall gating belongs on the deluxe tiers.
