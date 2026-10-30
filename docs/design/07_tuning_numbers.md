@@ -208,6 +208,27 @@ Source: `16_bundles.md`. All placeholders, ours unless marked.
 - The mines open on a fixed day announced by Old Greencoat. The day is not
   chosen.
 
+## Mines and combat (draft, not built)
+
+Source: `22_mines.md`. All of these are ours and are placeholders. Stardew facts
+are from memory and unchecked.
+
+- 120 floors in three bands of 40 (copper, iron, gold). Deepglim on floors 100 to
+  120. Lift stop every 5 floors, a rest camp every 10.
+- Opening day: Spring day 5. Dry-streak ladder odds: 1 percent plus 0.5 percent per
+  miss, capped at 25 percent.
+- Smelting: 5 ore and 1 coal a bar (2 coal for Deepglim), a day per batch. The smith
+  dwarf smelts for 10g a bar before the furnace exists.
+- Health 100, plus 5 per combat level. A touch costs 4 to 12. Grace after a hit is
+  1.5 seconds (2.5 with the Nimble profession).
+- Defeat: 10 percent of money lost, capped at 1000g (the pass-out rule), up to 3
+  random stacks lost, one stack posted back. No loss of tools, weapons, seeds or
+  bundle items.
+- Professions at level 5: Prospector or Rockhound (mining), Steady or Nimble
+  (combat).
+- Fifth tool tier: 20000g and 5 Deepglim bars per tool. Needs a steel pickaxe for
+  Deepglim nodes.
+
 ## Open questions for playtests
 
 First answers are in `08_playtest_personas.md`: 500g is far more than enough
