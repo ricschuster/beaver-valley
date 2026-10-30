@@ -43,8 +43,8 @@ Anecdotal, from forums and press, not a survey.
    a cheap starter rod with a very wide bar that catches only common fish, then
    mid rods, then a top rod. Each widens the bar and the cast range. Bait
    shortens the wait and is spent per cast, whether or not a fish bites. A lure
-   shifts the mix of fish toward a kind or a rarity. Names, prices and the
-   number of rods are open.
+   shifts the mix of fish toward a kind or a rarity. The set is four rods,
+   three baits and six lures (see "Rods, bait and lures").
 6. **What decides a bite:** the water body, the season, the time of day and the
    weather. Weather ties to the forecast already in the game.
 7. **Fish quality is the Stardew way, in our own numbers.** A hidden size roll
@@ -201,7 +201,8 @@ bundle a fish can fill (`16_bundles.md`).
 - No season blocks a bundle. In the worst season there are still enough fish:
   13 has three in winter, 14 has four in winter, 15 has four in winter and 16
   has three in spring.
-- Bundle 17 takes Silverthread, Hermit Trout and Crowned Tunny, plus the rare
+- Bundle 17 takes Silverthread, Hermit Trout and Crowned Tunny (confirmed by the
+  owner, 2026-10-29), plus the rare
   shellfish. Crowned Tunny runs Summer and Autumn.
 - The Catch (28) needs a gold fish of the stream, lake, sea and night kinds.
   Any fish in those groups counts, and gold stays reachable through the level
@@ -219,12 +220,14 @@ a lot as the fish itself, and can be caught again each year.
 | --- | --- | --- | --- | --- |
 | The Hearthwell Carp | Cove | Autumn | Dusk, rain | An enormous carp. |
 | Grandmother Hush | Forest lake | Spring | Dusk, rain | A huge old fish, kin to the cove's Hush. |
-| The Valley King | River | Summer | Dawn, rain | The king of the river. |
+| The Valley King | River | Autumn | Dawn, rain | The king of the river. |
 | Moonlit Mother | Mountain lake | Winter | Night, clear | A pale giant char. |
 | Great Hearthfin | Sea | Summer | Day, any weather | A huge sea fish, the easy one with no weather. |
 
-Two legends fall in summer, at different times of day. Move the Valley King if
-that feels crowded. The delta marsh lake has no legend.
+The seasons are spread (decided 2026-10-29): spring Grandmother Hush, summer
+Great Hearthfin, autumn the Valley King and the Hearthwell Carp (different
+waters, dawn and dusk), winter Moonlit Mother. The delta marsh lake has no
+legend. Times, weather and prices stay placeholders.
 
 ## The rare shellfish
 
@@ -233,7 +236,34 @@ It is a rare lobster that carries a small pearl. It is caught in the sea in any
 season and at any time, so no season blocks the bundle. A rod catches it at low
 odds (placeholder: about 3 in 100 sea bites), and a salt water pot catches it
 more often (placeholder: about 1 in 5 a day). A pot is never required. The odds
-go into `07_tuning_numbers.md` before any build.
+are in `07_tuning_numbers.md`.
+
+## Shellfish pots (decided 2026-10-29, numbers placeholders)
+
+A pot sits on a fishable water tile and gives one shellfish catch each morning.
+It takes no bait, has no season gate, and gives shellfish only, never fish.
+Fresh water pots go on rivers and lakes (the cove included). Salt water pots go
+on the sea at the Beach. The shop price is 150g, and bundle 18 gives three.
+
+**Eight catches, four per water**, in a mix of real and our own names. Bundle
+18 takes 5 of the 8, and the Pearl Lobster is never required, so seven catches
+are always enough.
+
+| Water | Catch | Odds per pot day | Sells |
+| --- | --- | --- | --- |
+| Fresh | Crayfish | 35 in 100 | 40g |
+| Fresh | River Mussel | 35 in 100 | 45g |
+| Fresh | Ladle Snail | 20 in 100 | 70g |
+| Fresh | Marsh Clam | 10 in 100 | 90g |
+| Salt | Crab | 30 in 100 | 60g |
+| Salt | Periwinkle | 30 in 100 | 50g |
+| Salt | Spiny Shrimp | 20 in 100 | 100g |
+| Salt | Pearl Lobster | 20 in 100 | 800g |
+
+- Pot catches take the same quality roll as fish, using the fishing level and
+  no cast distance. There is no perfect catch.
+- Every pot catch counts toward the completion tracker, as fish do.
+- Pot catches also feed cooking and gifts, as fish do (decision 10).
 
 ## Changes to bundle 17 (Specialty Fish)
 
@@ -243,6 +273,95 @@ the legend cannot be in the room's own bundle. It is now **one rare fish each
 from stream, lake and sea, plus one rare shellfish**, the Pearl Lobster,
 decided 2026-10-29. Pots are optional, so the shellfish can also be caught on
 the rod, at low odds, in the sea. Reward unchanged: 5 fish dishes.
+
+## Rods, bait and lures (drafted 2026-10-29, all numbers placeholders)
+
+**Four rods**, in our own line and names. A rod sets the bar width, the cast
+range and which slots it has. A rod is bought from **the fisher at the River
+delta** (decided 2026-10-29), who also sells the bait and the lures. The cast
+note lists her as "ferry keeper or fisher" (`20_ring1_cast.md`); she is now the
+fisher, and whether she also runs the ferry is left to the cast note.
+
+| Rod | Price | Slots |
+| --- | --- | --- |
+| Reed Pole | 50g | None |
+| Hazel Rod | 400g | Bait |
+| Heron Rod | 1500g | Bait, one lure |
+| Hearthwell Rod | 4000g | Bait, two lures |
+
+**What gates a fish** (decided 2026-10-29, after Stardew, where rods mostly do
+not gate species): the water, season, time and weather, as in decision 6, plus
+two gates of our own.
+
+- **Only the starter rod is limited.** The Reed Pole lands common fish only, as
+  in decision 5. Every other rod can hook any fish the conditions allow.
+- **Rare fish need fishing level 5.** Below that a rare bite is lost. This is
+  what stops a rich new player from buying a better rod and skipping the skill.
+- **Legends need the Hearthwell Rod** (decision 13), and the cove is open only
+  after the Water room. There is no extra level gate.
+
+Notes:
+
+- The Reed Pole is cheap enough to buy on day one out of the 500g start. The
+  Hazel Rod is the real first upgrade, since it adds the bait slot.
+- Bundle 17 needs rare fish, so fishing level 5 is the gate to finish the Water
+  room. Check this against the pacing target.
+- **Pacing check for level 5** (rough). Level 5 is 2150 XP on the shared curve.
+  A 60g common fish gives 11 XP and a 150g uncommon gives 20, before the 1.5
+  perfect bonus. So level 5 is about 100 uncommon catches or 190 common ones,
+  which is roughly 15 to 25 days of regular fishing at 8 catches a day. That
+  fits a Water room in the middle of the 1.5 year target, but only a playtest
+  will say. It is a tuning number and not a rule.
+- Prices follow the tool tiers (2000g, 5000g, 10000g): the top rod is a mid to
+  late goal, not the latest one.
+
+**Three baits.** Bait goes in the bait slot, is spent per cast whether or not
+a fish bites, and shortens the wait for a bite. It never changes which fish.
+
+| Bait | Price | Wait |
+| --- | --- | --- |
+| Plain Bait | 3g | Times 0.7 |
+| Fine Bait | 12g | Times 0.5 |
+| Salted Bait | 8g | Sea only: times 0.5 |
+
+Bundle 13 gives 30 Plain Bait. Pots take no bait.
+
+**Six lures** (Stardew's tackle idea, in our own names and effects). A lure goes
+in a lure slot and lasts 20 casts. Different lures stack on the Hearthwell Rod,
+which has two slots. Odds lures change the mix among fish the water, season,
+time and weather already allow. They never add an out-of-condition fish and
+never lift the starter rod's limit or the level 5 gate for rare fish.
+
+| Lure | Price | Effect |
+| --- | --- | --- |
+| Glint Lure | 250g | Rare fish are twice as likely |
+| Moth Lure | 150g | Night fish are three times as likely |
+| Storm Lure | 150g | Rain fish are three times as likely |
+| Whirligig | 200g | The wait for a bite is times 0.7, on top of bait |
+| Wide Float | 200g | The bar is 15 percent wider |
+| Magpie Hook | 300g | One cast in five also brings up a small treasure |
+
+- **The Magpie Hook treasure** (decided 2026-10-29): when a treasure comes up
+  it is a coin purse about 6 times in 10 and a trinket about 4 times in 10. A
+  purse holds `40 + 15 * fishingLevel` gold. A trinket is a sellable, giftable
+  curio: Brass Button, Tin Spoon, Glass Bead, Cracked Locket, Ring Box. Trinkets
+  sell for 30 to 120g, rarer ones at the high end. The odds and amounts are
+  placeholders. Trinkets are plain items for now, with no collection.
+- **No double catch** (decided 2026-10-29). The Magpie Hook already adds a
+  second kind of reward, and a double catch would muddy quality and the
+  completion tracker.
+- The Wide Float overlaps with the assist bar. The two add together, so a
+  player who needs help can use both. Check this on the tablet.
+
+Bundle 14's reward is one Glint Lure.
+
+**Skill and quality, in numbers.** Fishing uses the same ten levels and XP
+curve as the other skills. A catch gives the harvest formula on the fish price,
+and a perfect catch gives one and a half times that. The size roll is
+`random(0,1) * (0.5 + 0.05 * level) + 0.1 * castDistance` (distance from 0 to
+1). Silver is 0.33 or more and gold is 0.67 or more. So a level 0 player never
+sees gold, and a level 10 player at full distance gets gold about 43 percent of
+the time before the perfect catch lift.
 
 ## Touch and accessibility
 
@@ -261,13 +380,16 @@ the rod, at low odds, in the sea. Reward unchanged: 5 fish dishes.
 
 ## Open
 
-- Rod names, prices and how many, and the bait and lure types.
+- Owner review of the drafted rods, baits and lures and the fishing numbers
+  (`07_tuning_numbers.md`).
 - Owner edits to the draft roster, and a spare fish or two per bundle.
-- The four new legends: final seasons, times and weather, and their sell
-  prices.
+- The four new legends: final times, weather and sell prices.
 - The completion tracker: what counts, the weights and the reward (a note of its
   own).
-- The Pearl Lobster's final rod and pot odds (tuning).
+- The Pearl Lobster's final rod and pot odds (tuning). At 1 in 5 a pot day with
+  three pots it may be too easy to get.
+- Tablet check: fingers hiding the bar, and the Wide Float adding to the assist
+  bar (needs a real device).
 - Fishing professions (deferred).
 - The fifth tool tier: its metal's name, the mine depth, the price and which
   tools use it.
