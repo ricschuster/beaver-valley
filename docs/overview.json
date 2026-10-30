@@ -434,8 +434,18 @@
           "issue": 196
         },
         {
+          "s": "decided",
+          "t": "Four rods (only the starter limits fish; rare fish need fishing level 5), three baits, six lures with a Magpie Hook treasure table and no double catch, all sold by the delta fisher (numbers are placeholders)",
+          "ref": "21_fishing.md#Rods, bait and lures"
+        },
+        {
+          "s": "decided",
+          "t": "Legend seasons spread across the year; eight shellfish pot catches, four per water; bundle 17 rare picks confirmed",
+          "ref": "21_fishing.md#Shellfish pots"
+        },
+        {
           "s": "open",
-          "t": "Rod names and prices, legend conditions, and the tracker design (what counts, weights, reward)",
+          "t": "Legend times, weather and prices, and the tracker design (what counts, weights, reward)",
           "ref": "21_fishing.md#Open"
         }
       ],

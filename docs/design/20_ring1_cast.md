@@ -50,7 +50,7 @@ copy out. Reset it to its defaults to see this note's cast.
 | Mountain | Smith dwarf (tools and lamps) | F | dwarf | deep | yes |
 | Mountain | Stonekeeper dwarf (bridges and stonework) | M | dwarf | deep | yes |
 | Mines | Trainer for the practice dummy | F | human | deep | yes |
-| River delta | Ferry keeper or fisher | F | halfling | deep | yes |
+| River delta | Fisher (sells fishing gear; may also keep the ferry) | F | halfling | deep | yes |
 | Beach | The odd elf (sells the Homeward pin) | F | elf | deep | yes |
 
 The Farm and the Secret Woods have no residents. A spouse moves to the farm
@@ -99,7 +99,7 @@ The count of 14 is final, with no pairing limits (`12_marriage.md`, decided
 | Smith dwarf | Mountain | F | dwarf |
 | Stonekeeper dwarf | Mountain | M | dwarf |
 | Trainer for the practice dummy | Mines | F | human |
-| Ferry keeper or fisher | River delta | F | halfling |
+| Fisher (sells rods, bait and lures; may also keep the ferry) | River delta | F | halfling |
 | The odd elf | Beach | F | elf |
 | Smith | Hearthwell | M | halfling |
 | Healer | Hearthwell | F | elf |

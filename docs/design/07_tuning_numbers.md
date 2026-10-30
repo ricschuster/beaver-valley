@@ -148,6 +148,35 @@ so each tier stacks and sells separately. Bundles take any tier.
 - Forage: gold chance is `foragingLevel / 30`, silver up to `foragingLevel / 15`.
   From memory.
 
+## Fishing (draft, not built)
+
+Source: `21_fishing.md`. All of these are ours and are placeholders.
+
+- Rods: Reed Pole 50g, Hazel Rod 400g, Heron Rod 1500g, Hearthwell Rod 4000g.
+  Only the Reed Pole limits fish (common only). Rare fish need fishing level 5.
+- Bar width as a share of the track: 0.30, 0.36, 0.42, 0.50 by rod. Assist adds
+  30 percent. Cast range in tiles: 4, 6, 8, 10.
+- Bait: Plain 3g (wait x0.7), Fine 12g (x0.5), Salted 8g (sea only, x0.5).
+  Lures last 20 casts: Glint 250g, Moth 150g, Storm 150g, Whirligig 200g (wait
+  x0.7), Wide Float 200g (bar +15 percent), Magpie Hook 300g (1 cast in 5 gives
+  a small treasure: a coin purse of `40 + 15 * level` gold 6 times in 10, else a
+  trinket worth 30 to 120g). The Heron Rod has one lure slot, the Hearthwell Rod two.
+- Fish sell prices by rarity: common 40 to 90g, uncommon 100 to 200g, rare 250
+  to 500g, cove fish 400 to 700g. Legends: Hearthwell Carp 4000g, Valley King
+  3500g, Moonlit Mother 3500g, Grandmother Hush 3000g, Great Hearthfin 3000g.
+  Pearl Lobster 800g.
+- Pots: 150g in the shop, one catch a day. Fresh: Crayfish 35 in 100 (40g),
+  River Mussel 35 (45g), Ladle Snail 20 (70g), Marsh Clam 10 (90g). Salt: Crab
+  30 (60g), Periwinkle 30 (50g), Spiny Shrimp 20 (100g), Pearl Lobster 20
+  (800g).
+- Pearl Lobster odds: about 3 in 100 sea bites on a rod, about 1 in 5 a day in
+  a salt water pot.
+- XP: the harvest formula on the fish price, times 1.5 for a perfect catch. The
+  level curve is the shared one in Skills.
+- Quality: size roll `random(0,1) * (0.5 + 0.05 * level) + 0.1 * castDistance`.
+  Silver at 0.33, gold at 0.67. A perfect catch lifts silver or gold one grade.
+  A skipped fight (assist level two) gives no perfect lift.
+
 ## Village hall
 
 Source: `src/content/bundles.json`.
