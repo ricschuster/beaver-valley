@@ -511,17 +511,38 @@
       "pos": [500, 520],
       "built": "none",
       "builtNote": "",
-      "summary": "Machines, cooking, coops and bees. Needed by many bundles.",
+      "summary": "Machines, cooking, coops and bees. Needed by many bundles. Animals are designed in 23_animals.md; processing and cooking are not.",
       "items": [
         {
           "s": "open",
           "t": "Processing machines and cooking design"
         },
         {
-          "s": "open",
-          "t": "Animals and coops; neglect rules wait on them",
-          "ref": "09_story_and_lore.md#Neglect",
+          "s": "decided",
+          "t": "Seven animals in a coop and a barn on the farm, three tiers each, built by the Hearthwell carpenter",
+          "ref": "23_animals.md#Animals",
           "issue": 135
+        },
+        {
+          "s": "decided",
+          "t": "Feed, pet, let out; products on a timer per species; sleeping outside costs mood and one day's product only",
+          "ref": "23_animals.md#Care loop"
+        },
+        {
+          "s": "decided",
+          "t": "Hay from grass and a silo, no treats; coop heater keeps winter mood up; young animals bought, incubator hatches eggs",
+          "ref": "23_animals.md#Feed and the silo"
+        },
+        {
+          "s": "decided",
+          "t": "Stardew's profession tree: Rancher or Tiller at 5, Coopmaster or Shepherd and Artisan or Agriculturist at 10",
+          "ref": "23_animals.md#Professions"
+        },
+        {
+          "s": "open",
+          "t": "Animal prices, tier costs and grow-up days are placeholders; a valley animal of our own waits for the art pass",
+          "ref": "23_animals.md#Open",
+          "issue": 58
         }
       ],
       "deps": [],
