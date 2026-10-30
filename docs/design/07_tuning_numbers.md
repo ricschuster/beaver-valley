@@ -213,21 +213,30 @@ Source: `16_bundles.md`. All placeholders, ours unless marked.
 Source: `22_mines.md`. All of these are ours and are placeholders. Stardew facts
 are from memory and unchecked.
 
-- 120 floors in three bands of 40 (copper, iron, gold). Deepglim on floors 100 to
-  120. Lift stop every 5 floors, a rest camp every 10.
+- 120 floors in three bands of 40 (copper, iron, gold). Hearthsilver on floors 100
+  to 120. The lift stops at every floor once reached. A rest camp with a loot chest
+  every 10 floors, no healing.
 - Opening day: Spring day 5. Dry-streak ladder odds: 1 percent plus 0.5 percent per
-  miss, capped at 25 percent.
-- Smelting: 5 ore and 1 coal a bar (2 coal for Deepglim), a day per batch. The smith
-  dwarf smelts for 10g a bar before the furnace exists.
+  miss, capped at 25 percent. A killed creature rolls the same chance.
+- Smelting: 5 ore and 1 coal a bar (2 coal for Hearthsilver), a day per batch.
+  The smith dwarf sells copper, iron and gold ore and coal, never bars. She gifts
+  the furnace the morning after the first copper ore is handed over. Crafting it
+  at mining level 4 makes more furnaces.
+- Smith ore prices: copper ore 25g, iron ore 50g, gold ore 100g, coal 50g (about
+  2.5 times the bar's sale value). Bars sell for about 60g, 120g and 250g, from
+  memory.
+- Charcoal kiln (Smith's bundle reward): 10 wood for 1 coal. Craft cost 2 copper
+  bars and wood.
 - Health 100, plus 5 per combat level. A touch costs 4 to 12. Grace after a hit is
   1.5 seconds (2.5 with the Nimble profession).
 - Defeat: 10 percent of money lost, capped at 1000g (the pass-out rule), up to 3
-  random stacks lost, one stack posted back. No loss of tools, weapons, seeds or
-  bundle items.
+  random stacks lost (1 in 3 each), one stack posted back. No loss of tools,
+  weapons, seeds or bundle items. Assist mode loses no items.
 - Professions at level 5: Prospector or Rockhound (mining), Steady or Nimble
   (combat).
-- Fifth tool tier: 20000g and 5 Deepglim bars per tool. Needs a steel pickaxe for
-  Deepglim nodes.
+- Fifth tool tier: 5 Hearthsilver bars per tool, no gold. Any pickaxe digs it.
+- Weapons: three families, four tiers each. The first build has the starter and
+  copper tier of each.
 
 ## Open questions for playtests
 
