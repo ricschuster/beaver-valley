@@ -20,57 +20,57 @@ before any code, so the mines do not feel bolted on.
 
 First round:
 
-1. **Combat is real-time and forgiving.** Swing a weapon at slow, cartoonish
+- (1) **Combat is real-time and forgiving.** Swing a weapon at slow, cartoonish
    creatures. Big telegraphs, no chains of knockback, one tap or click to swing,
    works on touch. The training dummy teaches it.
-2. **Defeat follows Stardew.** The player is carried out, wakes up the next
+- (2) **Defeat follows Stardew.** The player is carried out, wakes up the next
    morning, loses a share of money and some items for good, and gets one item
    back in the post. Details below.
-3. **The mine is the size of Stardew's:** 120 floors, in three bands of 40.
+- (3) **The mine is the size of Stardew's:** 120 floors, in three bands of 40.
    (We first labelled a 40 floor option "Stardew-like" by mistake. Stardew's mines
    are 120 floors and its rarest metal comes from a separate Skull Cavern.)
 
 Second round:
 
-4. **An Assist toggle and a "no creatures" setting, both.**
-5. **Combat is a fifth skill.**
-6. **The farm has rocks and the pickaxe is a starter tool.** Old Greencoat gives
+- (4) **An Assist toggle and a "no creatures" setting, both.**
+- (5) **Combat is a fifth skill.**
+- (6) **The farm has rocks and the pickaxe is a starter tool.** Old Greencoat gives
    nothing at the opening, only the news.
-7. **No endless cavern at the mine.** Like Stardew, once the player reaches the
+- (7) **No endless cavern at the mine.** Like Stardew, once the player reaches the
    bottom floor they can flip a switch that makes the mine more dangerous. A
    Skull Cavern style place is wanted, but not at the mine site, and probably in
    ring 2 (see "Open").
-8. **No pickaxe gate.** Any pickaxe digs any ore, Hearthsilver included.
-9. **The fifth tier metal is Hearthsilver.** The upgrade costs bars only, no gold.
-10. **The smith dwarf sells copper, iron and gold ore, and coal.** She does not
+- (8) **No pickaxe gate.** Any pickaxe digs any ore, Hearthsilver included.
+- (9) **The fifth tier metal is Hearthsilver.** The upgrade costs bars only, no gold.
+- (10) **The smith dwarf sells copper, iron and gold ore, and coal.** She does not
     sell bars.
-11. **The furnace is a gift from the smith,** not for sale, delivered the morning
+- (11) **The furnace is a gift from the smith,** not for sale, delivered the morning
     after the player first hands over copper ore. It can also be crafted
     (see "Ore, coal and bars").
-12. **The Smith's bundle (19) gives a charcoal kiln and its recipe,** not the
+- (12) **The Smith's bundle (19) gives a charcoal kiln and its recipe,** not the
     furnace. The big furnace is a ring 2 reward.
-13. **Rest camps stay, with no healing.** The lift stops at every floor once
+- (13) **Rest camps stay, with no healing.** The lift stops at every floor once
     reached. A chest on every 10th floor holds items to take, and cannot be used
     to stash things.
-14. **Edgier creatures:** cave bats, rock crabs and beetles, old miner skeletons
+- (14) **Edgier creatures:** cave bats, rock crabs and beetles, old miner skeletons
     and goblin-ish thieves, all still cartoonish.
-15. **Three weapon families,** and the first build has a few from each.
-16. **Defeat can take any stack in the bag** except the safe types.
-17. **One health bar,** shown only where health can be lost.
-18. **A ladder can also appear when a monster is killed,** with the same
+- (15) **Three weapon families,** and the first build has a few from each.
+- (16) **Defeat can take any stack in the bag** except the safe types.
+- (17) **One health bar,** shown only where health can be lost.
+- (18) **A ladder can also appear when a monster is killed,** with the same
     dry-streak odds.
-19. **Dry-streak numbers and special floors (about 1 in 15) are kept.**
-20. **The mines open on Spring day 5.**
+- (19) **Dry-streak numbers and special floors (about 1 in 15) are kept.**
+- (20) **The mines open on Spring day 5.**
 
 Third round (the small open items):
 
-21. **Ore prices at the smith are about 2.5 times the bar's sale value.** Copper
+- (21) **Ore prices at the smith are about 2.5 times the bar's sale value.** Copper
     ore 25g, iron ore 50g, gold ore 100g, coal 50g (placeholders).
-22. **The Nabbler steals nothing.** It is a hit-and-run nuisance that costs health
+- (22) **The Nabbler steals nothing.** It is a hit-and-run nuisance that costs health
     only. Defeat is the only way to lose items.
-23. **The furnace the smith gifts is the first.** Crafting at mining level 4 is
+- (23) **The furnace the smith gifts is the first.** Crafting at mining level 4 is
     kept to make more furnaces.
-24. **The dangerous mode lever is on floor 120 only,** and is gated by reaching
+- (24) **The dangerous mode lever is on floor 120 only,** and is gated by reaching
     floor 120 and then a short errand from the warden head (see "Dangerous
     mode"). The lift can bring the player back up afterwards.
 
