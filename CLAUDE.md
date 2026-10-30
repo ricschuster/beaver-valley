@@ -92,3 +92,11 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
   big picture first, so features do not feel bolted on
   (`docs/design/17_call_feedback_2026-10-28.md`). Start new sessions by asking
   what to design, not by offering to build.
+- Stardew wiki pages: the wiki's `robots.txt` blocks Claude's crawler, so do not
+  fetch it (no WebFetch, curl, Playwright or similar). Claude writes a list of
+  page URLs, one per line, and the owner runs `wget --input-file=urls.txt
+  --wait=2 --random-wait --adjust-extension --restrict-file-names=windows
+  --trust-server-names` from `docs/reference/stardew/`. No `--recursive`, no
+  `--mirror`, no spoofed user agent. Claude then reads the saved files from
+  disk. The folder is gitignored and the text is for reference only, never
+  copied into the repo (`docs/decisions/0002-stardew-valley-inspired.md`).
