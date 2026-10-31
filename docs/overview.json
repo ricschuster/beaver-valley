@@ -150,7 +150,7 @@
         },
         {
           "s": "decided",
-          "t": "Crafting follows Stardew: a pause menu tab plus a bought workbench that uses adjacent chests; fences do not decay; lamp-posts need a battery pack, which has no source yet",
+          "t": "Crafting follows Stardew: a pause menu tab plus a bought workbench that uses adjacent chests; fences do not decay; lamp-posts need a battery pack, made by a lightning rod in harmless storms",
           "ref": "34_crafting.md#Decisions"
         }
       ],

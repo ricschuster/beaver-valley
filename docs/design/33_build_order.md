@@ -47,8 +47,8 @@ Builds:
 2. The shipping bin (`28_shipping_bin.md`).
 3. Weeds, then sprinklers and fertilizer, with Fiber and Sap as items
    (`29_weeds.md`, `31_farm_growth.md`).
-4. Fall and winter: crops, forage, nightfall, weather, snow (`26_seasons.md`,
-   #61).
+4. Fall and winter: crops, forage, nightfall, weather, snow and thunderstorms
+   (`26_seasons.md`, #61).
 5. The greenhouse, fruit trees and the farm cave (`31_farm_growth.md`).
 6. The crafting list and the machines the farm alone can feed: seed maker,
    charcoal kiln, preserves jar, keg, bee house (`24_processing_and_cooking.md`).

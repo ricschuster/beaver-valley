@@ -69,7 +69,8 @@ read only (ADR 0002). Costs and recipes are placeholders until the tuning note.
 - Fruit trees can be planted inside and bear fruit every day after maturity.
 - It answers the winter question in `26_seasons.md`: winter has no outdoor crops
   but the greenhouse carries a small year-round income.
-- Crows, lightning and giant crops do not exist for us, so they are not an issue.
+- Crows and giant crops do not exist for us, so they are not an issue. Lightning
+  exists as a harmless weather type that gives battery packs (`34_crafting.md`).
 
 ### Farm cave
 
