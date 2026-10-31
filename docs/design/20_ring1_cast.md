@@ -66,6 +66,7 @@ later.
 | Healer | Healer | none |
 | Library | Librarian | none |
 | Sawmill and carpenter | Carpenter household | none |
+| Hatter's shop | Hat-maker household | none |
 | The Long Table (hall, east end) | Hall steward | none |
 
 The courier works at the carrier post and lodges at the inn: F, human, deep.
@@ -83,7 +84,7 @@ Placeholder names such as "Partner" and "Child" stay until the names are written
 | Librarian | Librarian (M, dwarf, candidate) | Runs the library | Favour ledgers |
 | Carpenter household | Carpenter (F, deep), partner (M), child (F), all halfling | Runs the sawmill. Builds and upgrades the coop and barn (`23_animals.md`) | |
 | Hall steward | Hall steward (M, halfling, deep) | Runs The Long Table | Lives above the hall. Gives the hint toward the hall |
-| Hat-maker household | Hat-maker (F, candidate), sibling (M, candidate), both halfling | none | Hats, the Hat Parade |
+| Hat-maker household | Hat-maker (F, candidate), sibling (M, candidate), both halfling | Runs the hatter's shop | Hats, the Hat Parade. The shop was added 2026-10-31 (`10_customisation.md`) |
 | Two young adults | Young adult A (F), young adult B (F), both halfling and candidates | Works at the inn | |
 | Retired couple and grandchild | Retiree A (F), retiree B (M), grandchild (M), all halfling | none | |
 | Gardener household | Gardener (M, halfling, candidate) | Works at the store | Crop hints |

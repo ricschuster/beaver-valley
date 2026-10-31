@@ -75,10 +75,10 @@ and Hats pages.
 - **Hats unlock by achievement (Stardew).** Each achievement unlocks a hat for
   sale at a hat seller, and a few hats come from festivals and bundle rewards.
   In Stardew the first achievement triggers a letter from the seller, and the
-  seller is a mouse in the Abandoned House. Ours is a Brimmer hatter's shop in
-  Hearthwell (decided 2026-10-31), a shop-and-home interior like the others
-  (`20_ring1_cast.md`), because the Brimmers are named for hats and Hearthwell
-  has no such shop yet. This needs
+  seller is a mouse in the Abandoned House. Ours is a hatter's shop in
+  Hearthwell run by the Hat-maker household already in `20_ring1_cast.md`
+  (decided 2026-10-31), a shop-and-home interior like the others, because the
+  Brimmers are named for hats and Hearthwell had no such shop. This needs
   the game-wide tracker (#196), which has no note yet, so the first hat list
   cannot be written until the achievement list is. Stardew's prices run from
   1,000g to 25,000g.
@@ -107,10 +107,9 @@ once the first slice feels good.
 
 ## Open
 
-- The hatter's household: a new one or an existing household that takes the
-  shop on. A new one changes the 30 people and 11 households in
-  `20_ring1_cast.md`. The shop is also not yet in `19_valley_layout.md`'s
-  building list or the Hearthwell map.
+- The hatter's shop is not yet on the Hearthwell map, and the cast planner
+  and `20_ring1_cast.md` now list it. The hat-makers' dialogue and the
+  achievement letter are not written.
 - How hats are earned in slice 1 depends on the achievement list (#196). Until
   that note exists there is no first hat list. Bundle 24's festival hats and
   the Hat Parade prize feed it.
