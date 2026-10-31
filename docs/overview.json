@@ -129,6 +129,11 @@
         },
         {
           "s": "decided",
+          "t": "The hall main room is a hub with a six-mark progress plaque over the hearth; corridors left and right, entrance bottom centre",
+          "ref": "40_hall_layout.md#Decisions (2026-10-31)"
+        },
+        {
+          "s": "decided",
           "t": "The hall shows a room reward; each system reads Hall.completedRooms",
           "ref": "16_bundles.md#Who grants a room reward"
         },
