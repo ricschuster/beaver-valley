@@ -9,7 +9,7 @@ read as reference only (ADR 0002); no text is copied.
 
 - The year has four seasons of 28 days each: spring, summer, fall, winter. That
   is a 112 day year. The first playable's two seasons are the first half.
-- Fall and winter are built in M3, with the vertical slice. The first playable
+- Fall and winter are built in slice 1 of M3 (`33_build_order.md`). The first playable
   (M2) stays at two seasons and its scope is unchanged.
 - Winter has no outdoor crops. Crops and weeds clear when it starts, and the
   farm rests. The player's time goes to foraging, fishing, the mines, animals

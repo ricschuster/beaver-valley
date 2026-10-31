@@ -16,6 +16,9 @@ the hall bundles twice.
 Rule from the scope section of the roadmap: the slice often feels nearly done
 but is about 20 percent of the work, so cut early.
 
+The build order in `33_build_order.md` (2026-10-31) now holds this list as part
+of slice 1, and slices fish, mines and animals into later slices.
+
 ## Candidates and decisions
 
 | Candidate | Issue | Decision | Why |

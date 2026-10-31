@@ -142,6 +142,16 @@
           "s": "open",
           "t": "Revisit every bundle reward once more systems are designed; some will need rebalancing",
           "ref": "16_bundles.md#Open questions"
+        },
+        {
+          "s": "decided",
+          "t": "Build in five slices, one hall room each; slice 1 is year one on the farm, all four seasons",
+          "ref": "33_build_order.md#Decisions (2026-10-31)"
+        },
+        {
+          "s": "decided",
+          "t": "Crafting follows Stardew: a pause menu tab plus a bought workbench that uses adjacent chests; fences do not decay; lamp-posts need a battery pack, which has no source yet",
+          "ref": "34_crafting.md#Decisions"
         }
       ],
       "deps": [
