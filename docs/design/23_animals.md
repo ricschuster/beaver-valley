@@ -19,7 +19,8 @@ animals before any code, so they do not feel bolted on.
 - **Exception, the Meadow farm.** It starts with a built coop and two chickens,
   skipping the carpenter and keeper for the first coop only
   (`32_farm_types.md`).
-- **Buildings stand on the home farm.** A coop and a barn, each upgradable. A
+- **Buildings stand on the home farm.** A coop and a barn, each upgradable, and
+  an upgrade never changes the building's footprint (`41_house.md`). A
   carpenter in Hearthwell builds and upgrades them (an existing cast member,
   see "Cast"). The Forest farmstead keeper sells animals and gives advice.
 - **Care is Stardew-like:** feed, pet, let out.

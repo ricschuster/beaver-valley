@@ -116,7 +116,8 @@ once the first slice feels good.
   option is that the Brimmers' dialogue and the parade react to standing, and
   the hat is only the look. This needs deciding with the friendship note.
 - The furniture pool size, prices, and which house upgrade offers the
-  catalogue (the house upgrade list is still open).
+  catalogue (the house upgrade list is in `41_house.md`; which tier offers the
+  catalogue is still open).
 - What the sewing machine costs and how the player unlocks it.
 - Where each per-people catalogue comes from, and what makes the furniture
   style differ.
