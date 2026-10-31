@@ -92,6 +92,11 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
   big picture first, so features do not feel bolted on
   (`docs/design/17_call_feedback_2026-10-28.md`). Start new sessions by asking
   what to design, not by offering to build.
+- Questions to the owner: when asking the owner to choose between options, one
+  option must always be what Stardew does, labelled "(Stardew)" in its label.
+  If the Stardew behaviour is not known or not checked, say so in that option
+  instead of guessing. Put the recommendation first, and mark it
+  "(Recommended)" as well when the Stardew option is not the recommended one.
 - Stardew wiki pages: the wiki's `robots.txt` blocks Claude's crawler, so do not
   fetch it (no WebFetch, curl, Playwright or similar). Claude writes a list of
   page URLs, one per line, and the owner runs `wget --input-file=urls.txt
