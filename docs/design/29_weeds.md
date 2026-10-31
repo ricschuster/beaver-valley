@@ -48,7 +48,7 @@ still pushes the player to keep up.
 
 ## Open
 
-- The rate: placeholders are in `36_gathering_trees_sap_fiber.md` (1 weed per
-  40 tillable tiles, 10 percent spread a night). Playtest to set them.
+- The rate: placeholders are in `36_gathering_trees_sap_fiber.md` (20 weeds on
+  day 1, 10 percent spread a night). Playtest to set them.
 - Whether fruit trees are blocked by weeds (farm note).
 - Whether valley and mine weeds come later.
