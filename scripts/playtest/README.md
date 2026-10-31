@@ -41,7 +41,27 @@ Settings, as environment variables:
   and the profession scene opens.
 - `MAX_DAY`: stop after this day, default 84 (the calendar wraps into year 2).
 
-The three runs can go at the same time against one dev server.
+The three runs can go at the same time against one dev server. Each persona
+writes its own `save-<persona>.json` and `<persona>-*.png` files, so they do not
+collide. This was checked on 2026-10-31 on the owner's machine (48 cores): all
+three ran together and the in-game results were unaffected, only real time was
+longer. Not checked: running `playtest:touch` or `playtest:late` alongside them.
+
+To run them in parallel from a shell, send each to a log and a done marker, then
+read the logs when the markers exist:
+
+```bash
+for p in expert intermediate casual; do
+  nohup bash -c "npm run playtest -- $p > /tmp/pt-$p.log 2>&1; touch /tmp/pt-$p.done" &
+done
+```
+
+Read `FINDINGS:` at the end of each log. Expect about 10 to 30 minutes each.
+
+A run of "no stand tile for x,y" script errors means the bot used the wrong map,
+not that the game is broken. `useAt` and `walkTo` plan on the map the bot is on,
+so read it from the game first (`here = d.map` in `lib.mjs`). This bit after the
+hall became a walkable map.
 
 ## Personas
 
