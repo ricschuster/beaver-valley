@@ -568,6 +568,12 @@
         },
         {
           "s": "decided",
+          "t": "Achievements: a library gallery for finds, a daily request board at the general store, no rival route, a hat for every achievement, and Stardew's money thresholds re-checked at tuning",
+          "ref": "38_achievements.md#Settled open items",
+          "issue": 196
+        },
+        {
+          "s": "decided",
           "t": "Four rods (only the starter limits fish; rare fish need fishing level 5), three baits, six lures with a Magpie Hook treasure table and no double catch, all sold by the delta fisher (numbers are placeholders)",
           "ref": "21_fishing.md#Rods, bait and lures"
         },
