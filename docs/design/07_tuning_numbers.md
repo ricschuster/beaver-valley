@@ -417,6 +417,9 @@ Full rules in `36_gathering_trees_sap_fiber.md`.
   free tillable tiles; weed spread 10 percent a night (rain 20, summer 15).
 - Tree growth is Stardew's: 20 percent a night per stage, stage 4 twice as
   long, none in winter, fertilizer 5 days.
+- Sell prices (2026-10-31, Stardew's, from the saved Foraging and Fiber pages):
+  sap 2g, fiber 1g. Fiber is always normal quality. Sap cannot be eaten, which
+  is ours: Stardew lets it be eaten for -5 energy.
 
 ## Start options (decided 2026-10-31, not built)
 

@@ -92,8 +92,9 @@ Slice 1 asks for these amounts.
 - One chopped tree gives 5 sap, plus 1 from its stump, so 6 sap. That is 3
   basic fertilizers. A forest of regrowing trees makes sap steady, but only
   where the player walks, so basic fertilizer is no longer a farm-only chore.
-- Sap and fiber have no sale use in slice 1. Their sell price is still to set
-  with the other item prices (`07_tuning_numbers.md`).
+- Sap sells for 2g and fiber for 1g, both Stardew's (`07_tuning_numbers.md`).
+  Fiber is always normal quality. Sap is not food: the player cannot eat it
+  (ours, 2026-10-31).
 
 ## Open
 
