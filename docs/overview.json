@@ -436,7 +436,7 @@
         },
         {
           "s": "decided",
-          "t": "The smith dwarf sells ore and coal, not bars; she gifts the furnace after the first copper ore; the Smith's bundle gives a charcoal kiln",
+          "t": "The smith dwarf sells ore and coal, not bars; she gifts the furnace after the first copper ore; the Smith's bundle gives 20 coal",
           "ref": "22_mines.md#Ore, coal and bars"
         },
         {
@@ -581,7 +581,7 @@
         },
         {
           "s": "open",
-          "t": "Bundle 27 needs a new reward (duplicator dropped); craft ingredient stand-ins and seed maker and smoker sources to check",
+          "t": "Bundle 27 gives a crystalarium; craft ingredient stand-ins and seed maker and smoker sources to check",
           "ref": "24_processing_and_cooking.md#Open"
         }
       ],

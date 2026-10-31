@@ -116,7 +116,7 @@ Room reward: carts between the farm, the hall, the town and the mines.
 
 | # | Bundle | Rule | Reward | Needs |
 | --- | --- | --- | --- | --- |
-| 19 | Smith's | All: 5 copper bars, 5 iron bars, 3 gold bars | Charcoal kiln and its recipe | Smelting, ore from the mines or the smith |
+| 19 | Smith's | All: 5 copper bars, 5 iron bars, 3 gold bars | 20 coal | Smelting, ore from the mines or the smith |
 | 20 | Lamplighter's | 2 of 3: 3 lamps, 10 oil, 20 torches | Torches for the mines | Light, crafting |
 | 21 | Weaver's | Both: 10 cloth, 5 thread | Loom | Cloth, tailoring |
 
@@ -143,7 +143,7 @@ Room reward: the bridge is mended and the road to ring 2 opens.
 
 | # | Bundle | Asks for | Reward | Needs |
 | --- | --- | --- | --- | --- |
-| 27 | Harvest Feast | All 4: a cooked meal, a preserve, a cheese, a honey. 3 of each. | Duplicator | Cooking, preserves, animals, bee house |
+| 27 | Harvest Feast | All 4: a cooked meal, a preserve, a cheese, a honey. 3 of each. | Crystalarium | Cooking, preserves, animals, bee house, gems from the mines |
 | 28 | The Catch | All 4: a stream, lake, sea and night fish, each gold quality | Magnet ring | Fishing, fish quality, equipment slot, mines |
 | 29 | The Hearth Fire | All 4: 10 bars, 5 lamps, 5 bolts of cloth, 3 dyes | Large chest or storage shed | Smelting, light, cloth, dyes |
 | 30 | The Long Road | 100 wood, 100 stone, 20 bars, 10 bolts of cloth and 5,000g | A letter to the elves | A story item only |
@@ -158,7 +158,7 @@ Room reward: the bridge is mended and the road to ring 2 opens.
 ## Rewards by kind
 
 - **Machines and tools:** seed maker, charcoal kiln, bee house, preserving jar,
-  cheese press, keg, furnace, loom, dye vat, duplicator.
+  cheese press, keg, furnace, loom, dye vat, crystalarium.
 - **Seeds and consumables:** seeds, fertiliser, bait, torches, dishes, crab
   pots, warp charms.
 - **Wearable equipment:** glow ring and magnet ring. Both need an equipment
@@ -217,6 +217,12 @@ current rewards (seeds and money) stay until the systems above exist.
   and when, so no reward arrives too early or too late, and none duplicates a
   gift from an NPC. Do this after the processing, animals and cooking notes
   exist, and before the bundle data (#179, #180) is final.
+- **Rewards pass done 2026-10-31** (issue #201, in part). Bundle 27 gives a
+  crystalarium, which copies a gem or mineral put in it (the owner's choice, in
+  place of the dropped duplicator). Bundle 19 gives 20 coal, since bundle 5
+  already gives the charcoal kiln. Bundle 12 keeps its keg, as in Stardew. Still
+  to do: the equipment slot rewards (bundles 16 and 28) wait on that design, and
+  the rest need a check against the final bundle data (#179, #180).
 - Whether a player must finish at least one bundle in every room before the
   last room appears.
 - The pool of items for bundles 3, 4, 6, 11 to 18, 22 to 24 and 26.
