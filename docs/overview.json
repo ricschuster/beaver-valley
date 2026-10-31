@@ -580,6 +580,30 @@
         },
         {
           "s": "decided",
+          "t": "Seven elderfruit (+34 max energy each) from seven ring 1 sources: the Harvest Showing counter, the floor 120 chest, a spouse at 12.5 hearts, the hermit's high-price sale, a Secret Woods spirit for the fruit of the hermit's rare seed, the fish mail, and the full gallery set",
+          "ref": "39_completion_total.md#Settled with the owner (2026-10-31)",
+          "issue": 196
+        },
+        {
+          "s": "decided",
+          "t": "Twelve slayer goals, one per creature kind, each giving a ring or a worn hat, rebuyable from the warden head; Stardew's counts by matching role (numbers are placeholders)",
+          "ref": "22_mines.md#The slayer list",
+          "issue": 196
+        },
+        {
+          "s": "decided",
+          "t": "Ring 2's own total: a 130-item collectible at weight 25 (100 open a room) plus eight more categories; reward is a haven hat, scene and keepsake",
+          "ref": "39_completion_total.md#Ring 2's total (settled with the owner, 2026-10-31)",
+          "issue": 196
+        },
+        {
+          "s": "decided",
+          "t": "Ring 1's finish: a short hall scene with the steward, Old Greencoat and one line per household head, villagers in the hats the player gave them; keepsake is a lamp that never gutters",
+          "ref": "39_completion_total.md#Ring 1's finish (settled with the owner, 2026-10-31)",
+          "issue": 196
+        },
+        {
+          "s": "decided",
           "t": "Four rods (only the starter limits fish; rare fish need fishing level 5), three baits, six lures with a Magpie Hook treasure table and no double catch, all sold by the delta fisher (numbers are placeholders)",
           "ref": "21_fishing.md#Rods, bait and lures"
         },
