@@ -311,6 +311,8 @@ export class Bot {
 
   /** Walk next to a target tile and use the held tool on it. */
   async useAt(tx, ty, prefer) {
+    // The bot may have left a door since the last walk, so read the map first.
+    here = (await this.dbg()).map;
     const cands = [
       { x: tx, y: ty + 1, dir: "up" },
       { x: tx, y: ty - 1, dir: "down" },

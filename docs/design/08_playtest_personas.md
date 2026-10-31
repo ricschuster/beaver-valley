@@ -164,6 +164,37 @@ each, the same scripts, no console errors and no findings.
 - To tune upgrade prices and red cabbage, a persona that buys them on purpose is
   needed. That is not built.
 
+## Rerun on 2026-10-31
+
+The three keyboard personas were run again on `main` after the Pantry bundle was
+dropped (#278), the house and hall became walkable maps and the soil and menu
+art changed. The three runs went at the same time against one dev server. No
+console errors and no findings in the final runs.
+
+| | Expert | Intermediate | Casual |
+| --- | --- | --- | --- |
+| All four bundles done | day 41 | day 45 | not by day 85 |
+| Spring Foraging | day 4 | day 9 | day 84 |
+| Spring Crops | day 13 | day 15 | not done |
+| Summer Foraging | day 32 | day 33 | not done (1 of 3) |
+| Summer Crops | day 41 | day 45 | not done |
+| Money at day 28 | 4967g | 3538g | not sampled |
+| Real time | 22.0 min | 16.1 min | 12.7 min |
+
+- The finish days match the 2026-10-26 runs (41 and 45), which had five bundles.
+  Dropping the Pantry did not move them, since the Pantry was not the last
+  bundle for either persona. The last bundle is still Summer Crops.
+- The casual floor still fails, and does worse than on 2026-10-26: only Spring
+  Foraging is done, on day 84. Casual skips about a quarter of days and gathers
+  little forage, so this is a known floor, not a regression. It is worth a look
+  when the bundle pools are tuned (#181).
+- A first expert and intermediate run on the same day logged 31 and 18 "no stand
+  tile" script errors. That was a playtest script bug (a stale map after leaving
+  the hall), fixed in `scripts/playtest/lib.mjs`, not a game fault. See
+  `scripts/playtest/README.md`.
+- The same limits as before: no persona buys tool upgrades or red cabbage, and
+  none reached a profession, so money still has no use.
+
 ## Not covered
 
 The real tablet (see above), the Start over button, saving the clock (a reload
