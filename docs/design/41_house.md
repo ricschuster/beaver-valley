@@ -84,13 +84,28 @@ cozy hobbit home. This note settles both.
 - **The carpenter builds it**, as in Stardew, with the three days shown as a
   closed door and scaffold on the farm, then the new rooms the morning after.
 
+## Settled 2026-10-31 (open items)
+
+- **Interior maps.** The above-ground rooms are one Tiled map with sealed
+  earth that each tier opens, and the cellar is a separate small map reached
+  by stairs. Not one map per tier and not one map per room. Stardew: the
+  Farmhouse page shows one connected space that grows, but does not say how it
+  is stored, so that part is not checked.
+- **Prices stay at Stardew's** for the first playable: 10,000g and 450 wood,
+  65,000g and 100 hardwood, 100,000g, three days each. Tiers 2 and 3 will
+  probably be out of reach in two seasons, so they act as long-term goals.
+  Tune after a playtest (`07_tuning_numbers.md`).
+- **The furniture catalogue is not tied to a house tier.** As in Stardew,
+  furniture can be added at any time, and flooring and wallpaper can come from
+  a shop or a catalogue (`10_customisation.md`).
+- **Sealed rooms read as waiting.** The spouse room and the nursery are open,
+  bare and tidy, with a short line from Old Greencoat or the carpenter that
+  they are for later. They are not shown as broken or blocked, which matches
+  the hall's greyed rooms.
+
 ## Open
 
 - Room sizes and the floor plans for each tier, and the cellar map (a map task
   for the build).
-- The numbers above: whether 65,000g and 100,000g suit two seasons, or the
-  first playable needs lower placeholders (`07_tuning_numbers.md`).
-- Which tier offers the furniture catalogue (`10_customisation.md`).
-- Whether one interior map with sealed earth, or one map per tier, is built.
-- How a sealed spouse room and nursery read to the player: as "not ready" and
-  not as broken (same risk as the hall's blocked rooms).
+- Where the catalogue is sold and what it costs (`10_customisation.md`).
+- The house build is not in the issue tracker yet.
