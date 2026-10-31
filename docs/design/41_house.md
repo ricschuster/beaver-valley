@@ -83,8 +83,9 @@ cozy hobbit home. This note settles both.
   `40_hall_layout.md`), instead of loading a different map. Positions and saves
   stay valid across a tier change. The alternative is one map per tier.
 - **No renovations** in the first version.
-- **The carpenter builds it**, as in Stardew, with the three days shown as a
-  closed door and scaffold on the farm, then the new rooms the morning after.
+- **The carpenter builds it**, as in Stardew. The first draft said the door is
+  closed with scaffold for three days. The owner changed that on 2026-10-31:
+  see "Carpenter and the upgrade flow" below.
 
 ## Settled 2026-10-31 (open items)
 
@@ -136,10 +137,53 @@ idea of one connected space is copied.
 - **Tier 2 (M3)** adds the spare room and nursery by opening more earth, for
   example a second row of rooms below, with a taller map then.
 
+## Carpenter and the upgrade flow (decided 2026-10-31)
+
+Owner's choices: the carpenter has a **shop map** the player walks into, as in
+Stardew, and **the house stays open** during the build, with the carpenter
+shown hammering outside. Stardew facts come from the saved Carpenter's Shop and
+Farmhouse pages. Those pages do not say whether the farmhouse can be entered
+or slept in during an upgrade, so that part of Stardew is not checked. The
+rest is mine and open to change.
+
+- **The shop is a small sawmill interior map.** Decided: a map the player
+  walks into. Hearthwell does not exist yet, and the layout note puts the
+  sawmill there (`19_valley_layout.md`). Proposed: until Hearthwell is built,
+  a placeholder sawmill building stands on the farm map with a door to the
+  shop map, and it moves to the Hearthwell river when that map exists. The
+  shop map is its own file, so the move changes only the exit.
+- **Buying (as Stardew).** The carpenter at the counter lists the next upgrade
+  with its coin and wood price (10,000g and 450 wood, placeholders). It needs
+  both: coin from the wallet and wood from the pack, and shows which is
+  missing. Stardew also sells the wood itself, for 4,500g in year 1 and 22,500g
+  in year 2 or later. Proposed: not in the first playable.
+- **Timing (as Stardew, by analogy).** The Carpenter's Shop page says work
+  begins the day after the order and most builds are ready at the start of the
+  second day after the order. The house takes three days (Farmhouse page), so
+  pay on day D, work on days D+1 and D+2, and the new rooms open on the
+  morning of day D+3. This replaces #281's "two mornings later", which did not
+  match three days. Stardew's carpenter does not work on festival days, so a
+  festival day does not count. One upgrade can be ordered at a time.
+- **While it builds.** The house is open as usual: the player can enter and
+  sleep in the start room. The kitchen and bedroom stay sealed earth. The
+  carpenter stands outside the house hammering, with scaffold against the
+  outside wall. The scaffold fits inside the house's footprint on the farm map
+  (decision 3). The shop counter is closed with a short "out at your farm"
+  line until the work is done, as Stardew's Robin cannot be reached for
+  dialogue while she works.
+- **Done.** On the morning of day D+3 the tier goes up by one, the scaffold and
+  the carpenter leave, and a short message says the work is finished.
+- **Saved as** an optional pending order (target tier and days left), so a save
+  mid-build resumes. Old saves have none.
+- Placeholder art: the carpenter is a plain sprite and the scaffold is
+  rectangles, until #58 and the art pass.
+
 ## Open
 
 - Tier 2 floor plan and the cellar map (map tasks for M3). The tier 1 plan is
   above.
+- The sawmill interior map layout, and the carpenter's hours (Stardew's
+  shop closes some days; not decided).
 - Where the catalogue is sold and what it costs (`10_customisation.md`).
 - The house build is in the tracker as #280 (interior map and tiers), #281
   (carpenter and upgrade flow), both M2 and limited to tier 1, with tiers 2 and
