@@ -30,9 +30,9 @@ Each had a Stardew option.
 
 1. **Stardew's categories minus two, with the hall and gallery added.** The
    obelisks (fast travel) and the gold clock (stops fence decay) have no use
-   here, since we have neither fast travel nor fence decay. Their 14 percent goes mostly to hall bundles and gallery donations, which the
-   owner asked to count, and the table below gives the exact weights. The owner asked that
-   bundles and collections count (`21_fishing.md`, item 13b).
+   here, since we have neither fast travel nor fence decay. Their 14 percent goes mostly to hall
+   bundles and gallery donations. The owner asked that bundles and collections
+   count (`21_fishing.md`, item 13b). The table below gives the exact weights.
 2. **On the collections page, always visible.** The total is a percentage with
    each category's progress, next to the achievements. It is rounded down, so
    100 shows only at true completion. This replaces Stardew's late-game board.
