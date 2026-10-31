@@ -36,9 +36,10 @@ on its own.
 
 ### Slice 1: year one on the farm
 
-Rooms finished: the Foragers' Shelf, and the crop half of the Larder (bundles
-7 to 10). Bundles 19 and 20 of the Hearth can also be filled (see below), but
-the room's reward waits for slice 4.
+Rooms finished: the Foragers' Shelf. The Larder's bundles 7 to 10 and 12 can be
+filled, but its room reward, the greenhouse, waits for bundle 11 in slice 4.
+Bundle 19 of the Hearth can also be filled, but the room's reward waits for
+slice 4.
 
 Builds:
 
@@ -50,7 +51,9 @@ Builds:
    (`29_weeds.md`, `31_farm_growth.md`).
 4. Fall and winter: crops, forage, nightfall, weather, snow and thunderstorms
    (`26_seasons.md`, #61).
-5. The greenhouse, fruit trees and the farm cave (`31_farm_growth.md`).
+5. Fruit trees and the farm cave (`31_farm_growth.md`). The greenhouse is not
+   here: it is the Larder reward, which needs the animal bundle, so it
+   arrives in slice 4 (`35_bundle_pools.md`).
 6. The mines, first part (decided 2026-10-31, as in Stardew): floors 1 to 10 with
    no creatures, the lift, copper, the opening day on spring day 5, the smith
    dwarf's ore shop and the furnace gift (mines build slices 1 and 2 in
@@ -64,17 +67,16 @@ Builds:
    season as content once the first works (`13_m3_scope.md`, `14`).
 9. Farm types: Standard and Woodland (`32_farm_types.md`).
 
-Bundles that can be filled: 1 to 10, plus 19 (Smith's, from smelted bars) and
-20 (Lamplighter's, torches and lamp-posts from storm battery packs). Bundle 12 (Artisan Goods) works if its
-pool of six is drawn from slice 1 machines (jam, pickles, wine, juice, honey,
-seeds). Bundle 11 waits for animals.
+Bundles that can be filled: 1 to 10, 12 and 19 (Smith's, from smelted bars).
+Bundle 12's pool avoids keg goods, since its reward is the keg
+(`35_bundle_pools.md`). Bundle 11 waits for animals. Bundle 20 moves to slice 4,
+since oil needs the oil maker (decided 2026-10-31).
 
-Design still needed first: the crafting list note, the bundle item pools for
-bundles 1 to 10 and 12 (#181), the fall and winter crop and forage lists (#61),
-and the Fiber and Sap items.
+Design still needed first: the numbers for the fall and winter crop and forage
+lists (#61, names in `35_bundle_pools.md`), and the Fiber and Sap items.
 
-Winter is thin in this slice: forage, the greenhouse, machines and a festival
-carry it. That is accepted, since slices 2 to 4 fill it.
+Winter is thin in this slice: forage, machines and a festival carry it. The
+greenhouse is not there until slice 4. That is accepted, since slices 2 to 4 fill it.
 
 Cuts, in this order, if the slice runs long: farm types beyond Standard, the
 farm cave, fruit trees, furniture count, extra festivals, and last the mine
@@ -98,8 +100,8 @@ recycler's odds (`21_fishing.md`) are numbers and can be settled in the slice.
 
 ### Slice 3: the mines proper
 
-Rooms finished: none. Bundles 19 and 20 are already fillable from slice 1.
-Bundle 21, Weaver's, needs cloth, which needs wool and so animals. The Hearth
+Rooms finished: none. Bundle 19 is already fillable from slice 1. Bundle 20
+needs oil, so it waits for the oil maker in slice 4. Bundle 21, Weaver's, needs cloth, which needs wool and so animals. The Hearth
 room reward, the carts, therefore arrives in slice 4.
 
 Builds the rest of the mines from `22_mines.md`, from build slice 3: health,
@@ -113,8 +115,8 @@ absent from `25_stardew_system_review.md`.
 
 ### Slice 4: animals, cooking and friendship
 
-Rooms finished: the rest of the Larder (bundle 11), the Hearth (bundle 21) and
-the Guests' Board (bundles 22 to 26).
+Rooms finished: the rest of the Larder (bundle 11, and with it the greenhouse),
+the Hearth (bundles 20 and 21) and the Guests' Board (bundles 22 to 26).
 
 Builds: the coop and barn and the care loop (`23_animals.md`), the machines
 that animals feed (cheese press, loom, mayonnaise machine), cooking and the

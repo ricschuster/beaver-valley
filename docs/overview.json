@@ -157,6 +157,16 @@
           "s": "decided",
           "t": "The first part of the mines (floors 1 to 10, ore shop, furnace, no creatures) is built in slice 1 so bars exist for sprinklers and machines",
           "ref": "33_build_order.md#Slice 1: year one on the farm"
+        },
+        {
+          "s": "decided",
+          "t": "Greenhouse arrives in slice 4 with the animal bundle, as in Stardew; bundle 20 moves to slice 4; bundle 12's pool avoids keg goods",
+          "ref": "35_bundle_pools.md#Decisions (2026-10-31)"
+        },
+        {
+          "s": "open",
+          "t": "Draft item pools for slice 1 bundles and the fall and winter crop and forage names, for the owner to reshape",
+          "ref": "35_bundle_pools.md#Open"
         }
       ],
       "deps": [

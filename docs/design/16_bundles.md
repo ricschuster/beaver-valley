@@ -117,7 +117,7 @@ Room reward: carts between the farm, the hall, the town and the mines.
 | # | Bundle | Rule | Reward | Needs |
 | --- | --- | --- | --- | --- |
 | 19 | Smith's | All: 5 copper bars, 5 iron bars, 3 gold bars | 20 coal | Smelting, ore from the mines or the smith |
-| 20 | Lamplighter's | 2 of 3: 3 lamps, 10 oil, 20 torches | Torches for the mines | Light, crafting |
+| 20 | Lamplighter's | 2 of 3: 3 lamps, 10 oil, 20 torches | Torches for the mines | Light, crafting, oil maker (slice 4, see `35_bundle_pools.md`) |
 | 21 | Weaver's | Both: 10 cloth, 5 thread | Loom | Cloth, tailoring |
 
 The mines are not unlocked by the Hearth (see "The mines" below).
@@ -225,7 +225,8 @@ current rewards (seeds and money) stay until the systems above exist.
   the rest need a check against the final bundle data (#179, #180).
 - Whether a player must finish at least one bundle in every room before the
   last room appears.
-- The pool of items for bundles 3, 4, 6, 11 to 18, 22 to 24 and 26.
+- The pool of items for bundles 11 to 18, 22 to 24 and 26. Pools for 1 to 10,
+  12 and 19 are in `35_bundle_pools.md` (2026-10-31).
 - The Last Seat quantities and the bridge cost, once wood, stone and bars
   have real production rates.
 - Whether 30 bundles fit the 1.5 year pacing target. This needs a playtest
