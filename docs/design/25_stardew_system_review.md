@@ -86,8 +86,8 @@ will correct them.
 | Tools | Skills, tools and quality | Covered | Built. A fifth tier is planned (#194). |
 | Weapons | Mines and gentle combat | Covered | `22_mines.md`. |
 | Hats | Customisation and hats | Covered | Portrait only in M3 (`13_m3_scope.md`). |
-| Footwear | none | Absent | Boots as an equipment slot are not mentioned. |
-| Rings (equipment) | none | Absent | The only rings in our notes are the marriage token. A slot for worn bonuses is not mentioned. |
+| Footwear | none | Designed | Boots with Defense and Immunity, `37_equipment.md`, 2026-10-31. Not built. |
+| Rings (equipment) | none | Designed | Two ring slots and Stardew's ring list, `37_equipment.md`, 2026-10-31. Not built. |
 | Foraging | Seasons, weather, foraging | Covered | Built for two seasons. |
 | Fish, bait and tackle | Fishing and the water | Covered | `21_fishing.md`, checked against the Fish page 2026-10-31. Not built. |
 | Cooking and recipes | Processing and animals | Designed | Kitchen with the first house upgrade, 81 recipes across three rings. `24_processing_and_cooking.md`, 2026-10-31. |
@@ -178,7 +178,7 @@ shipping bin and farm types.
 2. **A general crafting list**, beyond the eight machines.
 3. **A collection hall or museum**, tied to the completion tracker (#196).
 4. **Request and quest system**, and whether there is a request board.
-5. **Equipment slots** (footwear, rings), if any.
+5. **Equipment slots** (footwear, rings), designed in `37_equipment.md`.
 6. **Visitors and surprise** (traveling cart, pets), the small things that make
    a year feel alive.
 

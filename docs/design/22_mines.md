@@ -272,8 +272,8 @@ Names are placeholders, in the cozy register, and none is from Stardew.
   at random, so there is no weapon grind. A floor chest gives a weapon from the
   band, as a choice of fixed ones.
 - **Stats are simple:** damage, speed and reach. No crit, no enchant at first.
-  (Stardew has both, and rings. Our ring slots are covered by bundle rewards,
-  `16_bundles.md`.)
+  (Stardew has both. Changed 2026-10-31: rings now work as Stardew's, with
+  crit, attack and knockback stats to match, in `37_equipment.md`.)
 - **Fighting is not needed for tools.** All tool upgrades need gold and
   bars. Bars come from digging, or from the furnace and bought ore, not from
   monsters.
