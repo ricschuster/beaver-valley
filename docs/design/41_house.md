@@ -109,10 +109,38 @@ cozy hobbit home. This note settles both.
   they are for later. They are not shown as broken or blocked, which matches
   the hall's greyed rooms.
 
+## Tier 1 floor plan (proposed 2026-10-31)
+
+Owner's choice: attached rooms in one connected space, as in Stardew. The saved
+Farmhouse page gives only the inner size (10 by 7) and what each tier adds; the
+layout is in images, so the exact Stardew arrangement is not checked. Only the
+idea of one connected space is copied.
+
+- **One open space, no walls between the rooms. The map is 18 by 8 tiles.**
+  Column 0 is the outer wall, the kitchen is columns 1 to 4 (4 by 6), the start
+  room is columns 5 to 12 (8 by 6, the same size as now), the bedroom is
+  columns 13 to 16 (4 by 6), and column 17 is the outer wall. Rooms are told
+  apart by floor and furniture, not walls.
+- **The start room moves 4 tiles right.** The door goes from (5,7) to (9,7) and
+  the bed from (2,1) to (6,1). The map is always 18 wide, at every tier, so
+  positions never change again after this. Saves made inside the house before
+  this change need a one-off shift of 4 tiles in x. Positions in the outdoor
+  maps are untouched.
+- **Kitchen:** counter, fridge chest, sink that refills the watering can.
+  **Bedroom:** the double bed.
+- **Tier 0:** the kitchen and bedroom areas are sealed earth (collision on,
+  earth tiles), with the earth edge straight at columns 4 and 13. The camera
+  is limited to the start room so the player never sees the earth.
+- **Tier 1:** both areas open and the floor runs through. The single bed
+  becomes the double bed in the bedroom and the start room keeps the hearth.
+- **Tier 2 (M3)** adds the spare room and nursery by opening more earth, for
+  example a second row of rooms below, with a taller map then.
+
 ## Open
 
-- Room sizes and the floor plans for each tier, and the cellar map (a map task
-  for the build).
+
+- Tier 2 floor plan and the cellar map (map tasks for M3). The tier 1 plan is
+  below.
 - Where the catalogue is sold and what it costs (`10_customisation.md`).
 - The house build is in the tracker as #280 (interior map and tiers), #281
   (carpenter and upgrade flow), both M2 and limited to tier 1, with tiers 2 and
