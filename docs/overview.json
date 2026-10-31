@@ -556,7 +556,7 @@
         },
         {
           "s": "decided",
-          "t": "A game-wide completion tracker (Perfection-style) is wanted; every fish and legend counts toward it",
+          "t": "A game-wide completion tracker (Perfection-style) is wanted; every fish and legend counts toward it (designed in 39)",
           "ref": "21_fishing.md#Decided",
           "issue": 196
         },
@@ -570,6 +570,12 @@
           "s": "decided",
           "t": "Achievements: a library gallery for finds, a daily request board at the general store, no rival route, a hat for every achievement, and Stardew's money thresholds re-checked at tuning",
           "ref": "38_achievements.md#Settled open items",
+          "issue": 196
+        },
+        {
+          "s": "decided",
+          "t": "Completion total: Stardew's categories minus obelisks and the gold clock, with hall bundles and gallery donations added, each ring with its own total and reward plus a valley total; always visible on the collections page; 100 percent gives a final hat, a hall scene and a keepsake",
+          "ref": "39_completion_total.md#Decisions",
           "issue": 196
         },
         {
