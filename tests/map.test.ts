@@ -287,6 +287,16 @@ describe("the hall map", () => {
     expect(names).toEqual(rooms.map((r) => r.id).sort());
   });
 
+  it("has a footprint for each room and a plaque with a mark per room", () => {
+    const { regions } = maps.get("hall");
+    for (const room of rooms)
+      expect(
+        regions.find((r) => r.id === room.id),
+        room.id,
+      ).toBeDefined();
+    expect(regions.find((r) => r.id === "plaque")?.w).toBe(rooms.length);
+  });
+
   it("joins the farm's hall door", () => {
     const door = maps.get("farm").exits.find((e) => e.id === "hall");
     expect(door).toMatchObject({ map: "hall", entry: "door" });
