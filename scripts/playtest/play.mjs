@@ -143,20 +143,35 @@ function seedDeficit(s) {
   }
   return def;
 }
-/** Hand-ins the hall would accept right now: [bundleIdx, bundleId, itemId]. */
+/**
+ * Where to stand, facing up, to use each room's scroll in the hall map. Only
+ * rooms with bundles are listed in play; the rest are here for completeness.
+ */
+const SCROLL_STAND = {
+  "foragers-shelf": [4, 2],
+  larder: [4, 14],
+  hearth: [43, 2],
+  "last-seat": [43, 14],
+  "water-room": [28, 6],
+  "guests-board": [35, 10],
+};
+/** Hand-ins the hall would accept right now: [bundleIdx, bundleId, itemId, room]. */
 function giveList() {
   return page.evaluate(() => {
     const s = window.__game.registry.get("state");
     const out = [];
-    s.hall.openBundles.forEach((b, bi) => {
+    s.hall.bundles.forEach((b) => {
+      if (s.hall.roomStatus(b.room) !== "ready") return;
       if (s.hall.complete(b.id)) return;
+      // The panel lists one room's bundles, so the index is within the room.
+      const bi = s.hall.bundlesIn(b.room).indexOf(b);
       for (const { id: base } of b.items) {
         // Hand in whichever quality stack is held (ids look like `leek@gold`).
         const stack = s.inventory
           .save()
           .find((sl) => sl && sl.id.split("@")[0] === base);
         if (stack && !s.hall.problem(s.inventory, b.id, stack.id))
-          out.push([bi, b.id, stack.id]);
+          out.push([bi, b.id, stack.id, b.room]);
       }
     });
     return out;
@@ -243,38 +258,42 @@ async function visitHall() {
   // The hall is a walkable interior: in by the door, to a scroll, and back.
   await bot.walkTo(6, 21);
   await walkThrough("down", 1200, "hall");
-  await openService(4, 2, "hall", "up");
   let first = true;
-  for (let n = 0; n < 40; n++) {
-    const list = await giveList();
-    if (list.length === 0) break;
-    const [bi, bid, id] = list[0];
-    const before = await bot.snap();
-    await menuTo("hall", "bundleMenu", bi);
-    await bot.key("ArrowRight", 40);
-    const ids = [];
-    for (const sl of before.inv)
-      if (sl && !ids.includes(sl.id)) ids.push(sl.id);
-    await menuTo("hall", "packMenu", ids.indexOf(id));
-    if (first) await bot.shot(`hall-d${before.day}`);
-    first = false;
-    await bot.key("Enter", 120);
-    await bot.key("ArrowLeft", 40);
-    const after = await bot.snap();
-    const msg = await sceneMsg("hall");
-    const gave = bot.count(before, id) - bot.count(after, id);
-    const handed = (h) =>
-      Object.values(h[bid] ?? {}).reduce((sum, n) => sum + n, 0);
-    const got = handed(after.hall) - handed(before.hall);
-    log(`  hand in ${id} -> ${bid}: "${msg}"`);
-    if (gave !== 1 || got !== 1)
-      finding(
-        `hand-in of ${id} to ${bid}: backpack -${gave}, bundle +${got} (expected 1 and 1)`,
-      );
+  const rooms = [...new Set(list0.map((g) => g[3]))];
+  for (const room of rooms) {
+    // Each room has its own scroll, and its panel lists only its bundles.
+    const [sx, sy] = SCROLL_STAND[room];
+    await openService(sx, sy, "hall", "up");
+    for (let n = 0; n < 40; n++) {
+      const list = (await giveList()).filter((g) => g[3] === room);
+      if (list.length === 0) break;
+      const [bi, bid, id] = list[0];
+      const before = await bot.snap();
+      await menuTo("hall", "bundleMenu", bi);
+      await bot.key("ArrowRight", 40);
+      const ids = [];
+      for (const sl of before.inv)
+        if (sl && !ids.includes(sl.id)) ids.push(sl.id);
+      await menuTo("hall", "packMenu", ids.indexOf(id));
+      if (first) await bot.shot(`hall-d${before.day}`);
+      first = false;
+      await bot.key("Enter", 120);
+      await bot.key("ArrowLeft", 40);
+      const after = await bot.snap();
+      const msg = await sceneMsg("hall");
+      const gave = bot.count(before, id) - bot.count(after, id);
+      const handed = (h) =>
+        Object.values(h[bid] ?? {}).reduce((sum, n) => sum + n, 0);
+      const got = handed(after.hall) - handed(before.hall);
+      log(`  hand in ${id} -> ${bid}: "${msg}"`);
+      if (gave !== 1 || got !== 1)
+        finding(
+          `hand-in of ${id} to ${bid}: backpack -${gave}, bundle +${got} (expected 1 and 1)`,
+        );
+    }
+    const closed = await closeScreen("hall");
+    if (closed.scenes.includes("end")) await endScreen();
   }
-  // Try a hand-in the hall should refuse (once), to check the wording.
-  const s = await closeScreen("hall");
-  if (s.scenes.includes("end")) await endScreen();
   await bot.walkTo(23, 18);
   await walkThrough("down", 1200, "farm");
 }

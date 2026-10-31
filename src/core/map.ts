@@ -62,6 +62,15 @@ export interface Service extends Spot {
   kind: string;
 }
 
+/** A named rectangle of tiles, such as one room of the hall. */
+export interface Region {
+  id: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
 /** Whether the player may use an exit, given the conditions that hold. */
 export function exitOpen(exit: Exit, holds: ReadonlySet<string>): boolean {
   return exit.requires === undefined || holds.has(exit.requires);
@@ -91,6 +100,7 @@ export class FarmMap {
     readonly exits: Exit[],
     readonly forageSpots: Spot[],
     readonly services: Service[] = [],
+    readonly regions: Region[] = [],
   ) {}
 
   /** Read a Tiled map. Throws with a clear message if it breaks the contract. */
@@ -116,6 +126,7 @@ export class FarmMap {
     const exits: Exit[] = [];
     const forageSpots: Spot[] = [];
     const services: Service[] = [];
+    const regions: Region[] = [];
     for (const layer of json.layers) {
       if (layer.type !== "objectgroup") continue;
       for (const o of layer.objects ?? []) {
@@ -125,6 +136,13 @@ export class FarmMap {
         else if (cls === "forage") forageSpots.push(spot);
         else if (cls === "service")
           services.push({ id: o.name, kind: text(o, "kind") ?? "", ...spot });
+        else if (cls === "region")
+          regions.push({
+            id: o.name,
+            ...spot,
+            w: Math.max(1, Math.round((o.width ?? size) / size)),
+            h: Math.max(1, Math.round((o.height ?? size) / size)),
+          });
         else if (cls === "exit") {
           const w = Math.max(1, Math.round((o.width ?? size) / size));
           const h = Math.max(1, Math.round((o.height ?? size) / size));
@@ -151,6 +169,7 @@ export class FarmMap {
       exits,
       forageSpots,
       services,
+      regions,
     );
   }
 

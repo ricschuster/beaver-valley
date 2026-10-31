@@ -71,6 +71,8 @@ export const ROOMS = roomData as RoomDef[];
 /** The room whose completion mends the bridge to ring 2. */
 export const LAST_ROOM = "last-seat";
 
+export type RoomStatus = "done" | "ready" | "locked" | "empty";
+
 export type HandIn = "accepted" | "completed" | "rejected";
 
 /**
@@ -152,6 +154,30 @@ export class Hall {
   /** True once the Last Seat is done: the bridge to ring 2 is mended. */
   get bridgeMended(): boolean {
     return this.roomComplete(LAST_ROOM);
+  }
+
+  /** The bundles written for one room. */
+  bundlesIn(roomId: string): BundleDef[] {
+    return this.bundles.filter((b) => b.room === roomId);
+  }
+
+  /**
+   * How a room stands: `done` (every bundle finished), `empty` (no bundles
+   * written yet), `locked` (the soft gate is not met) or `ready` (hand-ins
+   * welcome). Empty and locked rooms read as "not ready" in the hall.
+   */
+  roomStatus(roomId: string): RoomStatus {
+    if (this.roomComplete(roomId)) return "done";
+    if (this.bundlesIn(roomId).length === 0) return "empty";
+    return this.roomOpen(roomId) ? "ready" : "locked";
+  }
+
+  /** Bundles still to finish in other rooms before this room opens. */
+  gateRemaining(roomId: string): number {
+    const room = this.rooms.find((r) => r.id === roomId);
+    return room
+      ? Math.max(0, room.opensAfter - this.finishedOutside(roomId))
+      : 0;
   }
 
   /** Bundles in rooms that have appeared. */

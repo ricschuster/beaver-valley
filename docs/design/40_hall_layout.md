@@ -66,13 +66,14 @@ menu itself, so the scroll opening a menu is from memory.
 
 ## Proposed details
 
-- **A locked room is a blocked doorway** (rubble). Interacting with it shows
-  the gate hint ("finish one more bundle"). This follows the soft gate in
-  `src/core/bundles.ts`. Stardew hides locked rooms, so this is a departure
-  and is open to change.
-- **A room with no bundles yet** stays blocked even when its gate is met, and
-  the hint says it is not ready. Four of the six rooms are in this state in
-  slice 1. They open as later slices add their bundles.
+- **Rooms that are not ready stay open but greyed** (decided 2026-10-31,
+  owner's choice over blocked doorways and Stardew's hidden rooms). Every room
+  can be walked into. A room that is locked (the soft gate in
+  `src/core/bundles.ts` is not met) or has no bundles yet is drawn with a grey
+  wash over the ruined look, and its scroll says "Not ready yet" with the gate
+  ("finish N more bundles in the other rooms first") or "nothing to hand in for
+  now". Ready rooms are dim only; finished rooms are warm. Four of the six
+  rooms are not ready in slice 1. They open as later slices add bundles.
 - **The Last Seat** is a walled room, drawn last and most prominent (Stardew's
   Vault). Its
   bridge reward is seen outside the hall, not in the room.
@@ -81,8 +82,10 @@ menu itself, so the scroll opening a menu is from memory.
 
 ## Build scope (#180)
 
-Two to three PRs: the hall map and the walk-in; the scrolls, panel and room
-states; then the end screen, touch and playtest updates. The playtest scripts
+Two to three PRs: the hall map and the walk-in (#272); the scrolls, panel and
+room states (built: each scroll opens its room's panel, the plaque lights one
+mark per finished room, room washes show ruined, not ready and restored); then
+the end screen and any touch and playtest updates left. The playtest scripts
 must walk to a scroll instead of opening a menu.
 
 ## Open

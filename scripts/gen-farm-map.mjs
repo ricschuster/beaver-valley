@@ -266,9 +266,8 @@ const house = {
 // The village hall interior (docs/design/40_hall_layout.md): a main room, a
 // corridor to each side, four walled rooms off the corridors, and two alcoves
 // (the tank on the main room's back wall, the board on a corridor wall). Each
-// room has a scroll the player faces and uses. For now every scroll opens the
-// whole hall menu; the per-room panel and the ruined and restored states come
-// later. The door is at the bottom centre. Tile coordinates, mirrored about
+// room has a scroll the player faces and uses. Each scroll opens its
+// own room's panel. The door is at the bottom centre. Tile coordinates, mirrored about
 // the centre line x = 23.5.
 const LW = 48;
 const LH = 20;
@@ -308,6 +307,23 @@ const scrolls = [
   ["guests-board", scroll(LW - 1 - 12, 9)], // the board, on a corridor wall
 ];
 
+// Each room's footprint, for the ruined and restored wash; "plaque" is the
+// row of six marks on the main room's back wall, one per room.
+const region = (name, x, y, w, h) => ({
+  ...point("region", name, x, y),
+  width: w * T,
+  height: h * T,
+});
+const regions = [
+  region("foragers-shelf", 3, 2, 8, 6),
+  region("hearth", LW - 11, 2, 8, 6),
+  region("larder", 3, 14, 8, 5),
+  region("last-seat", LW - 11, 14, 8, 5),
+  region("water-room", 26, 5, 6, 3),
+  region("guests-board", LW - 14, 9, 3, 2),
+  region("plaque", 20, 5, 6, 1),
+];
+
 const hall = {
   ...farm,
   width: LW,
@@ -321,6 +337,7 @@ const hall = {
         point("entry", "door", 23, LH - 2),
         { ...exit("door", 23, LH - 1, "farm", "from_hall"), width: 2 * T },
         ...scrolls.map(([name, s]) => service2(name, "hall", s.x, s.y)),
+        ...regions,
       ],
     },
   ],

@@ -72,6 +72,7 @@ export class FarmScene extends Phaser.Scene {
   private uiCamera!: Phaser.Cameras.Scene2D.Camera;
   private sprites!: Phaser.GameObjects.Container;
   private ground!: Phaser.GameObjects.Graphics;
+  private wash!: Phaser.GameObjects.Graphics;
   private map!: FarmMap;
   private controls!: Controls;
   private player!: Phaser.GameObjects.Image;
@@ -123,7 +124,8 @@ export class FarmScene extends Phaser.Scene {
     // Plots and forage sit on the tiles, under the player.
     this.ground = this.add.graphics();
     this.sprites = this.add.container(0, 0);
-    world.push(this.ground, this.sprites);
+    this.wash = this.add.graphics();
+    world.push(this.ground, this.sprites, this.wash);
     const spawn = this.map.entry(this.entryName)!;
     this.pos = { x: (spawn.x + 0.5) * ts, y: (spawn.y + 1) * ts - 2 };
     this.player = this.add
@@ -296,7 +298,11 @@ export class FarmScene extends Phaser.Scene {
     const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
     const service = this.map.serviceAt(front.x, front.y);
     if (service?.kind === "festival") return this.openFestival();
-    if (service) return this.open(service.kind);
+    if (service)
+      return this.open(
+        service.kind,
+        service.kind === "hall" ? { room: service.id } : undefined,
+      );
     const held = heldAt(this.state, this.selected);
     const result = useHeld(this.state, this.map, held, front.x, front.y);
     if (!result.ok) {
@@ -412,8 +418,42 @@ export class FarmScene extends Phaser.Scene {
     }
   }
 
+  /**
+   * The hall's progress display (docs/design/40_hall_layout.md): a room is
+   * dim until it is done and warm after, a room that is not ready (locked or
+   * with no bundles yet) is also greyed, and the plaque lights one mark per
+   * finished room. Placeholder for the real ruined and restored tiles (#58).
+   */
+  private drawRooms(): void {
+    const { regions, tileSize: ts } = this.map;
+    this.wash.clear();
+    const hall = this.state.hall;
+    for (const r of regions) {
+      if (r.id === "plaque") {
+        hall.rooms.forEach((room, i) => {
+          const lit = hall.roomComplete(room.id);
+          this.wash
+            .fillStyle(lit ? 0xf0c75e : 0x3a3028, 1)
+            .fillRect((r.x + i) * ts + 3, r.y * ts + 5, ts - 6, ts - 10);
+        });
+        continue;
+      }
+      const status = hall.roomStatus(r.id);
+      const [colour, alpha] =
+        status === "done"
+          ? [0xffd890, 0.12]
+          : status === "ready"
+            ? [0x1a1410, 0.4]
+            : [0x606870, 0.6];
+      this.wash
+        .fillStyle(colour, alpha)
+        .fillRect(r.x * ts, r.y * ts, r.w * ts, r.h * ts);
+    }
+  }
+
   private render(): void {
     this.drawGround();
+    this.drawRooms();
     this.hud.update(this.state, this.selected, this.message);
   }
 }
