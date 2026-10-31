@@ -122,6 +122,37 @@ ring 1 stays finished.
 - **Pulls in:** the deep dig (`22_mines.md`, "Open"), the special orders board,
   centre 2 and a ring 2 fish list. Each needs its own note before build.
 
+## Ring 1's finish (settled with the owner, 2026-10-31)
+
+The morning after the total shows 100, the hall steward calls the player in
+(see "How it works"). Stardew's 100 percent adds a stone carving of a stardrop
+above Grandpa's Shrine (checked on the saved Stardrop page). Whether it plays a
+scene is not checked.
+
+- **The scene is a short one at the hall.** The Long Table is full and the
+  villagers wear the hats the player has given them over the years. A toast,
+  a few lines, then play resumes. About two minutes. It differs from the
+  last-bundle feast (`09_story_and_lore.md`), which is the village thanking
+  the player once. This one celebrates the whole valley being tended.
+- **Who speaks.** The hall steward gives a short toast that names the mended
+  hall. Old Greencoat adds a quiet line that points towards ring 2. Then each
+  household head says one line, about 20 in all. The player speaks only
+  through a choice of how to take the toast. The scene closes on the steward's
+  last line. The line count follows the cast's household count
+  (`20_ring1_cast.md`) and is checked against it at writing.
+- **Hats.** A villager's hat in the scene is the one the player gave them, or
+  their usual hat if none. This asks the hat system for a per-villager gift
+  record, which the friendship design must keep.
+- **The keepsake is a lamp that never gutters,** a plain brass lamp in the
+  lamp-makers' style with a small flame that holds steady through ash and wind.
+  It is furniture, delivered by mail with the hatter's hat, and works in the
+  house. It answers the lamps the Smoulderer's ash dims (`09_story_and_lore.md`).
+  No gameplay power.
+- **Not chosen:** a model of Hearthwell (art for every building and updates as
+  the village changes) and a farm stone carving as Stardew's (it would not be
+  furniture).
+- **Script text** is written with the cast's voice sheets, not here.
+
 ## How it works
 
 - **Where.** The collections page, beside the achievements tab. A total at the
@@ -192,7 +223,7 @@ ring 1 stays finished.
 - Ring 2's weights and the collectible's name and look, in the ring 2 design
   (#20). Ring 3's total only if it is built.
 - Whether partial progress counts, as proposed, or only whole items.
-- The scene's script and the keepsake's design.
+- The scene's actual lines and the lamp's art, with the voice sheets.
 
 Stardew details above come from the saved Perfection Tracker, Stardrop and
 Movie Theater pages, read on 2026-10-31.
