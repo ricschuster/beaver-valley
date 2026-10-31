@@ -173,9 +173,28 @@ export class FarmMap {
     );
   }
 
-  /** Outside the map counts as blocked, so nothing can walk off the edge. */
+  /** Regions that are solid for now, such as house rooms not yet dug out. */
+  private sealed: Region[] = [];
+
+  /** Seal the regions with these ids; any others are open. Replaces earlier seals. */
+  seal(ids: readonly string[]): void {
+    this.sealed = this.regions.filter((r) => ids.includes(r.id));
+  }
+
+  /** The regions sealed now. */
+  get sealedRegions(): readonly Region[] {
+    return this.sealed;
+  }
+
+  /** Outside the map and sealed regions count as blocked. */
   isBlocked(x: number, y: number): boolean {
-    return !this.inside(x, y) || this.blocked[y * this.width + x] === true;
+    return (
+      !this.inside(x, y) ||
+      this.blocked[y * this.width + x] === true ||
+      this.sealed.some(
+        (r) => x >= r.x && x < r.x + r.w && y >= r.y && y < r.y + r.h,
+      )
+    );
   }
 
   isTillable(x: number, y: number): boolean {

@@ -392,7 +392,7 @@ if (atDoor.map !== "house")
   );
 else {
   await holdAxis("y", cy(2));
-  await holdAxis("x", cx(2));
+  await holdAxis("x", cx(6));
   await faceTo("up");
   const day = (await bot.snap()).day;
   await useTool();
