@@ -44,7 +44,7 @@ will correct them.
 | Stardew system | Our area | Status | Where, and what is missing |
 | --- | --- | --- | --- |
 | Crops | Farming and the day | Covered | Built for two seasons. Autumn and winter crops are #61. |
-| Selling and the shipping bin | Farming and the day | Gap, to design | Owner decision 2026-10-30: add a shipping bin. Selling at the shop is built. The bin's rules (what it takes, when it pays, how it sits beside the shop) need a note. |
+| Selling and the shipping bin | Farming and the day | Designed | Owner decision 2026-10-30: add a shipping bin. Rules settled 2026-10-31 in `28_shipping_bin.md`. |
 | Animals | Processing and animals | Covered | `23_animals.md`. Not built. |
 | Fruit trees | none | Absent | Orchards are not mentioned anywhere. Tree growth over several days or seasons is a different loop from crops. |
 | Artisan goods and machines | Processing and animals | Partial | Open. Recommendations exist in the 2026-10-30b handoff. The note is `24_processing_and_cooking.md`, not written. |
@@ -135,7 +135,7 @@ Added from what we know of the game, so these need a source check too:
 - **The gaps below are added to the game.** Each gets a design note before any
   build, as `CLAUDE.md` requires. The first pass at the list was "for
   discussion"; it is now the to-design list.
-- **A shipping bin is added.** Rules to be settled in a note.
+- **A shipping bin is added.** Rules are in `28_shipping_bin.md`.
 - **Farm type choices are added.** The player picks one of several different
   farms at the start, each with its own layout and theme. The three exits to the
   valley are the fixed part on every farm. The house and the pond are not

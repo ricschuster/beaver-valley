@@ -35,8 +35,8 @@
         },
         {
           "s": "decided",
-          "t": "A shipping bin is added; its rules are not designed",
-          "ref": "25_stardew_system_review.md#Owner decisions, 2026-10-30"
+          "t": "A shipping bin is added; it pays at sleep at the shop price",
+          "ref": "28_shipping_bin.md#Decisions"
         },
         {
           "s": "open",
