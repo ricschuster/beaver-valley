@@ -3,6 +3,7 @@ import { growthRate } from "./professions";
 import { rollWeather, type Weather } from "./weather";
 import type { Spot } from "./forage";
 import type { GameState } from "./save";
+import { advanceBuild } from "./house";
 
 export interface SleepReport {
   passedOut: boolean;
@@ -15,6 +16,8 @@ export interface SleepReport {
   weather: Weather;
   /** Crops that died overnight because their season ended. */
   withered: number;
+  /** True when the carpenter finished the house upgrade this morning. */
+  houseFinished: boolean;
 }
 
 /**
@@ -40,6 +43,7 @@ export function sleep(
   g.tomorrow = rollWeather(next.season, next.dayOfSeason, random);
   if (g.weather === "rainy") g.farm.waterAll();
   g.forage.respawn(season, spots, random);
+  const houseFinished = advanceBuild(g);
 
   return {
     passedOut: end.passedOut,
@@ -48,6 +52,7 @@ export function sleep(
     weather: g.weather,
     newSeason: season !== before ? season : undefined,
     withered: cropsBefore - g.farm.cropCount,
+    houseFinished,
   };
 }
 

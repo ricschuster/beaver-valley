@@ -7,6 +7,7 @@ const base: SleepReport = {
   moneyLost: 0,
   weather: "sunny",
   withered: 0,
+  houseFinished: false,
 };
 
 describe("overnight report", () => {
@@ -38,6 +39,12 @@ describe("overnight report", () => {
       "It is raining. The rain watered your crops.",
     ]);
     expect(reportLines({ ...base, withered: 3 })[1]).toMatch(/3 crops/);
+  });
+
+  it("says when the carpenter has finished", () => {
+    expect(reportLines({ ...base, houseFinished: true })[1]).toMatch(
+      /carpenter has finished/,
+    );
   });
 
   it("announces a new season only when there is one", () => {
