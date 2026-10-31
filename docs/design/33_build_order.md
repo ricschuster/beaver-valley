@@ -159,6 +159,9 @@ item.
   The first slice then needs only a "year one complete" report, not an ending.
   This is a proposal, not settled.
 - Whether slice 1 is too large with four seasons. The first item is the check.
+- **Bars in slice 1.** Sprinklers, the keg and the bee house need copper and
+  iron bars, and the mines are slice 3 (`34_crafting.md`). The smith dwarf's
+  ore shop and furnace gift may need to move into slice 1.
 - Where the completion tracker (#196) and the mines' later bands sit. Both are
   unscheduled until slice 3 is played.
 - The order of the four design notes still needed (the crafting list, the
