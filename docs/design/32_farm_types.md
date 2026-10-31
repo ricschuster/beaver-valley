@@ -69,8 +69,8 @@ The first non-Standard farm, because foraging is already built.
 
 - A wide stretch of water along one edge of the map, more tiles of fishable
   water than any other farm.
-- Starts with a smoker for fish, added to the starting kit. It waits for the
-  processing note (`24_processing_and_cooking.md`).
+- Starts with a smoker for fish, added to the starting kit. It is one of the
+  eleven machines (`24_processing_and_cooking.md`).
 - Fish mix: river and woods, see "Fish".
 - We have no ore panning. The Guidebook says this farm suits it, so a panning
   rule is left open.
