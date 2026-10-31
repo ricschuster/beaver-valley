@@ -55,26 +55,5 @@
     },
     "room": "larder",
     "hint": "Summer crops love the heat. Plant them early in the season."
-  },
-  {
-    "id": "pantry",
-    "name": "Pantry",
-    "items": [
-      "parsnip",
-      "leek",
-      "potato",
-      "melon",
-      "grape",
-      "tomato",
-      "sweet-pea",
-      "kale",
-      "corn"
-    ],
-    "required": 4,
-    "reward": {
-      "money": 500
-    },
-    "room": "larder",
-    "hint": "A bit of everything the farm and the woods give. Any four will do."
   }
 ]

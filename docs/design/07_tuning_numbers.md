@@ -278,11 +278,10 @@ Source: `21_fishing.md`. All of these are ours and are placeholders.
 
 Source: `src/content/bundles.json`.
 
-- Five bundles: Spring Foraging (any 4 of 6 goods, reward 15 parsnip seeds),
+- Four bundles (the Pantry was dropped 2026-10-31, see `16_bundles.md`): Spring Foraging (any 4 of 6 goods, reward 15 parsnip seeds),
   Summer Foraging (any 3 of 4, 15 radish seeds), Spring Crops (any 3 of 3,
-  300g), Summer Crops (any 3 of 3, 400g) and Pantry (any 4 of 9 mixed goods,
-  500g). Contents and rewards are ours. The foraging bundles and the Pantry
-  took the new goods; the crop bundles are unchanged, as decided in
+  300g) and Summer Crops (any 3 of 3, 400g). Contents and rewards are ours.
+  The foraging bundles took the new goods; the crop bundles are unchanged, as decided in
   `08_playtest_personas.md`.
 - Foraging bundles are easy (the simulation below ran before the extra goods
   made them easier). A simulation of a player who sweeps all 14 farm

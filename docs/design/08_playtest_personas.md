@@ -14,7 +14,7 @@ press or a bad growth step would have been reported. The game's own randomness
 repo.
 
 Three personas played a new game on the placeholder map and went on until all
-five bundles were done, or until day 85 (the calendar wraps into a second year).
+five bundles were done (the Pantry has since been dropped, so the runs below include a bundle that no longer exists), or until day 85 (the calendar wraps into a second year).
 
 - Expert: knows every bundle, plants each bundle crop on day 1 and replants
   every cycle, sweeps all visible forage every day, visits the hall and shop
