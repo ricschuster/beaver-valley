@@ -756,6 +756,21 @@
           "t": "Hat names for the achievements that need new systems, furniture pool and prices, sewing machine cost, the per-people catalogues",
           "ref": "10_customisation.md#Open",
           "issue": 133
+        },
+        {
+          "s": "decided",
+          "t": "The player's home is a burrow house dug into a hillside; the burrow ban in the lore note is lifted for the player's home only",
+          "ref": "41_house.md#Decisions (2026-10-31)"
+        },
+        {
+          "s": "decided",
+          "t": "Three paid house tiers add rooms, and a building's footprint never changes on upgrade, for every building",
+          "ref": "41_house.md#Decisions (2026-10-31)"
+        },
+        {
+          "s": "open",
+          "t": "House tier contents, numbers, one map or one per tier, spouse room, cellar and slice are proposed, not decided",
+          "ref": "41_house.md#Open"
         }
       ],
       "deps": [],
