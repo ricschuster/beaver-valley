@@ -57,7 +57,7 @@ Each had a Stardew option.
 | Slayer goals | 10 | Every goal on the mines' slayer list (`22_mines.md`) | 3 |
 | Friends | 12 | Every person at maximum hearts, children excluded | 4 |
 | Skills | 5 | Every skill at level 10 | 1 to 3 |
-| Rare boost items | 10 | Every one of the seven star seeds (see "Settled with the owner") | 1 to 4 |
+| Rare boost items | 10 | Every one of the seven elderfruit (see "Settled with the owner") | 1 to 4 |
 | Cooking | 10 | Every recipe cooked | 4 |
 | Crafting | 10 | Every item crafted | 1 |
 | Fish | 10 | Every fish caught, the five legends included (`21_fishing.md`) | 2 |
@@ -136,25 +136,31 @@ ring 1 stays finished.
 
 ## Settled with the owner (2026-10-31)
 
-- **Rare boost items: seven star seeds (Stardew).** Stardew has seven stardrops,
+- **Rare boost items: seven elderfruit (Stardew).** Stardew has seven stardrops,
   each +34 maximum energy, eaten the moment they are found, 270 up to 508 in all
-  (checked on the saved Stardrop page). Ours are seven **star seeds**, same
-  size and rule (placeholder name, ours). Each of the 10 points is split
+  (checked on the saved Stardrop page). Ours are seven **elderfruit**, same
+  size and rule. The name is final (2026-10-31): a gift of the old elves, plain
+  English, not Stardew's word and not Tolkien's. Each of the 10 points is split
   in sevenths by progress. Every source is in ring 1, so ring 1 stays
   completable alone. The sources, each mapped from a Stardew one:
 
 | # | Our source | Stardew's source |
 | --- | --- | --- |
-| 1 | A festival shop sells one, fixed price (placeholder 2,000g) | The Fair, 2,000g |
+| 1 | The Harvest Showing's prize counter, fall 9, sells one at a fixed price (placeholder 2,000g) | The Fair, 2,000g |
 | 2 | A chest in the last hall of floor 120 | Floor 100 chest in the mines |
 | 3 | A spouse at 12.5 hearts (`12_marriage.md`) | Spouse or roommate at 12.5 hearts |
 | 4 | The hermit sells one at a very high price (placeholder 20,000g) | Krobus, 20,000g |
-| 5 | A spirit in the Secret Woods, for a rare find the player grows or forages | Old Master Cannoli and a Sweet Gem Berry |
+| 5 | A spirit in the Secret Woods, for the fruit of a rare seed the hermit gives (see below) | Old Master Cannoli and a Sweet Gem Berry |
 | 6 | A letter with the seed the day after the fish achievement (`38_achievements.md`) | Willy's letter after Master Angler |
 | 7 | The full gallery set (`38_achievements.md`) | All 95 museum items |
 
-- Only one spouse seed, however many times the player marries or splits.
-- The festival and hermit sales are gold sinks and are never missable.
+- Seed 5 (settled 2026-10-31): the hermit, our wizard, gives the player a rare
+  seed once the player is friendly enough (placeholder: 4 hearts). It grows
+  in one season, and the fruit goes to the spirit. The hermit therefore has
+  two roles, seller (4) and seed giver (5). The seed's name and the heart
+  level are open.
+- Only one elderfruit from a spouse, however many times the player marries or splits.
+- The Harvest Showing and hermit sales are gold sinks and are never missable.
 - The seven seeds are what the "Find every stardrop" achievement counts.
 - **Slayer goals: twelve, one per creature kind** (see `22_mines.md`, "The
   slayer list"). Weight stays 10.
@@ -181,8 +187,7 @@ ring 1 stays finished.
 
 ## Open
 
-- The star seed's final name, the rare find the Secret Woods spirit wants,
-  and the festival that sells seed 1 (festival list).
+- The rare seed's name, its heart level and its growing season (seed 5).
 - The slayer goals' kill counts and reward items, at tuning.
 - Ring 2's weights and the collectible's name and look, in the ring 2 design
   (#20). Ring 3's total only if it is built.

@@ -34,7 +34,7 @@ here.
 | Spring | 21 | Seedswap Fair | Neighbours trade seeds. Mostly a prize counter. |
 | Summer | 8 | Cake Day | Brimmers dress in food-looking clothes. |
 | Summer | 20 | Lamplight Evening | A quiet lantern gathering at dusk. |
-| Fall | 9 | Harvest Showing | Crops judged on the green, with a prize counter. |
+| Fall | 9 | Harvest Showing | Crops judged on the green, with a prize counter. The counter sells one elderfruit (`39_completion_total.md`). |
 | Fall | 21 | Hollow Eve | A spooky evening walk. Quiet scares only, no threat. |
 | Winter | 8 | Frostday | Ice fishing on the river. |
 | Winter | 20 | Midwinter Feast | A gift exchange with one villager. |
