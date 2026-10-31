@@ -47,6 +47,24 @@ Crops (season, days to grow, seed price, sell price):
 - Corn: summer, 14 days then regrows every 4, 150g, 50g. From memory.
 - Red cabbage: summer, 9 days, 100g, 260g. From memory.
 
+Fall crops (decided 2026-10-31, `35_bundle_pools.md`). The owner chose to match
+the saved Stardew Fall Crops page for our equivalents, as spring and summer do.
+Our names and items. Unchecked in play:
+
+- Pumpkin: fall, 13 days, 100g, 320g. Not food.
+- Eggplant: fall, 5 days then regrows every 5, 20g, 60g.
+- Sweet potato: fall, 10 days, 60g, 160g.
+- Beet: fall, 6 days, 20g, 100g.
+- Cranberry: fall, 7 days then regrows every 5, 240g, 75g. Gives 2 berries a
+  harvest, so crops need a yield field in `crops.json`.
+- Artichoke: fall, 8 days, 30g, 160g. Stardew holds it back to year 2. Ours is
+  open in year one, which makes it the best value fall crop. Check in play, and
+  hold it back if it does too much.
+- Corn already grows in summer and fall (14 days then every 4, 150g, 50g). Its
+  season list in `crops.json` adds fall.
+- Crops that are alive when fall ends die, as spring and summer crops do. There
+  are no winter crops outdoors, and no greenhouse until slice 4.
+
 A crop grows one day for each day it was watered. It does not regrow after
 harvest, and it withers when its season ends. Rain waters every plot overnight.
 
@@ -71,6 +89,27 @@ Source: `src/core/forage.ts`, `src/content/forage.json`.
   50g. Summer goods: wild grape 80g, spice berry 80g, sweet pea 50g. Later additions: spring onion 8g, salmonberry 5g (spring) and
   fiddlehead fern 90g (summer). The prices
   are ours and unchecked.
+- Fall goods (decided 2026-10-31, from the saved Stardew Fall page where our
+  good has an equivalent, otherwise ours): bramble berry 20g (energy 25),
+  hazelnut 90g (30), wild plum 80g (25), field mushroom 40g (38), crab apple
+  30g (20), rose hip 45g (15), chestnut 50g (30), wild garlic 35g (15).
+  Bramble berry, crab apple, rose hip, chestnut and wild garlic are ours. The
+  bramble berry price is from memory.
+- Winter goods (from the saved Stardew Winter page where matched): crocus 60g
+  (not food), snowdrop 80g (not food), winter cress 40g (20), pine nut 70g (25),
+  holly sprig 80g (not food), frost root 70g (10) and snow tuber 100g (30). The
+  last two come from the soil, not forage spots (below). Snowdrop, winter
+  cress and pine nut are ours.
+- Winter soil digging (decided 2026-10-31, as in Stardew's Winter page):
+  tilling farm soil in winter has a small chance to turn up a frost root or a
+  snow tuber. Placeholder: 3 percent a tile, two thirds frost root. Stardew's
+  chance is not in the saved page. The hoe gives no clay or ore on the farm.
+- Rare finds (bundle 6): morel 150g (spring), chanterelle 160g (fall, energy
+  75), snowcap mushroom 140g (winter), moss 30g (any season, from trees) and
+  cave mushroom 200g (mine floors 1 to 10). Ours, with morel and chanterelle
+  near Stardew's. A rare spawn is 5 percent of forage spawns in the season, and
+  3 percent of the mine floor's forage spots. Placeholders.
+- Forage spawn cap is unchanged in fall and winter (a quarter of spots).
 
 ## Skills
 
@@ -138,7 +177,9 @@ Source: `src/core/actions.ts` (`eat`), `energy` fields in the content files.
   green bean 25, kale 50, garlic 20, hot pepper 13, corn 25, red cabbage 75,
   leek 40, dandelion 25, horseradish 13, wild grape 38, spice berry 25,
   salmonberry 25, fiddlehead fern 25, spring onion 5. Daffodil and sweet pea are
-  not food.
+  not food. Fall crops: eggplant 20, sweet potato 45, beet 30, cranberry 38,
+  artichoke 30. Pumpkin is not food. The fall and winter forage values are
+  with their prices above.
 - Silver restores x1.4, gold x1.8.
 
 ## Backpack

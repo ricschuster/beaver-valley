@@ -49,7 +49,8 @@ Every season needs its own crops, forage, fish and a festival slot
 
 ## Open questions
 
-- Fall and winter crop, forage and fish lists, with our own names and numbers.
+- Fall and winter fish lists. The crop and forage lists and numbers are settled
+  (`35_bundle_pools.md`, `07_tuning_numbers.md`, 2026-10-31).
 - The greenhouse: settled as the Larder room reward (`31_farm_growth.md`). Its
   winter income is a tuning question.
 - Rain and snow chances for fall and winter, and thunderstorms, which are the
