@@ -207,6 +207,15 @@ map onto this note as follows: Spring Foraging and Summer Foraging are bundles
 a mixed bundle that does not appear here and would be reshaped or dropped. The
 current rewards (seeds and money) stay until the systems above exist.
 
+## Who grants a room reward
+
+Decided 2026-10-31 (the owner chose this at the start of #180). The hall scene
+shows a finished room's reward and records it; it does not grant it. Each
+reward system reads `Hall.completedRooms` when that system is built, so the hall
+never depends on systems that do not exist yet. Until then a room reward is
+shown in the hall as text only. Stardew grants a Community Center reward when
+its room is finished, but the Stardew wiki was not checked for this note.
+
 ## Open questions
 
 - **Revisit every bundle reward once more of the design is settled** (noted
