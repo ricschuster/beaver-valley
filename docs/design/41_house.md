@@ -95,9 +95,13 @@ cozy hobbit home. This note settles both.
   65,000g and 100 hardwood, 100,000g, three days each. Tiers 2 and 3 will
   probably be out of reach in two seasons, so they act as long-term goals.
   Tune after a playtest (`07_tuning_numbers.md`).
-- **The furniture catalogue is not tied to a house tier.** As in Stardew,
-  furniture can be added at any time, and flooring and wallpaper can come from
-  a shop or a catalogue (`10_customisation.md`).
+- **The furniture catalogue follows Stardew: after tier 1.** The saved
+  Furniture and Carpenter's Shop pages say the carpenter sells the Furniture
+  Catalogue only after the first house upgrade (200,000g there). This matches
+  `10_customisation.md`. The first draft of this answer said the catalogue was
+  not tied to a tier, which was wrong. The owner picked the Stardew option, so
+  the Stardew behaviour stands. Furniture itself can be added at any time.
+  Flooring and wallpaper can come from a shop or a catalogue.
 - **Sealed rooms read as waiting.** The spouse room and the nursery are open,
   bare and tidy, with a short line from Old Greencoat or the carpenter that
   they are for later. They are not shown as broken or blocked, which matches
