@@ -54,11 +54,13 @@ cozy hobbit home. This note settles both.
 5. **The spouse gets a room of their own**, as in Stardew, from tier 2.
 6. **The cellar is in, on a separate level** reached by stairs down from the
    kitchen, as in Stardew. It is its own small map.
-7. **House upgrades are in the first playable** (`03_milestones.md`): all three
-   tiers can be bought. The first playable has no marriage, no children and no
-   cask, so the spouse room, the nursery and the cellar casks are built but
-   sealed or empty until those systems arrive. Marriage and the cask stay out
-   of the first playable.
+7. **Tier 1 is in the first playable** (`03_milestones.md`). Tiers 2 and 3 and
+   the cellar are M3 (split 2026-10-31, owner's choice: the first upgrade is
+   what the Furniture Catalogue waits on, and two seasons cannot reach the
+   later prices). The first playable has no marriage, no children and no cask,
+   so the spouse room, the nursery and the cellar casks are built but sealed or
+   empty when they arrive. Marriage and the cask stay out of the first
+   playable.
 
 ## Proposed details
 
@@ -113,5 +115,6 @@ cozy hobbit home. This note settles both.
   for the build).
 - Where the catalogue is sold and what it costs (`10_customisation.md`).
 - The house build is in the tracker as #280 (interior map and tiers), #281
-  (carpenter and upgrade flow) and #282 (cellar map), all M2. It is not yet
+  (carpenter and upgrade flow), both M2 and limited to tier 1, with tiers 2 and
+  3 in #286 and #282 (cellar map), both M3. The M2 part is not yet
   placed in `33_build_order.md`.
