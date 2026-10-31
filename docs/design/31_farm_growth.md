@@ -97,12 +97,24 @@ part that is pure loss. Everything else is a reward the player chooses.
 2. The greenhouse, with the Larder room.
 3. Fruit trees and the farm cave, with fall and winter in M3.
 
+## Open items settled (2026-10-31)
+
+- **Applying fertilizer and add-ons:** both sit in the toolbar like seeds. Select
+  one and tap a tilled tile or a placed sprinkler. This is the same flow as
+  planting and fits tap-to-act (`27_touch_controls.md`).
+- **Greenhouse layout:** as in Stardew. A large plot with a border where
+  sprinklers can go. No sprinkler reaches the middle from the border, so the
+  player gives up a few soil tiles or uses the late sprinkler tier. That is the
+  layout puzzle, and the 24 tile sprinkler is its reward.
+- **Sap:** a small chance of sap when cutting weeds or grass, and as a forage
+  find in the woods. No trees or tappers are needed, so basic fertilizer is not
+  held back by wood. Fiber comes from weeds (`29_weeds.md`). Both are items
+  that must be added before the recipes that use them.
+- **Farm cave timing:** a total earnings mark, as in Stardew, counted over the
+  whole game. The number is set in the tuning note.
+
 ## Open
 
 - Sprinkler and fertilizer recipes and prices, the cave's earnings mark, tree
   prices and the fruit tables. All go in `07_tuning_numbers.md`.
-- How fertilizer and add-ons are shown and picked on a tablet.
-- Whether the greenhouse can hold both crops and sprinklers without a layout
-  puzzle (the Stardew greenhouse needs soil tiles given up for sprinklers).
-- Fiber and sap, used by some recipes, must exist as items first. Fiber comes
-  from weeds (`29_weeds.md`).
+- Sap and fiber drop chances for grass and the woods.
