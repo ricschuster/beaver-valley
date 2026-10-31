@@ -1,9 +1,8 @@
 # 38 Achievements and hats
 
 Status: decided 2026-10-31 for the list and the hat rewards. The open items
-were settled the same day (see "Settled open items"). The completion
-total (the Perfection-style part of #196) is not here. It waits for a saved
-copy of Stardew's Perfection page.
+were settled the same day (see "Settled open items"). The completion total (the
+Perfection-style part of #196) is in `39_completion_total.md`.
 
 Part of #196. It unblocks the first hat list in `10_customisation.md`, the
 hatter's shop in `20_ring1_cast.md`, and bundle 24's festival hats.
@@ -24,8 +23,9 @@ pages. All four followed Stardew.
 3. **All listed and greyed, a few secret (Stardew).** Unearned achievements show
    greyed on a collections page with their goal. The top money tier is secret,
    and so is the arcade no-death run. Some appear only after earlier ones.
-4. **Achievements and hats now, the completion total next.** The total needs the
-   Perfection page, so it is a later note.
+4. **Achievements and hats now, the completion total next.** The total needed
+   the Perfection page, so it was written after it was saved
+   (`39_completion_total.md`).
 
 ## How it works
 
@@ -158,11 +158,11 @@ is built. The collection and the request board were settled on 2026-10-31 (see
 | Complete 40 Help Wanted requests | Forty requests. Hat: Hen Mask, 2,000g. Mail gift 2,500g | The request board |
 | Read every book | Every book in the library | Power-up books, and the library's stock |
 | See a movie | A festival show or similar | No cinema. A counterpart is a design call |
-| Reach Ginger Island | Reach ring 2. Hat: Folded Paper Cap | Ring 2 (M4) |
+| Reach Ginger Island | Reach ring 3's late region, as the system review maps it. Hat: Folded Paper Cap | Ring 3 (M5, optional) |
 | Delight the Governor | A ring 2 visitor | Ring 2 |
 | Help the forest neighbours grow | A forest family goal | No such family yet |
 | Find every stardrop | Find every rare boost item. Hat: Star Seed Circlet | No stardrop item exists |
-| Reach the summit | The completion total | The next note, waiting on the Perfection page |
+| Reach the summit | Reach ring 1's 100 percent, and a valley summit when every ring is at 100 | The completion total, `39_completion_total.md` |
 
 Stardew's rival-company achievement has no counterpart and is left out (see
 "Settled open items"). Each of the Stardew achievements above also unlocks a
@@ -216,8 +216,6 @@ Decided 2026-10-31, each with a Stardew option.
 
 ## Open
 
-- The completion total and its weights, in a later note after the Perfection
-  page is saved.
 - The gallery's donation list and rewards, and the request board's types and
   pay.
 - Hat prices for the hats Stardew does not give.

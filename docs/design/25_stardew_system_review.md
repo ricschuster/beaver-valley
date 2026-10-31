@@ -75,7 +75,7 @@ will correct them.
 | Children | Friendship and marriage | Covered | By player choice only (`12_marriage.md`). Child room upgrade open. |
 | Quests, help-wanted requests | Dialogue and voice | Unclear | Hints only: the hermit's requests, the warden head's errands (`17_call_feedback_2026-10-28.md`). No request board or repeatable quest system is described. |
 | Bundles and the community center | Village hall and bundles | Covered | `16_bundles.md`. Five bundles built, thirty designed. |
-| Achievements and a completion total | Fishing and the water | Partial | Achievements and hats in `38_achievements.md`. The completion total (#196) needs the Perfection page. |
+| Achievements and a completion total | Fishing and the water | Partial | Achievements and hats in `38_achievements.md`. The completion total is in `39_completion_total.md`. |
 | Multiplayer | none | Out | The brief rules it out. |
 | Modding | none | Under discussion | Owner wants to discuss (2026-10-30). Content is data files, which helps. See "Modding, to discuss". |
 

@@ -83,7 +83,7 @@ Anecdotal, from forums and press, not a survey.
     legend. Each of the others has its own water, season, time and weather, and
     each is worth a lot. See "The legends" below. Every legend counts toward
     the completion tracker.
-13b. **Completion tracker (to design, #196).** All fish, the legends included, count
+13b. **Completion tracker (`39_completion_total.md`, #196).** All fish, the legends included, count
     toward a Perfection-style total for the whole game. Other things will count
     too (bundles, skills, collections), so this is a game-wide system and not a
     fishing rule. It needs its own design note before anything is built.
