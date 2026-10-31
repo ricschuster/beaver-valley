@@ -89,7 +89,7 @@ will correct them.
 | Footwear | none | Absent | Boots as an equipment slot are not mentioned. |
 | Rings (equipment) | none | Absent | The only rings in our notes are the marriage token. A slot for worn bonuses is not mentioned. |
 | Foraging | Seasons, weather, foraging | Covered | Built for two seasons. |
-| Fish, bait and tackle | Fishing and the water | Covered | `21_fishing.md`. Not built. |
+| Fish, bait and tackle | Fishing and the water | Covered | `21_fishing.md`, checked against the Fish page 2026-10-31. Not built. |
 | Cooking and recipes | Processing and animals | Designed | Kitchen with the first house upgrade, 81 recipes across three rings. `24_processing_and_cooking.md`, 2026-10-31. |
 | Crafting (craftable items) | none | Partial | Machines and furnace are planned. A general craftable list (chests, fences, paths, lamps) has no note. |
 | Trees and wood | Valley and town map | Partial | The axe fells a tree (`22_mines.md`) and there is a sawmill (`19_valley_layout.md`). Growing, tapping and replanting trees are not mentioned. |
