@@ -64,8 +64,9 @@ numbers for every list here are in `07_tuning_numbers.md`.
 
 Found at a low chance on a forage spawn, or on the mine floors, not on a fixed
 spot. They are the goods of bundle 6: morel (spring), chanterelle (fall),
-snowcap mushroom (winter), moss (any season, from trees) and cave mushroom
-(mine floors 1 to 10). A player hunts across the year for three of them.
+snowcap mushroom (winter), wild ginger (any season) and cave mushroom (mine
+floors 1 to 10). Moss is not a rare find: it grows on mature trees (see
+`34_crafting.md`). A player hunts across the year for three of them.
 
 ## The pools
 
@@ -78,7 +79,7 @@ snowcap mushroom (winter), moss (any season, from trees) and cave mushroom
 | 3 | Autumn Foraging | 4 of 6 | Bramble berry, hazelnut, wild plum, field mushroom, crab apple, rose hip | 15 beet seeds |
 | 4 | Winter Foraging | 3 of 5 | Crocus, snowdrop, winter cress, pine nut, frost root | Seed maker |
 | 5 | Woodland | All | 50 wood, 50 stone, 30 fiber | Charcoal kiln |
-| 6 | Rare Finds | 3 of 5 | Morel, chanterelle, snowcap mushroom, moss, cave mushroom | 5 forage dishes |
+| 6 | Rare Finds | 3 of 5 | Morel, chanterelle, snowcap mushroom, wild ginger, cave mushroom | 5 forage dishes |
 | 7 | Spring Crops | 4 of 6 | Parsnip, potato, cauliflower, green bean, kale, garlic | 20 fast-grow fertilizer |
 | 8 | Summer Crops | 4 of 6 | Melon, tomato, radish, hot pepper, corn, red cabbage | 20 quality fertilizer |
 | 9 | Autumn Crops | 4 of 6 | Pumpkin, eggplant, sweet potato, beet, cranberry, artichoke | Bee house |

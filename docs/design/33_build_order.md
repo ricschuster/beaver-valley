@@ -109,6 +109,9 @@ starter weapons, the trainer, the first creatures, then the deeper bands, the
 other creatures, the combat skill and the rest camps. Dangerous mode and the
 special floors are unscheduled until this slice is played.
 
+Also here: the lightning rod, battery packs and lamp-posts. The rod needs bat
+wing from the Cave Bat (`34_crafting.md`). Storms themselves stay in slice 1.
+
 Design still needed first: **the equipment slot** for rings and boots, which
 bundles 16 and 28 and the mines' own drops lean on. Rings and Footwear are
 absent from `25_stardew_system_review.md`.

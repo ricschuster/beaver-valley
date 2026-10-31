@@ -172,6 +172,11 @@
           "s": "decided",
           "t": "Storms follow Stardew: none in winter, summer 13 and 26 always stormy, strikes through the day caught by rods with Stardew's formula, one pack per hit rod; the rod has no reach",
           "ref": "07_tuning_numbers.md#Seasons and weather"
+        },
+        {
+          "s": "decided",
+          "t": "The lightning rod needs Cave Bat bat wing as in Stardew, so rods, packs and lamp-posts arrive in slice 3 and slice 1 storms are weather only",
+          "ref": "34_crafting.md#Items this list needs"
         }
       ],
       "deps": [
