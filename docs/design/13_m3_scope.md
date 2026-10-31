@@ -26,7 +26,7 @@ of slice 1, and slices fish, mines and animals into later slices.
 | Bundle format: hint field and furniture rewards | #21 | In. First. | Needed by the slice itself, and the hint and furniture rewards are small data changes. Unblocks customisation. |
 | Festival calendar | #131 | In (design only). | Cheap, and the festival system waits on it. |
 | Festival system, one festival | #132 | In, cut to one festival (the hat parade). The second is a stretch goal. | Proves the framework. A second festival is mostly content once the first works. |
-| Customisation, first slice | #133 | In, cut to hats and five to ten furniture pieces in the house. Wallpaper and floors are a stretch goal. | Hats tie to the lore and to the parade. Furniture gives the bundle rewards a use. Tailoring, dyes, house upgrades and farm decoration stay out. |
+| Customisation, first slice | #133 | In, cut to hats and five to ten furniture pieces in the house. Wallpaper and floors are a stretch goal. | Hats tie to the lore and to the parade. Furniture gives the bundle rewards a use. Tailoring, dyes and farm decoration stay out. House upgrades moved into the first playable (`41_house.md`). |
 | First minigame (festival game) | #134 | In only if the festival system lands with time to spare. Otherwise the parade has a prize counter and no game. | Optional by its own rules (`11_minigames.md`), and nothing depends on it. |
 | Neglect and tone rules, villagers | #135 | In, as a rule only. No villager decay and no lose state are already how the game works. | Nothing to build. Record it and keep the tests honest. |
 | Neglect rules, animals | #135 | Out of M3. | There are no animals in the game yet. The rule is written (`09_story_and_lore.md`) and applies when animals are built. |

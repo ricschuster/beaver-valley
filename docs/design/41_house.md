@@ -1,6 +1,7 @@
 # 41 The player's house: a burrow home that grows inward
 
-Status: decided with the owner on 2026-10-31 (style and growth rule). Details
+Status: decided with the owner on 2026-10-31 (style, growth rule, scope, spouse
+room, cellar). Details
 marked "proposed" are mine and open to change. Per ADR 0002 this follows the
 idea of Stardew's farmhouse, not its art, text or names. Per ADR 0003 the look
 is our own and takes nothing from Tolkien's works.
@@ -48,6 +49,16 @@ cozy hobbit home. This note settles both.
    (`23_animals.md`) keep one footprint across their tiers. It keeps map
    placement, collision and save data simple. A burrow suits it, since the
    rooms grow into the hill, not outward.
+4. **Every Brimmer home is a burrow**, not only the player's. The lore note
+   says so.
+5. **The spouse gets a room of their own**, as in Stardew, from tier 2.
+6. **The cellar is in, on a separate level** reached by stairs down from the
+   kitchen, as in Stardew. It is its own small map.
+7. **House upgrades are in the first playable** (`03_milestones.md`): all three
+   tiers can be bought. The first playable has no marriage, no children and no
+   cask, so the spouse room, the nursery and the cellar casks are built but
+   sealed or empty until those systems arrive. Marriage and the cask stay out
+   of the first playable.
 
 ## Proposed details
 
@@ -69,18 +80,17 @@ cozy hobbit home. This note settles both.
   area of the same Tiled map (like the hall's blocked rooms in
   `40_hall_layout.md`), instead of loading a different map. Positions and saves
   stay valid across a tier change. The alternative is one map per tier.
-- **No renovations** in the first version. The spouse's room is open (below).
+- **No renovations** in the first version.
 - **The carpenter builds it**, as in Stardew, with the three days shown as a
   closed door and scaffold on the farm, then the new rooms the morning after.
 
 ## Open
 
-- Whether other Brimmer homes in the valley are burrows too, or only the
-  player's. The lore note needs one line either way.
-- Room sizes and the floor plans for each tier (a map task for the build).
-- Whether a spouse gets a room of their own, as in Stardew, or shares the
-  bedroom (`12_marriage.md`).
-- Whether the cellar and casks are in at all.
-- The numbers above, and whether the house upgrades sit in the first playable
-  or M3 (`13_m3_scope.md` leaves them out of the first slice of
-  customisation).
+- Room sizes and the floor plans for each tier, and the cellar map (a map task
+  for the build).
+- The numbers above: whether 65,000g and 100,000g suit two seasons, or the
+  first playable needs lower placeholders (`07_tuning_numbers.md`).
+- Which tier offers the furniture catalogue (`10_customisation.md`).
+- Whether one interior map with sealed earth, or one map per tier, is built.
+- How a sealed spouse room and nursery read to the player: as "not ready" and
+  not as broken (same risk as the hall's blocked rooms).

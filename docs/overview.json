@@ -759,17 +759,22 @@
         },
         {
           "s": "decided",
-          "t": "The player's home is a burrow house dug into a hillside; the burrow ban in the lore note is lifted for the player's home only",
-          "ref": "41_house.md#Decisions (2026-10-31)"
-        },
-        {
-          "s": "decided",
           "t": "Three paid house tiers add rooms, and a building's footprint never changes on upgrade, for every building",
           "ref": "41_house.md#Decisions (2026-10-31)"
         },
         {
+          "s": "decided",
+          "t": "Every Brimmer home is a burrow, including the player's; the burrow ban in the lore note is lifted",
+          "ref": "41_house.md#Decisions (2026-10-31)"
+        },
+        {
+          "s": "decided",
+          "t": "House upgrades are in the first playable: three tiers, spouse room from tier 2, cellar on a separate level; spouse room, nursery and casks stay sealed or empty until those systems exist",
+          "ref": "41_house.md#Decisions (2026-10-31)"
+        },
+        {
           "s": "open",
-          "t": "House tier contents, numbers, one map or one per tier, spouse room, cellar and slice are proposed, not decided",
+          "t": "House room sizes, tier prices for two seasons, catalogue tier and one map or one per tier",
           "ref": "41_house.md#Open"
         }
       ],
