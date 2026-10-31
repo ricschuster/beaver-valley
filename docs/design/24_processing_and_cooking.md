@@ -27,9 +27,9 @@ food with energy and a buff. This note settles both before any code.
   portable cookout kit at foraging level 3 cooks anywhere.
 - **Mayonnaise machine and oil maker come from farming level recipes,** as in
   Stardew (level 2 and level 8). No bundle gives them.
-- **Machine set: eleven.** The eight plus a seed maker, a dye vat and a fish
-  smoker. The duplicator is dropped, since Stardew has none. Bundle 27's reward
-  needs a new choice (see "Open").
+- **Machine set: twelve.** The eight plus a seed maker, a dye vat, a fish
+  smoker and a crystalarium. The duplicator is dropped, since Stardew has none.
+  Bundle 27 gives the crystalarium in its place (`16_bundles.md`).
 - **Craft costs use Stardew's lists,** with our own items swapped in for any we
   lack (jellies, earth crystal, oak resin and the like). Tuned in playtests.
 - **The first farmhouse upgrade costs 10,000g and 450 wood,** takes 3 days and
@@ -58,7 +58,7 @@ These came from the 2026-10-30b handoff and were not contradicted:
 
 ## Machines
 
-Eleven machines (the three added are in the second table). Times are in game hours and placeholders. A machine runs
+Twelve machines (the four added are in the second table). Times are in game hours and placeholders. A machine runs
 overnight and while the player is away, and the clock follows the game day
 (`07_tuning_numbers.md`). The furnace is in `22_mines.md` and is not repeated.
 
@@ -73,13 +73,14 @@ overnight and while the player is away, and the clock follows the game day
 | Bee house | None (produces) | Honey, or flower honey | 4 days | 9, Autumn Crops |
 | Charcoal kiln | Wood | Coal | 1 hour | 5, Woodland, and 19, Smith's (`22_mines.md`) |
 
-The three added machines:
+The four added machines:
 
 | Machine | Input | Output | Time | First source |
 | --- | --- | --- | --- | --- |
 | Seed maker | A crop or forage item | Seeds of it | Short | Bundle 4, Winter Foraging |
 | Dye vat | A flower or crop | Dye | Placeholder | Bundle 23, Dyer's |
 | Fish smoker | A fish and coal | Smoked fish, worth double, quality kept | Placeholder | Riverside starts with it. Others craft it later. |
+| Crystalarium | A gem or mineral | Another of the same | Placeholder, long | Bundle 27, Harvest Feast |
 
 - The seed maker's recipe source in Stardew is not checked (the saved pages do
   not cover it). The fish smoker's craft costs are likewise unchecked.
@@ -192,16 +193,18 @@ skills and rings gives each of them a second use.
 - **The cask,** first to return. It needs the cellar from a house upgrade and
   long timers. Aged wine, cheese, ale and mead come with it.
 - **A dehydrator,** which Stardew sells for a high price.
-- **A crystalarium, recycling and a worm bin,** all deep Stardew machines.
+- **Recycling and a worm bin,** deep Stardew machines. Recycling for trash is in `21_fishing.md`.
 - **Artisan goods from trees and tapping** (maple syrup and similar). They need
   trees and the Tapper profession (`26_seasons.md` and the foraging
   professions).
 
 ## Open
 
-- **Bundle 27's reward.** The duplicator is dropped. A new reward is needed, and
-  bundle 12 and the other rewards need a pass now that machines are craftable
-  (issue #201).
+- **Crystalarium numbers.** It copies gems and minerals only. Its timer must be
+  long enough that a diamond-style copy loop does not break the economy, since
+  gems sell and feed the lamp trade (`22_mines.md`). Craft cost, and whether
+  more can be crafted, are placeholders. Stardew's crystalarium recipe source
+  is unchecked here. The rest of the reward pass is in `16_bundles.md`.
 - Our own items to stand in for Stardew's special craft ingredients.
 - The seed maker and fish smoker recipe sources, once the pages are saved.
 - Machine times and sell prices for `07_tuning_numbers.md`.

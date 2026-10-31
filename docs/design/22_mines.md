@@ -47,8 +47,9 @@ Second round:
 - (11) **The furnace is a gift from the smith,** not for sale, delivered the morning
     after the player first hands over copper ore. It can also be crafted
     (see "Ore, coal and bars").
-- (12) **The Smith's bundle (19) gives a charcoal kiln and its recipe,** not the
-    furnace. The big furnace is a ring 2 reward.
+- (12) **The Smith's bundle (19) gives 20 coal** (changed 2026-10-31, it gave a
+    charcoal kiln, which Woodland, bundle 5, already gives). The big furnace is
+    a ring 2 reward.
 - (13) **Rest camps stay, with no healing.** The lift stops at every floor once
     reached. A chest on every 10th floor holds items to take, and cannot be used
     to stash things.
@@ -213,13 +214,13 @@ stretch but within reach late in the first two seasons.
 - **The big furnace is a ring 2 reward** (smelts more at once). It is too early
   in the game for ring 1.
 
-**The Smith's bundle reward (decided): a charcoal kiln and its recipe.** The kiln
+**The charcoal kiln (the Smith's bundle no longer gives it, changed 2026-10-31; the Woodland bundle 5 does).** The kiln
 turns wood into coal, so a player who does not dig still has fuel (10 wood for 1
 coal, placeholder, Stardew's ratio from the wiki). In Stardew the kiln is a
 recipe of Foraging level 2 and also a reward of its Crafts Room construction
 bundle, per search results, unverified. Placeholder crafting cost: 2 copper bars
-and wood. The Hearth room's other two bundles give torches and a loom
-(`16_bundles.md`), so this fits the machine pattern.
+and wood. The Smith's bundle now gives 20 coal. The Hearth room's other two bundles give
+torches and a loom (`16_bundles.md`).
 
 ## Gentle combat
 

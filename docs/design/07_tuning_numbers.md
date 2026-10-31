@@ -247,7 +247,7 @@ are from memory and unchecked.
 - Smith ore prices: copper ore 25g, iron ore 50g, gold ore 100g, coal 50g (about
   2.5 times the bar's sale value). Bars sell for about 60g, 120g and 250g, from
   memory.
-- Charcoal kiln (Smith's bundle reward): 10 wood for 1 coal. Craft cost 2 copper
+- Charcoal kiln (Woodland bundle reward): 10 wood for 1 coal. Craft cost 2 copper
   bars and wood.
 - Health 100, plus 5 per combat level. A touch costs 4 to 12. Grace after a hit is
   1.5 seconds (2.5 with the Nimble profession).
