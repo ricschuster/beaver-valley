@@ -440,11 +440,14 @@ marked ours. Recipes are in `34_crafting.md`.
 - Fertilizer yield per craft: basic fertilizer 1, quality fertilizer 2, basic
   retaining soil 1, quality retaining soil 2, speed-gro 5, deluxe speed-gro 5.
   Our speed fertilizer takes the speed-gro slot (`34_crafting.md`).
-- Sprinkler add-ons: pressure nozzle and enricher cost 20 each. The saved page
-  gives no currency or seller, so this is unchecked. Wait for
-  `urls_machines.txt` to be fetched before building them. A picked-up sprinkler
-  gives its add-on back as an item (saved Sprinkler page), which corrects
-  `31_farm_growth.md`.
+- Sprinkler add-ons are out of the game for now. Stardew sells 4 for 20 Qi Gems
+  in the Walnut Room and rarely drops them from monsters in special quests
+  (saved Pressure Nozzle and Enricher pages). We have neither, and the owner
+  chose Stardew's source over a craft recipe. They return when a source exists.
+  Their Stardew rules, for then: both sell for 200g, a sprinkler takes one
+  add-on, a nozzle widens reach to 3x3, 5x5 or 7x7 by tier, an enricher holds
+  one fertilizer type, and a picked-up sprinkler gives its add-on back as an
+  item.
 - Fruit sapling prices, from Pierre's: apricot 2,000g, cherry 3,400g, peach
   6,000g, orange 4,000g, apple 4,000g, pomegranate 6,000g, 25,400g for all six.
   Banana and mango are Ginger Island trees and are left out.
@@ -478,8 +481,11 @@ marked ours. Recipes are in `34_crafting.md`.
   summer spangle 280g, poppy 380g, fairy rose 680g. Our flower set is open,
   so each of ours takes the nearest Stardew value. The Artisan profession adds
   40 percent later (`23_animals.md`).
-- Charcoal kiln and seed maker times: not set. The kiln is 10 wood for 1 coal.
-  Both wait for the saved Stardew pages (`urls_machines.txt`).
+- Charcoal kiln: 10 wood for 1 coal in 30 minutes. Seed maker: 20 minutes, and
+  it gives 1 to 3 seeds of the input crop, 2 on average. It takes crops and
+  four forage items, not fruit tree fruit. Stardew's rare mixed and ancient
+  seed results are left out. Both from the saved Charcoal Kiln and Seed Maker
+  pages.
 
 ## Open questions for playtests
 
