@@ -440,11 +440,12 @@ marked ours. Recipes are in `34_crafting.md`.
 - Fertilizer yield per craft: basic fertilizer 1, quality fertilizer 2, basic
   retaining soil 1, quality retaining soil 2, speed-gro 5, deluxe speed-gro 5.
   Our speed fertilizer takes the speed-gro slot (`34_crafting.md`).
-- Sprinkler add-ons are out of the game for now. Stardew sells 4 for 20 Qi Gems
-  in the Walnut Room and rarely drops them from monsters in special quests
-  (saved Pressure Nozzle and Enricher pages). We have neither, and the owner
-  chose Stardew's source over a craft recipe. They return when a source exists.
-  Their Stardew rules, for then: both sell for 200g, a sprinkler takes one
+- Sprinkler add-ons are a Ring 2 item (owner, 2026-10-31), not in slice 1.
+  Stardew sells 4 for 20 Qi Gems in the Walnut Room and rarely drops them from
+  monsters in special quests (saved Pressure Nozzle and Enricher pages). Ours
+  come from the warden head, our Qi-type figure (`09_story_and_lore.md`), in a
+  Walnut Room-type offer. Her token, price and the rest of the offer are open
+  until Ring 2 is designed. Their Stardew rules: both sell for 200g, a sprinkler takes one
   add-on, a nozzle widens reach to 3x3, 5x5 or 7x7 by tier, an enricher holds
   one fertilizer type, and a picked-up sprinkler gives its add-on back as an
   item.
