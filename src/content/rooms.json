@@ -10,5 +10,29 @@
     "name": "Larder",
     "opensAfter": 1,
     "unlock": "greenhouse"
+  },
+  {
+    "id": "water-room",
+    "name": "Water room",
+    "opensAfter": 1,
+    "unlock": "lake-cove"
+  },
+  {
+    "id": "hearth",
+    "name": "Hearth",
+    "opensAfter": 2,
+    "unlock": "carts"
+  },
+  {
+    "id": "guests-board",
+    "name": "Guests' Board",
+    "opensAfter": 3,
+    "unlock": "hat-standing-boost"
+  },
+  {
+    "id": "last-seat",
+    "name": "The Last Seat",
+    "opensAfter": 20,
+    "unlock": "bridge"
   }
 ]

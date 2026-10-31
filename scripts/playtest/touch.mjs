@@ -340,8 +340,8 @@ await faceTo("down");
 const bundle = await p.evaluate(() => {
   const st = window.__game.registry.get("state");
   const b = st.hall.bundles[0];
-  window.farmGive(b.items[0], 1);
-  return { id: b.id, item: b.items[0] };
+  window.farmGive(b.items[0].id, 1);
+  return { id: b.id, item: b.items[0].id };
 });
 await useTool();
 await sleepMs(300);
@@ -354,7 +354,7 @@ else {
   let done = false;
   for (let i = 0; i < rows.length && !done; i++) {
     await tap(rows[i].cx, rows[i].cy, 200);
-    done = (await bot.snap()).hall[bundle.id]?.includes(bundle.item) ?? false;
+    done = ((await bot.snap()).hall[bundle.id]?.[bundle.item] ?? 0) >= 1;
   }
   if (!done) finding("tapping Hand in did not hand the item in");
   else log("hall by touch: hand-in done");

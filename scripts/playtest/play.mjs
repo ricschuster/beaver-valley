@@ -635,7 +635,7 @@ async function main() {
       `===== day ${s.day} (${seasonOf(s.day)} ${dos(s.day)}) ${s.weather} money ${s.money} energy ${s.energy} hall ${Object.entries(
         s.hall,
       )
-        .map(([k, v]) => `${k}:${v.length}`)
+        .map(([k, v]) => `${k}:${Object.keys(v).length}`)
         .join(" ")}`,
     );
     if (s.day === 8 && !reloaded) {
