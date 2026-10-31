@@ -202,6 +202,20 @@ describe("the soft gate", () => {
     expect(hall.openBundles.map((b) => b.id)).toContain("spring-crops");
   });
 
+  it("reads each room as ready, locked, empty or done", () => {
+    const hall = new Hall();
+    expect(hall.roomStatus("foragers-shelf")).toBe("ready");
+    expect(hall.roomStatus("larder")).toBe("locked");
+    expect(hall.gateRemaining("larder")).toBe(1);
+    // No bundles are written for the Hearth yet, so it is not ready at all.
+    expect(hall.roomStatus("hearth")).toBe("empty");
+    const inv = new Inventory();
+    openLarder(hall, inv, { money: 0 });
+    expect(hall.roomStatus("larder")).toBe("ready");
+    expect(hall.gateRemaining("larder")).toBe(0);
+    expect(hall.bundlesIn("larder").map((b) => b.id)).toContain("spring-crops");
+  });
+
   it("counts bundles finished in other rooms only", () => {
     const rooms = [
       { id: "a", name: "A", opensAfter: 0 },

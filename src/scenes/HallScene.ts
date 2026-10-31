@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { rewardText } from "../core/bundles";
+import { rewardText, ROOMS, type BundleDef } from "../core/bundles";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
 import { endDue } from "../core/sleep";
@@ -11,8 +11,10 @@ import { STATE_KEY } from "./state";
 const name = (id: string) => itemById(id)?.name ?? id;
 
 /**
- * The village hall screen, drawn over the farm. Pick a bundle on the left to
- * see what it needs, then give it things from the backpack, one at a time.
+ * One hall room's hand-in panel, drawn over the hall map and opened from the
+ * room's scroll. Pick a bundle on the left to see what it needs, then give it
+ * things from the backpack, one at a time. A room that is not ready (locked,
+ * or with no bundles yet) shows why instead.
  */
 export class HallScene extends Phaser.Scene {
   private state!: GameState;
@@ -22,18 +24,24 @@ export class HallScene extends Phaser.Scene {
   private money!: Phaser.GameObjects.Text;
   private message!: Phaser.GameObjects.Text;
   private column: 0 | 1 = 0;
+  private room: string = ROOMS[0]!.id;
 
   constructor() {
     super("hall");
   }
 
-  init(): void {
+  init(data: { room?: string }): void {
+    this.room = data.room ?? ROOMS[0]!.id;
     this.state = this.registry.get(STATE_KEY) as GameState;
     this.column = 0;
   }
 
   create(): void {
-    const { money, message } = frame(this, "Village hall", () => this.close());
+    const { money, message } = frame(
+      this,
+      ROOMS.find((r) => r.id === this.room)?.name ?? "Village hall",
+      () => this.close(),
+    );
     this.money = money;
     this.message = message;
     this.add.text(
@@ -95,8 +103,12 @@ export class HallScene extends Phaser.Scene {
     const { hall } = g;
     this.money.setText(`Money ${g.money}g`);
 
+    const status = hall.roomStatus(this.room);
+    const bundles: BundleDef[] =
+      status === "ready" || status === "done" ? hall.bundlesIn(this.room) : [];
+    if (bundles.length === 0) return this.notReady(status);
     this.bundleMenu.setRows(
-      hall.openBundles.map((b) => ({
+      bundles.map((b) => ({
         label: b.name,
         detail: hall.complete(b.id)
           ? "Done"
@@ -104,7 +116,7 @@ export class HallScene extends Phaser.Scene {
         buttons: [],
       })),
     );
-    const bundle = hall.openBundles[this.bundleMenu.cursor];
+    const bundle = bundles[this.bundleMenu.cursor];
     if (!bundle) return;
 
     const given = hall.handedIn(bundle.id);
@@ -132,6 +144,18 @@ export class HallScene extends Phaser.Scene {
       rows.length > 0
         ? rows
         : [{ label: "Your backpack is empty.", dim: true, buttons: [] }],
+    );
+  }
+
+  /** Say why a room cannot take hand-ins yet. */
+  private notReady(status: string): void {
+    const left = this.state.hall.gateRemaining(this.room);
+    this.bundleMenu.setRows([]);
+    this.packMenu.setRows([]);
+    this.detail.setText(
+      status === "locked"
+        ? `Not ready yet. Finish ${left} more ${left === 1 ? "bundle" : "bundles"} in the other rooms first.`
+        : "Not ready yet. This room has nothing to hand in for now.",
     );
   }
 
