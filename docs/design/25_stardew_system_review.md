@@ -47,7 +47,7 @@ will correct them.
 | Selling and the shipping bin | Farming and the day | Designed | Owner decision 2026-10-30: add a shipping bin. Rules settled 2026-10-31 in `28_shipping_bin.md`. |
 | Animals | Processing and animals | Covered | `23_animals.md`. Not built. |
 | Fruit trees | none | Absent | Orchards are not mentioned anywhere. Tree growth over several days or seasons is a different loop from crops. |
-| Artisan goods and machines | Processing and animals | Partial | Open. Recommendations exist in the 2026-10-30b handoff. The note is `24_processing_and_cooking.md`, not written. |
+| Artisan goods and machines | Processing and animals | Designed | Eight machines, craftable after the first bundle gift, cask later. `24_processing_and_cooking.md`, 2026-10-31. |
 | Sprinklers, scarecrows, irrigation | none | Absent | No automation of watering or crop defence exists. The watering can has four tiers (`07_tuning_numbers.md`). This is the main way Stardew lets a farm grow past what one player can water by hand. |
 | Fertilizer and soil quality | Farming and the day | Partial | Two fertilizers appear only as bundle items (`16_bundles.md`). The farming feature itself is not designed. |
 | Farmhouse and upgrades | Customisation and hats | Partial | Furniture and decoration are in `10_customisation.md`. House upgrades (kitchen, extra rooms, child room) are mentioned in pieces only. |
@@ -90,7 +90,7 @@ will correct them.
 | Rings (equipment) | none | Absent | The only rings in our notes are the marriage token. A slot for worn bonuses is not mentioned. |
 | Foraging | Seasons, weather, foraging | Covered | Built for two seasons. |
 | Fish, bait and tackle | Fishing and the water | Covered | `21_fishing.md`. Not built. |
-| Cooking and recipes | Processing and animals | Partial | Open. Part of the note still to write. |
+| Cooking and recipes | Processing and animals | Designed | Kitchen with the first house upgrade, 81 recipes across three rings. `24_processing_and_cooking.md`, 2026-10-31. |
 | Crafting (craftable items) | none | Partial | Machines and furnace are planned. A general craftable list (chests, fences, paths, lamps) has no note. |
 | Trees and wood | Valley and town map | Partial | The axe fells a tree (`22_mines.md`) and there is a sawmill (`19_valley_layout.md`). Growing, tapping and replanting trees are not mentioned. |
 | Secret notes and books | none | Absent | A hidden-notes collection and skill books are not mentioned. |

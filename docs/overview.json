@@ -563,6 +563,16 @@
           "t": "Animal prices, tier costs and grow-up days are placeholders; a valley animal of our own waits for the art pass",
           "ref": "23_animals.md#Open",
           "issue": 58
+        },
+        {
+          "s": "decided",
+          "t": "Eleven machines, bundle gives the first then craftable; kitchen with the 10,000g house upgrade; 81 recipes across the three rings; cask later",
+          "ref": "24_processing_and_cooking.md#Decided with the owner (2026-10-31)"
+        },
+        {
+          "s": "open",
+          "t": "Bundle 27 needs a new reward (duplicator dropped); craft ingredient stand-ins and seed maker and smoker sources to check",
+          "ref": "24_processing_and_cooking.md#Open"
         }
       ],
       "deps": [],
