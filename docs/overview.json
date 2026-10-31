@@ -563,6 +563,16 @@
           "t": "Animal prices, tier costs and grow-up days are placeholders; a valley animal of our own waits for the art pass",
           "ref": "23_animals.md#Open",
           "issue": 58
+        },
+        {
+          "s": "decided",
+          "t": "Machines come from bundles first, then are craftable; kitchen with the first house upgrade; 81 recipes across the three rings; cask later",
+          "ref": "24_processing_and_cooking.md#Decided with the owner (2026-10-31)"
+        },
+        {
+          "s": "open",
+          "t": "Mayonnaise machine, oil maker, seed maker, dye vat and smoker have no first source or are outside the eight machines",
+          "ref": "24_processing_and_cooking.md#Open"
         }
       ],
       "deps": [],
