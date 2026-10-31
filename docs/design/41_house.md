@@ -108,4 +108,6 @@ cozy hobbit home. This note settles both.
 - Room sizes and the floor plans for each tier, and the cellar map (a map task
   for the build).
 - Where the catalogue is sold and what it costs (`10_customisation.md`).
-- The house build is not in the issue tracker yet.
+- The house build is in the tracker as #280 (interior map and tiers), #281
+  (carpenter and upgrade flow) and #282 (cellar map), all M3. It is not yet
+  placed in `33_build_order.md`.
