@@ -1,6 +1,6 @@
 # 27 Touch controls (draft)
 
-Status: draft. Decided with the owner on 2026-10-31. Nothing here is built
+Status: draft, open questions settled. Decided with the owner on 2026-10-31. Nothing here is built
 except the floating stick (`src/scenes/controls.ts`). Reference: the Stardew
 Valley Wiki Mobile Controls and Controls pages, read only (ADR 0002).
 
@@ -24,11 +24,26 @@ it points players to a stick scheme for those jobs. Tilling a tight plot and
 placing objects are our careful jobs, so the stick scheme must stay one tap
 away in options.
 
+## Settled on 2026-10-31
+
+- **Pathfinding:** tap-to-move finds a route around rocks, trees, water and
+  fences on the tile grid (A* on the collision map). The target is highlighted
+  red only when no route exists, and the farmer does not move. Stardew also
+  highlights a blocked target in red, but its routing stalls on moving NPCs and
+  animals; ours re-plans when a moving body blocks the route and gives up
+  after a short wait instead of wandering.
+- **Edge taps:** the toolbar takes taps only on a slot, with a dead margin round
+  the bar. A world tap in the margin along the screen edge walks the farmer and
+  never touches the toolbar. Stardew only warns players to take care near the
+  edges, so this is a fix where it has none.
+- **Layout:** the toolbar sits along the bottom in both schemes, so there is one
+  position to learn. In the stick scheme the use-tool and action buttons sit
+  above the right end of the bar. When food is selected an Eat button appears
+  beside the toolbar (tap-to-move scheme) or takes the action button's place
+  (stick scheme).
+
 ## Open questions
 
-- Does tap-to-move need pathfinding around rocks and water, or does it stop at
-  an obstacle? Stardew highlights a blocked target in red.
-- How a tap near the screen edge avoids changing the tool by accident (a known
-  complaint on Stardew's page).
-- Where the Eat button and toolbar row sit in each scheme.
-- Checked on a real tablet (#59, #63) before either scheme is called done.
+- Checked on a real tablet (#59, #63) before either scheme is called done. The
+  dead margin width, the Eat button size and the give-up wait are placeholders
+  until then.
