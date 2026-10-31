@@ -24,6 +24,8 @@ export function reportLines(r: SleepReport): string[] {
         : `${r.withered} crops withered when the season ended.`,
     );
   }
+  if (r.houseFinished)
+    lines.push("The carpenter has finished. Your new rooms are ready.");
   lines.push(
     r.weather === "rainy"
       ? "It is raining. The rain watered your crops."

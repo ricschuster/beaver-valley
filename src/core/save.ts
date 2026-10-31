@@ -6,7 +6,7 @@ import { Hall, type HallProgress } from "./bundles";
 import { Inventory } from "./inventory";
 import { Skills, SKILLS, type Skill } from "./skills";
 import { professionById } from "./professions";
-import { MAX_HOUSE_TIER } from "./house";
+import { BUILD_DAYS, MAX_HOUSE_TIER, type HouseBuild } from "./house";
 import { UPGRADABLE, MAX_TIER, type ToolTiers } from "./upgrades";
 
 /** Everything the player owns and has done. The scene holds one of these. */
@@ -21,6 +21,8 @@ export interface GameState {
   hall: Hall;
   /** House tier, 0 for the start room only. */
   houseTier: number;
+  /** The upgrade the carpenter is building, if any. */
+  houseBuild: HouseBuild | undefined;
   /** Today's weather. */
   weather: Weather;
   /** Tomorrow's weather, known a day ahead (the forecast). */
@@ -46,6 +48,7 @@ export function newGame(): GameState {
     toolTiers: { hoe: 0, can: 0 },
     hall: new Hall(),
     houseTier: 0,
+    houseBuild: undefined,
     weather: "sunny",
     tomorrow: "sunny",
     endSeen: false,
@@ -73,6 +76,8 @@ interface SaveData {
   toolTiers?: ToolTiers;
   /** Absent in saves made before the house had tiers. */
   houseTier?: number;
+  /** Absent when no upgrade is being built, and in older saves. */
+  houseBuild?: HouseBuild;
   weather: Weather;
   /** Absent in saves made before the forecast existed. */
   tomorrow?: Weather;
@@ -103,6 +108,7 @@ export function serialize(g: GameState): string {
     hall: g.hall.save(),
     toolTiers: { ...g.toolTiers },
     houseTier: g.houseTier,
+    houseBuild: g.houseBuild ? { ...g.houseBuild } : undefined,
     weather: g.weather,
     tomorrow: g.tomorrow,
     endSeen: g.endSeen,
@@ -183,6 +189,22 @@ export function deserialize(text: string): GameState | undefined {
   }
   if (isCount(raw.houseTier))
     g.houseTier = Math.min(Math.floor(raw.houseTier), MAX_HOUSE_TIER);
+  const build = raw.houseBuild;
+  if (
+    isObject(build) &&
+    Number.isInteger(build.tier) &&
+    Number.isInteger(build.daysLeft)
+  ) {
+    const tier = build.tier as number;
+    const daysLeft = build.daysLeft as number;
+    if (
+      tier === g.houseTier + 1 &&
+      tier <= MAX_HOUSE_TIER &&
+      daysLeft >= 1 &&
+      daysLeft <= BUILD_DAYS
+    )
+      g.houseBuild = { tier, daysLeft };
+  }
   if (WEATHERS.includes(raw.tomorrow as Weather))
     g.tomorrow = raw.tomorrow as Weather;
   g.endSeen = raw.endSeen === true;
