@@ -337,9 +337,26 @@ the Adventurer's Guild sells lost rewards again (checked on the saved page).
 - **Where it hangs:** a list on the wall at the warden head's hall. The warden
   head hands the reward when the count is met.
 - **Each goal gives a ring or a gear piece** (Stardew), on `37_equipment.md`'s
-  ring rules. The warden head sells a lost one again.
-- **Kill counts** are a placeholder scale of 30 to 1,000, set at tuning. Stardew's
-  slime goal is the highest.
+  ring rules. The warden head sells a lost one again. The hats below are worn
+  gear, not the achievement hats of `38_achievements.md`.
+- **Counts and rewards** (settled 2026-10-31, Stardew's counts by matching
+  role, from the saved Adventurer's Guild page; placeholders for tuning):
+
+| Goal | Kills | Reward | Stardew's matching goal |
+| --- | --- | --- | --- |
+| Gloop | 1,000 | Slime proof ring | Slimes 1,000, slime charmer ring |
+| Dustmoth | 500 | Burglar ring | Dust sprites 500, burglar's ring |
+| Cave Bat | 200 | Vampire ring | Bats 200, vampire ring |
+| Cinder Pup | 150 | Savage ring | Void spirits 150, savage ring |
+| Lanternmoth | 150 | Warrior ring | Magma sprites 150 (its reward is a phone) |
+| Mossbeetle | 80 | A beetle-head hat | Cave insects 80, insect head |
+| Rock Crab | 60 | Crabshell ring (a defense ring) | Rock crabs 60, crabshell ring |
+| Old Digger | 50 | A skull mask hat | Skeletons 50, skeleton mask |
+| Pebbleback | 30 | A hard hat | Duggies 30, hard hat |
+| Frostnibbler | 100 | Protection ring | None (ours) |
+| Icicle Hopper | 100 | Sturdy band | None (ours) |
+| Nabbler | 60 | Thorns ring | None (ours) |
+
 - **Optional, never needed for tools or bundles.** With "no creatures" on, the
   goals cannot be met, and the achievement and the completion total's 10 points
   stay unmet, like any other skipped part (`38_achievements.md`).

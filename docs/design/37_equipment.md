@@ -69,7 +69,10 @@ The slot and the first rings do not need all of this. See the order below.
 - Where each ring comes from (mine drops, crafting, bundle rewards, shop or a
   guild-style board) is open and belongs to the mines note. Two are fixed
   already: the glow ring is the Night Fishing bundle reward and the magnet ring
-  is The Catch reward (`16_bundles.md`).
+  is The Catch reward (`16_bundles.md`). Nine more are the slayer goals' rewards
+  in `22_mines.md` (slime proof, burglar, vampire, savage, warrior, defense,
+  protection, sturdy and thorns, settled 2026-10-31). The glow ring is not a slayer
+  reward, since a bundle gives it.
 - Rings that need combat stats wait for those stats. Light and magnet rings do
   not.
 

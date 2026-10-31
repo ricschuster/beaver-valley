@@ -161,7 +161,7 @@ is built. The collection and the request board were settled on 2026-10-31 (see
 | Reach Ginger Island | Reach ring 2. Hat: Folded Paper Cap | Ring 2 (M4) |
 | Delight the Governor | A ring 2 visitor | Ring 2 |
 | Help the forest neighbours grow | A forest family goal | No such family yet |
-| Find every stardrop | Find every rare boost item. Hat: Star Seed Circlet | Star seeds, seven sources (`39_completion_total.md`) |
+| Find every stardrop | Find every rare boost item. Hat: Elderfruit Circlet | Elderfruit, seven sources (`39_completion_total.md`) |
 | Reach the summit | Reach ring 1's 100 percent, and a valley summit when every ring is at 100 | The completion total, `39_completion_total.md` |
 
 Stardew's rival-company achievement has no counterpart and is left out (see
