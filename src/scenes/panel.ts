@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { UI_FRAME_EDGE, UI_FRAME_KEY } from "./art";
 
 export interface RowButton {
   text: string;
@@ -186,10 +187,26 @@ export function frame(
   title: string,
   onClose: () => void,
 ): { money: Phaser.GameObjects.Text; message: Phaser.GameObjects.Text } {
+  // The interactive backdrop blocks clicks to the scene behind. The frame
+  // image only draws the border over it.
   scene.add
     .rectangle(0, 0, 960, 540, 0x10201a, 1)
     .setOrigin(0)
     .setInteractive();
+  scene.add
+    .nineslice(
+      0,
+      0,
+      UI_FRAME_KEY,
+      undefined,
+      960,
+      540,
+      UI_FRAME_EDGE,
+      UI_FRAME_EDGE,
+      UI_FRAME_EDGE,
+      UI_FRAME_EDGE,
+    )
+    .setOrigin(0);
   scene.add.text(24, 16, title, { fontSize: "30px", color: "#ffffff" });
   const money = scene.add
     .text(720, 22, "", { fontSize: "22px", color: "#ffe9a0" })
