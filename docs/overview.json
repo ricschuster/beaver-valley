@@ -32,6 +32,16 @@
           "s": "open",
           "t": "Tuning needs more playtests",
           "ref": "07_tuning_numbers.md#Open questions for playtests"
+        },
+        {
+          "s": "decided",
+          "t": "A shipping bin is added; its rules are not designed",
+          "ref": "25_stardew_system_review.md#Owner decisions, 2026-10-30"
+        },
+        {
+          "s": "open",
+          "t": "Farm growth tools (sprinklers, scarecrows, fruit trees, fertilizer, greenhouse, farm cave) need a farm note",
+          "ref": "25_stardew_system_review.md#Owner decisions, 2026-10-30"
         }
       ],
       "deps": [],
@@ -163,6 +173,11 @@
           "s": "decided",
           "t": "Hearthwell holds all Brimmers; hall at its east end; sawmill; log gates the Secret Woods",
           "ref": "19_valley_layout.md#Decisions"
+        },
+        {
+          "s": "decided",
+          "t": "Farm types: hand-authored maps, less farmland for a perk, two in the first version (Standard, Woodland), about six later; only the three exits are fixed",
+          "ref": "25_stardew_system_review.md#Owner decisions, 2026-10-30"
         },
         {
           "s": "open",

@@ -151,6 +151,14 @@ Added from what we know of the game, so these need a source check too:
   work and a rule for every system that assumes a pond or house position. Build
   the farm as data (a map plus a list of rule changes) and add types one at a
   time.
+- **Farm trade-off (Stardew's, from the Farm Maps page):** the Standard farm has
+  the most farmland. Every other type has less, in exchange for a perk tied to
+  one activity.
+- **First version:** the Standard farm plus a Woodland farm (foraging, which is
+  already built). Long-run list, a first sketch: Standard, Riverside (fishing),
+  Woodland (foraging), Hilltop (mining), Meadow (animals).
+- **Hilltop yes, Wild no.** A Hilltop farm has a small daily quarry. No farm
+  spawns monsters, so the mines' no-creatures setting needs no special case.
 - **Each farm type has a rule of its own**, leaning toward an activity (more
   water for fishing, more wild land for foraging). The hall bundles stay
   completable on every farm.
