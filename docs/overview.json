@@ -40,6 +40,11 @@
         },
         {
           "s": "decided",
+          "t": "Bin menu is the inventory grid (tap or drag ships the whole stack, hold ships one) with a Shipped today tab for take-back; collection page in M3; extra bins in M4; no bin-only items",
+          "ref": "28_shipping_bin.md#Decisions"
+        },
+        {
+          "s": "decided",
           "t": "Farm growth tools: three sprinkler tiers with add-ons, fruit trees, two fertilizer tiers, greenhouse and farm cave; no crows",
           "ref": "31_farm_growth.md#Decisions"
         },
@@ -773,8 +778,13 @@
           "ref": "41_house.md#Decisions (2026-10-31)"
         },
         {
+          "s": "decided",
+          "t": "House interior is one ground-floor map with sealed earth plus a cellar map; Stardew prices kept for the first playable; catalogue after tier 1 as Stardew; sealed rooms read as waiting",
+          "ref": "41_house.md#Settled 2026-10-31 (open items)"
+        },
+        {
           "s": "open",
-          "t": "House room sizes, tier prices for two seasons, catalogue tier and one map or one per tier",
+          "t": "House room sizes and floor plans, catalogue price and where flooring and wallpaper are sold",
           "ref": "41_house.md#Open"
         }
       ],
