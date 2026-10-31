@@ -54,9 +54,11 @@ wild garlic. The berries and plums are fruit for jam and wine.
 
 ### Winter forage
 
-Six goods, since winter forage is thinner. Crocus, snowdrop, winter cress, pine
-nut, frost root and holly sprig. Winter has no crops, so these are also the
-winter goods for eating, the seed maker and gifts.
+Seven goods, since winter forage is thinner. Crocus, snowdrop, winter cress, pine
+nut and holly sprig spawn on forage spots. Frost root and snow tuber come from
+tilling soil in winter (decided 2026-10-31, as in Stardew). Winter has no crops,
+so these are also the winter goods for eating, the seed maker and gifts. The
+numbers for every list here are in `07_tuning_numbers.md`.
 
 ### Rare finds
 
@@ -133,7 +135,7 @@ Bundles 11 and 20 to 26 are not slice 1 and keep their rules in
 
 - **The reward seeds on bundle 3** are 15 seeds of a fall crop. The assistant
   proposes beet, the fastest, but the owner has not chosen.
-- Numbers for the new crops and forage: price, growth days, energy.
+- Check the fall numbers in play, above all artichoke (see `07_tuning_numbers.md`).
 - Whether apple and cherry trees fit slice 1, or the cut order drops fruit trees
   (`33_build_order.md`). If trees are cut, bundle 12's pool needs two other
   goods that slice 1 can make, such as a second jam and a second pickle.
