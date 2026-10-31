@@ -1,7 +1,8 @@
 # 40 Village hall layout: physical rooms
 
 Status: decided with the owner on 2026-10-31 (layout and slice scope), at the
-start of #180. Details marked "proposed" are mine and open to change. Per ADR
+start of #180. Revised the same day: four walled rooms and two alcoves, after
+the owner shared Stardew's ruined and restored screenshots. Details marked "proposed" are mine and open to change. Per ADR
 0002 this follows the idea of Stardew's Community Center, not its art, text or
 names.
 
@@ -16,9 +17,19 @@ menu itself, so the scroll opening a menu is from memory.
 
 ## Decisions (2026-10-31)
 
-1. **The hall is a walkable interior map**, with a main room and six rooms
+1. **The hall is one walkable interior map**, with a main room and six rooms
    joined to it, one per room in `16_bundles.md`. It is a Tiled map like the
-   farmhouse. Entering the hall on the farm map loads it.
+   farmhouse. Entering the hall on the farm map loads it. The map is one wide
+   interior (about twice as wide as tall); the camera follows the player, with
+   no screen switching. The main room is about one screen. Corridors run left
+   and right from it. Stardew's layout does the same.
+   - **Four walled rooms** off the corridors: Foragers' Shelf, Larder, Hearth
+     and The Last Seat.
+   - **Two alcoves**, not walled rooms: the Water room is a tank on the main
+     room's back wall, and the Guests' Board is a board on a corridor wall.
+     Each still has its scroll and its ruined and restored states. This
+     matches Stardew (Pantry, Crafts, Boiler and Vault are walled; the Fish
+     Tank and Bulletin Board are not).
 2. **Each room has a scroll the player interacts with.** It opens the hand-in
    panel for that room's bundles (the current hall scene's list, counts and
    hint lines, scoped to one room). Touch uses the same tap-to-interact as the
@@ -34,6 +45,10 @@ menu itself, so the scroll opening a menu is from memory.
 5. **All six rooms are drawn in slice 1**, ruined and restored, though only two
    hold bundles. This is the owner's choice over drawing only the two with
    content.
+6. **Ruined and restored share one footprint.** Each room is two tile layers,
+   ruined and restored, plus a lighting tint. Ruined is dim, with vines, floor
+   holes, cobwebs and bare walls; restored is warm, with furniture and rugs.
+   The swap is the progress display (decision 3).
 
 ## Proposed details
 
@@ -44,7 +59,8 @@ menu itself, so the scroll opening a menu is from memory.
 - **A room with no bundles yet** stays blocked even when its gate is met, and
   the hint says it is not ready. Four of the six rooms are in this state in
   slice 1. They open as later slices add their bundles.
-- **The Last Seat** is the sixth room, drawn last and most prominent. Its
+- **The Last Seat** is a walled room, drawn last and most prominent (Stardew's
+  Vault). Its
   bridge reward is seen outside the hall, not in the room.
 - **The end screen** is replaced by a short restored-hall moment when the last
   room is done. Its content belongs to #258's finishing scene, not here.
@@ -57,6 +73,8 @@ must walk to a scroll instead of opening a menu.
 
 ## Open
 
+- The main room's contents (hub furniture, where the entrance sits) are not
+  designed. The screenshots show a hearth on the back wall and a central rug.
 - Art for ruined and restored rooms is placeholder until the art pass (#58).
 - The Pantry bundle fits no room. Drop it or reshape it into the Larder.
 - Whether a restored room shows each finished bundle as a visible item.
