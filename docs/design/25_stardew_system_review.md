@@ -136,9 +136,26 @@ Added from what we know of the game, so these need a source check too:
   build, as `CLAUDE.md` requires. The first pass at the list was "for
   discussion"; it is now the to-design list.
 - **A shipping bin is added.** Rules to be settled in a note.
-- **Farm type choices are added.** The note must say which parts of the map are
-  fixed and which are generated.
-- **Modding is to be discussed**, not yet decided.
+- **Farm type choices are added.** The player picks one of several different
+  farms at the start, each with its own layout and theme. The three exits to the
+  valley are the fixed part on every farm. The house and the pond are not
+  fixed. Which parts of the wider map are set and which are generated is being
+  settled area by area, in the Stardew way (some parts fixed).
+- **The valley and village are fixed**, the same on every farm type. Only the
+  farm differs. Clutter (weeds, stones, twigs) is placed at the start of each
+  season, as in Stardew.
+- **Farm type layout:** each type is a hand-authored map with fixed starting
+  clutter, as in Stardew (from memory, the Farm Maps page is not yet saved).
+- **Farm type count:** two in the first version, about six in the long run.
+  More types give replay value and a theme each, but cost map authoring, balance
+  work and a rule for every system that assumes a pond or house position. Build
+  the farm as data (a map plus a list of rule changes) and add types one at a
+  time.
+- **Each farm type has a rule of its own**, leaning toward an activity (more
+  water for fishing, more wild land for foraging). The hall bundles stay
+  completable on every farm.
+- **Modding: keep it in mind, build nothing.** No loader, pack format or script
+  support. Keep content in clean data files so modding stays possible later.
 - **Skull Cavern is a ring 2 thing.** Earlier listed as unclear in error.
 
 ## What stands out
