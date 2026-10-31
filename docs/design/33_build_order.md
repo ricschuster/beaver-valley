@@ -114,9 +114,9 @@ special floors are unscheduled until this slice is played.
 Also here: the lightning rod, battery packs and lamp-posts. The rod needs bat
 wing from the Cave Bat (`34_crafting.md`). Storms themselves stay in slice 1.
 
-Design still needed first: **the equipment slot** for rings and boots, which
-bundles 16 and 28 and the mines' own drops lean on. Rings and Footwear are
-absent from `25_stardew_system_review.md`.
+Design: **the equipment slot** for rings and boots is settled in
+`37_equipment.md`. Its combat stats (Defense, Immunity, crit and the rest) widen
+the first combat build, so check that note's open list before slice 3 starts.
 
 ### Slice 4: animals, cooking and friendship
 
