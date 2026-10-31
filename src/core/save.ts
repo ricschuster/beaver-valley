@@ -6,6 +6,7 @@ import { Hall, type HallProgress } from "./bundles";
 import { Inventory } from "./inventory";
 import { Skills, SKILLS, type Skill } from "./skills";
 import { professionById } from "./professions";
+import { MAX_HOUSE_TIER } from "./house";
 import { UPGRADABLE, MAX_TIER, type ToolTiers } from "./upgrades";
 
 /** Everything the player owns and has done. The scene holds one of these. */
@@ -18,6 +19,8 @@ export interface GameState {
   /** Tier of the hoe and can, 0 for basic. */
   toolTiers: ToolTiers;
   hall: Hall;
+  /** House tier, 0 for the start room only. */
+  houseTier: number;
   /** Today's weather. */
   weather: Weather;
   /** Tomorrow's weather, known a day ahead (the forecast). */
@@ -42,6 +45,7 @@ export function newGame(): GameState {
     skills: new Skills(),
     toolTiers: { hoe: 0, can: 0 },
     hall: new Hall(),
+    houseTier: 0,
     weather: "sunny",
     tomorrow: "sunny",
     endSeen: false,
@@ -67,6 +71,8 @@ interface SaveData {
   professions?: ReturnType<Skills["saveProfessions"]>;
   /** Absent in saves made before tool upgrades existed. */
   toolTiers?: ToolTiers;
+  /** Absent in saves made before the house had tiers. */
+  houseTier?: number;
   weather: Weather;
   /** Absent in saves made before the forecast existed. */
   tomorrow?: Weather;
@@ -96,6 +102,7 @@ export function serialize(g: GameState): string {
     professions: g.skills.saveProfessions(),
     hall: g.hall.save(),
     toolTiers: { ...g.toolTiers },
+    houseTier: g.houseTier,
     weather: g.weather,
     tomorrow: g.tomorrow,
     endSeen: g.endSeen,
@@ -174,6 +181,8 @@ export function deserialize(text: string): GameState | undefined {
       if (isCount(v)) g.toolTiers[t] = Math.min(Math.floor(v), MAX_TIER);
     }
   }
+  if (isCount(raw.houseTier))
+    g.houseTier = Math.min(Math.floor(raw.houseTier), MAX_HOUSE_TIER);
   if (WEATHERS.includes(raw.tomorrow as Weather))
     g.tomorrow = raw.tomorrow as Weather;
   g.endSeen = raw.endSeen === true;
