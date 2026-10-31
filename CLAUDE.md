@@ -21,8 +21,9 @@ Engine chosen (ADR 0004). Current milestone: M2, the first playable. Every
 feature on its done list works in the browser (farming, foraging, shop, hall,
 save, title and end screens) with placeholder art. Some M3 items were built
 early: quality tiers, tool upgrades, eating, a weather forecast and more crops
-and forage. Left: the real-tablet check, the art pass (#58) and open design
-questions. Placeholder numbers are listed in
+and forage. Left: house tier 1 (#280, #281), the real-tablet check, the art pass (#58)
+and open design questions (the story and ending, #16). Tiers 2 and 3 and the
+cellar are M3. Placeholder numbers are listed in
 `docs/design/07_tuning_numbers.md`. The roadmap is `docs/design/03_milestones.md`; GitHub issues
 are the live tracker, grouped by milestone. The issues labelled `next-payoff`
 are the few items that matter most right now. Start each session by reading
