@@ -100,3 +100,11 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
   `--mirror`, no spoofed user agent. Claude then reads the saved files from
   disk. The folder is gitignored and the text is for reference only, never
   copied into the repo (`docs/decisions/0002-stardew-valley-inspired.md`).
+- Stardew Valley Guidebook: the owner's PDF in `docs/reference/stardew/` is only
+  the free 5th edition supplement (new and changed 1.6 pages, v1.6.8, 119 PDF
+  pages), not the full book. The wiki stays the main source. Do not build an
+  extraction pipeline or rebuild its tables as data. Read it on demand with
+  `pdftotext -layout -f <page> -l <page>` when a note needs a 1.6 fact, and
+  treat its tables as unreliable text: check numbers against the page image.
+  Where it and the wiki disagree, flag the conflict. Cite it in notes by
+  printed page, never by quote. Same gitignore and copy rules as the wiki.
