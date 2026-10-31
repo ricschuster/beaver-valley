@@ -50,7 +50,7 @@ longer. Not checked: running `playtest:touch` or `playtest:late` alongside them.
 To run them in parallel from a shell, send each to a log and a done marker, then
 read the logs when the markers exist:
 
-```
+```bash
 for p in expert intermediate casual; do
   nohup bash -c "npm run playtest -- $p > /tmp/pt-$p.log 2>&1; touch /tmp/pt-$p.done" &
 done
