@@ -7,6 +7,7 @@ import {
   type TiledObject,
 } from "../src/core/map";
 import { mapFiles, maps } from "../src/content/maps";
+import rooms from "../src/content/rooms.json";
 
 // A 5 by 4 map: a wall column at x=2 with a gap at y=3, soil on the left.
 //   . . # . .
@@ -272,5 +273,26 @@ describe("the maps in use", () => {
 
   it("have one file per map id", () => {
     expect(maps.ids.sort()).toEqual(Object.keys(mapFiles).sort());
+  });
+});
+
+// The hall interior (docs/design/40_hall_layout.md): one scroll per room, each
+// named for its room, and a way back to the farm from the farm's hall door.
+describe("the hall map", () => {
+  it("has one scroll for each room", () => {
+    const names = maps
+      .get("hall")
+      .services.map((s) => s.id)
+      .sort();
+    expect(names).toEqual(rooms.map((r) => r.id).sort());
+  });
+
+  it("joins the farm's hall door", () => {
+    const door = maps.get("farm").exits.find((e) => e.id === "hall");
+    expect(door).toMatchObject({ map: "hall", entry: "door" });
+    expect(maps.get("hall").exits[0]).toMatchObject({
+      map: "farm",
+      entry: "from_hall",
+    });
   });
 });

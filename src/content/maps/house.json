@@ -58,7 +58,7 @@
       "y": 0,
       "objects": [
         {
-          "id": 20,
+          "id": 21,
           "name": "door",
           "class": "entry",
           "type": "entry",
@@ -71,7 +71,7 @@
           "visible": true
         },
         {
-          "id": 21,
+          "id": 22,
           "name": "door",
           "class": "exit",
           "type": "exit",
@@ -87,7 +87,7 @@
           ]
         },
         {
-          "id": 22,
+          "id": 23,
           "name": "bed",
           "class": "service",
           "type": "service",
@@ -109,10 +109,10 @@
       "name": "placeholder",
       "tilewidth": 16,
       "tileheight": 16,
-      "tilecount": 10,
+      "tilecount": 11,
       "columns": 10,
       "image": "placeholder-tiles.png",
-      "imagewidth": 160,
+      "imagewidth": 176,
       "imageheight": 16
     }
   ]
