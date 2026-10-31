@@ -123,6 +123,16 @@
           "ref": "16_bundles.md#Decisions"
         },
         {
+          "s": "decided",
+          "t": "The hall is a walkable interior of six physical rooms with a scroll each; all six drawn in slice 1",
+          "ref": "40_hall_layout.md#Decisions (2026-10-31)"
+        },
+        {
+          "s": "decided",
+          "t": "The hall shows a room reward; each system reads Hall.completedRooms",
+          "ref": "16_bundles.md#Who grants a room reward"
+        },
+        {
           "s": "proposed",
           "t": "Every item, count and reward is a placeholder",
           "ref": "16_bundles.md#Rooms and bundles"
