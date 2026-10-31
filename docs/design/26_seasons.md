@@ -52,7 +52,8 @@ Every season needs its own crops, forage, fish and a festival slot
 - Fall and winter crop, forage and fish lists, with our own names and numbers.
 - The greenhouse: settled as the Larder room reward (`31_farm_growth.md`). Its
   winter income is a tuning question.
-- Rain and snow chances for fall and winter.
+- Rain and snow chances for fall and winter, and thunderstorms, which are the
+  source of battery packs (`34_crafting.md`). Storms are never harmful.
 - Whether the first year's last day ends the game, as the first playable ends
   after its bundles, or the game goes on into a second year.
 - Winter content for the mines and fishing, so the rest season is not empty.

@@ -24,9 +24,12 @@ It is slice 1 work (`33_build_order.md`).
   fence is wood, stone or iron for looks and cost, and a gate lets the player
   through. Fences matter from slice 4, when animals arrive. No Gold Clock is
   needed.
-- **Lamp-posts need a battery pack, as in Stardew.** We have no lightning, so
-  the pack has no source yet (see Open). Until it does, no lamp-post can be
-  made and bundle 20's "3 lamps" has no way to be filled.
+- **Lamp-posts need a battery pack, as in Stardew.** The pack comes from
+  storms (decided 2026-10-31): a thunderstorm weather type is added, and a
+  placed lightning rod turns a strike into one battery pack, as in Stardew.
+  Lightning never harms the farm. With no rod in range the strike only
+  flashes. This reverses the line in `31_farm_growth.md` that lightning does not
+  exist for us.
 - **Chests as in Stardew:** wood, stone, and big versions of each.
 - **Every craftable is data**, in `src/content/`, with its ingredients, its
   source and its slice. New recipes are data files, not code.
@@ -76,8 +79,9 @@ recipe is learned. "Slice" is when it is built (`33_build_order.md`).
 | Campfire | 10 stone, 10 wood, 10 fiber | Start | 1 |
 | Wooden brazier | 10 wood, 1 coal, 5 fiber | The carpenter's shop (ours) | 1 |
 | Stone brazier | 10 stone, 1 coal, 5 fiber | The carpenter's shop (ours) | 1 |
-| Wood lamp-post | 50 wood, 1 battery pack | Farming level 7 (ours) | Blocked |
-| Iron lamp-post | 1 iron bar, 1 battery pack | Farming level 9 (ours) | Blocked |
+| Lightning rod | 1 iron bar, 1 refined quartz (ours: 1 quartz crystal), 5 bat wing (ours: a mine drop, to be named) | Foraging level 6 | 1 |
+| Wood lamp-post | 50 wood, 1 battery pack | Farming level 7 (ours) | 1, after storms |
+| Iron lamp-post | 1 iron bar, 1 battery pack | Farming level 9 (ours) | 1, after storms |
 
 Stardew's other braziers (gold, carved, stump, barrel, skull, marble) are
 decoration and wait. Torches are what the mines need (`22_mines.md`, bundle
@@ -89,7 +93,7 @@ decoration and wait. Torches are what the mines need (`22_mines.md`, bundle
 | --- | --- | --- | --- |
 | Sprinkler | 1 copper bar, 1 iron bar | Farming level 2 | 1 |
 | Quality sprinkler | 1 iron bar, 1 gold bar, 1 refined quartz (ours: 1 quartz crystal) | Farming level 6 | 1 |
-| Iridium sprinkler | 1 gold bar, 1 iridium bar, 1 battery pack | Farming level 9 | Later |
+| Iridium sprinkler | 1 gold bar, 1 iridium bar, 1 battery pack | Farming level 9 | Later, needs iridium |
 | Basic fertilizer | 2 sap | Farming level 1 | 1 |
 | Quality fertilizer | 4 sap, 1 fish | Farming level 9 | 1 |
 | Speed fertilizer | 1 pine tar, 5 moss (ours: 1 sap, 5 moss) | Farming level 3 | 1 |
@@ -151,16 +155,16 @@ These must exist before the recipes above can be built.
 - **Clay**, from digging. It has no source yet.
 - **Moss**, a forage and mine drop.
 - **Gold bars and quartz stand-ins**, from the mines.
-- **A battery pack**, with no source (see Open).
+- **A battery pack**, from a lightning rod in a storm. Storms are a new weather
+  type, built with fall and winter in slice 1 (`26_seasons.md`).
 
 ## Open
 
-- **The battery pack has no source.** Stardew makes it with a lightning rod in
-  storms, or a solar panel. `31_farm_growth.md` says lightning does not exist
-  for us. The owner chose Stardew's lamp-post cost. Options: add storms and a
-  lightning rod, make packs a mine drop or a smith dwarf's shop item, or let a
-  lamp-post cost oil instead. Settle before bundle 20 and the iridium
-  sprinkler.
+- **Storm numbers.** The chance of a thunderstorm by season, how many strikes
+  a storm gives, the rod's reach (Stardew's is about eight tiles, unchecked
+  here, since the Lightning page is not saved) and whether a rod fills up or
+  gives one pack per storm. Stardew also gives packs through a solar panel,
+  which we leave out.
 - **Slice 1 needs bars.** Sprinklers (copper and iron), the keg and the bee house
   need bars. The mines are slice 3. The smith dwarf's ore shop and furnace gift
   (`22_mines.md`) must therefore come with slice 1, or these recipes move later.
