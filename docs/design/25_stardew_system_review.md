@@ -115,7 +115,7 @@ will correct them.
 | Adventurer's guild | Trainer and training dummy | Partial | A trainer is in the mines note. Selling monster loot there is not described. |
 | Blacksmith | Smith dwarf | Covered | Tool upgrades, geode cracking (`22_mines.md`). |
 | Spa, railroad, desert, casino, bus and warps | Ring 2 | Out for now | Ring 2 is open (#20). |
-| Ginger Island style late region | Ring 3 | Out for now | Ring 3 is late and optional. |
+| Ginger Island style late region | Ring 2 | Out for now | Owner decided 2026-10-31: ring 2 is the counterpart. Ring 3 is unknown and may not happen at this scale. |
 | Skull Cavern style dig | Ring 2 | Covered in intent | Owner confirmed 2026-10-30: it is a ring 2 feature (#20). Its design waits for the ring 2 note. |
 
 ## Things Stardew has that the wiki index does not list
