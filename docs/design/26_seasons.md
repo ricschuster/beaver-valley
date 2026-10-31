@@ -50,7 +50,8 @@ Every season needs its own crops, forage, fish and a festival slot
 ## Open questions
 
 - Fall and winter crop, forage and fish lists, with our own names and numbers.
-- The greenhouse or indoor growing option: when it unlocks and what it costs.
+- The greenhouse: settled as the Larder room reward (`31_farm_growth.md`). Its
+  winter income is a tuning question.
 - Rain and snow chances for fall and winter.
 - Whether the first year's last day ends the game, as the first playable ends
   after its bundles, or the game goes on into a second year.

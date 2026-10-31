@@ -39,9 +39,9 @@
           "ref": "28_shipping_bin.md#Decisions"
         },
         {
-          "s": "open",
-          "t": "Farm growth tools (sprinklers, scarecrows, fruit trees, fertilizer, greenhouse, farm cave) need a farm note",
-          "ref": "25_stardew_system_review.md#Owner decisions, 2026-10-30"
+          "s": "decided",
+          "t": "Farm growth tools: three sprinkler tiers with add-ons, fruit trees, two fertilizer tiers, greenhouse and farm cave; no crows",
+          "ref": "31_farm_growth.md#Decisions"
         }
       ],
       "deps": [],

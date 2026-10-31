@@ -173,8 +173,7 @@ are now on the to-design list (see the decisions above), together with the
 shipping bin and farm types.
 
 1. **Farm growth tools** (sprinklers, scarecrows, fruit trees, fertilizer,
-   greenhouse). Farming is the core loop and none of its growth systems are
-   designed beyond the plain crop.
+   greenhouse). Designed 2026-10-31 in `31_farm_growth.md`. Not built.
 2. **A general crafting list**, beyond the eight machines.
 3. **A collection hall or museum**, tied to the completion tracker (#196).
 4. **Request and quest system**, and whether there is a request board.
