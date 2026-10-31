@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-10-30",
+  "fetched": "2026-10-31",
   "issues": {
     "5": {
       "t": "Design: what is the third community project?",
@@ -220,6 +220,11 @@
       "t": "Design: a completion tracker (Perfection-style) for the whole game",
       "state": "open",
       "labels": []
+    },
+    "201": {
+      "t": "Design: revisit and rebalance all bundle rewards",
+      "state": "open",
+      "labels": ["design-question"]
     }
   }
 }

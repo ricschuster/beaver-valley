@@ -55,20 +55,77 @@ Parts to consider, each a separate slice:
 - Placeholder art first. Furniture is many small sprites, so it is an art cost
   to budget for the art pass (#58).
 
+## Decisions (2026-10-31)
+
+Each was a choice with a Stardew option, checked against the saved Furniture
+and Hats pages.
+
+- **Furniture stock is random and daily, with a catalogue (Stardew).** The
+  carpenter offers a random selection of furniture each day at fixed prices.
+  After the first house upgrade the carpenter also sells a furniture catalogue.
+  Once placed, using it gives unlimited copies at 0g. Furniture cannot be sold
+  or gifted. Slice 1 needs a pool big enough that a daily pick feels varied, so
+  the "five to ten pieces" the first slice once named is the floor, not the
+  target. Prices and the pool size are open.
+- **One catalogue per people, later.** The owner wants a catalogue for each
+  group (halflings, humans, wizards, elves, dwarves), each with its own
+  furniture style, as a way to use the groups from `09_story_and_lore.md`.
+  Slice 1 has the one general catalogue. The others wait until their groups
+  are designed. Where each one comes from is open.
+- **Hats unlock by achievement (Stardew).** Each achievement unlocks a hat for
+  sale at a hat seller, and a few hats come from festivals and bundle rewards.
+  In Stardew the first achievement triggers a letter from the seller, and the
+  seller is a mouse in the Abandoned House. Ours is a Brimmer hatter's shop in
+  Hearthwell (decided 2026-10-31), a shop-and-home interior like the others
+  (`20_ring1_cast.md`), because the Brimmers are named for hats and Hearthwell
+  has no such shop yet. This needs
+  the game-wide tracker (#196), which has no note yet, so the first hat list
+  cannot be written until the achievement list is. Stardew's prices run from
+  1,000g to 25,000g.
+- **Hats show in the world sprite (Stardew).** The hat is drawn on the player
+  on the map, not only in a portrait. This replaces the M3 decision in
+  `13_m3_scope.md` (portrait only), which already named the world sprite as the
+  first thing to cut. Hats need art per facing and walk frame, so the world
+  sprite stays the cut if slice 1 runs long.
+- **Hats show standing in the ledger (ours).** Stardew's hats do nothing. Ours
+  are also free of gameplay bonuses, but wearing one reads as a sign of
+  standing among the Brimmers, as `09_story_and_lore.md` decided: a light
+  cosmetic readout of friendship, with no separate favour currency and no ledger
+  screen.
+- **Grid, stacking and the sewing machine (proposed, not asked).** Furniture
+  snaps to the 16 px tile grid, as in `06_map_style.md` and Stardew. There is
+  no stacking in slice 1 (rugs sit under other pieces; items on tables come
+  later). The sewing machine is not in slice 1. These stand unless the owner
+  objects.
+
 ## Suggested first slice (M3)
 
-Furniture placement in the house with five to ten pieces, two wallpapers, two
-floors, and hats you can wear. Rewards from two bundles. Tailoring, dyes and
-house upgrades follow once the first slice feels good.
+Furniture placement in the house with a daily random stock, two wallpapers, two
+floors, and hats you can wear and see on the world sprite. Rewards from two
+bundles. Tailoring, dyes, house upgrades and the per-people catalogues follow
+once the first slice feels good.
 
 ## Open
 
-- Does the character look change the sprite in the world, or only a portrait?
-  World sprites cost more art.
-- Grid size and whether furniture can stack (rugs, tables with items).
+- The hatter's household: a new one or an existing household that takes the
+  shop on. A new one changes the 30 people and 11 households in
+  `20_ring1_cast.md`. The shop is also not yet in `19_valley_layout.md`'s
+  building list or the Hearthwell map.
+- How hats are earned in slice 1 depends on the achievement list (#196). Until
+  that note exists there is no first hat list. Bundle 24's festival hats and
+  the Hat Parade prize feed it.
+- How the standing readout works when the player can pick any hat they own. One
+  option is that the Brimmers' dialogue and the parade react to standing, and
+  the hat is only the look. This needs deciding with the friendship note.
+- The furniture pool size, prices, and which house upgrade offers the
+  catalogue (the house upgrade list is still open).
 - What the sewing machine costs and how the player unlocks it.
-- Whether hats carry a ledger-standing effect, as the lore note suggests.
-- Whether a catalogue of all furniture exists, as a collection goal.
+- Where each per-people catalogue comes from, and what makes the furniture
+  style differ.
+- Wallpaper and flooring: Stardew sells them at 200g each from the general
+  store, each covering a whole room, as read from the saved pages. Whether
+  ours match is not yet asked.
 
-Details of Stardew Valley's own system were recalled from memory, not
-checked. Check the genre reference before fixing numbers.
+Details of Stardew Valley's own system were checked against the saved
+Furniture and Hats pages on 2026-10-31. Earlier lines of this note that
+describe Stardew were recalled from memory.

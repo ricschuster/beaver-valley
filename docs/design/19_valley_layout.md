@@ -104,6 +104,8 @@ From `09_story_and_lore.md`, with the sawmill added:
 - Healer
 - Library
 - Sawmill and carpenter, on the river
+- Hatter's shop (added 2026-10-31): sells the hats that achievements unlock
+  (`10_customisation.md`)
 - Festival green
 - Homes for the Brimmers (number set by the cast list, #136)
 
