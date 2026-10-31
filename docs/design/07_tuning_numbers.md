@@ -72,12 +72,44 @@ harvest, and it withers when its season ends. Rain waters every plot overnight.
 
 Source: `src/core/calendar.ts`, `src/core/weather.ts`.
 
-- A season is 28 days and there are two (spring, summer). From memory for the
-  length.
+- A season is 28 days and there are four (spring, summer, fall, winter, see
+  `26_seasons.md`; the first playable has two). From memory for the length.
 - Chance of rain per day is 20 percent in spring and 15 percent in summer. The
   first day of a season is always sunny. Ours.
 - Tomorrow's weather is rolled a day ahead and shown when the player uses the
   bed, like Stardew's TV forecast.
+
+Fall, winter and storms (decided 2026-10-31, from the saved Stardew Weather and
+Lightning Rod pages where marked, otherwise ours and unchecked):
+
+- Rain chance per day: fall 20 percent (ours, matching spring). Winter has no
+  rain and no storms, as in Stardew. Winter snow replaces it: 30 percent of
+  days (ours, the saved pages give no chance). Snow is only a look and a
+  forecast, since no crop grows outdoors.
+- Storms: a rain day in spring, summer or fall is a thunderstorm 25 percent of
+  the time (ours). A storm waters the plots like rain and the forecast names
+  it. Storms never happen in winter, and a festival day is always sunny, so a
+  festival beats a storm.
+- Fixed storms (Stardew): summer day 13 and day 26 are always storms, every
+  year, on top of the random ones. The first day of a season stays sunny.
+- Strikes (Stardew's model, with our numbers): on a storm day, every 10 game
+  minutes while the farmer is awake there is a 3 percent chance of a strike
+  (ours). About 2 to 3 strikes if the farmer is up from 6 am to 8 pm, and more
+  the longer they stay up, as the saved page says.
+- A strike lands on a lightning rod with chance `1 - (charged rods / all rods)²`
+  (Stardew's formula). With no rod, or when it misses, it does nothing: our
+  storms never harm the farm (`34_crafting.md`). A rod that is hit makes one
+  battery pack the next morning and ignores more strikes that day. A rod can be
+  anywhere on the farm map, and the player need not be on the farm when the
+  strike lands (both Stardew).
+- Expected packs: a single rod always catches the first strike, and a storm
+  day has at least one strike about 9 times in 10 (3 percent over 84 ten
+  minute ticks), so one rod makes about 0.9 packs a storm. A second rod only
+  pays if a second strike falls. At 20, 15 and 20 percent rain with a quarter
+  of rain days stormy there are about 1.4, 1 and 1.4 random storms a season,
+  plus the 2 fixed ones in summer, so roughly 6 storms in the three seasons.
+  That may be too few if lamp-posts, the crystalarium and more are each wanted.
+  Raise the storm share or the strike chance if play finds packs scarce.
 
 ## Foraging
 
@@ -368,7 +400,7 @@ Differences found (the four above are now decided):
   each spring. Winter clears crops and weeds and stops outdoor growth. Both
   matter for the third and fourth season, which are out of scope for now.
 - Not on these pages: the rain chance per season. Our 20 and 15 percent stay
-  ours.
+  ours, and fall and snow chances are ours too (above).
 
 ## Start options (decided 2026-10-31, not built)
 

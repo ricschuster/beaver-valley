@@ -167,6 +167,11 @@
           "s": "open",
           "t": "Draft item pools for slice 1 bundles and the fall and winter crop and forage names, for the owner to reshape",
           "ref": "35_bundle_pools.md#Open"
+        },
+        {
+          "s": "decided",
+          "t": "Storms follow Stardew: none in winter, summer 13 and 26 always stormy, strikes through the day caught by rods with Stardew's formula, one pack per hit rod; the rod has no reach",
+          "ref": "07_tuning_numbers.md#Seasons and weather"
         }
       ],
       "deps": [
