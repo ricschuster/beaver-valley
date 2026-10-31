@@ -15,8 +15,9 @@ read as reference only (ADR 0002); no text is copied.
   farm rests. The player's time goes to foraging, fishing, the mines, animals
   and crafting, so those systems must have winter content. An indoor growing
   option is needed (a greenhouse, see below).
-- Each spring day 1 brings fresh forage, rocks and grass to the farm. Winter
-  day 1 clears crops and weeds. Forage tables change every season.
+- Each spring day 1 brings fresh forage, rocks and grass to the farm. Weeds
+  land on day 1 of spring, summer and fall (`29_weeds.md`). Winter day 1
+  clears crops and weeds. Forage tables change every season.
 - Nightfall moves by season: 8 pm in spring and summer, 7 pm in fall, 6 pm in
   winter, darkening gradually outdoors (`07_tuning_numbers.md`).
 
@@ -44,8 +45,7 @@ Every season needs its own crops, forage, fish and a festival slot
   ours to set.
 - Save: the calendar already stores a season and day, so adding two seasons
   should be a content change plus a longer season table.
-- Weeds and clutter: the Weeds page still has to be read against the spring
-  respawn rule above (handoff, open risk).
+- Weeds: settled in `29_weeds.md`. Rocks and twigs wait for the farm note.
 
 ## Open questions
 
