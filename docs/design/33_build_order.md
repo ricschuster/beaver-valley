@@ -139,8 +139,8 @@ other room, so it can only be played after slices 1 to 4.
 Builds: the four bundles, the bridge, the letter and the end of the first ring.
 It also settles the quantities (#181) against real production rates.
 
-Design still needed first: the Last Seat numbers, and whether year one's last
-day or the bridge ends the game (see Open).
+Design still needed first: the Last Seat numbers. Year one's last day does not
+end the game (see Open).
 
 Ring 2 is M4 (`03_milestones.md`) and not part of these slices.
 
@@ -171,11 +171,12 @@ item.
 
 ## Open
 
-- **Does year one end the game?** `26_seasons.md` left this open. With year one
-  as the slice's finish line, the end screen still comes from finishing the
-  Last Seat, so a player who has not finished simply plays on into year two.
-  The first slice then needs only a "year one complete" report, not an ending.
-  This is a proposal, not settled.
+- **Does year one end the game?** Settled 2026-10-31: no, and there is no
+  year-end screen. Winter 28 rolls into spring of year 2, as in Stardew (from
+  memory, not checked on a saved page). The end screen still comes only from
+  finishing the Last Seat, so a player who has not finished plays on. Slice 1
+  therefore needs no year-end report or ending, only the calendar rolling over
+  into year 2.
 - Whether slice 1 is too large with four seasons. The first item is the check.
 - Where the completion tracker (#196) and the mines' later bands sit. Both are
   unscheduled until slice 3 is played.

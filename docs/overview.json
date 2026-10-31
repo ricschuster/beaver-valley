@@ -155,6 +155,11 @@
         },
         {
           "s": "decided",
+          "t": "Year one's last day does not end the game and has no year-end screen; winter 28 rolls into spring of year 2, as in Stardew",
+          "ref": "33_build_order.md#Open"
+        },
+        {
+          "s": "decided",
           "t": "Crafting follows Stardew: a pause menu tab plus a bought workbench that uses adjacent chests; fences do not decay; lamp-posts need a battery pack, made by a lightning rod in harmless storms",
           "ref": "34_crafting.md#Decisions"
         },
@@ -699,14 +704,14 @@
           "ref": "13_m3_scope.md#Decisions (2026-10-27)"
         },
         {
-          "s": "proposed",
-          "t": "Calendar dates and placeholder festivals",
+          "s": "decided",
+          "t": "Eight festivals, two a season, with final names and dates (Hat Parade, Seedswap Fair, Cake Day, Lamplight Evening, Harvest Showing, Hollow Eve, Frostday, Midwinter Feast)",
           "ref": "14_festival_calendar.md#The calendar"
         },
         {
-          "s": "open",
-          "t": "Does a festival close the shop?",
-          "ref": "14_festival_calendar.md#Open"
+          "s": "decided",
+          "t": "The shop stays open until a festival opens at noon, then closes for the afternoon",
+          "ref": "14_festival_calendar.md#Shop hours (decided 2026-10-31)"
         },
         {
           "s": "open",

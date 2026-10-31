@@ -1,16 +1,18 @@
 # 14 Festival calendar
 
-Status: accepted 2026-10-27 (issue #131). Design only. The festival system
-(#132) builds from this. Dates and the two placeholder festivals are ours and
-cheap to change; change them with a new dated decision here.
+Status: accepted 2026-10-27 (issue #131), extended 2026-10-31 to four seasons
+and eight festivals. Design only. The festival system (#132) builds from this.
+Dates are ours and cheap to change; change them with a new dated decision
+here.
 
 ## Rules
 
-- Two festivals per season (`09_story_and_lore.md`). The game has two seasons
-  today (spring, summer; `src/core/calendar.ts`), so the calendar has four
-  festivals. Later seasons add two each.
+- Two festivals per season (`09_story_and_lore.md`). The year has four seasons
+  (`26_seasons.md`), so the calendar has eight festivals. The code has two
+  seasons today (`src/core/calendar.ts`) and gains fall and winter in slice 1.
 - A festival falls on a fixed day of the season, every year.
-- Not on day 1 (the always sunny start of a season) and not in the last week,
+- Not on day 1 (the always sunny start of a season) and not in the last week
+  (days 22 to 28),
   so a festival never competes with the end-of-season crop rush.
 - Festival days are always sunny, like day 1, so rain never decides whether to go.
 - The village changes for the day (decoration, villagers gathered at the
@@ -29,9 +31,18 @@ cheap to change; change them with a new dated decision here.
 | Season | Day | Festival | Notes |
 | --- | --- | --- | --- |
 | Spring | 10 | Hat Parade | The M3 festival. Everyone shows off their best hat. |
-| Spring | 22 | Seedswap Fair (placeholder) | Neighbours trade seeds. Mostly a prize counter. |
+| Spring | 21 | Seedswap Fair | Neighbours trade seeds. Mostly a prize counter. |
 | Summer | 8 | Cake Day | Brimmers dress in food-looking clothes. |
-| Summer | 20 | Lamplight Evening (placeholder) | A quiet lantern gathering at dusk. |
+| Summer | 20 | Lamplight Evening | A quiet lantern gathering at dusk. |
+| Fall | 9 | Harvest Showing | Crops judged on the green, with a prize counter. |
+| Fall | 21 | Hollow Eve | A spooky evening walk. Quiet scares only, no threat. |
+| Winter | 8 | Frostday | Ice fishing on the river. |
+| Winter | 20 | Midwinter Feast | A gift exchange with one villager. |
+
+Names are final for now (2026-10-31). The fall and winter pair follow Stardew's
+shape (a harvest fair and a spooky night, then an ice day and a gift feast),
+with our names and dates, and none of Stardew's text. Stardew's own dates are
+fall 16 and 27 and winter 8 and 25, from the saved Festivals page.
 
 ## Why these dates
 
@@ -40,15 +51,19 @@ cheap to change; change them with a new dated decision here.
   find or earn a first hat (`10_customisation.md`), and it is the first
   festival a new player meets. It also shows the folk's hat culture early,
   which the lore wants (hats as a readout of standing).
-- **Seedswap Fair, spring day 22.** Late enough to follow the first bundles,
-  early enough to leave a week clear before the season ends. A placeholder:
-  it exists to meet the two per season rule and can be swapped.
+- **Seedswap Fair, spring day 21.** Late enough to follow the first bundles,
+  early enough to leave a week clear before the season ends. It moved from day
+  22 on 2026-10-31, because day 22 is in the last week, which breaks the rule
+  above. Spring's two are now eleven days apart.
 - **Cake Day in summer, day 8.** Cake day suits a season of plenty, and a
   summer date keeps it clear of the parade so the two costume festivals are
   not back to back. Early in the season for the same reason as the parade.
 - **Lamplight Evening, summer day 20.** A calm counterpoint late in the run.
   It is also a natural place for the first light touch of the ember and ash
-  theme later (a few lamps gutter), without any threat. A placeholder.
+  theme later (a few lamps gutter), without any threat.
+- **Fall, days 9 and 21, and winter, days 8 and 20.** The same spacing as spring
+  and summer, and clear of the last week. Hollow Eve is an evening festival
+  like Lamplight Evening, so the two quiet ones are in different seasons.
 
 Each season has its two festivals twelve days apart, so a player always has a
 festival to look ahead to.
@@ -76,9 +91,16 @@ Only the Hat Parade is built in M3 (`13_m3_scope.md`). The other three rows are
 the plan, not a promise. The Seedswap Fair is the cheapest second festival,
 because it is mostly a prize counter.
 
+## Shop hours (decided 2026-10-31)
+
+The shop stays open until the festival opens at noon, then closes for the
+afternoon, since the shopkeeper goes to the green. The morning is free for
+buying seeds and selling, and the shipping bin still pays at sleep. Stardew
+locks every shop and home all day on festival days, except four festivals where
+time keeps passing (saved Festivals page). Ours is looser on purpose.
+
 ## Open
 
-- Final names. The two placeholders are marked; Hat Parade and Cake Day come
-  from the lore note.
-- Whether a festival closes the shop. Proposal: no, the shop stays open until
-  its normal closing time, so the player is never blocked from selling.
+- The fall and winter festivals are names and one line each. Their maps,
+  prize counters and minigames need notes before #132 builds them
+  (`11_minigames.md`).

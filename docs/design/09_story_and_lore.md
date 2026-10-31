@@ -453,7 +453,8 @@ Open: how big the town is and how many homes it needs (see the cast list, #136).
   for clothes and hats (see `10_customisation.md`).
 - A festival can hold a minigame and a prize counter (see `11_minigames.md`).
 - Calendar proposed 2026-10-27 in `14_festival_calendar.md`: Hat Parade spring
-  day 10, Cake Day summer day 8, and two placeholder festivals.
+  day 10, Cake Day summer day 8, and two placeholder festivals. Extended
+  2026-10-31 to eight festivals with final names.
 
 ## Tone rules
 
@@ -496,7 +497,6 @@ Rule for this game, in the same spirit:
 - The exact mapping of the five bundles to unlocks (#21).
 - How to phase the cast toward the long-term size.
 - Marriage: the open questions in `12_marriage.md`.
-- Final names for the two placeholder festivals (`14_festival_calendar.md`).
 - The number of elf houses, and what sets each apart (settled with rings 2 and
   3). The dwarf groups are decided above.
 - The Wanderer's true name, what he gives at each road, and how he differs
