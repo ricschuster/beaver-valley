@@ -8,16 +8,43 @@ export const OUT = `${ROOT}playtest-out`;
 fs.mkdirSync(`${OUT}/shots`, { recursive: true });
 /** The dev server to play against. It must be `npm run dev`: the scripts use `window.farmDebug`. */
 export const GAME_URL = process.env.BASE_URL ?? "http://localhost:5173/";
-const map = JSON.parse(
-  fs.readFileSync(`${ROOT}src/content/maps/farm.json`, "utf8"),
+/** Every map by id, so the bot can path on whichever map it is standing in. */
+const MAPS = Object.fromEntries(
+  ["farm", "house", "hall"].map((id) => {
+    const map = JSON.parse(
+      fs.readFileSync(`${ROOT}src/content/maps/${id}.json`, "utf8"),
+    );
+    const exits = new Set();
+    for (const layer of map.layers)
+      for (const o of layer.objects ?? [])
+        if (o.class === "exit")
+          for (let y = 0; y < Math.max(1, o.height / 16); y++)
+            for (let x = 0; x < Math.max(1, o.width / 16); x++)
+              exits.add(
+                `${Math.floor(o.x / 16) + x},${Math.floor(o.y / 16) + y}`,
+              );
+    return [
+      id,
+      {
+        W: map.width,
+        H: map.height,
+        col: map.layers.find((l) => l.name === "collision").data,
+        exits,
+      },
+    ];
+  }),
 );
-const W = map.width,
-  H = map.height;
-const col = map.layers.find((l) => l.name === "collision").data;
-const blockedT = (x, y) =>
-  x < 0 || y < 0 || x >= W || y >= H || col[y * W + x] !== 0;
-const EXITS = new Set(["6,5"]);
-export const isWalk = (x, y) => !blockedT(x, y) && !EXITS.has(`${x},${y}`);
+/** The map the bot is on. `walkTo` sets it from the game before it plans. */
+let here = "farm";
+export const setMap = (id) => {
+  here = id;
+};
+const blockedT = (x, y) => {
+  const { W, H, col } = MAPS[here];
+  return x < 0 || y < 0 || x >= W || y >= H || col[y * W + x] !== 0;
+};
+export const isWalk = (x, y) =>
+  !blockedT(x, y) && !MAPS[here].exits.has(`${x},${y}`);
 const cx = (tx) => tx * 16 + 8;
 const cy = (ty) => ty * 16 + 11;
 
@@ -221,7 +248,7 @@ export class Bot {
   async walkTo(tx, ty) {
     for (let attempt = 0; attempt < 4; attempt++) {
       const d = await this.dbg();
-      if (d.map !== "farm") throw new Error("not on farm map: " + d.map);
+      here = d.map;
       const path = this.bfs(d.tile, { x: tx, y: ty });
       if (!path)
         throw new Error(`no path ${JSON.stringify(d.tile)} -> ${tx},${ty}`);

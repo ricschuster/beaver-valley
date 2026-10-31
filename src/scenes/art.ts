@@ -137,6 +137,15 @@ const TILE_PAINTERS: ((c: Ctx, ox: number) => void)[] = [
     px(c, "#f4f0f8", ox + 2, 1, SIZE - 4, 4);
     px(c, "#d8d0e0", ox + 2, 4, SIZE - 4, 1);
   },
+  // scroll, on a wall: a rolled sheet with ribbon ends
+  (c, ox) => {
+    px(c, "#8d7b6a", ox, 0, SIZE, SIZE);
+    px(c, "#f0e6c8", ox + 3, 3, SIZE - 6, SIZE - 6);
+    px(c, "#d8c9a0", ox + 3, 3, SIZE - 6, 1);
+    px(c, "#d8c9a0", ox + 3, SIZE - 4, SIZE - 6, 1);
+    px(c, "#a0482e", ox + 5, 6, SIZE - 10, 1);
+    px(c, "#a0482e", ox + 5, 9, SIZE - 10, 1);
+  },
 ];
 
 export function paintTiles(scene: Phaser.Scene, key: string): void {

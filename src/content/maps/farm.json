@@ -10,7 +10,7 @@
   "tilewidth": 16,
   "tileheight": 16,
   "nextlayerid": 7,
-  "nextobjectid": 101,
+  "nextobjectid": 100,
   "properties": [{ "name": "placeholder", "type": "bool", "value": true }],
   "layers": [
     {
@@ -186,7 +186,7 @@
         0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1,
         1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1,
+        0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1,
         1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
         1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1,
@@ -319,36 +319,35 @@
         },
         {
           "id": 4,
-          "name": "hall",
-          "class": "service",
-          "type": "service",
+          "name": "from_hall",
+          "class": "entry",
+          "type": "entry",
           "x": 104,
-          "y": 360,
-          "width": 0,
-          "height": 0,
-          "point": true,
-          "rotation": 0,
-          "visible": true,
-          "properties": [{ "name": "kind", "type": "string", "value": "hall" }]
-        },
-        {
-          "id": 100,
-          "name": "festival",
-          "class": "service",
-          "type": "service",
-          "x": 200,
           "y": 344,
           "width": 0,
           "height": 0,
           "point": true,
           "rotation": 0,
-          "visible": true,
-          "properties": [
-            { "name": "kind", "type": "string", "value": "festival" }
-          ]
+          "visible": true
         },
         {
           "id": 5,
+          "name": "hall",
+          "class": "exit",
+          "type": "exit",
+          "x": 96,
+          "y": 352,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            { "name": "map", "type": "string", "value": "hall" },
+            { "name": "entry", "type": "string", "value": "door" }
+          ]
+        },
+        {
+          "id": 6,
           "name": "shop",
           "class": "service",
           "type": "service",
@@ -362,7 +361,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "shop" }]
         },
         {
-          "id": 6,
+          "id": 7,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -375,7 +374,7 @@
           "visible": true
         },
         {
-          "id": 7,
+          "id": 8,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -388,7 +387,7 @@
           "visible": true
         },
         {
-          "id": 8,
+          "id": 9,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -401,7 +400,7 @@
           "visible": true
         },
         {
-          "id": 9,
+          "id": 10,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -414,7 +413,7 @@
           "visible": true
         },
         {
-          "id": 10,
+          "id": 11,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -427,7 +426,7 @@
           "visible": true
         },
         {
-          "id": 11,
+          "id": 12,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -440,7 +439,7 @@
           "visible": true
         },
         {
-          "id": 12,
+          "id": 13,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -453,7 +452,7 @@
           "visible": true
         },
         {
-          "id": 13,
+          "id": 14,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -466,7 +465,7 @@
           "visible": true
         },
         {
-          "id": 14,
+          "id": 15,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -479,7 +478,7 @@
           "visible": true
         },
         {
-          "id": 15,
+          "id": 16,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -492,7 +491,7 @@
           "visible": true
         },
         {
-          "id": 16,
+          "id": 17,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -505,7 +504,7 @@
           "visible": true
         },
         {
-          "id": 17,
+          "id": 18,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -518,7 +517,7 @@
           "visible": true
         },
         {
-          "id": 18,
+          "id": 19,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -531,7 +530,7 @@
           "visible": true
         },
         {
-          "id": 19,
+          "id": 20,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -552,10 +551,10 @@
       "name": "placeholder",
       "tilewidth": 16,
       "tileheight": 16,
-      "tilecount": 10,
+      "tilecount": 11,
       "columns": 10,
       "image": "placeholder-tiles.png",
-      "imagewidth": 160,
+      "imagewidth": 176,
       "imageheight": 16
     }
   ]
