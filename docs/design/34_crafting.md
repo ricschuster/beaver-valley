@@ -103,8 +103,8 @@ decoration and wait. Torches are what the mines need (`22_mines.md`, bundle
 | Seasonal wild seeds (stand-in for mixed seeds) | Forage items (`29_weeds.md`) | Foraging level 1 | 1 |
 | Fiber seeds | 1 wild seeds, 5 sap, 1 clay | A farm shop (ours) | Later |
 
-The sprinkler add-ons (nozzle and enricher) are in `31_farm_growth.md` and their
-costs are in the tuning note. The scarecrow is not here: we have no crows.
+The sprinkler add-ons (nozzle and enricher) are out for now, since Stardew's
+source is not ours (`31_farm_growth.md`). The scarecrow is not here: we have no crows.
 
 ### Machines
 

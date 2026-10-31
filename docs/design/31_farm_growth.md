@@ -14,10 +14,9 @@ read only (ADR 0002). Costs and recipes are placeholders until the tuning note.
   the 24 around it. Unlocked by farming level, around levels 2, 6 and 9, and
   crafted from our smelted bars (`22_mines.md`). Exact recipes go in
   `07_tuning_numbers.md`.
-- Two upgrade add-ons are in, as in Stardew: a nozzle that widens a sprinkler's
-  reach, and an enricher that is loaded with fertilizer and applies it to
-  seeds planted nearby. One add-on per sprinkler. Picking a sprinkler up gives the
-  add-on back as an item (saved Sprinkler page, corrected 2026-10-31).
+- The two upgrade add-ons (a nozzle that widens reach, and an enricher loaded
+  with fertilizer) are out for now. Stardew has no craft recipe for them and we
+  have no Qi-style source (`07_tuning_numbers.md`, decided 2026-10-31).
 - A sprinkler waters tilled tiles only, every morning. It does not work on
   sand, which only matters if a sandy farm is ever added (`30_farm_types.md`).
 - Rain waters everything already, as now. Sprinklers matter on dry days.
@@ -118,6 +117,6 @@ part that is pure loss. Everything else is a reward the player chooses.
 
 - Settled 2026-10-31 in `07_tuning_numbers.md`: sprinkler and fertilizer prices,
   the shop rule for fertilizer, sapling prices, the fruit table, the cave mark
-  and fruit bat chances. Still open: the add-on source and currency, and what
-  the mushroom cave gives in place of Stardew's free dehydrator.
+  and fruit bat chances. Add-ons wait for a source. Still open: what the mushroom
+  cave gives in place of Stardew's free dehydrator.
 - Sap and fiber drops are settled in `36_gathering_trees_sap_fiber.md`.
