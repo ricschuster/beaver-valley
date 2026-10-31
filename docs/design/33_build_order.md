@@ -32,6 +32,16 @@ on its own.
 4. **Design before build still holds.** Each slice lists the design notes it
    waits on. A slice does not start until they exist.
 
+## Before slice 1: the M2 house work
+
+Decided 2026-10-31. M2 still holds house tier 1 (`41_house.md`): the interior
+map with the tier 1 sealed earth (#280), then the carpenter and the 10,000g
+upgrade (#281). It is M2 work, so it comes before slice 1 and does not wait on
+any slice 1 system. The new kitchen has nothing to cook with until slice 4, so
+it reads as waiting until then. The furniture catalogue waits on this tier
+(`10_customisation.md`), so the furniture in slice 1 build 8 can start with
+random carpenter stock and add the catalogue once tier 1 exists.
+
 ## The slices
 
 ### Slice 1: year one on the farm
@@ -127,6 +137,10 @@ Builds: the coop and barn and the care loop (`23_animals.md`), the machines
 that animals feed (cheese press, loom, mayonnaise machine), cooking and the
 kitchen, the dye vat, and friendship with gifts and the recipe mail
 (`24_processing_and_cooking.md`).
+
+Also here: house tiers 2 and 3 (#286), since the spouse room and nursery have
+nothing to hold until friendship exists. The cellar (#282) waits for casks,
+which are unscheduled (`24_processing_and_cooking.md`).
 
 Design still needed first: **friendship and gift tastes**, which have no
 mechanics yet. Also the bundle pools for 22 to 26 and the inn kitchen's stock.
