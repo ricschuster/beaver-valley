@@ -40,11 +40,12 @@ Each had a Stardew option.
    achievement's hat (`38_achievements.md`), a short scene at the hall, and a
    keepsake as furniture. No gameplay power. This is ring 1's reward.
 4. **Each ring has its own total, plus a valley total.** Ring 1's total is a
-   full 100 on its own. Ring 2 (M4) and ring 3 (M5, optional and late) each get
-   their own 100 and their own reward when they exist. A player who never leaves
+   full 100 on its own. Ring 2 (M4) gets its own 100 and its own reward when it
+   exists. Ring 3 is unknown (M5, optional, and it may not happen at the scale
+   of rings 1 and 2), so it gets a total only if it is built. A player who never leaves
    ring 1 can still finish something. Stardew's single total needs its late
-   region for the last 5 percent, which would make our optional ring 3 a
-   requirement for 100.
+   region for the last 5 percent, which would make ring 2 a requirement for
+   100.
 
 ## Ring 1 categories
 
@@ -68,17 +69,21 @@ progress, so half the recipes cooked is 5 of cooking's 10. Stardew's page shows
 a decimal example (80.6 shown as 80), which suggests progress counts in part,
 but it does not spell the rule out. Confirm in play.
 
-## Rings 2 and 3
+## Ring 2 and ring 3
 
-- **Own totals.** Each later ring gets its own 100, built from what that ring
-  adds: its own collectible, its own fish or finds, its own bundles if it has a
+Ring 2 is our counterpart of Stardew's Ginger Island (owner, 2026-10-31).
+Ring 3 is unknown, and it may not exist at the scale of rings 1 and 2.
+
+- **Own totals.** Ring 2 gets its own 100, built from what it adds: its own collectible, its own fish or finds, its own bundles if it has a
   centre (`03_milestones.md`, centre 2 and centre 3). Categories and weights are
   set in each ring's design, not here.
-- **Own reward.** Each ring's 100 gives its own hat and keepsake, in that
-  ring's style. Not designed.
-- **Stardew's late region.** Our system review maps Ginger Island to ring 3
-  (`25_stardew_system_review.md`), so the nearest counterpart to its golden
-  walnut category belongs in ring 3, and ring 2 needs a collectible of its own.
+- **Own reward.** Ring 2's 100 gives its own hat and keepsake, in its own
+  style. Not designed.
+- **Stardew's late region.** Ring 2 is the counterpart of Ginger Island, so
+  Stardew's golden walnut category (5 percent) is the model for a ring 2
+  collectible. Its count and look are set in the ring 2 design (#20).
+- **Ring 3.** It gets a total only if it is built, with its own categories. The
+  valley total counts the rings that exist, so an unbuilt ring costs nothing.
 - **Shared categories.** Skills, cooking, crafting and friends are ring 1's.
   A ring that adds recipes or items adds them to its own total, not to ring 1's,
   so finishing ring 1 stays finished.
@@ -126,8 +131,8 @@ but it does not spell the rule out. Confirm in play.
 
 - The count and sources of the rare boost items.
 - The slayer list's length, from the mines' design.
-- Ring 2's and ring 3's categories, weights, collectibles and rewards, in their
-  own designs.
+- Ring 2's categories, weights, collectible and reward, in the ring 2 design
+  (#20). Ring 3's only if it is built.
 - Whether partial progress counts, as proposed, or only whole items.
 - The scene's script and the keepsake's design.
 

@@ -158,7 +158,7 @@ is built. The collection and the request board were settled on 2026-10-31 (see
 | Complete 40 Help Wanted requests | Forty requests. Hat: Hen Mask, 2,000g. Mail gift 2,500g | The request board |
 | Read every book | Every book in the library | Power-up books, and the library's stock |
 | See a movie | A festival show or similar | No cinema. A counterpart is a design call |
-| Reach Ginger Island | Reach ring 3's late region, as the system review maps it. Hat: Folded Paper Cap | Ring 3 (M5, optional) |
+| Reach Ginger Island | Reach ring 2. Hat: Folded Paper Cap | Ring 2 (M4) |
 | Delight the Governor | A ring 2 visitor | Ring 2 |
 | Help the forest neighbours grow | A forest family goal | No such family yet |
 | Find every stardrop | Find every rare boost item. Hat: Star Seed Circlet | No stardrop item exists |
