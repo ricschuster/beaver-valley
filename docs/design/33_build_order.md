@@ -37,7 +37,8 @@ on its own.
 ### Slice 1: year one on the farm
 
 Rooms finished: the Foragers' Shelf, and the crop half of the Larder (bundles
-7 to 10).
+7 to 10). Bundles 19 and 20 of the Hearth can also be filled (see below), but
+the room's reward waits for slice 4.
 
 Builds:
 
@@ -50,13 +51,21 @@ Builds:
 4. Fall and winter: crops, forage, nightfall, weather, snow and thunderstorms
    (`26_seasons.md`, #61).
 5. The greenhouse, fruit trees and the farm cave (`31_farm_growth.md`).
-6. The crafting list and the machines the farm alone can feed: seed maker,
-   charcoal kiln, preserves jar, keg, bee house (`24_processing_and_cooking.md`).
-7. The hat parade, hats and a first set of furniture, with a festival per
+6. The mines, first part (decided 2026-10-31, as in Stardew): floors 1 to 10 with
+   no creatures, the lift, copper, the opening day on spring day 5, the smith
+   dwarf's ore shop and the furnace gift (mines build slices 1 and 2 in
+   `22_mines.md`). This is the bar supply that sprinklers, the keg and the bee
+   house need. Iron and gold ore come from her shop until slice 3 adds deeper
+   floors.
+7. The crafting list and the machines the farm alone can feed: seed maker,
+   charcoal kiln, preserves jar, keg, bee house (`24_processing_and_cooking.md`,
+   `34_crafting.md`).
+8. The hat parade, hats and a first set of furniture, with a festival per
    season as content once the first works (`13_m3_scope.md`, `14`).
-8. Farm types: Standard and Woodland (`32_farm_types.md`).
+9. Farm types: Standard and Woodland (`32_farm_types.md`).
 
-Bundles that can be filled: 1 to 10. Bundle 12 (Artisan Goods) works if its
+Bundles that can be filled: 1 to 10, plus 19 (Smith's, from smelted bars) and
+20 (Lamplighter's, torches and lamp-posts from storm battery packs). Bundle 12 (Artisan Goods) works if its
 pool of six is drawn from slice 1 machines (jam, pickles, wine, juice, honey,
 seeds). Bundle 11 waits for animals.
 
@@ -68,7 +77,9 @@ Winter is thin in this slice: forage, the greenhouse, machines and a festival
 carry it. That is accepted, since slices 2 to 4 fill it.
 
 Cuts, in this order, if the slice runs long: farm types beyond Standard, the
-farm cave, fruit trees, furniture count, extra festivals.
+farm cave, fruit trees, furniture count, extra festivals, and last the mine
+scene (fall back to the ore shop and furnace alone, with the rockfall staying
+until slice 3).
 
 ### Slice 2: fishing and the Water room
 
@@ -85,16 +96,16 @@ slice 3). It gives a placeholder reward until then.
 Design still needed first: nothing blocks. The water plants, trash items and the
 recycler's odds (`21_fishing.md`) are numbers and can be settled in the slice.
 
-### Slice 3: the mines and the Hearth
+### Slice 3: the mines proper
 
-Rooms finished: the Hearth in part (bundles 19 and 20). Bundle 21, Weaver's,
-needs cloth, which needs wool and so animals. The Hearth room reward, the carts,
-therefore arrives in slice 4.
+Rooms finished: none. Bundles 19 and 20 are already fillable from slice 1.
+Bundle 21, Weaver's, needs cloth, which needs wool and so animals. The Hearth
+room reward, the carts, therefore arrives in slice 4.
 
-Builds the mines slices 1 to 3 in `22_mines.md`: floors 1 to 10 and the lift,
-the smith dwarf and bars, then health, starter weapons and the first creatures.
-The rest of the mines (more bands, the combat skill, dangerous mode) is
-unscheduled until this slice is played.
+Builds the rest of the mines from `22_mines.md`, from build slice 3: health,
+starter weapons, the trainer, the first creatures, then the deeper bands, the
+other creatures, the combat skill and the rest camps. Dangerous mode and the
+special floors are unscheduled until this slice is played.
 
 Design still needed first: **the equipment slot** for rings and boots, which
 bundles 16 and 28 and the mines' own drops lean on. Rings and Footwear are
@@ -130,9 +141,9 @@ Ring 2 is M4 (`03_milestones.md`) and not part of these slices.
 
 | Slice | Left for later |
 | --- | --- |
-| 1 | Animals, fishing, mines, cooking, a kitchen |
-| 2 | Mines, animals, cooking |
-| 3 | Animals, cooking, the rest of the mines |
+| 1 | Animals, fishing, creatures and combat, cooking, a kitchen |
+| 2 | Combat, animals, cooking |
+| 3 | Animals, cooking, the deepest mines |
 | 4 | The deepest mines, the cask, a second year of content |
 | 5 | Ring 2 and the regions |
 
@@ -159,9 +170,6 @@ item.
   The first slice then needs only a "year one complete" report, not an ending.
   This is a proposal, not settled.
 - Whether slice 1 is too large with four seasons. The first item is the check.
-- **Bars in slice 1.** Sprinklers, the keg and the bee house need copper and
-  iron bars, and the mines are slice 3 (`34_crafting.md`). The smith dwarf's
-  ore shop and furnace gift may need to move into slice 1.
 - Where the completion tracker (#196) and the mines' later bands sit. Both are
   unscheduled until slice 3 is played.
 - The order of the four design notes still needed (the crafting list, the

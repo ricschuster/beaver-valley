@@ -439,6 +439,10 @@ activity"). A first check, to test in a playtest:
 
 ## Build slices (when the time comes)
 
+Slices 1 and 2 below are built in build slice 1 of the whole game, with year
+one on the farm, so sprinklers and machines have bars (`33_build_order.md`,
+settled 2026-10-31). Slices 3 onward wait for build slice 3.
+
 1. The mine scene with floors 1 to 10: rocks, ladders with dry-streak odds,
    copper, the lift, the opening day, and rocks on the farm. No creatures.
 2. The smith dwarf's ore shop, the furnace gift, bars, and the Smith's bundle

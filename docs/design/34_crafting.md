@@ -149,8 +149,7 @@ These must exist before the recipes above can be built.
 
 - **Fiber and sap**, settled in `31_farm_growth.md` and `29_weeds.md`.
 - **Wood, stone, coal, copper and iron bars:** wood and stone exist. Coal and
-  bars come from `22_mines.md`, so slice 1 needs the charcoal kiln and the
-  smith's ore shop early. See Open.
+  bars come from `22_mines.md` (the first part of the mines is in slice 1).
 - **Hardwood**, from large stumps (`32_farm_types.md`).
 - **Clay**, from digging. It has no source yet.
 - **Moss**, a forage and mine drop.
@@ -165,10 +164,10 @@ These must exist before the recipes above can be built.
   here, since the Lightning page is not saved) and whether a rod fills up or
   gives one pack per storm. Stardew also gives packs through a solar panel,
   which we leave out.
-- **Slice 1 needs bars.** Sprinklers (copper and iron), the keg and the bee house
-  need bars. The mines are slice 3. The smith dwarf's ore shop and furnace gift
-  (`22_mines.md`) must therefore come with slice 1, or these recipes move later.
-  This changes `33_build_order.md` once settled.
+- **Bars in slice 1 (settled 2026-10-31).** The first part of the mines moves into
+  slice 1, as in Stardew (`33_build_order.md`), so copper bars come from floors
+  1 to 10 and the furnace. Iron and gold ore come from the smith dwarf's shop
+  until the deeper floors in slice 3.
 - **Clay and quartz** need a source in slice 1. Clay by digging with the hoe is
   the likely route.
 - Where the carpenter's shop sells the stone chest, stepping stone path and
