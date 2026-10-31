@@ -15,9 +15,9 @@ Reference: the Stardew Valley Wiki Shipping page, read only (ADR 0002).
 - **Shipping an item.** Walk up and use the bin. The menu shows the inventory
   grid with the bin beside it, as in Stardew. The player taps or drags a stack
   into the bin. This replaces the earlier plan to reuse the shop sell list.
-  How many move per tap or hold (one, half, all) is open, and must still
-  follow the main action first, second button next rule in
-  `08_playtest_personas.md`.
+  A tap or drag moves the whole stack, which is what Stardew does. A hold
+  moves one item (our addition, not checked against Stardew), so a single
+  item can be shipped on touch. Take-back covers a mis-tap.
 - **Take-back.** Anything shipped today can be taken out again until the player
   sleeps. The bin menu has two tabs, Ship and Shipped today. Tapping a line in
   the second tab takes it back, with Take back 1 and Take back all buttons. This is wider than Stardew, which returns only the last item. It
@@ -58,7 +58,4 @@ for the player who needs money now to buy seeds before planting.
 - **No bin-only or shop-only items.** Every item can go either route.
 - **Mini bin and extra bins: M4, optional.** They go with the farm note.
 
-## Open
-
-- Amounts per tap or hold when shipping from the grid (one, half, all), and
-  how that works on touch.
+No open items.
