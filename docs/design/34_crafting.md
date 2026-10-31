@@ -147,7 +147,8 @@ those notes. They use this same format and the same crafting tab.
 
 These must exist before the recipes above can be built.
 
-- **Fiber and sap**, settled in `31_farm_growth.md` and `29_weeds.md`.
+- **Fiber and sap**, settled in `36_gathering_trees_sap_fiber.md` (fiber from
+  weeds, sap from chopping common trees).
 - **Wood, stone, coal, copper and iron bars:** wood and stone exist. Coal and
   bars come from `22_mines.md` (the first part of the mines is in slice 1).
 - **Hardwood**, from large stumps (`32_farm_types.md`).

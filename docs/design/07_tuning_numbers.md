@@ -404,6 +404,18 @@ Differences found (the four above are now decided):
 - Not on these pages: the rain chance per season. Our 20 and 15 percent stay
   ours, and fall and snow chances are ours too (above).
 
+## Weeds, fiber, sap and common trees (2026-10-31)
+
+Full rules in `36_gathering_trees_sap_fiber.md`.
+
+- Fiber: 50 percent from a cut weed. Grass gives hay only (as Stardew).
+- Sap: 5 from chopping a mature tree, 1 from its stump (as Stardew).
+- Tree chop: 12 to 16 wood, 0 to 2 seeds. Stump: 4 to 9 wood. Young tree: 4.
+- Loose seed 5 percent a day, spread 15 percent a night within 3 tiles, off-farm
+  regrowth 20 percent a night (all as Stardew).
+- Ours, placeholder: 1 weed per 40 tillable tiles on day 1; weed spread 10
+  percent a night (rain 20, summer 15); tree growth 7 days a stage.
+
 ## Start options (decided 2026-10-31, not built)
 
 - Profit margin: a difficulty dial on sell prices, offered when starting a game.

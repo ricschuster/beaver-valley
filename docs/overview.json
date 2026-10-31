@@ -155,6 +155,11 @@
         },
         {
           "s": "decided",
+          "t": "Fiber comes from weeds only and sap from chopping common trees and stumps, both as in Stardew; weed rate and tree growth days are placeholders",
+          "ref": "36_gathering_trees_sap_fiber.md#Decisions"
+        },
+        {
+          "s": "decided",
           "t": "The first part of the mines (floors 1 to 10, ore shop, furnace, no creatures) is built in slice 1 so bars exist for sprinklers and machines",
           "ref": "33_build_order.md#Slice 1: year one on the farm"
         },
