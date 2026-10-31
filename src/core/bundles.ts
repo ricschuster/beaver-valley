@@ -68,6 +68,9 @@ export function normalizeBundle(raw: RawBundle): BundleDef {
 export const BUNDLES = (bundleData as RawBundle[]).map(normalizeBundle);
 export const ROOMS = roomData as RoomDef[];
 
+/** The room whose completion mends the bridge to ring 2. */
+export const LAST_ROOM = "last-seat";
+
 export type HandIn = "accepted" | "completed" | "rejected";
 
 /**
@@ -139,6 +142,16 @@ export class Hall {
   roomComplete(roomId: string): boolean {
     const inRoom = this.bundles.filter((b) => b.room === roomId);
     return inRoom.length > 0 && inRoom.every((b) => this.complete(b.id));
+  }
+
+  /** Rooms with every bundle done, in room order. */
+  get completedRooms(): RoomDef[] {
+    return this.rooms.filter((r) => this.roomComplete(r.id));
+  }
+
+  /** True once the Last Seat is done: the bridge to ring 2 is mended. */
+  get bridgeMended(): boolean {
+    return this.roomComplete(LAST_ROOM);
   }
 
   /** Bundles in rooms that have appeared. */

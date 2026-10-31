@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   BUNDLES,
   Hall,
+  LAST_ROOM,
   ROOMS,
   normalizeBundle,
   rewardText,
@@ -311,5 +312,39 @@ describe("saves", () => {
     );
     expect(hall.have("t", "parsnip")).toBe(3);
     expect(hall.complete("t")).toBe(true);
+  });
+});
+
+describe("rooms and the bridge", () => {
+  it("lists all six rooms, with the Last Seat last and opening at 20", () => {
+    expect(ROOMS.map((r) => r.id)).toEqual([
+      "foragers-shelf",
+      "larder",
+      "water-room",
+      "hearth",
+      "guests-board",
+      "last-seat",
+    ]);
+    expect(ROOMS.map((r) => r.opensAfter)).toEqual([0, 1, 1, 2, 3, 20]);
+    expect(ROOMS.every((r) => r.unlock)).toBe(true);
+  });
+
+  it("reports finished rooms and mends the bridge with the Last Seat", () => {
+    const mk = (id: string, room: string) =>
+      normalizeBundle({
+        id,
+        name: id,
+        room,
+        hint: "h",
+        items: ["leek"],
+        reward: {},
+      });
+    const bundles = [mk("f1", "foragers-shelf"), mk("l1", LAST_ROOM)];
+    const rooms = ROOMS.map((r) => ({ ...r, opensAfter: 0 }));
+    const hall = new Hall(bundles, { f1: ["leek"] }, rooms);
+    expect(hall.completedRooms.map((r) => r.id)).toEqual(["foragers-shelf"]);
+    expect(hall.bridgeMended).toBe(false);
+    const done = new Hall(bundles, { f1: ["leek"], l1: ["leek"] }, rooms);
+    expect(done.bridgeMended).toBe(true);
   });
 });
