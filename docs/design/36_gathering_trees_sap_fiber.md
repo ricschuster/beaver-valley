@@ -37,9 +37,9 @@ Facts from the saved Trees page. Amounts are Stardew's unless marked ours.
 | Seed in the ground (stage 1) | An axe, hoe or pickaxe lifts it back to a seed (foraging level 1). |
 | Loose seed | A mature tree has 5 percent a day of holding one. Shaking the tree drops it. |
 | Spread on the farm | A mature tree has 15 percent a night to plant one seed on a random tile within 3 tiles, if that tile is empty. Trees never destroy paths or crops. |
-| Growth | Four stages to maturity, no watering, no clear ground needed. Stage length is not in the saved page. Ours: 7 days a stage, 28 days total, matching fruit trees. |
+| Growth | Four stages to maturity, no watering, no clear ground needed. Each night a seedling has a 20 percent chance to reach the next stage, and stage 4 takes twice as long. Median 24 days, 90 percent mature by day 38. No growth in winter. A seedling stops at stage 4 with a mature tree on any of its 8 neighbours. |
 | Regrowth off the farm | A tree chopped in the valley, with its stump removed, has 20 percent a night to return as a stage 3 seedling, even in winter. A kept stump never regrows. |
-| Tree fertilizer | Ours: 5 fiber, 5 stone, foraging level 7 (`34_crafting.md`). Its effect is open until trees are built. |
+| Tree fertilizer | Ours: 5 fiber, 5 stone, foraging level 7 (`34_crafting.md`). One stage a night, 5 days in total, and it works in winter. |
 
 - Trees fall left or right away from the player and drop items in that
   direction. On a tablet, tap-to-act chops from the tile the player stands on
@@ -96,7 +96,7 @@ Slice 1 asks for these amounts.
   farm map and valley layout need a pass (`05_farm_map_placeholder.md`,
   `19_valley_layout.md`).
 - The sawmill and the Lumberjack and Tapper professions wait for a later note.
-- Whether a stage length of 7 days suits a tablet session length.
+- Whether random tree growth (median 24 days) suits a tablet player. A fixed 24 days is the fallback.
 
 ## Not taken from Stardew
 
