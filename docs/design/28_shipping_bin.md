@@ -48,8 +48,14 @@ for the player who needs money now to buy seeds before planting.
   save.
 - Shipped counts per item feed a later collection page (not designed here).
 
+## Settled 2026-10-31 (open items)
+
+- **Collection page and achievements: M3.** The bin already saves shipped
+  counts per item, so the page can read them when it is built.
+- **No bin-only or shop-only items.** Every item can go either route.
+- **Mini bin and extra bins: M4, optional.** They go with the farm note.
+
 ## Open
 
-- Whether the shipped-item collection and any achievements belong in M3.
-- Whether bin-only or shop-only items are ever needed.
-- Mini bin and extra bins, with the farm note.
+- The touch layout of the bin menu: how items are picked, and where take-back
+  sits.
