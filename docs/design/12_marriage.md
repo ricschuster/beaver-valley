@@ -141,6 +141,5 @@ Settled with the owner, closing issue #137.
   notes.
 - The fee amount for divorce, and the size of the spouse's helps (placeholder
   numbers in `07_tuning_numbers.md` when built).
-- The house upgrade that adds the child's room, and what the child does day to
-  day.
+- What the child does day to day. The nursery is house tier 2 (`41_house.md`).
 - The look of the wedding scene and festival (art pass, #58).

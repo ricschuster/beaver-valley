@@ -216,8 +216,8 @@ Not hobbits. An invented small, homely people. Working traits:
   decoration. This works with the M3 plan of hats shown in a portrait only
   (`13_m3_scope.md`).
 - Avoid anything specific to hobbits: hairy feet, pipe-weed, second breakfast.
-  Hillside burrows are allowed for the player's home only (decided 2026-10-31,
-  `41_house.md`).
+  Hillside burrows are allowed: every Brimmer home is a burrow (decided
+  2026-10-31, `41_house.md`).
 - They are called Brimmers (from the brim of a hat).
 - Type (decided 2026-10-27): in plain words the Brimmers are halflings, in the
   way that other peoples are elves or dwarves (see Other peoples). Brimmers
