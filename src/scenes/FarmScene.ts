@@ -25,7 +25,7 @@ import { Controls } from "./controls";
 import { browserStore } from "./storage";
 import { saveGame } from "../core/save";
 import { SELECTED_KEY, STATE_KEY } from "./state";
-import { cropKey, forageKey, stageOf } from "./art";
+import { cropKey, forageKey, soilKey, stageOf } from "./art";
 import { Hud } from "./hud";
 import {
   makePlaceholderTextures,
@@ -365,7 +365,7 @@ export class FarmScene extends Phaser.Scene {
 
   /** Draw plots, crops and forage on the tiles. */
   private drawGround(): void {
-    const g = this.ground.clear();
+    this.ground.clear();
     this.sprites.removeAll(true);
     if (!this.map.hasSoil) return;
     const ts = this.map.tileSize;
@@ -375,12 +375,7 @@ export class FarmScene extends Phaser.Scene {
       this.sprites.add(image);
     };
     for (const { x, y, plot } of this.state.farm.each()) {
-      g.fillStyle(plot.wateredToday ? 0x4a3420 : 0x9a7a4c).fillRect(
-        x * ts + 1,
-        y * ts + 1,
-        ts - 2,
-        ts - 2,
-      );
+      put(x, y, soilKey(plot.wateredToday));
       const crop = plot.crop;
       const def = crop && cropById(crop.id);
       if (!crop || !def) continue;

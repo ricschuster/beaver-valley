@@ -12,7 +12,9 @@ content licence in `LICENSE-CONTENT.md` (CC BY-NC 4.0). The one exception is the
 | Crop growth stages and seed packets        | `src/scenes/art.ts`          | CC BY-NC 4.0    |
 | Forage pictures                            | `src/scenes/art.ts`          | CC BY-NC 4.0    |
 | Tool icons                                 | `src/scenes/art.ts`          | CC BY-NC 4.0    |
-| UI frames and buttons                      | Plain shapes in scenes       | CC BY-NC 4.0    |
+| Tilled and watered soil                    | `src/scenes/art.ts`          | CC BY-NC 4.0    |
+| Menu screen frame                          | `src/scenes/art.ts`          | CC BY-NC 4.0    |
+| UI buttons and toolbar slots               | Plain shapes in scenes       | CC BY-NC 4.0    |
 | Witch test drawing (not used in game yet)  | `art-source/`, `public/art/` | CC BY-NC 4.0    |
 | Fonts                                      | The browser's monospace      | Not shipped     |
 | Audio                                      | None                         | None            |

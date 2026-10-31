@@ -159,6 +159,61 @@ export function paintTiles(scene: Phaser.Scene, key: string): void {
   tiles.refresh();
 }
 
+// ---- tilled soil, drawn over the soil tile
+
+export const soilKey = (wet: boolean) => (wet ? "soil-wet" : "soil-dry");
+
+function paintSoil(scene: Phaser.Scene, wet: boolean): void {
+  const t = scene.textures.createCanvas(soilKey(wet), SIZE, SIZE)!;
+  const c = t.getContext();
+  const [base, furrow, ridge, dot] = wet
+    ? ["#4e3722", "#3c2a19", "#5c4128", "#6a4d31"]
+    : ["#9a7a4c", "#7f6339", "#ad8d5c", "#b89868"];
+  px(c, base, 0, 0, SIZE, SIZE);
+  for (const y of [3, 8, 13]) {
+    px(c, furrow, 1, y, SIZE - 2, 1);
+    px(c, ridge, 1, y - 1, SIZE - 2, 1);
+  }
+  speckle(c, 0, wet ? 53 : 47, [dot, furrow], 10);
+  // a darker edge so neighbouring plots read as separate beds
+  px(c, furrow, 0, 0, SIZE, 1);
+  px(c, furrow, 0, SIZE - 1, SIZE, 1);
+  px(c, furrow, 0, 0, 1, SIZE);
+  px(c, furrow, SIZE - 1, 0, 1, SIZE);
+  t.refresh();
+}
+
+// ---- the frame menu screens and the toolbar sit in
+
+export const UI_FRAME_KEY = "ui-frame";
+/** Width of the frame's border in the texture, for a nine slice. */
+export const UI_FRAME_EDGE = 8;
+
+function paintUiFrame(scene: Phaser.Scene): void {
+  const size = UI_FRAME_EDGE * 2 + 8;
+  const t = scene.textures.createCanvas(UI_FRAME_KEY, size, size)!;
+  const c = t.getContext();
+  px(c, "#5a3d1e", 0, 0, size, size); // wood rim
+  px(c, "#8a5c2a", 1, 1, size - 2, size - 2);
+  px(c, "#a8733a", 2, 2, size - 4, 1); // light edge on top and left
+  px(c, "#a8733a", 2, 2, 1, size - 4);
+  px(c, "#6b4a24", 2, size - 3, size - 4, 1); // shade on bottom and right
+  px(c, "#6b4a24", size - 3, 2, 1, size - 4);
+  px(c, "#f0c75e", 3, 3, 1, 1); // a brass stud in each corner
+  px(c, "#f0c75e", size - 4, 3, 1, 1);
+  px(c, "#f0c75e", 3, size - 4, 1, 1);
+  px(c, "#f0c75e", size - 4, size - 4, 1, 1);
+  px(
+    c,
+    "#10201a",
+    UI_FRAME_EDGE,
+    UI_FRAME_EDGE,
+    size - UI_FRAME_EDGE * 2,
+    size - UI_FRAME_EDGE * 2,
+  );
+  t.refresh();
+}
+
 // ---- the player
 
 export function paintPlayer(scene: Phaser.Scene, key: string): void {
@@ -360,6 +415,9 @@ export function makeArt(
 ) {
   paintTiles(scene, tilesKey);
   paintPlayer(scene, playerKey);
+  paintSoil(scene, false);
+  paintSoil(scene, true);
+  paintUiFrame(scene);
   for (const c of CROPS) {
     paintCrop(scene, c.id);
     paintSeedIcon(scene, c.id);
