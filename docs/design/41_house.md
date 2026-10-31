@@ -138,9 +138,8 @@ idea of one connected space is copied.
 
 ## Open
 
-
 - Tier 2 floor plan and the cellar map (map tasks for M3). The tier 1 plan is
-  below.
+  above.
 - Where the catalogue is sold and what it costs (`10_customisation.md`).
 - The house build is in the tracker as #280 (interior map and tiers), #281
   (carpenter and upgrade flow), both M2 and limited to tier 1, with tiers 2 and
