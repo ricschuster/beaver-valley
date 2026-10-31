@@ -5,8 +5,8 @@ Stardew Valley Wiki Farm Maps page and the Guidebook supplement (printed pages
 12 and 13), done 2026-10-31. Both are reference only (ADR 0002); no text or
 tables are copied. The decisions themselves are in
 `25_stardew_system_review.md` ("Owner decisions, 2026-10-30"). The full farm
-types note (map data, rule changes, choice screen, fish tables) is still to be
-written after the farm growth pages are read.
+types note (map data, rule changes, choice screen, fish tables) is
+`32_farm_types.md`.
 
 ## Where the two sources agree and differ
 
@@ -38,8 +38,8 @@ written after the farm growth pages are read.
   river and forest tables. This settles the "which fish table each farm's water
   uses" item for the farm types note: a farm names a split of existing tables.
 - **Meadow.** Starts with a coop and two chickens, and gives hay in place of the
-  usual starter seeds. This still conflicts with `23_animals.md`, where the
-  carpenter builds the first coop. Open risk from the earlier handoff.
+  usual starter seeds. The conflict with `23_animals.md` is settled in
+  `32_farm_types.md`: Meadow gets the coop and chickens as an exception.
 - **Greenhouse.** Every wiki farm has a ruined building that becomes the
   greenhouse once repaired, and the house and greenhouse can be moved in 1.6.
   This is useful for the winter question in `26_seasons.md` and for our rule
