@@ -33,7 +33,7 @@ In:
 - Two short seasons with different crops and foraging goods.
 - Selling goods.
 - A small version of centre 1 (village hall) with a few bundles.
-- House upgrades: three paid tiers (`41_house.md`), added 2026-10-31.
+- House upgrade: the first paid tier (`41_house.md`), added 2026-10-31. Tiers 2 and 3 and the cellar are M3.
 - Rough placeholder art.
 
 Out (non-goals for now, see the project brief): regions, ring 3, combat,
@@ -74,8 +74,9 @@ The first playable is done when all of these are true:
    screen.
 8. The game can be saved and loaded between days.
 9. It runs with rough placeholder art and no audio requirement.
-10. The house can be upgraded three times at the carpenter, each tier opening
-    new rooms inside the same footprint (`41_house.md`).
+10. The house can be upgraded once at the carpenter, opening the kitchen and
+    double bedroom inside the same footprint (`41_house.md`). Tiers 2 and 3 and
+    the cellar are M3.
 
 A new idea during the build becomes an issue, not scope.
 
