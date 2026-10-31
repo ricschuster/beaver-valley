@@ -1,6 +1,7 @@
 # 38 Achievements and hats
 
-Status: decided 2026-10-31 for the list and the hat rewards. The completion
+Status: decided 2026-10-31 for the list and the hat rewards. The open items
+were settled the same day (see "Settled open items"). The completion
 total (the Perfection-style part of #196) is not here. It waits for a saved
 copy of Stardew's Perfection page.
 
@@ -69,18 +70,18 @@ Stardew's thresholds, unscaled. Check them against our income before build
 | Ship 15 of each crop | Every Furrow | Plaid Brim | 5,000g | Slice 1 |
 | Ship 300 of one crop | One Field | Tall Brim | 5,000g | Slice 1 |
 | Ship every item | Nothing Left | Imp Mask | 10,000g | Slice 1 |
-| Reach level 10 in a skill | One Trade | none | | Slice 1 |
-| Reach level 10 in every skill | All Trades | none | | Slice 3 |
+| Reach level 10 in a skill | One Trade | Craftsman's Cap | Set later | Slice 1 |
+| Reach level 10 in every skill | All Trades | Tower of Hats | Set later | Slice 3 |
 
-Stardew gives no hat for the two skill goals, so ours give none. A reward for
-them is open. Shipping every item needs the shipped-item collection that
+Stardew gives no hat for the two skill goals. Ours do (see "Settled open
+items"). Shipping every item needs the shipped-item collection that
 `28_shipping_bin.md` leaves open.
 
 ## Hall, house and festivals
 
 | Goal | Achievement | Reward | Earnable |
 | --- | --- | --- | --- |
-| Restore the village hall | Hall Restored | A trophy, as furniture | Slice 5 |
+| Restore the village hall | Hall Restored | A trophy as furniture, and the Hall Laurel hat | Slice 5 |
 | Upgrade the house | Roof Over | Thatch Pin, 1,000g | When the house upgrade is built |
 | Upgrade to the maximum size | Room to Spare | Fur-lined Hood, 5,000g | When the house upgrade is built |
 | First place at the Harvest Showing | First Rosette | Rosette Hat | Slice 1, once the judging is designed |
@@ -107,11 +108,11 @@ too.
 | Cook 10 recipes | Home Cook | Ribbon Pin | 1,000g | Slice 4 |
 | Cook 25 recipes | Kitchen Hand | Quince Beret | 2,000g | Slice 4 |
 | Cook every recipe | Full Table | Tall Toque | 4,000g | Slice 4 |
-| Marry and have two children | Full House | none | | Slice 4 |
+| Marry and have two children | Full House | Hearthside Cap | Set later | Slice 4 |
 
 We have 30 people, so 20 of them at 5 hearts is a large ask. Check it when the
 cast's candidates and gift tastes are set. Stardew gives no hat for the family
-goal, so a reward is open.
+goal. Ours does.
 
 ## Fishing
 
@@ -132,43 +133,70 @@ we have no counterpart to Stardew's rare fruit yet.
 
 | Goal | Achievement | Reward | Earnable |
 | --- | --- | --- | --- |
-| Reach the bottom of the mines | The Last Floor | A key or unlock, open | Slice 3 |
+| Reach the bottom of the mines | The Last Floor | Lantern Cap, and an unlock if the mines have one | Slice 3 |
 | Reach the bottom in dangerous mode | Down in the Dark | Ember Helm | Slice 3 |
 | Obtain the best weapon | Ash Crown | Crown hat | Slice 3 |
-| Finish every slayer goal | Valley's Guard | Open | Slice 3 |
-| Beat the arcade game | Cabinet Champion | An arcade cabinet, as furniture | When the minigame exists |
-| Beat it without dying (secret) | Clean Run | Open | When the minigame exists |
+| Finish every slayer goal | Valley's Guard | Warden's Cap | Slice 3 |
+| Beat the arcade game | Cabinet Champion | An arcade cabinet as furniture, and the Token Cap hat | When the minigame exists |
+| Beat it without dying (secret) | Clean Run | Steady Hand Cap | When the minigame exists |
 
 Stardew's bottom-of-the-mines reward is a key that opens a later area. Ours has
-no such area, so the reward is open. Our arcade game is a minigame in
+no such area, so the hat is the reward unless the mines design adds an unlock. Our arcade game is a minigame in
 `11_minigames.md`, not yet scheduled.
 
-## Needs a system we do not have
+## Counterparts that need a new system
 
-These are on the list by the owner's choice, and each stays locked until its
-system is designed.
+These are on the list by the owner's choice. Each stays locked until its system
+is built. The collection and the request board were settled on 2026-10-31 (see
+"Settled open items").
 
-| Stardew goal | Our counterpart | What is missing |
+| Stardew goal | Our counterpart | System needed |
 | --- | --- | --- |
-| Complete the museum collection | A collection hall's full set | A collection hall (the library has none) |
-| Donate 40 different items | The hall's donation count | The same collection hall |
-| Complete 10 Help Wanted requests | Ten errands | A request board or repeatable quests. Mail gift 500g |
-| Complete 40 Help Wanted requests | Forty errands | The same board. Mail gift 2,500g |
+| Complete the museum collection | Complete the gallery set. Hat: Wide Leather Hat, 10,000g | The library gallery |
+| Donate 40 different items | Donate 40 different finds. Hat: Linen Bonnet, 1,000g | The library gallery |
+| Complete 10 Help Wanted requests | Ten requests. Hat: Spotted Bow, 1,000g. Mail gift 500g | The request board |
+| Complete 40 Help Wanted requests | Forty requests. Hat: Hen Mask, 2,000g. Mail gift 2,500g | The request board |
 | Read every book | Every book in the library | Power-up books, and the library's stock |
 | See a movie | A festival show or similar | No cinema. A counterpart is a design call |
-| Reach Ginger Island | Reach ring 2 | Ring 2 (M4). Folded Paper Cap |
+| Reach Ginger Island | Reach ring 2. Hat: Folded Paper Cap | Ring 2 (M4) |
 | Delight the Governor | A ring 2 visitor | Ring 2 |
 | Help the forest neighbours grow | A forest family goal | No such family yet |
-| Find every stardrop | Find every rare boost item | No stardrop item exists |
+| Find every stardrop | Find every rare boost item. Hat: Star Seed Circlet | No stardrop item exists |
 | Reach the summit | The completion total | The next note, waiting on the Perfection page |
 
-Each of the Stardew achievements above also unlocks a hat, except the
-stardrop and Perfection ones. Ours get hat names when their systems are
-designed.
+Stardew's rival-company achievement has no counterpart and is left out (see
+"Settled open items"). Each of the Stardew achievements above also unlocks a
+hat. Names not given here are set when their systems are designed.
 
-One Stardew achievement has no counterpart and needs a decision from the owner:
-buying every project of the rival company (our hall has no rival route). It is
-left out until decided.
+## Settled open items
+
+Decided 2026-10-31, each with a Stardew option.
+
+- **A gallery in the library (Stardew's shape).** Stardew's museum is a gallery
+  and a library in one building, run by a curator, with milestone rewards at 5,
+  10 and so on up to its full set of 95 donations, and a one-copy-per-item rule.
+  Ours is the library's gallery, run by the librarian
+  (`20_ring1_cast.md`). Donated finds come from geodes and digging
+  (`22_mines.md`). The donation list, the milestone rewards and the gallery
+  interior are new design, and the surface artifact spots
+  `25_stardew_system_review.md` calls missing belong with it.
+- **A daily request board at the general store (Stardew).** Stardew posts a
+  random request most days outside the general store, with 2 days to finish it,
+  no penalty for skipping, and gold plus some friendship as pay. Its types
+  include gathering, slaying, fishing, item delivery and talking to someone.
+  Ours is the same shape in our content, and it counts toward the two errand
+  achievements. Reward sizes and the request types are new design.
+- **No rival route.** Stardew's rival-company achievement is left out. Our hall
+  has no rival, and a gold shortcut past the bundles would cut against the hall
+  as the spine of the game (`16_bundles.md`).
+- **A hat for every achievement.** Stardew gives no hat for the skill, family,
+  slayer, arcade no-death and stardrop goals. Ours do, so the rule is uniform:
+  One Trade is a Craftsman's Cap, All Trades a Tower of Hats, Full House a
+  Hearthside Cap, Valley's Guard a Warden's Cap, Clean Run a Steady Hand Cap.
+  Hat prices for these are set later.
+- **Money thresholds stay Stardew's.** 15,000g to 10,000,000g, as the saved page
+  lists them, and they are re-checked against our income at tuning
+  (`07_tuning_numbers.md`).
 
 ## Build notes
 
@@ -180,20 +208,20 @@ left out until decided.
   save field.
 - Save: store earned achievements and unlocked hats. Plan the version bump with
   the first slice that builds this (`10_customisation.md`).
+- The gallery and the request board are new systems for later slices, each
+  needing its own note before build.
 - Slice 1 builds the tracker, the collections page, the hatter's letter and the
   achievements marked Slice 1. The rest are listed greyed with no way to earn
   them until their slice.
 
 ## Open
 
-- A reward for the two skill goals and for the family goal, where Stardew gives
-  no hat.
-- Whether money thresholds should be scaled to our income.
-- The collection hall and what the library stocks.
-- A request board for the errand achievements.
-- The one achievement with no counterpart, the rival-company route.
 - The completion total and its weights, in a later note after the Perfection
   page is saved.
+- The gallery's donation list and rewards, and the request board's types and
+  pay.
+- Hat prices for the hats Stardew does not give.
+- Counterparts for the movie, Governor and forest-neighbour goals.
 
 Details of Stardew's own list come from the saved Achievements and Hats pages,
 read on 2026-10-31. The Hats page text was read only as far as its first
