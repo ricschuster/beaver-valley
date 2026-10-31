@@ -56,6 +56,8 @@ Every season needs its own crops, forage, fish and a festival slot
 - Rain and snow chances for fall and winter, and thunderstorms, are set
   (`07_tuning_numbers.md`, 2026-10-31). Storms are the source of battery packs
   (`34_crafting.md`) and are never harmful.
-- Whether the first year's last day ends the game, as the first playable ends
-  after its bundles, or the game goes on into a second year.
+- Settled 2026-10-31: year one's last day does not end the game and has no
+  year-end screen. Winter 28 rolls into spring of year 2, as in Stardew (from
+  memory, not checked on a saved page). The end screen comes only from
+  finishing the Last Seat (`33_build_order.md`).
 - Winter content for the mines and fishing, so the rest season is not empty.
