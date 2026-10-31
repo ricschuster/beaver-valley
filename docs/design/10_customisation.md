@@ -78,9 +78,8 @@ and Hats pages.
   seller is a mouse in the Abandoned House. Ours is a hatter's shop in
   Hearthwell run by the Hat-maker household already in `20_ring1_cast.md`
   (decided 2026-10-31), a shop-and-home interior like the others, because the
-  Brimmers are named for hats and Hearthwell had no such shop. This needs
-  the game-wide tracker (#196), which has no note yet, so the first hat list
-  cannot be written until the achievement list is. Stardew's prices run from
+  Brimmers are named for hats and Hearthwell had no such shop. The
+  achievement list is in `38_achievements.md` (#196). Stardew's prices run from
   1,000g to 25,000g.
 - **Hats show in the world sprite (Stardew).** The hat is drawn on the player
   on the map, not only in a portrait. This replaces the M3 decision in
@@ -110,9 +109,9 @@ once the first slice feels good.
 - The hatter's shop is not yet on the Hearthwell map, and the cast planner
   and `20_ring1_cast.md` now list it. The hat-makers' dialogue and the
   achievement letter are not written.
-- How hats are earned in slice 1 depends on the achievement list (#196). Until
-  that note exists there is no first hat list. Bundle 24's festival hats and
-  the Hat Parade prize feed it.
+- The first hat list is the achievement list in `38_achievements.md`. Hats for
+  achievements that need systems we lack get names when those are designed.
+  Bundle 24's festival hats and the Hat Parade prize are extra hats outside it.
 - How the standing readout works when the player can pick any hat they own. One
   option is that the Brimmers' dialogue and the parade react to standing, and
   the hat is only the look. This needs deciding with the friendship note.
