@@ -50,6 +50,20 @@ menu itself, so the scroll opening a menu is from memory.
    holes, cobwebs and bare walls; restored is warm, with furniture and rugs.
    The swap is the progress display (decision 3).
 
+7. **The main room is a hub with a progress plaque** (decided 2026-10-31).
+   Above the hearth on the back wall is a plaque with six marks, one lit per
+   finished room. It is read-only and gives progress at a glance without a
+   menu. Stardew's screenshot shows a plaque there, but what it does in
+   Stardew is not checked; this use is ours. The rest is decor with no
+   function. There is no hall keeper character (scope: no deep
+   relationships).
+8. **Floor plan follows Stardew's shape** (decided 2026-10-31). The entrance
+   is at the bottom centre of the main room. A corridor leaves the left and
+   right sides. The walled rooms hang off the corridors. The Water room tank
+   sits on the main room's back wall (right of the hearth) and the Guests'
+   Board on a corridor wall. This is a design of function and layout only; the
+   look is placeholder until #58.
+
 ## Proposed details
 
 - **A locked room is a blocked doorway** (rubble). Interacting with it shows
@@ -73,8 +87,8 @@ must walk to a scroll instead of opening a menu.
 
 ## Open
 
-- The main room's contents (hub furniture, where the entrance sits) are not
-  designed. The screenshots show a hearth on the back wall and a central rug.
+- Decor in the main room (seating, rug, shelves) is placeholder art and not
+  designed beyond the layout in decisions 7 and 8.
 - Art for ruined and restored rooms is placeholder until the art pass (#58).
 - The Pantry bundle fits no room. Drop it or reshape it into the Larder.
 - Whether a restored room shows each finished bundle as a visible item.
