@@ -58,8 +58,14 @@ Facts from the saved Trees page. Amounts are Stardew's unless marked ours.
 
 ## Weed numbers (placeholders, ours)
 
-- **Day 1 count:** about 1 weed per 40 tillable farm tiles, on day 1 of spring,
-  summer and fall. Winter day 1 clears them (`29_weeds.md`).
+- **Day 1 count:** a fixed 20 weeds on day 1 of spring, summer and fall, capped
+  by the free tillable tiles. Winter day 1 clears them (`29_weeds.md`). It is
+  a count, not a rate per tile, so a small tablet farm still gives enough fiber.
+  The placeholder farm has only 96 tillable tiles, and a per-tile rate would
+  give 2 weeds there. A bigger farm type can scale the count later.
+- **Source:** none found. The saved Weeds, Grass, Gold Clock and Modding Maps
+  pages and an online search give no Stardew count or spread chance (the game
+  code holds them). Both numbers are ours until a playtest sets them.
 - **Spread:** each weed has a 10 percent chance a night to spread to one free
   adjacent tillable tile. The chance is 20 percent on a rainy night and 15
   percent in summer. These are the three triggers Stardew names (day 1, rain
@@ -80,9 +86,9 @@ Slice 1 asks for these amounts.
 | Torch, per craft | 0 | 2 |
 | Speed fertilizer, bee house, keg | 0 | 1 each |
 
-- At 50 percent, 30 fiber is about 60 weeds. With a placeholder 1 weed per 40
-  tiles on day 1, the farm map needs enough tillable tiles to give that many
-  weeds across a season with spread. This is the main thing to check in play.
+- At 50 percent, 30 fiber is about 60 weeds. Day 1 gives 20 a season, so three
+  growing seasons give 60 before spread, about 30 fiber. Bundle 5 is then a
+  year's work without spread, and spread should shorten it. Check in play.
 - One chopped tree gives 5 sap, plus 1 from its stump, so 6 sap. That is 3
   basic fertilizers. A forest of regrowing trees makes sap steady, but only
   where the player walks, so basic fertilizer is no longer a farm-only chore.

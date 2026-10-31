@@ -413,8 +413,10 @@ Full rules in `36_gathering_trees_sap_fiber.md`.
 - Tree chop: 12 to 16 wood, 0 to 2 seeds. Stump: 4 to 9 wood. Young tree: 4.
 - Loose seed 5 percent a day, spread 15 percent a night within 3 tiles, off-farm
   regrowth 20 percent a night (all as Stardew).
-- Ours, placeholder: 1 weed per 40 tillable tiles on day 1; weed spread 10
-  percent a night (rain 20, summer 15); tree growth is Stardew's (20 percent a night per stage, stage 4 twice as long, none in winter, fertilizer 5 days).
+- Ours, placeholder: 20 weeds on day 1 of spring, summer and fall, capped by
+  free tillable tiles; weed spread 10 percent a night (rain 20, summer 15).
+- Tree growth is Stardew's: 20 percent a night per stage, stage 4 twice as
+  long, none in winter, fertilizer 5 days.
 
 ## Start options (decided 2026-10-31, not built)
 
