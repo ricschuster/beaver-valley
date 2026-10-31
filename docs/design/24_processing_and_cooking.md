@@ -207,7 +207,9 @@ skills and rings gives each of them a second use.
   is unchecked here. The rest of the reward pass is in `16_bundles.md`.
 - Our own items to stand in for Stardew's special craft ingredients.
 - The seed maker and fish smoker recipe sources, once the pages are saved.
-- Machine times and sell prices for `07_tuning_numbers.md`.
+- Machine times and sell prices are set for the jar, keg and bee house in
+  `07_tuning_numbers.md` (2026-10-31, Stardew's). The charcoal kiln and seed
+  maker times wait for their saved pages.
 - The inn kitchen's exact stock and prices.
 - The split of the 81 recipes between rings once the regions are designed.
 - The house upgrade price is Stardew's and may need tuning, since our economy

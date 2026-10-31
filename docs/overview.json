@@ -45,6 +45,11 @@
         },
         {
           "s": "decided",
+          "t": "Farm tool, tree and machine numbers are Stardew's: fertilizer in the shop, sapling prices, 25,000g cave mark, machine times in Stardew minutes",
+          "ref": "07_tuning_numbers.md#Farm tools, trees and machines (2026-10-31)"
+        },
+        {
+          "s": "decided",
           "t": "Farm types: Standard and Woodland first, Meadow starts with a coop and two chickens, locked choice on the new game screen",
           "ref": "32_farm_types.md#Decisions"
         }
