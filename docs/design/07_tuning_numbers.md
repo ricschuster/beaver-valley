@@ -424,6 +424,63 @@ Full rules in `36_gathering_trees_sap_fiber.md`.
   Useful for a casual tablet audience. Steps and default are open. Bundle remix
   and a year-one guarantee are not offered for now.
 
+## Farm tools, trees and machines (2026-10-31)
+
+Decided with the owner. Prices and formulas are Stardew's, from the saved
+Sprinkler, Fertilizer, Fruit Trees, The Cave and Artisan Goods pages, unless
+marked ours. Recipes are in `34_crafting.md`.
+
+- Sprinkler sell prices: sprinkler 100g, quality sprinkler 450g, iridium
+  sprinkler 1,000g. Sprinklers are crafted and never sold in the shop.
+- Fertilizer shop: basic fertilizer, basic retaining soil and speed-gro cost
+  100g from Spring 15 of year 1. Quality fertilizer, quality retaining soil and
+  deluxe speed-gro cost 150g from year 2. Sell prices: basic fertilizer 2g,
+  quality fertilizer 10g, basic retaining soil 4g, quality retaining soil 5g,
+  speed-gro 20g, deluxe speed-gro 40g.
+- Fertilizer yield per craft: basic fertilizer 1, quality fertilizer 2, basic
+  retaining soil 1, quality retaining soil 2, speed-gro 5, deluxe speed-gro 5.
+  Our speed fertilizer takes the speed-gro slot (`34_crafting.md`).
+- Sprinkler add-ons: pressure nozzle and enricher cost 20 each. The saved page
+  gives no currency or seller, so this is unchecked. Wait for
+  `urls_machines.txt` to be fetched before building them. A picked-up sprinkler
+  gives its add-on back as an item (saved Sprinkler page), which corrects
+  `31_farm_growth.md`.
+- Fruit sapling prices, from Pierre's: apricot 2,000g, cherry 3,400g, peach
+  6,000g, orange 4,000g, apple 4,000g, pomegranate 6,000g, 25,400g for all six.
+  Banana and mango are Ginger Island trees and are left out.
+- Fruit trees: 7 days a stage, 28 in all. Apricot and cherry bear in spring,
+  peach and orange in summer, apple and pomegranate in fall.
+- Fruit sell prices (normal quality, silver and gold use our x1.25 and x1.5):
+  apricot 50g, cherry 80g, orange 100g, apple 100g, peach 140g, pomegranate
+  140g. A tree's fruit gains one grade per year of age after maturity, to gold
+  after two years. A third year waits for the top grade (see Quality).
+- Farm cave mark: 25,000g of total earnings over the whole game.
+- Fruit bats: each night an empty cave gets no fruit 48 percent, 1 fruit 25,
+  2 fruit 13, 3 fruit 7, 4 or more 7 (about 1.06 a night). Fruit stays until
+  picked and takes space, so a full cave spawns less. The cave has 50 floor
+  tiles. Each fruit gives 7 foraging experience.
+- Mushroom cave: six boxes, each makes a mushroom every second day, always
+  normal quality, 5 foraging experience each. Stardew's chances are common
+  70 percent, chanterelle 7, red 12, morel and purple 2.5 or less. Which of
+  these we have is open until the forage list is checked. Stardew gives a free
+  dehydrator, which we do not have, so the reward is open.
+- Machine times are Stardew's minutes. A machine counts 1,600 minutes a day, the
+  1,200 awake plus 400 overnight (this is what makes Stardew's 10,000 minute
+  wine 6.25 days). This is derived, so check it against play.
+  - Preserves jar: jelly and pickles 4,000 min (2.5 days).
+  - Keg: wine 10,000 min (6.25 days), juice 6,000 min (3.75 days), beer 1,750
+    min (about 1.1 days), mead 600 min.
+  - Bee house: honey every 4 nights, none in winter, flowers within 5 tiles
+    change it.
+- Artisan sell prices: jelly and pickles 2 x base price + 50, wine 3 x base,
+  juice 2.25 x base, beer 200g, mead 300g. Wild honey 100g. Flower honey by
+  flower: tulip 160g, blue jazz 200g, sunflower 260g (spring and fall),
+  summer spangle 280g, poppy 380g, fairy rose 680g. Our flower set is open,
+  so each of ours takes the nearest Stardew value. The Artisan profession adds
+  40 percent later (`23_animals.md`).
+- Charcoal kiln and seed maker times: not set. The kiln is 10 wood for 1 coal.
+  Both wait for the saved Stardew pages (`urls_machines.txt`).
+
 ## Open questions for playtests
 
 First answers are in `08_playtest_personas.md`: 500g is far more than enough
