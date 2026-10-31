@@ -145,7 +145,7 @@ Added from what we know of the game, so these need a source check too:
   farm differs. Clutter (weeds, stones, twigs) is placed at the start of each
   season, as in Stardew.
 - **Farm type layout:** each type is a hand-authored map with fixed starting
-  clutter, as in Stardew (from memory, the Farm Maps page is not yet saved).
+  clutter, as in Stardew (checked against the Farm Maps page, `30_farm_types.md`).
 - **Farm type count:** two in the first version, about six in the long run.
   More types give replay value and a theme each, but cost map authoring, balance
   work and a rule for every system that assumes a pond or house position. Build
