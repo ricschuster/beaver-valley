@@ -16,7 +16,9 @@
         "id": "parsnip-seed",
         "count": 15
       }
-    }
+    },
+    "room": "foragers-shelf",
+    "hint": "Spring is when the woods wake up. Walk the paths and look down."
   },
   {
     "id": "summer-foraging",
@@ -28,7 +30,9 @@
         "id": "radish-seed",
         "count": 15
       }
-    }
+    },
+    "room": "foragers-shelf",
+    "hint": "Warm days bring berries and vines to the forage spots."
   },
   {
     "id": "spring-crops",
@@ -37,7 +41,9 @@
     "required": 3,
     "reward": {
       "money": 300
-    }
+    },
+    "room": "larder",
+    "hint": "Plant these in spring. The shop sells the seeds."
   },
   {
     "id": "summer-crops",
@@ -46,7 +52,9 @@
     "required": 3,
     "reward": {
       "money": 400
-    }
+    },
+    "room": "larder",
+    "hint": "Summer crops love the heat. Plant them early in the season."
   },
   {
     "id": "pantry",
@@ -65,6 +73,8 @@
     "required": 4,
     "reward": {
       "money": 500
-    }
+    },
+    "room": "larder",
+    "hint": "A bit of everything the farm and the woods give. Any four will do."
   }
 ]

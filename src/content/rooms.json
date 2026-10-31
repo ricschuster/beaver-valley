@@ -1,0 +1,14 @@
+[
+  {
+    "id": "foragers-shelf",
+    "name": "Foragers' Shelf",
+    "opensAfter": 0,
+    "unlock": "herb-stall"
+  },
+  {
+    "id": "larder",
+    "name": "Larder",
+    "opensAfter": 1,
+    "unlock": "greenhouse"
+  }
+]

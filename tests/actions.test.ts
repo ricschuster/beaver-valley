@@ -174,7 +174,7 @@ describe("selling and finishing", () => {
     const g = newGame();
     expect(finished(g)).toBe(false);
     for (const b of BUNDLES) {
-      for (const id of b.items) {
+      for (const { id } of b.items) {
         g.inventory.add(id);
         g.hall.handIn(g.inventory, g, b.id, id);
       }
@@ -186,7 +186,7 @@ describe("selling and finishing", () => {
     const g = newGame();
     expect(endDue(g)).toBe(false);
     for (const b of BUNDLES) {
-      for (const id of b.items) {
+      for (const { id } of b.items) {
         g.inventory.add(id);
         g.hall.handIn(g.inventory, g, b.id, id);
       }

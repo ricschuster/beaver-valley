@@ -1,41 +1,117 @@
 import bundleData from "../content/bundles.json";
+import roomData from "../content/rooms.json";
 import type { Inventory } from "./inventory";
 import { itemById } from "./items";
-import { splitQuality } from "./quality";
+import { QUALITIES, splitQuality, type Quality } from "./quality";
 import type { Wallet } from "./shop";
+
+/** One good a bundle takes, how many of it, and the lowest quality allowed. */
+export interface BundleItem {
+  id: string;
+  count: number;
+  minQuality: Quality;
+}
+
+export interface BundleReward {
+  money?: number;
+  item?: { id: string; count: number };
+  /** A furniture piece. Named in the reward text, not yet placed (no furniture system). */
+  furniture?: string;
+}
 
 export interface BundleDef {
   id: string;
   name: string;
-  /** Goods the bundle accepts, at any quality. */
-  items: string[];
-  /** How many different goods from `items` must be handed in. */
+  room: string;
+  /** A short line that points the player at the goods, shown in the hall. */
+  hint: string;
+  items: BundleItem[];
+  /** How many of `items` must be filled. All of them when the data omits it. */
   required: number;
-  reward: { money?: number; item?: { id: string; count: number } };
+  reward: BundleReward;
 }
 
-export const BUNDLES = bundleData as BundleDef[];
+export interface RoomDef {
+  id: string;
+  name: string;
+  /** Bundles finished in the other rooms before this room appears. */
+  opensAfter: number;
+  /** What finishing every bundle here unlocks. Granted by a later system. */
+  unlock?: string;
+}
+
+/** A bundle as written in `bundles.json`: goods may be bare ids. */
+export interface RawBundle {
+  id: string;
+  name: string;
+  room: string;
+  hint: string;
+  items: (string | { id: string; count?: number; minQuality?: Quality })[];
+  required?: number;
+  reward: BundleReward;
+}
+
+/** Fill in the defaults: one of each good, any quality, and all goods needed. */
+export function normalizeBundle(raw: RawBundle): BundleDef {
+  const items = raw.items.map((i) =>
+    typeof i === "string"
+      ? { id: i, count: 1, minQuality: "normal" as Quality }
+      : {
+          id: i.id,
+          count: i.count ?? 1,
+          minQuality: i.minQuality ?? ("normal" as Quality),
+        },
+  );
+  return { ...raw, items, required: raw.required ?? items.length };
+}
+
+export const BUNDLES = (bundleData as RawBundle[]).map(normalizeBundle);
+export const ROOMS = roomData as RoomDef[];
 
 export type HandIn = "accepted" | "completed" | "rejected";
 
-/** Saved progress: bundle id to the goods handed in so far. */
-export type HallProgress = Record<string, string[]>;
+/**
+ * Saved progress: bundle id to how many of each good was handed in. Saves made
+ * before counts existed hold a list of goods instead, each one filled.
+ */
+export type HallProgress = Record<string, string[] | Record<string, number>>;
 
-/** The village hall: five bundles, handed in one item at a time. */
+const qualityRank = (q: Quality) => QUALITIES.indexOf(q);
+
+/** The village hall: rooms of bundles, handed in one item at a time. */
 export class Hall {
-  private given = new Map<string, Set<string>>();
+  private given = new Map<string, Map<string, number>>();
 
   constructor(
     readonly bundles: BundleDef[] = BUNDLES,
     progress: HallProgress = {},
+    readonly rooms: RoomDef[] = ROOMS,
   ) {
-    for (const [id, items] of Object.entries(progress)) {
-      this.given.set(id, new Set(items));
+    for (const [id, saved] of Object.entries(progress)) {
+      const def = bundles.find((b) => b.id === id);
+      const counts = new Map<string, number>();
+      if (Array.isArray(saved)) {
+        for (const item of saved)
+          counts.set(item, def?.items.find((i) => i.id === item)?.count ?? 1);
+      } else {
+        for (const [item, n] of Object.entries(saved)) counts.set(item, n);
+      }
+      this.given.set(id, counts);
     }
   }
 
+  /** Goods whose count is filled. */
   handedIn(bundleId: string): string[] {
-    return [...(this.given.get(bundleId) ?? [])];
+    const def = this.bundles.find((b) => b.id === bundleId);
+    if (!def) return [];
+    return def.items
+      .filter((i) => this.have(bundleId, i.id) >= i.count)
+      .map((i) => i.id);
+  }
+
+  /** How many of one good have been handed in to a bundle. */
+  have(bundleId: string, itemId: string): number {
+    return this.given.get(bundleId)?.get(itemId) ?? 0;
   }
 
   complete(bundleId: string): boolean {
@@ -47,10 +123,32 @@ export class Hall {
     return this.bundles.every((b) => this.complete(b.id));
   }
 
+  /** Bundles finished, not counting those in one room. */
+  finishedOutside(roomId: string): number {
+    return this.bundles.filter((b) => b.room !== roomId && this.complete(b.id))
+      .length;
+  }
+
+  /** The soft gate: a room appears once enough bundles are done elsewhere. */
+  roomOpen(roomId: string): boolean {
+    const room = this.rooms.find((r) => r.id === roomId);
+    return !!room && this.finishedOutside(roomId) >= room.opensAfter;
+  }
+
+  /** True when every bundle in the room is done (and the room has bundles). */
+  roomComplete(roomId: string): boolean {
+    const inRoom = this.bundles.filter((b) => b.room === roomId);
+    return inRoom.length > 0 && inRoom.every((b) => this.complete(b.id));
+  }
+
+  /** Bundles in rooms that have appeared. */
+  get openBundles(): BundleDef[] {
+    return this.bundles.filter((b) => this.roomOpen(b.room));
+  }
+
   /**
-   * Hand one item in. Rejected if the bundle is full or unknown, does not
-   * take the item, already has it, or the player does not hold it. Finishing
-   * a bundle gives its reward.
+   * Hand one item in. Rejected for any reason `problem` gives. Finishing a
+   * bundle gives its reward.
    */
   handIn(
     inv: Inventory,
@@ -58,15 +156,14 @@ export class Hall {
     bundleId: string,
     stackId: string,
   ): HandIn {
+    if (this.problem(inv, bundleId, stackId)) return "rejected";
     const itemId = splitQuality(stackId).base;
-    const def = this.bundles.find((b) => b.id === bundleId);
-    if (!def || this.complete(bundleId) || !def.items.includes(itemId))
-      return "rejected";
-    const set = this.given.get(bundleId) ?? new Set<string>();
-    if (set.has(itemId) || !inv.remove(stackId)) return "rejected";
-    set.add(itemId);
-    this.given.set(bundleId, set);
-    if (set.size < def.required) return "accepted";
+    const def = this.bundles.find((b) => b.id === bundleId)!;
+    if (!inv.remove(stackId)) return "rejected";
+    const counts = this.given.get(bundleId) ?? new Map<string, number>();
+    counts.set(itemId, (counts.get(itemId) ?? 0) + 1);
+    this.given.set(bundleId, counts);
+    if (!this.complete(bundleId)) return "accepted";
     wallet.money += def.reward.money ?? 0;
     const prize = def.reward.item;
     if (prize) inv.add(prize.id, prize.count);
@@ -82,19 +179,23 @@ export class Hall {
     bundleId: string,
     stackId: string,
   ): string | undefined {
-    const itemId = splitQuality(stackId).base;
+    const { base: itemId, quality } = splitQuality(stackId);
     const def = this.bundles.find((b) => b.id === bundleId);
     if (!def) return "There is no such bundle.";
+    if (!this.roomOpen(def.room)) return "That room is not open yet.";
     if (this.complete(bundleId)) return "That bundle is already done.";
-    if (!def.items.includes(itemId)) return "This bundle does not take that.";
-    if (this.handedIn(bundleId).includes(itemId)) return "Already handed in.";
+    const item = def.items.find((i) => i.id === itemId);
+    if (!item) return "This bundle does not take that.";
+    if (this.have(bundleId, itemId) >= item.count) return "Already handed in.";
+    if (qualityRank(quality) < qualityRank(item.minQuality))
+      return `This needs ${item.minQuality} quality or better.`;
     if (inv.count(stackId) < 1) return "You do not have one.";
     return undefined;
   }
 
   save(): HallProgress {
     return Object.fromEntries(
-      [...this.given].map(([id, set]) => [id, [...set]]),
+      [...this.given].map(([id, counts]) => [id, Object.fromEntries(counts)]),
     );
   }
 }
@@ -106,5 +207,6 @@ export function rewardText(def: BundleDef): string {
   const prize = def.reward.item;
   if (prize)
     parts.push(`${prize.count} ${itemById(prize.id)?.name ?? prize.id}`);
+  if (def.reward.furniture) parts.push(def.reward.furniture);
   return parts.join(" and ") || "nothing";
 }

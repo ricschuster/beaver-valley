@@ -96,7 +96,7 @@ export class HallScene extends Phaser.Scene {
     this.money.setText(`Money ${g.money}g`);
 
     this.bundleMenu.setRows(
-      hall.bundles.map((b) => ({
+      hall.openBundles.map((b) => ({
         label: b.name,
         detail: hall.complete(b.id)
           ? "Done"
@@ -104,14 +104,16 @@ export class HallScene extends Phaser.Scene {
         buttons: [],
       })),
     );
-    const bundle = hall.bundles[this.bundleMenu.cursor];
+    const bundle = hall.openBundles[this.bundleMenu.cursor];
     if (!bundle) return;
 
     const given = hall.handedIn(bundle.id);
     const lines = [
       `${bundle.name}: ${hall.complete(bundle.id) ? "done" : `any ${bundle.required} of ${bundle.items.length}`}`,
+      bundle.hint,
       ...bundle.items.map(
-        (id) => `${given.includes(id) ? "[x]" : "[ ]"} ${name(id)}`,
+        (i) =>
+          `${given.includes(i.id) ? "[x]" : "[ ]"} ${name(i.id)}${i.count > 1 ? ` ${hall.have(bundle.id, i.id)}/${i.count}` : ""}`,
       ),
       `Reward: ${rewardText(bundle)}`,
     ];
