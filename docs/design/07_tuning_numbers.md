@@ -101,6 +101,14 @@ farming. Level 5 is Rancher (animal goods sell for 20 percent more) or Tiller.
 Level 10 is Coopmaster or Shepherd under Rancher, Artisan (artisan goods 40
 percent more) or Agriculturist under Tiller. Agriculturist moves to level 10.
 
+Foraging professions, decided 2026-10-31 (planned, not built). After Stardew's
+foraging tree, with our names. Level 5 is Forester or Gatherer. Level 10 is
+Lumberjack or Tapper under Forester, Botanist or Tracker under Gatherer.
+Gatherer stays as built. Botanist moves from level 5 to level 10, as
+Agriculturist did. Botanist makes forage always the top grade (see Quality).
+Tracker points arrows at off-screen forage, which also helps on a tablet.
+Lumberjack and Tapper wait until trees and wood are a real system.
+
 ## Tool upgrades and energy
 
 Source: `src/core/upgrades.ts`. The hoe and watering can have four tiers (basic,
@@ -152,6 +160,14 @@ so each tier stacks and sells separately. Bundles take any tier.
   Stardew's fertiliser term is left out. From memory.
 - Forage: gold chance is `foragingLevel / 30`, silver up to `foragingLevel / 15`.
   From memory.
+  Checked against the wiki on 2026-10-31: both formulas match.
+- Top grade (decided 2026-10-31, not built): a fourth tier above gold, named
+  after the rare metal, Hearthsilver (`22_mines.md`). Using the metal's name
+  for the grade is an assumption, since the mines note only names the metal.
+  Crops and forage get it, with Botanist guaranteeing it for forage. Its price
+  and energy multipliers are open.
+- Wild seeds (decided 2026-10-31): forage is crafted into seasonal seeds that
+  grow into forage goods and give foraging XP. Built in M3 with crafting.
 
 ## Fishing (draft, not built)
 
@@ -311,6 +327,12 @@ Differences found (the four above are now decided):
   matter for the third and fourth season, which are out of scope for now.
 - Not on these pages: the rain chance per season. Our 20 and 15 percent stay
   ours.
+
+## Start options (decided 2026-10-31, not built)
+
+- Profit margin: a difficulty dial on sell prices, offered when starting a game.
+  Useful for a casual tablet audience. Steps and default are open. Bundle remix
+  and a year-one guarantee are not offered for now.
 
 ## Open questions for playtests
 
