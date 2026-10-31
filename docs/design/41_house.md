@@ -123,9 +123,9 @@ idea of one connected space is copied.
   apart by floor and furniture, not walls.
 - **The start room moves 4 tiles right.** The door goes from (5,7) to (9,7) and
   the bed from (2,1) to (6,1). The map is always 18 wide, at every tier, so
-  positions never change again after this. Saves made inside the house before
-  this change need a one-off shift of 4 tiles in x. Positions in the outdoor
-  maps are untouched.
+  positions never change again after this. The player's position is
+  not saved (the scene starts at the map's entry), so old saves need no
+  migration. Positions in the outdoor maps are untouched.
 - **Kitchen:** counter, fridge chest, sink that refills the watering can.
   **Bedroom:** the double bed.
 - **Tier 0:** the kitchen and bedroom areas are sealed earth (collision on,

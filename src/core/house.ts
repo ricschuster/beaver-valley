@@ -1,6 +1,9 @@
 /** The house grows in tiers: 0 is the start room, 1 adds a kitchen and a bedroom. */
 export const MAX_HOUSE_TIER = 3;
 
+/** The id of the interior map, whose rooms open by tier. */
+export const HOUSE_MAP = "house";
+
 /** The parts of the house interior map. Closed ones are sealed earth. */
 export type HouseArea = "start" | "kitchen" | "bedroom";
 
@@ -19,4 +22,12 @@ export function openAreas(tier: number): HouseArea[] {
 
 export function isAreaOpen(tier: number, area: HouseArea): boolean {
   return openAreas(tier).includes(area);
+}
+
+/** The areas still sealed with earth at a house tier. */
+export function sealedAreas(tier: number): HouseArea[] {
+  const open = openAreas(tier);
+  return (Object.keys(OPENS_AT) as HouseArea[]).filter(
+    (a) => !open.includes(a),
+  );
 }

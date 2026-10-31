@@ -24,6 +24,7 @@ import {
 import { Controls } from "./controls";
 import { browserStore } from "./storage";
 import { saveGame } from "../core/save";
+import { HOUSE_MAP, sealedAreas } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
 import { cropKey, forageKey, soilKey, stageOf } from "./art";
 import { Hud } from "./hud";
@@ -104,6 +105,7 @@ export class FarmScene extends Phaser.Scene {
     const id = this.mapId;
     const json = mapFiles[id]!;
     this.map = maps.get(id);
+    if (id === HOUSE_MAP) this.map.seal(sealedAreas(this.state.houseTier));
     if (!this.cache.tilemap.exists(id))
       this.cache.tilemap.add(id, {
         format: Phaser.Tilemaps.Formats.TILED_JSON,
@@ -154,14 +156,15 @@ export class FarmScene extends Phaser.Scene {
     this.uiCamera = uiCamera;
     uiCamera.ignore(world);
     // A map smaller than the view is centred rather than pinned to a corner.
-    const mapW = this.map.width * ts;
-    const mapH = this.map.height * ts;
+    const view = this.cameraArea();
+    const mapW = view.w * ts;
+    const mapH = view.h * ts;
     const viewW = width / WORLD_ZOOM;
     const viewH = height / WORLD_ZOOM;
     this.cameras.main
       .setBounds(
-        Math.min(0, (mapW - viewW) / 2),
-        Math.min(0, (mapH - viewH) / 2),
+        view.x * ts + Math.min(0, (mapW - viewW) / 2),
+        view.y * ts + Math.min(0, (mapH - viewH) / 2),
         Math.max(mapW, viewW),
         Math.max(mapH, viewH),
       )
@@ -422,6 +425,11 @@ export class FarmScene extends Phaser.Scene {
   private drawRooms(): void {
     const { regions, tileSize: ts } = this.map;
     this.wash.clear();
+    // Sealed house rooms read as solid earth. Placeholder art (#58).
+    for (const r of this.map.sealedRegions)
+      this.wash
+        .fillStyle(0x6b4f35, 1)
+        .fillRect(r.x * ts, r.y * ts, r.w * ts, r.h * ts);
     const hall = this.state.hall;
     for (const r of regions) {
       if (r.id === "plaque") {
@@ -444,6 +452,19 @@ export class FarmScene extends Phaser.Scene {
         .fillStyle(colour, alpha)
         .fillRect(r.x * ts, r.y * ts, r.w * ts, r.h * ts);
     }
+  }
+
+  /**
+   * The tiles the camera may show. A house with sealed rooms shows only the
+   * open ones and a one tile margin, so the earth is never a big empty space.
+   */
+  private cameraArea(): { x: number; y: number; w: number; h: number } {
+    const { width, height, sealedRegions } = this.map;
+    if (sealedRegions.length === 0) return { x: 0, y: 0, w: width, h: height };
+    const open = this.map.regions.filter((r) => !sealedRegions.includes(r));
+    const x0 = Math.max(0, Math.min(...open.map((r) => r.x)) - 1);
+    const x1 = Math.min(width, Math.max(...open.map((r) => r.x + r.w)) + 1);
+    return { x: x0, y: 0, w: x1 - x0, h: height };
   }
 
   private render(): void {
