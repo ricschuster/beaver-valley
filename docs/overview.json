@@ -124,7 +124,7 @@
         },
         {
           "s": "decided",
-          "t": "The hall is a walkable interior of six physical rooms with a scroll each; all six drawn in slice 1",
+          "t": "The hall is one scrolling interior: four walled rooms and two alcoves (tank, board), a scroll each; all six drawn in slice 1",
           "ref": "40_hall_layout.md#Decisions (2026-10-31)"
         },
         {
