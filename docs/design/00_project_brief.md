@@ -133,4 +133,4 @@ these is ruled out forever.
 - Engine and language (needs an ADR).
 - What centre 3 is (issue #5).
 - Whether ring 3 has combat, and how much.
-- Whether the repo `LICENSE` (GPL-3.0 template default) stays.
+- The repo licence: decided, see `docs/decisions/0006-project-licence.md`.

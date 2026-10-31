@@ -38,4 +38,8 @@ build). `CLAUDE.md` lists all the commands.
 
 ## License
 
-GNU General Public License v3.0 for now. The choice is still open (issue #63).
+The code is under the PolyForm Noncommercial License 1.0.0 (`LICENSE`). The
+content and art are under CC BY-NC 4.0 (`LICENSE-CONTENT.md`). This is
+source-available, not open source in the OSI sense: you may read, change and
+share the project for non-commercial use, but not sell it. See
+`docs/decisions/0006-project-licence.md`.
