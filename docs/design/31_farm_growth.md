@@ -15,8 +15,9 @@ read only (ADR 0002). Costs and recipes are placeholders until the tuning note.
   crafted from our smelted bars (`22_mines.md`). Exact recipes go in
   `07_tuning_numbers.md`.
 - The two upgrade add-ons (a nozzle that widens reach, and an enricher loaded
-  with fertilizer) are out for now. Stardew has no craft recipe for them and we
-  have no Qi-style source (`07_tuning_numbers.md`, decided 2026-10-31).
+  with fertilizer) are a Ring 2 item, as in Stardew, where the Qi-type
+  warden head's Walnut Room-type offer gives them (`07_tuning_numbers.md`,
+  decided 2026-10-31). They are not in slice 1.
 - A sprinkler waters tilled tiles only, every morning. It does not work on
   sand, which only matters if a sandy farm is ever added (`30_farm_types.md`).
 - Rain waters everything already, as now. Sprinklers matter on dry days.
@@ -117,6 +118,6 @@ part that is pure loss. Everything else is a reward the player chooses.
 
 - Settled 2026-10-31 in `07_tuning_numbers.md`: sprinkler and fertilizer prices,
   the shop rule for fertilizer, sapling prices, the fruit table, the cave mark
-  and fruit bat chances. Add-ons wait for a source. Still open: what the mushroom
+  and fruit bat chances. Add-ons wait for Ring 2. Still open: what the mushroom
   cave gives in place of Stardew's free dehydrator.
 - Sap and fiber drops are settled in `36_gathering_trees_sap_fiber.md`.
