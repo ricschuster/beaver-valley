@@ -516,6 +516,16 @@
           "ref": "21_fishing.md#Shellfish pots"
         },
         {
+          "s": "decided",
+          "t": "Stardew's five bar behaviours, a first catch that cannot fail, lengths and records, water plants, trash with a recycler, hidden fish, Stardew's fishing professions; fish ponds later",
+          "ref": "21_fishing.md#Catch details and Stardew differences (decided 2026-10-31)"
+        },
+        {
+          "s": "open",
+          "t": "Trapper professions need a swap because our pots take no bait and give no junk",
+          "ref": "21_fishing.md#Open"
+        },
+        {
           "s": "open",
           "t": "Legend times, weather and prices, and the tracker design (what counts, weights, reward)",
           "ref": "21_fishing.md#Open"
