@@ -74,19 +74,53 @@ but it does not spell the rule out. Confirm in play.
 Ring 2 is our counterpart of Stardew's Ginger Island (owner, 2026-10-31).
 Ring 3 is unknown, and it may not exist at the scale of rings 1 and 2.
 
-- **Own totals.** Ring 2 gets its own 100, built from what it adds: its own collectible, its own fish or finds, its own bundles if it has a
-  centre (`03_milestones.md`, centre 2 and centre 3). Categories and weights are
-  set in each ring's design, not here.
-- **Own reward.** Ring 2's 100 gives its own hat and keepsake, in its own
-  style. Not designed.
+- **Own totals.** Ring 2 gets its own 100, built from what it adds, set out
+  in "Ring 2's total" below.
+- **Own reward.** Ring 2's 100 gives a haven hat, a haven scene and a keepsake
+  (settled 2026-10-31), see below.
 - **Stardew's late region.** Ring 2 is the counterpart of Ginger Island, so
-  Stardew's golden walnut category (5 percent) is the model for a ring 2
-  collectible. Its count and look are set in the ring 2 design (#20).
+  Stardew's golden walnuts are the model for ring 2's collectible. Stardew
+  gives them 5 percent of its tracker. Ours gets 25 of ring 2's own 100, since
+  the total covers ring 2 alone.
 - **Ring 3.** It gets a total only if it is built, with its own categories. The
   valley total counts the rings that exist, so an unbuilt ring costs nothing.
 - **Shared categories.** Skills, cooking, crafting and friends are ring 1's.
   A ring that adds recipes or items adds them to its own total, not to ring 1's,
   so finishing ring 1 stays finished.
+
+## Ring 2's total (settled with the owner, 2026-10-31)
+
+Weights are placeholders for the ring 2 design (#20, which does not exist
+yet). The collectible follows Stardew's walnuts (checked on the saved Golden
+Walnut page): 130 in all, found by exploring, fishing, farming, mining, puzzles
+and monsters, with 100 of them opening a room.
+
+| Category | Weight | Counts |
+| --- | --- | --- |
+| Collectible | 25 | All 130 of ring 2's collectible. 100 open a ring 2 room (Stardew) |
+| Centre 2 bundles | 20 | Bundles completed at centre 2 (`03_milestones.md`) |
+| New fish and finds | 10 | Every fish and find that only ring 2 has |
+| Deep dig slayer list | 10 | Every goal on ring 2's list (the desert goals' counterparts, `22_mines.md`) |
+| Elf friends | 10 | Every ring 2 person with full friendship, as ring 1's rule |
+| New items shipped | 10 | One of every item only ring 2 has |
+| Ring 2 recipes | 5 | Every recipe ring 2 adds, cooked |
+| Ring 2 crafting | 5 | Every item ring 2 adds, crafted |
+| Special orders board | 5 | Every order on ring 2's board completed |
+
+Total 100. Each category adds its weight times its progress and the total is
+rounded down, as in ring 1. Ring 1's categories are untouched, so finishing
+ring 1 stays finished.
+
+- **The collectible's name, look and the room its 100 open** are open. A parrot
+  or spirit that gives hints for the missing ones is proposed, as Stardew's
+  parrot does.
+- **The reward** is in ring 1's pattern but in the elves' style: a hat from the
+  haven's hatter or weaver, a scene hosted by the elf house heads, and a
+  keepsake furniture piece placed by mail. Not designed. Stardew's 100 percent
+  instead unlocks new content, which would need a late area (ring 3), so it
+  stays out.
+- **Pulls in:** the deep dig (`22_mines.md`, "Open"), the special orders board,
+  centre 2 and a ring 2 fish list. Each needs its own note before build.
 
 ## How it works
 
@@ -155,8 +189,8 @@ Ring 3 is unknown, and it may not exist at the scale of rings 1 and 2.
 
 - The rare seed's name, its heart level and its growing season (seed 5).
 - The slayer goals' kill counts and reward items, at tuning.
-- Ring 2's categories, weights, collectible and reward, in the ring 2 design
-  (#20). Ring 3's only if it is built.
+- Ring 2's weights and the collectible's name and look, in the ring 2 design
+  (#20). Ring 3's total only if it is built.
 - Whether partial progress counts, as proposed, or only whole items.
 - The scene's script and the keepsake's design.
 
