@@ -676,12 +676,22 @@
       "items": [
         {
           "s": "decided",
-          "t": "M3 shows hats in a portrait only",
+          "t": "M3 shows hats in a portrait only (replaced 2026-10-31: world sprite)",
           "ref": "13_m3_scope.md#Decisions (2026-10-27)"
         },
         {
+          "s": "decided",
+          "t": "Furniture: random daily stock at the carpenter plus a catalogue after the first house upgrade, as Stardew; one catalogue per people later",
+          "ref": "10_customisation.md#Decisions (2026-10-31)"
+        },
+        {
+          "s": "decided",
+          "t": "Hats unlock by achievement as Stardew, are sold at a Brimmer hatter's shop in Hearthwell, show in the world sprite, and read as a standing cue with no bonus",
+          "ref": "10_customisation.md#Decisions (2026-10-31)"
+        },
+        {
           "s": "open",
-          "t": "World sprite change, grid size, sewing machine cost",
+          "t": "First hat list (needs the achievement list, #196), furniture pool and prices, sewing machine cost, the per-people catalogues",
           "ref": "10_customisation.md#Open",
           "issue": 133
         }

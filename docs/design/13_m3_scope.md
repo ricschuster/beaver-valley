@@ -78,4 +78,6 @@ of this list is too big.
 - One festival in M3, the hat parade. The second is a stretch goal. No animal
   work in M3.
 - Hats show in a portrait only. The world sprite is not changed in M3.
+  Superseded 2026-10-31: hats now show in the world sprite, with a portrait
+  as the cut (`10_customisation.md`).
 - The festival game is a stretch goal, not a promise.
