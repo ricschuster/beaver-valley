@@ -42,6 +42,11 @@
           "s": "decided",
           "t": "Farm growth tools: three sprinkler tiers with add-ons, fruit trees, two fertilizer tiers, greenhouse and farm cave; no crows",
           "ref": "31_farm_growth.md#Decisions"
+        },
+        {
+          "s": "decided",
+          "t": "Farm types: Standard and Woodland first, Meadow starts with a coop and two chickens, locked choice on the new game screen",
+          "ref": "32_farm_types.md#Decisions"
         }
       ],
       "deps": [],

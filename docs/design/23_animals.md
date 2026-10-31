@@ -16,6 +16,9 @@ animals before any code, so they do not feel bolted on.
 
 ## Decided with the owner (2026-10-30)
 
+- **Exception, the Meadow farm.** It starts with a built coop and two chickens,
+  skipping the carpenter and keeper for the first coop only
+  (`32_farm_types.md`).
 - **Buildings stand on the home farm.** A coop and a barn, each upgradable. A
   carpenter in Hearthwell builds and upgrades them (an existing cast member,
   see "Cast"). The Forest farmstead keeper sells animals and gives advice.
