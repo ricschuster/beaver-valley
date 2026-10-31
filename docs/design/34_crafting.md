@@ -163,11 +163,11 @@ These must exist before the recipes above can be built.
 
 ## Open
 
-- **Storm numbers.** The chance of a thunderstorm by season, how many strikes
-  a storm gives, the rod's reach (Stardew's is about eight tiles, unchecked
-  here, since the Lightning page is not saved) and whether a rod fills up or
-  gives one pack per storm. Stardew also gives packs through a solar panel,
-  which we leave out.
+- **Storm numbers (settled 2026-10-31).** In `07_tuning_numbers.md`, following
+  the saved Weather and Lightning Rod pages. The rod has no reach: any rod on
+  the farm map can catch a strike, so the earlier guess of about eight tiles
+  was wrong. A hit rod makes one pack the next morning. Stardew also gives packs
+  through a solar panel, which we leave out.
 - **Bars in slice 1 (settled 2026-10-31).** The first part of the mines moves into
   slice 1, as in Stardew (`33_build_order.md`), so copper bars come from floors
   1 to 10 and the furnace. Iron and gold ore come from the smith dwarf's shop
