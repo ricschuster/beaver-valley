@@ -881,9 +881,9 @@
           "issue": 62
         },
         {
-          "s": "open",
-          "t": "Project licence",
-          "issue": 63
+          "s": "decided",
+          "t": "Project licence: PolyForm Noncommercial for code, CC BY-NC 4.0 for content and art",
+          "ref": "../decisions/0006-project-licence.md"
         },
         {
           "s": "open",

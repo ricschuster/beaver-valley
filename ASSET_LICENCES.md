@@ -2,18 +2,18 @@
 
 Almost every picture in the game is drawn in code at start up, in
 `src/scenes/art.ts`. It is original work for this project and covered by the
-project licence in `LICENSE`. The one exception is the hand-drawn witch test
+content licence in `LICENSE-CONTENT.md` (CC BY-NC 4.0). The one exception is the hand-drawn witch test
 (see the table).
 
 | Asset                                      | Source                       | Licence         |
 | ------------------------------------------ | ---------------------------- | --------------- |
-| Tiles (grass, path, water, soil and so on) | `src/scenes/art.ts`          | Project licence |
-| Player sprite                              | `src/scenes/art.ts`          | Project licence |
-| Crop growth stages and seed packets        | `src/scenes/art.ts`          | Project licence |
-| Forage pictures                            | `src/scenes/art.ts`          | Project licence |
-| Tool icons                                 | `src/scenes/art.ts`          | Project licence |
-| UI frames and buttons                      | Plain shapes in scenes       | Project licence |
-| Witch test drawing (not used in game yet)  | `art-source/`, `public/art/` | Project licence |
+| Tiles (grass, path, water, soil and so on) | `src/scenes/art.ts`          | CC BY-NC 4.0    |
+| Player sprite                              | `src/scenes/art.ts`          | CC BY-NC 4.0    |
+| Crop growth stages and seed packets        | `src/scenes/art.ts`          | CC BY-NC 4.0    |
+| Forage pictures                            | `src/scenes/art.ts`          | CC BY-NC 4.0    |
+| Tool icons                                 | `src/scenes/art.ts`          | CC BY-NC 4.0    |
+| UI frames and buttons                      | Plain shapes in scenes       | CC BY-NC 4.0    |
+| Witch test drawing (not used in game yet)  | `art-source/`, `public/art/` | CC BY-NC 4.0    |
 | Fonts                                      | The browser's monospace      | Not shipped     |
 | Audio                                      | None                         | None            |
 
