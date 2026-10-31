@@ -79,9 +79,9 @@ recipe is learned. "Slice" is when it is built (`33_build_order.md`).
 | Campfire | 10 stone, 10 wood, 10 fiber | Start | 1 |
 | Wooden brazier | 10 wood, 1 coal, 5 fiber | The carpenter's shop (ours) | 1 |
 | Stone brazier | 10 stone, 1 coal, 5 fiber | The carpenter's shop (ours) | 1 |
-| Lightning rod | 1 iron bar, 1 refined quartz (ours: 1 quartz crystal), 5 bat wing (ours: a mine drop, to be named) | Foraging level 6 | 1 |
-| Wood lamp-post | 50 wood, 1 battery pack | Farming level 7 (ours) | 1, after storms |
-| Iron lamp-post | 1 iron bar, 1 battery pack | Farming level 9 (ours) | 1, after storms |
+| Lightning rod | 1 iron bar, 1 refined quartz (ours: 1 quartz crystal), 5 bat wing (the Cave Bat's drop, as in Stardew) | Foraging level 6 | 3 |
+| Wood lamp-post | 50 wood, 1 battery pack | Farming level 7 (ours) | 3, after the rod |
+| Iron lamp-post | 1 iron bar, 1 battery pack | Farming level 9 (ours) | 3, after the rod |
 
 Stardew's other braziers (gold, carved, stump, barrel, skull, marble) are
 decoration and wait. Torches are what the mines need (`22_mines.md`, bundle
@@ -153,13 +153,17 @@ These must exist before the recipes above can be built.
 - **Hardwood**, from large stumps (`32_farm_types.md`).
 - **Clay**, from hoeing dirt patches on mine floors 1 to 10, and rarely from
   the smith dwarf's geodes (settled 2026-10-31, below).
-- **Moss**, a forage and mine drop.
+- **Moss**, from mature trees with any tool, 1 to 2 a tree, not in winter, as
+  in Stardew's Trees page (saved). Mossbeetles also drop it from slice 3.
 - **Gold bars**, from the smith dwarf's ore shop in slice 1.
 - **Quartz crystals**, found on the floor of mine floors 1 to 10, and rarely in
   the smith dwarf's geodes (settled 2026-10-31, below). They stand in for
   refined quartz and earth crystals in the recipes above.
 - **A battery pack**, from a lightning rod in a storm. Storms are a new weather
-  type, built with fall and winter in slice 1 (`26_seasons.md`).
+  type, built with fall and winter in slice 1 (`26_seasons.md`). The rod needs
+  bat wing from the Cave Bat (decided 2026-10-31, as in Stardew), so rods and
+  packs, and the lamp-posts that use them, arrive in slice 3. In slice 1 a storm
+  is weather only: it waters the plots and the forecast names it.
 
 ## Open
 
