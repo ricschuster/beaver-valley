@@ -80,7 +80,9 @@ describe("quality in play", () => {
 
   it("bundles take any quality, once per good", () => {
     const hall = new Hall();
-    const bundle = BUNDLES.find((b) => b.items.includes("daffodil"))!;
+    const bundle = BUNDLES.find((b) =>
+      b.items.some((i) => i.id === "daffodil"),
+    )!;
     const inv = new Inventory();
     const wallet = { money: 0 };
     inv.add("daffodil@gold");

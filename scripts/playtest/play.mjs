@@ -148,9 +148,9 @@ function giveList() {
   return page.evaluate(() => {
     const s = window.__game.registry.get("state");
     const out = [];
-    s.hall.bundles.forEach((b, bi) => {
+    s.hall.openBundles.forEach((b, bi) => {
       if (s.hall.complete(b.id)) return;
-      for (const base of b.items) {
+      for (const { id: base } of b.items) {
         // Hand in whichever quality stack is held (ids look like `leek@gold`).
         const stack = s.inventory
           .save()
@@ -171,7 +171,7 @@ function reserve() {
     for (const b of s.hall.bundles) {
       if (s.hall.complete(b.id)) continue;
       const got = s.hall.handedIn(b.id);
-      for (const id of b.items)
+      for (const { id } of b.items)
         if (!got.includes(id)) need[id] = (need[id] ?? 0) + 1;
     }
     return need;
@@ -248,8 +248,9 @@ async function visitHall() {
     const after = await bot.snap();
     const msg = await sceneMsg("hall");
     const gave = bot.count(before, id) - bot.count(after, id);
-    const got =
-      (after.hall[bid] ?? []).length - (before.hall[bid] ?? []).length;
+    const handed = (h) =>
+      Object.values(h[bid] ?? {}).reduce((sum, n) => sum + n, 0);
+    const got = handed(after.hall) - handed(before.hall);
     log(`  hand in ${id} -> ${bid}: "${msg}"`);
     if (gave !== 1 || got !== 1)
       finding(

@@ -17,9 +17,10 @@ function played() {
   g.farm.endDay("spring");
   g.inventory.add("parsnip", 3);
   g.inventory.add("leek");
+  g.inventory.add("daffodil");
   g.money = 1234;
   g.skills.gain("farming", 150);
-  g.hall.handIn(g.inventory, g, "spring-crops", "parsnip");
+  g.hall.handIn(g.inventory, g, "spring-foraging", "daffodil");
   g.day.act(100, 60);
   g.day.end(g.money);
   g.day.energy.current = 200;
@@ -35,7 +36,7 @@ describe("save and load", () => {
     expect(back!.day.clock.minutes).toBe(DAY_START);
     expect(back!.day.energy.current).toBe(200);
     expect(back!.money).toBe(1234);
-    expect(back!.inventory.count("parsnip")).toBe(2);
+    expect(back!.inventory.count("parsnip")).toBe(3);
     expect(back!.inventory.count("leek")).toBe(1);
     expect(back!.farm.plotAt(1, 2)?.crop).toEqual({
       id: "parsnip",
@@ -43,7 +44,7 @@ describe("save and load", () => {
       harvests: 0,
     });
     expect(back!.skills.level("farming")).toBe(1);
-    expect(back!.hall.handedIn("spring-crops")).toEqual(["parsnip"]);
+    expect(back!.hall.handedIn("spring-foraging")).toEqual(["daffodil"]);
     expect(serialize(back!)).toBe(serialize(g));
   });
 

@@ -40,7 +40,7 @@ describe("content data", () => {
   it("keeps every bundle completable from known goods", () => {
     for (const b of BUNDLES) {
       expect(
-        b.items.filter((id) => itemById(id)).length,
+        b.items.filter((i) => itemById(i.id)).length,
         b.id,
       ).toBeGreaterThanOrEqual(b.required);
     }

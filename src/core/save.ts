@@ -142,7 +142,13 @@ export function deserialize(text: string): GameState | undefined {
     }
   }
   if (!SKILLS.every((k) => isCount(skills[k]))) return undefined;
-  if (!Object.values(hall).every((v) => Array.isArray(v))) return undefined;
+  if (
+    !Object.values(hall).every(
+      (v) =>
+        Array.isArray(v) || (isObject(v) && Object.values(v).every(isCount)),
+    )
+  )
+    return undefined;
 
   const g = newGame();
   g.day.restore(day, energy, isCount(raw.minutes) ? raw.minutes : undefined);
