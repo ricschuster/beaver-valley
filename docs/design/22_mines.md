@@ -325,6 +325,29 @@ torches, and oil can come from a creature, but it also comes from crafting, so a
 non-fighter can finish it. Monster drops are for crafting, cooking and the lamp
 trade only.
 
+### The slayer list
+
+Decided with the owner on 2026-10-31. Stardew has 12 monster goals on a wall
+list at the guild, each a kind of monster with a kill count and a reward, and
+the Adventurer's Guild sells lost rewards again (checked on the saved page).
+
+- **Twelve goals, one per creature kind** (Stardew's count): Pebbleback,
+  Dustmoth, Rock Crab, Mossbeetle, Gloop (all colours count), Frostnibbler,
+  Icicle Hopper, Cave Bat, Nabbler, Cinder Pup, Lanternmoth and Old Digger.
+- **Where it hangs:** a list on the wall at the warden head's hall. The warden
+  head hands the reward when the count is met.
+- **Each goal gives a ring or a gear piece** (Stardew), on `37_equipment.md`'s
+  ring rules. The warden head sells a lost one again.
+- **Kill counts** are a placeholder scale of 30 to 1,000, set at tuning. Stardew's
+  slime goal is the highest.
+- **Optional, never needed for tools or bundles.** With "no creatures" on, the
+  goals cannot be met, and the achievement and the completion total's 10 points
+  stay unmet, like any other skipped part (`38_achievements.md`).
+- **Stardew's desert goals** (mummies, serpents, Pepper Rex) have no ring 1
+  home. Ring 2's own list is part of the ring 2 design.
+- **Feeds** the completion total's slayer goals (10) and the Valley's Guard
+  achievement.
+
 ## Defeat (decided with the owner, Stardew's way)
 
 When health reaches zero:

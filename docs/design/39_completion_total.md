@@ -57,7 +57,7 @@ Each had a Stardew option.
 | Slayer goals | 10 | Every goal on the mines' slayer list (`22_mines.md`) | 3 |
 | Friends | 12 | Every person at maximum hearts, children excluded | 4 |
 | Skills | 5 | Every skill at level 10 | 1 to 3 |
-| Rare boost items | 10 | Every item that raises maximum energy for good | Open |
+| Rare boost items | 10 | Every one of the seven star seeds (see "Settled with the owner") | 1 to 4 |
 | Cooking | 10 | Every recipe cooked | 4 |
 | Crafting | 10 | Every item crafted | 1 |
 | Fish | 10 | Every fish caught, the five legends included (`21_fishing.md`) | 2 |
@@ -100,6 +100,31 @@ Ring 3 is unknown, and it may not exist at the scale of rings 1 and 2.
 - **Not counted.** Money, the house, the festivals and the arcade game give
   achievements but are not in the total, as in Stardew.
 
+## Settled with the owner (2026-10-31)
+
+- **Rare boost items: seven star seeds (Stardew).** Stardew has seven stardrops,
+  each +34 maximum energy, eaten the moment they are found, 270 up to 508 in all
+  (checked on the saved Stardrop page). Ours are seven **star seeds**, same
+  size and rule (placeholder name, ours). Each of the 10 points is split
+  in sevenths by progress. Every source is in ring 1, so ring 1 stays
+  completable alone. The sources, each mapped from a Stardew one:
+
+| # | Our source | Stardew's source |
+| --- | --- | --- |
+| 1 | A festival shop sells one, fixed price (placeholder 2,000g) | The Fair, 2,000g |
+| 2 | A chest in the last hall of floor 120 | Floor 100 chest in the mines |
+| 3 | A spouse at 12.5 hearts (`12_marriage.md`) | Spouse or roommate at 12.5 hearts |
+| 4 | The hermit sells one at a very high price (placeholder 20,000g) | Krobus, 20,000g |
+| 5 | A spirit in the Secret Woods, for a rare find the player grows or forages | Old Master Cannoli and a Sweet Gem Berry |
+| 6 | A letter with the seed the day after the fish achievement (`38_achievements.md`) | Willy's letter after Master Angler |
+| 7 | The full gallery set (`38_achievements.md`) | All 95 museum items |
+
+- Only one spouse seed, however many times the player marries or splits.
+- The festival and hermit sales are gold sinks and are never missable.
+- The seven seeds are what the "Find every stardrop" achievement counts.
+- **Slayer goals: twelve, one per creature kind** (see `22_mines.md`, "The
+  slayer list"). Weight stays 10.
+
 ## Proposed, not asked
 
 - **The valley total.** It is the plain mean of the totals of the rings that
@@ -110,13 +135,6 @@ Ring 3 is unknown, and it may not exist at the scale of rings 1 and 2.
 - **Friends' maximum hearts.** Follow Stardew's split: a lower cap for people
   who can be courted and a higher cap for the rest. The numbers wait for the
   friendship design.
-- **Rare boost items.** Stardew has seven stardrops from seven sources, among
-  them the full museum donation set, the Master Angler mail, a floor 100 chest,
-  a spouse at 12.5 hearts and two shop sales (checked on the saved Stardrop
-  page). Ours are permanent energy items. Two sources are already set by
-  `38_achievements.md`: the mail gift for catching every fish, and (to settle
-  with the gallery's rewards) the full gallery set. The count and the other
-  sources are open.
 
 ## Build notes
 
@@ -129,8 +147,9 @@ Ring 3 is unknown, and it may not exist at the scale of rings 1 and 2.
 
 ## Open
 
-- The count and sources of the rare boost items.
-- The slayer list's length, from the mines' design.
+- The star seed's final name, the rare find the Secret Woods spirit wants,
+  and the festival that sells seed 1 (festival list).
+- The slayer goals' kill counts and reward items, at tuning.
 - Ring 2's categories, weights, collectible and reward, in the ring 2 design
   (#20). Ring 3's only if it is built.
 - Whether partial progress counts, as proposed, or only whole items.
