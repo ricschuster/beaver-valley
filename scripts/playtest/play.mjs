@@ -196,9 +196,9 @@ async function menuTo(scene, field, idx) {
 const sceneMsg = (scene) =>
   page.evaluate((k) => window.__game.scene.getScene(k).message.text, scene);
 
-async function openService(standX, standY, kind) {
+async function openService(standX, standY, kind, facing = "down") {
   await bot.walkTo(standX, standY);
-  await bot.face("down");
+  await bot.face(facing);
   const before = await bot.snap();
   await bot.key("Space", 400);
   const s = await bot.snap();
@@ -224,11 +224,26 @@ async function closeScreen(kind) {
   return s;
 }
 
+/** Walk through a door by holding a direction, then wait for the next map. */
+async function walkThrough(dir, ms, want) {
+  const key = { up: "ArrowUp", down: "ArrowDown" }[dir];
+  await page.keyboard.down(key);
+  await sleepMs(ms);
+  await page.keyboard.up(key);
+  await sleepMs(900);
+  const d = await bot.dbg();
+  if (d.map !== want)
+    finding(`expected map ${want} after the door, on ${d.map}`);
+}
+
 async function visitHall() {
   const list0 = await giveList();
   if (list0.length === 0) return;
   log("hall: can hand in", list0.map((g) => g[2]).join(","));
-  await openService(6, 21, "hall");
+  // The hall is a walkable interior: in by the door, to a scroll, and back.
+  await bot.walkTo(6, 21);
+  await walkThrough("down", 1200, "hall");
+  await openService(4, 2, "hall", "up");
   let first = true;
   for (let n = 0; n < 40; n++) {
     const list = await giveList();
@@ -260,6 +275,8 @@ async function visitHall() {
   // Try a hand-in the hall should refuse (once), to check the wording.
   const s = await closeScreen("hall");
   if (s.scenes.includes("end")) await endScreen();
+  await bot.walkTo(23, 18);
+  await walkThrough("down", 1200, "farm");
 }
 
 async function endScreen() {

@@ -1,7 +1,7 @@
 // PLACEHOLDER. Writes a small Tiled-format farm map (JSON) so the scene work
 // has something to walk on. The layout is throwaway and is not a design; see
 // docs/design/05_farm_map_placeholder.md for what is undecided and for the map
-// contract any real map must meet. Writes the farm and a small house interior.
+// contract any real map must meet. Writes the farm, a small house interior and the village hall interior.
 // Run: node scripts/gen-farm-map.mjs
 import { mkdirSync, writeFileSync } from "node:fs";
 
@@ -25,6 +25,7 @@ const WALL = 7;
 const ROOF = 8;
 const DOOR = 9;
 const BED = 10;
+const SCROLL = 11;
 
 const idx = (x, y) => y * W + x;
 const grid = () => new Array(W * H).fill(0);
@@ -79,7 +80,7 @@ const building = (x0, y0, w, h, doorX, doorY, service) => {
   else collision[idx(doorX, doorY)] = 0;
 };
 building(4, 2, 6, 4, 6, 5); // house, door on its south face
-building(4, 22, 6, 4, 6, 22, "hall"); // hall, door on its north face
+building(4, 22, 6, 4, 6, 22); // hall, door on its north face
 building(31, 20, 6, 4, 33, 20, "shop"); // shop, door on its north face
 
 // Dirt paths joining the doors.
@@ -151,6 +152,11 @@ const service = (kind, x, y) => ({
   ...point("service", kind, x, y),
   properties: [{ name: "kind", type: "string", value: kind }],
 });
+// A service with its own name, so one map can hold several of one kind.
+const service2 = (name, kind, x, y) => ({
+  ...point("service", name, x, y),
+  properties: [{ name: "kind", type: "string", value: kind }],
+});
 const exit = (name, x, y, target, entry) => ({
   id: objectId++,
   name,
@@ -173,10 +179,10 @@ const tileset = {
   name: "placeholder",
   tilewidth: T,
   tileheight: T,
-  tilecount: 10,
+  tilecount: 11,
   columns: 10,
   image: "placeholder-tiles.png",
-  imagewidth: 10 * T,
+  imagewidth: 11 * T,
   imageheight: T,
 };
 
@@ -212,6 +218,8 @@ const farm = {
         point("entry", "start", 6, 7),
         point("entry", "from_house", 6, 6),
         exit("house", 6, 5, "house", "door"),
+        point("entry", "from_hall", 6, 21),
+        exit("hall", 6, 22, "hall", "door"),
         ...services.map((s) => service(s.kind, s.x, s.y)),
         ...forage.map((f) => point("forage", "forage", f.x, f.y)),
       ],
@@ -255,8 +263,72 @@ const house = {
   ],
 };
 
+// The village hall interior (docs/design/40_hall_layout.md): a main room, a
+// corridor to each side, four walled rooms off the corridors, and two alcoves
+// (the tank on the main room's back wall, the board on a corridor wall). Each
+// room has a scroll the player faces and uses. For now every scroll opens the
+// whole hall menu; the per-room panel and the ruined and restored states come
+// later. The door is at the bottom centre. Tile coordinates, mirrored about
+// the centre line x = 23.5.
+const LW = 48;
+const LH = 20;
+const lground = new Array(LW * LH).fill(WALL);
+const lcollision = new Array(LW * LH).fill(1);
+const open = (x, y) => {
+  lground[y * LW + x] = PATH;
+  lcollision[y * LW + x] = 0;
+};
+const rect = (x0, y0, x1, y1) => {
+  for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) open(x, y);
+};
+const both = (x0, y0, x1, y1) => {
+  rect(x0, y0, x1, y1);
+  rect(LW - 1 - x1, y0, LW - 1 - x0, y1);
+};
+rect(16, 6, 31, 16); // main room
+rect(23, 17, 24, 18); // entrance nook
+both(3, 10, 15, 11); // corridors, through the gap in the main room's side wall
+both(6, 8, 7, 9); // passages up to the north rooms
+both(6, 12, 7, 13); // passages down to the south rooms
+both(3, 2, 10, 7); // Foragers' Shelf and the Hearth
+both(3, 14, 10, 18); // Larder and The Last Seat
+for (const x of [23, 24]) lground[(LH - 1) * LW + x] = DOOR;
+for (const x of [23, 24]) lcollision[(LH - 1) * LW + x] = 0;
+const scroll = (x, y) => {
+  lground[y * LW + x] = SCROLL;
+  lcollision[y * LW + x] = 1;
+  return { x, y };
+};
+const scrolls = [
+  ["foragers-shelf", scroll(4, 1)],
+  ["larder", scroll(4, 13)],
+  ["hearth", scroll(LW - 1 - 4, 1)],
+  ["last-seat", scroll(LW - 1 - 4, 13)],
+  ["water-room", scroll(28, 5)], // the tank, on the main room's back wall
+  ["guests-board", scroll(LW - 1 - 12, 9)], // the board, on a corridor wall
+];
+
+const hall = {
+  ...farm,
+  width: LW,
+  height: LH,
+  layers: [
+    { ...tileLayer(1, "ground", lground), width: LW, height: LH },
+    { ...tileLayer(2, "collision", lcollision, false), width: LW, height: LH },
+    {
+      ...farm.layers[4],
+      objects: [
+        point("entry", "door", 23, LH - 2),
+        { ...exit("door", 23, LH - 1, "farm", "from_hall"), width: 2 * T },
+        ...scrolls.map(([name, s]) => service2(name, "hall", s.x, s.y)),
+      ],
+    },
+  ],
+};
+
 const dir = "src/content/maps";
 mkdirSync(dir, { recursive: true });
 writeFileSync(`${dir}/farm.json`, JSON.stringify(farm));
 writeFileSync(`${dir}/house.json`, JSON.stringify(house));
-console.log(`wrote ${dir}/farm.json and ${dir}/house.json (placeholders)`);
+writeFileSync(`${dir}/hall.json`, JSON.stringify(hall));
+console.log(`wrote the farm, house and hall maps in ${dir} (placeholders)`);

@@ -9,6 +9,7 @@ import {
   finding,
   findings,
   isWalk,
+  setMap,
 } from "./lib.mjs";
 
 const { b, p, errs } = await launch({ fresh: true, context: TABLET });
@@ -146,6 +147,7 @@ async function holdAxis(axis, target) {
 async function walkTo(tx, ty) {
   for (let attempt = 0; attempt < 4; attempt++) {
     const d = await bot.dbg();
+    setMap(d.map);
     const path = bot.bfs(d.tile, { x: tx, y: ty });
     if (!path) throw new Error(`no path to ${tx},${ty}`);
     let i = 0;
@@ -334,9 +336,18 @@ else {
   else log("shop by touch: buy, sell, close done");
 }
 
-// 5. Hall by touch.
+// 5. Hall by touch: in by the door, to a scroll, and back out.
 await walkTo(6, 21);
-await faceTo("down");
+await holdAxis("x", cx(6));
+await holdAxis("y", cy(22));
+await sleepMs(900);
+const inHall = await bot.dbg();
+if (inHall.map !== "hall")
+  finding(
+    `walking into the hall door did not enter the hall (map ${inHall.map})`,
+  );
+await walkTo(4, 2);
+await faceTo("up");
 const bundle = await p.evaluate(() => {
   const st = window.__game.registry.get("state");
   const b = st.hall.bundles[0];
@@ -361,6 +372,11 @@ else {
   await tapLabel("hall", "Close");
   await sleepMs(300);
 }
+await walkTo(23, 18);
+await holdAxis("y", cy(19));
+await sleepMs(900);
+if ((await bot.dbg()).map !== "farm")
+  finding("walking out of the hall door did not return to the farm");
 
 // 6. Sleep by touch: walk into the house, use the bed, answer Yes.
 await walkTo(6, 6);
