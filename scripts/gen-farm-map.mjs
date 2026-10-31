@@ -228,8 +228,12 @@ const farm = {
   tilesets: [tileset],
 };
 
-// A small house interior: a floor inside a wall, with the door in the south wall.
-const HW = 10;
+// The house interior (docs/design/41_house.md): one open space, 18 by 8, with the
+// kitchen on the left (columns 1 to 4), the start room in the middle (5 to 12)
+// and the bedroom on the right (13 to 16). The file is the fully open house. The
+// scene seals the kitchen and bedroom regions with earth until the house tier
+// opens them, so the map never changes between tiers.
+const HW = 18;
 const HH = 8;
 const hground = new Array(HW * HH).fill(PATH);
 const hcollision = new Array(HW * HH).fill(0);
@@ -239,11 +243,16 @@ for (let y = 0; y < HH; y++)
       hground[y * HW + x] = WALL;
       hcollision[y * HW + x] = 1;
     }
-hground[(HH - 1) * HW + 5] = DOOR;
-hcollision[(HH - 1) * HW + 5] = 0;
+hground[(HH - 1) * HW + 9] = DOOR;
+hcollision[(HH - 1) * HW + 9] = 0;
 // A bed against the north wall. Use it from the tile below to sleep.
-hground[1 * HW + 2] = BED;
-hcollision[1 * HW + 2] = 1;
+hground[1 * HW + 6] = BED;
+hcollision[1 * HW + 6] = 1;
+const hregion = (name, x, y, w, h) => ({
+  ...point("region", name, x, y),
+  width: w * T,
+  height: h * T,
+});
 
 const house = {
   ...farm,
@@ -255,9 +264,12 @@ const house = {
     {
       ...farm.layers[4],
       objects: [
-        point("entry", "door", 5, HH - 2),
-        exit("door", 5, HH - 1, "farm", "from_house"),
-        service("bed", 2, 1),
+        point("entry", "door", 9, HH - 2),
+        exit("door", 9, HH - 1, "farm", "from_house"),
+        service("bed", 6, 1),
+        hregion("kitchen", 1, 1, 4, 6),
+        hregion("start", 5, 1, 8, 6),
+        hregion("bedroom", 13, 1, 4, 6),
       ],
     },
   ],
