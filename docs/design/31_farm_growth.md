@@ -107,10 +107,10 @@ part that is pure loss. Everything else is a reward the player chooses.
   sprinklers can go. No sprinkler reaches the middle from the border, so the
   player gives up a few soil tiles or uses the late sprinkler tier. That is the
   layout puzzle, and the 24 tile sprinkler is its reward.
-- **Sap:** a small chance of sap when cutting weeds or grass, and as a forage
-  find in the woods. No trees or tappers are needed, so basic fertilizer is not
-  held back by wood. Fiber comes from weeds (`29_weeds.md`). Both are items
-  that must be added before the recipes that use them.
+- **Sap:** changed 2026-10-31 to Stardew's source. It comes from chopping
+  common trees and removing stumps, not from weeds, grass or forage
+  (`36_gathering_trees_sap_fiber.md`). Fiber comes from weeds (`29_weeds.md`).
+  Both are items that must be added before the recipes that use them.
 - **Farm cave timing:** a total earnings mark, as in Stardew, counted over the
   whole game. The number is set in the tuning note.
 
@@ -118,4 +118,4 @@ part that is pure loss. Everything else is a reward the player chooses.
 
 - Sprinkler and fertilizer recipes and prices, the cave's earnings mark, tree
   prices and the fruit tables. All go in `07_tuning_numbers.md`.
-- Sap and fiber drop chances for grass and the woods.
+- Sap and fiber drops are settled in `36_gathering_trees_sap_fiber.md`.

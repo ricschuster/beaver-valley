@@ -92,7 +92,7 @@ will correct them.
 | Fish, bait and tackle | Fishing and the water | Covered | `21_fishing.md`, checked against the Fish page 2026-10-31. Not built. |
 | Cooking and recipes | Processing and animals | Designed | Kitchen with the first house upgrade, 81 recipes across three rings. `24_processing_and_cooking.md`, 2026-10-31. |
 | Crafting (craftable items) | none | Partial | Machines and furnace are planned. The general craftable list is in `34_crafting.md`. |
-| Trees and wood | Valley and town map | Partial | The axe fells a tree (`22_mines.md`) and there is a sawmill (`19_valley_layout.md`). Growing, tapping and replanting trees are not mentioned. |
+| Trees and wood | Valley and town map | Partial | The axe fells a tree (`22_mines.md`) and there is a sawmill (`19_valley_layout.md`). Common trees, chopping, sap, seeds and regrowth are in `36_gathering_trees_sap_fiber.md`. Tapping and the sawmill are not. |
 | Secret notes and books | none | Absent | A hidden-notes collection and skill books are not mentioned. |
 | Artifacts and minerals | Mines and gentle combat | Partial | Geodes, gems and found things are covered in `22_mines.md`. Digging artifact spots on the surface and a place to donate them are not. |
 | Museum | none | Absent | The valley has a library (`20_ring1_cast.md`) but no collection hall. The completion tracker may take this role. |

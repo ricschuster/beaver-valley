@@ -73,7 +73,9 @@ Bundle 12's pool avoids keg goods, since its reward is the keg
 since oil needs the oil maker (decided 2026-10-31).
 
 Design still needed first: the numbers for the fall and winter crop and forage
-lists (#61, names in `35_bundle_pools.md`), and the Fiber and Sap items.
+lists (#61, names in `35_bundle_pools.md`), and the Fiber and Sap items
+(`36_gathering_trees_sap_fiber.md`; common trees still need a place on the
+maps).
 
 Winter is thin in this slice: forage, machines and a festival carry it. The
 greenhouse is not there until slice 4. That is accepted, since slices 2 to 4 fill it.
