@@ -12,12 +12,15 @@ Reference: the Stardew Valley Wiki Shipping page, read only (ADR 0002).
 - **One bin comes with every farm,** by the house. It is a placed object like
   the other farm objects. Extra bins and a mini bin are later, with the farm
   note.
-- **Shipping an item.** Walk up and use the bin, then pick an item and a
-  count from the inventory. On a tablet the bin opens the same menu style as
-  the shop sell list, with the main action first (Ship 1) and the second
-  button (Ship all), as in `08_playtest_personas.md`.
+- **Shipping an item.** Walk up and use the bin. The menu shows the inventory
+  grid with the bin beside it, as in Stardew. The player taps or drags a stack
+  into the bin. This replaces the earlier plan to reuse the shop sell list.
+  How many move per tap or hold (one, half, all) is open, and must still
+  follow the main action first, second button next rule in
+  `08_playtest_personas.md`.
 - **Take-back.** Anything shipped today can be taken out again until the player
-  sleeps. This is wider than Stardew, which returns only the last item. It
+  sleeps. The bin menu has two tabs, Ship and Shipped today. Tapping a line in
+  the second tab takes it back, with Take back 1 and Take back all buttons. This is wider than Stardew, which returns only the last item. It
   removes the mistake of shipping something the hall still needs.
 - **Payout.** Money is paid when the day ends, including a pass-out. The
   pass-out money loss (see `07_tuning_numbers.md`) applies to cash carried, not
@@ -57,5 +60,5 @@ for the player who needs money now to buy seeds before planting.
 
 ## Open
 
-- The touch layout of the bin menu: how items are picked, and where take-back
-  sits.
+- Amounts per tap or hold when shipping from the grid (one, half, all), and
+  how that works on touch.
