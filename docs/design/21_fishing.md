@@ -59,10 +59,12 @@ Anecdotal, from forums and press, not a survey.
    `src/core/quality.ts`.
 8. **Roster: 46 fish** in ring 1, sketched below. Each needs an icon and
    a bar motion. The motion and difficulty are in the roster tables.
-9. **Traps (bundle 18): a passive way to fish, for shellfish only, and
-   optional.** A pot at the water gives crabs and the like the next day, never
-   fish. Fresh and salt water pots. Nothing requires a pot: every pot catch can
-   also be had another way (see the rare shellfish below).
+9. **Traps (bundle 18): a way to fish without the bar, for shellfish only, and
+   optional.** A baited pot at the water gives crabs and the like the next day,
+   never fish, and sometimes junk (Stardew's pot, decided 2026-10-31, which
+   reverses the first draft's bait-free, junk-free pot). Fresh and salt water
+   pots. Nothing requires a pot: every pot catch can also be had another way
+   (see the rare shellfish below).
 10. **Fish uses:** sold in the shop, cooked into dishes, and given as gifts.
     Some villagers like or dislike fish (a liked-gift list per villager).
 11. **The Water room keeps all six bundles** (13 to 18). The N-of-M rules give
@@ -243,10 +245,23 @@ are in `07_tuning_numbers.md`.
 
 ## Shellfish pots (decided 2026-10-29, numbers placeholders)
 
-A pot sits on a fishable water tile and gives one shellfish catch each morning.
-It takes no bait, has no season gate, and gives shellfish only, never fish.
-Fresh water pots go on rivers and lakes (the cove included). Salt water pots go
-on the sea at the Beach. The shop price is 150g, and bundle 18 gives three.
+A pot sits on a fishable water tile and, if baited, gives one catch each
+morning. It has no season gate, and gives shellfish or junk, never fish. Fresh
+water pots go on rivers and lakes (the cove included). Salt water pots go on
+the sea at the Beach. The shop price is 150g, and bundle 18 gives three.
+
+**Bait and junk (Stardew's pot, decided 2026-10-31).**
+
+- A pot needs one bait each day, any of the three baits. An unbaited pot catches
+  nothing. Plain Bait at 3g makes the chore cheap.
+- Each morning a baited pot gives junk 38 times in 100 (Stardew's rate), or 30
+  in 100 with Fine Bait. Otherwise it gives a shellfish from the table below.
+  Junk is the same trash as the rod's (see "Catch details"), so the recycler
+  takes it too.
+- The odds in the table are for a shellfish day, so each pot day gives a given
+  shellfish at about 0.6 of the listed odds. The Pearl Lobster's pot rate
+  falls to about 12 in 100 a day, which eases the "too easy" worry in "Open".
+- A pot harvest gives fishing XP even when it holds junk (Stardew).
 
 **Eight catches, four per water**, in a mix of real and our own names. Bundle
 18 takes 5 of the 8, and the Pearl Lobster is never required, so seven catches
@@ -327,7 +342,7 @@ a fish bites, and shortens the wait for a bite. It never changes which fish.
 | Fine Bait | 12g | Times 0.5 |
 | Salted Bait | 8g | Sea only: times 0.5 |
 
-Bundle 13 gives 30 Plain Bait. Pots take no bait.
+Bundle 13 gives 30 Plain Bait. Pots take bait, one a day.
 
 **Seven lures** (Stardew's tackle idea, in our own names and effects). A lure goes
 in a lure slot and lasts 20 casts. Different lures stack on the Hearthwell Rod,
@@ -437,20 +452,11 @@ amount of XP, 5 in Stardew. A harvest counts even when it holds a common catch.
 treasure does not break a perfect catch, since the hook already adds a
 reward. This follows Stardew's Treasure Hunter tackle.
 
-**Sell prices for ordinary fish (placeholder bands).** Scaled to rarity. Stardew
-values for comparison: sardine 40g, bream 45g, salmon 75g, a bass 100g,
-pufferfish 200g, using real fish as the anchor.
-
-| Rarity | Sells, placeholder |
-| --- | --- |
-| Common | 30 to 65g |
-| Uncommon | 70 to 150g |
-| Rare | 180 to 350g |
-| Cove rare | 300 to 500g |
-| Legend | 1500g and up |
-
-A fish's own price sits in the band, higher for a harder bar. The exact table
-goes in `07_tuning_numbers.md`, not here.
+**Sell prices.** `07_tuning_numbers.md` already holds them: common 40 to 90g,
+uncommon 100 to 200g, rare 250 to 500g, cove fish 400 to 700g, and the five
+legends at 3000 to 4000g. A fish's own price sits in its band, higher for a
+harder bar. Stardew for comparison: sardine 40g, salmon 75g, a bass 100g,
+pufferfish 200g.
 
 ### Professions
 
@@ -461,10 +467,8 @@ Stardew's tree, checked against the Skills page.
 - **Level 10 under Fisher:** Angler (fish sell for 50 percent more) or Pirate
   (treasure chance doubled, here the Magpie Hook's one in five).
 - **Level 10 under Trapper:** Mariner (pots give no junk) or Luremaster (pots
-  need no bait).
-- **A problem with Trapper.** Our pots never take bait (decision 9) and give
-  shellfish only, never trash. So Luremaster and Mariner do nothing. See "Open"
-  for the proposed swap.
+  need no bait). Both work as in Stardew because our pots now take bait and
+  give junk (decision 9, 2026-10-31).
 - Level 10 needs the choice screen for every skill (`24_processing_and_cooking.md`).
 - The level 5 and level 10 choices change `professions.ts`, its tests and the
   skills screen.
@@ -489,23 +493,16 @@ Stardew's tree, checked against the Skills page.
 - Owner review of the drafted rods, baits and lures and the fishing numbers
   (`07_tuning_numbers.md`).
 - Owner edits to the draft roster, and a spare fish or two per bundle.
-- The Trapper branch. Proposed swap: Mariner makes pots catch the rarer
-  shellfish more often, and Luremaster lets a pot be harvested twice in a
-  day's visit (a second catch rolls straight away). Alternatively, give our
-  pots an optional bait. Needs a decision, and the Stardew behaviours do not
-  apply.
 - The set of water plants and jellies, our trash items and the recycler's
   output odds.
 - The lengths per fish, and the units.
-- The exact sell prices of every fish, in `07_tuning_numbers.md`.
+- The exact price of each fish within its band, in `07_tuning_numbers.md`.
 - The four new legends: final times, weather and sell prices.
 - The completion tracker: what counts, the weights and the reward (a note of its
   own).
-- The Pearl Lobster's final rod and pot odds (tuning). At 1 in 5 a pot day with
-  three pots it may be too easy to get.
+- The Pearl Lobster's final rod and pot odds (tuning). With junk, a pot gives
+  it about 12 in 100 a day, so three pots may still be easy to get.
 - Tablet check: fingers hiding the bar, and the Wide Float adding to the assist
   bar (needs a real device).
-- The Trapper branch needs a swap, because our pots take no bait and give no
-  junk (see "Professions").
 - The fifth tool tier: its metal's name, the mine depth, the price and which
   tools use it.
