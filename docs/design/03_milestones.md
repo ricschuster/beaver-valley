@@ -41,7 +41,7 @@ multiplayer, generated content, deep relationships, final name and polish.
 
 ### Centre 1 in the first playable
 
-- **Size.** Five bundles, each asking for 4 to 6 items.
+- **Size.** Four bundles (five until the Pantry was dropped, 2026-10-31), each asking for 3 to 6 items.
 - **Requests.** Modelled on the original's approach, in our own names and
   items. A bundle names specific goods, and some bundles accept "any N of these
   M" so the player has choices. Some goods are tied to one of the two seasons,
@@ -52,7 +52,7 @@ multiplayer, generated content, deep relationships, final name and polish.
 - **Hand-in.** The player hands items in one by one at the village hall. Each
   bundle remembers its progress between visits. The hall is always open.
 - **Rewards.** Finishing a bundle gives a small reward (placeholder: seeds or a
-  little money, to be tuned). Finishing all five ends the first playable with a
+  little money, to be tuned). Finishing all of them ends the first playable with a
   simple end screen.
 - **Quality tiers, skill gates, tool upgrades.** Planned for M3, but quality
   tiers and tool upgrades were built early (#94, #97). Skill gates and
@@ -68,9 +68,9 @@ The first playable is done when all of these are true:
 3. Farming and foraging skills level up by doing.
 4. Two short seasons run, each with its own crops and foraging goods.
 5. The player can sell goods.
-6. The village hall shows five bundles, accepts item hand-ins one by one, and
+6. The village hall shows its bundles, accepts item hand-ins one by one, and
    keeps progress between visits.
-7. Finishing a bundle gives its reward, and finishing all five shows an end
+7. Finishing a bundle gives its reward, and finishing all bundles shows an end
    screen.
 8. The game can be saved and loaded between days.
 9. It runs with rough placeholder art and no audio requirement.

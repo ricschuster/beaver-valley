@@ -12,8 +12,8 @@ import { Inventory } from "../src/core/inventory";
 import { itemById } from "../src/core/items";
 
 describe("bundle data", () => {
-  it("has five bundles with known items and sane requirements", () => {
-    expect(BUNDLES).toHaveLength(5);
+  it("has four bundles with known items and sane requirements", () => {
+    expect(BUNDLES).toHaveLength(4);
     for (const b of BUNDLES) {
       expect(b.required).toBeGreaterThanOrEqual(1);
       expect(b.required).toBeLessThanOrEqual(b.items.length);
@@ -87,13 +87,21 @@ describe("Hall", () => {
     expect(inv.count("melon")).toBe(1);
   });
 
-  it("takes any N of M in the mixed bundle and then closes", () => {
+  it("takes any N of M in a bundle and then closes", () => {
     const hall = openHall();
     const inv = new Inventory();
     const w = { money: 0 };
-    const picks = ["parsnip", "leek", "melon", "grape", "tomato"];
+    const picks = [
+      "daffodil",
+      "leek",
+      "dandelion",
+      "horseradish",
+      "salmonberry",
+    ];
     for (const id of picks) inv.add(id);
-    const results = picks.map((id) => hall.handIn(inv, w, "pantry", id));
+    const results = picks.map((id) =>
+      hall.handIn(inv, w, "spring-foraging", id),
+    );
     expect(results).toEqual([
       "accepted",
       "accepted",
@@ -101,7 +109,7 @@ describe("Hall", () => {
       "completed",
       "rejected",
     ]);
-    expect(w.money).toBe(500);
+    expect(inv.count("parsnip-seed")).toBe(15);
   });
 
   it("keeps progress through save and load, and reports all complete", () => {
@@ -173,7 +181,7 @@ describe("rewardText", () => {
     expect(rewardText(by("spring-foraging"))).toBe("15 Parsnip seeds");
     expect(
       rewardText({
-        ...by("pantry"),
+        ...by("spring-crops"),
         reward: { money: 5, item: { id: "leek", count: 2 } },
       }),
     ).toBe("5g and 2 Wild leek");

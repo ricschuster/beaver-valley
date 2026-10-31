@@ -51,7 +51,7 @@ export function sleep(
   };
 }
 
-/** True once all five bundles are done: show the end screen. */
+/** True once all bundles are done: show the end screen. */
 export function finished(g: GameState): boolean {
   return g.hall.allComplete;
 }

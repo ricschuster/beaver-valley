@@ -93,5 +93,4 @@ must walk to a scroll instead of opening a menu.
 - Decor in the main room (seating, rug, shelves) is placeholder art and not
   designed beyond the layout in decisions 7 and 8.
 - Art for ruined and restored rooms is placeholder until the art pass (#58).
-- The Pantry bundle fits no room. Drop it or reshape it into the Larder.
 - Whether a restored room shows each finished bundle as a visible item.

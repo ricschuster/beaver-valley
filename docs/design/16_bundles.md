@@ -203,8 +203,9 @@ belong in the mines note.
 
 The five bundles in `src/content/bundles.json` stay as the first slice. They
 map onto this note as follows: Spring Foraging and Summer Foraging are bundles
-1 and 2, Spring Crops and Summer Crops are bundles 7 and 8, and the Pantry is
-a mixed bundle that does not appear here and would be reshaped or dropped. The
+1 and 2, Spring Crops and Summer Crops are bundles 7 and 8, and the Pantry, a
+mixed bundle that did not appear here, was dropped on 2026-10-31 (the owner
+chose the Stardew behaviour: its Pantry room has no mixed bundle). The
 current rewards (seeds and money) stay until the systems above exist.
 
 ## Who grants a room reward
