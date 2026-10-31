@@ -151,9 +151,13 @@ These must exist before the recipes above can be built.
 - **Wood, stone, coal, copper and iron bars:** wood and stone exist. Coal and
   bars come from `22_mines.md` (the first part of the mines is in slice 1).
 - **Hardwood**, from large stumps (`32_farm_types.md`).
-- **Clay**, from digging. It has no source yet.
+- **Clay**, from hoeing dirt patches on mine floors 1 to 10, and rarely from
+  the smith dwarf's geodes (settled 2026-10-31, below).
 - **Moss**, a forage and mine drop.
-- **Gold bars and quartz stand-ins**, from the mines.
+- **Gold bars**, from the smith dwarf's ore shop in slice 1.
+- **Quartz crystals**, found on the floor of mine floors 1 to 10, and rarely in
+  the smith dwarf's geodes (settled 2026-10-31, below). They stand in for
+  refined quartz and earth crystals in the recipes above.
 - **A battery pack**, from a lightning rod in a storm. Storms are a new weather
   type, built with fall and winter in slice 1 (`26_seasons.md`).
 
@@ -168,8 +172,17 @@ These must exist before the recipes above can be built.
   slice 1, as in Stardew (`33_build_order.md`), so copper bars come from floors
   1 to 10 and the furnace. Iron and gold ore come from the smith dwarf's shop
   until the deeper floors in slice 3.
-- **Clay and quartz** need a source in slice 1. Clay by digging with the hoe is
-  the likely route.
+- **Clay and quartz in slice 1 (settled 2026-10-31).** Both follow Stardew's
+  mines (saved Mines, Blacksmith and Minerals pages). Clay comes from hoeing
+  dirt patches on the mine floors, with a low chance per patch (Stardew's is
+  about 5 percent, so a placeholder of 5), and rarely from geodes. Quartz lies
+  on the floor as mine forage and also comes rarely from geodes. Farm soil
+  gives no clay. Stardew's Clay page is not saved, so whether farm digging
+  gives any is unchecked, and the owner chose the mine route as it needs no
+  new system. Clay and quartz both open on spring day 5 with the mine, so the
+  quality sprinkler, brick floors and mayonnaise machine need a mine visit.
+  The carpenter buys clay, as in Stardew. Counts per floor go in
+  `07_tuning_numbers.md` with the other mine numbers.
 - Where the carpenter's shop sells the stone chest, stepping stone path and
   floors, and whether the shop rotates stock as Stardew's does.
 - Whether the workbench price (2,000g) fits our early economy.
