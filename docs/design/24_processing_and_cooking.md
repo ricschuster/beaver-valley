@@ -25,6 +25,20 @@ food with energy and a buff. This note settles both before any code.
   back, for aged wine and cheese, with the farmhouse cellar.
 - **The kitchen comes with the first farmhouse upgrade,** as in Stardew. A
   portable cookout kit at foraging level 3 cooks anywhere.
+- **Mayonnaise machine and oil maker come from farming level recipes,** as in
+  Stardew (level 2 and level 8). No bundle gives them.
+- **Machine set: eleven.** The eight plus a seed maker, a dye vat and a fish
+  smoker. The duplicator is dropped, since Stardew has none. Bundle 27's reward
+  needs a new choice (see "Open").
+- **Craft costs use Stardew's lists,** with our own items swapped in for any we
+  lack (jellies, earth crystal, oak resin and the like). Tuned in playtests.
+- **The first farmhouse upgrade costs 10,000g and 450 wood,** takes 3 days and
+  adds the kitchen, fridge and a bedroom, as in Stardew. Later upgrades are for
+  the house note.
+- **The inn kitchen sells a few recipes and dishes,** like Stardew's saloon (a
+  permanent stock of about six dishes and a handful of cheap starter recipes).
+- **A level 10 profession choice for every skill,** as in Stardew. One screen
+  covers farming, foraging and the rest (`23_animals.md`, "Professions").
 - **Recipe count: as many as Stardew has in total,** and spread across the
   rings. Each of ring 2 and ring 3 brings its own recipes. See "Dishes".
 
@@ -32,7 +46,8 @@ food with energy and a buff. This note settles both before any code.
 
 These came from the 2026-10-30b handoff and were not contradicted:
 
-- Eight machines in the first version, one input and one batch each.
+- Eleven machines in the first version,
+  one input and one batch each.
 - Most goods ignore ingredient quality and sell for about 2 to 3 times the raw
   item. Cloth is the exception: better wool gives a better chance of 2 cloth.
 - Wine is the best use of fruit and jam suits cheap fruit.
@@ -43,7 +58,7 @@ These came from the 2026-10-30b handoff and were not contradicted:
 
 ## Machines
 
-Eight machines. Times are in game hours and placeholders. A machine runs
+Eleven machines (the three added are in the second table). Times are in game hours and placeholders. A machine runs
 overnight and while the player is away, and the clock follows the game day
 (`07_tuning_numbers.md`). The furnace is in `22_mines.md` and is not repeated.
 
@@ -58,12 +73,25 @@ overnight and while the player is away, and the clock follows the game day
 | Bee house | None (produces) | Honey, or flower honey | 4 days | 9, Autumn Crops |
 | Charcoal kiln | Wood | Coal | 1 hour | 5, Woodland, and 19, Smith's (`22_mines.md`) |
 
+The three added machines:
+
+| Machine | Input | Output | Time | First source |
+| --- | --- | --- | --- | --- |
+| Seed maker | A crop or forage item | Seeds of it | Short | Bundle 4, Winter Foraging |
+| Dye vat | A flower or crop | Dye | Placeholder | Bundle 23, Dyer's |
+| Fish smoker | A fish and coal | Smoked fish, worth double, quality kept | Placeholder | Riverside starts with it. Others craft it later. |
+
+- The seed maker's recipe source in Stardew is not checked (the saved pages do
+  not cover it). The fish smoker's craft costs are likewise unchecked.
+- Mayonnaise machine and oil maker: farming level recipes, level 2 and level 8.
+  Stardew's other machine unlocks are also farming levels (bee house 3, jar 4,
+  cheese press 6, loom 7, keg 8), but ours come from bundles first as decided.
 - **One input, one batch.** Put one item in and get one item out, as in Stardew.
   The tablet player never fills a queue.
 - **Quality is ignored** for every good except cloth, which uses the wool's
   quality to raise the chance of 2 cloth.
-- **Craft recipes** use wood, stone and bars from `22_mines.md`. Costs start near
-  Stardew's and are rebalanced to our economy. Bars mean a copper or iron trip,
+- **Craft recipes** use wood, stone and bars from `22_mines.md`, as Stardew's
+  lists do. Bars mean a copper or iron trip,
   so machine crafting follows the mines. The exact lists go in
   `07_tuning_numbers.md`.
 - **Bee houses** do not run in winter, and flowers in range change the honey,
@@ -95,9 +123,10 @@ Our own rule of thumb, tuned in playtests:
 - The player starts with one recipe, a simple fried egg.
 - All other recipes must be learned before they can be cooked. A locked recipe
   shows as a silhouette.
-- Our house upgrade list is not designed (see `25_stardew_system_review.md`,
-  "Farmhouse and upgrades"). This note only needs the first upgrade to exist and
-  to carry the kitchen.
+- Later upgrades (Stardew: 65,000g and 100 hardwood for the children's rooms,
+  then 100,000g for the cellar) are not designed here. See
+  `25_stardew_system_review.md`, "Farmhouse and upgrades". The cellar upgrade is
+  where the cask arrives.
 
 ## Buffs and eating
 
@@ -134,8 +163,8 @@ own names, flavour and ingredients apply to every one.
   - Friendship mail from the cast at 3 and 7 hearts (our 5 and 10 steps are
     tuned in the cast notes).
   - A skill level reward, one dish at certain levels of each skill.
-  - The inn kitchen, which sells a few dishes (`20_ring1_cast.md`, the inn
-    keeper's family).
+  - The inn kitchen, which sells a few dishes and cheap starter recipes
+    (`20_ring1_cast.md`, the inn keeper's family).
   - A cookbook, bought or found. No TV show.
   - A bundle reward (bundles 17 and 22 already give dishes).
 - **Bundle dishes stay satisfiable in ring 1.** Bundles 22, 24 and 27 ask for
@@ -162,8 +191,7 @@ skills and rings gives each of them a second use.
 
 - **The cask,** first to return. It needs the cellar from a house upgrade and
   long timers. Aged wine, cheese, ale and mead come with it.
-- **A dehydrator, a seed maker and a fish smoker.** See "Open" for the bundle
-  and Riverside conflicts.
+- **A dehydrator,** which Stardew sells for a high price.
 - **A crystalarium, recycling and a worm bin,** all deep Stardew machines.
 - **Artisan goods from trees and tapping** (maple syrup and similar). They need
   trees and the Tapper profession (`26_seasons.md` and the foraging
@@ -171,22 +199,13 @@ skills and rings gives each of them a second use.
 
 ## Open
 
-- **No bundle gives the mayonnaise machine or the oil maker.** The bundle gives
-  the first machine (decided), so these two need another first source.
-  Recommended: a recipe from a cast member's friendship mail, with the first
-  machine crafted from it.
-- **Seed maker, dye vat and duplicator conflict with the eight machines.**
-  `16_bundles.md` gives a seed maker (bundle 4), a dye vat (bundle 23) and a
-  duplicator (bundle 27) as rewards. This note leaves the seed maker out.
-  Recommended: add the dye vat as a ninth machine now, since the loom's chain
-  needs it, and settle the seed maker and duplicator in the crafting list note.
-- **Riverside's smoker.** `32_farm_types.md` has Riverside start with a fish
-  smoker. That machine is not in the eight. Recommended: add it as a ninth
-  machine that only Riverside starts with, craftable by anyone later.
-- Machine craft costs, times and sell prices to put in `07_tuning_numbers.md`.
-- The first farmhouse upgrade: price, materials and what else it adds.
-- The inn kitchen's stock and prices.
+- **Bundle 27's reward.** The duplicator is dropped. A new reward is needed, and
+  bundle 12 and the other rewards need a pass now that machines are craftable
+  (issue #201).
+- Our own items to stand in for Stardew's special craft ingredients.
+- The seed maker and fish smoker recipe sources, once the pages are saved.
+- Machine times and sell prices for `07_tuning_numbers.md`.
+- The inn kitchen's exact stock and prices.
 - The split of the 81 recipes between rings once the regions are designed.
-- Bundle 12 (Artisan Goods) and the other bundle rewards (issue #201) need a
-  pass now that machines are craftable.
-- Whether the level 10 choice screen for Artisan ships with this or after it.
+- The house upgrade price is Stardew's and may need tuning, since our economy
+  is untested at that scale.
