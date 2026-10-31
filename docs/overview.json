@@ -562,6 +562,12 @@
         },
         {
           "s": "decided",
+          "t": "Achievements follow Stardew's whole list under our own names, each with a unique hat sold at the hatter and a few mail gifts; all greyed in a collections page with a few secret; the completion total waits for the Perfection page",
+          "ref": "38_achievements.md#Decisions",
+          "issue": 196
+        },
+        {
+          "s": "decided",
           "t": "Four rods (only the starter limits fish; rare fish need fishing level 5), three baits, six lures with a Magpie Hook treasure table and no double catch, all sold by the delta fisher (numbers are placeholders)",
           "ref": "21_fishing.md#Rods, bait and lures"
         },
@@ -686,12 +692,17 @@
         },
         {
           "s": "decided",
+          "t": "The achievement list and each one's hat are in the achievements note",
+          "ref": "38_achievements.md#Decisions"
+        },
+        {
+          "s": "decided",
           "t": "Hats unlock by achievement as Stardew, are sold at a hatter's shop in Hearthwell run by the Hat-maker household, show in the world sprite, and read as a standing cue with no bonus",
           "ref": "10_customisation.md#Decisions (2026-10-31)"
         },
         {
           "s": "open",
-          "t": "First hat list (needs the achievement list, #196), furniture pool and prices, sewing machine cost, the per-people catalogues",
+          "t": "Hat names for the achievements that need new systems, furniture pool and prices, sewing machine cost, the per-people catalogues",
           "ref": "10_customisation.md#Open",
           "issue": 133
         }
