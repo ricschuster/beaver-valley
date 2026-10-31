@@ -108,7 +108,9 @@ Lightning Rod pages where marked, otherwise ours and unchecked):
   pays if a second strike falls. At 20, 15 and 20 percent rain with a quarter
   of rain days stormy there are about 1.4, 1 and 1.4 random storms a season,
   plus the 2 fixed ones in summer, so roughly 6 storms in the three seasons.
-  That may be too few if lamp-posts, the crystalarium and more are each wanted.
+  Packs are only wanted from slice 3, when the rod arrives (bat wing, decided
+  2026-10-31), so storms are weather only in slice 1. Six storms may be too few
+  if lamp-posts, the crystalarium and more are each wanted.
   Raise the storm share or the strike chance if play finds packs scarce.
 
 ## Foraging
@@ -137,8 +139,8 @@ Source: `src/core/forage.ts`, `src/content/forage.json`.
   snow tuber. Placeholder: 3 percent a tile, two thirds frost root. Stardew's
   chance is not in the saved page. The hoe gives no clay or ore on the farm.
 - Rare finds (bundle 6): morel 150g (spring), chanterelle 160g (fall, energy
-  75), snowcap mushroom 140g (winter), moss 30g (any season, from trees) and
-  cave mushroom 200g (mine floors 1 to 10). Ours, with morel and chanterelle
+  75), snowcap mushroom 140g (winter), wild ginger 120g (any season, energy 20)
+  and cave mushroom 200g (mine floors 1 to 10). Ours, with morel and chanterelle
   near Stardew's. A rare spawn is 5 percent of forage spawns in the season, and
   3 percent of the mine floor's forage spots. Placeholders.
 - Forage spawn cap is unchanged in fall and winter (a quarter of spots).
