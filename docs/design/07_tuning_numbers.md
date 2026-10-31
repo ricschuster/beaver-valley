@@ -258,6 +258,60 @@ checked against the Stardew Valley Wiki on 2026-10-30.
   mood and that day's product, never friendship.
 - A young animal grows up in about 4 to 5 days. The incubator hatches in about 6.
 
+## Day, energy and season check against the wiki (2026-10-31)
+
+Checked against the Stardew Valley Wiki pages Day Cycle, Energy, Spring, Summer,
+Fall and Winter. Reference only, nothing copied (ADR 0002).
+
+Confirmed, so "from memory" can become "checked": the 6 am to 2 am day, 14 real
+minutes for a full day (10 game minutes per 7 seconds), 270 maximum energy, the
+10 percent pass-out loss capped at 1000g, a 50 percent morning after exhaustion,
+28 day seasons, spring crops dying on day 1 of summer, and the spring and
+summer crop rows for parsnip, potato, cauliflower, garlic, kale, melon, radish
+and red cabbage (days, seed price, sell price).
+
+Decided with the owner on 2026-10-31 (not built yet):
+
+- Late sleep gets a graded penalty: full energy up to midnight, then a growing
+  loss per 10 minutes after it, and half at 2 am. A pass-out at 2 am is the
+  half case, so the flat 75 percent goes.
+- Exhaustion works like Stardew. Warnings near 20 and 15 energy. At 0 the player
+  is exhausted: slow, tools still work and drain below zero. The day ends at
+  -15. The next morning has half energy, even if the player ate in between.
+- Pass-out loses money only outside the farmhouse.
+- The morning after a skill level gives full energy, whatever the night was.
+
+- Nightfall moves by season, as in Stardew: 8 pm in spring and summer, 7 pm in
+  fall, 6 pm in winter, with a gradual darkening outdoors. Only the two earlier
+  hours are used until fall exists.
+- The clock stops while any menu or dialog is open (shop, hall, inventory,
+  prompts), so slow touch menus never cost game time.
+- Seasons three and four get their own design note (fall and winter), written
+  before M3 so the calendar, crops and bundles are planned together.
+
+Differences found (the four above are now decided):
+
+- Late sleep: Stardew restores less the later you go to bed after midnight
+  (nothing lost until 12:10 am, a small step per 10 minutes, a bigger drop at
+  1 am, half at 2 am). We restore fully for any sleep before the day is over and
+  75 percent after a time pass-out. Passing out at 2 am is the 50 percent case
+  there, so our 75 percent is too kind.
+- Exhaustion: in Stardew, 0 energy is a state (slow, tools still work) and the
+  day only ends at -15. We end the day at 0.
+- Pass-out location: Stardew charges nothing for falling asleep inside the
+  farmhouse. We charge always. Matters once the farm has more than one place.
+- Level-up morning: Stardew gives full energy the morning after a skill level,
+  whatever the night was. We do not.
+- Nightfall: 8 pm in spring and summer, 7 pm in fall, 6 pm in winter, with a
+  gradual darkening. We have no darkness yet.
+- Pauses: the clock stops in menus and dialogs there. Ours should too on a
+  tablet (check).
+- Seasons: new forage, logs, rocks and grass appear on the farm at the start of
+  each spring. Winter clears crops and weeds and stops outdoor growth. Both
+  matter for the third and fourth season, which are out of scope for now.
+- Not on these pages: the rain chance per season. Our 20 and 15 percent stay
+  ours.
+
 ## Open questions for playtests
 
 First answers are in `08_playtest_personas.md`: 500g is far more than enough
