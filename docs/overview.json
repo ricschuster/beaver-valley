@@ -190,6 +190,11 @@
         },
         {
           "s": "decided",
+          "t": "Wood comes from about 30 hand-placed farm trees, chopped with an axe (Stardew's 10 swings a tree, 5 a stump, held to repeat); goods that miss a full bag lie on the ground and walk-over pickup pulls them in",
+          "ref": "43_wood_source.md#Decisions"
+        },
+        {
+          "s": "decided",
           "t": "Equipment as Stardew: two ring slots, boots (Defense and Immunity), hat, shirt and pants; Stardew's ring list; the slot and the glow and magnet rings are built in slice 3",
           "ref": "37_equipment.md#Decisions"
         },
