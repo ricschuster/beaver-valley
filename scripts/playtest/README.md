@@ -53,6 +53,12 @@ Settings, as environment variables:
 - `PROFESSION`: `1` (default) or `2`, the key pressed when a skill reaches level 5
   and the profession scene opens.
 - `MAX_DAY`: stop after this day, default 84 (the calendar wraps into year 2).
+- `SEED`: a number that makes `Math.random` repeatable in the browser, so two
+  builds see the same weather, forage and trees. Timing still varies, so runs
+  are close, not identical. Compare final counts only: findings pile up on the
+  last day, so a count read mid run says little. To compare a branch with
+  `main`, check `main` out in a second worktree, run its dev server on another
+  port, and point `BASE_URL` at it.
 
 The three runs can go at the same time against one dev server. Each persona
 writes its own `save-<persona>.json` and `<persona>-*.png` files, so they do not

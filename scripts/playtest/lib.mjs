@@ -109,6 +109,19 @@ export async function launch({ fresh, context, profile = "desktop" }) {
       JSON.stringify({ version: 1, profile, touchScheme: "stick" }),
     );
   }, profile);
+  // SEED makes Math.random repeatable, so two builds can be compared on the
+  // same weather, forage and trees.
+  if (process.env.SEED)
+    await p.addInitScript((seed) => {
+      let a = Number(seed) >>> 0;
+      Math.random = () => {
+        a = (a + 0x6d2b79f5) >>> 0;
+        let t = a;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }, process.env.SEED);
   const errs = [];
   p.on("pageerror", (e) => errs.push(e.message));
   p.on("console", (m) => {
