@@ -198,7 +198,9 @@ export const UI_FRAME_KEY = "ui-frame";
 /** Width of the frame's border in the texture, for a nine slice. */
 export const UI_FRAME_EDGE = 8;
 
-function paintUiFrame(scene: Phaser.Scene): void {
+/** Safe to call twice: screens opened before the farm need the frame too. */
+export function paintUiFrame(scene: Phaser.Scene): void {
+  if (scene.textures.exists(UI_FRAME_KEY)) return;
   const size = UI_FRAME_EDGE * 2 + 8;
   const t = scene.textures.createCanvas(UI_FRAME_KEY, size, size)!;
   const c = t.getContext();

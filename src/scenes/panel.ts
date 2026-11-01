@@ -1,5 +1,5 @@
 import Phaser from "phaser";
-import { UI_FRAME_EDGE, UI_FRAME_KEY } from "./art";
+import { paintUiFrame, UI_FRAME_EDGE, UI_FRAME_KEY } from "./art";
 
 export interface RowButton {
   text: string;
@@ -187,6 +187,7 @@ export function frame(
   title: string,
   onClose: () => void,
 ): { money: Phaser.GameObjects.Text; message: Phaser.GameObjects.Text } {
+  paintUiFrame(scene);
   // The interactive backdrop blocks clicks to the scene behind. The frame
   // image only draws the border over it.
   scene.add
