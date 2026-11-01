@@ -66,7 +66,7 @@ Objects (any object layer, matched by `class`):
 | `exit`    | any      | A rectangle. Properties `map` and `entry` say where it leads. Optional `requires` names a gate.       |
 | `forage`  | any      | A point. A tile where wild goods may appear (`ForageField` spot).                                     |
 | `tree`    | any      | A point. A choppable tree at a new game's start. Property `stage` is 1 to 5 (default 5, mature).      |
-| `service` | any      | A point. The player faces the tile and uses it to open a screen. Property `kind` is `shop`, `hall` or `bin`. |
+| `service` | any      | A point. The player faces it and uses it to open a screen. Property `kind`: `shop`, `hall`, `bin`.    |
 
 A new game starts at entry `start` on map `farm` (`START` in `src/core/maps.ts`).
 Place an entry beside an exit, not inside it, so arriving does not trigger the
