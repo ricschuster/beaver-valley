@@ -85,7 +85,12 @@ export const TABLET = {
   isMobile: true,
 };
 
-export async function launch({ fresh, context, profile = "desktop" }) {
+export async function launch({
+  fresh,
+  context,
+  profile = "desktop",
+  bindings,
+}) {
   // DEVICE_CDP: drive Chrome on a real device (adb forward tcp:9222
   // localabstract:chrome_devtools_remote) instead of a headless browser.
   const device = process.env.DEVICE_CDP;
@@ -102,13 +107,16 @@ export async function launch({ fresh, context, profile = "desktop" }) {
     : await b.newPage(context ?? { viewport: { width: 960, height: 540 } });
   if (device) await p.bringToFront();
   // Set the profile explicitly, so a run never depends on the machine's
-  // pointer type (note 45). The bindings stay at their defaults.
-  await p.addInitScript((profile) => {
-    localStorage.setItem(
-      "beaver-valley-settings",
-      JSON.stringify({ version: 1, profile, touchScheme: "stick" }),
-    );
-  }, profile);
+  // pointer type (note 45). The bindings stay at their defaults unless given.
+  await p.addInitScript(
+    ({ profile, bindings }) => {
+      localStorage.setItem(
+        "beaver-valley-settings",
+        JSON.stringify({ version: 1, profile, touchScheme: "stick", bindings }),
+      );
+    },
+    { profile, bindings },
+  );
   // SEED makes Math.random repeatable, so two builds can be compared on the
   // same weather, forage and trees.
   if (process.env.SEED)
