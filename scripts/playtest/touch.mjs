@@ -453,6 +453,48 @@ await sleepMs(900);
 if ((await bot.dbg()).map !== "farm")
   finding("walking out of the hall door did not return to the farm");
 
+// 5b. Shipping bin by touch: tap a row to ship the stack, the prompt for part.
+await walkTo(8, 7);
+await faceTo("up");
+await p.evaluate(() => {
+  window.farmGive("parsnip", 6);
+  window.farmGive("sap", 4);
+});
+await useTool();
+await sleepMs(300);
+if (!(await sceneNow()).includes("bin"))
+  finding("Use facing the bin did not open it");
+else {
+  await checkSizes("bin");
+  const binCount = () =>
+    p.evaluate(() =>
+      window.__game.registry
+        .get("state")
+        .bin.each()
+        .reduce((n, l) => n + l.count, 0),
+    );
+  const rowOf = async (name) =>
+    (await targets("bin")).find((t) => t.label.startsWith(name));
+  const sapRow = await rowOf("Sap");
+  const sap = Number(sapRow.label.split("x")[1]);
+  await tap(sapRow.cx, sapRow.cy, 250);
+  if ((await binCount()) !== sap)
+    finding(`tapping a stack shipped ${await binCount()}, wanted all ${sap}`);
+  const parRow = (await targets("bin")).filter((t) => t.label === "Ship some");
+  await tap(parRow[parRow.length - 1].cx, parRow[parRow.length - 1].cy, 250);
+  await tapLabel("bin", "+");
+  await tapLabel("bin", "+");
+  await tapLabel("bin", "Ship");
+  await sleepMs(200);
+  if ((await binCount()) < sap + 1)
+    finding(`the prompt by touch left ${await binCount()} in the bin`);
+  else log("shipping bin by touch: tap a stack, prompt for part: done");
+  await tapLabel("bin", "Close");
+  await sleepMs(300);
+  if (!(await sceneNow()).includes("farm"))
+    finding("tapping Close did not leave the bin");
+}
+
 // 6. Sleep by touch: walk into the house, use the bed, answer Yes.
 await walkTo(6, 6);
 // Square up on the door first: the doorway is one tile wide, so a few pixels
@@ -485,6 +527,12 @@ else {
     await sleepMs(300);
     await tapLabel("bed", "Yes");
     await sleepMs(400);
+    // Goods in the bin show the shipping summary before the report.
+    if ((await sceneNow()).includes("shipping")) {
+      await checkSizes("shipping");
+      await tapLabel("shipping", "Continue");
+      await sleepMs(400);
+    } else finding("sleeping with goods in the bin showed no summary");
     if (!(await sceneNow()).includes("report"))
       finding("answering Yes to the bed did not end the day");
     else {

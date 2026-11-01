@@ -425,7 +425,10 @@ export class FarmScene extends Phaser.Scene {
     this.message = "";
     this.save();
     this.render();
-    this.open("report", { report });
+    // The shipping summary comes first when the bin paid; it opens the report.
+    this.open(report.shipped.lines.length > 0 ? "shipping" : "report", {
+      report,
+    });
   }
 
   /** Draw plots, crops and forage on the tiles. */

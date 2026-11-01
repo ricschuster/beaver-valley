@@ -1,6 +1,6 @@
 # 28 Shipping bin (draft)
 
-Status: draft. Decided with the owner on 2026-10-31, placement, touch and summary on 2026-11-01. Nothing here is built.
+Status: draft. Decided with the owner on 2026-10-31, placement, touch and summary on 2026-11-01. The bin is built (2026-11-01): `src/core/shipping.ts`, `BinScene`, `ShippingScene`.
 Selling at the shop is built (`src/core/shop.ts`, `src/scenes/ShopScene.ts`).
 Reference: the Stardew Valley Wiki Shipping page, read only (ADR 0002).
 
@@ -77,5 +77,12 @@ for the player who needs money now to buy seeds before planting.
   and money, then the total. A button moves on to the existing morning report.
   It is skipped when the bin was empty. Stardew's layout is not checked, so the
   rows are ours.
+
+## Built differently from the note
+
+- The Ship screen is two lists (backpack and shipped today), as the shop is,
+  not an inventory grid with the bin beside it. The grid waits for the art
+  pass (#58). Tapping a row ships the whole stack, as the note says.
+- The Shipped today list takes back a whole line (Take all) or one (Take 1).
 
 No open items.

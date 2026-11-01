@@ -1,11 +1,13 @@
 import Phaser from "phaser";
 import { BedScene } from "./scenes/BedScene";
+import { BinScene } from "./scenes/BinScene";
 import { EndScene } from "./scenes/EndScene";
 import { FarmScene } from "./scenes/FarmScene";
 import { FestivalScene } from "./scenes/FestivalScene";
 import { HallScene } from "./scenes/HallScene";
 import { ProfessionScene } from "./scenes/ProfessionScene";
 import { ReportScene } from "./scenes/ReportScene";
+import { ShippingScene } from "./scenes/ShippingScene";
 import { WitchTestScene } from "./scenes/WitchTestScene";
 import { WitchWalkScene } from "./scenes/WitchWalkScene";
 import { TitleScene } from "./scenes/TitleScene";
@@ -37,7 +39,9 @@ new Phaser.Game({
     HallScene,
     FestivalScene,
     EndScene,
+    ShippingScene,
     ReportScene,
+    BinScene,
     BedScene,
     SkillsScene,
     // Dev builds only: Vite drops the debug menu from `npm run build`.

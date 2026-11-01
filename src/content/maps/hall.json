@@ -130,7 +130,7 @@
       "y": 0,
       "objects": [
         {
-          "id": 69,
+          "id": 70,
           "name": "door",
           "class": "entry",
           "type": "entry",
@@ -143,7 +143,7 @@
           "visible": true
         },
         {
-          "id": 70,
+          "id": 71,
           "name": "door",
           "class": "exit",
           "type": "exit",
@@ -159,7 +159,7 @@
           ]
         },
         {
-          "id": 71,
+          "id": 72,
           "name": "foragers-shelf",
           "class": "service",
           "type": "service",
@@ -173,7 +173,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "hall" }]
         },
         {
-          "id": 72,
+          "id": 73,
           "name": "larder",
           "class": "service",
           "type": "service",
@@ -187,7 +187,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "hall" }]
         },
         {
-          "id": 73,
+          "id": 74,
           "name": "hearth",
           "class": "service",
           "type": "service",
@@ -201,7 +201,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "hall" }]
         },
         {
-          "id": 74,
+          "id": 75,
           "name": "last-seat",
           "class": "service",
           "type": "service",
@@ -215,7 +215,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "hall" }]
         },
         {
-          "id": 75,
+          "id": 76,
           "name": "water-room",
           "class": "service",
           "type": "service",
@@ -229,7 +229,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "hall" }]
         },
         {
-          "id": 76,
+          "id": 77,
           "name": "guests-board",
           "class": "service",
           "type": "service",
@@ -243,7 +243,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "hall" }]
         },
         {
-          "id": 62,
+          "id": 63,
           "name": "foragers-shelf",
           "class": "region",
           "type": "region",
@@ -256,7 +256,7 @@
           "visible": true
         },
         {
-          "id": 63,
+          "id": 64,
           "name": "hearth",
           "class": "region",
           "type": "region",
@@ -269,7 +269,7 @@
           "visible": true
         },
         {
-          "id": 64,
+          "id": 65,
           "name": "larder",
           "class": "region",
           "type": "region",
@@ -282,7 +282,7 @@
           "visible": true
         },
         {
-          "id": 65,
+          "id": 66,
           "name": "last-seat",
           "class": "region",
           "type": "region",
@@ -295,7 +295,7 @@
           "visible": true
         },
         {
-          "id": 66,
+          "id": 67,
           "name": "water-room",
           "class": "region",
           "type": "region",
@@ -308,7 +308,7 @@
           "visible": true
         },
         {
-          "id": 67,
+          "id": 68,
           "name": "guests-board",
           "class": "region",
           "type": "region",
@@ -321,7 +321,7 @@
           "visible": true
         },
         {
-          "id": 68,
+          "id": 69,
           "name": "plaque",
           "class": "region",
           "type": "region",
@@ -342,10 +342,10 @@
       "name": "placeholder",
       "tilewidth": 16,
       "tileheight": 16,
-      "tilecount": 11,
+      "tilecount": 12,
       "columns": 10,
       "image": "placeholder-tiles.png",
-      "imagewidth": 176,
+      "imagewidth": 192,
       "imageheight": 16
     }
   ]

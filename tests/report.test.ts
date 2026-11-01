@@ -8,6 +8,7 @@ const base: SleepReport = {
   weather: "sunny",
   withered: 0,
   houseFinished: false,
+  shipped: { lines: [], total: 0 },
 };
 
 describe("overnight report", () => {

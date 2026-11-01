@@ -56,7 +56,7 @@
       "y": 0,
       "objects": [
         {
-          "id": 59,
+          "id": 60,
           "name": "door",
           "class": "entry",
           "type": "entry",
@@ -69,7 +69,7 @@
           "visible": true
         },
         {
-          "id": 60,
+          "id": 61,
           "name": "door",
           "class": "exit",
           "type": "exit",
@@ -85,7 +85,7 @@
           ]
         },
         {
-          "id": 61,
+          "id": 62,
           "name": "carpenter",
           "class": "service",
           "type": "service",
@@ -109,10 +109,10 @@
       "name": "placeholder",
       "tilewidth": 16,
       "tileheight": 16,
-      "tilecount": 11,
+      "tilecount": 12,
       "columns": 10,
       "image": "placeholder-tiles.png",
-      "imagewidth": 176,
+      "imagewidth": 192,
       "imageheight": 16
     }
   ]
