@@ -186,7 +186,9 @@ Lumberjack and Tapper wait until trees and wood are a real system.
 
 Source: `src/core/upgrades.ts`. The hoe and watering can have four tiers (basic,
 copper, steel, gold) bought in the shop for 2000g, 5000g and 10000g. From
-memory for prices; Stardew also needs bars and a wait, which we skip.
+memory for prices. Decided 2026-11-01: all four tools move to Stardew's rule of
+gold plus 5 bars and a 2 day wait, with a fifth grade, when bars exist
+(`44_tool_upgrades.md`). The live shop stays gold only until then.
 A fifth tier above gold is planned (decided 2026-10-29, `21_fishing.md`): a rare
 metal from the deepest mine levels. Not built, and its price is open (#194).
 

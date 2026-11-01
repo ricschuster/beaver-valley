@@ -105,6 +105,17 @@
           "ref": "07_tuning_numbers.md#Tool upgrades and energy"
         },
         {
+          "s": "decided",
+          "t": "Axe, pickaxe, hoe and can share one ladder: five grades, gold plus 5 bars, a 2 day wait at the smith dwarf; copper axe clears large stumps, steel clears large logs and the Secret Woods log (Stardew's rules, answers part of #194)",
+          "ref": "44_tool_upgrades.md#Decisions",
+          "issue": 194
+        },
+        {
+          "s": "open",
+          "t": "Young tree and seedling swings per axe grade, large stump and log yields, smith closing on festival days",
+          "ref": "44_tool_upgrades.md#Open"
+        },
+        {
           "s": "open",
           "t": "A minimum-quality rule on a bundle item is not designed",
           "ref": "16_bundles.md#Systems this note depends on"
