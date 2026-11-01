@@ -37,6 +37,14 @@ errors. The game's weather and forage are random, so reruns differ.
    with a held key, sleeps when the energy is low, and reports the days, energy
    and wood to reach 450 wood (`WOOD_TARGET` changes it). About 3 minutes.
 
+9. `npm run sim -- <expert|intermediate|casual> [runs] [maxDay]` is not a browser
+   run. It plays the rules in `src/core/` headless (`docs/design/46_headless_playtest.md`),
+   charges game minutes for walking and key presses, and prints the days to each
+   hall bundle over many seeds (default 100 runs to day 84). Runs are exactly
+   repeatable: the seed is the run number. It needs no dev server and takes
+   about 1 s a run. The time model is in `scripts/sim/world.ts` (`TIME`). Compare
+   two builds by running the same personas on both.
+
 Dev hooks the scripts can call: `window.farmGive(id, n)` adds items (returns
 `"ok"`, `"unknown"` or `"full"`), `window.farmMoney(n)` adds money. By hand, the
 debug menu (`docs/design/42_debug_menu.md`) opens with the backtick key or the

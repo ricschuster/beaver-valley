@@ -1,6 +1,6 @@
 # 46 Headless playtest (draft)
 
-Status: decided 2026-11-01 for issue #319. Nothing is built yet.
+Status: decided 2026-11-01 for issue #319. Built the same day (`npm run sim`).
 
 ## Problem
 
@@ -107,3 +107,30 @@ Decided by the owner on 2026-11-01:
    calibrated against a browser run) is close enough.
 3. The first result to report is bundle-chain pace (days to each bundle and
    to all bundles). Money by season comes second.
+
+## As built
+
+`scripts/sim/`: `world.ts` (position, walking and the `TIME` model), `bot.ts`
+(one persona playing a game on the real core), `personas.ts`, `main.ts` (many
+seeds, a report) and `run.mjs` (loads the TypeScript through Vite, so the JSON
+content and `import.meta.glob` work as in the game). `tests/sim.test.ts` checks
+that a seed repeats and that the expert finishes in a sane window.
+
+Time model as built: a tile costs `16 px / 80 px/s` of real time, times 10/7
+game minutes per second, times a 0.85 diagonal factor; a farm key press costs
+0.5 minutes; shop, hall and bin screens cost nothing, because the farm is
+paused while they are open. The player wakes beside the bed and every other
+trip starts from where the last action ended.
+
+Not modelled: festivals, the carpenter, trees (never chopped), tool upgrades,
+eating beyond a low-energy snack, and the stuck walking of #317.
+
+First results (100 seeds each, days to finish all four bundles): expert median
+41 (range 41 to 49), intermediate median 42, casual median 54 with 88 of 100
+finished by day 84. Note 08's browser runs gave 41 and 45 for the first two.
+
+The calibration is weak. The expert's pace is set by crop growth and the
+calendar (cauliflower 12 days, melon 12 days from day 29), not by walking, so
+landing on day 41 does not show the time model is right. The walking constants
+matter once a persona is limited by time, as the casual one is. Check them
+against a browser run before using a result for a balance decision.
