@@ -20,7 +20,8 @@
     "playtest": "node scripts/playtest/play.mjs",
     "playtest:late": "node scripts/playtest/late.mjs",
     "playtest:touch": "node scripts/playtest/touch.mjs",
-    "playtest:controls": "node scripts/playtest/controls.mjs"
+    "playtest:controls": "node scripts/playtest/controls.mjs",
+    "sim": "node scripts/sim/run.mjs scripts/sim/main.ts"
   },
   "dependencies": {
     "phaser": "^4.2.1"
