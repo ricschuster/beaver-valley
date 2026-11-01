@@ -3,6 +3,7 @@ import { growthRate } from "./professions";
 import { rollWeather, type Weather } from "./weather";
 import type { Spot } from "./forage";
 import type { GameState } from "./save";
+import type { FarmMap } from "./map";
 import { advanceBuild } from "./house";
 
 export interface SleepReport {
@@ -22,13 +23,15 @@ export interface SleepReport {
 
 /**
  * End the day and start the next: pass-out cost, crop growth, season change,
- * and fresh forage on `spots`. Call it from the sleep action or when the day
+ * tree growth and spread on `map` (none spread without it), and fresh forage
+ * on `spots`. Call it from the sleep action or when the day
  * is over. Saving is the caller's job, after this returns.
  */
 export function sleep(
   g: GameState,
   spots: Spot[],
   random: () => number,
+  map?: FarmMap,
 ): SleepReport {
   const before = dateOf(g.day.clock.day).season;
   const cropsBefore = g.farm.cropCount;
@@ -42,7 +45,20 @@ export function sleep(
   const next = dateOf(g.day.clock.day + 1);
   g.tomorrow = rollWeather(next.season, next.dayOfSeason, random);
   if (g.weather === "rainy") g.farm.waterAll();
-  g.forage.respawn(season, spots, random);
+  g.trees.endDay(
+    season,
+    random,
+    (x, y) =>
+      !!map &&
+      map.canPlantTree(x, y) &&
+      !g.farm.plotAt(x, y) &&
+      !g.forage.itemAt(x, y),
+  );
+  g.forage.respawn(
+    season,
+    spots.filter((s) => !g.trees.at(s.x, s.y)),
+    random,
+  );
   const houseFinished = advanceBuild(g);
 
   return {

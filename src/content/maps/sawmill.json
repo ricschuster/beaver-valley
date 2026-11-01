@@ -9,7 +9,7 @@
   "height": 7,
   "tilewidth": 16,
   "tileheight": 16,
-  "nextlayerid": 7,
+  "nextlayerid": 8,
   "nextobjectid": 100,
   "properties": [{ "name": "placeholder", "type": "bool", "value": true }],
   "layers": [
@@ -56,7 +56,7 @@
       "y": 0,
       "objects": [
         {
-          "id": 29,
+          "id": 59,
           "name": "door",
           "class": "entry",
           "type": "entry",
@@ -69,7 +69,7 @@
           "visible": true
         },
         {
-          "id": 30,
+          "id": 60,
           "name": "door",
           "class": "exit",
           "type": "exit",
@@ -85,7 +85,7 @@
           ]
         },
         {
-          "id": 31,
+          "id": 61,
           "name": "carpenter",
           "class": "service",
           "type": "service",

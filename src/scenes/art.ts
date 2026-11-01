@@ -356,6 +356,7 @@ function paintForage(scene: Phaser.Scene, id: string): void {
 export const TOOL_ICONS = {
   hoe: "icon-hoe",
   can: "icon-can",
+  axe: "icon-axe",
   hand: "icon-hand",
 };
 
@@ -380,6 +381,12 @@ function paintToolIcons(scene: Phaser.Scene): void {
     px(c, "#3f6f9c", 4, 5, 1, 1);
     px(c, "#3f6f9c", 8, 5, 1, 1);
   });
+  draw(TOOL_ICONS.axe, (c) => {
+    px(c, "#8a5c2a", 7, 3, 2, 11);
+    px(c, "#b8bcc4", 3, 2, 5, 5);
+    px(c, "#8a8e96", 3, 6, 5, 1);
+    px(c, "#d8dce4", 4, 3, 2, 1);
+  });
   draw(TOOL_ICONS.hand, (c) => {
     px(c, "#f0c8a0", 5, 7, 7, 6);
     for (const x of [5, 7, 9, 11]) px(c, "#f0c8a0", x, 3, 1, 5);
@@ -398,9 +405,83 @@ function paintSeedIcon(scene: Phaser.Scene, cropId: string): void {
   t.refresh();
 }
 
+// ---- trees and tree goods
+
+export const treeKey = (stage: number, stump: boolean) =>
+  stump ? "tree-stump" : `tree-${stage}`;
+
+function paintTrees(scene: Phaser.Scene): void {
+  const draw = (key: string, paint: (c: Ctx) => void) => {
+    const t = scene.textures.createCanvas(key, SIZE, SIZE)!;
+    paint(t.getContext());
+    t.refresh();
+  };
+  // A seed in the ground: a pale mound and a speck.
+  draw(treeKey(1, false), (c) => {
+    px(c, "#6b4e2d", 6, 10, 4, 2);
+    px(c, "#8a6a40", 7, 9, 2, 1);
+    px(c, "#c9a24a", 7, 10, 2, 1);
+  });
+  // Seedlings: a stem with a few leaves.
+  draw(treeKey(2, false), (c) => {
+    px(c, "#5a3e22", 8, 9, 1, 5);
+    px(c, "#4aa04a", 6, 8, 2, 2);
+    px(c, "#4aa04a", 9, 7, 2, 2);
+  });
+  draw(treeKey(3, false), (c) => {
+    px(c, "#5a3e22", 8, 7, 1, 7);
+    disc(c, "#3c8a40", 8, 6, 3);
+    disc(c, "#4aa04a", 7, 5, 1);
+  });
+  // A young tree: a thin trunk and a small crown.
+  draw(treeKey(4, false), (c) => {
+    px(c, "#5a3e22", 7, 9, 2, 6);
+    disc(c, "#1f4d25", 8, 6, 5);
+    disc(c, "#2a6b31", 7, 5, 3);
+    disc(c, "#3c8a40", 6, 4, 1);
+  });
+  // A mature tree: the full crown over a trunk.
+  draw(treeKey(5, false), (c) => {
+    px(c, "#5a3e22", 7, 10, 3, 5);
+    px(c, "#3e2a16", 9, 10, 1, 5);
+    disc(c, "#1f4d25", 8, 7, 7);
+    disc(c, "#2a6b31", 6, 5, 4);
+    disc(c, "#3c8a40", 5, 4, 2);
+    px(c, "#14381a", 11, 11, 2, 1);
+  });
+  draw(treeKey(5, true), (c) => {
+    px(c, "#5a3e22", 4, 8, 8, 6);
+    px(c, "#3e2a16", 4, 13, 8, 1);
+    px(c, "#c9a470", 4, 7, 8, 2);
+    px(c, "#a8844f", 6, 7, 4, 1);
+    px(c, "#a8844f", 7, 8, 2, 1);
+  });
+  draw("icon-wood", (c) => {
+    px(c, "#7a4e26", 2, 5, 12, 3);
+    px(c, "#9a6a3a", 2, 5, 12, 1);
+    px(c, "#7a4e26", 2, 9, 12, 3);
+    px(c, "#9a6a3a", 2, 9, 12, 1);
+    px(c, "#d9b27a", 2, 6, 1, 2);
+    px(c, "#d9b27a", 2, 10, 1, 2);
+  });
+  draw("icon-sap", (c) => {
+    px(c, "#e0a030", 7, 3, 2, 2);
+    px(c, "#e0a030", 6, 5, 4, 5);
+    px(c, "#e0a030", 7, 10, 2, 2);
+    px(c, "#f8d878", 7, 6, 1, 3);
+  });
+  draw("icon-tree-seed", (c) => {
+    px(c, "#7a5a2a", 5, 4, 6, 8);
+    px(c, "#9a7a3a", 6, 3, 4, 2);
+    px(c, "#5a3e1a", 5, 10, 6, 2);
+    px(c, "#c9a24a", 7, 6, 1, 3);
+  });
+}
+
 /** The texture key for a backpack item, or undefined if it has no picture. */
 export function iconKey(itemId: string): string | undefined {
   const { base } = splitQuality(itemId);
+  if (base === "wood" || base === "sap") return `icon-${base}`;
   if (base.endsWith("-seed")) return `icon-${base}`;
   if (CROPS.some((c) => c.id === base)) return cropKey(base, CROP_STAGES - 1);
   if (FORAGE.some((f) => f.id === base)) return forageKey(base);
@@ -424,4 +505,5 @@ export function makeArt(
   }
   for (const f of FORAGE) paintForage(scene, f.id);
   paintToolIcons(scene);
+  paintTrees(scene);
 }

@@ -55,6 +55,7 @@ Tile layers (all the same size as the map):
 | ----------- | -------- | ---------------------------------------------------- |
 | `collision` | yes      | Any non-empty tile blocks the player. Not drawn.     |
 | `soil`      | no       | Any non-empty tile can be tilled. Not drawn.         |
+| `paths`     | no       | Path tiles: no tree seed is planted or spread here.  |
 | others      | no       | Every other visible tile layer is drawn, in order.   |
 
 Objects (any object layer, matched by `class`):
@@ -64,6 +65,7 @@ Objects (any object layer, matched by `class`):
 | `entry`   | one+     | A tile where the player can arrive. Its `name` is unique on the map.                                  |
 | `exit`    | any      | A rectangle. Properties `map` and `entry` say where it leads. Optional `requires` names a gate.       |
 | `forage`  | any      | A point. A tile where wild goods may appear (`ForageField` spot).                                     |
+| `tree`    | any      | A point. A choppable tree at a new game's start. Property `stage` is 1 to 5 (default 5, mature).      |
 | `service` | any      | A point. The player faces the tile and uses it to open a screen. Property `kind` is `shop` or `hall`. |
 
 A new game starts at entry `start` on map `farm` (`START` in `src/core/maps.ts`).

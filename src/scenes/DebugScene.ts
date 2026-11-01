@@ -241,7 +241,7 @@ export class DebugScene extends Phaser.Scene {
       },
     });
     for (const item of allItems()) {
-      // Only goods have a quality; seeds and wood do not.
+      // Only goods have a quality; seeds, wood and sap do not.
       const id = this.hasQuality(item.id)
         ? withQuality(item.id, this.quality)
         : item.id;
@@ -254,8 +254,8 @@ export class DebugScene extends Phaser.Scene {
     return rows;
   }
 
-  /** Crops and forage carry a quality; seeds and wood do not. */
+  /** Crops and forage carry a quality; seeds, wood and sap do not. */
   private hasQuality(id: string): boolean {
-    return !id.endsWith("-seed") && id !== "wood";
+    return !id.endsWith("-seed") && id !== "wood" && id !== "sap";
   }
 }

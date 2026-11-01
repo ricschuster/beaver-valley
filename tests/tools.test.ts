@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { FarmMap, type TiledMapJson } from "../src/core/map";
-import { startGame, heldAt } from "../src/core/toolbar";
+import { startGame, heldAt, TOOLS } from "../src/core/toolbar";
 import { reasonText, useHeld } from "../src/core/tools";
 import type { Held } from "../src/core/toolbar";
 
@@ -38,7 +38,7 @@ describe("useHeld", () => {
   it("runs the plant, water, harvest loop", () => {
     const g = startGame();
     const map = mapWith(true);
-    const seeds = heldAt(g, 3);
+    const seeds = heldAt(g, TOOLS.length);
     expect(useHeld(g, map, hoe, 0, 0).ok).toBe(true);
     expect(useHeld(g, map, seeds, 0, 0).ok).toBe(true);
     expect(g.inventory.count("parsnip-seed")).toBe(14);
@@ -59,7 +59,7 @@ describe("useHeld", () => {
     const map = mapWith(true);
     useHeld(g, map, hoe, 0, 0);
     expect(g.day.energy.current).toBe(268);
-    useHeld(g, map, heldAt(g, 3), 0, 0);
+    useHeld(g, map, heldAt(g, TOOLS.length), 0, 0);
     expect(g.day.energy.current).toBe(268);
   });
 

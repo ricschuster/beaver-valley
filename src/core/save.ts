@@ -1,5 +1,8 @@
 import { Day } from "./day";
 import { Farm } from "./farm";
+import { Trees, type Tree } from "./trees";
+import { maps } from "../content/maps";
+import { START } from "./maps";
 import { ForageField } from "./forage";
 import { type Weather, WEATHERS } from "./weather";
 import { Hall, type HallProgress } from "./bundles";
@@ -15,6 +18,8 @@ export interface GameState {
   money: number;
   inventory: Inventory;
   farm: Farm;
+  /** Trees and stumps on the farm. */
+  trees: Trees;
   skills: Skills;
   /** Tier of the hoe and can, 0 for basic. */
   toolTiers: ToolTiers;
@@ -44,6 +49,7 @@ export function newGame(): GameState {
     money: START_MONEY,
     inventory: new Inventory(),
     farm: new Farm(),
+    trees: new Trees(maps.get(START.map).trees),
     skills: new Skills(),
     toolTiers: { hoe: 0, can: 0 },
     hall: new Hall(),
@@ -68,6 +74,8 @@ interface SaveData {
   money: number;
   inventory: ReturnType<Inventory["save"]>;
   farm: ReturnType<Farm["save"]>;
+  /** Absent in saves made before trees existed: the map's starting trees. */
+  trees?: Tree[];
   skills: ReturnType<Skills["save"]>;
   hall: HallProgress;
   /** Absent in saves made before professions existed. */
@@ -103,6 +111,7 @@ export function serialize(g: GameState): string {
     money: g.money,
     inventory: g.inventory.save(),
     farm: g.farm.save(),
+    trees: g.trees.save(),
     skills: g.skills.save(),
     professions: g.skills.saveProfessions(),
     hall: g.hall.save(),
@@ -170,6 +179,21 @@ export function deserialize(text: string): GameState | undefined {
   g.inventory.load(inventory as ReturnType<Inventory["save"]>);
   g.farm.load(farm as ReturnType<Farm["save"]>);
   g.skills.load(skills as ReturnType<Skills["save"]>);
+  if (Array.isArray(raw.trees)) {
+    const valid = raw.trees.filter(
+      (t): t is Tree =>
+        isObject(t) &&
+        Number.isInteger(t.x) &&
+        Number.isInteger(t.y) &&
+        Number.isInteger(t.stage) &&
+        (t.stage as number) >= 1 &&
+        (t.stage as number) <= 5 &&
+        typeof t.stump === "boolean" &&
+        typeof t.seed === "boolean" &&
+        isCount(t.hits),
+    );
+    g.trees.load(valid);
+  }
   g.hall = new Hall(undefined, hall as HallProgress);
   if (isObject(raw.professions)) {
     const picked: Partial<Record<Skill, string>> = {};

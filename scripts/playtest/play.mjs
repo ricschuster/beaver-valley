@@ -9,6 +9,9 @@ const crops = JSON.parse(
   ),
 );
 const cropDef = Object.fromEntries(crops.map((c) => [c.id, c]));
+// Toolbar slots: hoe, can, axe, hand, then the backpack.
+const HAND = 3;
+const FIRST_SLOT = 4;
 const MAX_DAY = Number(process.env.MAX_DAY ?? 84);
 
 const seasonOf = (d) =>
@@ -405,7 +408,7 @@ async function harvestRipe() {
   log(
     `harvest ${ripe.length} ripe: ${[...new Set(ripe.map((p) => p.crop.id))].join(",")}`,
   );
-  await bot.select(2);
+  await bot.select(HAND);
   for (const p of ripe) {
     const before = await bot.snap();
     await bot.useAt(p.x, p.y, { x: p.x, y: 12 });
@@ -429,7 +432,7 @@ async function forageSweep(max = 99) {
     "forage visible:",
     s.forage.map((f) => `${f.id}@${f.x},${f.y}`).join(" "),
   );
-  await bot.select(2);
+  await bot.select(HAND);
   let todo = s.forage.slice(0, max);
   while (todo.length) {
     const d = await bot.dbg();
@@ -479,7 +482,7 @@ async function tillPlantWater(forgetWater = false) {
     if (list.length === 0 || seedSlot < 0) continue;
     const n = Math.min(list.length, bot.count(s, `${crop}-seed`));
     log(`plant ${n} ${crop}`);
-    await bot.select(3 + seedSlot);
+    await bot.select(FIRST_SLOT + seedSlot);
     for (const w of list.slice(0, n)) {
       const before = await bot.snap();
       await bot.useAt(w.x, w.y, { x: w.x, y: 12 });

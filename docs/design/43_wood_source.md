@@ -1,6 +1,6 @@
 # 43 Wood source: trees on the farm, the axe and the supply (draft)
 
-Status: draft. Decided with the owner on 2026-11-01. Nothing here is built.
+Status: built in the axe and tree slice (2026-11-01). Decided with the owner on 2026-11-01.
 It finishes the open item "where common trees stand on the farm" in
 `36_gathering_trees_sap_fiber.md`, and answers why `wood` has no source today
 (`src/core/items.ts`), so the house upgrade can only be bought with the debug
@@ -13,8 +13,9 @@ yields, stumps, growth, spread, regrowth) stay in note 36 and are not repeated.
   exist, so the farm is the only place for trees now. The carpenter does not
   sell wood yet (`41_house.md`). The Forest adds more trees when it is built.
 - **Many trees, so wood is easy.** About 30 mature trees stand on the farm on
-  day 1. Chopping them and lifting their stumps gives about 600 wood, so the
-  450 for house tier 1 is one season of chopping, not a grind. Planting is then
+  day 1: 27 mature, 2 young and 1 seedling. Chopping the mature ones and
+  lifting their stumps gives about 500 wood at foraging level 0 and about 600 at
+  level 4, so the 450 for house tier 1 is one season of chopping, not a grind. Planting is then
   a choice for the player who wants wood forever, and not a chore to reach the
   house. This is ours. Stardew's starting tree count is not checked.
 - **Trees are scattered across the field, as Stardew's clutter is.** They
@@ -41,24 +42,31 @@ does not exist in code yet.
 | Young tree, seedling, loose seed | Always 1 swing, as note 36. |
 | Foraging XP | Awarded when the tree falls and when the stump is removed, as note 36. |
 
-- A tree chopped this way falls in its facing direction. On touch, drops land
-  on the player's tile (note 36). On keyboard they land in the bag, or beside the
-  player if the bag is full, and are never lost (note 36).
+- Drops go straight to the bag. If the goods do not fit, the last swing is
+  refused with "Your backpack is full" and the tree stays, so nothing is lost.
+  This replaces note 36's drop-beside-the-player idea for now.
+- Holding Use repeats the swing only while a tree is mid chop. When the tree
+  falls the hold stops, so the same hold does not uproot its stump.
+- Stages in code are 1 (seed), 2 and 3 (seedlings), 4 (young) and 5 (mature).
 - The axe tier ladder is #194 (note 22). Slice 1 builds tier 0 only. The swing
   table above is the contract the ladder fills in.
 
 ## Trees on the farm map
 
 - **Hand-placed, as note 32 says of all clutter.** Nothing random at the start
-  of a new game. The map holds a `tree` object layer, one point per mature
-  tree, plus a `stage` property for the seedlings and young trees (0 to 5).
-  The map contract in `05_farm_map_placeholder.md` gains the `tree` class.
-- **Count on the placeholder farm:** 30 trees, a handful of them young. At most
-  10 stand on `soil` tiles, so the 96 tillable tiles are not eaten. The rest
-  stand on plain ground. A bigger real farm scales the count (ours).
-- **Blocking:** a tree tile and a stump tile block movement. The `collision`
-  layer is not edited. Core reads trees from its own state, so a felled tree
-  frees its tile with no map change.
+  of a new game. The map has a `tree` object class, one point per tree, with
+  an integer `stage` property (1 to 5, 5 if absent), and an optional `paths`
+  tile layer that keeps seeds off paths. Both are in the map contract in
+  `05_farm_map_placeholder.md`. The border trees stay as scenery tiles and
+  cannot be chopped.
+- **Count on the placeholder farm:** 30 trees. 8 stand on `soil` tiles (rows 14
+  to 17 of the patch, so the playtest rows stay clear), and the rest on open
+  grass. A bigger real farm scales the count (ours).
+- **Blocking:** seedlings, young and mature trees and stumps block movement. A
+  seed in the ground does not. The `collision` layer is not edited. Core reads
+  trees from its own state (`GameState.trees`, saved with the game), so a felled
+  tree frees its tile with no map change. The map check treats the starting
+  trees as solid, so a layout cannot wall off an exit or forage spot.
 - **Seasons:** trees do not change with the season in slice 1. Winter growth
   stops, as note 36.
 - **Valley trees later.** Forest and Mountain are the first valley places, and
@@ -69,9 +77,9 @@ does not exist in code yet.
 
 | Source | Wood |
 | --- | --- |
-| One mature tree | 12 to 16, plus up to 4 more at foraging level (note 36, ours) |
+| One mature tree | 12, plus 1 per foraging level up to 4, so 12 to 16 (note 36, ours) |
 | Its stump | 4 to 9 |
-| 30 starting trees, all chopped and all stumps lifted | about 600 |
+| The 27 mature starting trees, all chopped and all stumps lifted | about 500 at level 0, 600 at level 4 |
 | Young tree | 4 |
 
 | Sink | Wood |
@@ -89,7 +97,7 @@ does not exist in code yet.
   crafting (note 36). Sap needs no extra work here.
 - The debug menu's wood row stays for testing.
 
-## What gets built (a slice, in order)
+## What was built (a slice, in order)
 
 1. The axe tool at tier 0, with the hold repeat and the swing table.
 2. Core: `trees.ts` for the state (position, stage, stump), the nightly tick and
@@ -97,15 +105,19 @@ does not exist in code yet.
 3. The `tree` object layer and the placement on the farm map, drawn with
    placeholder art.
 4. Wood, sap and tree seed items. Planting: the player plants a tree seed on any
-   free grass or dirt tile of the farm (note 36 and the open item below).
-5. A playtest persona run that reaches house tier 1 from the starting trees.
-   Check the 450 target and the hold repeat on the real tablet.
+   free tile that is not tilled, a path, an exit, an entry or a service tile.
+   A hand on a mature tree shakes down a loose seed.
+5. Still to do: a playtest persona run that reaches house tier 1 from the
+   starting trees. Check the 450 target and the hold repeat on the real tablet.
 
 ## Open
 
 - **Planting rules.** Stardew's allowed ground for a tree seed is not checked.
-  Proposed: any free tile of the farm that is not tilled soil and not next to
-  another seedling (note 36's 8 neighbour rule for stage 4 only).
+  Built as: any free tile that is not tilled, a path, an exit, an entry or a
+  service tile. Seeds also spread onto untilled soil, and the player lifts them
+  with any tool (only the axe does so far).
+- **Hoe, can and pickaxe on seedlings.** Note 36 lets any tool lift a seedling.
+  Only the axe does for now. The hoe refuses on a tree tile.
 - **Hold repeat on touch.** Whether holding on the tree's tile conflicts with
   hold to ship one on the shipping bin (`28_shipping_bin.md`). Settle in the
   tablet check.
