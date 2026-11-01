@@ -896,6 +896,16 @@
           "ref": "../decisions/0006-project-licence.md"
         },
         {
+          "s": "decided",
+          "t": "Desktop (keyboard and mouse) and touch are separate control profiles, never mixed; every desktop key is rebindable (Stardew); an options screen on the title and in-game menu holds controls only",
+          "ref": "45_controls_profiles.md#Decisions"
+        },
+        {
+          "s": "open",
+          "t": "Desktop defaults are Stardew's keys plus click to use and act; menu keys fixed; no run key. Open: Eat on F, layout labels; gamepad parked",
+          "ref": "45_controls_profiles.md#Open"
+        },
+        {
           "s": "open",
           "t": "Real-tablet check",
           "ref": "08_playtest_personas.md#Touch persona"

@@ -15,7 +15,8 @@ Valley Wiki Mobile Controls and Controls pages, read only (ADR 0002).
   (hold to repeat) and an action button on the right. The stick we have now is
   the base for it.
 - The player switches scheme in options. Two schemes only.
-- Keyboard and mouse on desktop are unchanged.
+- Keyboard and mouse on desktop are a separate profile and are not mixed with
+  touch. See `45_controls_profiles.md`.
 
 ## Why two schemes
 
