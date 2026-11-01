@@ -99,11 +99,12 @@ Slice 1 asks for these amounts.
 ## Open
 
 - Weed day 1 count and spread chance, from a playtest or a saved source page.
-- Where common trees stand on the farm and in the valley, and how many. The
-  farm map and valley layout need a pass (`05_farm_map_placeholder.md`,
-  `19_valley_layout.md`).
+- Where common trees stand in the valley, and how many. The farm is settled in
+  `43_wood_source.md` (about 30 hand-placed trees). The valley layout needs a
+  pass (`19_valley_layout.md`).
 - The sawmill and the Lumberjack and Tapper professions wait for a later note.
-- Whether random tree growth (median 24 days) suits a tablet player. A fixed 24 days is the fallback.
+- Whether random tree growth (median 24 days) suits a tablet player. Chosen as
+  Stardew's rule on 2026-11-01 (`43_wood_source.md`). A fixed 24 days stays the fallback.
 
 ## Not taken from Stardew
 
