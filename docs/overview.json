@@ -917,6 +917,12 @@
           "ref": "45_controls_profiles.md#Open"
         },
         {
+          "s": "decided",
+          "t": "Headless playtest: a bot on src/core/ with a seeded random and a time model, personas from note 08, bundle-chain pace reported first; browser scripts stay for input, scenes and touch",
+          "ref": "46_headless_playtest.md#Decisions",
+          "issue": 319
+        },
+        {
           "s": "open",
           "t": "Real-tablet check",
           "ref": "08_playtest_personas.md#Touch persona"
