@@ -191,37 +191,92 @@ function planChop(
 }
 
 /**
+ * The nearest open tile to a tree for goods that did not fit the backpack:
+ * within 3 tiles, not blocked, not a tree. With no map, the tree's own tile.
+ */
+function dropSpot(
+  g: GameState,
+  map: FarmMap | undefined,
+  x: number,
+  y: number,
+): { x: number; y: number } {
+  if (!map) return { x, y };
+  for (let r = 1; r <= 3; r++)
+    for (let dy = -r; dy <= r; dy++)
+      for (let dx = -r; dx <= r; dx++) {
+        if (Math.max(Math.abs(dx), Math.abs(dy)) !== r) continue;
+        const [tx, ty] = [x + dx, y + dy];
+        if (!map.isBlocked(tx, ty) && !g.trees.blocks(tx, ty))
+          return { x: tx, y: ty };
+      }
+  return { x, y };
+}
+
+/**
  * One swing of the axe at a tree, stump, young tree, seedling or seed. A tree
- * takes several swings, each costing energy, and falls on the last. The last
- * swing is refused if the goods do not fit the backpack, so none are lost.
+ * takes several swings, each costing energy, and falls on the last. Goods go
+ * to the backpack; any that do not fit land on the ground nearby and are
+ * pulled in by walking over them (`GroundItems`), so none are lost.
  */
 export function chop(
   g: GameState,
   x: number,
   y: number,
   random: () => number = Math.random,
+  map?: FarmMap,
 ): Outcome {
   if (g.day.over) return fail("exhausted");
   const plan = planChop(g, x, y, random);
   const t = g.trees.at(x, y);
   if (!plan || !t) return fail("nothing to chop");
-  const last = t.hits + 1 >= plan.swings;
-  if (last && !plan.goods.every(([id, n]) => g.inventory.room(id) >= n))
-    return fail("backpack full");
   g.day.act(swingCost(TOOL_ENERGY, AXE_TIER, g.skills.level("foraging")), 0);
-  if (!last) {
+  if (t.hits + 1 < plan.swings) {
     t.hits += 1;
     return { ok: true };
   }
-  for (const [id, n] of plan.goods) g.inventory.add(id, n);
-  const wasTree = !t.stump && t.stage === MATURE_STAGE;
-  if (wasTree) {
+  for (const [id, n] of plan.goods) {
+    const fits = Math.min(n, g.inventory.room(id));
+    if (fits > 0) g.inventory.add(id, fits);
+    if (fits < n) {
+      const spot = dropSpot(g, map, x, y);
+      g.ground.drop(spot.x, spot.y, id, n - fits);
+    }
+  }
+  if (!t.stump && t.stage === MATURE_STAGE) {
     t.stump = true;
     t.hits = 0;
   } else g.trees.remove(x, y);
   return plan.xp > 0
     ? award(g, "foraging", plan.xp, plan.goods[0]?.[0])
     : { ok: true, item: plan.goods[0]?.[0] };
+}
+
+/**
+ * Lift a seedling or a planted seed with a tool other than the axe, in one
+ * swing: any tool takes a seedling, and the hoe also takes a seed back
+ * (`docs/design/36_gathering_trees_sap_fiber.md`). The seed returns from
+ * foraging level 1. The can does not lift a seed.
+ */
+export function clearSeedling(
+  g: GameState,
+  x: number,
+  y: number,
+  tool: "hoe" | "can",
+  map?: FarmMap,
+): Outcome {
+  if (g.day.over) return fail("exhausted");
+  const t = g.trees.at(x, y);
+  if (!t || t.stump || t.stage >= YOUNG_STAGE)
+    return fail("a tree is in the way");
+  if (t.stage === SEED_STAGE && tool === "can") return fail("nothing to water");
+  swing(g, tool);
+  g.trees.remove(x, y);
+  if (t.stage === SEED_STAGE && g.skills.level("foraging") >= 1) {
+    if (g.inventory.add(TREE_SEED)) return { ok: true, item: TREE_SEED };
+    const spot = dropSpot(g, map, x, y);
+    g.ground.drop(spot.x, spot.y, TREE_SEED, 1);
+  }
+  return { ok: true };
 }
 
 /** Shake a mature tree by hand. A loose seed falls, if the tree holds one. */
@@ -246,6 +301,7 @@ export function plantTree(
   if (
     !map.canPlantTree(x, y) ||
     g.trees.at(x, y) ||
+    g.ground.at(x, y).length > 0 ||
     g.farm.plotAt(x, y) ||
     g.forage.itemAt(x, y)
   )

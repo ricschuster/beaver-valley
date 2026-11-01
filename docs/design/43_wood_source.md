@@ -31,22 +31,31 @@ yields, stumps, growth, spread, regrowth) stay in note 36 and are not repeated.
 ## The axe
 
 The axe is a starter tool, with the hoe, can and pickaxe (`22_mines.md`). It
-does not exist in code yet.
+is in the toolbar from tier 0. The tiers are #194.
 
-| Thing | Rule (ours, placeholders) |
+| Thing | Rule |
 | --- | --- |
-| Swings per tree | 5 at tier 0, then 4, 3, 2, 1 at tiers 1 to 4 and 5. This matches note 22, where tier 5 fells a tree in 1 swing. Stardew's tier 0 swing count is not checked. |
-| Swing energy | The formula in note 22: `2 - 0.25 * tier - 0.1 * level`, never under 0.5. The level is foraging. |
-| Hold repeat | One swing every 0.4 seconds while held and facing a tree. It stops at 0 energy or when the tree falls. |
-| Stump | 3 swings at tier 0, scaled down the same way, never under 1. |
-| Young tree, seedling, loose seed | Always 1 swing, as note 36. |
-| Foraging XP | Awarded when the tree falls and when the stump is removed, as note 36. |
+| Swings per tree | Stardew's Axe page: 10, 8, 6, 4, 2 at tiers 0 to 4. Our fifth tier takes the iridium number. |
+| Swings per stump | Stardew: 5, 4, 3, 2, 1. |
+| Swing energy | The formula in note 22: `2 - 0.25 * tier - 0.1 * level`, never under 0.5 (ours). The level is foraging. A tier 0 tree costs about 20 energy and its stump about 10. |
+| Hold repeat | One swing every 0.4 seconds (ours) while Use is held and a tree or stump is faced. Stardew's mobile controls repeat tool use while the button is held. |
+| Young tree, loose seed | 1 swing. |
+| Seedling or planted seed | 1 swing from any tool except the can on a seed. The hoe and axe lift a seed back to an item (foraging level 1), as note 36. |
+| Foraging XP | When the tree falls and when the stump is removed, as note 36. |
 
-- Drops go straight to the bag. If the goods do not fit, the last swing is
-  refused with "Your backpack is full" and the tree stays, so nothing is lost.
-  This replaces note 36's drop-beside-the-player idea for now.
-- Holding Use repeats the swing only while a tree is mid chop. When the tree
-  falls the hold stops, so the same hold does not uproot its stump.
+- **Drops and the full bag.** Goods go to the backpack. Any that do not fit land
+  on the nearest open tile within 3 tiles and are saved, so nothing is lost.
+  The player pulls them in by walking within the pickup radius, as far as there
+  is room. Stardew's tree products scatter and are collected by magnetism,
+  and rings widen that radius by 1 or 2 tiles. The saved pages do not say what
+  Stardew does with a full pack. The base radius is 1 tile (ours), in
+  `pickupRadius()` so a ring or buff can add to it later.
+- **Holding carries on.** One hold fells the tree and then uproots its stump, as
+  a held tool repeats. It stops when the tile is clear or the player lets go.
+  A player who wants to keep a stump must release in time. This is inferred
+  from Stardew's repeat and not stated on its pages.
+- **Stumps are real.** Stardew leaves a stump after a mature tree, and removing
+  it gives 4 to 9 wood and 1 foraging XP.
 - Stages in code are 1 (seed), 2 and 3 (seedlings), 4 (young) and 5 (mature).
 - The axe tier ladder is #194 (note 22). Slice 1 builds tier 0 only. The swing
   table above is the contract the ladder fills in.
@@ -116,8 +125,11 @@ does not exist in code yet.
   Built as: any free tile that is not tilled, a path, an exit, an entry or a
   service tile. Seeds also spread onto untilled soil, and the player lifts them
   with any tool (only the axe does so far).
-- **Hoe, can and pickaxe on seedlings.** Note 36 lets any tool lift a seedling.
-  Only the axe does for now. The hoe refuses on a tree tile.
+- **The pickaxe** also lifts seedlings and seeds (note 36) once it exists.
+  The hoe and can already do so. The hand does not.
+- **Old saves** get the map's starting trees, wherever they fall, so a tree can
+  appear on land the player already uses. Trees are never placed on a plot, and
+  the player can fell them.
 - **Hold repeat on touch.** Whether holding on the tree's tile conflicts with
   hold to ship one on the shipping bin (`28_shipping_bin.md`). Settle in the
   tablet check.

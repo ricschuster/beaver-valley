@@ -52,7 +52,8 @@ export function sleep(
       !!map &&
       map.canPlantTree(x, y) &&
       !g.farm.plotAt(x, y) &&
-      !g.forage.itemAt(x, y),
+      !g.forage.itemAt(x, y) &&
+      g.ground.at(x, y).length === 0,
   );
   g.forage.respawn(
     season,

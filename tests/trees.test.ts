@@ -126,12 +126,41 @@ describe("chop", () => {
     expect(chop(g, 5, 0).ok).toBe(false);
   });
 
-  it("refuses the last swing, and keeps the goods, if the bag is full", () => {
+  it("puts what does not fit on the ground, and pulls it in when there is room", () => {
     const g = game([{ x: 1, y: 0, stage: 5 }]);
     for (let i = 0; i < g.inventory.size; i++) g.inventory.add(`junk-${i}`, 1);
-    for (let i = 0; i < swingsToFell(0) - 1; i++) chop(g, 1, 0);
-    expect(chop(g, 1, 0)).toEqual({ ok: false, reason: "backpack full" });
-    expect(g.trees.at(1, 0)?.stump).toBe(false);
+    for (let i = 0; i < swingsToFell(0); i++) chop(g, 1, 0, never);
+    expect(g.inventory.count("wood")).toBe(0);
+    expect(g.trees.at(1, 0)?.stump).toBe(true);
+    const wood = g.ground.at(1, 0).find((p) => p.id === "wood");
+    expect(wood?.count).toBe(12);
+    // Out of reach, then in reach, but still no room.
+    expect(g.ground.collect(g.inventory, { x: 5, y: 0 }, 1)).toBe(false);
+    expect(g.ground.collect(g.inventory, { x: 2, y: 0 }, 1)).toBe(false);
+    g.inventory.remove("junk-0");
+    expect(g.ground.collect(g.inventory, { x: 2, y: 0 }, 1)).toBe(true);
+    expect(
+      g.inventory.count("wood") + g.inventory.count("sap"),
+    ).toBeGreaterThan(0);
+  });
+
+  it("drops beside the tree when a map is given", () => {
+    const g = game([{ x: 5, y: 5, stage: 4 }]);
+    for (let i = 0; i < g.inventory.size; i++) g.inventory.add(`junk-${i}`, 1);
+    chop(g, 5, 5, never, mapWithTrees([], 10));
+    const piles = g.ground.each();
+    expect(piles).toHaveLength(1);
+    expect(piles[0]).toMatchObject({ id: "wood", count: 4 });
+    expect(Math.max(Math.abs(piles[0]!.x - 5), Math.abs(piles[0]!.y - 5))).toBe(
+      1,
+    );
+  });
+
+  it("takes 10 swings for a tree and 5 for a stump at tier 0", () => {
+    expect(swingsToFell(0)).toBe(10);
+    expect(swingsToUproot(0)).toBe(5);
+    expect([0, 1, 2, 3, 4].map(swingsToFell)).toEqual([10, 8, 6, 4, 2]);
+    expect([0, 1, 2, 3, 4].map(swingsToUproot)).toEqual([5, 4, 3, 2, 1]);
   });
 });
 
@@ -147,6 +176,28 @@ describe("tree tools", () => {
     expect(useHeld(g, map, { kind: "tool", tool: "axe" }, 4, 0)).toEqual({
       ok: false,
       reason: "nothing to chop",
+    });
+  });
+
+  it("lets the hoe and can lift a seedling, and the hoe a planted seed", () => {
+    const g = game([
+      { x: 1, y: 0, stage: 2 },
+      { x: 3, y: 0, stage: 1 },
+      { x: 5, y: 0, stage: 4 },
+    ]);
+    const map = mapWithTrees();
+    const hoe = { kind: "tool", tool: "hoe" } as const;
+    const can = { kind: "tool", tool: "can" } as const;
+    expect(useHeld(g, map, can, 3, 0).ok).toBe(false); // the can leaves a seed
+    expect(g.trees.at(3, 0)).toBeDefined();
+    expect(useHeld(g, map, can, 1, 0).ok).toBe(true);
+    expect(g.trees.at(1, 0)).toBeUndefined();
+    g.skills.gain("foraging", 100);
+    expect(useHeld(g, map, hoe, 3, 0).ok).toBe(true);
+    expect(g.inventory.count("tree-seed")).toBe(1);
+    expect(useHeld(g, map, hoe, 5, 0)).toEqual({
+      ok: false,
+      reason: "a tree is in the way",
     });
   });
 
@@ -280,11 +331,15 @@ describe("saving", () => {
     const g = game([{ x: 1, y: 0, stage: 5 }]);
     chop(g, 1, 0);
     g.trees.at(1, 0)!.seed = true;
+    g.ground.drop(2, 0, "wood", 7);
     const back = deserialize(serialize(g))!;
     expect(back.trees.save()).toEqual(g.trees.save());
+    expect(back.ground.save()).toEqual([{ x: 2, y: 0, id: "wood", count: 7 }]);
     const old = JSON.parse(serialize(g));
     delete old.trees;
+    delete old.ground;
     const fresh = deserialize(JSON.stringify(old))!;
+    expect(fresh.ground.count).toBe(0);
     expect(fresh.trees.count).toBeGreaterThan(20);
   });
 });

@@ -435,7 +435,7 @@ mines.
   `21_fishing.md`). The axe and pickaxe have no tiers yet, so the tier ladder
   needs building for them first, and a copper, steel and gold tier each.
 - **Effect per tool, at tier 5:** hoe and can reach a 9 tile line, as the
-  charge grows (placeholder); the axe fells a tree in 1 swing; the pickaxe
+  charge grows (placeholder); the axe fells a tree in 2 swings (Stardew's iridium axe, `43_wood_source.md`); the pickaxe
   breaks any rock in 1 swing. Swing energy follows `2 - 0.25 * tier -
   0.1 * level`, never under 0.5, so tier 5 and a high level hit the floor.
 
