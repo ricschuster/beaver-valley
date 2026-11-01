@@ -197,3 +197,22 @@ describe("house upgrade order", () => {
     }
   });
 });
+
+describe("sawmill map", () => {
+  it("joins the farm's sawmill door both ways", () => {
+    expect(
+      maps.get("farm").exits.find((e) => e.id === "sawmill"),
+    ).toMatchObject({ map: "sawmill", entry: "door" });
+    expect(maps.get("sawmill").exits[0]).toMatchObject({
+      map: "farm",
+      entry: "from_sawmill",
+    });
+  });
+
+  it("has a carpenter's counter the player can reach", () => {
+    const sawmill = maps.get("sawmill");
+    const counter = sawmill.services.find((s) => s.kind === "carpenter")!;
+    const walkable = sawmill.reachable(sawmill.entry("door")!);
+    expect(walkable.has(`${counter.x},${counter.y + 1}`)).toBe(true);
+  });
+});

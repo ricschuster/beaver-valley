@@ -62,7 +62,7 @@
       "y": 0,
       "objects": [
         {
-          "id": 21,
+          "id": 23,
           "name": "door",
           "class": "entry",
           "type": "entry",
@@ -75,7 +75,7 @@
           "visible": true
         },
         {
-          "id": 22,
+          "id": 24,
           "name": "door",
           "class": "exit",
           "type": "exit",
@@ -91,7 +91,7 @@
           ]
         },
         {
-          "id": 23,
+          "id": 25,
           "name": "bed",
           "class": "service",
           "type": "service",
@@ -105,7 +105,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "bed" }]
         },
         {
-          "id": 24,
+          "id": 26,
           "name": "kitchen",
           "class": "region",
           "type": "region",
@@ -118,7 +118,7 @@
           "visible": true
         },
         {
-          "id": 25,
+          "id": 27,
           "name": "start",
           "class": "region",
           "type": "region",
@@ -131,7 +131,7 @@
           "visible": true
         },
         {
-          "id": 26,
+          "id": 28,
           "name": "bedroom",
           "class": "region",
           "type": "region",

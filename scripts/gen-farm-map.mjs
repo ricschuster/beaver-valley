@@ -82,6 +82,7 @@ const building = (x0, y0, w, h, doorX, doorY, service) => {
 building(4, 2, 6, 4, 6, 5); // house, door on its south face
 building(4, 22, 6, 4, 6, 22); // hall, door on its north face
 building(31, 20, 6, 4, 33, 20, "shop"); // shop, door on its north face
+building(31, 8, 6, 4, 33, 11); // sawmill (the carpenter), door on its south face
 
 // Dirt paths joining the doors.
 const path = (x, y) => {
@@ -90,6 +91,7 @@ const path = (x, y) => {
 for (let y = 6; y <= 21; y++) path(6, y);
 for (let x = 6; x <= 33; x++) path(x, 19);
 path(33, 19);
+for (let y = 12; y <= 18; y++) path(33, y);
 
 // Scattered trees, kept off the soil, the paths and the area around buildings.
 for (let y = 1; y < H - 1; y++)
@@ -220,6 +222,8 @@ const farm = {
         exit("house", 6, 5, "house", "door"),
         point("entry", "from_hall", 6, 21),
         exit("hall", 6, 22, "hall", "door"),
+        point("entry", "from_sawmill", 33, 12),
+        exit("sawmill", 33, 11, "sawmill", "door"),
         ...services.map((s) => service(s.kind, s.x, s.y)),
         ...forage.map((f) => point("forage", "forage", f.x, f.y)),
       ],
@@ -270,6 +274,43 @@ const house = {
         hregion("kitchen", 1, 1, 4, 6),
         hregion("start", 5, 1, 8, 6),
         hregion("bedroom", 13, 1, 4, 6),
+      ],
+    },
+  ],
+};
+
+// The carpenter's sawmill (docs/design/41_house.md): a small room with the
+// carpenter's counter on the back wall and the door at the bottom. It stands on
+// the farm until Hearthwell has a river for it.
+const SW = 10;
+const SH = 7;
+const sground = new Array(SW * SH).fill(PATH);
+const scollision = new Array(SW * SH).fill(0);
+for (let y = 0; y < SH; y++)
+  for (let x = 0; x < SW; x++)
+    if (x === 0 || y === 0 || x === SW - 1 || y === SH - 1) {
+      sground[y * SW + x] = WALL;
+      scollision[y * SW + x] = 1;
+    }
+sground[(SH - 1) * SW + 5] = DOOR;
+scollision[(SH - 1) * SW + 5] = 0;
+// The counter, used from the tile below.
+sground[1 * SW + 5] = SCROLL;
+scollision[1 * SW + 5] = 1;
+
+const sawmill = {
+  ...farm,
+  width: SW,
+  height: SH,
+  layers: [
+    { ...tileLayer(1, "ground", sground), width: SW, height: SH },
+    { ...tileLayer(2, "collision", scollision, false), width: SW, height: SH },
+    {
+      ...farm.layers[4],
+      objects: [
+        point("entry", "door", 5, SH - 2),
+        exit("door", 5, SH - 1, "farm", "from_sawmill"),
+        service("carpenter", 5, 1),
       ],
     },
   ],
@@ -359,5 +400,8 @@ const dir = "src/content/maps";
 mkdirSync(dir, { recursive: true });
 writeFileSync(`${dir}/farm.json`, JSON.stringify(farm));
 writeFileSync(`${dir}/house.json`, JSON.stringify(house));
+writeFileSync(`${dir}/sawmill.json`, JSON.stringify(sawmill));
 writeFileSync(`${dir}/hall.json`, JSON.stringify(hall));
-console.log(`wrote the farm, house and hall maps in ${dir} (placeholders)`);
+console.log(
+  `wrote the farm, house, sawmill and hall maps in ${dir} (placeholders)`,
+);
