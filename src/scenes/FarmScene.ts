@@ -240,6 +240,9 @@ export class FarmScene extends Phaser.Scene {
         harvested: this.state.inventory.count("parsnip"),
         message: this.message,
         day: this.state.day.clock.day,
+        money: this.state.money,
+        houseTier: this.state.houseTier,
+        houseBuild: this.state.houseBuild ?? null,
       });
   }
 
@@ -467,9 +470,42 @@ export class FarmScene extends Phaser.Scene {
     return { x: x0, y: 0, w: x1 - x0, h: height };
   }
 
+  /**
+   * While the carpenter builds the next house tier, scaffold stands on the
+   * outside wall, inside the house's footprint (docs/design/41_house.md), with
+   * the carpenter at work in front. Placeholder shapes until the art pass (#58).
+   */
+  private drawBuild(): void {
+    const house = this.map.exits.find((e) => e.map === HOUSE_MAP);
+    if (!this.state.houseBuild || !house) return;
+    const ts = this.map.tileSize;
+    // The house block is 6 by 4 tiles, with its door on the bottom row.
+    const left = (house.x - 2) * ts;
+    const top = (house.y - 3) * ts;
+    const g = this.wash;
+    g.lineStyle(3, 0x8a6a45, 1);
+    for (const dx of [0, 2 * ts])
+      g.lineBetween(left + dx, top, left + dx, top + 4 * ts);
+    for (let row = 0; row <= 4; row += 2)
+      g.lineBetween(left, top + row * ts, left + 2 * ts, top + row * ts);
+    g.fillStyle(0xd9a441, 1).fillRect(
+      (house.x + 2) * ts + 4,
+      (house.y + 1) * ts + 2,
+      ts - 8,
+      ts - 4,
+    );
+    g.fillStyle(0x6b4f35, 1).fillRect(
+      (house.x + 2) * ts + ts - 6,
+      (house.y + 1) * ts,
+      4,
+      ts / 2,
+    );
+  }
+
   private render(): void {
     this.drawGround();
     this.drawRooms();
+    this.drawBuild();
     this.hud.update(this.state, this.selected, this.message);
   }
 }

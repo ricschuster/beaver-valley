@@ -10,6 +10,7 @@ import { WitchTestScene } from "./scenes/WitchTestScene";
 import { WitchWalkScene } from "./scenes/WitchWalkScene";
 import { TitleScene } from "./scenes/TitleScene";
 import { ShopScene } from "./scenes/ShopScene";
+import { CarpenterScene } from "./scenes/CarpenterScene";
 import { SkillsScene } from "./scenes/SkillsScene";
 
 // Throwaway test scenes, opened first with ?scene=witch or ?scene=witchwalk.
@@ -31,6 +32,7 @@ new Phaser.Game({
     TitleScene,
     FarmScene,
     ShopScene,
+    CarpenterScene,
     HallScene,
     FestivalScene,
     EndScene,
