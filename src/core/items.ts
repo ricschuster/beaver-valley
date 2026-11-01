@@ -42,6 +42,11 @@ for (const f of FORAGE) {
 /** Wood has no source yet (trees are later); the carpenter's upgrade needs it. */
 items.set("wood", { id: "wood", name: "Wood", sellPrice: 2 });
 
+/** Every base item (normal quality), for the dev menu's picker. */
+export function allItems(): ItemDef[] {
+  return [...items.values()];
+}
+
 const QUALITY_NAME = { silver: "Silver", gold: "Gold" } as const;
 
 /** An item by id. A good with a quality suffix sells for more, per tier. */

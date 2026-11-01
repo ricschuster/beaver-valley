@@ -62,6 +62,7 @@ export class Hud {
     onEat: () => void,
     onSkills: () => void,
     onRow: () => void,
+    onDebug?: () => void,
   ) {
     this.status = scene.add.text(16, 16, "", {
       fontSize: "24px",
@@ -150,6 +151,19 @@ export class Hud {
       .text(skills.x + 45, 36, "Skills", { fontSize: "18px", color: "#ffffff" })
       .setOrigin(0.5);
     this.objects.push(use, useText, eat, eatText, skills, skillsText);
+    // Dev builds only: the debug menu's touch button (`42_debug_menu.md`).
+    if (onDebug && import.meta.env.DEV) {
+      const dbg = scene.add
+        .rectangle(skills.x, 64, 90, 40, 0x000000, 0.5)
+        .setOrigin(0)
+        .setStrokeStyle(2, 0xffffff, 0.5)
+        .setInteractive({ useHandCursor: true });
+      dbg.on("pointerdown", onDebug);
+      const dbgText = scene.add
+        .text(dbg.x + 45, 84, "DBG", { fontSize: "18px", color: "#ffffff" })
+        .setOrigin(0.5);
+      this.objects.push(dbg, dbgText);
+    }
   }
 
   /** The toolbar index that bar slot i stands for, given the row shown. */
