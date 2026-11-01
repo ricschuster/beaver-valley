@@ -26,7 +26,7 @@ import { browserStore } from "./storage";
 import { saveGame } from "../core/save";
 import { HOUSE_MAP, sealedAreas } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
-import { cropKey, forageKey, soilKey, stageOf } from "./art";
+import { cropKey, forageKey, soilKey, stageOf, treeKey } from "./art";
 import { giveItem, giveMoney } from "../core/debug";
 import { Hud } from "./hud";
 import {
@@ -46,6 +46,9 @@ const SPEED = 80;
 const PLAYER: Body = { hw: 5, h: 6 };
 /** The world is drawn at this zoom; the HUD is not. */
 const WORLD_ZOOM = 2;
+
+/** While Use is held with the axe, swing again this often, in milliseconds. */
+const REPEAT_MS = 400;
 
 /** Fade time when the player walks through an exit, in milliseconds. */
 const FADE_MS = 200;
@@ -82,6 +85,8 @@ export class FarmScene extends Phaser.Scene {
   private pos: Vec = { x: 0, y: 0 };
   private facing: Facing = "down";
   private exitId: string | undefined;
+  private useKey: Phaser.Input.Keyboard.Key | undefined;
+  private heldMs = 0;
 
   constructor() {
     super("farm");
@@ -95,6 +100,7 @@ export class FarmScene extends Phaser.Scene {
       (this.registry.get(SELECTED_KEY) as number | undefined) ?? 0;
     this.leaving = false;
     this.exitId = undefined;
+    this.heldMs = 0;
     this.message = "";
   }
 
@@ -184,6 +190,7 @@ export class FarmScene extends Phaser.Scene {
       },
     });
     const kb = this.input.keyboard;
+    this.useKey = kb?.addKey("SPACE", false);
     // Phaser can deliver one key press twice (seen after walking, in headless
     // Chromium), which used a tool twice. Run each press once per event.
     const seen = new Map<string, number>();
@@ -247,6 +254,8 @@ export class FarmScene extends Phaser.Scene {
         zoom: this.cameras.main.zoom,
         energy: this.state.day.energy.current,
         plots: [...this.state.farm.each()].length,
+        trees: this.state.trees.count,
+        wood: this.state.inventory.count("wood"),
         seeds: this.state.inventory.count("parsnip-seed"),
         harvested: this.state.inventory.count("parsnip"),
         message: this.message,
@@ -268,9 +277,12 @@ export class FarmScene extends Phaser.Scene {
       { x: v.x * SPEED * dt, y: v.y * SPEED * dt },
       PLAYER,
       ts,
-      (x, y) => this.map.isBlocked(x, y),
+      (x, y) =>
+        this.map.isBlocked(x, y) ||
+        (this.map.hasSoil && this.state.trees.blocks(x, y)),
     );
     this.player.setPosition(this.pos.x, this.pos.y);
+    this.repeatUse(delta);
 
     const front = facingTile(this.pos, PLAYER, this.facing, ts);
     this.target.setPosition(front.x * ts, front.y * ts);
@@ -283,6 +295,24 @@ export class FarmScene extends Phaser.Scene {
       this.render();
       if (exit && exitOpen(exit, this.holds)) this.leave(exit);
     }
+  }
+
+  /** Holding Use with the axe swings again every `REPEAT_MS` until the tree falls. */
+  private repeatUse(delta: number): void {
+    const held = heldAt(this.state, this.selected);
+    const axe = held.kind === "tool" && held.tool === "axe";
+    const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
+    // Repeat only while a tree is mid chop, so a felled tree's stump is not
+    // uprooted by the same hold.
+    const midChop = (this.state.trees.at(front.x, front.y)?.hits ?? 0) > 0;
+    if (!axe || !midChop || !(this.useKey?.isDown || this.hud.useHeld)) {
+      this.heldMs = 0;
+      return;
+    }
+    this.heldMs += delta;
+    if (this.heldMs < REPEAT_MS) return;
+    this.heldMs = 0;
+    this.use();
   }
 
   private leave(exit: Exit): void {
@@ -373,7 +403,12 @@ export class FarmScene extends Phaser.Scene {
 
   private endDay(): void {
     const g = this.state;
-    const report = sleep(g, maps.get(START.map).forageSpots, Math.random);
+    const report = sleep(
+      g,
+      maps.get(START.map).forageSpots,
+      Math.random,
+      maps.get(START.map),
+    );
     this.message = "";
     this.save();
     this.render();
@@ -404,6 +439,8 @@ export class FarmScene extends Phaser.Scene {
     }
     for (const { x, y, id } of this.state.forage.each())
       put(x, y, forageKey(id));
+    for (const t of this.state.trees.each())
+      put(t.x, t.y, treeKey(t.stage, t.stump));
     this.drawBunting();
   }
 

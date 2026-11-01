@@ -23,6 +23,15 @@ const MAPS = Object.fromEntries(
               exits.add(
                 `${Math.floor(o.x / 16) + x},${Math.floor(o.y / 16) + y}`,
               );
+    // Trees stand in the way (stage 2 and up) until the player fells them.
+    const trees = new Set();
+    for (const layer of map.layers)
+      for (const o of layer.objects ?? [])
+        if (
+          o.class === "tree" &&
+          (o.properties?.find((p) => p.name === "stage")?.value ?? 5) > 1
+        )
+          trees.add(`${Math.floor(o.x / 16)},${Math.floor(o.y / 16)}`);
     return [
       id,
       {
@@ -30,6 +39,7 @@ const MAPS = Object.fromEntries(
         H: map.height,
         col: map.layers.find((l) => l.name === "collision").data,
         exits,
+        trees,
       },
     ];
   }),
@@ -40,8 +50,15 @@ export const setMap = (id) => {
   here = id;
 };
 const blockedT = (x, y) => {
-  const { W, H, col } = MAPS[here];
-  return x < 0 || y < 0 || x >= W || y >= H || col[y * W + x] !== 0;
+  const { W, H, col, trees } = MAPS[here];
+  return (
+    x < 0 ||
+    y < 0 ||
+    x >= W ||
+    y >= H ||
+    col[y * W + x] !== 0 ||
+    trees.has(`${x},${y}`)
+  );
 };
 export const isWalk = (x, y) =>
   !blockedT(x, y) && !MAPS[here].exits.has(`${x},${y}`);

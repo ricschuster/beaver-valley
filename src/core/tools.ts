@@ -1,4 +1,15 @@
-import { forage, harvest, plant, till, water, type Outcome } from "./actions";
+import {
+  chop,
+  forage,
+  harvest,
+  plant,
+  plantTree,
+  shake,
+  till,
+  water,
+  type Outcome,
+} from "./actions";
+import { TREE_SEED } from "./trees";
 import type { FarmMap } from "./map";
 import type { GameState } from "./save";
 import { cropOfSeed } from "./items";
@@ -10,7 +21,10 @@ const fail = (reason: string): Outcome => ({ ok: false, reason });
  * Use what the player holds on one tile. The hoe digs soil, the can waters,
  * seeds plant, and the hand (or any other item) picks forage or harvests.
  *
- * Plots and forage are not stored per map yet, so they only work on a map
+ * The axe fells trees, a tree seed plants one, and the hand shakes a loose
+ * seed from a mature tree.
+ *
+ * Plots, forage and trees are not stored per map yet, so they only work on a map
  * with soil. Anywhere else the tools do nothing.
  */
 export function useHeld(
@@ -22,6 +36,7 @@ export function useHeld(
 ): Outcome {
   if (held.kind === "empty") return fail("nothing held");
   if (!map.hasSoil) return fail("nothing to do here");
+  if (held.kind === "tool" && held.tool === "axe") return chop(g, x, y);
   if (held.kind === "tool" && held.tool === "hoe") {
     return map.isTillable(x, y) ? till(g, x, y) : fail("cannot dig here");
   }
@@ -29,6 +44,9 @@ export function useHeld(
   if (held.kind === "item" && cropOfSeed(held.id)) {
     return plant(g, x, y, held.id);
   }
+  if (held.kind === "item" && held.id === TREE_SEED)
+    return plantTree(g, map, x, y);
+  if (g.trees.at(x, y)) return shake(g, x, y);
   return g.forage.itemAt(x, y) ? forage(g, x, y) : harvest(g, x, y);
 }
 
@@ -45,6 +63,10 @@ const REASONS: Record<string, string> = {
   "cannot dig here": "The ground is too hard here.",
   "nothing to do here": "Nothing to do here.",
   "nothing held": "Select a tool or item.",
+  "nothing to chop": "Nothing to chop here.",
+  "a tree is in the way": "A tree is in the way.",
+  "nothing to shake": "Nothing falls from there.",
+  "cannot plant tree here": "A tree cannot grow there.",
   "not food": "That cannot be eaten.",
   "nothing to eat": "Select food to eat.",
   "not hungry": "You are not tired.",

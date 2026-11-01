@@ -33,6 +33,7 @@ const ground = grid();
 const objects = grid();
 const collision = grid();
 const soil = grid();
+const paths = grid();
 
 for (let y = 0; y < H; y++)
   for (let x = 0; x < W; x++) ground[idx(x, y)] = rnd() < 0.5 ? GRASS : GRASS2;
@@ -86,28 +87,50 @@ building(31, 8, 6, 4, 33, 11); // sawmill (the carpenter), door on its south fac
 
 // Dirt paths joining the doors.
 const path = (x, y) => {
-  if (!collision[idx(x, y)] && !objects[idx(x, y)]) ground[idx(x, y)] = PATH;
+  if (!collision[idx(x, y)] && !objects[idx(x, y)]) {
+    ground[idx(x, y)] = PATH;
+    paths[idx(x, y)] = 1;
+  }
 };
 for (let y = 6; y <= 21; y++) path(6, y);
 for (let x = 6; x <= 33; x++) path(x, 19);
 path(33, 19);
 for (let y = 12; y <= 18; y++) path(33, y);
 
-// Scattered trees, kept off the soil, the paths and the area around buildings.
-for (let y = 1; y < H - 1; y++)
-  for (let x = 1; x < W - 1; x++) {
-    const free =
-      !collision[idx(x, y)] &&
-      !objects[idx(x, y)] &&
-      ground[idx(x, y)] <= GRASS2 &&
-      !(x >= 3 && x <= 10 && y >= 1 && y <= 27) &&
-      !(x >= 12 && x <= 27 && y >= 8 && y <= 20) &&
-      !(x >= 30 && x <= 38 && y >= 18 && y <= 25);
-    if (free && rnd() < 0.05) {
-      objects[idx(x, y)] = TREE;
-      block(x, y);
-    }
+// Choppable trees (docs/design/43_wood_source.md): 30 hand-placed points, 8 of
+// them on the soil patch and the rest on open grass. The player cuts these, so
+// they are objects, not tiles. Kept off paths, the border and the ground around
+// buildings. Stage 5 is mature, 4 young, 2 and 3 seedlings.
+const trees = [];
+const treeFree = (x, y, onSoil) =>
+  x >= 1 &&
+  x < W - 1 &&
+  y >= 1 &&
+  y < H - 1 &&
+  !collision[idx(x, y)] &&
+  !objects[idx(x, y)] &&
+  (onSoil
+    ? ground[idx(x, y)] === SOIL && y >= 14 // rows 11 to 13 stay clear for the playtests
+    : ground[idx(x, y)] <= GRASS2) &&
+  !(x >= 3 && x <= 10 && y >= 1 && y <= 27) &&
+  !(x >= 30 && x <= 38 && y >= 7 && y <= 25) &&
+  (onSoil || !(x >= 12 && x <= 27 && y >= 8 && y <= 20)) &&
+  !trees.some((t) => Math.max(Math.abs(t.x - x), Math.abs(t.y - y)) < 2);
+const placeTrees = (count, onSoil) => {
+  for (let tries = 0, n = 0; n < count && tries < 20000; tries++) {
+    const x = 1 + Math.floor(rnd() * (W - 2));
+    const y = 1 + Math.floor(rnd() * (H - 2));
+    if (!treeFree(x, y, onSoil)) continue;
+    trees.push({ x, y, stage: 5 });
+    n++;
   }
+};
+placeTrees(8, true);
+placeTrees(22, false);
+// A few are still growing. The rest are mature.
+trees[3].stage = 4;
+trees[14].stage = 4;
+trees[25].stage = 3;
 
 // Forage spots: free grass tiles, picked at random.
 const forage = [];
@@ -118,6 +141,7 @@ for (let tries = 0; forage.length < 14 && tries < 5000; tries++) {
     ground[idx(x, y)] <= GRASS2 &&
     !collision[idx(x, y)] &&
     !objects[idx(x, y)] &&
+    !trees.some((t) => t.x === x && t.y === y) &&
     !forage.some((f) => f.x === x && f.y === y)
   )
     forage.push({ x, y });
@@ -159,6 +183,10 @@ const service2 = (name, kind, x, y) => ({
   ...point("service", name, x, y),
   properties: [{ name: "kind", type: "string", value: kind }],
 });
+const treePoint = (x, y, stage) => ({
+  ...point("tree", "tree", x, y),
+  properties: [{ name: "stage", type: "int", value: stage }],
+});
 const exit = (name, x, y, target, entry) => ({
   id: objectId++,
   name,
@@ -199,7 +227,7 @@ const farm = {
   height: H,
   tilewidth: T,
   tileheight: T,
-  nextlayerid: 7,
+  nextlayerid: 8,
   nextobjectid: 100,
   properties: [{ name: "placeholder", type: "bool", value: true }],
   layers: [
@@ -226,8 +254,10 @@ const farm = {
         exit("sawmill", 33, 11, "sawmill", "door"),
         ...services.map((s) => service(s.kind, s.x, s.y)),
         ...forage.map((f) => point("forage", "forage", f.x, f.y)),
+        ...trees.map((t) => treePoint(t.x, t.y, t.stage)),
       ],
     },
+    tileLayer(6, "paths", paths, false),
   ],
   tilesets: [tileset],
 };

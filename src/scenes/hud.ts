@@ -21,13 +21,20 @@ const HINT =
 
 const QUALITY_TINT = { normal: 0xffffff, silver: 0xc8d8ff, gold: 0xffd860 };
 
-const TOOL_LABEL = { hoe: "Hoe", can: "Can", hand: "Hand" } as const;
+const TOOL_LABEL = {
+  hoe: "Hoe",
+  can: "Can",
+  axe: "Axe",
+  hand: "Hand",
+} as const;
 
 /** Short text for a slot, until the art pass gives items icons. */
 function caption(held: Held, g: GameState): string {
   if (held.kind === "tool") {
     const tier =
-      held.tool === "hand" ? 0 : g.toolTiers[held.tool as Upgradable];
+      held.tool === "hand" || held.tool === "axe"
+        ? 0
+        : g.toolTiers[held.tool as Upgradable];
     return tier > 0
       ? `${TIER_NAMES[tier]} ${TOOL_LABEL[held.tool].toLowerCase()}`
       : TOOL_LABEL[held.tool];
@@ -52,6 +59,7 @@ export class Hud {
   private readonly heldName: Phaser.GameObjects.Text;
   private readonly rowButton: Phaser.GameObjects.Rectangle;
   private readonly rowText: Phaser.GameObjects.Text;
+  private usePressed = false;
   /** Which row of backpack slots the bar is showing. */
   private row = 0;
 
@@ -129,7 +137,13 @@ export class Hud {
       .circle(960 - USE_R - 24, BAR_Y - USE_R - 16, USE_R, 0xf2d16b, 0.45)
       .setStrokeStyle(3, 0xffffff, 0.7)
       .setInteractive({ useHandCursor: true });
-    use.on("pointerdown", onUse);
+    use.on("pointerdown", () => {
+      this.usePressed = true;
+      onUse();
+    });
+    // Holding the button repeats the swing (`43_wood_source.md`).
+    for (const up of ["pointerup", "pointerout", "pointerupoutside"])
+      use.on(up, () => (this.usePressed = false));
     const useText = scene.add
       .text(use.x, use.y, "Use", { fontSize: "22px", color: "#ffffff" })
       .setOrigin(0.5);
@@ -164,6 +178,11 @@ export class Hud {
         .setOrigin(0.5);
       this.objects.push(dbg, dbgText);
     }
+  }
+
+  /** True while a finger or the mouse holds the Use button. */
+  get useHeld(): boolean {
+    return this.usePressed;
   }
 
   /** The toolbar index that bar slot i stands for, given the row shown. */

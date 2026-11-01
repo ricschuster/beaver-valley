@@ -9,7 +9,7 @@
   "height": 8,
   "tilewidth": 16,
   "tileheight": 16,
-  "nextlayerid": 7,
+  "nextlayerid": 8,
   "nextobjectid": 100,
   "properties": [{ "name": "placeholder", "type": "bool", "value": true }],
   "layers": [
@@ -62,7 +62,7 @@
       "y": 0,
       "objects": [
         {
-          "id": 23,
+          "id": 53,
           "name": "door",
           "class": "entry",
           "type": "entry",
@@ -75,7 +75,7 @@
           "visible": true
         },
         {
-          "id": 24,
+          "id": 54,
           "name": "door",
           "class": "exit",
           "type": "exit",
@@ -91,7 +91,7 @@
           ]
         },
         {
-          "id": 25,
+          "id": 55,
           "name": "bed",
           "class": "service",
           "type": "service",
@@ -105,7 +105,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "bed" }]
         },
         {
-          "id": 26,
+          "id": 56,
           "name": "kitchen",
           "class": "region",
           "type": "region",
@@ -118,7 +118,7 @@
           "visible": true
         },
         {
-          "id": 27,
+          "id": 57,
           "name": "start",
           "class": "region",
           "type": "region",
@@ -131,7 +131,7 @@
           "visible": true
         },
         {
-          "id": 28,
+          "id": 58,
           "name": "bedroom",
           "class": "region",
           "type": "region",

@@ -62,6 +62,11 @@ export interface Service extends Spot {
   kind: string;
 }
 
+/** A tree placed on the map at the start of a new game. `stage` is 1 to 5 (`core/trees.ts`). */
+export interface TreeSpot extends Spot {
+  stage: number;
+}
+
 /** A named rectangle of tiles, such as one room of the hall. */
 export interface Region {
   id: string;
@@ -80,8 +85,15 @@ export function exitOpen(exit: Exit, holds: ReadonlySet<string>): boolean {
 export const COLLISION_LAYER = "collision";
 /** Optional: a map without it has no tillable soil. */
 export const SOIL_LAYER = "soil";
+/** Optional: path tiles, where a tree seed cannot be planted or spread. Never drawn. */
+export const PATHS_LAYER = "paths";
 
 const objectClass = (o: TiledObject) => o.class ?? o.type ?? "";
+
+const num = (o: TiledObject, key: string): number | undefined => {
+  const value = o.properties?.find((p) => p.name === key)?.value;
+  return typeof value === "number" ? value : undefined;
+};
 
 const text = (o: TiledObject, key: string): string | undefined => {
   const value = o.properties?.find((p) => p.name === key)?.value;
@@ -101,6 +113,8 @@ export class FarmMap {
     readonly forageSpots: Spot[],
     readonly services: Service[] = [],
     readonly regions: Region[] = [],
+    readonly trees: TreeSpot[] = [],
+    private readonly paths: boolean[] = [],
   ) {}
 
   /** Read a Tiled map. Throws with a clear message if it breaks the contract. */
@@ -127,6 +141,7 @@ export class FarmMap {
     const forageSpots: Spot[] = [];
     const services: Service[] = [];
     const regions: Region[] = [];
+    const trees: TreeSpot[] = [];
     for (const layer of json.layers) {
       if (layer.type !== "objectgroup") continue;
       for (const o of layer.objects ?? []) {
@@ -134,6 +149,8 @@ export class FarmMap {
         const spot = { x: tile(o.x), y: tile(o.y) };
         if (cls === "entry") entries.push({ name: o.name, ...spot });
         else if (cls === "forage") forageSpots.push(spot);
+        else if (cls === "tree")
+          trees.push({ ...spot, stage: num(o, "stage") ?? 5 });
         else if (cls === "service")
           services.push({ id: o.name, kind: text(o, "kind") ?? "", ...spot });
         else if (cls === "region")
@@ -170,6 +187,8 @@ export class FarmMap {
       forageSpots,
       services,
       regions,
+      trees,
+      grid(PATHS_LAYER, true),
     );
   }
 
@@ -201,6 +220,34 @@ export class FarmMap {
     return this.inside(x, y) && this.soil[y * this.width + x] === true;
   }
 
+  /** True on a path tile. */
+  isPath(x: number, y: number): boolean {
+    return this.inside(x, y) && this.paths[y * this.width + x] === true;
+  }
+
+  /**
+   * Whether a tree seed may be planted here: open ground that is not a path, an
+   * exit, an entry or a service tile. Trees never destroy paths
+   * (`docs/design/36_gathering_trees_sap_fiber.md`).
+   */
+  canPlantTree(x: number, y: number): boolean {
+    return (
+      this.inside(x, y) &&
+      this.blocked[y * this.width + x] !== true &&
+      !this.isPath(x, y) &&
+      !this.exitAt(x, y) &&
+      !this.entries.some((e) => e.x === x && e.y === y) &&
+      !this.serviceAt(x, y)
+    );
+  }
+
+  /** Tiles that the starting trees block, so the layout is checked with them. */
+  private treeTiles(): Set<string> {
+    return new Set(
+      this.trees.filter((t) => t.stage > 1).map((t) => `${t.x},${t.y}`),
+    );
+  }
+
   /** The entry with this name, if the map has one. */
   entry(name: string): Entry | undefined {
     return this.entries.find((e) => e.name === name);
@@ -221,6 +268,7 @@ export class FarmMap {
   /** Tiles that can be walked to from `from`, four ways. */
   reachable(from: Spot): Set<string> {
     const seen = new Set<string>();
+    const solid = this.treeTiles();
     if (this.isBlocked(from.x, from.y)) return seen;
     const queue = [from];
     seen.add(`${from.x},${from.y}`);
@@ -234,7 +282,8 @@ export class FarmMap {
       ] as const) {
         const next = { x: x + dx, y: y + dy };
         const k = `${next.x},${next.y}`;
-        if (seen.has(k) || this.isBlocked(next.x, next.y)) continue;
+        if (seen.has(k) || solid.has(k) || this.isBlocked(next.x, next.y))
+          continue;
         seen.add(k);
         queue.push(next);
       }
@@ -265,6 +314,16 @@ export class FarmMap {
       out.push("service names must be unique");
     for (const service of this.services)
       if (service.kind === "") out.push(`service "${service.id}" needs a kind`);
+    const treeIds = new Set<string>();
+    for (const t of this.trees) {
+      const at = `tree at ${t.x},${t.y}`;
+      if (treeIds.has(`${t.x},${t.y}`)) out.push(`${at} is placed twice`);
+      treeIds.add(`${t.x},${t.y}`);
+      if (t.stage < 1 || t.stage > 5)
+        out.push(`${at} has a stage outside 1 to 5`);
+      if (!this.canPlantTree(t.x, t.y))
+        out.push(`${at} is on a blocked, path, exit, entry or service tile`);
+    }
     for (const entry of this.entries) {
       if (this.exitAt(entry.x, entry.y))
         out.push(`entry "${entry.name}" is inside an exit`);
@@ -299,7 +358,9 @@ export class FarmMap {
           );
       }
       for (const s of this.forageSpots)
-        if (!walkable.has(`${s.x},${s.y}`))
+        if (this.treeTiles().has(`${s.x},${s.y}`))
+          out.push(`forage spot ${s.x},${s.y} is under a tree`);
+        else if (!walkable.has(`${s.x},${s.y}`))
           out.push(
             `forage spot ${s.x},${s.y} cannot be reached from entry "${entry.name}"`,
           );
