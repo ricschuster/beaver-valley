@@ -31,6 +31,8 @@ export interface RunResult {
   /** Day the last bundle was finished, if it was. */
   allDay?: number;
   passOuts: number;
+  /** Clock minutes when each played day ended, before the bed. */
+  dayEnds: number[];
   withered: number;
   /** Money at the end of each season's last day. */
   moneyAtSeasonEnd: number[];
@@ -48,6 +50,7 @@ export function playGame(
   const result: RunResult = {
     bundleDays: {},
     passOuts: 0,
+    dayEnds: [],
     withered: 0,
     moneyAtSeasonEnd: [],
     lastDay: 1,
@@ -62,6 +65,7 @@ export function playGame(
       result.allDay = day;
       break;
     }
+    result.dayEnds.push(g.day.clock.minutes);
     const report = bot.endDay();
     if (report.passedOut) result.passOuts++;
     result.withered += report.withered;
@@ -357,8 +361,9 @@ class Bot {
   private shipSurplus(): void {
     if (this.lateNight) return;
     const keep = new Map<string, number>();
-    for (const w of this.wanted())
-      keep.set(w.item, (keep.get(w.item) ?? 0) + 1);
+    if (this.p.keepsForHall)
+      for (const w of this.wanted())
+        keep.set(w.item, (keep.get(w.item) ?? 0) + 1);
     const lines: { id: string; n: number }[] = [];
     for (const s of this.stacks()) {
       const { base, quality } = splitQuality(s.id);

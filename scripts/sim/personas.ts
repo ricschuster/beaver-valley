@@ -14,6 +14,8 @@ export interface Persona {
   forgetWater: number;
   /** How many of each crop a bundle wants to have growing or in hand. */
   cropsPerBundleCrop: number;
+  /** False for a player who sells goods the hall wants before handing them in (note 08's casual). */
+  keepsForHall: boolean;
   /** A crop planted for money on spare soil, and how many plots of it. */
   cashCrop?: string;
   cashPlots: number;
@@ -28,6 +30,7 @@ export const PERSONAS: Record<string, Persona> = {
     hallEvery: 1,
     forgetWater: 0,
     cropsPerBundleCrop: 2,
+    keepsForHall: true,
     cashCrop: "parsnip",
     cashPlots: 0,
   },
@@ -39,6 +42,7 @@ export const PERSONAS: Record<string, Persona> = {
     hallEvery: 3,
     forgetWater: 0.1,
     cropsPerBundleCrop: 2,
+    keepsForHall: true,
     cashCrop: "parsnip",
     cashPlots: 12,
   },
@@ -50,6 +54,7 @@ export const PERSONAS: Record<string, Persona> = {
     hallEvery: 6,
     forgetWater: 0.3,
     cropsPerBundleCrop: 1,
+    keepsForHall: false,
     cashCrop: "parsnip",
     cashPlots: 6,
   },
