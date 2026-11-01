@@ -11,6 +11,7 @@ import { WitchWalkScene } from "./scenes/WitchWalkScene";
 import { TitleScene } from "./scenes/TitleScene";
 import { ShopScene } from "./scenes/ShopScene";
 import { CarpenterScene } from "./scenes/CarpenterScene";
+import { DebugScene } from "./scenes/DebugScene";
 import { SkillsScene } from "./scenes/SkillsScene";
 
 // Throwaway test scenes, opened first with ?scene=witch or ?scene=witchwalk.
@@ -39,6 +40,8 @@ new Phaser.Game({
     ReportScene,
     BedScene,
     SkillsScene,
+    // Dev builds only: Vite drops the debug menu from `npm run build`.
+    ...(import.meta.env.DEV ? [DebugScene] : []),
     ProfessionScene,
     ...Object.values(tests).filter((t) => !first.includes(t)),
   ],

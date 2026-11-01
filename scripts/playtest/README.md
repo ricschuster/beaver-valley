@@ -25,6 +25,11 @@ errors. The game's weather and forage are random, so reruns differ.
    while the stick is held, the shop, the hall, the bed in the house, the report and Continue
    on the title screen. It also checks touch target sizes. About 40 seconds.
 
+Dev hooks the scripts can call: `window.farmGive(id, n)` adds items (returns
+`"ok"`, `"unknown"` or `"full"`), `window.farmMoney(n)` adds money. By hand, the
+debug menu (`docs/design/42_debug_menu.md`) opens with the backtick key or the
+DBG button. Both exist in dev builds only.
+
 Screenshots and saves go to `playtest-out/` (git-ignored).
 
 Settings, as environment variables:
