@@ -71,6 +71,26 @@ export function isReserved(code: string): boolean {
   );
 }
 
+/** A short name for a key code, for hints and the options screen. */
+export function keyLabel(code: string): string {
+  if (/^Key[A-Z]$/.test(code)) return code.slice(3);
+  if (/^Digit\d$/.test(code)) return code.slice(5);
+  const names: Record<string, string> = {
+    Minus: "-",
+    Equal: "=",
+    ShiftLeft: "Left Shift",
+    ShiftRight: "Right Shift",
+    ControlLeft: "Left Ctrl",
+    ControlRight: "Right Ctrl",
+    AltLeft: "Left Alt",
+    AltRight: "Right Alt",
+    Backquote: "`",
+    Backspace: "Backspace",
+    Space: "Space",
+  };
+  return names[code] ?? code;
+}
+
 export function defaultBindings(): Bindings {
   return Object.fromEntries(ACTIONS.map((a) => [a.id, a.key]));
 }

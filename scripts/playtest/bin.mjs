@@ -22,7 +22,7 @@ const target = (await bot.dbg()).target;
 if (target.x !== 8 || target.y !== 6)
   finding(`facing ${JSON.stringify(target)}, expected the bin at 8,6`);
 await bot.shot("bin-world");
-await bot.key("Space", 400);
+await bot.key("KeyC", 400);
 if (!(await scenes()).includes("bin")) finding("using the bin did not open it");
 await bot.shot("bin-open");
 

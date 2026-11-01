@@ -1,5 +1,9 @@
 import type { SaveStore } from "../core/save";
-import type { SettingsStore } from "../core/bindings";
+import {
+  loadSettings,
+  type Settings,
+  type SettingsStore,
+} from "../core/bindings";
 
 const KEY = "beaver-valley-save";
 
@@ -40,3 +44,14 @@ export const browserSettingsStore: SettingsStore = {
     }
   },
 };
+
+/** This device's settings. A coarse primary pointer picks touch on first run. */
+export function loadDeviceSettings(): Settings {
+  let coarse = false;
+  try {
+    coarse = window.matchMedia("(pointer: coarse)").matches;
+  } catch {
+    // No matchMedia: assume a mouse.
+  }
+  return loadSettings(browserSettingsStore, coarse);
+}

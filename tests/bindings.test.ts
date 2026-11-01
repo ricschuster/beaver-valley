@@ -7,6 +7,7 @@ import {
   defaultSettings,
   deserializeSettings,
   isReserved,
+  keyLabel,
   loadSettings,
   rebind,
   resetAction,
@@ -148,5 +149,15 @@ describe("settings record", () => {
     const s = { ...defaultSettings(), touchScheme: "stick" as const };
     saveSettings(store, s);
     expect(loadSettings(store)).toEqual(s);
+  });
+});
+
+describe("keyLabel", () => {
+  it("names common keys", () => {
+    expect(keyLabel("KeyC")).toBe("C");
+    expect(keyLabel("Digit0")).toBe("0");
+    expect(keyLabel("Equal")).toBe("=");
+    expect(keyLabel("ShiftLeft")).toBe("Left Shift");
+    expect(keyLabel("Tab")).toBe("Tab");
   });
 });

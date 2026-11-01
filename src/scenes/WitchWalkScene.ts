@@ -1,5 +1,6 @@
 import Phaser from "phaser";
-import { Controls } from "./controls";
+import { createControls, type Controls } from "./controls";
+import { loadDeviceSettings } from "./storage";
 import { type Dir, WITCH_KEY, paintWitch } from "./witch-art";
 
 /**
@@ -29,7 +30,7 @@ export class WitchWalkScene extends Phaser.Scene {
       .image(480, 300, WITCH_KEY, "down-0")
       .setOrigin(0.5, 1)
       .setScale(ZOOM);
-    this.controls = new Controls(this);
+    this.controls = createControls(this, loadDeviceSettings());
     this.add
       .text(
         480,
