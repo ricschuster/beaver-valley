@@ -134,3 +134,31 @@ calendar (cauliflower 12 days, melon 12 days from day 29), not by walking, so
 landing on day 41 does not show the time model is right. The walking constants
 matter once a persona is limited by time, as the casual one is. Check them
 against a browser run before using a result for a balance decision.
+
+## Calibration (#328)
+
+Checked on 2026-11-01, 40 to 100 seeds a persona.
+
+- **The time model does not change the bundle pace.** The key press cost
+  (0.25, 0.5, 1 and 2 minutes) and the diagonal factor (0.7, 0.85 and 1) gave
+  the same days to every bundle, for all three personas. The reason is that no
+  persona is limited by time: a played day ends by about 7:30 am at the
+  latest on the clock the sim keeps (`day ends before bed` in the report), far
+  from the 2 am limit. Pace is set by crop growth, the season dates and forage
+  luck. So the weak calibration noted above does not weaken the bundle-pace
+  result. It will matter once something makes a day long (more crops, the
+  carpenter, tree work); rerun the check then.
+- **Diagonal factor 0.85 became 0.9.** Eight-way routes against four-way ones
+  on the real maps: farm start to shop 0.82, hall door to shop 0.96, hall door
+  to the shelf 0.84, and 1.0 for short hops. About 0.9 over the long trips,
+  higher over the short hops that most field work is.
+- **Walking speed is not measured in a browser.** It follows from the scene
+  (`SPEED` of 80 px/s, 7 s a 10 minute tick), and the browser bot walks in
+  straight four-way runs, so it would measure the bot, not a player.
+- **The casual gap was behaviour, not time.** The sim casual finished 88 of 100
+  games, where the browser casual did not finish by day 85. The browser casual
+  sold goods the hall wanted before handing them in. With that behaviour
+  (`keepsForHall: false`) the sim casual finishes 0 of 100 by day 84: 27 get
+  Spring Foraging, 4 get Spring Crops, as in note 08's "year 2" and "stuck".
+  The sim casual is a little harsher than the browser one, which sold most of
+  its forage, not all of it.

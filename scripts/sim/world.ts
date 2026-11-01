@@ -21,7 +21,7 @@ const MINUTES_PER_SECOND = 10 / 7;
  * (shop, hall, bin) pause the farm, so they cost nothing.
  */
 export const TIME = {
-  diagonal: 0.85,
+  diagonal: 0.9,
   action: 0.5,
   transition: 0.5,
 };
