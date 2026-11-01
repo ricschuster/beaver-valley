@@ -162,7 +162,7 @@ is not checked.
    schemes both use the stick until tap-to-move is built.
 3. The options screen from the title, with the profile and the touch scheme.
    Done. The key list is read only until step 4.
-4. Rebinding.
+4. Rebinding. Done: Change and Default per row, a swap prompt on a clash.
 5. Tap-to-move on touch, and the mouse on desktop, if taken (note 27 holds its
    own steps).
 
