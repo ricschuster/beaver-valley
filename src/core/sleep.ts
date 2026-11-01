@@ -5,6 +5,7 @@ import type { Spot } from "./forage";
 import type { GameState } from "./save";
 import type { FarmMap } from "./map";
 import { advanceBuild } from "./house";
+import type { Settlement } from "./shipping";
 
 export interface SleepReport {
   passedOut: boolean;
@@ -19,6 +20,8 @@ export interface SleepReport {
   withered: number;
   /** True when the carpenter finished the house upgrade this morning. */
   houseFinished: boolean;
+  /** What the shipping bin paid tonight. */
+  shipped: Settlement;
 }
 
 /**
@@ -38,6 +41,8 @@ export function sleep(
   const end = g.day.end(g.money);
   const moneyLost = end.passedOut ? end.moneyLost : 0;
   g.money -= moneyLost;
+  // The bin pays after the pass-out cost, which takes cash carried only.
+  const shipped = g.bin.settle(g);
 
   const { season } = dateOf(g.day.clock.day);
   g.farm.endDay(season, growthRate(g.skills));
@@ -70,6 +75,7 @@ export function sleep(
     newSeason: season !== before ? season : undefined,
     withered: cropsBefore - g.farm.cropCount,
     houseFinished,
+    shipped,
   };
 }
 

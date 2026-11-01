@@ -146,6 +146,15 @@ const TILE_PAINTERS: ((c: Ctx, ox: number) => void)[] = [
     px(c, "#a0482e", ox + 5, 6, SIZE - 10, 1);
     px(c, "#a0482e", ox + 5, 9, SIZE - 10, 1);
   },
+  // shipping bin: a wooden crate with an open lid
+  (c, ox) => {
+    px(c, "#3f7d3a", ox, 0, SIZE, SIZE);
+    px(c, "#6f4a22", ox + 1, 3, SIZE - 2, SIZE - 4);
+    px(c, "#a8733a", ox + 2, 5, SIZE - 4, SIZE - 7);
+    px(c, "#2a1a0a", ox + 3, 6, SIZE - 6, 3);
+    px(c, "#c28a48", ox + 1, 2, SIZE - 2, 2);
+    px(c, "#8a5c2a", ox + 2, 11, SIZE - 4, 1);
+  },
 ];
 
 export function paintTiles(scene: Phaser.Scene, key: string): void {

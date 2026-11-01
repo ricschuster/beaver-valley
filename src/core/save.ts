@@ -2,6 +2,7 @@ import { Day } from "./day";
 import { Farm } from "./farm";
 import { Trees, type Tree } from "./trees";
 import { GroundItems, type Pile } from "./ground";
+import { ShippingBin, type BinLine, type BinSave } from "./shipping";
 import { maps } from "../content/maps";
 import { START } from "./maps";
 import { ForageField } from "./forage";
@@ -23,6 +24,8 @@ export interface GameState {
   trees: Trees;
   /** Goods that did not fit the backpack, waiting to be picked up. */
   ground: GroundItems;
+  /** Goods shipped today, paid when the day ends. */
+  bin: ShippingBin;
   skills: Skills;
   /** Tier of the hoe and can, 0 for basic. */
   toolTiers: ToolTiers;
@@ -54,6 +57,7 @@ export function newGame(): GameState {
     farm: new Farm(),
     trees: new Trees(maps.get(START.map).trees),
     ground: new GroundItems(),
+    bin: new ShippingBin(),
     skills: new Skills(),
     toolTiers: { hoe: 0, can: 0 },
     hall: new Hall(),
@@ -82,6 +86,8 @@ interface SaveData {
   trees?: Tree[];
   /** Absent in saves made before goods could lie on the ground. */
   ground?: Pile[];
+  /** Absent in saves made before the shipping bin. */
+  bin?: BinSave;
   skills: ReturnType<Skills["save"]>;
   hall: HallProgress;
   /** Absent in saves made before professions existed. */
@@ -119,6 +125,7 @@ export function serialize(g: GameState): string {
     farm: g.farm.save(),
     trees: g.trees.save(),
     ground: g.ground.save(),
+    bin: g.bin.save(),
     skills: g.skills.save(),
     professions: g.skills.saveProfessions(),
     hall: g.hall.save(),
@@ -213,6 +220,22 @@ export function deserialize(text: string): GameState | undefined {
           (p.count as number) > 0,
       ),
     );
+  }
+  const bin = raw.bin;
+  if (isObject(bin) && Array.isArray(bin.lines)) {
+    const lines = bin.lines.filter(
+      (l): l is BinLine =>
+        isObject(l) &&
+        typeof l.id === "string" &&
+        Number.isInteger(l.count) &&
+        (l.count as number) > 0 &&
+        isCount(l.unit),
+    );
+    const shipped: Record<string, number> = {};
+    if (isObject(bin.shipped))
+      for (const [id, n] of Object.entries(bin.shipped))
+        if (isCount(n)) shipped[id] = n;
+    g.bin.load({ lines, shipped });
   }
   g.hall = new Hall(undefined, hall as HallProgress);
   if (isObject(raw.professions)) {

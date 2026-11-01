@@ -26,7 +26,10 @@ errors. The game's weather and forage are random, so reruns differ.
    shop, the hall, the bed in the house, the report and Continue on the title
    screen. It also checks touch target sizes. About 85 seconds.
 
-6. `node scripts/playtest/wood.mjs` plays a chopper: it fells the starting trees
+6. `node scripts/playtest/bin.mjs` ships, takes back, ships part through the
+   prompt, sleeps, and checks the payout, summary and report. About 10 seconds.
+
+7. `node scripts/playtest/wood.mjs` plays a chopper: it fells the starting trees
    with a held key, sleeps when the energy is low, and reports the days, energy
    and wood to reach 450 wood (`WOOD_TARGET` changes it). About 3 minutes.
 

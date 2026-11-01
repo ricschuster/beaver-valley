@@ -26,6 +26,7 @@ const ROOF = 8;
 const DOOR = 9;
 const BED = 10;
 const SCROLL = 11;
+const BIN = 12;
 
 const idx = (x, y) => y * W + x;
 const grid = () => new Array(W * H).fill(0);
@@ -84,6 +85,12 @@ building(4, 2, 6, 4, 6, 5); // house, door on its south face
 building(4, 22, 6, 4, 6, 22); // hall, door on its north face
 building(31, 20, 6, 4, 33, 20, "shop"); // shop, door on its north face
 building(31, 8, 6, 4, 33, 11); // sawmill (the carpenter), door on its south face
+
+// The shipping bin (docs/design/28_shipping_bin.md): one blocked tile just
+// outside the house, beside the door. The player faces it from the south.
+objects[idx(8, 6)] = BIN;
+block(8, 6);
+services.push({ kind: "bin", x: 8, y: 6 });
 
 // Dirt paths joining the doors.
 const path = (x, y) => {
@@ -209,10 +216,10 @@ const tileset = {
   name: "placeholder",
   tilewidth: T,
   tileheight: T,
-  tilecount: 11,
+  tilecount: 12,
   columns: 10,
   image: "placeholder-tiles.png",
-  imagewidth: 11 * T,
+  imagewidth: 12 * T,
   imageheight: T,
 };
 
