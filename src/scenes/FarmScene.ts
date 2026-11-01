@@ -27,6 +27,7 @@ import { saveGame } from "../core/save";
 import { HOUSE_MAP, sealedAreas } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
 import { cropKey, forageKey, soilKey, stageOf } from "./art";
+import { giveItem, giveMoney } from "../core/debug";
 import { Hud } from "./hud";
 import {
   makePlaceholderTextures,
@@ -147,6 +148,7 @@ export class FarmScene extends Phaser.Scene {
       () => this.eatHeld(),
       () => this.open("skills"),
       () => this.select(nextRow(this.state, this.selected)),
+      () => this.open("debug"),
     );
     this.controls = new Controls(this, (p) => this.hud.covers(p.x, p.y));
     const ui = [this.controls.stick, ...this.hud.objects];
@@ -196,6 +198,7 @@ export class FarmScene extends Phaser.Scene {
     press("TAB", () => this.select(nextRow(this.state, this.selected)));
     press("F", () => this.eatHeld());
     press("K", () => this.open("skills"));
+    if (import.meta.env.DEV) press("BACKTICK", () => this.open("debug"));
     press("Z", () => this.endDay());
     press("Q", () =>
       this.select(cycle(this.selected, -1, toolbarSize(this.state))),
@@ -212,6 +215,8 @@ export class FarmScene extends Phaser.Scene {
       this.save();
       this.message = "";
       this.render();
+      // The debug menu can hand out XP that earns a profession choice.
+      if (pendingChoice(this.state.skills)) this.open("profession");
     };
     this.events.on("resume", resumed);
     this.events.once("shutdown", () => this.events.off("resume", resumed));
@@ -222,7 +227,13 @@ export class FarmScene extends Phaser.Scene {
         id: string,
         n: number,
       ) => {
-        this.state.inventory.add(id, n);
+        const result = giveItem(this.state, id, n);
+        this.render();
+        return result;
+      };
+    if (import.meta.env.DEV)
+      (window as unknown as { farmMoney: unknown }).farmMoney = (n: number) => {
+        giveMoney(this.state, n);
         this.render();
       };
     if (import.meta.env.DEV)
