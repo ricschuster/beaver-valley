@@ -21,8 +21,8 @@ import {
   type Facing,
   type Vec,
 } from "../core/movement";
-import { Controls } from "./controls";
-import { browserStore } from "./storage";
+import { createControls, type Controls } from "./controls";
+import { browserStore, loadDeviceSettings } from "./storage";
 import { saveGame } from "../core/save";
 import { HOUSE_MAP, sealedAreas } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
@@ -61,8 +61,8 @@ interface SceneData {
 }
 
 /**
- * A walkable map, a player and one `GameState`. Space uses the held tool, Z
- * sleeps. Walking through an exit restarts the scene on the next map; the
+ * A walkable map, a player and one `GameState`. The use key uses the held
+ * tool, the end-day key sleeps (both rebindable, see `core/bindings.ts`). Walking through an exit restarts the scene on the next map; the
  * state and the selected toolbar slot survive in the game registry.
  */
 export class FarmScene extends Phaser.Scene {
@@ -86,7 +86,6 @@ export class FarmScene extends Phaser.Scene {
   private pos: Vec = { x: 0, y: 0 };
   private facing: Facing = "down";
   private exitId: string | undefined;
-  private useKey: Phaser.Input.Keyboard.Key | undefined;
   private heldMs = 0;
 
   constructor() {
@@ -148,6 +147,7 @@ export class FarmScene extends Phaser.Scene {
     world.push(this.player, this.target);
 
     // UI objects, drawn by a second camera that does not zoom.
+    const settings = loadDeviceSettings();
     this.hud = new Hud(
       this,
       (i) => this.select(i),
@@ -156,9 +156,25 @@ export class FarmScene extends Phaser.Scene {
       () => this.open("skills"),
       () => this.select(nextRow(this.state, this.selected)),
       () => this.open("debug"),
+      settings,
     );
-    this.controls = new Controls(this, (p) => this.hud.covers(p.x, p.y));
-    const ui = [this.controls.stick, ...this.hud.objects];
+    this.controls = createControls(
+      this,
+      settings,
+      {
+        use: () => this.use(),
+        eat: () => this.eatHeld(),
+        openSkills: () => this.open("skills"),
+        endDay: () => this.endDay(),
+        openDebug: () => this.open("debug"),
+        nextSlot: () =>
+          this.select(cycle(this.selected, 1, toolbarSize(this.state))),
+        nextRow: () => this.select(nextRow(this.state, this.selected)),
+        selectSlot: (i) => this.select(i),
+      },
+      (p) => this.hud.covers(p.x, p.y),
+    );
+    const ui = [...this.controls.objects, ...this.hud.objects];
 
     const { width, height } = this.scale.gameSize;
     const uiCamera = this.cameras.add(0, 0, width, height);
@@ -190,32 +206,6 @@ export class FarmScene extends Phaser.Scene {
         this.afterAction();
       },
     });
-    const kb = this.input.keyboard;
-    this.useKey = kb?.addKey("SPACE", false);
-    // Phaser can deliver one key press twice (seen after walking, in headless
-    // Chromium), which used a tool twice. Run each press once per event.
-    const seen = new Map<string, number>();
-    const press = (name: string, run: () => void) =>
-      kb?.on(`keydown-${name}`, (e: KeyboardEvent) => {
-        if (seen.get(name) === e.timeStamp) return;
-        seen.set(name, e.timeStamp);
-        run();
-      });
-    press("SPACE", () => this.use());
-    kb?.addCapture("TAB");
-    press("TAB", () => this.select(nextRow(this.state, this.selected)));
-    press("F", () => this.eatHeld());
-    press("K", () => this.open("skills"));
-    if (import.meta.env.DEV) press("BACKTICK", () => this.open("debug"));
-    press("Z", () => this.endDay());
-    press("Q", () =>
-      this.select(cycle(this.selected, -1, toolbarSize(this.state))),
-    );
-    press("E", () =>
-      this.select(cycle(this.selected, 1, toolbarSize(this.state))),
-    );
-    const digits = "ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE".split(",");
-    digits.forEach((name, i) => press(name, () => this.select(i)));
     // Restarting the scene keeps its event listeners, so drop this one on
     // shutdown or each map change would add another and run it twice.
     const resumed = (_sys: unknown, data?: { sleep?: boolean }) => {
@@ -317,7 +307,7 @@ export class FarmScene extends Phaser.Scene {
     if (
       !axe ||
       !this.state.trees.at(front.x, front.y) ||
-      !(this.useKey?.isDown || this.hud.useHeld)
+      !(this.controls.useHeld() || this.hud.useHeld)
     ) {
       this.heldMs = 0;
       return;

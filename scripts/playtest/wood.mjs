@@ -45,10 +45,10 @@ async function chop(t) {
   const e0 = f.energy;
   const w0 = (await wood()) + (await ground());
   const t0 = Date.now();
-  await p.keyboard.down("Space");
+  await p.keyboard.down("KeyC");
   while ((await treeAt(t.x, t.y)) && Date.now() - t0 < 25000)
     await sleepMs(100);
-  await p.keyboard.up("Space");
+  await p.keyboard.up("KeyC");
   await sleepMs(300);
   const e1 = (await bot.dbg()).energy;
   const w1 = (await wood()) + (await ground());

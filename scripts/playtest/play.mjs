@@ -218,7 +218,7 @@ async function openService(standX, standY, kind, facing = "down") {
   await bot.walkTo(standX, standY);
   await bot.face(facing);
   const before = await bot.snap();
-  await bot.key("Space", 400);
+  await bot.key("KeyC", 400);
   const s = await bot.snap();
   if (!s.scenes.includes(kind))
     throw new Error(`${kind} did not open: ${s.scenes}`);
@@ -227,7 +227,7 @@ async function openService(standX, standY, kind, facing = "down") {
     JSON.stringify(s.inv) !== JSON.stringify(before.inv)
   )
     finding(
-      `opening the ${kind} with Space changed money or the backpack (double key event?)`,
+      `opening the ${kind} with the use key changed money or the backpack (double key event?)`,
     );
 }
 async function closeScreen(kind) {

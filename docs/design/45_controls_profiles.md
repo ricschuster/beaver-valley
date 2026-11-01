@@ -1,6 +1,7 @@
 # 45 Controls: two profiles and the options screen (draft)
 
-Status: draft. Decided with the owner on 2026-11-01. Nothing here is built. It
+Status: draft. Decided with the owner on 2026-11-01. Build steps 1 and 2 are done
+(bindings, the settings record, the two profiles in `src/scenes/controls.ts`). It
 extends `27_touch_controls.md`, which covers the touch schemes, and adds the
 split between desktop and touch and the first options screen. Reference: the
 saved Stardew Valley Wiki Controls and Mobile Controls pages, read only (ADR
@@ -73,6 +74,15 @@ is not checked.
   keys only, so the mouse rules are not checked. Needs the farmer to face the
   cursor, which is not built. It comes after the profile split (build order,
   step 5), and keys alone work until then.
+- **Right-click and the browser menu (ours):** a right-click on the canvas opens
+  the browser's context menu by default, which would cover the screen on every
+  Action. The desktop profile calls Phaser's `input.mouse.disableContextMenu()`
+  once, which affects the game canvas only, and reads `pointer.rightButtonDown()`
+  for Action. A Mac two-finger tap or Ctrl-click counts as a right-click and
+  works the same. Not yet checked in a browser.
+- **Long press on touch (ours):** a long press on a tablet can also fire a
+  context menu, and hold-to-chop is a long press. Check it on the real tablet
+  (#59, #63). The touch playtest uses synthetic events and may not show it.
 - **Rebindable:** every action in the table above, plus the ones that arrive
   later (action, menu, journal and so on). The slots 1 to 9 are one group each.
 - **Not rebindable (ours, decided):** menu navigation (the arrows, Enter and Esc inside a
@@ -145,9 +155,11 @@ is not checked.
 
 ## Build order
 
-1. `bindings.ts` and the settings record, with tests. No visible change.
-2. The input seam, the desktop profile on today's keys, and the touch profile
-   on today's stick. Remove the mixed `Controls`.
+1. `bindings.ts` and the settings record, with tests. No visible change. Done.
+2. The input seam, the desktop profile and the touch profile. Remove the mixed
+   `Controls`. Done, with Stardew's default keys. The desktop profile hides the
+   touch buttons and shows a hint built from the bindings. The two touch
+   schemes both use the stick until tap-to-move is built.
 3. The options screen from the title, with the profile and the touch scheme.
 4. Rebinding.
 5. Tap-to-move on touch, and the mouse on desktop, if taken (note 27 holds its
@@ -161,6 +173,8 @@ seam.
 - **Eat on F:** keep it, or move it so F stays free for a journal later.
 - **Layout detection** for key labels, and non-QWERTY layouts, until it is
   checked in a browser.
+- **The context menu** on right-click and on a touch long press: the fix is
+  above, the long press is unchecked.
 - **The mouse wheel** for the toolbar, and the mouse rules above, are from
   memory.
 - **A gamepad profile,** parked.

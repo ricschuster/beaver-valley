@@ -92,7 +92,7 @@ all three after a change to prices, bundles, growth or energy.
 ## Files
 
 - `lib.mjs`: browser launch, pathfinding walk, facing and tool use. It also
-  answers the profession scene (key 1, or `PROFESSION=2`) after a Space press.
+  answers the profession scene (key 1, or `PROFESSION=2`) after a use key (C) press.
 - `play.mjs`: the daily routine and the personas.
 - `late.mjs`: the stay-up-late test.
 - `wood.mjs`: the wood persona.

@@ -7,6 +7,8 @@ import { festivalToday } from "../core/festivals";
 import { splitQuality } from "../core/quality";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
+import type { Settings } from "../core/bindings";
+import { desktopHint } from "./controls";
 import { TIER_NAMES, type Upgradable } from "../core/upgrades";
 
 const SLOT = 44;
@@ -15,9 +17,6 @@ const BAR_W = TOOLBAR_SIZE * (SLOT + GAP) - GAP;
 const BAR_Y = 540 - SLOT - 8;
 const USE_R = 52;
 const EAT_R = 36;
-
-const HINT =
-  "Move: arrows/WASD or drag left   Use: Space   Eat: F   Skills: K   Sleep: bed or Z   Tools: 1-9, Q/E, Tab: row";
 
 const QUALITY_TINT = { normal: 0xffffff, silver: 0xc8d8ff, gold: 0xffd860 };
 
@@ -60,6 +59,8 @@ export class Hud {
   private readonly rowButton: Phaser.GameObjects.Rectangle;
   private readonly rowText: Phaser.GameObjects.Text;
   private usePressed = false;
+  /** The touch profile shows the on-screen buttons; desktop does not. */
+  private readonly touch: boolean;
   /** Which row of backpack slots the bar is showing. */
   private row = 0;
 
@@ -70,8 +71,10 @@ export class Hud {
     onEat: () => void,
     onSkills: () => void,
     onRow: () => void,
-    onDebug?: () => void,
+    onDebug: (() => void) | undefined,
+    settings: Settings,
   ) {
+    this.touch = settings.profile === "touch";
     this.status = scene.add.text(16, 16, "", {
       fontSize: "24px",
       color: "#ffffff",
@@ -80,9 +83,9 @@ export class Hud {
       fontSize: "14px",
       color: "#ffffffcc",
     });
-    // The hint is for a keyboard; a tablet has the stick and the buttons.
-    const { os, input } = scene.sys.game.device;
-    this.hint.setText(input.touch && !os.desktop ? "" : HINT);
+    // The hint is for a keyboard; touch has the stick and the buttons, and
+    // desktop has no on-screen buttons (note 45).
+    this.hint.setText(this.touch ? "" : desktopHint(settings.bindings));
     this.message = scene.add.text(16, 106, "", {
       fontSize: "18px",
       color: "#ffe9a0",
@@ -165,8 +168,11 @@ export class Hud {
       .text(skills.x + 45, 36, "Skills", { fontSize: "18px", color: "#ffffff" })
       .setOrigin(0.5);
     this.objects.push(use, useText, eat, eatText, skills, skillsText);
+    if (!this.touch)
+      for (const o of [use, useText, eat, eatText, skills, skillsText])
+        o.setVisible(false).disableInteractive();
     // Dev builds only: the debug menu's touch button (`42_debug_menu.md`).
-    if (onDebug && import.meta.env.DEV) {
+    if (onDebug && this.touch && import.meta.env.DEV) {
       const dbg = scene.add
         .rectangle(skills.x, 64, 90, 40, 0x000000, 0.5)
         .setOrigin(0)
@@ -208,8 +214,8 @@ export class Hud {
     );
     if (selected >= TOOLS.length) this.row = rowOf(selected);
     const multiRow = g.inventory.size > SLOT_COUNT;
-    this.rowButton.setVisible(multiRow);
-    this.rowText.setVisible(multiRow);
+    this.rowButton.setVisible(multiRow && this.touch);
+    this.rowText.setVisible(multiRow && this.touch);
     this.slots.forEach((box, i) => {
       const index = this.indexOf(i);
       const on = index === selected;

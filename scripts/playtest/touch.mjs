@@ -12,7 +12,11 @@ import {
   setMap,
 } from "./lib.mjs";
 
-const { b, p, errs } = await launch({ fresh: true, context: TABLET });
+const { b, p, errs } = await launch({
+  fresh: true,
+  context: TABLET,
+  profile: "touch",
+});
 const bot = new Bot(p, errs);
 const cdp = await p.context().newCDPSession(p);
 

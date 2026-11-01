@@ -85,7 +85,7 @@ export const TABLET = {
   isMobile: true,
 };
 
-export async function launch({ fresh, context }) {
+export async function launch({ fresh, context, profile = "desktop" }) {
   // DEVICE_CDP: drive Chrome on a real device (adb forward tcp:9222
   // localabstract:chrome_devtools_remote) instead of a headless browser.
   const device = process.env.DEVICE_CDP;
@@ -101,6 +101,14 @@ export async function launch({ fresh, context }) {
         .find((q) => q.url().startsWith(GAME_URL.slice(0, 22)))
     : await b.newPage(context ?? { viewport: { width: 960, height: 540 } });
   if (device) await p.bringToFront();
+  // Set the profile explicitly, so a run never depends on the machine's
+  // pointer type (note 45). The bindings stay at their defaults.
+  await p.addInitScript((profile) => {
+    localStorage.setItem(
+      "beaver-valley-settings",
+      JSON.stringify({ version: 1, profile, touchScheme: "stick" }),
+    );
+  }, profile);
   const errs = [];
   p.on("pageerror", (e) => errs.push(e.message));
   p.on("console", (m) => {
@@ -176,7 +184,7 @@ export class Bot {
     await sleepMs(wait);
     // A level 5 skill opens the profession scene after the action that earned
     // it, and the farm stays paused until one is chosen.
-    if (k === "Space") await this.pickProfession();
+    if (k === "KeyC") await this.pickProfession();
   }
   /** Answer the profession scene if it is open: key 1, or 2 with PROFESSION=2. */
   async pickProfession() {
@@ -312,7 +320,7 @@ export class Bot {
     if (i < 9) await this.key(String(i + 1));
     else {
       await this.key("9");
-      for (let n = 8; n < i; n++) await this.key("e");
+      for (let n = 8; n < i; n++) await this.key("Tab");
     }
     const s = (await this.snap()).selected;
     if (s !== i) throw new Error(`select ${i} got ${s}`);
@@ -322,7 +330,7 @@ export class Bot {
   async useToward(dir) {
     await this.face(dir);
     const before = await this.dbg();
-    await this.key("Space", 90);
+    await this.key("KeyC", 90);
     return before;
   }
 
@@ -360,7 +368,7 @@ export class Bot {
       await this.walkTo(best.x, best.y);
       await this.face(best.dir);
     }
-    await this.key("Space", 90);
+    await this.key("KeyC", 90);
     return best;
   }
 }
