@@ -1,6 +1,6 @@
 # 28 Shipping bin (draft)
 
-Status: draft. Decided with the owner on 2026-10-31. Nothing here is built.
+Status: draft. Decided with the owner on 2026-10-31, placement, touch and summary on 2026-11-01. Nothing here is built.
 Selling at the shop is built (`src/core/shop.ts`, `src/scenes/ShopScene.ts`).
 Reference: the Stardew Valley Wiki Shipping page, read only (ADR 0002).
 
@@ -15,9 +15,9 @@ Reference: the Stardew Valley Wiki Shipping page, read only (ADR 0002).
 - **Shipping an item.** Walk up and use the bin. The menu shows the inventory
   grid with the bin beside it, as in Stardew. The player taps or drags a stack
   into the bin. This replaces the earlier plan to reuse the shop sell list.
-  A tap or drag moves the whole stack, which is what Stardew does. A hold
-  moves one item (our addition, not checked against Stardew), so a single
-  item can be shipped on touch. Take-back covers a mis-tap.
+  A tap or drag moves the whole stack, which is what Stardew does. A single
+  item goes through a quantity prompt (see Settled 2026-11-01). Take-back
+  covers a mis-tap.
 - **Take-back.** Anything shipped today can be taken out again until the player
   sleeps. The bin menu has two tabs, Ship and Shipped today. Tapping a line in
   the second tab takes it back, with Take back 1 and Take back all buttons. This is wider than Stardew, which returns only the last item. It
@@ -57,5 +57,25 @@ for the player who needs money now to buy seeds before planting.
   counts per item, so the page can read them when it is built.
 - **No bin-only or shop-only items.** Every item can go either route.
 - **Mini bin and extra bins: M4, optional.** They go with the farm note.
+
+## Settled 2026-11-01 (placement, touch, summary)
+
+- **Placement: beside the house door (Stardew).** The bin stands just outside
+  the house on the farm map, close to the door and the bed, so shipping is the
+  last chore of the day. Stardew's exact spot is from memory, not checked on a
+  saved page. The `bin` object class and its tile go in the map contract
+  (`05_farm_map_placeholder.md`) and `scripts/gen-farm-map.mjs`.
+- **Touch: tap ships a stack, with a quantity prompt for singles (Stardew).**
+  Tapping a stack moves all of it. The prompt (a small number picker with
+  plus, minus, All and Ship) opens for a single or a part. This replaces the
+  hold-moves-one idea above. The bin is not an axe target, so holding Use on
+  its tile does nothing and there is no clash with hold to chop. Stardew's
+  mobile quantity control is not checked on a saved page. Settle the prompt's
+  feel on the real tablet (#59, #63).
+- **Summary: a separate screen before the report (Stardew).** After the player
+  sleeps and settle runs, a shipping screen lists each item sold with its count
+  and money, then the total. A button moves on to the existing morning report.
+  It is skipped when the bin was empty. Stardew's layout is not checked, so the
+  rows are ours.
 
 No open items.
