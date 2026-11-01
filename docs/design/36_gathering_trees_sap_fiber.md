@@ -45,8 +45,8 @@ Facts from the saved Trees page. Amounts are Stardew's unless marked ours.
   direction. On a tablet, tap-to-act chops from the tile the player stands on
   and drops land on the player's tile, so there is no off-centre standing
   (`27_touch_controls.md`). This is ours.
-- Items lost in water are not copied. Dropped goods go straight to the bag or to
-  the ground beside the player.
+- Items lost in water are not copied. Dropped goods go to the bag, and the rest
+  to the ground nearby, picked up by walking over them (`43_wood_source.md`).
 - Moss is a separate small tree good (1 to 2 a tree, any tool, not in winter,
   as set in `34_crafting.md`).
 - Lightning does not touch trees in slice 1 (storms are weather only). When

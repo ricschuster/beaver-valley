@@ -1,6 +1,7 @@
 import { Day } from "./day";
 import { Farm } from "./farm";
 import { Trees, type Tree } from "./trees";
+import { GroundItems, type Pile } from "./ground";
 import { maps } from "../content/maps";
 import { START } from "./maps";
 import { ForageField } from "./forage";
@@ -20,6 +21,8 @@ export interface GameState {
   farm: Farm;
   /** Trees and stumps on the farm. */
   trees: Trees;
+  /** Goods that did not fit the backpack, waiting to be picked up. */
+  ground: GroundItems;
   skills: Skills;
   /** Tier of the hoe and can, 0 for basic. */
   toolTiers: ToolTiers;
@@ -50,6 +53,7 @@ export function newGame(): GameState {
     inventory: new Inventory(),
     farm: new Farm(),
     trees: new Trees(maps.get(START.map).trees),
+    ground: new GroundItems(),
     skills: new Skills(),
     toolTiers: { hoe: 0, can: 0 },
     hall: new Hall(),
@@ -76,6 +80,8 @@ interface SaveData {
   farm: ReturnType<Farm["save"]>;
   /** Absent in saves made before trees existed: the map's starting trees. */
   trees?: Tree[];
+  /** Absent in saves made before goods could lie on the ground. */
+  ground?: Pile[];
   skills: ReturnType<Skills["save"]>;
   hall: HallProgress;
   /** Absent in saves made before professions existed. */
@@ -112,6 +118,7 @@ export function serialize(g: GameState): string {
     inventory: g.inventory.save(),
     farm: g.farm.save(),
     trees: g.trees.save(),
+    ground: g.ground.save(),
     skills: g.skills.save(),
     professions: g.skills.saveProfessions(),
     hall: g.hall.save(),
@@ -193,6 +200,19 @@ export function deserialize(text: string): GameState | undefined {
         isCount(t.hits),
     );
     g.trees.load(valid);
+  }
+  if (Array.isArray(raw.ground)) {
+    g.ground.load(
+      raw.ground.filter(
+        (p): p is Pile =>
+          isObject(p) &&
+          Number.isInteger(p.x) &&
+          Number.isInteger(p.y) &&
+          typeof p.id === "string" &&
+          isCount(p.count) &&
+          (p.count as number) > 0,
+      ),
+    );
   }
   g.hall = new Hall(undefined, hall as HallProgress);
   if (isObject(raw.professions)) {

@@ -1,5 +1,6 @@
 import {
   chop,
+  clearSeedling,
   forage,
   harvest,
   plant,
@@ -36,11 +37,16 @@ export function useHeld(
 ): Outcome {
   if (held.kind === "empty") return fail("nothing held");
   if (!map.hasSoil) return fail("nothing to do here");
-  if (held.kind === "tool" && held.tool === "axe") return chop(g, x, y);
+  if (held.kind === "tool" && held.tool === "axe")
+    return chop(g, x, y, Math.random, map);
   if (held.kind === "tool" && held.tool === "hoe") {
+    if (g.trees.at(x, y)) return clearSeedling(g, x, y, "hoe", map);
     return map.isTillable(x, y) ? till(g, x, y) : fail("cannot dig here");
   }
-  if (held.kind === "tool" && held.tool === "can") return water(g, x, y);
+  if (held.kind === "tool" && held.tool === "can")
+    return g.trees.at(x, y)
+      ? clearSeedling(g, x, y, "can", map)
+      : water(g, x, y);
   if (held.kind === "item" && cropOfSeed(held.id)) {
     return plant(g, x, y, held.id);
   }

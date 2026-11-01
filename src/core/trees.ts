@@ -26,10 +26,10 @@ export const SPREAD_RANGE = 3;
 /** Seasons when trees do not grow. The first playable has none. */
 const NO_GROWTH: readonly string[] = ["winter"];
 
-/** Swings to fell a mature tree at an axe tier: 5, 4, 3, 2, 1. Ours. */
-export const swingsToFell = (tier: number) => Math.max(5 - tier, 1);
-/** Swings to remove a stump at an axe tier: 3 at tier 0, never under 1. Ours. */
-export const swingsToUproot = (tier: number) => Math.max(3 - tier, 1);
+/** Swings to fell a mature tree at an axe tier: 10, 8, 6, 4, 2. As Stardew's Axe page. */
+export const swingsToFell = (tier: number) => Math.max(10 - 2 * tier, 2);
+/** Swings to remove a stump at an axe tier: 5, 4, 3, 2, 1. As Stardew's Axe page. */
+export const swingsToUproot = (tier: number) => Math.max(5 - tier, 1);
 
 export interface Tree {
   x: number;

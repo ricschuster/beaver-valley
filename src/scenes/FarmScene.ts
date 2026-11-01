@@ -26,8 +26,9 @@ import { browserStore } from "./storage";
 import { saveGame } from "../core/save";
 import { HOUSE_MAP, sealedAreas } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
-import { cropKey, forageKey, soilKey, stageOf, treeKey } from "./art";
+import { cropKey, forageKey, iconKey, soilKey, stageOf, treeKey } from "./art";
 import { giveItem, giveMoney } from "../core/debug";
+import { pickupRadius } from "../core/ground";
 import { Hud } from "./hud";
 import {
   makePlaceholderTextures,
@@ -283,6 +284,7 @@ export class FarmScene extends Phaser.Scene {
     );
     this.player.setPosition(this.pos.x, this.pos.y);
     this.repeatUse(delta);
+    this.pickUp();
 
     const front = facingTile(this.pos, PLAYER, this.facing, ts);
     this.target.setPosition(front.x * ts, front.y * ts);
@@ -297,15 +299,26 @@ export class FarmScene extends Phaser.Scene {
     }
   }
 
-  /** Holding Use with the axe swings again every `REPEAT_MS` until the tree falls. */
+  /** Pull in goods lying on the ground near the player, as far as the bag has room. */
+  private pickUp(): void {
+    if (!this.map.hasSoil || this.state.ground.count === 0) return;
+    const here = tileOf(this.pos, PLAYER, this.map.tileSize);
+    if (this.state.ground.collect(this.state.inventory, here, pickupRadius()))
+      this.render();
+  }
+
+  /** Holding Use with the axe swings again every `REPEAT_MS` until the tile is clear. */
   private repeatUse(delta: number): void {
     const held = heldAt(this.state, this.selected);
     const axe = held.kind === "tool" && held.tool === "axe";
     const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
-    // Repeat only while a tree is mid chop, so a felled tree's stump is not
-    // uprooted by the same hold.
-    const midChop = (this.state.trees.at(front.x, front.y)?.hits ?? 0) > 0;
-    if (!axe || !midChop || !(this.useKey?.isDown || this.hud.useHeld)) {
+    // Holding carries on from a felled tree to its stump, as Stardew's held
+    // tool does. It stops once there is nothing left on the tile.
+    if (
+      !axe ||
+      !this.state.trees.at(front.x, front.y) ||
+      !(this.useKey?.isDown || this.hud.useHeld)
+    ) {
       this.heldMs = 0;
       return;
     }
@@ -441,6 +454,10 @@ export class FarmScene extends Phaser.Scene {
       put(x, y, forageKey(id));
     for (const t of this.state.trees.each())
       put(t.x, t.y, treeKey(t.stage, t.stump));
+    for (const p of this.state.ground.each()) {
+      const key = iconKey(p.id);
+      if (key) put(p.x, p.y, key);
+    }
     this.drawBunting();
   }
 
