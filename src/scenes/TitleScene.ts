@@ -4,7 +4,8 @@ import { START } from "../core/maps";
 import { loadGame, type GameState } from "../core/save";
 import { startGame } from "../core/toolbar";
 import { maps } from "../content/maps";
-import { browserStore } from "./storage";
+import { PROFILE_NAMES } from "./OptionsScene";
+import { browserStore, loadDeviceSettings } from "./storage";
 import { STATE_KEY } from "./state";
 
 /**
@@ -39,7 +40,7 @@ export class TitleScene extends Phaser.Scene {
       })
       .setOrigin(0.5);
     this.note = this.add
-      .text(480, 420, "", { fontSize: "16px", color: "#ffe9a0" })
+      .text(480, 466, "", { fontSize: "16px", color: "#ffe9a0" })
       .setOrigin(0.5);
 
     if (saved) {
@@ -61,16 +62,26 @@ export class TitleScene extends Phaser.Scene {
     this.button(480, 360, "New game", saved ? 0xa0482e : 0x3f7d3a, () =>
       this.newGame(saved !== undefined),
     );
+    this.button(
+      480,
+      420,
+      `Options (${PROFILE_NAMES[loadDeviceSettings().profile]})`,
+      0x4a5a7a,
+      () => this.scene.start("options"),
+    );
     const kb = this.input.keyboard;
     kb?.on("keydown-ENTER", () =>
       saved ? this.begin(saved) : this.newGame(false),
     );
     kb?.on("keydown-N", () => this.newGame(saved !== undefined));
+    kb?.on("keydown-O", () => this.scene.start("options"));
     this.add
       .text(
         480,
         500,
-        saved ? "Enter: continue   N: new game" : "Enter: new game",
+        saved
+          ? "Enter: continue   N: new game   O: options"
+          : "Enter: new game   O: options",
         { fontSize: "13px", color: "#ffffffaa" },
       )
       .setOrigin(0.5);
