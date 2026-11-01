@@ -432,8 +432,8 @@ mines.
   10000g tier already is. Stardew pairs its top tier with 25000g and bars, from
   memory. Ours skips the gold on purpose, so the deep mine is the cost.
 - **Tools:** hoe, watering can, axe and pickaxe (the rod has its own line,
-  `21_fishing.md`). The axe and pickaxe have no tiers yet, so the tier ladder
-  needs building for them first, and a copper, steel and gold tier each.
+  `21_fishing.md`). The axe and pickaxe have no tiers yet. Their ladders, costs and the
+  2 day wait are in `44_tool_upgrades.md`.
 - **Effect per tool, at tier 5:** hoe and can reach a 9 tile line, as the
   charge grows (placeholder); the axe fells a tree in 2 swings (Stardew's iridium axe, `43_wood_source.md`); the pickaxe
   breaks any rock in 1 swing. Swing energy follows `2 - 0.25 * tier -

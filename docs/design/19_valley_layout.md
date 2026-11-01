@@ -82,8 +82,7 @@ The farm has three exits, so it is a home between places and not a dead end.
 9. **The Wanderer lives in the Forest.** This is the natural place for the
    announcement that opens the mines.
 10. **The Secret Woods are gated by a massive log**, as in the original idea of
-    a blocked path. An upgraded axe clears it. Which tier is for the tool
-    tuning (`07_tuning_numbers.md`).
+    a blocked path. A steel axe or better clears it (`44_tool_upgrades.md`).
 11. **The cove is a bundle reward.** The Water room opens it (`16_bundles.md`).
     That note calls it a lake cove and also repairs a ferry, so the cove is
     named the Lake cove here. It hangs off the River delta and is reached by the
