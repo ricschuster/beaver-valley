@@ -246,7 +246,7 @@ await useTool();
 let s = await bot.snap();
 if (!s.plots.some((q) => q.x === front.x && q.y === front.y && q.tilled))
   finding("Use with the hoe did not till the tile in front");
-const seedSlot = s.inv.findIndex((x) => x && x.id === "parsnip-seed") + 3;
+const seedSlot = s.inv.findIndex((x) => x && x.id === "parsnip-seed") + 4;
 await selectSlot(seedSlot);
 await useTool();
 s = await bot.snap();
@@ -266,7 +266,7 @@ await p.evaluate(
   },
   [front.x, front.y],
 );
-await selectSlot(2); // hand
+await selectSlot(3); // hand
 const before = (await bot.snap()).inv;
 await useTool();
 s = await bot.snap();
@@ -274,6 +274,81 @@ if (bot.countBase(s, "parsnip") < 1)
   finding("Use with the hand did not harvest");
 else log("harvest by touch: done");
 void before;
+
+// 2b. Hold Use to chop: a finger held on the Use button fells a tree and then
+// its stump, and goods that do not fit in a full bag are picked up on the way.
+async function holdUse(until, limit = 25000) {
+  const t = (await targets("farm")).find((t) => t.label === "Use");
+  const a = await toPage(t.cx, t.cy);
+  await touch("touchStart", [point(1, a.x, a.y)]);
+  const t0 = Date.now();
+  while (!(await until()) && Date.now() - t0 < limit) await sleepMs(100);
+  await touch("touchEnd", []);
+  await sleepMs(200);
+  return Date.now() - t0;
+}
+const treeHere = (x, y) =>
+  p.evaluate(
+    ([x, y]) => window.__game.registry.get("state").trees.at(x, y)?.stage ?? 0,
+    [x, y],
+  );
+await walkTo(14, 13);
+await faceTo("down");
+const tr = (await bot.dbg()).target;
+const stage = await treeHere(tr.x, tr.y);
+log(`tree at ${tr.x},${tr.y}, stage ${stage}`);
+await selectSlot(2); // axe
+const wood0 = (await bot.dbg()).wood;
+const e0 = (await bot.dbg()).energy;
+// A single tap swings once and must not fell it.
+await useTool();
+if ((await treeHere(tr.x, tr.y)) === 0)
+  finding("one tap on Use felled a mature tree");
+const ms = await holdUse(async () => (await treeHere(tr.x, tr.y)) === 0);
+const d2 = await bot.dbg();
+if ((await treeHere(tr.x, tr.y)) !== 0)
+  finding("holding Use on the button did not clear the tree and its stump");
+else
+  log(
+    `hold to chop by touch: tree and stump gone in ${(ms / 1000).toFixed(1)}s, wood +${d2.wood - wood0}, energy -${(e0 - d2.energy).toFixed(0)}`,
+  );
+if (d2.wood <= wood0) finding("chopping by touch gave no wood");
+// Ground pickup: fill the bag, chop another tree, then walk onto the drops.
+await p.evaluate(() => {
+  const inv = window.__game.registry.get("state").inventory;
+  while (inv.add("sap", 1));
+  while (inv.add("wood", 1));
+});
+await walkTo(15, 16);
+await faceTo("down");
+const tr2 = (await bot.dbg()).target;
+if (await treeHere(tr2.x, tr2.y)) {
+  await holdUse(async () => (await treeHere(tr2.x, tr2.y)) === 0);
+  const dropped = await p.evaluate(
+    () => window.__game.registry.get("state").ground.each().length,
+  );
+  log(`full bag: ${dropped} pile(s) on the ground after the chop`);
+  if (dropped === 0)
+    log("no ground piles (the bag had room); the pickup check is skipped");
+  else {
+    await p.evaluate(() => {
+      const st = window.__game.registry.get("state");
+      st.inventory.remove("sap", st.inventory.count("sap"));
+      st.inventory.remove("wood", st.inventory.count("wood"));
+    });
+    await walkTo(15, 14);
+    await sleepMs(500);
+    await walkTo(15, 16);
+    await sleepMs(500);
+    const left = await p.evaluate(
+      () => window.__game.registry.get("state").ground.each().length,
+    );
+    if (left > 0)
+      finding(`walking by with the stick left ${left} pile(s) on the ground`);
+    else log("ground pickup by walking with the stick: done");
+  }
+} else log(`no tree at ${tr2.x},${tr2.y}; the pickup check is skipped`);
+await selectSlot(0);
 
 // 3. Two fingers: keep the stick down and tap Use with the other.
 await selectSlot(0);

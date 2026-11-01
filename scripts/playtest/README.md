@@ -22,8 +22,13 @@ errors. The game's weather and forage are random, so reruns differ.
 5. `npm run playtest:touch` plays one short loop with touch events only, in a
    tablet-sized touch browser (1200x700 CSS pixels, like the SM-T500): the
    stick, the toolbar, till, plant, water and harvest, a second finger on Use
-   while the stick is held, the shop, the hall, the bed in the house, the report and Continue
-   on the title screen. It also checks touch target sizes. About 40 seconds.
+   while the stick is held, hold Use to chop a tree and its stump, ground goods picked up by walking, the
+   shop, the hall, the bed in the house, the report and Continue on the title
+   screen. It also checks touch target sizes. About 85 seconds.
+
+6. `node scripts/playtest/wood.mjs` plays a chopper: it fells the starting trees
+   with a held key, sleeps when the energy is low, and reports the days, energy
+   and wood to reach 450 wood (`WOOD_TARGET` changes it). About 3 minutes.
 
 Dev hooks the scripts can call: `window.farmGive(id, n)` adds items (returns
 `"ok"`, `"unknown"` or `"full"`), `window.farmMoney(n)` adds money. By hand, the
@@ -87,6 +92,7 @@ all three after a change to prices, bundles, growth or energy.
   answers the profession scene (key 1, or `PROFESSION=2`) after a Space press.
 - `play.mjs`: the daily routine and the personas.
 - `late.mjs`: the stay-up-late test.
+- `wood.mjs`: the wood persona.
 - `touch.mjs`: the touch persona. It uses the Chrome DevTools protocol to send
   real multi-touch events. It is an emulator: it cannot judge how the targets
   feel under a finger, the frame rate, or Android Chrome's own behaviour.
