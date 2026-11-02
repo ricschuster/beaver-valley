@@ -61,13 +61,13 @@ is not checked.
 | Shift the toolbar to the next row | Left Shift | Stardew |
 | Pick a slot | 1 to 9, 0, minus and equals (12) | Stardew |
 | Eat the held food | F | Ours |
-| Skills | K | Ours |
+| Skills | K now, dropped when the menu is built (`49_menu_and_journal.md`) | Ours |
 | End the day | Z | Ours |
 
   Stardew has no key for the last three. It has no eat key (food is used from
   the toolbar), it shows skills in its menu, and the day ends in bed. F is
-  Stardew's Journal key, and we have no journal, so F for Eat is the one place
-  where ours takes a Stardew key. Open.
+  Stardew's Journal key. Eat stays on F and our journal takes J (decided
+  2026-11-02, `49_menu_and_journal.md`).
 
 - **Mouse (decided 2026-11-01, Stardew from memory):** left-click uses the held
   tool on the faced tile and right-click is the action. The saved pages list
@@ -173,7 +173,7 @@ seam.
 
 ## Open
 
-- **Eat on F:** keep it, or move it so F stays free for a journal later.
+- **Eat on F:** kept. The journal takes J (decided 2026-11-02, `49_menu_and_journal.md`).
 - **Layout detection** for key labels, and non-QWERTY layouts, until it is
   checked in a browser.
 - **The context menu** on right-click and on a touch long press: the fix is

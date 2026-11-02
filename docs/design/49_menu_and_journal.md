@@ -1,0 +1,103 @@
+# 49 The in-game menu and the journal (draft)
+
+Status: draft. Decided with the owner on 2026-11-02. Nothing here is built. It is
+the "in-game menu and journal" intent that `47_action_intent.md` and
+`45_controls_profiles.md` set aside. Several notes already assume a pause menu:
+crafting (`34`), the wearing screen (`37`), collections and achievements (`38`)
+and the options door (`45`). This note gives them one home.
+
+## Decisions
+
+- **One tabbed menu (Stardew, decided 2026-11-02).** Esc or E opens it. Its tabs
+  replace today's one-off screens. Skills, now its own screen on K, moves inside
+  it. The tab list from memory of Stardew is not checked against a saved page.
+- **The journal is a separate window (Stardew, decided 2026-11-02).** It is not
+  a menu tab. It has its own key and its own button on the HUD.
+- **The journal holds a quest log and a project log (ours, decided
+  2026-11-02).** Stardew's journal is a quest log only. Ours also lists the
+  village hall projects.
+- **The journal key is J, and Eat stays on F (ours, decided 2026-11-02).** F is
+  Stardew's Journal key. We keep Eat on F so current players lose nothing, and
+  this closes the Eat-on-F question in note 45. Like every desktop key, J can be
+  rebound. Esc and E for the menu stay fixed (note 45).
+- **Both pause the clock (decided 2026-11-02).** The saved Inventory page says
+  the menu pauses the clock in single player. Whether Stardew's journal also
+  pauses is not checked. We pause for both, which suits tablets.
+
+## The menu tabs
+
+| Tab | Holds | Built | Note |
+| --- | --- | --- | --- |
+| Pack | The whole backpack. Move items between slots, split and combine stacks. The toolbar row is the top row | no | Inventory page |
+| Skills | What `SkillsScene` shows now | screen exists | `SkillsScene` |
+| Crafting | Known recipes. Crafts from the pack only | no | `34` |
+| Wear | Paper doll with the equipment slots | no | `37` |
+| Collections | Shipped items, finds and the Achievements tab | no | `38` |
+| Options | The existing controls screen, as the in-game door | screen exists | `45` |
+| Social | A placeholder page until villager hearts exist (`18_dialogue.md`) | no | Stardew tab |
+| Map | A placeholder page until there is a map worth showing | no | Stardew tab |
+| Exit | Return to the title screen, keeping last night's save. Asks to confirm | no | Stardew, from memory |
+
+- **Social and Map are in the tab list as placeholders (decided 2026-11-02).**
+  Each shows a short "not yet" page until its system is built. They match
+  Stardew's tab list.
+- **Exit returns to the title and does not save (Stardew from memory, decided
+  2026-11-02).** Progress since waking is lost, so it asks first. Saving stays
+  tied to sleeping, so no mid-day save is built. Exit Game is for an installed
+  app only and waits for the wrapper ADR.
+- **K is dropped (Stardew, decided 2026-11-02).** Stardew has no skills key.
+  Skills is a tab, reached by Esc or E.
+- Any other tab with nothing to show yet is hidden, not greyed. The first build
+  needs Pack, Skills, Options and Exit, plus the two placeholders.
+- **Touch:** tabs are tapped. Stacks move by tap a stack, tap a slot. No drag is
+  needed (`27_touch_controls.md`).
+
+## The journal
+
+Two sections, switched with Left and Right or a tap.
+
+- **Quests.** Each open request by title. Expand one to read it and see its
+  progress under it. The sources are the daily request board (`38`) and any
+  story letters. Stardew also has a cancel button on a quest. We have no quests
+  built yet, so this section starts empty and says so.
+- **Projects.** Each village hall project with the goods it still needs and the
+  ones already handed in. This reads the same data as the hall screen
+  (`40_hall_layout.md`) and never changes it.
+- **Reread conversations** (`18_dialogue.md`) wait for the dialogue system.
+  They would be a third section, not built now.
+
+## Build order
+
+1. A menu shell scene: tab strip, close on Esc or E, clock pause, and the Skills
+   and Options tabs moved in. Options gets its in-game door here.
+2. The Exit tab, once save on exit is settled.
+3. The Pack tab. It needs the stack move, split, sort and trash rules in
+   `src/core/`, with tests, before the scene.
+4. The journal shell with the Projects section, reading hall data.
+5. The Quests section, when the request board exists.
+6. Crafting, Wear and Collections tabs arrive with their own systems.
+7. HUD buttons for the menu and the journal, for touch. The touch layout is in
+   `27_touch_controls.md`.
+
+## Also decided (2026-11-02)
+
+- **The wheel scrolls the open list (ours).** While the menu or journal is open,
+  the mouse wheel scrolls Pack rows, recipes, collections or journal entries. It
+  never changes the held slot behind the menu. The saved pages do not say what
+  Stardew's wheel does in a menu, so this is unchecked against Stardew.
+- **The Pack tab has three extras (Stardew's inventory menu).**
+  - A trash can destroys what is dropped on it. Most tools cannot be trashed. On
+    touch, tap a stack and then the can, with a confirm for anything of value.
+  - An Auto-Sort button sorts the pack into game order and leaves tools alone.
+  - A bundle icon opens the journal on its Projects section. It is only a
+    shortcut, since the journal already holds that data.
+- **Page Up and Page Down switch tabs on the keyboard (ours).** E closes the
+  menu, so it cannot switch tabs. Tabs stay clickable and tappable. The saved
+  pages give Stardew's controller shoulder buttons only, so the PC keyboard way
+  there is unchecked. These two keys are fixed with the other menu keys
+  (note 45).
+
+## Open
+
+- None left in this note. The trash can's confirm rule (which items count as
+  valuable) waits for the Pack tab build.
