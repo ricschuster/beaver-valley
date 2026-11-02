@@ -3,33 +3,22 @@
 Working rules and durable context for this project. This file is loaded into
 context automatically, so keep it to direction and rules, not a task list.
 
-## Project name
+## Project
 
-Beaver Valley (working title; the name is still a placeholder, see
-`docs/design/00_project_brief.md`).
-
-## Project purpose
-
-A cozy farming-life game with its own setting, played in the browser and on
-tablets. The player farms, forages and hands goods in to the village hall to
-finish a chain of community projects. It is a free hobby project by a solo
-developer. See `docs/design/00_project_brief.md` for the full brief.
+Beaver Valley (working title). A cozy farming-life game with its own setting,
+played in the browser and on tablets: farm, forage and hand goods in to the
+village hall to finish a chain of community projects. A free hobby project by a
+solo developer. Brief: `docs/design/00_project_brief.md`.
 
 ## Project status
 
-Engine chosen (ADR 0004). Current milestone: M2, the first playable. Every
-feature on its done list works in the browser (farming, foraging, shop, hall,
-save, title and end screens) with placeholder art. Some M3 items were built
-early: quality tiers, tool upgrades, eating, a weather forecast, more crops
-and forage, house tier 1, farm trees with the axe, and the shipping bin. Left:
-the real-tablet check and open design questions. Tiers 2 and 3 and the
-cellar are M3. Design is ahead of the build: notes up to the latest in
-`docs/design/` (menu and journal, request board, mail, tap-to-move) are
-settled and not yet built. The latest handoff lists them. Placeholder numbers are listed in
-`docs/design/07_tuning_numbers.md`. The roadmap is `docs/design/03_milestones.md`; GitHub issues
-are the live tracker, grouped by milestone. The issues labelled `next-payoff`
-are the few items that matter most right now. Start each session by reading
-the latest handoff in `docs/handoffs/` and that label.
+Engine chosen (ADR 0004). Milestone M2, the first playable, works in the
+browser with placeholder art, plus some M3 items built early. Design is ahead of
+the build: settled notes in `docs/design/` are not yet built. Roadmap:
+`docs/design/03_milestones.md`; placeholder numbers:
+`docs/design/07_tuning_numbers.md`. GitHub issues are the live tracker. Start
+each session by reading the latest handoff in `docs/handoffs/` and the issues
+labelled `next-payoff`.
 
 ## Scope
 
@@ -52,25 +41,20 @@ is data files, not code. See `docs/decisions/0004-engine-and-language.md`.
 
 ## Commands
 
-Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
+Node 22 and npm. Gates run in CI and a non-zero exit blocks a merge.
 
-- `npm run dev`: run the game locally with hot reload.
-- `npm run format:check` (gate), `npm run format`: Prettier.
-- `npm run lint` (gate): ESLint.
-- `npm run typecheck` (gate): TypeScript.
-- `npm test` (gate): Vitest unit tests under `tests/`.
-- `npm run build` (gate): typecheck and production build to `dist/`.
+- `npm run dev`: run locally with hot reload.
+- Gates: `format:check`, `lint`, `typecheck`, `test` (Vitest, `tests/`), `build`
+  (typecheck and production build to `dist/`). `npm run format` fixes Prettier.
 - `npm run overview` (gate: `overview:check`): rebuild `docs/overview.html`, the
   clickable design map, from the hand-kept `docs/overview.json`. Update the JSON
   when a design decision or open question changes. `npm run overview:refresh`
   re-fetches issue titles and states with `gh`. Open the HTML from disk.
 - `npm run check`: all of the gates in order. Run before pushing.
-- `npm run playtest -- <expert|intermediate|casual>`, `npm run playtest:late`:
-  scripted playthroughs in a browser. Manual only, not a gate and not in CI.
-  `npm run playtest:touch` is a short touch-only run in a tablet-sized browser.
-  `playtest:controls` and `playtest:mouse` check the input profiles and the
-  desktop mouse, and `node scripts/playtest/wood.mjs` plays a chopper. Needs
-  `npm run dev` running. See `scripts/playtest/README.md`.
+- `npm run playtest -- <expert|intermediate|casual>` and the other
+  `playtest:*` scripts, plus `node scripts/playtest/wood.mjs`: scripted browser
+  playthroughs. Manual only, not a gate. Need `npm run dev` running. See
+  `scripts/playtest/README.md`.
 
 ## Repo structure
 
@@ -108,19 +92,15 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
   If the Stardew behaviour is not known or not checked, say so in that option
   instead of guessing. Put the recommendation first, and mark it
   "(Recommended)" as well when the Stardew option is not the recommended one.
-- Stardew wiki pages: the wiki's `robots.txt` blocks Claude's crawler, so do not
-  fetch it (no WebFetch, curl, Playwright or similar). The owner's `wget` is
-  also blocked. Claude writes a list of page URLs, one per line, to
-  `docs/reference/stardew/urls_<topic>.txt`, and the owner saves each page by
-  hand in a browser into that folder. Claude then reads the saved files from
-  disk and deletes the list. The folder is gitignored and the text is for
-  reference only, never copied into the repo
+- Stardew wiki pages: the wiki blocks Claude's crawler, so never fetch it (no
+  WebFetch, curl, Playwright), and the owner's `wget` is blocked too. Write page
+  URLs, one per line, to `docs/reference/stardew/urls_<topic>.txt`; the owner
+  saves each page there by hand. Read the saved files, then delete the list. The
+  folder is gitignored; the text is reference only, never copied into the repo
   (`docs/decisions/0002-stardew-valley-inspired.md`).
 - Stardew Valley Guidebook: the owner's PDF in `docs/reference/stardew/` is only
-  the free 5th edition supplement (new and changed 1.6 pages, v1.6.8, 119 PDF
-  pages), not the full book. The wiki stays the main source. Do not build an
-  extraction pipeline or rebuild its tables as data. Read it on demand with
-  `pdftotext -layout -f <page> -l <page>` when a note needs a 1.6 fact, and
-  treat its tables as unreliable text: check numbers against the page image.
-  Where it and the wiki disagree, flag the conflict. Cite it in notes by
-  printed page, never by quote. Same gitignore and copy rules as the wiki.
+  the free 5th edition 1.6 supplement (119 PDF pages), not the full book. The
+  wiki stays the main source. Do not build an extraction pipeline. Read on
+  demand with `pdftotext -layout -f <page> -l <page>`; its tables are
+  unreliable, so check numbers against the page image. Flag any conflict with
+  the wiki. Cite by printed page, never by quote. Same gitignore and copy rules.
