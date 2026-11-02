@@ -65,6 +65,14 @@ Settings, as environment variables:
 - `PROFESSION`: `1` (default) or `2`, the key pressed when a skill reaches level 5
   and the profession scene opens.
 - `MAX_DAY`: stop after this day, default 84 (the calendar wraps into year 2).
+- `SPEED`: run the world this many times faster (the dev build reads `?speed=N`,
+  see `FarmScene`). It scales walking, the clock tick and the axe repeat, and
+  the bot's stop tolerance and face tap scale with it. It is safe for scripts
+  that barely walk (`wood.mjs`: 3.6 times faster at 4, same results). It is
+  NOT usable for the persona runs at 4: the game moves whole frames, so the bot
+  cannot stop on a tile, and an 84 day expert run took 163 minutes with 67
+  failed walks (1x: 3 in 16 days). 2 is untested. Not checked with
+  `playtest:touch`. For rules and balance use `npm run sim`.
 - `SEED`: a number that makes `Math.random` repeatable in the browser, so two
   builds see the same weather, forage and trees. Timing still varies, so runs
   are close, not identical. Compare final counts only: findings pile up on the
