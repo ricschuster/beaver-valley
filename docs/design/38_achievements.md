@@ -185,7 +185,7 @@ Decided 2026-10-31, each with a Stardew option.
   no penalty for skipping, and gold plus some friendship as pay. Its types
   include gathering, slaying, fishing, item delivery and talking to someone.
   Ours is the same shape in our content, and it counts toward the two errand
-  achievements. Reward sizes and the request types are new design.
+  achievements. Types, pay and rules are in `50_request_board_and_quests.md`.
 - **No rival route.** Stardew's rival-company achievement is left out. Our hall
   has no rival, and a gold shortcut past the bundles would cut against the hall
   as the spine of the game (`16_bundles.md`).
@@ -216,8 +216,8 @@ Decided 2026-10-31, each with a Stardew option.
 
 ## Open
 
-- The gallery's donation list and rewards, and the request board's types and
-  pay.
+- The gallery's donation list and rewards. The request board is designed in
+  `50_request_board_and_quests.md`.
 - Hat prices for the hats Stardew does not give.
 - Counterparts for the movie, Governor and forest-neighbour goals.
 

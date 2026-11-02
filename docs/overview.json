@@ -609,6 +609,11 @@
         },
         {
           "s": "decided",
+          "t": "Request board: one request a day with 2 days to finish and no penalty; delivery and gathering first; delivery pays 3x sell price (Stardew); gathering counts from acceptance; no cap, cancel in the journal; no prize tickets yet; one quest record for board, letter and hall sources",
+          "ref": "50_request_board_and_quests.md#Decisions"
+        },
+        {
+          "s": "decided",
           "t": "Achievements: a library gallery for finds, a daily request board at the general store, no rival route, a hat for every achievement, and Stardew's money thresholds re-checked at tuning",
           "ref": "38_achievements.md#Settled open items",
           "issue": 196
