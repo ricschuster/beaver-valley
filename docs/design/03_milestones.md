@@ -108,10 +108,15 @@ scope is in `13_m3_scope.md` (accepted, #130).
 ### CI and the build check
 
 The `build` job in `.github/workflows/ci.yml` runs format, lint, typecheck,
-tests and the production build. On 2026-10-25 the `main` branch protection
-required only `repo-hygiene`, so auto-merge does not wait for `build`. Making
-`build` required is a repository setting left to the owner. Until then, run
-`npm run check` before pushing.
+tests and the production build. Until 2026-11-02 the `main` branch protection
+required only `repo-hygiene`, so auto-merge did not wait for `build`.
+
+Decision (owner, 2026-11-02): `build` is a required check on `main`, next to
+`repo-hygiene`, and a PR must be up to date with `main`. Auto-merge is on for
+every PR, so this is the only automatic stop for a failing format, lint,
+typecheck, test or production build. The cost is that a cancelled or flaky
+`build` run blocks a merge until it is re-run. If that happens often, revisit
+this. Still run `npm run check` before pushing.
 
 ## Scope control
 
