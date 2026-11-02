@@ -1,0 +1,119 @@
+# 46 Desktop mouse: aiming, clicking and the wheel (draft)
+
+Status: draft. Decided with the owner on 2026-11-02. Nothing here is built. It is
+step 5 (desktop half) of `45_controls_profiles.md`; tap-to-move is the other half
+and gets its own note after this one. The Stardew rules below are from memory.
+The saved Controls page lists keys only, so none of them is checked.
+
+## Decisions
+
+- **Left-click uses the held tool on the aimed tile (Stardew, from memory).** If
+  the tile under the cursor is within reach of the farmer, the click acts on that
+  tile. If it is farther, the farmer turns toward the cursor and acts on the
+  tile next to them in that direction, as a key press does today. Decided
+  2026-11-02.
+- **Right-click is Action (note 45).** It shares the same aimed tile. See "Action
+  is not built" below for what ships first.
+- **Holding left-click repeats**, the same as holding the Use key does now (the
+  axe swing repeat in `repeatUse`).
+- **The wheel changes the toolbar slot** (Stardew, from memory), next on one
+  direction and previous on the other.
+- **Desktop only.** The touch profile never reads the mouse, and the desktop
+  profile ignores touch pointers (`pointer.wasTouch`), so a stray touch on a
+  touch laptop does nothing.
+
+## Aiming
+
+- **One aimed tile.** Today `facingTile(pos, PLAYER, facing, ts)` is read in
+  `update`, `use` and `repeatUse`. These move behind one `aimTile()` in
+  `FarmScene`. It returns the tile every use, action and highlight works on.
+  Keys and mouse then share every rule after the aim.
+- **Two aim modes, last input wins.**
+  - *Keys:* the aim is the faced tile, as now. Any movement key or a use key
+    press switches to this mode.
+  - *Mouse:* once the cursor moves, the aim follows it (see reach). A movement
+    key press switches back to keys.
+  - Resting the cursor does not fight a walking farmer: only a cursor move
+    returns the aim to the mouse.
+- **Reach.** A pure function in `src/core/` (free of Phaser), for example
+  `aimTile(playerTile, cursorTile, reach)`:
+  - Within `reach` tiles of the farmer's tile (Chebyshev distance, so the
+    diagonal neighbours count): the aim is the cursor tile.
+  - Beyond it: the aim is the neighbour tile in the dominant axis toward the
+    cursor, which is also what the farmer faces.
+  - The cursor on the farmer's own tile aims at the faced tile.
+  - `reach` is a placeholder of 2 tiles. Add it to `07_tuning_numbers.md` when
+    built. Stardew's real value is not checked.
+- **Facing follows the aim.** The 4-way facing (`Facing`) is set from the aimed
+  tile's direction when a click happens, not on every cursor move, so the
+  sprite does not spin while the cursor crosses the farm. Open: whether it
+  should turn on hover too.
+- **The highlight** (the existing `target` marker) sits on the aimed tile while
+  in either mode. In the mouse mode, it is red when the tile is out of the map
+  or the use could never work there (a wall); a tile that is merely the wrong
+  tool for the job still gets the normal message on click. Open: whether to
+  grey it instead of red.
+- **Pointer to tile:** use `camera.getWorldPoint`, so the camera zoom and scroll
+  are handled, then divide by the tile size. The pointer position is read at
+  click time, not cached from the last move.
+
+## Clicks and the interface
+
+- **The HUD wins.** A click on a toolbar slot or a HUD button selects or presses
+  it and never reaches the world. The world camera and the HUD camera are
+  separate, so test the HUD first, as the touch dead margin does.
+- **Screens paused over the farm** (bin, shop, skills, hall) own their clicks;
+  the farm is paused and reads nothing.
+- **The desktop profile no longer draws the stick**, so no click can start it
+  (already true since step 2). Playtests check it.
+- **Right-click and the browser menu:** `input.mouse.disableContextMenu()` once
+  when the desktop profile is built, as note 45 says. Not yet checked in a
+  browser, including a Mac two-finger tap and Ctrl-click.
+- **The wheel and page scroll:** the canvas takes the wheel event so the page
+  does not scroll behind it. Check the page has no scrollbar in the fullscreen
+  layout.
+
+## Action is not built
+
+The Action intent does not exist yet. Today Use does the farmer's talking, opening
+and checking as well as the tool. So:
+
+- **Ships with this step:** left-click as Use, the aim, the highlight, the wheel,
+  the context menu fix. Right-click is read and calls Use's current sibling only
+  once Action exists; until then right-click does nothing.
+- **Action is its own small design,** because it decides which of today's Use
+  results move to it (open a door, read a sign, talk, check a plot). Recommend
+  a separate note before building it, as the call feedback asks for the big
+  picture first.
+
+## Testing
+
+- Unit tests on the pure aim function: inside reach (cursor tile), outside reach
+  (dominant axis, both signs), a tie on the diagonal, the farmer's own tile, an
+  edge of the map.
+- A playtest with Playwright mouse events on the desktop profile: a click near
+  the farmer tills the aimed tile and not the faced one; a far click turns the
+  farmer and tills the adjacent tile; a click on a toolbar slot selects it and
+  uses nothing; the wheel changes the slot; the page does not scroll. Extend the
+  existing input-profile playtest.
+- Browser check that a right-click shows no browser menu.
+
+## Build order
+
+1. The aim function in `src/core/` with tests, and `aimTile()` in `FarmScene`
+   replacing the three `facingTile` reads. Keys only, so no visible change.
+2. Mouse aim and the highlight on hover.
+3. Left-click use, hold to repeat, the HUD hit test, the touch-pointer filter.
+4. The wheel and the context menu fix.
+5. The playtest additions.
+
+## Open
+
+- **Reach value and shape:** 2 tiles Chebyshev is a placeholder.
+- **Turn on hover or only on click.**
+- **Red or grey highlight** for an impossible tile.
+- **Wheel direction** (which way is next).
+- **Eat with the mouse:** food is used from the toolbar in Stardew; ours has the
+  F key. Does a left-click with food held eat? Likely yes, since use on a held
+  food is the Stardew rule, but it is not checked against the build.
+- **Action,** as above.
