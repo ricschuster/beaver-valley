@@ -629,6 +629,16 @@
         },
         {
           "s": "decided",
+          "t": "Multiplayer (M4): same network only, up to 8 players; the host runs the world and guests send intents; any player can host (desktop or tablet), browsers join only; host-save characters, with travelling characters a recorded later option; free cabins when started as multiplayer, bought otherwise; host picks shared or separate money; day ends when all are in bed with a timer fallback; list games on the network or type an address; the final form is a standalone desktop game",
+          "ref": "53_multiplayer.md#Decisions"
+        },
+        {
+          "s": "open",
+          "t": "Multiplayer: can a tablet host carry 8 players, and the wrapper ADR it depends on",
+          "ref": "53_multiplayer.md#Open"
+        },
+        {
+          "s": "decided",
           "t": "Achievements: a library gallery for finds, a daily request board at the general store, no rival route, a hat for every achievement, and Stardew's money thresholds re-checked at tuning",
           "ref": "38_achievements.md#Settled open items",
           "issue": 196
