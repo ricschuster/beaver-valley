@@ -103,8 +103,9 @@ and checking as well as the tool. So:
 
 ## Build order
 
-1. The aim function in `src/core/` with tests, and `aimTile()` in `FarmScene`
-   replacing the three `facingTile` reads. Keys only, so no visible change.
+1. The aim function in `src/core/aim.ts` with tests, and `aimTile()` in
+   `FarmScene` replacing the five `facingTile` reads. Keys only, so no visible
+   change. Done. `aimAt` is not called yet; step 2 uses it.
 2. Mouse aim and the highlight on hover.
 3. Left-click use, hold to repeat, the HUD hit test, the touch-pointer filter.
 4. The wheel and the context menu fix.

@@ -257,7 +257,7 @@ export class FarmScene extends Phaser.Scene {
         pos: this.pos,
         tile: tileOf(this.pos, PLAYER, ts),
         facing: this.facing,
-        target: facingTile(this.pos, PLAYER, this.facing, ts),
+        target: this.aimTile(),
         map: this.mapId,
         exit: this.exitId ?? null,
         zoom: this.cameras.main.zoom,
@@ -295,7 +295,7 @@ export class FarmScene extends Phaser.Scene {
     this.repeatUse(delta * DEV_SPEED);
     this.pickUp();
 
-    const front = facingTile(this.pos, PLAYER, this.facing, ts);
+    const front = this.aimTile();
     this.target.setPosition(front.x * ts, front.y * ts);
 
     const here = tileOf(this.pos, PLAYER, ts);
@@ -306,6 +306,14 @@ export class FarmScene extends Phaser.Scene {
       this.render();
       if (exit && exitOpen(exit, this.holds)) this.leave(exit);
     }
+  }
+
+  /**
+   * The tile a use, an action and the highlight work on. Today it is the tile
+   * the farmer faces; the mouse will add its own aim here (note 46).
+   */
+  private aimTile(): { x: number; y: number } {
+    return facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
   }
 
   /** Pull in goods lying on the ground near the player, as far as the bag has room. */
@@ -320,7 +328,7 @@ export class FarmScene extends Phaser.Scene {
   private repeatUse(delta: number): void {
     const held = heldAt(this.state, this.selected);
     const axe = held.kind === "tool" && held.tool === "axe";
-    const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
+    const front = this.aimTile();
     // Holding carries on from a felled tree to its stump, as Stardew's held
     // tool does. It stops once there is nothing left on the tile.
     if (
@@ -364,7 +372,7 @@ export class FarmScene extends Phaser.Scene {
   /** Use the held tool on the tile the player faces. Services are Action's. */
   private use(): void {
     if (this.leaving) return;
-    const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
+    const front = this.aimTile();
     if (this.map.serviceAt(front.x, front.y)) return;
     const held = heldAt(this.state, this.selected);
     this.report(useHeld(this.state, this.map, held, front.x, front.y));
@@ -377,7 +385,7 @@ export class FarmScene extends Phaser.Scene {
    */
   private action(): void {
     if (this.leaving) return;
-    const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
+    const front = this.aimTile();
     const service = this.map.serviceAt(front.x, front.y);
     if (service?.kind === "festival") return this.openFestival();
     if (service)
