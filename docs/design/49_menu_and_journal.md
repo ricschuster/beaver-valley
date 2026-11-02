@@ -57,8 +57,8 @@ and the options door (`45`). This note gives them one home.
 Two sections, switched with Left and Right or a tap.
 
 - **Quests.** Each open request by title. Expand one to read it and see its
-  progress under it. The sources are the daily request board (`38`) and any
-  story letters. Stardew also has a cancel button on a quest. We have no quests
+  progress under it. The sources are the daily request board and any story
+  letters (`50_request_board_and_quests.md`). Stardew also has a cancel button on a quest. We have no quests
   built yet, so this section starts empty and says so.
 - **Projects.** Each village hall project with the goods it still needs and the
   ones already handed in. This reads the same data as the hall screen
