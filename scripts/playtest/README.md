@@ -21,7 +21,7 @@ errors. The game's weather and forage are random, so reruns differ.
 
 5. `npm run playtest:touch` plays one short loop with touch events only, in a
    tablet-sized touch browser (1200x700 CSS pixels, like the SM-T500): the
-   stick, the toolbar, till, plant, water and harvest, a second finger on Use
+   stick, the toolbar, till, plant, water and harvest (with Action), a second finger on Use
    while the stick is held, hold Use to chop a tree and its stump, ground goods picked up by walking, the
    shop, the hall, the bed in the house, the report and Continue on the title
    screen. It also checks touch target sizes. About 85 seconds.
@@ -118,7 +118,7 @@ all three after a change to prices, bundles, growth or energy.
 ## Files
 
 - `lib.mjs`: browser launch, pathfinding walk, facing and tool use. It also
-  answers the profession scene (key 1, or `PROFESSION=2`) after a use key (C) press.
+  answers the profession scene (key 1, or `PROFESSION=2`) after a use (C) or action (X) key press.
 - `play.mjs`: the daily routine and the personas.
 - `late.mjs`: the stay-up-late test.
 - `wood.mjs`: the wood persona.

@@ -101,7 +101,10 @@ order is ours; Stardew's is not checked.
    delegates its hand case to the same helper, so nothing changes in play until
    step 2 removes it.
 2. `action()` in `FarmScene`, the `Intents` entry, the desktop key wiring, and
-   Use ignoring services and crops. Playtest helpers move to Action.
+   Use ignoring services and crops. Playtest helpers move to Action. Done. Two
+   departures: the hand tool still picks and harvests on Use, and the touch Eat
+   button became the Action button here, since touch players had no other way to
+   open a shop or harvest.
 3. Eat on Action, with the F key as the extra.
 4. Touch action button and the Eat button merge (stick scheme).
 5. Right-click, in step 3 of note 46.

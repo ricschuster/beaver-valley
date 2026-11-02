@@ -3,11 +3,11 @@ import { sleep } from "../core/sleep";
 import type { GameState } from "../core/save";
 import { cycle, heldAt, nextRow, toolbarSize } from "../core/toolbar";
 import { pendingChoice } from "../core/professions";
-import { eat } from "../core/actions";
+import { eat, type Outcome } from "../core/actions";
 import { clockText } from "../core/clock";
 import { festivalOpen, festivalToday } from "../core/festivals";
 import { itemById } from "../core/items";
-import { reasonText, useHeld } from "../core/tools";
+import { NOTHING_TO_ACT_ON, act, reasonText, useHeld } from "../core/tools";
 import { cropById } from "../core/crops";
 import { mapFiles, maps } from "../content/maps";
 import { START } from "../core/maps";
@@ -169,7 +169,7 @@ export class FarmScene extends Phaser.Scene {
       this,
       (i) => this.select(i),
       () => this.use(),
-      () => this.eatHeld(),
+      () => this.action(),
       () => this.open("skills"),
       () => this.select(nextRow(this.state, this.selected)),
       () => this.open("debug"),
@@ -180,6 +180,7 @@ export class FarmScene extends Phaser.Scene {
       settings,
       {
         use: () => this.use(),
+        action: () => this.action(),
         eat: () => this.eatHeld(),
         openSkills: () => this.open("skills"),
         endDay: () => this.endDay(),
@@ -360,8 +361,21 @@ export class FarmScene extends Phaser.Scene {
     this.scene.pause();
   }
 
-  /** Use the held tool on the tile the player faces. */
+  /** Use the held tool on the tile the player faces. Services are Action's. */
   private use(): void {
+    if (this.leaving) return;
+    const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
+    if (this.map.serviceAt(front.x, front.y)) return;
+    const held = heldAt(this.state, this.selected);
+    this.report(useHeld(this.state, this.map, held, front.x, front.y));
+  }
+
+  /**
+   * The Action button on the faced tile (note 47): open a service, else shake,
+   * pick or harvest, else eat the held food. A tile with nothing on it, and
+   * nothing edible held, does nothing and says nothing.
+   */
+  private action(): void {
     if (this.leaving) return;
     const front = facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
     const service = this.map.serviceAt(front.x, front.y);
@@ -371,8 +385,18 @@ export class FarmScene extends Phaser.Scene {
         service.kind,
         service.kind === "hall" ? { room: service.id } : undefined,
       );
-    const held = heldAt(this.state, this.selected);
-    const result = useHeld(this.state, this.map, held, front.x, front.y);
+    const result = act(this.state, this.map, front.x, front.y);
+    if (!result.ok && result.reason === NOTHING_TO_ACT_ON) {
+      const held = heldAt(this.state, this.selected);
+      if (held.kind === "item" && itemById(held.id)?.energy !== undefined)
+        this.eatHeld();
+      return;
+    }
+    this.report(result);
+  }
+
+  /** Show what an action did, then settle the day, a level choice and the screen. */
+  private report(result: Outcome): void {
     if (!result.ok) {
       this.message = reasonText(result.reason);
     } else if (result.levelUp) {

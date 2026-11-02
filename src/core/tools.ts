@@ -20,9 +20,10 @@ const fail = (reason: string): Outcome => ({ ok: false, reason });
 
 /**
  * Use what the player holds on one tile. The hoe digs soil, the can waters,
- * seeds plant, and the hand (or any other item) picks forage or harvests.
+ * seeds plant, and the hand tool picks forage or harvests. Any other item does
+ * nothing here: picking, shaking and harvesting belong to `act`.
  *
- * The axe fells trees, a tree seed plants one, and the hand shakes a loose
+ * The axe fells trees, a tree seed plants one, and the hand tool shakes a loose
  * seed from a mature tree.
  *
  * Plots, forage and trees are not stored per map yet, so they only work on a map
@@ -52,7 +53,10 @@ export function useHeld(
   }
   if (held.kind === "item" && held.id === TREE_SEED)
     return plantTree(g, map, x, y);
-  return pick(g, x, y);
+  // The hand tool keeps its pick-up job; every other item only has the Action
+  // button for that (note 47).
+  if (held.kind === "tool" && held.tool === "hand") return pick(g, x, y);
+  return fail("nothing to do here");
 }
 
 /** The reason `act` gives when the tile holds nothing to act on. It shows no message. */

@@ -84,6 +84,17 @@ describe("useHeld", () => {
     expect(g.forage.count).toBe(0);
   });
 
+  it("leaves picking to Action for every item but the hand tool", () => {
+    const g = startGame();
+    g.forage.respawn("spring", [{ x: 1, y: 0 }], () => 0.99);
+    const item: Held = { kind: "item", id: "parsnip", count: 1 };
+    expect(useHeld(g, mapWith(true), item, 1, 0)).toEqual({
+      ok: false,
+      reason: "nothing to do here",
+    });
+    expect(g.forage.count).toBe(1);
+  });
+
   it("explains every refusal in words", () => {
     expect(reasonText("exhausted")).toBe("You are too tired.");
     expect(reasonText("odd")).toBe("odd");

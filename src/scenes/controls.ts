@@ -11,6 +11,7 @@ import { keyVector, stickVector, type Vec } from "../core/movement";
 /** What a profile can ask the scene to do (note 45, "One input seam"). */
 export interface Intents {
   use?: () => void;
+  action?: () => void;
   eat?: () => void;
   openSkills?: () => void;
   endDay?: () => void;
@@ -62,6 +63,7 @@ class DesktopControls implements Controls {
       if (slot) return intents.selectSlot?.(Number(slot[1]) - 1);
       const by: Record<string, (() => void) | undefined> = {
         use: intents.use,
+        action: intents.action,
         eat: intents.eat,
         skills: intents.openSkills,
         endDay: intents.endDay,
@@ -202,7 +204,7 @@ export function desktopHint(b: Bindings): string {
   const k = (a: string) => keyLabel(b[a]!);
   return (
     `Move: ${k("moveUp")}${k("moveLeft")}${k("moveDown")}${k("moveRight")} or arrows   ` +
-    `Use: ${k("use")}   Eat: ${k("eat")}   Skills: ${k("skills")}   ` +
+    `Use: ${k("use")}   Action: ${k("action")}   Eat: ${k("eat")}   Skills: ${k("skills")}   ` +
     `Sleep: bed or ${k("endDay")}   Tools: 1-9, ${k("nextSlot")}: next, ${k("nextRow")}: row`
   );
 }

@@ -194,6 +194,13 @@ async function useTool() {
   await tap(t.cx, t.cy, 150);
 }
 
+/** Tap the Action button (it opens things, picks and harvests, and eats). */
+async function actTool() {
+  const t = (await targets("farm")).find((t) => t.label === "Action");
+  if (!t) throw new Error("no Action button");
+  await tap(t.cx, t.cy, 150);
+}
+
 async function selectSlot(i) {
   const slots = (await targets("farm"))
     .filter((t) => t.cy > 480 && t.w < 60)
@@ -272,10 +279,10 @@ await p.evaluate(
 );
 await selectSlot(3); // hand
 const before = (await bot.snap()).inv;
-await useTool();
+await actTool();
 s = await bot.snap();
 if (bot.countBase(s, "parsnip") < 1)
-  finding("Use with the hand did not harvest");
+  finding("Action did not harvest the ripe crop");
 else log("harvest by touch: done");
 void before;
 
@@ -379,10 +386,10 @@ else log("stick plus Use at once: the stick kept moving");
 // 4. Shop by touch.
 await walkTo(33, 19);
 await faceTo("down");
-await useTool();
+await actTool();
 await sleepMs(300);
 if (!(await sceneNow()).includes("shop"))
-  finding("Use facing the shop door did not open the shop");
+  finding("Action facing the shop door did not open the shop");
 else {
   await checkSizes("shop");
   const m = (await bot.snap()).money;
@@ -433,10 +440,10 @@ const bundle = await p.evaluate(() => {
   window.farmGive(b.items[0].id, 1);
   return { id: b.id, item: b.items[0].id };
 });
-await useTool();
+await actTool();
 await sleepMs(300);
 if (!(await sceneNow()).includes("hall"))
-  finding("Use facing the hall door did not open the hall");
+  finding("Action facing the hall door did not open the hall");
 else {
   await checkSizes("hall");
   const rows = (await targets("hall")).filter((t) => t.label === "Hand in");
@@ -464,10 +471,10 @@ await p.evaluate(() => {
   window.farmGive("parsnip", 6);
   window.farmGive("sap", 4);
 });
-await useTool();
+await actTool();
 await sleepMs(300);
 if (!(await sceneNow()).includes("bin"))
-  finding("Use facing the bin did not open it");
+  finding("Action facing the bin did not open it");
 else {
   await checkSizes("bin");
   const binCount = () =>
@@ -516,10 +523,10 @@ else {
   await holdAxis("x", cx(6));
   await faceTo("up");
   const day = (await bot.snap()).day;
-  await useTool();
+  await actTool();
   await sleepMs(300);
   if (!(await sceneNow()).includes("bed"))
-    finding("Use facing the bed did not ask about sleeping");
+    finding("Action facing the bed did not ask about sleeping");
   else {
     await checkSizes("bed");
     // No first: the day must go on, then ask again and say Yes.
@@ -527,7 +534,7 @@ else {
     await sleepMs(300);
     if ((await sceneNow()).includes("report") || (await bot.snap()).day !== day)
       finding("answering No to the bed ended the day");
-    await useTool();
+    await actTool();
     await sleepMs(300);
     await tapLabel("bed", "Yes");
     await sleepMs(400);
