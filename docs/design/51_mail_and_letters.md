@@ -16,18 +16,23 @@ Stardew's mail is the model. Its details here are from memory and unchecked.
 - **A trigger on day N delivers on the morning of day N+1 (Stardew, decided
   2026-11-02).** This is note 38's "the day after". A trigger fired in the
   evening and slept on arrives the very next morning. Delivery is part of the
-  overnight step, with the weather and the crop update. Whether mail arrives on
-  a festival morning is a placeholder: it does, since the flag is only a flag.
+  overnight step, with the weather and the crop update. Mail also arrives
+  on a festival morning (decided 2026-11-02): the flag costs nothing and no
+  reward is held up. The saved `Letters` page does not say what Stardew does.
 - **Opening a letter gives its attachment at once (Stardew, decided
   2026-11-02).** An attachment is gold, items, a recipe, or a hat unlock. Gold,
   recipes and unlocks apply immediately. Items go to the pack. If the pack is
   full, the letter stays open-pending: the text is read, the item is not taken,
   and the flag stays up until the player makes room and uses the mailbox again.
-  Stardew's full-pack behaviour is unchecked.
+  In Stardew a full pack opens a make-room menu, and dismissing it forfeits the
+  item (saved `Letters` page). We keep the item instead, so nothing is lost
+  (decided 2026-11-02, ours).
 - **Read letters are kept in the journal (decided 2026-11-02, ours).** The
   journal gets a third section, Mail, newest first (`49_menu_and_journal.md`).
-  Stardew has no read-again list as far as we know (unchecked). Ours helps a
-  tablet player who missed a recipe or a hint. Reopening a letter shows its text
+  Stardew rereads letters from its collections tab (added in 1.4, saved
+  `Letters` page). Ours sits in the journal because a letter with an item still
+  to take is live business. It helps a tablet player who missed a recipe or a
+  hint. Reopening a letter shows its text
   and marks a taken attachment as taken. It never gives the attachment twice.
 - **A letter is sent once.** Each letter has an id. A trigger that fires twice,
   or a save reload, never queues a second copy.
@@ -120,7 +125,5 @@ door (`16_bundles.md`).
 
 ## Open
 
-- **Mail on festival mornings.** The owner thinks Stardew holds mail until the
-  next normal day and wants it checked on the wiki before this is settled. Until
-  then the build treats it as an option on the delivery rule: deliver on the
-  next day that is not a festival day.
+- Whether read letters live in the journal or in the Collections tab as in
+  Stardew. The journal is the working choice.
