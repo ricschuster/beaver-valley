@@ -80,6 +80,12 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
 
 - Branch from `main`; one short-lived branch per change. Open a pull request
   into `main`; CI must pass before merge.
+- One pull request in flight at a time. Branch protection requires a branch
+  to be up to date with `main`, so every merge makes other open pull requests
+  stale. Before opening a pull request, run `git fetch` and `gh pr list --state
+  open`. If one is still open, wait for it to merge, or tell the owner. Then
+  branch from the fresh `origin/main`. Open the session handoff pull request
+  last. If a branch is already behind, merge `main` into it (no force-push).
 - After opening a pull request, enable auto-merge with squash
   (`gh pr merge --auto --squash <number>`) without being asked.
 - Conventional Commits (for example `feat: ...`, `fix: ...`, `chore: ...`,
