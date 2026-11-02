@@ -2,7 +2,7 @@
 
 Status: draft. Decided with the owner on 2026-11-02, as the first design for
 milestone M4 (`docs/decisions/0007-multiplayer-milestone.md`). Nothing here is
-built. Stardew's behaviour is from memory and unchecked: no co-op page is saved.
+built. Stardew's behaviour was checked against the saved Multiplayer wiki page on 2026-11-02 (see "Checked against Stardew"). Claims not in that page are still from memory.
 The model is the owner's own game beaver_cycle, whose same-network multiplayer is
 built and measured (its ADR 0014 and note 42). Only ideas are taken from it, no
 code.
@@ -63,7 +63,7 @@ code.
   guest who disconnects counts as in bed for the day end, and their character is
   put in their cabin. They rejoin as the same character by their key.
 - **Menus do not pause the clock in a multiplayer game (decided 2026-11-02,
-  ours; Stardew unchecked).** Note 49's pause is a single-player rule, since one
+  Stardew, checked).** Note 49's pause is a single-player rule, since one
   player cannot stop the others.
 
 ## What is shared and what is per player
@@ -153,13 +153,49 @@ not built in M4. The pros and cons, so the idea is not lost:
 - **Quests, mail, the request board and achievements** (notes 50, 51 and 38):
   shared or per player. Stardew's mail is per player from memory.
 - **Whether the wallet mode can change after creation**, and what a single-player
-  game's money becomes when it turns multiplayer.
+  game's money becomes when it turns multiplayer. Stardew allows a change from
+  the Town Ledger and splits the money evenly when separation is turned on.
 - **Joining a game in progress**: whether a late guest needs the host to be
   idle, and the price of a bought cabin.
 - **A password or code to join**, since anyone on the network could otherwise
   join.
 - **Snapshot size**: full state against changes only, settled in the spike.
-- **Checking Stardew**: save the co-op pages (Multiplayer, Cabin) to confirm the
-  host, cabin, wallet and sleep claims above.
 - Existing notes that change when M4 starts: 49 (menu pause), 52 (save), 28
   (bin), 50, 51, 38, 42 (the debug menu) and `src/core/sleep.ts`.
+
+## Checked against Stardew (2026-11-02)
+
+From the saved Multiplayer page. Not copied, only compared.
+
+- **Matches:** 1 to 8 players (PC), one host who holds the save and a world that
+  is closed when the host is offline, shared farmland, per-player energy,
+  skills and relationships, bedtime chosen together by entering a bed, shared or
+  separate money, and a cabin per joining player.
+- **Menus and the clock:** Stardew does not pause for menus in multiplayer. Time
+  only stops for the end-of-day screens, festivals with an event, and the host's
+  pause command. At 02:00 a player with a menu open does not pass out until it
+  closes. We keep "no menu pause" and should copy the 02:00 rule.
+- **Wallet:** Stardew can change the mode later and splits money evenly when
+  separation is turned on. Sale prices use the professions of all online players
+  that raise the price most.
+- **Cabins:** Stardew starts with up to 3 (7 on PC) and Robin builds more for 100
+  gold each, instantly. A cabin is upgraded by its occupant. Demolishing one
+  removes the occupant and puts their things in a chest. Our price for a bought
+  cabin is still open, and 100 gold is the reference point.
+- **Quests and progress:** quests, recipes and mail are per player, while mine
+  progress, the museum, the bridge and hall bundles are shared. A bundle's
+  reward applies to everyone, but only the player who finished it collects the
+  item. Experience goes to the player who does the action (harvester, last
+  swing). Daily luck is averaged. This answers the quest open item for Stardew.
+- **Joining:** a game must be opened to others by the host. Guests join from a
+  friend list, an invite code, or an IP address (UDP port 24642 by default).
+  There is no join password, but the host can kick and ban. We have no kick or
+  ban yet, which is worth adding to the host's screen.
+- **Host tools worth considering:** pause, a ping readout, private messages, a
+  "sleep announce" setting, and a profit margin chosen at creation (25, 50, 75
+  or 100 percent of sale and seed prices) to offset more players farming. A
+  profit margin is a new idea for our tuning note, not decided.
+- **Mobile:** multiplayer on mobile is "experimental" and can join PC games. The
+  page does not say whether a phone or tablet can host.
+- **Not in the page:** how a dropped player counts for bedtime, and snapshot
+  size. Those stay ours.
