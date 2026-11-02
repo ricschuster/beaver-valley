@@ -918,6 +918,26 @@
         },
         {
           "s": "decided",
+          "t": "Desktop mouse: left-click uses the tile under the cursor within 2 tiles, else turns toward it; turn on click only; red highlight for an impossible tile; wheel down is next slot",
+          "ref": "46_desktop_mouse.md#Decisions"
+        },
+        {
+          "s": "decided",
+          "t": "Action intent (X, right-click) opens services and picks, shakes, harvests and eats; Use swings tools and plants (Stardew); the hand tool keeps its Use pick-up",
+          "ref": "47_action_intent.md#Decisions"
+        },
+        {
+          "s": "decided",
+          "t": "Tap-to-move: a bare-ground tap only walks, farming is on the stick scheme; an auto-picked tool stays selected (Stardew); four-way A* in core",
+          "ref": "48_tap_to_move.md#Decisions"
+        },
+        {
+          "s": "open",
+          "t": "Mouse reach (2 tiles), tap and hold numbers, seedling tool for taps, order of Action on one tile",
+          "ref": "48_tap_to_move.md#Open"
+        },
+        {
+          "s": "decided",
           "t": "Headless playtest: a bot on src/core/ with a seeded random and a time model, personas from note 08, bundle-chain pace reported first; browser scripts stay for input, scenes and touch",
           "ref": "46_headless_playtest.md#Decisions",
           "issue": 319
