@@ -106,7 +106,10 @@ and checking as well as the tool. So:
 1. The aim function in `src/core/aim.ts` with tests, and `aimTile()` in
    `FarmScene` replacing the five `facingTile` reads. Keys only, so no visible
    change. Done. `aimAt` is not called yet; step 2 uses it.
-2. Mouse aim and the highlight on hover.
+2. Mouse aim and the highlight on hover. Done: `FarmScene` has a mouse mode
+   and a keys mode (last input wins), `aimTile()` calls `aimAt` on the cursor
+   tile, and the highlight is red on a blocked tile. Checked in a headless
+   browser with mouse moves.
 3. Left-click use, hold to repeat, the HUD hit test, the touch-pointer filter.
 4. The wheel and the context menu fix.
 5. The playtest additions.

@@ -21,6 +21,7 @@ import {
   type Facing,
   type Vec,
 } from "../core/movement";
+import { aimAt } from "../core/aim";
 import { createControls, type Controls } from "./controls";
 import { browserStore, loadDeviceSettings } from "./storage";
 import { saveGame } from "../core/save";
@@ -104,6 +105,8 @@ export class FarmScene extends Phaser.Scene {
   private facing: Facing = "down";
   private exitId: string | undefined;
   private heldMs = 0;
+  /** Who aimed last: the cursor or the keys (note 46). Desktop only. */
+  private mouseAim = false;
 
   constructor() {
     super("farm");
@@ -118,6 +121,7 @@ export class FarmScene extends Phaser.Scene {
     this.leaving = false;
     this.exitId = undefined;
     this.heldMs = 0;
+    this.mouseAim = false;
     this.message = "";
   }
 
@@ -179,8 +183,8 @@ export class FarmScene extends Phaser.Scene {
       this,
       settings,
       {
-        use: () => this.use(),
-        action: () => this.action(),
+        use: () => (this.keyAim(), this.use()),
+        action: () => (this.keyAim(), this.action()),
         eat: () => this.eatHeld(),
         openSkills: () => this.open("skills"),
         endDay: () => this.endDay(),
@@ -214,6 +218,15 @@ export class FarmScene extends Phaser.Scene {
       .setZoom(WORLD_ZOOM)
       .startFollow(this.player, true)
       .ignore(ui);
+
+    // Moving the cursor hands the aim to the mouse. Touch pointers never do.
+    if (this.controls.profile === "desktop") {
+      const onMove = (p: Phaser.Input.Pointer): void => {
+        if (!p.wasTouch && !this.hud.covers(p.x, p.y)) this.mouseAim = true;
+      };
+      this.input.on("pointermove", onMove);
+      this.events.once("shutdown", () => this.input.off("pointermove", onMove));
+    }
 
     this.cameras.main.fadeIn(FADE_MS);
     this.time.addEvent({
@@ -280,6 +293,7 @@ export class FarmScene extends Phaser.Scene {
     const dt = Math.min(delta, 50) / 1000;
     const v = this.controls.vector();
     this.facing = facingFrom(v, this.facing);
+    if (v.x !== 0 || v.y !== 0) this.keyAim();
     const ts = this.map.tileSize;
     for (let i = 0; i < DEV_SPEED; i++)
       this.pos = move(
@@ -297,6 +311,13 @@ export class FarmScene extends Phaser.Scene {
 
     const front = this.aimTile();
     this.target.setPosition(front.x * ts, front.y * ts);
+    // Red when the mouse points at a tile that can never be used (note 46).
+    const blocked = this.mouseAim && this.map.isBlocked(front.x, front.y);
+    this.target.setStrokeStyle(
+      1,
+      blocked ? 0xff4040 : 0xffffff,
+      blocked ? 0.9 : 0.6,
+    );
 
     const here = tileOf(this.pos, PLAYER, ts);
     const exit = this.map.exitAt(here.x, here.y);
@@ -308,12 +329,23 @@ export class FarmScene extends Phaser.Scene {
     }
   }
 
+  /** A key press or a step hands the aim back to the faced tile. */
+  private keyAim(): void {
+    this.mouseAim = false;
+  }
+
   /**
-   * The tile a use, an action and the highlight work on. Today it is the tile
-   * the farmer faces; the mouse will add its own aim here (note 46).
+   * The tile a use, an action and the highlight work on: the faced tile, or in
+   * mouse mode the tile under the cursor (note 46). The pointer is read each
+   * call, so the aim follows the camera as the farmer walks.
    */
   private aimTile(): { x: number; y: number } {
-    return facingTile(this.pos, PLAYER, this.facing, this.map.tileSize);
+    const ts = this.map.tileSize;
+    if (!this.mouseAim) return facingTile(this.pos, PLAYER, this.facing, ts);
+    const p = this.input.activePointer;
+    const w = this.cameras.main.getWorldPoint(p.x, p.y);
+    const cursor = { x: Math.floor(w.x / ts), y: Math.floor(w.y / ts) };
+    return aimAt(tileOf(this.pos, PLAYER, ts), cursor, this.facing).tile;
   }
 
   /** Pull in goods lying on the ground near the player, as far as the bag has room. */
