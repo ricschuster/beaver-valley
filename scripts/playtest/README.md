@@ -30,6 +30,12 @@ errors. The game's weather and forage are random, so reruns differ.
    does not move the player on desktop, the keyboard does not on touch, and a
    rebound key works. About 20 seconds.
 
+   `npm run playtest:mouse` checks the desktop mouse (note 46): a near click uses
+   the cursor tile, a far click turns and uses the adjacent tile, a toolbar click
+   selects and uses nothing, right-click shows no browser menu, the wheel changes
+   the slot and the page does not scroll, and holding the left button with the
+   axe keeps chopping. About 15 seconds.
+
 7. `node scripts/playtest/bin.mjs` ships, takes back, ships part through the
    prompt, sleeps, and checks the payout, summary and report. About 10 seconds.
 
