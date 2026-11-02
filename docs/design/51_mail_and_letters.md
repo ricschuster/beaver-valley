@@ -124,6 +124,7 @@ door (`16_bundles.md`).
   track of them.
 
 ## Open
+
 - Nothing is open that blocks a build. One claim stays unchecked: that Stardew
   opens one letter per use of the mailbox (the saved `Letters` page does not
   say).
