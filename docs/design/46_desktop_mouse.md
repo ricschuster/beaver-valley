@@ -75,6 +75,9 @@ The saved Controls page lists keys only, so none of them is checked.
 
 ## Action is not built
 
+Designed since in `47_action_intent.md`; the text below is the state when this note
+was written.
+
 The Action intent does not exist yet. Today Use does the farmer's talking, opening
 and checking as well as the tool. So:
 
@@ -110,7 +113,8 @@ and checking as well as the tool. So:
 ## Open
 
 - **Reach value and shape:** 2 tiles Chebyshev is a placeholder.
-- **Action,** as above.
+- **Action:** designed in `47_action_intent.md`.
 
 Settled 2026-11-02: turn on click only, red highlight, wheel down is next, and
-a left-click with food held eats it (Stardew, from memory; F stays as ours).
+food is eaten with Action, not a left-click (corrected on 2026-11-02, see
+note 47; F stays as ours).
