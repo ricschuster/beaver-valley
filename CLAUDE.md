@@ -23,7 +23,9 @@ save, title and end screens) with placeholder art. Some M3 items were built
 early: quality tiers, tool upgrades, eating, a weather forecast, more crops
 and forage, house tier 1, farm trees with the axe, and the shipping bin. Left:
 the real-tablet check and open design questions. Tiers 2 and 3 and the
-cellar are M3. Placeholder numbers are listed in
+cellar are M3. Design is ahead of the build: notes up to the latest in
+`docs/design/` (menu and journal, request board, mail, tap-to-move) are
+settled and not yet built. The latest handoff lists them. Placeholder numbers are listed in
 `docs/design/07_tuning_numbers.md`. The roadmap is `docs/design/03_milestones.md`; GitHub issues
 are the live tracker, grouped by milestone. The issues labelled `next-payoff`
 are the few items that matter most right now. Start each session by reading
@@ -66,7 +68,9 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
 - `npm run playtest -- <expert|intermediate|casual>`, `npm run playtest:late`:
   scripted playthroughs in a browser. Manual only, not a gate and not in CI.
   `npm run playtest:touch` is a short touch-only run in a tablet-sized browser.
-  Needs `npm run dev` running. See `scripts/playtest/README.md`.
+  `playtest:controls` and `playtest:mouse` check the input profiles and the
+  desktop mouse, and `node scripts/playtest/wood.mjs` plays a chopper. Needs
+  `npm run dev` running. See `scripts/playtest/README.md`.
 
 ## Repo structure
 
@@ -105,13 +109,13 @@ Node 22 and npm. Gates (run in CI, non-zero exit blocks a merge) are marked.
   instead of guessing. Put the recommendation first, and mark it
   "(Recommended)" as well when the Stardew option is not the recommended one.
 - Stardew wiki pages: the wiki's `robots.txt` blocks Claude's crawler, so do not
-  fetch it (no WebFetch, curl, Playwright or similar). Claude writes a list of
-  page URLs, one per line, and the owner runs `wget --input-file=urls.txt
-  --wait=2 --random-wait --adjust-extension --restrict-file-names=windows
-  --trust-server-names` from `docs/reference/stardew/`. No `--recursive`, no
-  `--mirror`, no spoofed user agent. Claude then reads the saved files from
-  disk. The folder is gitignored and the text is for reference only, never
-  copied into the repo (`docs/decisions/0002-stardew-valley-inspired.md`).
+  fetch it (no WebFetch, curl, Playwright or similar). The owner's `wget` is
+  also blocked. Claude writes a list of page URLs, one per line, to
+  `docs/reference/stardew/urls_<topic>.txt`, and the owner saves each page by
+  hand in a browser into that folder. Claude then reads the saved files from
+  disk and deletes the list. The folder is gitignored and the text is for
+  reference only, never copied into the repo
+  (`docs/decisions/0002-stardew-valley-inspired.md`).
 - Stardew Valley Guidebook: the owner's PDF in `docs/reference/stardew/` is only
   the free 5th edition supplement (new and changed 1.6 pages, v1.6.8, 119 PDF
   pages), not the full book. The wiki stays the main source. Do not build an
