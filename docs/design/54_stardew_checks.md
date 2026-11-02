@@ -45,7 +45,7 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 ## Register: play
 
 | ID | Note | Question | Blocks | Status | Answer |
-|----|------|----------|--------|--------|--------|
+| --- | --- | --- | --- | --- | --- |
 | SC-01 | 52 | Does Stardew save only on sleeping? Does leaving to the title screen discard the day? | no | open | |
 | SC-02 | 51 | Does one use of the mailbox open one letter or the whole pile? Does the flag stay up while letters wait? | no | open | |
 | SC-03 | 28 | Where does the shipping bin stand on the farm, relative to the door and bed? | no | open | |
@@ -62,7 +62,7 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 ## Register: wiki or Guidebook
 
 | ID | Note | Question | Blocks | Status | Answer |
-|----|------|----------|--------|--------|--------|
+| --- | --- | --- | --- | --- | --- |
 | SC-20 | 24 | Seed maker recipe source and fish smoker craft costs. | no | open | |
 | SC-21 | 24 | How many cooking recipes come from TV or Ginger Island, so we know how many slots need dishes of our own? | no | open | |
 | SC-22 | 15 | Character frame and portrait sizes. | no | open | |
