@@ -126,7 +126,7 @@ Added from what we know of the game, so these need a source check too:
 | --- | --- | --- |
 | Pets | Absent | No farm pet is mentioned. |
 | Horse | Absent | No mount is mentioned. Our valley is small. |
-| Mail | Out | The mailbox idea was dropped on 2026-10-29 (`09_story_and_lore.md`). |
+| Mail | Designed | A farm mailbox, next-morning delivery and a journal Mail section (`51_mail_and_letters.md`). The 2026-10-29 drop only covered the warden reveal. |
 | Calendar board | Partial | The festival calendar exists. The in-world board is not described. |
 | Dating events and gift tastes | Absent | Part of Friendship. Page to read. |
 

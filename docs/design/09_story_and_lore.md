@@ -362,7 +362,7 @@ the same kind are not alike.
 
 Stages, each optional and each only adding to what the player knows. The
 timings are placeholders, to be tuned against the seasons we have. The
-mailbox note thread was dropped on 2026-10-29, so no mailbox system is needed.
+mailbox note thread was dropped on 2026-10-29, so the reveal needs no mailbox. Ordinary mail has a mailbox since 2026-11-02 (`51_mail_and_letters.md`).
 
 1. Ring 1, first year: a courier at the carrier post in Hearthwell who is a
    little too watchful. She says little and gives no name. Her only offer is
