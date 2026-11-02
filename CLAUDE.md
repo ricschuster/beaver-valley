@@ -92,6 +92,11 @@ Node 22 and npm. Gates run in CI and a non-zero exit blocks a merge.
   If the Stardew behaviour is not known or not checked, say so in that option
   instead of guessing. Put the recommendation first, and mark it
   "(Recommended)" as well when the Stardew option is not the recommended one.
+- Stardew checks register: `docs/design/54_stardew_checks.md` lists every
+  Stardew claim that is from memory or unchecked, with how to check it (owner
+  plays, saved wiki page, Guidebook). Add a row when a note makes such a claim,
+  and offer the owner a question batch at session start when five or more are
+  open. Black box only: never reverse engineer Stardew (ADR 0002).
 - Stardew wiki pages: the wiki blocks Claude's crawler, so never fetch it (no
   WebFetch, curl, Playwright), and the owner's `wget` is blocked too. Write page
   URLs, one per line, to `docs/reference/stardew/urls_<topic>.txt`; the owner

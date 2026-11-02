@@ -16,6 +16,9 @@ One short paragraph: what this session was about and where things stand.
 - Design overview updated (`docs/overview.json`, then `npm run overview`) for
   any decision or open question that changed this session.
 
+- New Stardew claims added to `docs/design/54_stardew_checks.md` this session,
+  and rows answered. Offer a question batch if five or more rows are open.
+
 ## Next actions
 
 1. The most useful thing to pick up next, and why.
