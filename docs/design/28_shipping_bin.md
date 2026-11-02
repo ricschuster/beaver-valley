@@ -56,7 +56,7 @@ for the player who needs money now to buy seeds before planting.
 - **Collection page and achievements: M3.** The bin already saves shipped
   counts per item, so the page can read them when it is built.
 - **No bin-only or shop-only items.** Every item can go either route.
-- **Mini bin and extra bins: M4, optional.** They go with the farm note.
+- **Mini bin and extra bins: M5, optional.** They go with the farm note.
 
 ## Settled 2026-11-01 (placement, touch, summary)
 
