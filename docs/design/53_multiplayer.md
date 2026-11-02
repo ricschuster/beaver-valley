@@ -30,7 +30,7 @@ code.
 - **The final form is a standalone desktop game, not a browser game (owner,
   2026-11-02).** The browser build stays for development and as a guest. This
   makes the wrapper ADR a prerequisite for M4: it must pick a wrapper that can
-  listen on a socket, and a tablet route for hosting. This note does not choose.
+  listen on a socket, and a tablet route for hosting. ADR 0008 chooses Electron on desktop and Capacitor with a host plugin on tablets.
 - **Transport: WebSocket carrying JSON (decided 2026-11-02, the beaver_cycle
   choice).** Every message is checked on arrival. Both ends send the game
   version, and a mismatch is refused with a plain message. WebRTC needs a

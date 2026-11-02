@@ -634,7 +634,7 @@
         },
         {
           "s": "open",
-          "t": "Multiplayer: can a tablet host carry 8 players, and the wrapper ADR it depends on",
+          "t": "Multiplayer: can a tablet host carry 8 players (the wrapper is settled, ADR 0008)",
           "ref": "53_multiplayer.md#Open"
         },
         {
@@ -927,8 +927,9 @@
           "ref": "../decisions/0004-engine-and-language.md"
         },
         {
-          "s": "open",
-          "t": "Installed-app wrapper ADR",
+          "s": "decided",
+          "t": "Installed apps: Electron on desktop (bundled Chromium, Node host shared with the test host), Capacitor with a native host plugin on tablets, browser is guest only (ADR 0008)",
+          "ref": "../decisions/0008-installed-app-wrapper.md",
           "issue": 62
         },
         {
