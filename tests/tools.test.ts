@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { FarmMap, type TiledMapJson } from "../src/core/map";
 import { startGame, heldAt, TOOLS } from "../src/core/toolbar";
-import { reasonText, useHeld } from "../src/core/tools";
+import { NOTHING_TO_ACT_ON, act, reasonText, useHeld } from "../src/core/tools";
 import type { Held } from "../src/core/toolbar";
 
 const layer = (name: string, data: number[]) => ({
@@ -87,5 +87,57 @@ describe("useHeld", () => {
   it("explains every refusal in words", () => {
     expect(reasonText("exhausted")).toBe("You are too tired.");
     expect(reasonText("odd")).toBe("odd");
+  });
+});
+
+describe("act", () => {
+  it("picks forage whatever is held", () => {
+    const g = startGame();
+    g.forage.respawn("spring", [{ x: 1, y: 0 }], () => 0.99);
+    const got = act(g, mapWith(true), 1, 0);
+    expect(got.ok).toBe(true);
+    expect(g.forage.count).toBe(0);
+  });
+
+  it("harvests a ripe crop", () => {
+    const g = startGame();
+    const map = mapWith(true);
+    const seeds = heldAt(g, TOOLS.length);
+    useHeld(g, map, hoe, 0, 0);
+    useHeld(g, map, seeds, 0, 0);
+    for (let i = 0; i < 4; i++) {
+      useHeld(g, map, can, 0, 0);
+      g.farm.endDay("spring");
+    }
+    vi.spyOn(Math, "random").mockReturnValue(0.99);
+    const got = act(g, map, 0, 0);
+    vi.restoreAllMocks();
+    expect(got).toMatchObject({ ok: true, item: "parsnip" });
+    expect(g.inventory.count("parsnip")).toBe(1);
+  });
+
+  it("is quiet and free on a tile with nothing to act on", () => {
+    const g = startGame();
+    const map = mapWith(true);
+    const before = g.day.energy.current;
+    expect(act(g, map, 0, 0)).toEqual({
+      ok: false,
+      reason: NOTHING_TO_ACT_ON,
+    });
+    // A dug plot that is not ripe is also nothing to act on.
+    useHeld(g, map, hoe, 1, 0);
+    const spent = g.day.energy.current;
+    expect(act(g, map, 1, 0)).toEqual({ ok: false, reason: NOTHING_TO_ACT_ON });
+    expect(g.day.energy.current).toBe(spent);
+    expect(spent).toBeLessThan(before);
+    expect(reasonText(NOTHING_TO_ACT_ON)).toBe("");
+  });
+
+  it("does nothing on a map without soil", () => {
+    const g = startGame();
+    expect(act(g, mapWith(false), 0, 0)).toEqual({
+      ok: false,
+      reason: NOTHING_TO_ACT_ON,
+    });
   });
 });

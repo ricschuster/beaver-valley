@@ -52,9 +52,35 @@ export function useHeld(
   }
   if (held.kind === "item" && held.id === TREE_SEED)
     return plantTree(g, map, x, y);
+  return pick(g, x, y);
+}
+
+/** The reason `act` gives when the tile holds nothing to act on. It shows no message. */
+export const NOTHING_TO_ACT_ON = "nothing to act on";
+
+/** Shake a tree, pick forage or harvest a crop: what the hand does on one tile. */
+function pick(g: GameState, x: number, y: number): Outcome {
   if (g.trees.at(x, y)) return shake(g, x, y);
   return g.forage.itemAt(x, y) ? forage(g, x, y) : harvest(g, x, y);
 }
+
+/**
+ * The Action button on one tile (note 47): shake a tree, pick forage or harvest
+ * a ripe crop. It never reads the held slot. A tile with nothing to act on gives
+ * `NOTHING_TO_ACT_ON`, which shows no message and costs no energy. Other refusals,
+ * such as a full backpack, still explain themselves.
+ *
+ * Services and eating are the scene's to do; this covers the farm tiles only.
+ */
+export function act(g: GameState, map: FarmMap, x: number, y: number): Outcome {
+  if (!map.hasSoil) return fail(NOTHING_TO_ACT_ON);
+  const result = pick(g, x, y);
+  if (result.ok) return result;
+  return QUIET.has(result.reason) ? fail(NOTHING_TO_ACT_ON) : result;
+}
+
+/** Misses that mean "nothing here" rather than "you could not". */
+const QUIET = new Set(["nothing ripe", "nothing to shake", "nothing here"]);
 
 const REASONS: Record<string, string> = {
   exhausted: "You are too tired.",
@@ -76,6 +102,7 @@ const REASONS: Record<string, string> = {
   "not food": "That cannot be eaten.",
   "nothing to eat": "Select food to eat.",
   "not hungry": "You are not tired.",
+  [NOTHING_TO_ACT_ON]: "",
 };
 
 /** Words for a refused action, for the player. */
