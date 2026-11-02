@@ -164,7 +164,8 @@ is not checked.
    Done. The key list is read only until step 4.
 4. Rebinding. Done: Change and Default per row, a swap prompt on a clash.
 5. Tap-to-move on touch, and the mouse on desktop. The mouse is designed in
-   `46_desktop_mouse.md`; tap-to-move waits for its own note (note 27 holds its
+   `46_desktop_mouse.md`; tap-to-move is designed in
+   `48_tap_to_move.md` (note 27 holds its
    own steps).
 
 Steps 1 to 3 come first because they fix the mixing. Rebinding rides on a stable
