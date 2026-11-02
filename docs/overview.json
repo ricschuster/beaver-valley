@@ -938,12 +938,12 @@
         },
         {
           "s": "decided",
-          "t": "Tap-to-move: a bare-ground tap only walks, farming is on the stick scheme; an auto-picked tool stays selected (Stardew); four-way A* in core",
+          "t": "Tap-to-move: a bare-ground tap only walks, farming is on the stick scheme; an auto-picked tool stays selected (Stardew) and pulses its slot; hold follows the finger in a straight line (Stardew); seedlings pick the axe; no hint on a plot; four-way A* in core",
           "ref": "48_tap_to_move.md#Decisions"
         },
         {
           "s": "open",
-          "t": "Mouse reach (2 tiles), tap and hold numbers, seedling tool for taps, order of Action on one tile",
+          "t": "Mouse reach (2 tiles), tap and hold numbers, order of Action on one tile",
           "ref": "48_tap_to_move.md#Open"
         },
         {
