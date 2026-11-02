@@ -140,7 +140,7 @@ remains of an old waystation, and finishing the hall bundles restores it.
   player does not learn this at the start. It is answered later, as a gentle
   push toward ring 2. It is a warm reason, not a danger: the relative is not
   lost, only far away and happy. Ring 2 is therefore a haven in the lore, not
-  only a frontier (see `03_milestones.md`, M4).
+  only a frontier (see `03_milestones.md`, M5).
 - Naming: the ring 2 haven is a placeholder idea modelled on an elven refuge.
   Its name must be our own and not close to any Tolkien place name (ADR 0003).
   Its name is Evenglade (decided 2026-10-27).
@@ -349,7 +349,7 @@ the same kind are not alike.
   one hook, and the arts are another: music, weaving and decoration, which fit
   tailoring and furnishing (`10_customisation.md`). Not tied to Tolkien's
   elves; the traits are our own and get fixed when ring 1 and ring 2 are
-  designed (M4). Elves live in the ring 2 haven.
+  designed (M5). Elves live in the ring 2 haven.
   One people, several houses (decided 2026-10-27): the elves are one people
   split into houses, in the way of Tolkien's elves. The number of houses is
   not fixed. It is settled when rings 2 and 3 are designed. Each house needs

@@ -40,8 +40,8 @@ Each had a Stardew option.
    achievement's hat (`38_achievements.md`), a short scene at the hall, and a
    keepsake as furniture. No gameplay power. This is ring 1's reward.
 4. **Each ring has its own total, plus a valley total.** Ring 1's total is a
-   full 100 on its own. Ring 2 (M4) gets its own 100 and its own reward when it
-   exists. Ring 3 is unknown (M5, optional, and it may not happen at the scale
+   full 100 on its own. Ring 2 (M5) gets its own 100 and its own reward when it
+   exists. Ring 3 is unknown (M6, optional, and it may not happen at the scale
    of rings 1 and 2), so it gets a total only if it is built. A player who never leaves
    ring 1 can still finish something. Stardew's single total needs its late
    region for the last 5 percent, which would make ring 2 a requirement for

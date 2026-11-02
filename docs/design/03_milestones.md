@@ -18,7 +18,7 @@ the dark edge is Could.
 | M2 | First playable | Day and energy cycle, farming, selling and a small centre 1 run in the home valley, with rough art. Engine chosen in an ADR. | In progress | Real-tablet check |
 | M3 | Vertical slice | One full cycle of centre 1, near-final quality, built as five slices, one hall room each, starting with year one on the farm (`33_build_order.md`). | In progress | M2 (the real-tablet check) |
 | M4 | Ring 2 prototype | A haven and about 2 regions reachable from the home valley. Centre 2 in small form. | Not started | M3, ring 2 shape (#20) |
-| M5 | Ring 3 and centre 3 | A logistics-only frontier outpost. Optional, late. Only if M1 to M4 prove fun. | Not started | M4, centre 3 (#5) |
+| M5 | Ring 3 and centre 3 | A logistics-only frontier outpost. Optional, late. Only if M1 to M5 prove fun. | Not started | M4, centre 3 (#5) |
 
 ## First playable scope (draft, issue #12)
 
@@ -37,7 +37,7 @@ In:
 - Rough placeholder art.
 
 Out (non-goals for now, see the project brief): regions, ring 3, combat,
-multiplayer, generated content, deep relationships, final name and polish.
+multiplayer (planned as M4, after M3), generated content, deep relationships, final name and polish.
 
 ### Centre 1 in the first playable
 

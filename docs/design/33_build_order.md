@@ -156,7 +156,7 @@ It also settles the quantities (#181) against real production rates.
 Design still needed first: the Last Seat numbers. Year one's last day does not
 end the game (see Open).
 
-Ring 2 is M4 (`03_milestones.md`) and not part of these slices.
+Ring 2 is M5 (`03_milestones.md`) and not part of these slices.
 
 ## What each slice leaves unbuilt
 

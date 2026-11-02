@@ -70,10 +70,10 @@ forecast, forage, festivals joined, and the later systems (the letter queue in
 note 51, quests in 50, the journal and collections in 49 and 38). A record holds
 the **player** fields (pack, money, skills, tool tiers) and the **world** fields
 (farm, trees, weather, forage, hall, house) as separate groups in the code, so
-the record is not welded to one person's whole life. Multiplayer is out of
-scope. In Stardew co-op the host owns the world and saves on sleep; a future
-mode would keep both records host-only, and Restart this day would affect every
-player. No multiplayer work is planned or added here.
+the record is not welded to one person's whole life. Multiplayer is milestone M4
+(ADR 0007) and undesigned. In Stardew co-op the host owns the world and saves on
+sleep; a future mode might keep both records host-only, and Restart this day
+would affect every player. No multiplayer work is added here.
 
 ## Versions
 

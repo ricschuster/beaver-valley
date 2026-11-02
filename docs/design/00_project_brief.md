@@ -105,9 +105,10 @@ these is ruled out forever.
 - **Ring 3 and centre 3.** No dark edge until layers 1 and 2 work.
 - **Real-time combat.** The largest scope item. The first playable has none.
 - **A real-time threat clock.** The threat is ambient. No timers or game overs.
-- **Multiplayer.** Single player for now (decided 2026-10-15, issue #18). It
-  is not planned for. If it is ever wanted, it is a large rework, accepted as
-  a tradeoff for a solo developer's limited time.
+- **Multiplayer.** Not in the first playable or M3. Planned as milestone M4,
+  between the vertical slice and ring 2 (decided 2026-11-02, ADR 0007, which
+  reverses the 2026-10-15 decision in issue #18). A design note settles its
+  form first. Until then, single player is the build.
 - **Generated content.** Regions are hand-built first.
 - **Deep relationship systems.** The first playable has at most a few simple
   villagers.
