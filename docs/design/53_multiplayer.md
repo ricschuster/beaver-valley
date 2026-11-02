@@ -80,6 +80,14 @@ code.
 - **Profit margin at creation (Stardew, decided 2026-11-02).** The host picks 25,
   50, 75 or 100 percent of sale and seed prices to offset more players farming.
   The numbers go in the tuning note.
+- **The request board is one shared board, and every player gets the reward
+  (owner's recollection of Stardew, decided 2026-11-02, not checked).** The saved
+  wiki pages and a web search do not say how Stardew pays a finished Help Wanted
+  quest in multiplayer. Check when note 50 is revisited.
+- **Achievements are per player (Stardew from web forum posts, decided
+  2026-11-02, not on the wiki pages).** Forum players report that each player
+  earns their own, with a few world milestones such as the Community Center
+  shared. Which of ours are shared is settled with note 38.
 
 ## What is shared and what is per player
 
@@ -166,9 +174,6 @@ not built in M4. The pros and cons, so the idea is not lost:
 - **Eight players on a tablet host.** beaver_cycle measured a host and two
   guests, not eight. Decided 2026-11-02: 8 stays the target and the real-tablet
   load check sets the tablet cap (it may be lower, such as 4).
-- **Request board and achievements** (notes 50 and 38): shared or per player.
-  The saved Quests, Special Orders and Achievements pages do not say, so this
-  needs a Stardew check or an owner ruling when those notes are revisited.
 - **Snapshot size**: full state against changes only, settled in the spike.
 - **Kick and ban detail**: how a ban is kept (by the guest's device key) and
   whether the host can undo it. Settle with the host screen design.
