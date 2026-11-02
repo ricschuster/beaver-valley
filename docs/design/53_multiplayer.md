@@ -65,6 +65,21 @@ code.
 - **Menus do not pause the clock in a multiplayer game (decided 2026-11-02,
   Stardew, checked).** Note 49's pause is a single-player rule, since one
   player cannot stop the others.
+- **Quests, mail and journal are per player (decided 2026-11-02, Stardew from
+  memory; the saved pages do not state it).** Hall bundles stay shared.
+- **The wallet mode can change later (Stardew, decided 2026-11-02).** The host
+  changes it from a screen. Turning separation on splits the money evenly;
+  turning it off pools every purse.
+- **A guest may join at any time (Stardew, decided 2026-11-02).** No host action
+  is needed beyond the game being open to others. The host sees a notice.
+- **A bought cabin costs 100 gold and is built instantly (Stardew, checked,
+  decided 2026-11-02).** Cabins chosen at game start are free. Our building
+  costs are not settled, so the price is revisited in the tuning note.
+- **Join control is kick and ban, no password (Stardew, decided 2026-11-02).**
+  The host can remove and block a player, kept by their device key.
+- **Profit margin at creation (Stardew, decided 2026-11-02).** The host picks 25,
+  50, 75 or 100 percent of sale and seed prices to offset more players farming.
+  The numbers go in the tuning note.
 
 ## What is shared and what is per player
 
@@ -149,17 +164,16 @@ not built in M4. The pros and cons, so the idea is not lost:
 ## Open
 
 - **Eight players on a tablet host.** beaver_cycle measured a host and two
-  guests, not eight. The cap may be lower for a tablet host.
-- **Quests, mail, the request board and achievements** (notes 50, 51 and 38):
-  shared or per player. Stardew's mail is per player from memory.
-- **Whether the wallet mode can change after creation**, and what a single-player
-  game's money becomes when it turns multiplayer. Stardew allows a change from
-  the Town Ledger and splits the money evenly when separation is turned on.
-- **Joining a game in progress**: whether a late guest needs the host to be
-  idle, and the price of a bought cabin.
-- **A password or code to join**, since anyone on the network could otherwise
-  join.
+  guests, not eight. Decided 2026-11-02: 8 stays the target and the real-tablet
+  load check sets the tablet cap (it may be lower, such as 4).
+- **Request board and achievements** (notes 50 and 38): shared or per player.
+  The saved Quests, Special Orders and Achievements pages do not say, so this
+  needs a Stardew check or an owner ruling when those notes are revisited.
 - **Snapshot size**: full state against changes only, settled in the spike.
+- **Kick and ban detail**: how a ban is kept (by the guest's device key) and
+  whether the host can undo it. Settle with the host screen design.
+- **Profit margin numbers**: how the margin scales seed and sale prices belongs
+  in `07_tuning_numbers.md`.
 - Existing notes that change when M4 starts: 49 (menu pause), 52 (save), 28
   (bin), 50, 51, 38, 42 (the debug menu) and `src/core/sleep.ts`.
 
