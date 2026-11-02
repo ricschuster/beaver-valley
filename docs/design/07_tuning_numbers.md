@@ -424,9 +424,32 @@ Full rules in `36_gathering_trees_sap_fiber.md`.
 
 ## Start options (decided 2026-10-31, not built)
 
-- Profit margin: a difficulty dial on sell prices, offered when starting a game.
-  Useful for a casual tablet audience. Steps and default are open. Bundle remix
-  and a year-one guarantee are not offered for now.
+- Profit margin: one setting for single player and multiplayer, chosen when
+  starting a game. See "Profit margin" below. Bundle remix and a year-one
+  guarantee are not offered for now.
+
+## Profit margin (decided 2026-11-02, not built)
+
+Checked against the saved Stardew Multiplayer page (Profit margins). Numbers
+are ours where stated.
+
+- **Steps:** 25, 50, 75 or 100 percent, default 100 (Stardew). The page warns
+  that 25 makes early gold much harder to come by.
+- **Where:** both modes, one setting at game creation. Stardew's page covers
+  multiplayer only; single player is not checked. It is for balance against more
+  players farming in multiplayer, and a difficulty dial for casual play in
+  single player.
+- **What scales (Stardew):** the sale price of goods, and the seed price at the
+  shop. Seeds sold back still pay half the scaled price, rounded down (ours).
+- **What does not scale (Stardew):** buildings and cabins, tool upgrades, other
+  shop items, request rewards and village hall bundle items.
+- **Rounding (ours):** price times margin, rounded down, never below 1g. The
+  Stardew example is Wheat at 25 percent selling for 6g instead of 25g, which
+  fits rounding down.
+- **Fixed on purpose:** costs that do not scale make a low margin harder, which
+  is the point. Playtest 25 before keeping it.
+- **Changes later:** not decided. Fixed at creation until the host screen says
+  otherwise (note 53).
 
 ## Farm tools, trees and machines (2026-10-31)
 
