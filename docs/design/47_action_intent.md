@@ -116,4 +116,4 @@ order is ours; Stardew's is not checked.
   from memory. The alternative is to eat only with the tile empty and the cursor
   off any object.
 - **Energy:** harvest and forage cost nothing today and stay so.
-- **The in-game menu and the journal** are separate intents and a separate note.
+- **The in-game menu and the journal** are designed in `49_menu_and_journal.md`.

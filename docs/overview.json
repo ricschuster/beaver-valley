@@ -913,12 +913,17 @@
         },
         {
           "s": "decided",
+          "t": "One tabbed in-game menu on Esc or E (Stardew); a separate journal on J with a quest log and a hall project log; both pause the clock; Eat stays on F; Social and Map tabs are placeholders; Exit keeps last night's save; K is dropped; the wheel scrolls open lists; Pack gets a trash can, Auto-Sort and a bundle shortcut; Page Up and Page Down switch tabs",
+          "ref": "49_menu_and_journal.md#Decisions"
+        },
+        {
+          "s": "decided",
           "t": "Desktop (keyboard and mouse) and touch are separate control profiles, never mixed; every desktop key is rebindable (Stardew); an options screen on the title and in-game menu holds controls only",
           "ref": "45_controls_profiles.md#Decisions"
         },
         {
           "s": "open",
-          "t": "Desktop defaults are Stardew's keys plus click to use and act; menu keys fixed; no run key. Open: Eat on F, layout labels; gamepad parked",
+          "t": "Desktop defaults are Stardew's keys plus click to use and act; menu keys fixed; no run key. Eat stays on F, journal on J. Open: layout labels; gamepad parked",
           "ref": "45_controls_profiles.md#Open"
         },
         {
