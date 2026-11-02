@@ -492,6 +492,15 @@ marked ours. Recipes are in `34_crafting.md`.
   seed results are left out. Both from the saved Charcoal Kiln and Seed Maker
   pages.
 
+## Desktop mouse (2026-11-02)
+
+Placeholders, not checked against Stardew (`46_desktop_mouse.md`).
+
+- Aim reach: 2 tiles, Chebyshev (`AIM_REACH` in `src/core/aim.ts`). A cursor
+  within it aims at the cursor tile, else at the neighbour toward it.
+- Wheel step: 100 wheel units make one slot step (`WHEEL_STEP` in
+  `FarmScene.ts`), one notch of a mouse wheel.
+
 ## Open questions for playtests
 
 First answers are in `08_playtest_personas.md`: 500g is far more than enough
