@@ -36,15 +36,16 @@ and the options door (`45`). This note gives them one home.
 | Options | The existing controls screen, as the in-game door | screen exists | `45` |
 | Social | A placeholder page until villager hearts exist (`18_dialogue.md`) | no | Stardew tab |
 | Map | A placeholder page until there is a map worth showing | no | Stardew tab |
-| Exit | Return to the title screen, keeping last night's save. Asks to confirm | no | Stardew, from memory |
+| Exit | Save the day in progress and return to the title. No confirm | no | `52` (Stardew discards, from memory) |
 
 - **Social and Map are in the tab list as placeholders (decided 2026-11-02).**
   Each shows a short "not yet" page until its system is built. They match
   Stardew's tab list.
-- **Exit returns to the title and does not save (Stardew from memory, decided
-  2026-11-02).** Progress since waking is lost, so it asks first. Saving stays
-  tied to sleeping, so no mid-day save is built. Exit Game is for an installed
-  app only and waits for the wrapper ADR.
+- **Exit saves the day in progress, then returns to the title (decided
+  2026-11-02, ours; Stardew discards it, from memory).** It writes the resume
+  record of note 52, so Continue picks up mid-day and nothing is lost, which is
+  why it needs no confirm. Exit Game is for an installed app only and waits for
+  the wrapper ADR.
 - **K is dropped (Stardew, decided 2026-11-02).** Stardew has no skills key.
   Skills is a tab, reached by Esc or E.
 - Any other tab with nothing to show yet is hidden, not greyed. The first build
@@ -72,7 +73,7 @@ Three sections, switched with Left and Right or a tap.
 
 1. A menu shell scene: tab strip, close on Esc or E, clock pause, and the Skills
    and Options tabs moved in. Options gets its in-game door here.
-2. The Exit tab, once save on exit is settled.
+2. The Exit tab, as note 52 settles it.
 3. The Pack tab. It needs the stack move, split, sort and trash rules in
    `src/core/`, with tests, before the scene.
 4. The journal shell with the Projects section, reading hall data.

@@ -619,6 +619,11 @@
         },
         {
           "s": "decided",
+          "t": "Save and exit: two records, a night record written on sleep and a resume record written quietly during play and on page hide; Continue resumes the day, Restart this day loads the night record; Exit saves; daily rolls are stored so reload never rerolls (reload as undo accepted); export and import in Options; one slot",
+          "ref": "52_save_and_exit.md#Decisions"
+        },
+        {
+          "s": "decided",
           "t": "Achievements: a library gallery for finds, a daily request board at the general store, no rival route, a hat for every achievement, and Stardew's money thresholds re-checked at tuning",
           "ref": "38_achievements.md#Settled open items",
           "issue": 196
@@ -918,7 +923,7 @@
         },
         {
           "s": "decided",
-          "t": "One tabbed in-game menu on Esc or E (Stardew); a separate journal on J with a quest log and a hall project log; both pause the clock; Eat stays on F; Social and Map tabs are placeholders; Exit keeps last night's save; K is dropped; the wheel scrolls open lists; Pack gets a trash can, Auto-Sort and a bundle shortcut; Page Up and Page Down switch tabs",
+          "t": "One tabbed in-game menu on Esc or E (Stardew); a separate journal on J with a quest log and a hall project log; both pause the clock; Eat stays on F; Social and Map tabs are placeholders; Exit saves the day in progress and goes to the title (ours); K is dropped; the wheel scrolls open lists; Pack gets a trash can, Auto-Sort and a bundle shortcut; Page Up and Page Down switch tabs",
           "ref": "49_menu_and_journal.md#Decisions"
         },
         {
