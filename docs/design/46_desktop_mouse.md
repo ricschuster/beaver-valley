@@ -121,7 +121,11 @@ and checking as well as the tool. So:
    next slot, up the previous, wrapping. Movement adds up to 100 (one notch)
    per step, so a trackpad is not too fast. Checked in a headless browser: the
    page does not scroll. `farmDebug` now reports `selected`.
-5. The playtest additions.
+5. The playtest additions. Done: `scripts/playtest/mouse.mjs`
+   (`npm run playtest:mouse`) covers near and far clicks, the toolbar click, the
+   context menu, the wheel with the page scroll, and hold-to-repeat with the axe.
+   Right-click Action on a real target and the touch-pointer filter are not
+   covered, since headless Playwright mouse events are never touch.
 
 ## Open
 
