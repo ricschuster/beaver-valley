@@ -97,7 +97,9 @@ order is ours; Stardew's is not checked.
 
 ## Build order
 
-1. `act()` in core with tests, `useHeld` reduced, and the quiet result.
+1. `act()` in core with tests and the quiet result. Done. `useHeld` still
+   delegates its hand case to the same helper, so nothing changes in play until
+   step 2 removes it.
 2. `action()` in `FarmScene`, the `Intents` entry, the desktop key wiring, and
    Use ignoring services and crops. Playtest helpers move to Action.
 3. Eat on Action, with the F key as the extra.
