@@ -90,7 +90,8 @@ code.
   - The banned list is kept in the host's world save, so it survives a restart.
 - **Profit margin at creation (Stardew, decided 2026-11-02).** The host picks 25,
   50, 75 or 100 percent of sale and seed prices to offset more players farming.
-  The numbers go in the tuning note.
+  The numbers are in `07_tuning_numbers.md` ("Profit margin"), and the setting is
+  offered in single player too.
 - **The request board is one shared board, and every player gets the reward
   (owner's recollection of Stardew, decided 2026-11-02, not checked).** The saved
   wiki pages and a web search do not say how Stardew pays a finished Help Wanted
@@ -186,8 +187,6 @@ not built in M4. The pros and cons, so the idea is not lost:
   guests, not eight. Decided 2026-11-02: 8 stays the target and the real-tablet
   load check sets the tablet cap (it may be lower, such as 4).
 - **Snapshot size**: full state against changes only, settled in the spike.
-- **Profit margin numbers**: how the margin scales seed and sale prices belongs
-  in `07_tuning_numbers.md`.
 - Existing notes that change when M4 starts: 49 (menu pause), 52 (save), 28
   (bin), 50, 51, 38, 42 (the debug menu) and `src/core/sleep.ts`.
 
