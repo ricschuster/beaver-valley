@@ -69,6 +69,9 @@ const WORLD_ZOOM = 2;
 /** While Use is held with the axe, swing again this often, in milliseconds. */
 const REPEAT_MS = 400;
 
+/** Wheel movement that makes one slot step: one notch of a mouse wheel. */
+const WHEEL_STEP = 100;
+
 /** Fade time when the player walks through an exit, in milliseconds. */
 const FADE_MS = 200;
 
@@ -109,6 +112,8 @@ export class FarmScene extends Phaser.Scene {
   private mouseAim = false;
   /** True while the left button is held in the world, for the axe repeat. */
   private mouseHeld = false;
+  /** Wheel movement not yet turned into a slot step, so a trackpad is not too fast. */
+  private wheelDelta = 0;
 
   constructor() {
     super("farm");
@@ -125,6 +130,7 @@ export class FarmScene extends Phaser.Scene {
     this.heldMs = 0;
     this.mouseAim = false;
     this.mouseHeld = false;
+    this.wheelDelta = 0;
     this.message = "";
   }
 
@@ -249,6 +255,23 @@ export class FarmScene extends Phaser.Scene {
       const onUp = (p: Phaser.Input.Pointer): void => {
         if (!p.leftButtonDown()) this.mouseHeld = false;
       };
+      // Wheel down is the next slot, up the previous (Stardew, from memory).
+      const onWheel = (
+        p: Phaser.Input.Pointer,
+        _over: unknown,
+        _dx: number,
+        dy: number,
+      ): void => {
+        if (p.wasTouch) return;
+        if (Math.sign(dy) !== Math.sign(this.wheelDelta)) this.wheelDelta = 0;
+        this.wheelDelta += dy;
+        while (Math.abs(this.wheelDelta) >= WHEEL_STEP) {
+          const step = this.wheelDelta > 0 ? 1 : -1;
+          this.wheelDelta -= step * WHEEL_STEP;
+          this.select(cycle(this.selected, step, toolbarSize(this.state)));
+        }
+      };
+      this.input.on("wheel", onWheel);
       this.input.on("pointermove", onMove);
       this.input.on("pointerdown", onDown);
       this.input.on("pointerup", onUp);
@@ -257,6 +280,7 @@ export class FarmScene extends Phaser.Scene {
       this.events.on("resume", release);
       this.events.once("shutdown", () => {
         this.events.off("resume", release);
+        this.input.off("wheel", onWheel);
         this.input.off("pointermove", onMove);
         this.input.off("pointerdown", onDown);
         this.input.off("pointerup", onUp);
@@ -305,6 +329,7 @@ export class FarmScene extends Phaser.Scene {
         pos: this.pos,
         tile: tileOf(this.pos, PLAYER, ts),
         facing: this.facing,
+        selected: this.selected,
         target: this.aimTile(),
         map: this.mapId,
         exit: this.exitId ?? null,

@@ -117,7 +117,10 @@ and checking as well as the tool. So:
    a near click aims at the cursor tile, a far click turns and tills the
    adjacent tile, a toolbar click selects and uses nothing, the context menu is
    prevented. Hold-to-repeat with the axe is not yet checked by playtest.
-4. The wheel (the context menu fix landed in step 3).
+4. The wheel (the context menu fix landed in step 3). Done: wheel down is the
+   next slot, up the previous, wrapping. Movement adds up to 100 (one notch)
+   per step, so a trackpad is not too fast. Checked in a headless browser: the
+   page does not scroll. `farmDebug` now reports `selected`.
 5. The playtest additions.
 
 ## Open
