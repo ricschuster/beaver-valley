@@ -30,7 +30,7 @@ Stardew's mail is the model. Its details here are from memory and unchecked.
 - **Read letters are kept in the journal (decided 2026-11-02, ours).** The
   journal gets a third section, Mail, newest first (`49_menu_and_journal.md`).
   Stardew rereads letters from its collections tab (added in 1.4, saved
-  `Letters` page). Ours sits in the journal because a letter with an item still
+  `Letters` page). Ours sits in the journal (decided 2026-11-02) because a letter with an item still
   to take is live business. It helps a tablet player who missed a recipe or a
   hint. Reopening a letter shows its text
   and marks a taken attachment as taken. It never gives the attachment twice.
@@ -124,6 +124,6 @@ door (`16_bundles.md`).
   track of them.
 
 ## Open
-
-- Whether read letters live in the journal or in the Collections tab as in
-  Stardew. The journal is the working choice.
+- Nothing is open that blocks a build. One claim stays unchecked: that Stardew
+  opens one letter per use of the mailbox (the saved `Letters` page does not
+  say).
