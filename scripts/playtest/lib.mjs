@@ -65,6 +65,15 @@ export const isWalk = (x, y) =>
 const cx = (tx) => tx * 16 + 8;
 const cy = (ty) => ty * 16 + 11;
 
+/** The world speed asked of the dev build (`SPEED=N`), 1 by default. */
+export const SPEED = Math.max(1, Number(process.env.SPEED) || 1);
+/**
+ * The game moves whole frames, so at SPEED=N the smallest step is about 1.3 * N
+ * pixels. The bot must stop within a tolerance of that size, and release a
+ * little early to allow for the key-up delay.
+ */
+const TOL = Math.max(2, 1.4 * SPEED);
+const LEAD = 0.7 * SPEED;
 export const sleepMs = (ms) => new Promise((r) => setTimeout(r, ms));
 export const findings = [];
 export function finding(msg) {
@@ -148,7 +157,14 @@ export async function launch({
     );
     await route.fulfill({ response: res, body: t });
   });
-  await p.goto(GAME_URL + (fresh ? "?new" : ""));
+  // SPEED=N asks the dev build to run the world N times faster (FarmScene).
+  const q = [
+    fresh ? "new" : "",
+    process.env.SPEED ? `speed=${process.env.SPEED}` : "",
+  ]
+    .filter(Boolean)
+    .join("&");
+  await p.goto(GAME_URL + (q ? `?${q}` : ""));
   await sleepMs(1500);
   return { b, p, errs };
 }
@@ -238,7 +254,7 @@ export class Bot {
     for (let i = 0; i < 3; i++) {
       const d = await this.dbg();
       const diff = target - d.pos[axis];
-      if (Math.abs(diff) <= 2) return;
+      if (Math.abs(diff) <= TOL) return;
       const k =
         axis === "x"
           ? diff > 0
@@ -251,7 +267,10 @@ export class Bot {
       const limit = Date.now() + (Math.abs(diff) / 80) * 1000 + 1500;
       for (;;) {
         const c = (await this.dbg()).pos[axis];
-        if ((diff > 0 && c >= target - 0.7) || (diff < 0 && c <= target + 0.7))
+        if (
+          (diff > 0 && c >= target - LEAD) ||
+          (diff < 0 && c <= target + LEAD)
+        )
           break;
         if (Date.now() > limit) break;
       }
@@ -332,7 +351,8 @@ export class Bot {
       right: "ArrowRight",
     }[dir];
     await this.p.keyboard.down(k);
-    await sleepMs(45);
+    // Shorter at SPEED=N, so the turn still moves the player about 3.6 px.
+    await sleepMs(Math.max(5, 45 / SPEED));
     await this.p.keyboard.up(k);
     await sleepMs(30);
   }
