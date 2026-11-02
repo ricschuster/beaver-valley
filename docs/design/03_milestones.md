@@ -15,8 +15,8 @@ the dark edge is Could.
 | # | Milestone | Payoff (done when) | Status | Main blocker |
 | --- | --- | --- | --- | --- |
 | M1 | Define the first playable | The first playable's scope and done list are written below, and the audience, identity, core loop of a day and multiplayer questions are answered. | Done | None |
-| M2 | First playable | Day and energy cycle, farming, selling and a small centre 1 run in the home valley, with rough art. Engine chosen in an ADR. | In progress | Tablet pass and placeholder art (#58) |
-| M3 | Vertical slice | One full cycle of centre 1, near-final quality, built as five slices, one hall room each, starting with year one on the farm (`33_build_order.md`). | Not started | M2, bundle data model (#179) |
+| M2 | First playable | Day and energy cycle, farming, selling and a small centre 1 run in the home valley, with rough art. Engine chosen in an ADR. | In progress | Real-tablet check |
+| M3 | Vertical slice | One full cycle of centre 1, near-final quality, built as five slices, one hall room each, starting with year one on the farm (`33_build_order.md`). | In progress | M2 (the real-tablet check) |
 | M4 | Ring 2 prototype | A haven and about 2 regions reachable from the home valley. Centre 2 in small form. | Not started | M3, ring 2 shape (#20) |
 | M5 | Ring 3 and centre 3 | A logistics-only frontier outpost. Optional, late. Only if M1 to M4 prove fun. | Not started | M4, centre 3 (#5) |
 
@@ -108,10 +108,15 @@ scope is in `13_m3_scope.md` (accepted, #130).
 ### CI and the build check
 
 The `build` job in `.github/workflows/ci.yml` runs format, lint, typecheck,
-tests and the production build. On 2026-10-25 the `main` branch protection
-required only `repo-hygiene`, so auto-merge does not wait for `build`. Making
-`build` required is a repository setting left to the owner. Until then, run
-`npm run check` before pushing.
+tests and the production build. Until 2026-11-02 the `main` branch protection
+required only `repo-hygiene`, so auto-merge did not wait for `build`.
+
+Decision (owner, 2026-11-02): `build` is a required check on `main`, next to
+`repo-hygiene`, and a PR must be up to date with `main`. Auto-merge is on for
+every PR, so this is the only automatic stop for a failing format, lint,
+typecheck, test or production build. The cost is that a cancelled or flaky
+`build` run blocks a merge until it is re-run. If that happens often, revisit
+this. Still run `npm run check` before pushing.
 
 ## Scope control
 

@@ -41,6 +41,23 @@ import {
 const TICK_MS = 7000;
 const TICK_MINUTES = 10;
 
+/**
+ * Dev builds only: `?speed=N` runs the world N times faster (walking, the
+ * clock tick and the axe repeat) so scripted playtests finish sooner. It is 1
+ * in production. Walking takes N sub-steps a frame, so a step stays small
+ * enough not to cross a tile.
+ */
+const DEV_SPEED = import.meta.env.DEV
+  ? Math.min(
+      8,
+      Math.max(
+        1,
+        Math.round(Number(new URLSearchParams(location.search).get("speed"))) ||
+          1,
+      ),
+    )
+  : 1;
+
 /** World pixels per second. */
 const SPEED = 80;
 /** The player's feet box, in world pixels. */
@@ -199,7 +216,7 @@ export class FarmScene extends Phaser.Scene {
 
     this.cameras.main.fadeIn(FADE_MS);
     this.time.addEvent({
-      delay: TICK_MS,
+      delay: TICK_MS / DEV_SPEED,
       loop: true,
       callback: () => {
         this.state.day.act(0, TICK_MINUTES);
@@ -263,17 +280,18 @@ export class FarmScene extends Phaser.Scene {
     const v = this.controls.vector();
     this.facing = facingFrom(v, this.facing);
     const ts = this.map.tileSize;
-    this.pos = move(
-      this.pos,
-      { x: v.x * SPEED * dt, y: v.y * SPEED * dt },
-      PLAYER,
-      ts,
-      (x, y) =>
-        this.map.isBlocked(x, y) ||
-        (this.map.hasSoil && this.state.trees.blocks(x, y)),
-    );
+    for (let i = 0; i < DEV_SPEED; i++)
+      this.pos = move(
+        this.pos,
+        { x: v.x * SPEED * dt, y: v.y * SPEED * dt },
+        PLAYER,
+        ts,
+        (x, y) =>
+          this.map.isBlocked(x, y) ||
+          (this.map.hasSoil && this.state.trees.blocks(x, y)),
+      );
     this.player.setPosition(this.pos.x, this.pos.y);
-    this.repeatUse(delta);
+    this.repeatUse(delta * DEV_SPEED);
     this.pickUp();
 
     const front = facingTile(this.pos, PLAYER, this.facing, ts);

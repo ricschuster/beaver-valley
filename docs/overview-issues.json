@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-10-31",
+  "fetched": "2026-11-01",
   "issues": {
     "5": {
       "t": "Design: what is the third community project?",
@@ -28,12 +28,12 @@
     },
     "16": {
       "t": "Design: the player's story and ending",
-      "state": "open",
+      "state": "closed",
       "labels": ["design-question"]
     },
     "17": {
       "t": "Design: emphasis between farming, relationships and expeditions",
-      "state": "open",
+      "state": "closed",
       "labels": ["design-question"]
     },
     "18": {
@@ -93,7 +93,7 @@
     },
     "58": {
       "t": "WP7: Placeholder art pass",
-      "state": "open",
+      "state": "closed",
       "labels": ["work-package"]
     },
     "59": {
@@ -118,7 +118,7 @@
     },
     "63": {
       "t": "WP12: Choose and apply the project licence",
-      "state": "open",
+      "state": "closed",
       "labels": ["work-package"]
     },
     "67": {
@@ -198,7 +198,7 @@
     },
     "179": {
       "t": "WP17: Bundle data model: rooms, N-of-M rules, hints and the soft gate",
-      "state": "open",
+      "state": "closed",
       "labels": ["next-payoff", "work-package"]
     },
     "180": {
@@ -223,6 +223,41 @@
     },
     "201": {
       "t": "Design: revisit and rebalance all bundle rewards",
+      "state": "open",
+      "labels": ["design-question"]
+    },
+    "261": {
+      "t": "Playtest tiers: a fast run with reduced waits",
+      "state": "open",
+      "labels": ["enhancement"]
+    },
+    "280": {
+      "t": "WP19: House interior map with sealed earth and tier 1",
+      "state": "closed",
+      "labels": ["work-package"]
+    },
+    "281": {
+      "t": "WP20: Carpenter and tier 1 house upgrade",
+      "state": "closed",
+      "labels": ["work-package"]
+    },
+    "282": {
+      "t": "WP21: House cellar map",
+      "state": "open",
+      "labels": ["work-package"]
+    },
+    "286": {
+      "t": "WP22: House tiers 2 and 3",
+      "state": "open",
+      "labels": []
+    },
+    "317": {
+      "t": "Playtest: expert bot gets stuck one tile short of targets",
+      "state": "open",
+      "labels": []
+    },
+    "319": {
+      "t": "Explore a faster, headless playtest",
       "state": "open",
       "labels": ["design-question"]
     }
