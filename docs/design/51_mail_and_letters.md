@@ -37,6 +37,9 @@ Stardew's mail is the model. Its details here are from memory and unchecked.
   em dashes.
 - **No junk mail and no replies.** Every letter has a sender and a reason. The
   player cannot answer a letter.
+- **There is no cap on kept letters (decided 2026-11-02).** Letters are short
+  text and there will be about a hundred across the game, so the save stays
+  small. Stardew keeps no archive, so there is no number to copy.
 - **Who carries it is lore only.** The carriers bring it from the post in
   Hearthwell. The warden head's courier is not tied to the mailbox.
 
@@ -74,17 +77,22 @@ door (`16_bundles.md`).
 
 ## The mailbox and the morning
 
-- **The mailbox** is a map object by the farmhouse door, set on a fixed tile
-  chosen with the farm map. Using it follows the Action intent
+- **The mailbox** is a `mailbox` service marker on the farm map at tile (4,6),
+  the free tile beside the house on the opposite side of the path from the bin
+  at (8,6). The house door is at (6,5). It is a solid object like the bin, so
+  the player uses it from the tile in front. The tile is a placeholder like the
+  rest of the farm map (`05_farm_map_placeholder.md`). Using it follows the Action intent
   (`47_action_intent.md`): X, a click, or a tap on it. A tap from far away
   walks to it first (`48_tap_to_move.md`).
 - **The flag** is a raised mark on the mailbox while any letter is `waiting` or
-  `opened`. The morning report adds the line "There is mail." when new mail has
+  `opened`. Placeholder art is two generated sprites, flag down and flag up,
+  swapped when the state changes. The final art comes with the farm art. The morning report adds the line "There is mail." when new mail has
   arrived overnight, in `src/core/report.ts`.
 - **Opening** shows the letter as a card with the sender, the text and, if any,
   what comes with it. One tap or press closes it. If more letters wait, using
-  the mailbox again opens the next oldest. The player is never forced through a
-  whole pile. The clock pauses while a letter is open.
+  the mailbox again opens the next oldest, and the flag stays up until none
+  wait (decided 2026-11-02; this is how Stardew does it from memory, unchecked).
+  The player is never forced through a whole pile. The clock pauses while a letter is open.
 
 ## The journal's Mail section
 
@@ -112,7 +120,7 @@ door (`16_bundles.md`).
 
 ## Open
 
-- The mailbox tile on the farm map, and the art for the flag.
-- Whether Stardew opens one letter per use or the whole pile. Unchecked.
-- Whether mail arrives on festival mornings in Stardew. Unchecked.
-- A cap on kept letters, if the save grows. None for now.
+- **Mail on festival mornings.** The owner thinks Stardew holds mail until the
+  next normal day and wants it checked on the wiki before this is settled. Until
+  then the build treats it as an option on the delivery rule: deliver on the
+  next day that is not a festival day.
