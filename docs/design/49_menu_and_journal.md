@@ -54,7 +54,7 @@ and the options door (`45`). This note gives them one home.
 
 ## The journal
 
-Two sections, switched with Left and Right or a tap.
+Three sections, switched with Left and Right or a tap.
 
 - **Quests.** Each open request by title. Expand one to read it and see its
   progress under it. The sources are the daily request board and any story
@@ -63,6 +63,8 @@ Two sections, switched with Left and Right or a tap.
 - **Projects.** Each village hall project with the goods it still needs and the
   ones already handed in. This reads the same data as the hall screen
   (`40_hall_layout.md`) and never changes it.
+- **Mail.** Read letters, newest first, with any attachment marked taken or
+  waiting (`51_mail_and_letters.md`). It starts empty and says so.
 - **Reread conversations** (`18_dialogue.md`) wait for the dialogue system.
   They would be a third section, not built now.
 

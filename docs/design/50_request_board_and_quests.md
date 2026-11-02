@@ -48,7 +48,8 @@ this note creates. The saved Quests page is the Stardew source.
   the request record. See "For later".
 - **Story quests share the record but none are written here (decided
   2026-11-02).** In Stardew they come by mail, have no time limit and teach the
-  game. Authoring them needs the story, dialogue and mail notes.
+  game. Authoring them needs the story and dialogue notes. Mail is designed in
+  `51_mail_and_letters.md`.
 - **Both errand achievements stay as note 38 has them:** 10 requests earns the
   Spotted Bow hat and a 500g letter, and 40 earns the Hen Mask and 2,500g.
 
