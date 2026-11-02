@@ -221,7 +221,7 @@ export class Bot {
     await sleepMs(wait);
     // A level 5 skill opens the profession scene after the action that earned
     // it, and the farm stays paused until one is chosen.
-    if (k === "KeyC") await this.pickProfession();
+    if (k === "KeyC" || k === "KeyX") await this.pickProfession();
   }
   /** Answer the profession scene if it is open: key 1, or 2 with PROFESSION=2. */
   async pickProfession() {
@@ -375,8 +375,8 @@ export class Bot {
     return before;
   }
 
-  /** Walk next to a target tile and use the held tool on it. */
-  async useAt(tx, ty, prefer) {
+  /** Walk next to a target tile and press `key` on it (Use by default). */
+  async useAt(tx, ty, prefer, key = "KeyC") {
     // The bot may have left a door since the last walk, so read the map first.
     here = (await this.dbg()).map;
     const cands = [
@@ -409,7 +409,12 @@ export class Bot {
       await this.walkTo(best.x, best.y);
       await this.face(best.dir);
     }
-    await this.key("KeyC", 90);
+    await this.key(key, 90);
     return best;
+  }
+
+  /** Walk next to a target tile and press Action on it (open, pick, harvest). */
+  async actAt(tx, ty, prefer) {
+    return this.useAt(tx, ty, prefer, "KeyX");
   }
 }

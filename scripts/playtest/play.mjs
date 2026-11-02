@@ -218,7 +218,7 @@ async function openService(standX, standY, kind, facing = "down") {
   await bot.walkTo(standX, standY);
   await bot.face(facing);
   const before = await bot.snap();
-  await bot.key("KeyC", 400);
+  await bot.key("KeyX", 400);
   const s = await bot.snap();
   if (!s.scenes.includes(kind))
     throw new Error(`${kind} did not open: ${s.scenes}`);
@@ -411,7 +411,7 @@ async function harvestRipe() {
   await bot.select(HAND);
   for (const p of ripe) {
     const before = await bot.snap();
-    await bot.useAt(p.x, p.y, { x: p.x, y: 12 });
+    await bot.actAt(p.x, p.y, { x: p.x, y: 12 });
     const after = await bot.snap();
     if (
       bot.countBase(after, p.crop.id) !==
@@ -443,7 +443,7 @@ async function forageSweep(max = 99) {
     );
     const f = todo.shift();
     const before = await bot.snap();
-    await bot.useAt(f.x, f.y);
+    await bot.actAt(f.x, f.y);
     const after = await bot.snap();
     if (bot.countBase(after, f.id) !== bot.countBase(before, f.id) + 1) {
       const m = (await bot.dbg()).message;

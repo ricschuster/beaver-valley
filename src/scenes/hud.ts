@@ -68,7 +68,7 @@ export class Hud {
     scene: Phaser.Scene,
     onSelect: (index: number) => void,
     onUse: () => void,
-    onEat: () => void,
+    onAction: () => void,
     onSkills: () => void,
     onRow: () => void,
     onDebug: (() => void) | undefined,
@@ -154,9 +154,9 @@ export class Hud {
       .circle(use.x, use.y - USE_R - 44, EAT_R, 0x8fd18a, 0.45)
       .setStrokeStyle(3, 0xffffff, 0.7)
       .setInteractive({ useHandCursor: true });
-    eat.on("pointerdown", onEat);
+    eat.on("pointerdown", onAction);
     const eatText = scene.add
-      .text(eat.x, eat.y, "Eat", { fontSize: "18px", color: "#ffffff" })
+      .text(eat.x, eat.y, "Action", { fontSize: "16px", color: "#ffffff" })
       .setOrigin(0.5);
     const skills = scene.add
       .rectangle(960 - 16 - 90, 16, 90, 40, 0x000000, 0.5)
