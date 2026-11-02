@@ -75,8 +75,19 @@ code.
 - **A bought cabin costs 100 gold and is built instantly (Stardew, checked,
   decided 2026-11-02).** Cabins chosen at game start are free. Our building
   costs are not settled, so the price is revisited in the tuning note.
-- **Join control is kick and ban, no password (Stardew, decided 2026-11-02).**
-  The host can remove and block a player, kept by their device key.
+- **Join control is kick and ban, no password (Stardew, checked, decided
+  2026-11-02).** Stardew's `kick` disconnects a player who may return. Its `ban`
+  blocks the person, not just their character, for that farm, and `unban` and
+  `unbanAll` undo it. Ours:
+  - **Kick** disconnects a guest, who may rejoin.
+  - **Ban** also blocks their device key from joining this world.
+  - **Unban** has a one-player and an all-players form (Stardew).
+  - The host reaches them from a players list on the host screen, one row per
+    player with Kick and Ban buttons that ask to confirm. Stardew uses typed
+    chat commands, which we have no chat for and which suit tablets badly.
+  - A banned player's character and cabin stay in the save, so an unban restores
+    them. The page does not say what Stardew does with the character.
+  - The banned list is kept in the host's world save, so it survives a restart.
 - **Profit margin at creation (Stardew, decided 2026-11-02).** The host picks 25,
   50, 75 or 100 percent of sale and seed prices to offset more players farming.
   The numbers go in the tuning note.
@@ -175,8 +186,6 @@ not built in M4. The pros and cons, so the idea is not lost:
   guests, not eight. Decided 2026-11-02: 8 stays the target and the real-tablet
   load check sets the tablet cap (it may be lower, such as 4).
 - **Snapshot size**: full state against changes only, settled in the spike.
-- **Kick and ban detail**: how a ban is kept (by the guest's device key) and
-  whether the host can undo it. Settle with the host screen design.
 - **Profit margin numbers**: how the margin scales seed and sale prices belongs
   in `07_tuning_numbers.md`.
 - Existing notes that change when M4 starts: 49 (menu pause), 52 (save), 28
