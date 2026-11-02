@@ -107,6 +107,8 @@ export class FarmScene extends Phaser.Scene {
   private heldMs = 0;
   /** Who aimed last: the cursor or the keys (note 46). Desktop only. */
   private mouseAim = false;
+  /** True while the left button is held in the world, for the axe repeat. */
+  private mouseHeld = false;
 
   constructor() {
     super("farm");
@@ -122,6 +124,7 @@ export class FarmScene extends Phaser.Scene {
     this.exitId = undefined;
     this.heldMs = 0;
     this.mouseAim = false;
+    this.mouseHeld = false;
     this.message = "";
   }
 
@@ -219,13 +222,45 @@ export class FarmScene extends Phaser.Scene {
       .startFollow(this.player, true)
       .ignore(ui);
 
-    // Moving the cursor hands the aim to the mouse. Touch pointers never do.
+    // The mouse (note 46): moving the cursor hands it the aim, left-click uses
+    // the held tool, right-click is Action. Touch pointers never count, and
+    // the HUD gets its own clicks first.
     if (this.controls.profile === "desktop") {
+      this.input.mouse?.disableContextMenu();
+      const mine = (
+        p: Phaser.Input.Pointer,
+        over?: Phaser.GameObjects.GameObject[],
+      ): boolean => !p.wasTouch && !over?.length && !this.hud.covers(p.x, p.y);
       const onMove = (p: Phaser.Input.Pointer): void => {
-        if (!p.wasTouch && !this.hud.covers(p.x, p.y)) this.mouseAim = true;
+        if (mine(p)) this.mouseAim = true;
+      };
+      const onDown = (
+        p: Phaser.Input.Pointer,
+        over: Phaser.GameObjects.GameObject[],
+      ): void => {
+        if (!mine(p, over)) return;
+        this.turnToAim();
+        if (p.rightButtonDown()) this.action();
+        else if (p.leftButtonDown()) {
+          this.mouseHeld = true;
+          this.use();
+        }
+      };
+      const onUp = (p: Phaser.Input.Pointer): void => {
+        if (!p.leftButtonDown()) this.mouseHeld = false;
       };
       this.input.on("pointermove", onMove);
-      this.events.once("shutdown", () => this.input.off("pointermove", onMove));
+      this.input.on("pointerdown", onDown);
+      this.input.on("pointerup", onUp);
+      const release = (): void => void (this.mouseHeld = false);
+      // A button let go while a screen had the farm paused is never seen.
+      this.events.on("resume", release);
+      this.events.once("shutdown", () => {
+        this.events.off("resume", release);
+        this.input.off("pointermove", onMove);
+        this.input.off("pointerdown", onDown);
+        this.input.off("pointerup", onUp);
+      });
     }
 
     this.cameras.main.fadeIn(FADE_MS);
@@ -329,6 +364,20 @@ export class FarmScene extends Phaser.Scene {
     }
   }
 
+  /** A click turns the farmer toward the aim, on click only (note 46). */
+  private turnToAim(): void {
+    this.mouseAim = true;
+    const ts = this.map.tileSize;
+    const p = this.input.activePointer;
+    const w = this.cameras.main.getWorldPoint(p.x, p.y);
+    const cursor = { x: Math.floor(w.x / ts), y: Math.floor(w.y / ts) };
+    this.facing = aimAt(
+      tileOf(this.pos, PLAYER, ts),
+      cursor,
+      this.facing,
+    ).facing;
+  }
+
   /** A key press or a step hands the aim back to the faced tile. */
   private keyAim(): void {
     this.mouseAim = false;
@@ -366,7 +415,7 @@ export class FarmScene extends Phaser.Scene {
     if (
       !axe ||
       !this.state.trees.at(front.x, front.y) ||
-      !(this.controls.useHeld() || this.hud.useHeld)
+      !(this.controls.useHeld() || this.hud.useHeld || this.mouseHeld)
     ) {
       this.heldMs = 0;
       return;

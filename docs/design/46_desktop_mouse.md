@@ -111,7 +111,13 @@ and checking as well as the tool. So:
    tile, and the highlight is red on a blocked tile. Checked in a headless
    browser with mouse moves.
 3. Left-click use, hold to repeat, the HUD hit test, the touch-pointer filter.
-4. The wheel and the context menu fix.
+   Done, with right-click as Action and `disableContextMenu` (from step 4). A
+   click turns the farmer toward the aim first. A press over the HUD or any
+   interactive object never reaches the world. Checked in a headless browser:
+   a near click aims at the cursor tile, a far click turns and tills the
+   adjacent tile, a toolbar click selects and uses nothing, the context menu is
+   prevented. Hold-to-repeat with the axe is not yet checked by playtest.
+4. The wheel (the context menu fix landed in step 3).
 5. The playtest additions.
 
 ## Open
