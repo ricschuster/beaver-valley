@@ -16,8 +16,8 @@ The saved Controls page lists keys only, so none of them is checked.
   is not built" below for what ships first.
 - **Holding left-click repeats**, the same as holding the Use key does now (the
   axe swing repeat in `repeatUse`).
-- **The wheel changes the toolbar slot** (Stardew, from memory), next on one
-  direction and previous on the other.
+- **The wheel changes the toolbar slot** (Stardew, from memory), wheel down is
+  next, wheel up is previous (decided 2026-11-02).
 - **Desktop only.** The touch profile never reads the mouse, and the desktop
   profile ignores touch pointers (`pointer.wasTouch`), so a stray touch on a
   touch laptop does nothing.
@@ -46,13 +46,13 @@ The saved Controls page lists keys only, so none of them is checked.
     built. Stardew's real value is not checked.
 - **Facing follows the aim.** The 4-way facing (`Facing`) is set from the aimed
   tile's direction when a click happens, not on every cursor move, so the
-  sprite does not spin while the cursor crosses the farm. Open: whether it
-  should turn on hover too.
+  sprite does not spin while the cursor crosses the farm. It does not turn on
+  hover (decided 2026-11-02).
 - **The highlight** (the existing `target` marker) sits on the aimed tile while
   in either mode. In the mouse mode, it is red when the tile is out of the map
   or the use could never work there (a wall); a tile that is merely the wrong
-  tool for the job still gets the normal message on click. Open: whether to
-  grey it instead of red.
+  tool for the job still gets the normal message on click. Red, as
+  in Stardew's blocked tap-to-move target (decided 2026-11-02).
 - **Pointer to tile:** use `camera.getWorldPoint`, so the camera zoom and scroll
   are handled, then divide by the tile size. The pointer position is read at
   click time, not cached from the last move.
@@ -110,10 +110,7 @@ and checking as well as the tool. So:
 ## Open
 
 - **Reach value and shape:** 2 tiles Chebyshev is a placeholder.
-- **Turn on hover or only on click.**
-- **Red or grey highlight** for an impossible tile.
-- **Wheel direction** (which way is next).
-- **Eat with the mouse:** food is used from the toolbar in Stardew; ours has the
-  F key. Does a left-click with food held eat? Likely yes, since use on a held
-  food is the Stardew rule, but it is not checked against the build.
 - **Action,** as above.
+
+Settled 2026-11-02: turn on click only, red highlight, wheel down is next, and
+a left-click with food held eats it (Stardew, from memory; F stays as ours).
