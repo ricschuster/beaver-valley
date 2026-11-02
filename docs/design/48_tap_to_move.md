@@ -18,6 +18,19 @@ an NPC or animal to walk next to them and interact.
   tree selects the axe and leaves it in hand. The toolbar follows the pick.
 - **A tap on an object walks next to it and acts.** Which intent depends on the
   object, below. A tap with no route turns the target red and the farmer stays.
+- **Holding a finger follows it in a straight line, with no routing (Stardew,
+  decided 2026-11-02).** The saved Mobile Controls page says follow-my-finger
+  moves directly toward the finger without routing around blocking objects. The
+  farmer stops at a tree or rock until the finger moves round it. A tap still
+  routes (below).
+- **A tap on a seedling picks the axe (decided 2026-11-02).** One rule for
+  everything that grows as a tree. Stardew's seedling tool is not checked.
+- **An auto-pick pulses the new toolbar slot (ours, decided 2026-11-02).** A
+  short pulse of about half a second, so the player sees why the tool changed.
+  Stardew shows only the moved highlight, and the saved page warns that edge taps
+  can change the tool unexpectedly.
+- **A tap on a plot that is not ripe just walks, with no hint (Stardew, decided
+  2026-11-02).** The options screen already says a tap cannot farm.
 - **The stick scheme is unchanged.** Until this is built, both touch schemes use
   the stick (note 45).
 
@@ -28,6 +41,7 @@ an NPC or animal to walk next to them and interact.
 | Bare ground, reachable | Walks there |
 | Bare ground, no route | Red target, stays |
 | Tree, stump or seedling | Walks beside it, selects the axe, fires Use |
+| Weed (note 29) | Walks beside it, fires Use with the held tool. Any tool clears a weed, so the pick does not change |
 | Ripe crop, forage, fruit tree with fruit | Walks beside it, fires Action |
 | Service (shop, bin, hall, festival) | Walks beside it, fires Action |
 | Later: NPC, animal, chest | Walks beside it, fires Action |
@@ -38,19 +52,20 @@ an NPC or animal to walk next to them and interact.
   target, then fires. Standing on the target tile is never used, so a walkable
   crop or forage tile is approached from a neighbour like a blocked one.
 - **The aimed tile is the target tile** for the whole walk and the fire, so the
-  highlight sits on it from the tap. This is a third aim source beside keys and
+  highlight sits on it from the tap. While a hold follows, the aimed tile is the
+  tile under the finger. This is a third aim source beside keys and
   the mouse in note 46, and a touch-only one.
 - **Seedlings** are cleared with the hoe or can in the build today, and with the
-  axe as well. The tap picks the axe, which also clears them. Open.
+  axe as well. The tap picks the axe, which also clears them.
 - **Energy:** a swing on an exhausted farmer fires and shows the usual line.
 
 ## Tap and hold
 
 - A **tap** is a press released within 250 ms and 12 px of where it began. It sets
   a target and the farmer walks there on their own.
-- A **hold** longer than that makes the farmer follow the finger: the target is
-  the tile under the finger, updated as it moves, and the farmer walks toward it
-  until the finger lifts (note 27).
+- A **hold** longer than that makes the farmer follow the finger: the farmer
+  walks in a straight line toward the finger until it lifts (note 27). It does
+  not use `findPath`, so a blocker stops the walk.
 - **Holding on an object** that was tapped as in the table keeps repeating the
   swing as the axe repeat does today, while the finger stays down and the tile
   still has something to chop.
@@ -127,10 +142,9 @@ scene. The pending action never fires after an interrupt.
 ## Open
 
 - **Tap and hold numbers, re-plan wait, give-up count:** placeholders.
-- **Seedlings:** the axe, or hoe and can as the build allows today.
-- **Tapping a plot that is not ripe:** walks only, but a "watered" or "dig first"
-  hint might help. Probably not worth a message.
+- **Rocks and boulders** wait for the pickaxe and the mines. The table gets a row
+  when they exist.
+- **Gifting by tap.** The saved page says a tap on a villager with a giftable
+  item selected gives it. That waits for villagers and the gift system.
 - **Diagonal smoothing** of the four-way route, if the walk looks stiff.
-- **Whether the toolbar should show the auto pick** with a short flash when it
-  changes, since the slot moves without the player pressing it.
 - **Real tablet check** (#59, #63).
