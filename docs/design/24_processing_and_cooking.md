@@ -82,8 +82,11 @@ The four added machines:
 | Fish smoker | A fish and coal | Smoked fish, worth double, quality kept | Placeholder | Riverside starts with it. Others craft it later. |
 | Crystalarium | A gem or mineral | Another of the same | Placeholder, long | Bundle 27, Harvest Feast |
 
-- The seed maker's recipe source in Stardew is not checked (the saved pages do
-  not cover it). The fish smoker's craft costs are likewise unchecked.
+- Stardew's seed maker is a farming level 9 recipe (25 wood, 1 gold bar, 10
+  coal). Its fish smoker recipe is bought at the fish shop for 10,000g and
+  crafted from 10 hardwood and one each of three jellies (checked against the
+  saved wiki pages, SC-20). Ours keep the bundle sources above and the costs
+  stay placeholders.
 - Mayonnaise machine and oil maker: farming level recipes, level 2 and level 8.
   Stardew's other machine unlocks are also farming levels (bee house 3, jar 4,
   cheese press 6, loom 7, keg 8), but ours come from bundles first as decided.
@@ -155,8 +158,11 @@ own names, flavour and ingredients apply to every one.
 
 - **The 81 includes more than ring 1 can supply.** Some Stardew recipes come
   from a TV chef show or from Ginger Island, and we have neither. Those slots
-  go to ring 2 and ring 3 as dishes of our own, not to copies. I did not count
-  how many, and the Guidebook is not checked for this.
+  go to ring 2 and ring 3 as dishes of our own, not to copies. Counted from the
+  saved Cooking page (SC-21): 32 of the 81 are taught by the TV chef show, 3 are
+  bought or traded on Ginger Island, and 2 more come from the island villager's
+  friendship mail. That is about 37 slots to fill with our own dishes, if we
+  copy none of them.
 - **Ring 2 and ring 3 recipes wait for those rings.** Their regions are not
   designed yet. This note reserves the count, and each region note lists its
   dishes. The first build and M3 need ring 1 only.
@@ -206,7 +212,6 @@ skills and rings gives each of them a second use.
   more can be crafted, are placeholders. Stardew's crystalarium recipe source
   is unchecked here. The rest of the reward pass is in `16_bundles.md`.
 - Our own items to stand in for Stardew's special craft ingredients.
-- The seed maker and fish smoker recipe sources, once the pages are saved.
 - Machine times and sell prices are set for the jar, keg and bee house in
   `07_tuning_numbers.md` (2026-10-31, Stardew's). The charcoal kiln (30 min) and
   seed maker (20 min) are set too.
