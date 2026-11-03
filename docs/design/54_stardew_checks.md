@@ -84,6 +84,8 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 | SC-25 | 55 | How many tiles across and down is the Standard farm, and how many are tillable? | no | open | |
 | SC-26 | 07 | Can the host change the profit margin after the game has started, and when does it take effect? | no | open | |
 | SC-27 | 50 | What chance does a day have a request on the board, and on what day does the board start posting? | no | open | |
+| SC-28 | 38 | What rare item does Stardew mail for completing the full villager roster, and from which crop? | no | open | |
+| SC-29 | 55 | After the player clears the starting clutter, do rocks, branches and stumps return on the farm, and when? | no | open | |
 
 ## Not Stardew questions
 
