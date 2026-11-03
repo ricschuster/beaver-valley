@@ -59,14 +59,14 @@ Read from the image, not from memory. Positions are as seen on screen.
 | Greenhouse ruin | North, left of centre, on a grass patch | `31_farm_growth.md`. Repaired in place by the Larder reward |
 | Farm cave | North cliff, west of the greenhouse | `31_farm_growth.md`. Empty until the earnings mark |
 | Big pond | South centre | Watering can. River fish table (`32_farm_types.md`) |
-| Small pond | East side | Optional, decorative. A second refill point |
+| Small pond | East side | Decided 2026-11-03: two ponds. A second refill point |
 | Exits | See below | `19_valley_layout.md` |
 | Trees, stumps, rocks, weeds | Scattered over the field, thinner near the house | See "Starting clutter" |
 
 ## Exits
 
 `19_valley_layout.md` gives the farm three exits: Forest, Hearthwell and River
-delta. A draft assignment, to match where the house sits and where the sea is:
+delta. Decided 2026-11-03, to match where the house sits and where the sea is:
 
 - **North:** Forest. The path leaves the top of the field.
 - **East, beside the house:** Hearthwell. The road starts by the mailbox.
@@ -77,14 +77,16 @@ starts at a `start` entry by the house door.
 
 ## Starting clutter
 
-Note 43 plans about 30 mature trees on day 1. The screenshot shows far more
-trees than that, plus a lot of stone and weed. Our clutter is a tuning matter:
-it must be enough to feel like a neglected farm and not so much that the first
-day is only clearing.
+**Decided 2026-11-03: dense like Stardew.** The whole field starts full of
+trees, stumps, boulders, branches, bushes and weeds, as the screenshot shows.
+Clearing the farm is the early game.
 
-Proposal: keep note 43's wood economy as the cap (about 500 wood to clear), so
-a denser look uses more bushes, stumps and weeds, which give little or nothing,
-and not more trees. Numbers go in `07_tuning_numbers.md` after the map exists.
+This supersedes note 43's "about 30 mature trees". Many more trees means far
+more wood than the 450 for house tier 1, so the wood economy in note 43 needs a
+second look (tree count, wood per tree, whether the carpenter still gates on
+wood). Flagged there. The exact starting counts are not taken from the
+screenshot; set them when the first Tiled draft exists and tune in
+`07_tuning_numbers.md`.
 
 ## Size
 
@@ -95,11 +97,12 @@ tile count the tablet can show (`06_map_style.md`) and the tillable share in
 ## Open
 
 - **Size and shape of the field** in tiles, and the tillable count.
-- **Exit directions** above, and whether the farm shows a fourth, hidden exit
-  later (the cave reward, a back gate).
-- **How dense the day 1 clutter is** (see above).
-- **Whether the small pond exists.** Note 19 says the farm has a pond for the
-  watering can. A second one is extra work for little.
+- **Whether the farm gets a fourth, hidden exit** later (the cave reward, a
+  back gate). The dark opening in the screenshot's bottom right corner might be
+  one.
+- **Starting clutter counts** and the knock-on to note 43's wood economy.
+- **The small pond's fish.** Note 19 says the farm has one pond; it now has two.
+  Whether both hold fish is for the fishing note (#181).
 - **Stardew unchecked:** whether the house, bin, greenhouse and cave positions
   are fixed on Standard, and how large its field is (SC-24, SC-25).
 - **Other farm types** (Woodland, Riverside, Hilltop, Meadow) each need their
