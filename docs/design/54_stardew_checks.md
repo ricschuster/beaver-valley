@@ -72,9 +72,9 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 | SC-23d | 22 | Does a better pickaxe gate deeper ore? | no | done | No hard gate; hits per node by tier (basic 3 on copper, steel 6 on iridium). |
 | SC-23e | 22 | Coal sources and furnace time? | no | done | Rocks, dust sprites, blacksmith, kiln. Furnace 30 min copper, 2 h iron, about 5 h gold. Not a day. Note 22 corrected. |
 | SC-23f | 22 | Does the blacksmith sell ore and coal? | no | done | Yes: copper, iron, gold ore and coal. |
-| SC-23g | 22 | Bar sale values 60g, 120g, 250g? | no | open | Ore buy prices year 1: 75, 150, 400g, coal 150g. Bar sale values not on a saved page; check by play or Bars page. |
+| SC-23g | 22 | Bar sale values 60g, 120g, 250g? | no | done | Yes: copper bar 60g, iron 120g, gold 250g. Smelt times 30 min, 2 h, 5 h. |
 | SC-23h | 22 | Furnace given after first copper? | no | done | Recipe from the blacksmith after collecting copper; craft 20 copper ore, 25 stone. |
-| SC-23i | 22 | Charcoal kiln recipe source? | no | done | Foraging level 2 (20 wood, 2 copper bars); also a community bundle reward (bundle name unconfirmed). |
+| SC-23i | 22 | Charcoal kiln recipe source? | no | done | Foraging level 2 (20 wood, 2 copper bars); also the reward of the Construction bundle (Crafts Room). |
 | SC-23j | 22 | Defeat: one lost item returned by mail? | no | done | Tools mailed back next day; one lost item bought back from the guild owner. Gold loss 5 to 25%, max 15,000g. |
 | SC-23k | 22 | Top tool tier price? | no | done | 25,000g and 5 iridium bars. |
 
