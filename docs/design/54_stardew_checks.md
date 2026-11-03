@@ -77,6 +77,8 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 | SC-23i | 22 | Charcoal kiln recipe source? | no | done | Foraging level 2 (20 wood, 2 copper bars); also the reward of the Construction bundle (Crafts Room). |
 | SC-23j | 22 | Defeat: one lost item returned by mail? | no | done | Tools mailed back next day; one lost item bought back from the guild owner. Gold loss 5 to 25%, max 15,000g. |
 | SC-23k | 22 | Top tool tier price? | no | done | 25,000g and 5 iridium bars. |
+| SC-24 | 55 | Are the house, bin, greenhouse and cave positions fixed on the Standard farm, as the screenshot suggests, or do they vary? | no | open | |
+| SC-25 | 55 | How many tiles across and down is the Standard farm, and how many are tillable? | no | open | |
 
 ## Not Stardew questions
 
