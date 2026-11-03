@@ -63,9 +63,9 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 
 | ID | Note | Question | Blocks | Status | Answer |
 | --- | --- | --- | --- | --- | --- |
-| SC-20 | 24 | Seed maker recipe source and fish smoker craft costs. | no | open | |
-| SC-21 | 24 | How many cooking recipes come from TV or Ginger Island, so we know how many slots need dishes of our own? | no | open | |
-| SC-22 | 15 | Character frame and portrait sizes. | no | open | |
+| SC-20 | 24 | Seed maker recipe source and fish smoker craft costs. | no | done | Seed maker: farming level 9; 25 wood, 1 gold bar, 10 coal. Fish smoker: fish shop recipe 10,000g; 10 hardwood and 3 jellies. |
+| SC-21 | 24 | How many cooking recipes come from TV or Ginger Island, so we know how many slots need dishes of our own? | no | done | 32 TV, 3 island sources, 2 from the island villager's mail: about 37 of 81. |
+| SC-22 | 15 | Character frame and portrait sizes. | no | done | Sprite frames 16 by 32; portraits 64 by 64. Note 15 already matches. |
 | SC-23 | 22 | The mines claims marked "from memory" in note 22 (list them when asked). | no | open | |
 
 ## Not Stardew questions
