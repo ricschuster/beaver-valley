@@ -39,6 +39,9 @@ questions only our own playtests can answer.
 7. Numbers in `07_tuning_numbers.md` marked "from memory" are not rows. They are
    placeholders that playtests will tune. Add a row only if a number needs to be
    right, not just close.
+8. An answer records what Stardew does. It is never a decision about what we
+   do. Whether to copy, change or drop the behaviour is settled separately in
+   the design note.
 
 Status values: `open`, `asked` (question sent to the owner), `done`.
 
