@@ -82,6 +82,7 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 | SC-23k | 22 | Top tool tier price? | no | done | 25,000g and 5 iridium bars. |
 | SC-24 | 55 | Are the house, bin, greenhouse and cave positions fixed on the Standard farm, as the screenshot suggests, or do they vary? | no | open | |
 | SC-25 | 55 | How many tiles across and down is the Standard farm, and how many are tillable? | no | open | |
+| SC-26 | 07 | Can the host change the profit margin after the game has started, and when does it take effect? | no | open | |
 
 ## Not Stardew questions
 
