@@ -58,7 +58,8 @@ code.
 - **A day ends when every player is in bed, with a timer fallback (Stardew,
   decided 2026-11-02).** The clock is the host's and shared. Players still up see
   who is left. At the day limit everyone who is not in bed passes out, with the
-  usual cost (`src/core/sleep.ts`).
+  usual cost (`src/core/sleep.ts`). Decided 2026-11-03 (ours): the pass-out
+  cost is the single player cost, with no separate multiplayer rule.
 - **A dropped guest does not stall the day (decided 2026-11-02, ours).** A
   guest who disconnects counts as in bed for the day end, and their character is
   put in their cabin. They rejoin as the same character by their key.
@@ -201,7 +202,8 @@ From the saved Multiplayer page. Not copied, only compared.
 - **Menus and the clock:** Stardew does not pause for menus in multiplayer. Time
   only stops for the end-of-day screens, festivals with an event, and the host's
   pause command. At 02:00 a player with a menu open does not pass out until it
-  closes. We keep "no menu pause" and should copy the 02:00 rule.
+  closes. We keep "no menu pause". Decided 2026-11-03 (ours, not Stardew): at 02:00
+  an open menu closes by itself, so one player cannot stall the day end.
 - **Wallet:** Stardew can change the mode later and splits money evenly when
   separation is turned on. Sale prices use the professions of all online players
   that raise the price most.
