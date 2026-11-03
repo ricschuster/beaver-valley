@@ -316,7 +316,7 @@ are from memory and unchecked.
   every 10 floors, no healing.
 - Opening day: Spring day 5. Dry-streak ladder odds: 1 percent plus 0.5 percent per
   miss, capped at 25 percent. A killed creature rolls the same chance.
-- Smelting: 5 ore and 1 coal a bar (2 coal for Hearthsilver), a day per batch.
+- Smelting: 5 ore and 1 coal a bar (2 coal for Hearthsilver), 30 minutes for copper, 2 hours for iron and about 5 hours for gold, as Stardew (decided 2026-11-03).
   The smith dwarf sells copper, iron and gold ore and coal, never bars. She gifts
   the furnace the morning after the first copper ore is handed over. Crafting it
   at mining level 4 makes more furnaces.
