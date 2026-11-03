@@ -205,7 +205,7 @@ coal. She does not sell bars and does not sell Hearthsilver ore. Stardew's
 blacksmith sells ore and coal too (checked, SC-23f). A non-miner can therefore
 buy ore, smelt it and finish the Smith's bundle without fighting or digging.
 Prices (decided, placeholders): copper ore 25g, iron ore 50g, gold ore 100g, coal
-50g, about 2.5 times the bar's sale value (60g, 120g and 250g, still unchecked, SC-23g).
+50g, about 2.5 times the bar's sale value (60g, 120g and 250g, checked, SC-23g).
 Stardew's year 1 prices are copper ore 75g, iron ore 150g, gold ore 400g and coal
 150g, so ours are cheaper by design. A bar
 then costs about 175g, 300g and 550g to buy and smelt, so buying never beats
@@ -230,8 +230,7 @@ stretch but within reach late in the first two seasons.
 turns wood into coal, so a player who does not dig still has fuel (10 wood for 1
 coal, placeholder, Stardew's ratio from the wiki). In Stardew the kiln is a
 recipe of Foraging level 2 (20 wood and 2 copper bars) and also a reward of a
-Community Center foraging bundle (checked, SC-23i; the page lists the reward, so
-which bundle is still to confirm). Placeholder crafting cost: 2 copper bars
+Community Center Construction bundle (wood, stone and hardwood; checked, SC-23i). Placeholder crafting cost: 2 copper bars
 and wood. The Smith's bundle now gives 20 coal. The Hearth room's other two bundles give
 torches and a loom (`16_bundles.md`).
 
