@@ -108,6 +108,11 @@
       browser as you go. When done, press <b>Copy answers</b> and paste them
       into the chat.
     </div>
+    <div class="sub" style="border-left: 4px solid #c9a227; padding-left: 10px">
+      <b>These are facts about Stardew, not decisions for us.</b> Say what the
+      game does, even if you would not want it here. What Beaver Valley does is
+      decided later, in the design notes.
+    </div>
     <div id="list"></div>
     <div class="bar">
       <button id="copy">Copy answers</button>
@@ -215,7 +220,7 @@
       }
       function out() {
         return (
-          "Stardew play answers\n" +
+          "Stardew play answers (facts about what Stardew does, NOT design decisions for Beaver Valley)\n" +
           QS.map(([id, , text]) => {
             const e = S[id] || {};
             const a =
