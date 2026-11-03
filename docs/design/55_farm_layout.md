@@ -97,13 +97,16 @@ tablet playtest.
 
 ## Size
 
-Not settled. The placeholder is 40 by 30 tiles. The real size follows the
-tile count the tablet can show (`06_map_style.md`) and the tillable share in
-`32_farm_types.md` (Standard is 100 percent). Decide with the first Tiled draft.
+**Decided 2026-11-03: about 80 by 65 tiles, as Stardew's Standard farm.** That
+size is the owner's memory and unchecked (SC-25), so treat it as a target to
+confirm. The placeholder is 40 by 30. The big field holds the dense clutter and
+about 100 trees (note 43) with room to farm. The camera scrolls, and whole
+number zoom shows only part of the farm on a tablet (`06_map_style.md`). The
+tillable share per farm type follows `32_farm_types.md`.
 
 ## Open
 
-- **Size and shape of the field** in tiles, and the tillable count.
+- **The exact tillable count and the field shape.**
 - **Whether the farm gets a fourth, hidden exit** later (the cave reward, a
   back gate). The dark opening in the screenshot's bottom right corner might be
   one.
