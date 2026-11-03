@@ -158,7 +158,9 @@ rest is mine and open to change.
   with its coin and wood price (10,000g and 450 wood, placeholders). It needs
   both: coin from the wallet and wood from the pack, and shows which is
   missing. Stardew also sells the wood itself, for 4,500g in year 1 and 22,500g
-  in year 2 or later. Proposed: not in the first playable.
+  in year 2 or later. Decided 2026-11-03: yes, ours sells wood at those prices
+  (placeholders), since the farm starts dense with trees (note 43). Chopping
+  stays cheaper, and the sale gives coin a second use.
 - **Timing (as Stardew, by analogy).** The Carpenter's Shop page says work
   begins the day after the order and most builds are ready at the start of the
   second day after the order. The house takes three days (Farmhouse page), so

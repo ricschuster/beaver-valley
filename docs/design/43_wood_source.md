@@ -10,16 +10,19 @@ yields, stumps, growth, spread, regrowth) stay in note 36 and are not repeated.
 ## Decisions
 
 - **Wood comes from farm trees in the first playable.** The Forest map does not
-  exist, so the farm is the only place for trees now. The carpenter does not
-  sell wood yet (`41_house.md`). The Forest adds more trees when it is built.
-- **Many trees, so wood is easy.** (Revisit: note 55 sets day 1 clutter dense
-  like Stardew, 2026-11-03, so the count below is too low and the wood
-  numbers need redoing.) About 30 mature trees stand on the farm on
-  day 1: 27 mature, 2 young and 1 seedling. Chopping the mature ones and
-  lifting their stumps gives about 500 wood at foraging level 0 and about 600 at
-  level 4, so the 450 for house tier 1 is one season of chopping, not a grind. Planting is then
-  a choice for the player who wants wood forever, and not a chore to reach the
-  house. This is ours. Stardew's starting tree count is not checked.
+  exist, so the farm is the only place for trees now. The carpenter sells wood
+  (decided 2026-11-03, `41_house.md`), but chopping is far cheaper. The Forest adds more trees when it is built.
+- **Many trees, so wood is plentiful and energy is the limit (revised
+  2026-11-03).** The day 1 farm is dense like Stardew's (note 55). The working
+  target is about 100 trees: about 80 mature, 12 young and 8 seedlings,
+  with the exact count set on the first Tiled draft. All chopped and all stumps
+  lifted gives about 1,500 wood at foraging level 0, which is over three times
+  the 450 for house tier 1. That is fine, because wood is not the gate. Energy
+  is: a tier 0 tree and its stump cost about 30 energy together, so the whole
+  stand is thousands of energy, many days of work. The player clears what they
+  need, in the order they need it. This is ours. Stardew's starting tree count
+  is not taken from a saved page; the owner's screenshot only shows it is
+  dense.
 - **Trees are scattered across the field, as Stardew's clutter is.** They
   stand on the ground the player later wants to farm, so clearing them is part
   of making room. Stardew's exact tree layout is not checked.
@@ -72,7 +75,9 @@ is in the toolbar from tier 0. The tiers are #194.
   cannot be chopped.
 - **Count on the placeholder farm:** 30 trees. 8 stand on `soil` tiles (rows 14
   to 17 of the patch, so the playtest rows stay clear), and the rest on open
-  grass. A bigger real farm scales the count (ours).
+  grass. The placeholder keeps this until the real farm replaces it. The real
+  farm has about 100 (decision above), spread over the field and thinner near
+  the house (note 55).
 - **Blocking:** seedlings, young and mature trees and stumps block movement. A
   seed in the ground does not. The `collision` layer is not edited. Core reads
   trees from its own state (`GameState.trees`, saved with the game), so a felled
@@ -90,7 +95,7 @@ is in the toolbar from tier 0. The tiers are #194.
 | --- | --- |
 | One mature tree | 12, plus 1 per foraging level up to 4, so 12 to 16 (note 36, ours) |
 | Its stump | 4 to 9 |
-| The 27 mature starting trees, all chopped and all stumps lifted | about 500 at level 0, 600 at level 4 |
+| The 80 mature starting trees, all chopped and all stumps lifted | about 1,500 at level 0, 1,800 at level 4 |
 | Young tree | 4 |
 
 | Sink | Wood |
@@ -100,10 +105,15 @@ is in the toolbar from tier 0. The tiers are #194.
 | Wood fence | 2 each |
 | Campfire, brazier, torch, machines | 1 to 60 each (`34_crafting.md`) |
 
-- Fences and machines compete with the house. Fencing 40 tiles costs 80, and
-  one machine is 40. A player who builds early still reaches 450 by the end of
-  summer from the first stand plus spread, since each tree plants a seed 15
-  percent a night (note 36). Check in a playtest.
+- Fences and machines no longer compete with the house for long: 450 for tier 1
+  plus fencing 40 tiles (80) and a few machines (40 each) is well under the
+  stand. The real limit is the energy to chop, so a player who clears fields
+  first reaches 450 by about the end of the first season. Check in a playtest.
+- **The carpenter also sells wood** (4,500g in year 1, as Stardew), so a player
+  short on time can buy the last of the 450.
+- **Surplus wood** has sinks later: chests, fences, the charcoal kiln (10 wood
+  for 1 coal, note 22) and bundles that ask for wood. If wood piles up with no
+  use, raise a sink and do not cut the trees, since the clutter is the look.
 - Sap and moss come with the same chop, so trees also feed fertilizer and
   crafting (note 36). Sap needs no extra work here.
 - The debug menu's wood row stays for testing.
@@ -136,7 +146,10 @@ is in the toolbar from tier 0. The tiers are #194.
   hold to ship one on the shipping bin (`28_shipping_bin.md`). Settle in the
   tablet check.
 - **Stump swing count and its energy.** Placeholders until the ladder.
-- **The tree count** is ours. Playtest sets it, with the 450 target.
+- **The tree count** is ours: about 100 now (above). Playtest sets it, with the
+  450 target and the first season's clearing pace.
+- **Where the first crops go on day 1.** A dense field has no free soil. Whether
+  a small patch near the house starts cleared is open in note 55.
 - **Hardwood** and large stumps wait for the Woodland farm type
   (`32_farm_types.md`) and the axe tiers.
 - **Tapper and Lumberjack professions and the sawmill** still wait for a later
