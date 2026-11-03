@@ -209,8 +209,7 @@ From the saved Multiplayer page. Not copied, only compared.
   that raise the price most.
 - **Cabins:** Stardew starts with up to 3 (7 on PC) and Robin builds more for 100
   gold each, instantly. A cabin is upgraded by its occupant. Demolishing one
-  removes the occupant and puts their things in a chest. Our price for a bought
-  cabin is still open, and 100 gold is the reference point.
+  removes the occupant and puts their things in a chest. Our bought cabin price is 100 gold, built instantly (checked, above).
 - **Quests and progress:** quests, recipes and mail are per player, while mine
   progress, the museum, the bridge and hall bundles are shared. A bundle's
   reward applies to everyone, but only the player who finished it collects the

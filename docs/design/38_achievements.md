@@ -126,8 +126,10 @@ goal. Ours does.
 We have 46 fish (`21_fishing.md`), so "24 different" is a little over half and
 stands unless play says otherwise. Algae, weeds and jellies count toward these
 in Stardew and trash does not, so water plants count and trash does not here.
-The mail gift for the full roster is a rare keepsake. Which one is open, since
-we have no counterpart to Stardew's rare fruit yet.
+The mail gift for the full roster is a rare seed or fruit, as Stardew's is
+(decided 2026-11-03). Which item is open, since we have no rare crop yet, and
+what Stardew gives is unchecked (SC-28). It needs a rare crop added to the
+crop data.
 
 ## Mines, combat and arcade
 

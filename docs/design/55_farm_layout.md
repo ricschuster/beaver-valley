@@ -55,13 +55,26 @@ Read from the image, not from memory. Positions are as seen on screen.
 | --- | --- | --- |
 | House | North-east corner, door facing south | `41_house.md`. Footprint 9 by 5 and never changes |
 | Bin | Right of the house door, a few tiles from it | `28_shipping_bin.md`, owner SC-03 |
-| Mailbox | By the house, on the path to the road | `51_mail_and_letters.md` |
+| Mailbox | Beside the house, on the road path east of the door (decided 2026-11-03) | `51_mail_and_letters.md` |
 | Greenhouse ruin | North, left of centre, on a grass patch | `31_farm_growth.md`. Repaired in place by the Larder reward |
-| Farm cave | North cliff, west of the greenhouse | `31_farm_growth.md`. Empty until the earnings mark |
+| Farm cave | North cliff, west of the greenhouse | `31_farm_growth.md`. A small interior map you walk into (decided 2026-11-03), empty until the earnings mark |
 | Big pond | South centre | Watering can. River fish table (`32_farm_types.md`) |
-| Small pond | East side | Decided 2026-11-03: two ponds. A second refill point |
+| Small pond | East side | Decided 2026-11-03: two ponds. A second refill point, no fish |
 | Exits | See below | `19_valley_layout.md` |
 | Trees, stumps, rocks, weeds | Scattered over the field, thinner near the house | See "Starting clutter" |
+
+## Waking up
+
+The new game and every morning begin at the bed inside the house, and the player
+walks out the door (decided 2026-11-03, as Stardew). The first `start` entry
+sits just outside the door for the very first scene, after any intro.
+
+## Ponds and fish
+
+Two ponds (decided 2026-11-03). Both refill the watering can. Only the big
+south pond holds fish, on the river table (`32_farm_types.md`). The small east
+pond is for water and looks. Note 19 says the farm has one pond; this adds a
+second, and fishing stays as that note and #181 settle it.
 
 ## Exits
 
@@ -71,6 +84,9 @@ delta. Decided 2026-11-03, to match where the house sits and where the sea is:
 - **North:** Forest. The path leaves the top of the field.
 - **East, beside the house:** Hearthwell. The road starts by the mailbox.
 - **South:** River delta. The opening at the bottom, past the big pond.
+
+There is no hidden fourth exit (decided 2026-11-03). The screenshot's dark
+opening in the bottom right corner is not copied.
 
 Entries sit beside each exit, not inside it (the map contract). The new game
 starts at a `start` entry by the house door.
@@ -87,6 +103,13 @@ second look (tree count, wood per tree, whether the carpenter still gates on
 wood). Flagged there. The exact starting counts are not taken from the
 screenshot; set them when the first Tiled draft exists and tune in
 `07_tuning_numbers.md`.
+
+## Clutter after the clear
+
+Once the player clears the dense start, whether rocks, branches and stumps
+return each spring is as Stardew does it (decided 2026-11-03), and unchecked
+(SC-29). Weeds follow `29_weeds.md` either way. Until it is checked, no clutter
+returns except weeds.
 
 ## The first crops
 
@@ -107,12 +130,7 @@ tillable share per farm type follows `32_farm_types.md`.
 ## Open
 
 - **The exact tillable count and the field shape.**
-- **Whether the farm gets a fourth, hidden exit** later (the cave reward, a
-  back gate). The dark opening in the screenshot's bottom right corner might be
-  one.
 - **Starting clutter counts** and the knock-on to note 43's wood economy.
-- **The small pond's fish.** Note 19 says the farm has one pond; it now has two.
-  Whether both hold fish is for the fishing note (#181).
 - **Stardew unchecked:** whether the house, bin, greenhouse and cave positions
   are fixed on Standard, and how large its field is (SC-24, SC-25).
 - **Other farm types** (Woodland, Riverside, Hilltop, Meadow) each need their
