@@ -197,8 +197,9 @@ Placeholders from memory of Stardew's pattern. Coal drops from coal rocks and
 from Gloop. Stardew's coal comes from rocks, dust sprites, the blacksmith and the
 charcoal kiln, not slimes. Its furnace is quick, not a day: 5 ore and 1 coal
 give a bar in 30 minutes (copper), 2 hours (iron) or about 5 hours (gold)
-(checked, SC-23e). Ours stays a day per batch for now, as a design choice, and
-the coal sources here are ours.
+(checked, SC-23e). Ours follows it (decided 2026-11-03, Stardew): a bar takes
+30 minutes (copper), 2 hours (iron) and about 5 hours (gold) of game time, and
+Hearthsilver is left for the tuning pass. The coal sources here are ours.
 
 **The smith dwarf's shop (decided).** She sells copper, iron and gold ore, and
 coal. She does not sell bars and does not sell Hearthsilver ore. Stardew's

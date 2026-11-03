@@ -11,9 +11,10 @@ and the options door (`45`). This note gives them one home.
 - **One tabbed menu (Stardew, decided 2026-11-02).** Esc or E opens it. Its tabs
   replace today's one-off screens. Skills, now its own screen on K, moves inside
   it. Stardew's real tabs (owner screenshot, SC-06): Inventory, Skills, Social,
-  Map, Crafting, Collections, Options, Exit. It has no Wear tab; the equipment
-  slots sit on Inventory. The table below keeps our order and Wear tab until the
-  owner decides.
+  Map, Crafting, Collections, Options, Exit. We follow that order, and there is
+  no Wear tab (decided 2026-11-03): the equipment slots and paper doll sit on
+  the Pack tab under the backpack, and items are worn from the pack
+  (`37_equipment.md`).
 - **The journal is a separate window (Stardew, decided 2026-11-02).** It is not
   a menu tab. It has its own key and its own button on the HUD.
 - **The journal holds a quest log and a project log (ours, decided
@@ -31,14 +32,13 @@ and the options door (`45`). This note gives them one home.
 
 | Tab | Holds | Built | Note |
 | --- | --- | --- | --- |
-| Pack | The whole backpack. Move items between slots, split and combine stacks. The toolbar row is the top row | no | Inventory page |
+| Pack | The whole backpack, with the equipment slots and paper doll below it. Move items between slots, split and combine stacks. Wear or take off an item here. The toolbar row is the top row | no | Inventory page, `37` |
 | Skills | What `SkillsScene` shows now | screen exists | `SkillsScene` |
-| Crafting | Known recipes. Crafts from the pack only | no | `34` |
-| Wear | Paper doll with the equipment slots | no | `37` |
-| Collections | Shipped items, finds and the Achievements tab | no | `38` |
-| Options | The existing controls screen, as the in-game door | screen exists | `45` |
 | Social | A placeholder page until villager hearts exist (`18_dialogue.md`) | no | Stardew tab |
 | Map | A placeholder page until there is a map worth showing | no | Stardew tab |
+| Crafting | Known recipes. Crafts from the pack only | no | `34` |
+| Collections | Shipped items, finds and the Achievements tab | no | `38` |
+| Options | The existing controls screen, as the in-game door | screen exists | `45` |
 | Exit | Save the day in progress and return to the title. No confirm | no | `52` (Stardew discards, from memory) |
 
 - **Social and Map are in the tab list as placeholders (decided 2026-11-02).**
@@ -81,7 +81,7 @@ Three sections, switched with Left and Right or a tap.
    `src/core/`, with tests, before the scene.
 4. The journal shell with the Projects section, reading hall data.
 5. The Quests section, when the request board exists.
-6. Crafting, Wear and Collections tabs arrive with their own systems.
+6. Crafting and Collections tabs, and the equipment slots on the Pack tab, arrive with their own systems.
 7. HUD buttons for the menu and the journal, for touch. The touch layout is in
    `27_touch_controls.md`.
 

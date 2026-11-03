@@ -316,7 +316,7 @@ are from memory and unchecked.
   every 10 floors, no healing.
 - Opening day: Spring day 5. Dry-streak ladder odds: 1 percent plus 0.5 percent per
   miss, capped at 25 percent. A killed creature rolls the same chance.
-- Smelting: 5 ore and 1 coal a bar (2 coal for Hearthsilver), a day per batch.
+- Smelting: 5 ore and 1 coal a bar (2 coal for Hearthsilver), 30 minutes for copper, 2 hours for iron and about 5 hours for gold, as Stardew (decided 2026-11-03).
   The smith dwarf sells copper, iron and gold ore and coal, never bars. She gifts
   the furnace the morning after the first copper ore is handed over. Crafting it
   at mining level 4 makes more furnaces.
@@ -448,8 +448,11 @@ are ours where stated.
   fits rounding down.
 - **Fixed on purpose:** costs that do not scale make a low margin harder, which
   is the point. Playtest 25 before keeping it.
-- **Changes later:** not decided. Fixed at creation until the host screen says
-  otherwise (note 53).
+- **Changes later (decided 2026-11-03):** the host can change it after the game
+  has started, as the owner wants Stardew to do. Whether Stardew really allows
+  it is unchecked (SC-26). In single player the player is the host. Open: where
+  the setting lives (the host screen in multiplayer, Options in single player)
+  and whether a change takes effect at once or at the next dawn.
 
 ## Farm tools, trees and machines (2026-10-31)
 

@@ -93,9 +93,11 @@ The slot and the first rings do not need all of this. See the order below.
 
 ## The wearing screen (ours)
 
-- A "Wear" tab in the pause menu shows a paper doll with the slots around it.
-  Tap a slot to list what fits, tap an item to wear it, tap the slot again to
-  take it off. No drag is needed (`27_touch_controls.md`).
+- The equipment slots and paper doll sit on the Pack tab, under the backpack,
+  as Stardew's Inventory tab does (decided 2026-11-03; there is no separate Wear
+  tab, note 49). Tap a wearable item in the pack to wear it, or tap a slot to
+  list what fits. Tap a worn item to take it off. No drag is needed
+  (`27_touch_controls.md`).
 - A glow or magnet ring should show its effect at once so the player learns what
   it does. The paper doll also shows the current Defense and Immunity.
 - Saving stores what the player wears (`10_customisation.md`).
