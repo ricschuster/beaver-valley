@@ -66,7 +66,17 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 | SC-20 | 24 | Seed maker recipe source and fish smoker craft costs. | no | done | Seed maker: farming level 9; 25 wood, 1 gold bar, 10 coal. Fish smoker: fish shop recipe 10,000g; 10 hardwood and 3 jellies. |
 | SC-21 | 24 | How many cooking recipes come from TV or Ginger Island, so we know how many slots need dishes of our own? | no | done | 32 TV, 3 island sources, 2 from the island villager's mail: about 37 of 81. |
 | SC-22 | 15 | Character frame and portrait sizes. | no | done | Sprite frames 16 by 32; portraits 64 by 64. Note 15 already matches. |
-| SC-23 | 22 | The mines claims marked "from memory" in note 22 (list them when asked). | no | open | |
+| SC-23a | 22 | Does the lift stop every 5 floors? | no | done | Yes, at multiples of 5 floors. |
+| SC-23b | 22 | Does Stardew keep a per-floor counter for ladders? | no | done | No. Chance based: 95% at load, 15% per kill, rising per rock. |
+| SC-23c | 22 | Is the dangerous mode toggle a quest? | no | done | Danger in the Deep: reach the bottom within 7 days; resets the elevator. Shrine of Challenge on floor 120 then toggles. |
+| SC-23d | 22 | Does a better pickaxe gate deeper ore? | no | done | No hard gate; hits per node by tier (basic 3 on copper, steel 6 on iridium). |
+| SC-23e | 22 | Coal sources and furnace time? | no | done | Rocks, dust sprites, blacksmith, kiln. Furnace 30 min copper, 2 h iron, about 5 h gold. Not a day. Note 22 corrected. |
+| SC-23f | 22 | Does the blacksmith sell ore and coal? | no | done | Yes: copper, iron, gold ore and coal. |
+| SC-23g | 22 | Bar sale values 60g, 120g, 250g? | no | open | Ore buy prices year 1: 75, 150, 400g, coal 150g. Bar sale values not on a saved page; check by play or Bars page. |
+| SC-23h | 22 | Furnace given after first copper? | no | done | Recipe from the blacksmith after collecting copper; craft 20 copper ore, 25 stone. |
+| SC-23i | 22 | Charcoal kiln recipe source? | no | done | Foraging level 2 (20 wood, 2 copper bars); also a community bundle reward (bundle name unconfirmed). |
+| SC-23j | 22 | Defeat: one lost item returned by mail? | no | done | Tools mailed back next day; one lost item bought back from the guild owner. Gold loss 5 to 25%, max 15,000g. |
+| SC-23k | 22 | Top tool tier price? | no | done | 25,000g and 5 iridium bars. |
 
 ## Not Stardew questions
 
