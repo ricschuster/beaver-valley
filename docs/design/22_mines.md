@@ -114,7 +114,7 @@ Mountain (`19_valley_layout.md`).
   stair in sight (about 1 floor in 4, placeholder).
 - **The lift stops at every floor once reached.** Any floor the player has been
   to can be returned to from the entrance. This is more forgiving than Stardew,
-  whose lift stops every 5 floors (from memory). Note for tuning: it makes the
+  whose elevator stops only at floors that are a multiple of 5 (checked, SC-23a). Note for tuning: it makes the
   deep floors cheap to reach each day, so the day clock and energy are the only
   limit.
 - **The entrance** is a hall with the lift, a lost-and-found counter for the
@@ -136,8 +136,10 @@ Each rock broken without a ladder under it adds a little to the odds that the
 next one hides it, and finding it resets the odds. Placeholder: base 1 percent,
 plus 0.5 percent per miss, capped at 25 percent. A killed creature rolls the
 same chance, from the same counter (decided). The same counter idea is used for
-rare gems and artifact spots, each with its own counter. Stardew does this for
-ladders, from memory. Numbers go in `07_tuning_numbers.md`.
+rare gems and artifact spots, each with its own counter. Stardew's ladders are
+chance based instead: a 95 percent chance a ladder is placed when a floor loads,
+15 percent per monster killed, and a chance per rock that rises as fewer rocks
+remain (checked, SC-23b). Ours is a counter on purpose. Numbers go in `07_tuning_numbers.md`.
 
 ### Dangerous mode
 
@@ -148,7 +150,7 @@ time, and the lift can bring them up afterwards.
 - **The gate (decided).** Reach floor 120, then do a short errand for the warden
   head. She sets the player a task ("prove you can make the descent again within a
   week") and the lever then works. This is our version of Stardew's quest, where
-  Mr. Qi's "Danger in the Deep" asks the player to reach floor 120 within a week
+  "Danger in the Deep" (checked, SC-23c: it resets the elevator and asks the player to reach the bottom of the mines within 7 days) asks the player to reach floor 120 within a week
   and a shrine on that floor then switches on the dangerous mines (fan guides,
   unverified). The errand is a placeholder until the warden head's note
   (#177) exists. Until then the lever works once the bottom is reached.
@@ -169,7 +171,10 @@ time, and the lift can bring them up afterwards.
 - **The pickaxe does not gate ore** (decided). Any pickaxe digs any node,
   Hearthsilver included. A better pickaxe breaks rocks in fewer swings and costs
   less energy per swing, as the hoe does now (`07_tuning_numbers.md`). Stardew
-  gates deeper ore by tool, from memory. Ours does not, so a player never walks
+  does not hard gate nodes either: the wiki lists hit counts per tool tier (for
+  example a copper node takes 3 hits with the basic pickaxe and 1 with the steel
+  one, an iridium node 6 with steel and 4 with gold), so the difference is
+  swings, which is close to ours (checked, SC-23d). Ours also does not gate, so a player never walks
   away from ore they can see. A weak pickaxe just takes many swings on a deep
   node, and the placeholder rock hardness rises by band.
 - **Energy.** A swing costs the same formula as other tools, with the mining
@@ -189,14 +194,20 @@ time, and the lift can bring them up afterwards.
 | Hearthsilver | 100 to 120 | Hearthsilver bar | 5 ore, 2 coal |
 
 Placeholders from memory of Stardew's pattern. Coal drops from coal rocks and
-from Gloop. A furnace takes a day per batch, as in Stardew.
+from Gloop. Stardew's coal comes from rocks, dust sprites, the blacksmith and the
+charcoal kiln, not slimes. Its furnace is quick, not a day: 5 ore and 1 coal
+give a bar in 30 minutes (copper), 2 hours (iron) or about 5 hours (gold)
+(checked, SC-23e). Ours stays a day per batch for now, as a design choice, and
+the coal sources here are ours.
 
 **The smith dwarf's shop (decided).** She sells copper, iron and gold ore, and
 coal. She does not sell bars and does not sell Hearthsilver ore. Stardew's
-blacksmith sells ore and coal too, from memory. A non-miner can therefore
+blacksmith sells ore and coal too (checked, SC-23f). A non-miner can therefore
 buy ore, smelt it and finish the Smith's bundle without fighting or digging.
 Prices (decided, placeholders): copper ore 25g, iron ore 50g, gold ore 100g, coal
-50g, about 2.5 times the bar's sale value (60g, 120g and 250g, from memory). A bar
+50g, about 2.5 times the bar's sale value (60g, 120g and 250g, still unchecked, SC-23g).
+Stardew's year 1 prices are copper ore 75g, iron ore 150g, gold ore 400g and coal
+150g, so ours are cheaper by design. A bar
 then costs about 175g, 300g and 550g to buy and smelt, so buying never beats
 digging. A non-miner finishing bundle 19 by buying pays about 4000g, a real
 stretch but within reach late in the first two seasons.
@@ -204,8 +215,9 @@ stretch but within reach late in the first two seasons.
 **The furnace (decided).**
 
 - **A gift from the smith, not for sale.** The morning after the player first
-  hands over copper ore (a short scene at the farm door, Stardew's pattern as
-  search results show it, unverified), she brings a furnace. A non-miner buys the
+  hands over copper ore (a short scene at the farm door; in Stardew the furnace recipe comes
+  from the blacksmith after the first copper is collected, and the furnace
+  costs 20 copper ore and 25 stone to craft; checked, SC-23h), she brings a furnace. A non-miner buys the
   ore from her and hands it over, so the gift is open to everyone.
 - **More furnaces can be crafted** at mining level 4 (placeholder, decided), so a
   player can run several batches at once. The gift is the first furnace.
@@ -217,8 +229,9 @@ stretch but within reach late in the first two seasons.
 **The charcoal kiln (the Smith's bundle no longer gives it, changed 2026-10-31; the Woodland bundle 5 does).** The kiln
 turns wood into coal, so a player who does not dig still has fuel (10 wood for 1
 coal, placeholder, Stardew's ratio from the wiki). In Stardew the kiln is a
-recipe of Foraging level 2 and also a reward of its Crafts Room construction
-bundle, per search results, unverified. Placeholder crafting cost: 2 copper bars
+recipe of Foraging level 2 (20 wood and 2 copper bars) and also a reward of a
+Community Center foraging bundle (checked, SC-23i; the page lists the reward, so
+which bundle is still to confirm). Placeholder crafting cost: 2 copper bars
 and wood. The Smith's bundle now gives 20 coal. The Hearth room's other two bundles give
 torches and a loom (`16_bundles.md`).
 
@@ -379,8 +392,10 @@ When health reaches zero:
    in 3 chance, at most 3. A stack is lost whole or halved by a coin flip (our
    own choice).
 4. **One item comes back.** The trainer posts one lost stack in the morning
-   mail with a note. In Stardew, one lost item is returned by mail from a helper,
-   from memory. Our version has the trainer be the helper. This is the soft part.
+   mail with a note. In Stardew, lost tools are mailed back the next day (not
+   fishing poles or weapons), and the guild owner sells back one lost item or
+   stack for its sell price. Stardew's gold loss is 5 to 25 percent up to 15,000g
+   (checked, SC-23j). Our version has the trainer be the helper. This is the soft part.
 5. **Energy** on waking is the pass-out value (`PASS_OUT_WAKE_ENERGY`).
 
 The loss is real and small, as the owner asked. A player who flees by ladder
@@ -429,8 +444,8 @@ mines.
 - **Price (decided): bars only, no gold.** Placeholder: 5 Hearthsilver bars per
   tool. The smith dwarf does not sell it, and the furnace smelts it (2 coal a bar).
   It is the one tier that needs the deep mine, and it is a late goal, as the
-  10000g tier already is. Stardew pairs its top tier with 25000g and bars, from
-  memory. Ours skips the gold on purpose, so the deep mine is the cost.
+  10000g tier already is. Stardew pairs its top tier with 25,000g and 5 iridium bars
+  (checked, SC-23k). Ours skips the gold on purpose, so the deep mine is the cost.
 - **Tools:** hoe, watering can, axe and pickaxe (the rod has its own line,
   `21_fishing.md`). The axe and pickaxe have no tiers yet. Their ladders, costs and the
   2 day wait are in `44_tool_upgrades.md`.
