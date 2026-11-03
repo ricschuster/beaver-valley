@@ -10,7 +10,10 @@ and the options door (`45`). This note gives them one home.
 
 - **One tabbed menu (Stardew, decided 2026-11-02).** Esc or E opens it. Its tabs
   replace today's one-off screens. Skills, now its own screen on K, moves inside
-  it. The tab list from memory of Stardew is not checked against a saved page.
+  it. Stardew's real tabs (owner screenshot, SC-06): Inventory, Skills, Social,
+  Map, Crafting, Collections, Options, Exit. It has no Wear tab; the equipment
+  slots sit on Inventory. The table below keeps our order and Wear tab until the
+  owner decides.
 - **The journal is a separate window (Stardew, decided 2026-11-02).** It is not
   a menu tab. It has its own key and its own button on the HUD.
 - **The journal holds a quest log and a project log (ours, decided

@@ -4,7 +4,8 @@ Status: draft. Decided with the owner on 2026-11-02. Nothing here is built
 except what the code already does: one save in `localStorage`, written on
 sleeping and when a menu closes, with the time of day stored
 (`src/core/save.ts`, `src/scenes/storage.ts`). Stardew's behaviour here is from
-memory and unchecked: no saved page covers saving.
+memory; SC-01 (owner, 2026-11-03) confirms it saves only on sleeping and that
+Exit to Title discards the day.
 
 ## Why not Stardew's strict save
 
@@ -96,7 +97,7 @@ written together, so they share a version.
 
 ## Open
 
-- Nothing blocks a build. Unchecked: that Stardew saves only on sleeping, and
-  that Exit to Title discards the day (both from memory).
+- Nothing blocks a build. Both Stardew claims (saves only on sleeping, Exit to
+  Title discards the day) are confirmed by the owner (SC-01).
 - Whether `navigator.storage.persist()` helps on a tablet browser, found by
   trying it on the real device (#59, #63).

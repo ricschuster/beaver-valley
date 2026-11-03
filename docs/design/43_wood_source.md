@@ -12,7 +12,9 @@ yields, stumps, growth, spread, regrowth) stay in note 36 and are not repeated.
 - **Wood comes from farm trees in the first playable.** The Forest map does not
   exist, so the farm is the only place for trees now. The carpenter does not
   sell wood yet (`41_house.md`). The Forest adds more trees when it is built.
-- **Many trees, so wood is easy.** About 30 mature trees stand on the farm on
+- **Many trees, so wood is easy.** (Revisit: note 55 sets day 1 clutter dense
+  like Stardew, 2026-11-03, so the count below is too low and the wood
+  numbers need redoing.) About 30 mature trees stand on the farm on
   day 1: 27 mature, 2 young and 1 seedling. Chopping the mature ones and
   lifting their stumps gives about 500 wood at foraging level 0 and about 600 at
   level 4, so the 450 for house tier 1 is one season of chopping, not a grind. Planting is then

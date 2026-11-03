@@ -28,8 +28,10 @@ cozy hobbit home. This note settles both.
   extra room in their own style.
 - Renovations (open bedroom, attic, cubby, dining room and more, 10,000g to
   150,000g) come after upgrade 2.
-- The outer footprint is a 9 by 5 rectangle. The page does not say whether the
-  outside changes by tier, so that is not checked.
+- The outer footprint is a 9 by 5 rectangle. The outside art does change by
+  tier (owner screenshots and the three outdoor images on the page, SC-08): a
+  bigger roof and siding at tier 2, a stone foundation and porch at tier 3, all
+  within the same footprint.
 
 ## Decisions (2026-10-31)
 
