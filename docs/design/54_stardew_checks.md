@@ -46,16 +46,16 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 
 | ID | Note | Question | Blocks | Status | Answer |
 | --- | --- | --- | --- | --- | --- |
-| SC-01 | 52 | Does Stardew save only on sleeping? Does leaving to the title screen discard the day? | no | open | |
-| SC-02 | 51 | Does one use of the mailbox open one letter or the whole pile? Does the flag stay up while letters wait? | no | open | |
-| SC-03 | 28 | Where does the shipping bin stand on the farm, relative to the door and bed? | no | open | |
-| SC-04 | 28 | What does the end-of-day shipping screen list, and in what order? | no | open | |
-| SC-05 | 26, 33 | Does winter 28 of year 1 roll into spring of year 2 with no year-end screen? | no | open | |
-| SC-06 | 49 | What tabs does the menu show, in what order? | no | open | |
-| SC-07 | 49 | Does the clock pause while the journal is open? What does the mouse wheel do in a menu? | no | open | |
-| SC-08 | 41 | Does the farmhouse outside change by upgrade tier? Can the player enter or sleep in it during an upgrade? | no | open | |
+| SC-01 | 52 | Does Stardew save only on sleeping? Does leaving to the title screen discard the day? | no | done | Owner, 2026-11-03: yes, desktop saves only on sleeping (tablet and phone have an option to save the current state). Leaving to the title screen discards the day. |
+| SC-02 | 51 | Does one use of the mailbox open one letter or the whole pile? Does the flag stay up while letters wait? | no | asked | Half answered: the flag stays up while letters wait (yes). Still open: one letter or the whole pile per use. |
+| SC-03 | 28 | Where does the shipping bin stand on the farm, relative to the door and bed? | no | done | Owner: a few cells to the right of the farmhouse. A screenshot would pin down the exact offset. |
+| SC-04 | 28 | What does the end-of-day shipping screen list, and in what order? | no | done | Owner: rows for Farming, Foraging, Fishing, Mining, Other, then Total. Each row expands to the items sold, the count of each and the money earned. |
+| SC-05 | 26, 33 | Does winter 28 of year 1 roll into spring of year 2 with no year-end screen? | no | done | Owner: straight into spring of year 2, no year-end screen. |
+| SC-06 | 49 | What tabs does the menu show, in what order? | no | asked | Owner pointed to the wiki Player_Menu page. URL listed in docs/reference/stardew/urls_menu.txt for hand saving. |
+| SC-07 | 49 | Does the clock pause while the journal is open? What does the mouse wheel do in a menu? | no | asked | Clock pause: owner not sure, and we do not need it because our menu pauses. Mouse wheel in a menu still open. |
+| SC-08 | 41 | Does the farmhouse outside change by upgrade tier? Can the player enter or sleep in it during an upgrade? | no | done | Owner: the exterior does not change by tier, and the player can enter and sleep during an upgrade. Exterior answer is surprising, so a screenshot of each tier would confirm it. |
 | SC-09 | 43 | How many trees does a new farm start with, and where? On what ground may a tree seed be planted? | no | open | |
-| SC-10 | 50 | Can the board hold more than one request at once? In multiplayer, does everyone get the reward for a finished request? | no | open | |
+| SC-10 | 50 | Can the board hold more than one request at once? In multiplayer, does everyone get the reward for a finished request? | no | done | Owner: the board can hold more than one request at once, and in multiplayer everyone gets the reward. Fits note 50 (one a day, 2 days to finish). |
 | SC-11 | 16 | Is a finished Community Center room's reward granted when the room completes? | no | open | |
 | SC-12 | 36 | How many weeds does a fresh farm start with on day 1, and how fast do they spread? | no | open | |
 
