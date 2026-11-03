@@ -88,6 +88,13 @@ wood). Flagged there. The exact starting counts are not taken from the
 screenshot; set them when the first Tiled draft exists and tune in
 `07_tuning_numbers.md`.
 
+## The first crops
+
+**Decided 2026-11-03: no cleared plot (as Stardew).** The player clears their
+own first patch. The tool and tap-to-act flow must make that quick and
+satisfying on day 1, so the opening is not a wall. Watch this in the first
+tablet playtest.
+
 ## Size
 
 Not settled. The placeholder is 40 by 30 tiles. The real size follows the
