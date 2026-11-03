@@ -55,13 +55,19 @@ Read from the image, not from memory. Positions are as seen on screen.
 | --- | --- | --- |
 | House | North-east corner, door facing south | `41_house.md`. Footprint 9 by 5 and never changes |
 | Bin | Right of the house door, a few tiles from it | `28_shipping_bin.md`, owner SC-03 |
-| Mailbox | By the house, on the path to the road | `51_mail_and_letters.md` |
+| Mailbox | Beside the house, on the road path east of the door (decided 2026-11-03) | `51_mail_and_letters.md` |
 | Greenhouse ruin | North, left of centre, on a grass patch | `31_farm_growth.md`. Repaired in place by the Larder reward |
-| Farm cave | North cliff, west of the greenhouse | `31_farm_growth.md`. Empty until the earnings mark |
+| Farm cave | North cliff, west of the greenhouse | `31_farm_growth.md`. A small interior map you walk into (decided 2026-11-03), empty until the earnings mark |
 | Big pond | South centre | Watering can. River fish table (`32_farm_types.md`) |
 | Small pond | East side | Decided 2026-11-03: two ponds. A second refill point, no fish |
 | Exits | See below | `19_valley_layout.md` |
 | Trees, stumps, rocks, weeds | Scattered over the field, thinner near the house | See "Starting clutter" |
+
+## Waking up
+
+The new game and every morning begin at the bed inside the house, and the player
+walks out the door (decided 2026-11-03, as Stardew). The first `start` entry
+sits just outside the door for the very first scene, after any intro.
 
 ## Ponds and fish
 
