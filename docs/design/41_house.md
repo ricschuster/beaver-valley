@@ -139,7 +139,8 @@ map work may adjust them by a tile or two.
 Shapes, from the images:
 
 - **Start:** one room. Bed lower right, hearth and TV on the back wall, door
-  notch bottom left.
+  notch bottom left. The TV gives tomorrow's
+  forecast, the same rule as the Outpost board (`57_the_outpost.md`, SC-33).
 - **Tier 1:** the start room keeps its place in the middle. A kitchen (checkered
   floor, counter, fridge, sink) is added on its left. A bedroom with the double
   bed is added on its right, joined by a one tile passage with a step. Sizes:
