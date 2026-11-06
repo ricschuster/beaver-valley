@@ -97,8 +97,8 @@ The farm has three exits, so it is a home between places and not a dead end.
     character, so it is the east end of the delta map, walked to and not entered
     through an exit. Every other area stays its own map. Merging more (such as
     Hearthwell and the Mountain) was offered and not chosen, to keep maps small
-    for tablets (`06_map_style.md`). Whether Stardew shares any maps is unchecked
-    (SC-34). The delta map must stay inside the size budget once area sizes are
+    for tablets (`06_map_style.md`). The owner confirms Stardew keeps
+    them as separate maps joined by exits (SC-34, from memory). The delta map must stay inside the size budget once area sizes are
     set (still open below).
 14. **Every Hearthwell home can be entered (decided with the owner,
     2026-11-06).** The cast list fixes 11 households, so there are 11 home
@@ -107,7 +107,7 @@ The farm has three exits, so it is a home between places and not a dead end.
     gardener, the retired couple with the grandchild, and the two young adults.
     The three burrows stand apart in different parts of town, between the shops,
     and not in one row. Both follow Stardew (every household has a home you can
-    enter, and the houses stand apart), from memory and unchecked (SC-35). Hearthwell
+    enter, and the houses stand apart), as the owner confirms from memory (SC-35). Hearthwell
     is then 9 shop-and-home maps (the Outpost has two, `58_interiors.md`) and 3 burrow
     maps, plus the town map. All interiors are counted in note 58. Their size
     still waits on area sizes (below).

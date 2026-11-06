@@ -28,7 +28,7 @@ map work is planned.
    outdoors.
 4. **The Outpost has two maps**: the post room, and a separate map for the
    steward's rooms. This is the one place note 20 decision 2 (a shop family is
-   one map) does not hold. Stardew is not checked for this (SC-37).
+   one map) does not hold. Stardew keeps a shop and its home as one map (owner, from memory, SC-37), so this is our own choice.
 
 5. **The farmstead has visual paddocks (owner, 2026-11-06).** The Forest
    farmstead is the keeper's house and shop (one interior) plus a few paddocks
