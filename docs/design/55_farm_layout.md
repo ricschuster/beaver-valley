@@ -111,8 +111,9 @@ Once the player clears the dense start, whether rocks, branches and stumps
 return each spring is as Stardew does it (decided 2026-11-03). The owner says
 rocks and debris return to some extent the next season, and trees and grass
 spread but not in winter (SC-29). How much is still open, so the exact rule needs
-a note. Weeds follow `29_weeds.md` either way. Until then, no clutter returns
-except weeds.
+a note. Weeds follow `29_weeds.md` either way. Decided 2026-11-06 in
+`65_special_orders_and_debris.md`: a small share of rocks and twigs returns on
+day 1 of spring, summer and fall, with a cap, and nothing in winter.
 
 ## The first crops
 

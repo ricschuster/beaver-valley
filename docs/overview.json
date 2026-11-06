@@ -338,6 +338,11 @@
         },
         {
           "s": "decided",
+          "t": "Special Orders (draft): board opens Fall 2 of year one as Stardew, clock starts on acceptance (ours), first completion pays a unique reward and repeats pay gold; farm debris (rocks, twigs) returns in small capped amounts each season except winter (note 65, SC-32, SC-29)",
+          "ref": "65_special_orders_and_debris.md"
+        },
+        {
+          "s": "decided",
           "t": "View size: default 30 by 17 tiles (about 510), wider or squarer windows show more, player zoom setting plus pinch with a cap each way (placeholder 75 to 125 percent), HUD anchors to the edges, maps need border margins (ADR 0009, SC-42). Build plan: no cap on the extra view, menus keep a centred 960 by 540 box, separate UI size setting (note 64, SC-46)",
           "ref": "64_window_canvas_and_hud.md"
         },

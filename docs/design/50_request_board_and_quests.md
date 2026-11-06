@@ -60,7 +60,7 @@ One data record covers every quest, whatever its source.
 | Field | Meaning |
 | --- | --- |
 | id | Unique name |
-| source | `board`, `letter` or `hall`. Only `board` is built |
+| source | `board`, `letter`, `hall` or `special` (note 65). Only `board` is built |
 | type | `delivery` or `gathering`. Later: `fishing`, `slaying`, `hello` |
 | poster | The villager who asked, or the board while villagers are missing |
 | want | Item id and count |

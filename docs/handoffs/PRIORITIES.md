@@ -12,8 +12,8 @@ Start each session by asking which item to take.
 1. **Window sized canvas, HUD anchoring and zoom** (ADR 0009). Designed in
    note 64 (2026-11-06), not built. The game still draws a fixed 960 by 540
    canvas, and the build touches every screen.
-2. **Special Orders and debris by season** (SC-32, SC-29), then the completion
-   tracker (#196).
+2. **Completion tracker (#196).** Special Orders and seasonal debris were
+   designed in note 65 (2026-11-06), not built. The tracker is next.
 3. **Story spine.** The warden head and her staged reveal (#177), the sea elf
    and Homeward pin (#176), the hermit witch (#178) and the third community
    project (#5). Together they decide what the ending and the Last Seat mean. Below Special Orders
