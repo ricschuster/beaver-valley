@@ -108,6 +108,9 @@ The Mines, the Secret Woods and the Lake cove are areas, not interiors.
 
 ## No interior
 
+The stable (decided 2026-11-06, as Stardew: seen from outside, the horse stands
+beside it, `59_horse.md`).
+
 The stonekeeper dwarf (works on bridges and stonework, Mountain), the Mines
 trainer (stands at the practice dummy), the Wanderer (wanders the Forest), the
 courier (lodges at the inn, so she uses its map), and the festival green.
