@@ -59,7 +59,7 @@ Each layer is shippable on its own.
 1. Base lines for every villager.
 2. Reactive lines (weather, season, hall progress, gifts).
 3. Branching talks.
-4. Heart events and story.
+4. Heart events and story (`62_heart_events.md`).
 
 Every villager gets layer 1 before anyone gets layer 3.
 
