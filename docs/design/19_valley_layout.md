@@ -20,7 +20,7 @@ Buildings are interior maps. Ring 2 lies beyond them.
 
 | Area | What lives there |
 | --- | --- |
-| Farm | The home base: house, fields and a pond for the watering can. |
+| Farm | The home base: house, fields and two ponds that refill the watering can (`55_farm_layout.md`). |
 | Forest | A lake. The hermit (the witch), the Wanderer (Old Greencoat), and a farmstead with the animals. Rare forage. |
 | Secret Woods | Off the Forest, behind a massive log that an upgraded axe clears. Rare forage. |
 | Mountain | A mountain lake. The smith dwarf and the stonekeeper dwarf. The source of the river. |
@@ -77,8 +77,8 @@ The farm has three exits, so it is a home between places and not a dead end.
    3). That is the single gate.
 7. **The carpenter works at a sawmill on the river in Hearthwell.** The carpenter
    handles house upgrades and farm buildings.
-8. **Water on the farm is a pond**, not a river link. It supplies the
-   watering can.
+8. **Water on the farm is a pond**, not a river link. There are two ponds
+   (decided 2026-11-03, `55_farm_layout.md`); both supply the watering can.
 9. **The Wanderer lives in the Forest.** This is the natural place for the
    announcement that opens the mines.
 10. **The Secret Woods are gated by a massive log**, as in the original idea of
@@ -116,8 +116,9 @@ From `09_story_and_lore.md`, with the sawmill added:
 - Size of each area, and the minimum visible tile count for zoom
   (`06_map_style.md`).
 - The transition look between areas.
-- Whether a pond also lets the farm fish, or fishing stays at the delta, beach
-  and cove (#181).
+- Whether fishing also happens beyond the farm's big south pond, or stays at
+  the delta, beach and cove (#181). Only the big farm pond holds fish
+  (`55_farm_layout.md`).
 - Where the animals' farmstead keeper lives, and whether the farmstead is an
   interior or its own area.
 

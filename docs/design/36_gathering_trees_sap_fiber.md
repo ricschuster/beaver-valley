@@ -100,7 +100,7 @@ Slice 1 asks for these amounts.
 
 - Weed day 1 count and spread chance, from a playtest or a saved source page.
 - Where common trees stand in the valley, and how many. The farm is settled in
-  `43_wood_source.md` (about 30 hand-placed trees). The valley layout needs a
+  `43_wood_source.md` (about 100 trees on the dense real farm, 30 on the placeholder). The valley layout needs a
   pass (`19_valley_layout.md`).
 - The sawmill and the Lumberjack and Tapper professions wait for a later note.
 - Whether random tree growth (median 24 days) suits a tablet player. Chosen as
