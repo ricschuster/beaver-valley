@@ -60,8 +60,8 @@ cozy hobbit home. This note settles both.
    the cellar are M3 (split 2026-10-31, owner's choice: the first upgrade is
    what the Furniture Catalogue waits on, and two seasons cannot reach the
    later prices). The first playable has no marriage, no children and no cask,
-   so the spouse room, the nursery and the cellar casks are built but sealed or
-   empty when they arrive. Marriage and the cask stay out of the first
+   so the spouse room, the nursery and the cellar casks arrive empty or
+   unused. Marriage and the cask stay out of the first
    playable.
 
 ## Proposed details
@@ -83,10 +83,11 @@ cozy hobbit home. This note settles both.
 - **One interior map per tier, no sealed earth (owner, 2026-11-06).** This
   replaces the sealed earth plan. The start, tier 1 and tier 2 each have their
   own Tiled map. Tier 3 only adds the cellar stairs, so it reuses the tier 2
-  map. Stairs and doors sit at the same tile in every map, and an upgrade moves
-  the player to the same spot, so saves stay valid. The cellar stays a separate
-  small map.
-- **No renovations** in the first version.
+  map. The player's position is not saved (the scene starts at the map's
+  entry), so a tier change needs no migration: the house scene loads the new
+  map at its door. The cellar stays a separate small map. Floor plans are in
+  "Floor plans per tier".
+- **No renovations** in the first version. See "Renovations (reference)".
 - **The carpenter builds it**, as in Stardew. The first draft said the door is
   closed with scaffold for three days. The owner changed that on 2026-10-31:
   see "Carpenter and the upgrade flow" below.
@@ -108,37 +109,61 @@ cozy hobbit home. This note settles both.
   not tied to a tier, which was wrong. The owner picked the Stardew option, so
   the Stardew behaviour stands. Furniture itself can be added at any time.
   Flooring and wallpaper can come from a shop or a catalogue.
-- **Sealed rooms read as waiting.** The spouse room and the nursery are open,
+- **Empty rooms read as waiting.** The spouse room and the nursery are open,
   bare and tidy, with a short line from Old Greencoat or the carpenter that
   they are for later. They are not shown as broken or blocked, which matches
   the hall's greyed rooms.
 
-## Tier 1 floor plan (proposed 2026-10-31)
+## Floor plans per tier (proposed 2026-11-06)
 
-Owner's choice: attached rooms in one connected space, as in Stardew. The saved
-Farmhouse page gives only the inner size (10 by 7) and what each tier adds; the
-layout is in images, so the exact Stardew arrangement is not checked. Only the
-idea of one connected space is copied.
+Owner's choice: one full map per tier, as in Stardew. The owner saved Stardew
+images of every tier, the cellar and the renovations (reference only, in the
+gitignored `docs/reference/stardew/farmhouse/`). Sizes below are rough: each
+image has its own scale, so the tile size came from the furniture (the TV and
+table are 2 tiles wide, the double bed 3 and a cask 1). Give or take 1 to 2
+tiles. Width by depth, outer size including walls.
 
-- **One open space, no walls between the rooms. The map is 18 by 8 tiles.**
-  Column 0 is the outer wall, the kitchen is columns 1 to 4 (4 by 6), the start
-  room is columns 5 to 12 (8 by 6, the same size as now), the bedroom is
-  columns 13 to 16 (4 by 6), and column 17 is the outer wall. Rooms are told
-  apart by floor and furniture, not walls.
-- **The start room moves 4 tiles right.** The door goes from (5,7) to (9,7) and
-  the bed from (2,1) to (6,1). The map is always 18 wide, at every tier, so
-  positions never change again after this. The player's position is
-  not saved (the scene starts at the map's entry), so old saves need no
-  migration. Positions in the outdoor maps are untouched.
-- **Kitchen:** counter, fridge chest, sink that refills the watering can.
-  **Bedroom:** the double bed.
-- **Tier 0:** the kitchen and bedroom areas are sealed earth (collision on,
-  earth tiles), with the earth edge straight at columns 4 and 13. The camera
-  is limited to the start room so the player never sees the earth.
-- **Tier 1:** both areas open and the floor runs through. The single bed
-  becomes the double bed in the bedroom and the start room keeps the hearth.
-- **Tier 2 (M3)** adds the spare room and nursery by opening more earth, for
-  example a second row of rooms below, with a taller map then.
+| Map | Stardew (measured) | Ours (proposed) |
+| --- | --- | --- |
+| Start | 11 by 10 | 10 by 8, the current `house.json`, unchanged |
+| Tier 1 | about 31 by 12 | 26 by 8 |
+| Tier 2 | about 34 by 22 | 26 by 17 |
+| Tier 3 | same as tier 2, plus cellar stairs | same as tier 2, plus cellar stairs |
+| Cellar | about 19 by 16 | 16 by 12 |
+
+Shapes, from the images:
+
+- **Start:** one room. Bed lower right, hearth and TV on the back wall, door
+  notch bottom left.
+- **Tier 1:** the start room keeps its place in the middle. A kitchen (checkered
+  floor, counter, fridge, sink) is added on its left. A bedroom with the double
+  bed is added on its right, joined by a one tile passage with a step. Ours:
+  kitchen 7 wide, start room 10, passage 1, bedroom 8, all 8 deep. The start
+  room's door moves with it, so each map has its own door tile.
+- **Tier 2:** the tier 1 floor stays. An upper band is added, reached by stairs
+  above the kitchen end: an empty spare room on the left and the nursery (crib
+  and two child beds) on the right, joined to each other. Ours: two bands of 8
+  deep with a 1 tile gap.
+- **Tier 3:** a stairs notch on the bottom wall under the kitchen leads down to
+  the cellar. The upstairs and the rest do not change. This matches the images:
+  the cellar stairs appear only after tier 2.
+- **Cellar:** its own map, stone floor, stairs up in a corner, rows of cask
+  spaces (Stardew has 33, in 3 rows of 11). Ours is smaller, and the cask count
+  waits on note 24 since the cask is not in the first version.
+
+The first playable keeps only the start map and tier 1 (decision 7). The old
+sealed earth plan, 18 by 8 with a kitchen 4 wide, is dropped. Tier 1's size is
+now an open choice (see Open).
+
+## Renovations (reference)
+
+Stardew's renovations unlock after upgrade 2 and the saved Farmhouse page lists
+10,000g to 150,000g. The owner saved images of eight, all taken on a tier 3
+house: open bedroom, southern room, corner room, expanded corner room, attic,
+cubby, dining room and open dining room. Individual prices and requirements are
+not checked. They are out of the first version, and they stack, so with one map
+per tier they would multiply the maps. If they come, they should be layers
+added to a tier map, not a map each. That needs its own design note.
 
 ## Carpenter and the upgrade flow (decided 2026-10-31)
 
@@ -170,8 +195,8 @@ rest is mine and open to change.
   match three days. Stardew's carpenter does not work on festival days, so a
   festival day does not count. One upgrade can be ordered at a time.
 - **While it builds.** The house is open as usual: the player can enter and
-  sleep in the start room. The kitchen and bedroom stay sealed earth. The
-  carpenter stands outside the house hammering, with scaffold against the
+  sleep in the start room. The new rooms do not exist until the
+  work is done. The carpenter stands outside the house hammering, with scaffold against the
   outside wall. The scaffold fits inside the house's footprint on the farm map
   (decision 3). The shop counter is closed with a short "out at your farm"
   line until the work is done, as Stardew's Robin cannot be reached for
@@ -185,8 +210,8 @@ rest is mine and open to change.
 
 ## Open
 
-- Tier 2 floor plan and the cellar map (map tasks for M3). The tier 1 plan is
-  above.
+- Our tier map sizes (proposed above, not agreed) and the cellar size. The
+  Stardew sizes are rough, from screenshots.
 - The sawmill interior map layout, and the carpenter's hours (Stardew's
   shop closes some days; not decided).
 - Where the catalogue is sold and what it costs (`10_customisation.md`).

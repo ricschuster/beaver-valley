@@ -95,6 +95,7 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 | SC-36 | 58 | Are Stardew's coop and barn walk-in interiors, with the big and deluxe tiers adding to the base layout or replacing it? Is the greenhouse a walk-in map? | no | open | Owner, 2026-11-06: yes, walk in. First said tiers add parts to one layout, then chose one full map per tier. Not checked on the wiki. |
 | SC-37 | 58 | Does any Stardew shop keep its owner's home as a separate map from the shop, or is each one map? | no | open | From memory only. We chose two maps for the Outpost regardless (2026-11-06). |
 | SC-38 | 58 | What are the interior sizes in tiles of the coop, barn, big and deluxe versions, and does each tier keep the same entrance spot? | no | done | Measured from the owner's full size screenshots, 2026-11-06, using the feeding bench hay slots (one tile each) and window spacing as the scale. Coop 11 by 8, 15 by 8, 22 by 8. Barn 17 by 13, 21 by 13, 24 by 13, give or take half a tile. Coop door stays bottom left. Barn door moves by tier. Owner can still confirm in game. |
+| SC-39 | 41 | What are the farmhouse map sizes by tier, the cellar size, and when do renovations unlock? | no | part | Owner's screenshots, 2026-11-06: start about 11 by 10, tier 1 about 31 by 12, tier 2 about 34 by 22, cellar about 19 by 16, rough because each image has its own scale. Renovation prices and requirements not checked. |
 
 ## Not Stardew questions
 
