@@ -534,6 +534,16 @@
           "ref": "12_marriage.md#Decided (2026-10-29)"
         },
         {
+          "s": "decided",
+          "t": "Stardew scale (250 a heart, 10 or 8 hearts), no decay, one gift a day and two a week, five taste tiers, birthdays x8, quality bonus, bad gifts cost points",
+          "ref": "61_friendship_and_gifts.md#Decided (2026-11-06)"
+        },
+        {
+          "s": "open",
+          "t": "Each person's own tastes, birthdays, heart events, Midwinter pairing",
+          "ref": "61_friendship_and_gifts.md#Not decided (open)"
+        },
+        {
           "s": "open",
           "t": "Item forms, divorce fee, child room upgrade, ring 2 and 3 counts",
           "ref": "12_marriage.md#Open"
