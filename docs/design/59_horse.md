@@ -141,5 +141,6 @@ is our inference, not a source.
 
 ## Next
 
-Set our walk speed, then update note 55 (placement), note 07 (price) and note
-58 (interior). The extras above are optional.
+Check the 10,000g price against income in note 07, design the building placement
+mode (note 55 lists the stable as player placed), and update note 45's keys.
+The extras are parked.
