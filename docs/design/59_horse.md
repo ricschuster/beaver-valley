@@ -64,7 +64,12 @@ set:
 - **Hats:** a hat can be placed on the horse (customisation, note 10).
 - Speed buffs stack with the horse's speed.
 
-Where each is bought or found, and the cost, are open below.
+**Decided 2026-11-06 (owner): none of these are built now.** They stay as
+placeholders because we have no carrot crop, no books and no item shop for them
+yet. The horse is the stable and its fixed speed. Stardew has all three. The saved
+Books page gives the horse book at 25,000g from the Bookseller; where the carrot
+and the flute come from is on no saved page. Revisit after the first playtest,
+and when books or a carrot crop get a design.
 
 ## Walk speed (owner, 2026-11-06)
 
@@ -111,8 +116,9 @@ is our inference, not a source.
   playtest on the full size maps. Walk and run both exist (decided above). The
   walk key, the touch stick thresholds and the walk speed ratio go in note 45.
 - **Indoors and the Mines.** Check whether Stardew allows riding there.
-- **Extras.** Where the carrot, book and flute come from, and their prices. Is
-  the carrot a crop we grow (no note has one yet)? Does a hat fit our hat system?
+- **Extras.** Parked as placeholders (decided above). Later: where the carrot,
+  book and flute come from, and their prices. Is the carrot a crop we grow (no
+  note has one yet)? Does a hat fit our hat system?
 - **Placement.** Where the stable stands on the farm, and its size (note 55).
 - **Controls.** Mount and dismount on touch, mouse and keyboard (note 45).
 - **Interior.** Whether the stable is walked into (note 58 lists none).
