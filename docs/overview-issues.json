@@ -246,11 +246,7 @@
       "state": "open",
       "labels": ["work-package"]
     },
-    "286": {
-      "t": "WP22: House tiers 2 and 3",
-      "state": "open",
-      "labels": []
-    },
+    "286": { "t": "WP22: House tiers 2 and 3", "state": "open", "labels": [] },
     "317": {
       "t": "Playtest: expert bot gets stuck one tile short of targets",
       "state": "closed",
