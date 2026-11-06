@@ -73,15 +73,9 @@
           "id": "delta",
           "name": "River delta",
           "tone": "marsh",
-          "rect": [560, 860, 440, 200],
-          "seed": 17
-        },
-        {
-          "id": "beach",
-          "name": "Beach",
-          "tone": "sand",
-          "rect": [1060, 860, 340, 200],
-          "seed": 19
+          "rect": [560, 860, 840, 200],
+          "seed": 17,
+          "sub": "with the Beach|at its east end"
         },
         {
           "id": "cove",
@@ -101,7 +95,6 @@
         ["mountain", "hearthwell", "road"],
         ["hearthwell", "delta", "road"],
         ["hearthwell", "ring2", "road"],
-        ["delta", "beach", "road"],
         ["delta", "cove", "ferry"]
       ],
       "river": [

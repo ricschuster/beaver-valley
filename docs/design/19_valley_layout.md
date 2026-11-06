@@ -15,8 +15,9 @@ needed a sensible home for about 30 villagers.
 
 ## The areas
 
-Nine areas in the home valley, each one Tiled map, joined by exits (ADR 0005).
-Buildings are interior maps. Ring 2 lies beyond them.
+Nine areas in the home valley, joined by exits (ADR 0005). Eight are each one Tiled
+map. The Beach shares the River delta map (decision 13). Buildings are interior
+maps. Ring 2 lies beyond them.
 
 | Area | What lives there |
 | --- | --- |
@@ -27,7 +28,7 @@ Buildings are interior maps. Ring 2 lies beyond them.
 | Mines | Off the Mountain. Ring 1, gentle combat, open early on a fixed day (`16_bundles.md`). |
 | Hearthwell | The crossroads town. Every Brimmer lives here. The shops and services listed below. The river runs through it. |
 | River delta | Where the river ends. A marsh lake, open from the start. Fishing. The ferry landing for the Lake cove. |
-| Beach | The sea. The odd elf who sells the Homeward pin. |
+| Beach | The sea, at the east end of the River delta map. The odd elf who sells the Homeward pin. |
 | Lake cove | Off the River delta, by ferry. Opened by the Water room reward (`16_bundles.md`). |
 | Ring 2 | Across the river, reached by the bridge in Hearthwell (see below). |
 
@@ -40,7 +41,7 @@ Buildings are interior maps. Ring 2 lies beyond them.
                  [FARM]-----------[HEARTHWELL]--> bridge to ring 2
                     \                 ~
                      \                ~
-                      +--------[River delta]--[Beach]
+                      +--------[River delta + Beach]
                                       |
                                  [Lake cove] (ferry)
 ```
@@ -53,8 +54,7 @@ Buildings are interior maps. Ring 2 lies beyond them.
 | Forest | Farm, Secret Woods, Mountain |
 | Mountain | Forest, Mines, Hearthwell (the river road) |
 | Hearthwell | Mountain, Farm, River delta, the ring 2 bridge |
-| River delta | Hearthwell, Farm, Beach, Lake cove (ferry) |
-| Beach | River delta |
+| River delta (with the Beach) | Hearthwell, Farm, Lake cove (ferry) |
 
 The farm has three exits, so it is a home between places and not a dead end.
 
@@ -92,6 +92,14 @@ The farm has three exits, so it is a home between places and not a dead end.
     Beach. Three lakes are open from the start. The cove is the Water room
     reward, so no Water room bundle may need cove fish. Which fish live where, and what
     makes the cove special, belong to the fishing note (#181).
+13. **The Beach shares the River delta map (decided with the owner,
+    2026-11-06).** The Beach is a dead end with one exit and one
+    character, so it is the east end of the delta map, walked to and not entered
+    through an exit. Every other area stays its own map. Merging more (such as
+    Hearthwell and the Mountain) was offered and not chosen, to keep maps small
+    for tablets (`06_map_style.md`). Whether Stardew shares any maps is unchecked
+    (SC-34). The delta map must stay inside the size budget once area sizes are
+    set (still open below).
 
 ## Hearthwell buildings
 
