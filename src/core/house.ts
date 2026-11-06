@@ -47,7 +47,7 @@ export interface HouseUpgrade {
  */
 export const HOUSE_UPGRADES: HouseUpgrade[] = [{ coin: 10000, wood: 450 }];
 
-/** The item id of wood. Nothing in the game gives it yet (trees are later). */
+/** The item id of wood. Chopping trees and stumps gives it (`docs/design/43_wood_source.md`). */
 export const WOOD = "wood";
 
 /** Days the carpenter works on an upgrade. */
