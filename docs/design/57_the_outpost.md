@@ -92,8 +92,8 @@ Rules that keep them apart:
   lore stage 2 mark is left on the road news board (`09_story_and_lore.md`).
 - **Interior map (placeholder):** one room, about 14 by 10 tiles, one door. A
   counter, the notice wall, a bench, and a stair or door to the steward's rooms.
-  A second small map for the steward's rooms if homes need an interior
-  (`20_ring1_cast.md`). Trader stall and boards are outside by the door.
+  A second small map holds the steward's rooms, reached by that door
+  (decided 2026-11-06, `58_interiors.md`). Trader stall and boards are outside by the door.
 
 ## Build order
 

@@ -23,7 +23,7 @@ copy out. Reset it to its defaults to see this note's cast.
    Hearthwell households.
 2. **Shops are staffed by the households that live above or behind them.**
    Other households can work in a shop part-time, as in Stardew's saloon and
-   clinic. Each shop family is one interior map (shop and home together).
+   clinic. Each shop family is one interior map (shop and home together). The Outpost is the exception, with two maps (`58_interiors.md`).
 3. **The courier lodges at the inn and hangs out at the Outpost** (changed
    2026-11-06). She does not work there; the hall steward is the postmaster
    and lives at the Outpost. The courier is the warden

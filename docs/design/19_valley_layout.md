@@ -108,7 +108,8 @@ The farm has three exits, so it is a home between places and not a dead end.
     The three burrows stand apart in different parts of town, between the shops,
     and not in one row. Both follow Stardew (every household has a home you can
     enter, and the houses stand apart), from memory and unchecked (SC-35). Hearthwell
-    is then 8 shop-and-home maps and 3 burrow maps, plus the town map. Their size
+    is then 9 shop-and-home maps (the Outpost has two, `58_interiors.md`) and 3 burrow
+    maps, plus the town map. All interiors are counted in note 58. Their size
     still waits on area sizes (below).
 
 ## Hearthwell buildings
@@ -141,8 +142,8 @@ From `09_story_and_lore.md`, with the sawmill added:
 - Whether fishing also happens beyond the farm's big south pond, or stays at
   the delta, beach and cove (#181). Only the big farm pond holds fish
   (`55_farm_layout.md`).
-- Where the animals' farmstead keeper lives, and whether the farmstead is an
-  interior or its own area.
+- Whether the animals' farmstead is an interior only or a small area with
+  paddocks. The keeper's house and shop is one interior (`58_interiors.md`).
 
 ## Next steps
 
