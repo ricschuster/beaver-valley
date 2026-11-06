@@ -87,6 +87,7 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 | SC-28 | 38 | What rare item does Stardew mail for completing the full villager roster, and from which crop? | no | open | |
 | SC-29 | 55 | After the player clears the starting clutter, do rocks, branches and stumps return on the farm, and when? | no | open | |
 | SC-30 | 36, 43 | What are Stardew's tree types on the main map, where do they stand outside the farm, and which can be chopped? | no | half answered | Owner, 2026-11-06, from play (for M3, not M2): three tree types on the main map, in fixed places outside the farm. Chopped trees there regrow. Some are cosmetic and cannot be chopped. Still open: the three names, per-type seeds and yields, and the regrow time. |
+| SC-31 | 43, 55 | Which axe tier does each starting-field stump and hollow log need, what does each give, and do they come back after clearing? | no | half answered | Owner, 2026-11-06, from play: the starting stumps are hardwood obstacles that need a better axe than the starting one, and hollow logs are a bigger, tougher version. They are not the stump a chopped tree leaves. Still open: the axe tiers, the yields and whether they return. |
 
 ## Not Stardew questions
 
