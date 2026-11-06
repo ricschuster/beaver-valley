@@ -460,6 +460,12 @@ mines.
   for a small fee, and the result is a gem, a stone or a found thing.
 - **Gems** sell, and go in the lamp trade. A handful feed the Storyteller's
   bundle.
+- **The Glimmerstone (decided 2026-11-06, name a placeholder)** is the top gem
+  and a universal gift love (`61_friendship_and_gifts.md`). It is a very rare
+  find from gem nodes and geodes in the Ember Deeps, floors 100 to 120 only
+  (placeholder 0.5 percent per gem node, 0.2 percent per geode). It cannot be
+  bought, and the player may find none in a whole year. The rest of the gem
+  list is still to write.
 - **Found things** (old dwarf cups, a buckle, a bent key, the Old Diggers' tools)
   are lore items for the Storyteller's bundle (bundle 26) and the completion
   tracker. They are found in ruins, in the quiet floors and from Old Diggers.

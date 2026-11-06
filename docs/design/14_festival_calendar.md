@@ -85,6 +85,15 @@ festival to look ahead to.
 - Save: nothing new is stored for the calendar itself. Whether the player has
   joined this year's parade is stored when the prize counter needs it.
 
+## Harvest Showing prize (decided 2026-11-06)
+
+The first place crop wins one **Blue Ribbon Melon** (name a placeholder), once
+per year. It is a universal gift love (`61_friendship_and_gifts.md`) and cannot
+be bought. Judging uses a crop of the player's own, scored on quality, with a
+top quality melon needed for first place. The scoring, number of entries and
+the other prizes are not settled and need the festival note before #132 builds
+it.
+
 ## M3 cut
 
 Only the Hat Parade is built in M3 (`13_m3_scope.md`). The other three rows are
