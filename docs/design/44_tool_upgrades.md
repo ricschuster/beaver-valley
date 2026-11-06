@@ -51,9 +51,11 @@ below. Item and metal names are ours.
   settles the tier note 19 left to tuning. Stardew's Hardwood page says six
   stumps regrow a day in its Secret Woods and gives 2 hardwood each. The
   stump swing count and the log's yield are not on a saved page and are open.
-- **Large stumps wait for the Woodland farm type and the Secret Woods,** as
-  `43_wood_source.md` and `32_farm_types.md` say. The rule is recorded here so
-  the grade is not changed twice.
+- **The Standard farm starts with hardwood stumps and hollow logs** (owner,
+  2026-11-06, SC-31, from play): large stumps need a copper axe and large logs a
+  steel one. Both tiers are Stardew's rule from memory and not checked on a saved
+  page (note 54). The Woodland farm and the Secret Woods have more of them. The
+  rule is recorded here so the grade is not changed twice.
 - **Energy per swing** stays `2 - 0.25 * tier - 0.1 * level`, never under 0.5
   (note 22, ours), with foraging as the level. Stardew's page says "See
   Proficiency Notes", which is not on a saved page, so the formula is not
@@ -121,7 +123,8 @@ a placeholder by floor band.
 - Whether the smith closes on festival days, and so adds a day to a tool left
   two days before one (Stardew's rule). Festivals are in `14_festival_calendar.md`.
 - One tool at a time, or several (not on a saved page).
-- The large stump swing count, the large log yield, and hardwood per stump.
+- The large stump swing count, the large log yield, hardwood per stump, and
+  whether cleared stumps and logs return on the Standard farm (SC-31, SC-29).
 - The young tree and seedling swing counts per grade (above).
 - Whether farm boulders exist, and which pickaxe grade clears them.
 - The Powerful enchantment (a Stardew forge result that lets any axe clear large
