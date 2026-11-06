@@ -172,8 +172,8 @@ table now crosses in 10 to 24 seconds at 5 tiles a second. If that still feels
 quick, the sizes may be fine and the walk speed too high. Time it in a
 playtest, and change speed before changing sizes. Owner, 2026-11-06: 5 tiles a
 second seems too fast, and Stardew's horse later speeds travel up (SC-41, from
-memory). Note 25 has no horse in our valley, so long maps at a slower walk need
-an answer, such as carts or a later speed item.
+memory). We have a stable and a horse as in Stardew (`59_horse.md`), and carts
+stay.
 
 **Still guesses.** Delta, cove and Mines floor have no Stardew figure, and the
 Mountain and Farm sizes follow Stardew. Correct them against the first Tiled
