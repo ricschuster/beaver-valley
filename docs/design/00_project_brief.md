@@ -6,7 +6,8 @@ template placeholders.
 
 ## What this is
 
-TBD. The project name is a placeholder.
+TBD. The game's name is Elderfold (`docs/decisions/0010-game-name-elderfold.md`).
+"Beaver Valley" survives only as the repo and build working title.
 
 A cozy farming-life game, inspired by Stardew Valley but with its own setting,
 names, art, audio and text (see `docs/decisions/0002-stardew-valley-inspired.md`).
@@ -114,7 +115,7 @@ these is ruled out forever.
   villagers.
 - **Copying the original.** No Stardew Valley names, art, audio, characters,
   text or code.
-- **Final name, polish and store release.** Not before there is a fun
+- **Polish and store release.** The name is chosen (Elderfold). Not before there is a fun
   playable.
 
 ## Design principles

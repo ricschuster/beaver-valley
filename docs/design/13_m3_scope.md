@@ -32,7 +32,7 @@ of slice 1, and slices fish, mines and animals into later slices.
 | Neglect rules, animals | #135 | Out of M3. | There are no animals in the game yet. The rule is written (`09_story_and_lore.md`) and applies when animals are built. |
 | Ring 1 cast list | #136 | Out. Draft after the scope is settled. | A design task, not a build task. The slice needs only a few named villagers (see below). |
 | Marriage | #137 | Out. | Already "later, not M3". |
-| Final name | #138 | Out. | The placeholder stays until chosen. |
+| Final name | #138 | Out. | Chosen: Elderfold (ADR 0010). The rename in code is separate. |
 
 ## The slice, in one paragraph
 
