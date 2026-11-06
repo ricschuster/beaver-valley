@@ -114,22 +114,27 @@ cozy hobbit home. This note settles both.
   they are for later. They are not shown as broken or blocked, which matches
   the hall's greyed rooms.
 
-## Floor plans per tier (proposed 2026-11-06)
+## Floor plans per tier (settled 2026-11-06)
 
-Owner's choice: one full map per tier, as in Stardew. The owner saved Stardew
+Owner's choice: one full map per tier, and our sizes follow Stardew's measured
+sizes. The owner saved Stardew
 images of every tier, the cellar and the renovations (reference only, in the
 gitignored `docs/reference/stardew/farmhouse/`). Sizes below are rough: each
 image has its own scale, so the tile size came from the furniture (the TV and
 table are 2 tiles wide, the double bed 3 and a cask 1). Give or take 1 to 2
 tiles. Width by depth, outer size including walls.
 
-| Map | Stardew (measured) | Ours (proposed) |
-| --- | --- | --- |
-| Start | 11 by 10 | 10 by 8, the current `house.json`, unchanged |
-| Tier 1 | about 31 by 12 | 26 by 8 |
-| Tier 2 | about 34 by 22 | 26 by 17 |
-| Tier 3 | same as tier 2, plus cellar stairs | same as tier 2, plus cellar stairs |
-| Cellar | about 19 by 16 | 16 by 12 |
+| Map | Size (width by depth) |
+| --- | --- |
+| Start | 11 by 10 |
+| Tier 1 | about 31 by 12 |
+| Tier 2 | about 34 by 22 |
+| Tier 3 | same as tier 2, plus cellar stairs |
+| Cellar | about 19 by 16 |
+
+The current `house.json` is 10 by 8, so the start map grows to 11 by 10 when the
+tier maps are built (tier 1 is built in M2, #280). The sizes are rough, so the
+map work may adjust them by a tile or two.
 
 Shapes, from the images:
 
@@ -137,23 +142,23 @@ Shapes, from the images:
   notch bottom left.
 - **Tier 1:** the start room keeps its place in the middle. A kitchen (checkered
   floor, counter, fridge, sink) is added on its left. A bedroom with the double
-  bed is added on its right, joined by a one tile passage with a step. Ours:
-  kitchen 7 wide, start room 10, passage 1, bedroom 8, all 8 deep. The start
+  bed is added on its right, joined by a one tile passage with a step. Sizes:
+  kitchen about 9 wide, start room 11, passage 1, bedroom about 10, about 12
+  deep. The start
   room's door moves with it, so each map has its own door tile.
 - **Tier 2:** the tier 1 floor stays. An upper band is added, reached by stairs
   above the kitchen end: an empty spare room on the left and the nursery (crib
-  and two child beds) on the right, joined to each other. Ours: two bands of 8
-  deep with a 1 tile gap.
+  and two child beds) on the right, joined to each other. Two bands: the
+  lower one as tier 1 (about 12 deep) and an upper one about 9 deep.
 - **Tier 3:** a stairs notch on the bottom wall under the kitchen leads down to
   the cellar. The upstairs and the rest do not change. This matches the images:
   the cellar stairs appear only after tier 2.
 - **Cellar:** its own map, stone floor, stairs up in a corner, rows of cask
-  spaces (Stardew has 33, in 3 rows of 11). Ours is smaller, and the cask count
-  waits on note 24 since the cask is not in the first version.
+  spaces (Stardew has 33, in 3 rows of 11). Our cask count waits on note 24, since the cask is not in
+  the first version.
 
 The first playable keeps only the start map and tier 1 (decision 7). The old
-sealed earth plan, 18 by 8 with a kitchen 4 wide, is dropped. Tier 1's size is
-now an open choice (see Open).
+sealed earth plan, 18 by 8 with a kitchen 4 wide, is dropped.
 
 ## Renovations (reference)
 
@@ -210,8 +215,8 @@ rest is mine and open to change.
 
 ## Open
 
-- Our tier map sizes (proposed above, not agreed) and the cellar size. The
-  Stardew sizes are rough, from screenshots.
+- Exact tile sizes: the Stardew sizes are rough, from screenshots, so the map
+  work may adjust them. The cask count in the cellar.
 - The sawmill interior map layout, and the carpenter's hours (Stardew's
   shop closes some days; not decided).
 - Where the catalogue is sold and what it costs (`10_customisation.md`).
