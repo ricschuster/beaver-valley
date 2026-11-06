@@ -49,6 +49,7 @@ still pushes the player to keep up.
 ## Open
 
 - The rate: placeholders are in `36_gathering_trees_sap_fiber.md` (20 weeds on
-  day 1, 10 percent spread a night). Playtest to set them.
+  day 1, 10 percent spread a night). Playtest to set them. The wiki gives no rate. The owner says Stardew's
+  weeds spread very slowly (SC-12), so 10 percent a night is likely too fast.
 - Whether fruit trees are blocked by weeds (farm note).
 - Whether valley and mine weeds come later.
