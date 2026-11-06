@@ -107,8 +107,10 @@ is in the toolbar from tier 0. The tiers are #194.
 
 - Fences and machines no longer compete with the house for long: 450 for tier 1
   plus fencing 40 tiles (80) and a few machines (40 each) is well under the
-  stand. The real limit is the energy to chop, so a player who clears fields
-  first reaches 450 by about the end of the first season. Check in a playtest.
+  stand. The real limit is the energy to chop. A tree and its stump give about
+  18.5 wood for 30 energy, so 450 wood costs about 730 energy, roughly 3 full
+  days of chopping at 270 maximum energy. Wood is therefore not the gate for
+  house tier 1, the 10,000g is. Rechecked 2026-11-06. Check in a playtest.
 - **The carpenter also sells wood** (4,500g in year 1, as Stardew), so a player
   short on time can buy the last of the 450.
 - **Surplus wood** has sinks later: chests, fences, the charcoal kiln (10 wood
