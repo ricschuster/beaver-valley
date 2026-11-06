@@ -67,8 +67,8 @@ cozy hobbit home. This note settles both.
 ## Proposed details
 
 - **Tier contents follow Stardew's**:
-  - Start: one room with a bed, hearth and a door mat. The current
-    `house.json` is 10 by 8 and stays.
+  - Start: one room with a bed, hearth and a door mat (11 by 10, see
+    "Floor plans per tier").
   - Tier 1: a kitchen (cooking, a fridge chest, a sink that refills the
     watering can) and a bedroom with a double bed. Allows marriage
     (`12_marriage.md`).
@@ -132,9 +132,12 @@ tiles. Width by depth, outer size including walls.
 | Tier 3 | same as tier 2, plus cellar stairs |
 | Cellar | about 19 by 16 |
 
-The current `house.json` is 10 by 8, so the start map grows to 11 by 10 when the
-tier maps are built (tier 1 is built in M2, #280). The sizes are rough, so the
-map work may adjust them by a tile or two.
+Built in #422: `house.json` is the start map at 11 by 10 and `house-1.json` is
+tier 1 at 31 by 12. Both are generated placeholders (`scripts/gen-farm-map.mjs`).
+`houseMapId(tier)` picks the map, tiers 2 and 3 use the tier 1 map until their
+maps exist, and a tier change while the player is inside reloads the scene on
+the new map at its door. In tier 1 the double bed in the bedroom is the bed
+that saves the day. The sizes may still move by a tile or two.
 
 Shapes, from the images:
 

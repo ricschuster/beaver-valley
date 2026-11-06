@@ -269,52 +269,88 @@ const farm = {
   tilesets: [tileset],
 };
 
-// The house interior (docs/design/41_house.md): one open space, 18 by 8, with the
-// kitchen on the left (columns 1 to 4), the start room in the middle (5 to 12)
-// and the bedroom on the right (13 to 16). The file is the fully open house. The
-// scene seals the kitchen and bedroom regions with earth until the house tier
-// opens them, so the map never changes between tiers.
-const HW = 18;
-const HH = 8;
-const hground = new Array(HW * HH).fill(PATH);
-const hcollision = new Array(HW * HH).fill(0);
-for (let y = 0; y < HH; y++)
-  for (let x = 0; x < HW; x++)
-    if (x === 0 || y === 0 || x === HW - 1 || y === HH - 1) {
-      hground[y * HW + x] = WALL;
-      hcollision[y * HW + x] = 1;
+// The house interiors (docs/design/41_house.md): one map per tier, no sealed
+// earth. The start map is one room, 11 by 10 outer size, with the door notch
+// bottom left and the bed lower right. Tier 1 is 31 by 12: a kitchen (9 wide)
+// on the left of the start room (11 wide), a one tile passage, then the
+// bedroom (10 wide) with the double bed. Each map has its own door tile.
+// Tier 2 and 3 maps and the cellar are M3.
+/** A walled rectangle (outer size) on a ground and collision grid. */
+function houseGrid(w, h) {
+  const g = new Array(w * h).fill(PATH);
+  const c = new Array(w * h).fill(0);
+  const wall = (x, y) => {
+    g[y * w + x] = WALL;
+    c[y * w + x] = 1;
+  };
+  const open = (x, y) => {
+    g[y * w + x] = PATH;
+    c[y * w + x] = 0;
+  };
+  const room = (x0, y0, rw, rh) => {
+    for (let x = x0; x < x0 + rw; x++) {
+      wall(x, y0);
+      wall(x, y0 + rh - 1);
     }
-hground[(HH - 1) * HW + 9] = DOOR;
-hcollision[(HH - 1) * HW + 9] = 0;
-// A bed against the north wall. Use it from the tile below to sleep.
-hground[1 * HW + 6] = BED;
-hcollision[1 * HW + 6] = 1;
-const hregion = (name, x, y, w, h) => ({
-  ...point("region", name, x, y),
-  width: w * T,
-  height: h * T,
-});
+    for (let y = y0; y < y0 + rh; y++) {
+      wall(x0, y);
+      wall(x0 + rw - 1, y);
+    }
+  };
+  const tile = (x, y, id, solid = true) => {
+    g[y * w + x] = id;
+    c[y * w + x] = solid ? 1 : 0;
+  };
+  return { g, c, wall, open, room, tile };
+}
 
-const house = {
-  ...farm,
-  width: HW,
-  height: HH,
-  layers: [
-    { ...tileLayer(1, "ground", hground), width: HW, height: HH },
-    { ...tileLayer(2, "collision", hcollision, false), width: HW, height: HH },
-    {
-      ...farm.layers[4],
-      objects: [
-        point("entry", "door", 9, HH - 2),
-        exit("door", 9, HH - 1, "farm", "from_house"),
-        service("bed", 6, 1),
-        hregion("kitchen", 1, 1, 4, 6),
-        hregion("start", 5, 1, 8, 6),
-        hregion("bedroom", 13, 1, 4, 6),
-      ],
-    },
-  ],
-};
+function houseMap(w, h, grid, objects) {
+  return {
+    ...farm,
+    width: w,
+    height: h,
+    layers: [
+      { ...tileLayer(1, "ground", grid.g), width: w, height: h },
+      { ...tileLayer(2, "collision", grid.c, false), width: w, height: h },
+      { ...farm.layers[4], objects },
+    ],
+  };
+}
+
+// Start map, 11 by 10. The door notch is bottom left; the bed is lower right,
+// used from the tile above it (or any side).
+const HW = 11;
+const HH = 10;
+const h0 = houseGrid(HW, HH);
+h0.room(0, 0, HW, HH);
+h0.tile(2, HH - 1, DOOR, false);
+h0.tile(9, 7, BED);
+const house = houseMap(HW, HH, h0, [
+  point("entry", "door", 2, HH - 2),
+  exit("door", 2, HH - 1, "farm", "from_house"),
+  service("bed", 9, 7),
+]);
+
+// Tier 1 map, 31 by 12. Columns: kitchen 0 to 8, start room 9 to 19, passage
+// 20, bedroom 21 to 30. The kitchen joins the start room through a two tile
+// gap through the two walls; the passage is one tile wide (a path tile for
+// now, the step is art).
+const H1W = 31;
+const H1H = 12;
+const h1 = houseGrid(H1W, H1H);
+h1.room(0, 0, 9, H1H); // kitchen
+h1.room(9, 0, 11, H1H); // start room
+h1.room(21, 0, 10, H1H); // bedroom
+for (let y = 0; y < H1H; y++) h1.wall(20, y); // the passage column
+for (const y of [5, 6]) for (const x of [8, 9]) h1.open(x, y); // kitchen to start room
+for (const x of [19, 20, 21]) h1.open(x, 5); // start room, passage, bedroom
+h1.tile(11, H1H - 1, DOOR, false);
+for (const x of [24, 25, 26]) h1.tile(x, 2, BED); // the double bed
+const house1 = houseMap(H1W, H1H, h1, [
+  point("entry", "door", 11, H1H - 2),
+  exit("door", 11, H1H - 1, "farm", "from_house"),
+  service("bed", 25, 2),
+]);
 
 // The carpenter's sawmill (docs/design/41_house.md): a small room with the
 // carpenter's counter on the back wall and the door at the bottom. It stands on
@@ -437,8 +473,9 @@ const dir = "src/content/maps";
 mkdirSync(dir, { recursive: true });
 writeFileSync(`${dir}/farm.json`, JSON.stringify(farm));
 writeFileSync(`${dir}/house.json`, JSON.stringify(house));
+writeFileSync(`${dir}/house-1.json`, JSON.stringify(house1));
 writeFileSync(`${dir}/sawmill.json`, JSON.stringify(sawmill));
 writeFileSync(`${dir}/hall.json`, JSON.stringify(hall));
 console.log(
-  `wrote the farm, house, sawmill and hall maps in ${dir} (placeholders)`,
+  `wrote the farm, house (start and tier 1), sawmill and hall maps in ${dir} (placeholders)`,
 );
