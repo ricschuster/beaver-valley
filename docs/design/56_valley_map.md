@@ -30,9 +30,8 @@ looked at together like a map.
   Hearthwell to the delta.
 - Hearthwell has 11 households (note 20). Eight are services that live in their
   shop (store, smithy, inn, healer, library, sawmill, hatter, hall).
-  The other three (retired couple, gardener, young adults) are drawn as
-  placeholder burrows, because note 19 says the number of homes is open. Their
-  positions are not decided.
+  The other three (retired couple, gardener, young adults) are enterable burrows
+  that stand apart (note 19, decision 14). Their positions are diagrammatic.
 - The courier is drawn at the Outpost, where she hangs out without working.
   She lodges at the inn. The hall steward is drawn once, at the Outpost, where they work and
   live. The hall has nobody.
@@ -49,5 +48,4 @@ changes, then run `npm run valley-map`.
 ## Still open
 
 - Real positions and sizes. The map is not to scale.
-- Whether the Hearthwell homes beyond the shops are separate burrows (note 19).
 - Names. Labels change when the names are written (#136).
