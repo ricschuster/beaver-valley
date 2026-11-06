@@ -1,8 +1,10 @@
 # 61 Friendship and gift tastes
 
-Status: **core rules decided with the owner on 2026-11-06.** The points, caps,
-gift limits, decay, bad gifts, taste tiers, how tastes are learned, birthdays
-and the quality bonus are set. Rows marked "proposed" were not asked and stand
+Status: **core rules decided with the owner on 2026-11-06, loose ends settled
+later the same day.** The points, caps, gift limits, decay, bad gifts, taste
+tiers, how tastes are learned, birthdays, the quality bonus, the six universal
+loves, the universal hates, the Midwinter pairing and the first eight people's
+lists are set (lists are drafts for the owner to reshape). Rows marked "proposed" were not asked and stand
 unless the owner objects. Nothing here is built. It feeds slice 4
 (`33_build_order.md`), house tiers 2 and 3 (#286) and the recipe mail
 (`24_processing_and_cooking.md`).
@@ -90,7 +92,8 @@ objects.
    It is not a gift and does not use the daily gift.
 2. **Midwinter Feast** (`14_festival_calendar.md`): the player gives a gift to
    one assigned villager, worth x5. A villager gives the player one back.
-   Speaking at any festival is still +20, the same as any day.
+   Speaking at any festival is still +20, the same as any day. The pairing rule
+   is decided, see "Midwinter pairing" below.
 3. **The Guests' Board bundles** (22 to 26, `16_bundles.md`): when the last of
    the five is finished, every villager who is not a candidate and whom the
    player has met gains +500 (two hearts). Stardew gives this for its bulletin
@@ -142,19 +145,42 @@ its data, or none.
 - **Flowers are a category, and a foraged flower is a flower.** The daffodil
   and the sweet pea are flowers, so liked by default. (This follows from the
   flower category, and Stardew does the same.)
-- **Six universal loves: six slots fixed by type, items named later
-  (Stardew has a fixed named list).** The slot types are a rare sea find, a rare
-  animal product, a prize crop, a legend fish, a top gem and a late artisan
-  good. Each is named when its system is built. Candidates already designed:
-  the Pearl Lobster's pearl (`21_fishing.md`), truffle oil
-  (`24_processing_and_cooking.md`), the Hearthwell Carp, and the Harvest Showing
-  prize crop (`14_festival_calendar.md`). Elderfruit is not a gift love, so a
-  boost is never spent as a present. Exceptions are per villager, as in Stardew
-  where one person hates a universal love.
-- **Universal hates: a short named list (Stardew).** Two or three specific
-  items, such as an unpleasant dish, a made good and one flower. They need
-  items we have not designed, so they are named with the cooking and artisan
-  lists. Until then the data holds none.
+- **Six universal loves, a fixed named list (Stardew, decided 2026-11-06).**
+  Stardew has six fixed named items that every villager loves. Ours has six of
+  our own, one per slot type:
+
+  | Slot | Item | State |
+  | --- | --- | --- |
+  | Rare sea find | The Pearl Lobster's pearl | Designed (`21_fishing.md`) |
+  | Legend fish | The Hearthwell Carp | Designed (`21_fishing.md`) |
+  | Late artisan good | Truffle oil | Designed (`24_processing_and_cooking.md`) |
+  | Rare animal product | Moonwool, a rare fleece from a well kept sheep | **New, name is a placeholder.** Chance and rule go in `23_animals.md` |
+  | Prize crop | The Blue Ribbon Melon, the Harvest Showing first prize | **New, name is a placeholder** (`14_festival_calendar.md`) |
+  | Top gem | The Glimmerstone | **New, name is a placeholder.** Waits for the gem list in `22_mines.md` |
+
+  The common Carp is a universal hate (below) and the Hearthwell Carp a
+  universal love. They are different items, as the cove legend is a separate
+  record. Elderfruit is not a gift love, so a boost is never spent as a present.
+  Exceptions are per villager, as in Stardew where one person hates a
+  universal love.
+- **Universal hates: a long list, categories plus named items (Stardew,
+  checked 2026-11-06).** This replaces an earlier line here that said Stardew
+  has two or three. The saved Friendship page, section Universal Hates, shows
+  four whole categories and about sixty named items, mostly things that are not
+  meant as presents. The page also lists per-villager exceptions, as ours does. Ours follows that shape with our own items, and
+  is data (a `hate` flag on the item, or a category rule), never code:
+  - **Whole categories:** all bait, all found things (our fossil and artifact
+    equivalent, note 63), all monster drops, all trash. The exceptions that are
+    only disliked follow Stardew's pattern: driftwood among the trash, and the
+    two rare essences among the drops once those exist.
+  - **Named items, by kind:** raw ores and coal (copper ore, iron ore),
+    warp totems and other travel items, the placed or tool-like items (cookout
+    kit, crab pot, torch, tent), hay, sap, seaweed and algae, snails, slime
+    eggs, sea urchins, the common Carp, the poppy and the red mushroom, spoiled
+    and burnt dishes, and raw sugar-like staples when we have them.
+  - **Written as the items exist.** The data holds the four categories and the
+    named items we already have. A new item gets its taste when it is added,
+    so the list stays complete.
 
 | Taste | Rule |
 | --- | --- |
@@ -162,7 +188,7 @@ its data, or none.
 | Like | The seven categories |
 | Neutral | Everything else, including eggs, milk, fish, other forage, grain, plain bread and fried egg |
 | Dislike | Raw oil, junk and trash, weeds and raw stone, and a few more per item |
-| Hate | A short list: spoiled and burnt dishes, one flower, a very few more |
+| Hate | The four categories (bait, found things, monster drops, trash) and a long list of named items, as above |
 
 Our lists are built from our items (`src/content/`), never a copy of Stardew's.
 Each person's own list overrides these.
@@ -182,6 +208,34 @@ Each person's own list overrides these.
   and the gardener. They run the kitchen, builders, animals, hats and shop.
   The other 22 are added by layer. Stardew has everyone giftable from the
   start, and ours does not.
+- **Personalities come first (owner's choice, 2026-11-06).** Each list below
+  follows a one line temperament, so a taste always has a reason. The
+  temperaments are drafts. They seed the voice sheets (`18_dialogue.md`), and
+  the voice sheet may change them, so the lists follow if it does. Names are
+  still open, so each person is shown by role.
+
+### The first eight (draft, for the owner to reshape)
+
+Items are ours. "Likes all X" is a category override. Anything on no list falls
+to the universal taste. The six universal loves and the hates above apply to
+everyone unless a row says otherwise.
+
+| Person | Temperament | Loves | Likes | Dislikes | Hates |
+| --- | --- | --- | --- | --- | --- |
+| Inn keeper | Warm, loud, feeds everyone and keeps a mental ledger of who owes whom a pie | Cheese, goat cheese, beer, honey, pickles | All eggs, leek, potato, corn | Raw oil, fiber | Coal, clay |
+| Carpenter | Dry and practical, fond of well made things, dislikes fuss | Copper bar, iron bar, hot pepper, beer, melon | Tomato, cauliflower, wood | Jam, wine | Sweet pea, dandelion |
+| Animal keeper | Shy and gentle, talks to animals more than to people | Goat milk, cloth, egg, flower honey, sweet pea | Wool, milk, hay-free dishes (all dishes except burnt ones) | Wine, beer | Smoked fish, mayonnaise |
+| Hat-maker | Bright, vain and chatty, notices what you wear | Cloth, dye, wine, grape, daffodil | Wool, sweet pea, jam | Coal, clay, hay | Sap, raw stone |
+| Store keeper | Brisk and shrewd, counts coins and admires a good crop | Jam, melon, cauliflower, pickles, wine | All vegetables | All forage except grape and spice berry | Pearlback (hard to price), dandelion |
+| Healer | Calm and precise, mixes tonics, likes quiet things | Flower honey, daffodil, fiddlehead fern, juice, quartz | Garlic, spice berry, dandelion | All alcohol (wine, beer, mead) | Coal, smoked fish |
+| Hall steward | Formal and fond of order, hides a sweet tooth | Mead, goat cheese, melon, cauliflower, cloth | Honey, corn, radish | Hot pepper, garlic | Dandelion, salmonberry |
+| Gardener | Easy going, always in the dirt, hums to the seedlings | Red cabbage, kale, spice berry, salmonberry, garlic | Tomato, green bean, fiddlehead fern, radish | Cheese, mayonnaise | Hot pepper, slime |
+
+Sizes follow the shape above (3 to 6 loves, 2 to 5 likes, 1 to 3 dislikes, 1 to
+3 hates, up to three overrides). The inn keeper's family, the carpenter and
+the steward are the people most linked to bundles and the kitchen, so their
+likes lean on cooked and made goods. Wheat joins the lists when it exists
+(`63_bundle_pools_part_two.md`).
 
 ## Birthdays (decided 2026-11-06)
 
@@ -209,6 +263,22 @@ Each person's own list overrides these.
   as each person is written, at about 5 or 6 more a season, by the same rules.
   The hat-maker's sibling stays on a different day from the hat-maker.
 
+## Midwinter pairing (decided 2026-11-06)
+
+- **A letter a week before.** On Winter 13 the hall steward's letter names the
+  villager the player gives a gift to at the feast on Winter 20. Stardew sends
+  its letter a week before its feast, on the 18th for the 25th, and names the
+  recipient the same way, from the saved Feast of the Winter Star page.
+- **Random among people the player has met.** Stardew picks any villager at
+  random. Ours never names someone not yet met (the safety rule), and never a
+  child below the standard tier, so the letter is always something the player
+  can act on. If fewer than three people are met, the steward is named.
+- **The giver stays a secret until the feast,** as in Stardew. A met villager
+  is drawn at random to give the player one gift. The gift is a taste based
+  pick, an item that villager loves or likes, so it always reads as chosen.
+- **The player's gift** is worth x5 (the points table). The recipient's reply
+  is the festival reaction line. The rule is data in `festivals.json`.
+
 ## Data and build
 
 - **Item data:** crops, forage and later items gain an optional `giftCategory`
@@ -232,18 +302,21 @@ Each person's own list overrides these.
 
 ## Not decided (open)
 
-- The exact universal love list and each person's own tastes. They are written
-  with the cast and the item list.
+- The final names of Moonwool, the Blue Ribbon Melon and the Glimmerstone, and
+  their systems (animals, the festival, the gem list). The drafts above stand
+  until then.
+- The other 22 people's lists, written by layer. Names and voices for all.
 - Whether the week in our calendar has seven named days (the Sunday rule needs
   one). Check `26_seasons.md` at build.
 - Birthday dates for the other 22 people.
 - Heart event content (see `62_heart_events.md`).
-- The Midwinter assignment rule (who gets whom).
 - The courtship bouquet's flowers and the proposal token's name.
 - Whether telephone-like contact exists. It does not now.
 
 ## Stardew checks
 
-All numbers above come from the saved Friendship page, read 2026-11-06, so no
-new register row is needed. Not checked: the gift log's exact reactions, and
+All numbers above come from the saved Friendship page, read 2026-11-06. The
+universal hate list is from the same page, section Universal Hates (the owner's
+screenshot was of it), so no register row is needed. The Midwinter letter timing is from the saved Feast of the Winter
+Star page. Not checked: the gift log's exact reactions, and
 the Friendship 101 book (+10 percent gains), which we do not have.
