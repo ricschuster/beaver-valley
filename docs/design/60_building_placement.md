@@ -28,17 +28,28 @@ settles how the player places, moves and removes farm buildings: the stable
   greyed with the reason, and the player sells or moves the animals first, so no
   animal is lost (note 23: nothing is removed or lost in our design).
 
+- **Every farm building uses it,** as Stardew: stable, coop, barn, silo and well
+  (and the shipping bin can be moved, saved Carpenter's Shop page). Note 32's
+  `buildSite` marks are then at most default spots.
+- **What blocks a spot:** the saved page's rocks, twigs, weeds and placed items,
+  plus water, cliffs, trees, stumps and boulders, and the exit corridors, the
+  front of the house door and the bin tiles, so a building can never wall off an
+  exit or trap the player. The reserved corridor rule is ours. Whether trees
+  block is not on the saved page (checked, trees are not named there).
+- **The preview shows green and red tiles, and outlines the objects in the way**
+  (rocks, weeds, trees), so a tablet player on the dense day 1 farm sees what to
+  clear. The outline is ours, Stardew shows only the tiles.
+- **Buildings can be painted,** as Stardew: building, trim and roof colours in any
+  combination (saved Carpenter's Shop page). Needs layered, tintable sprites for
+  each building. Not built, and when it is built is open.
+
 ## Open
 
-- **Which buildings use it.** The stable now. Whether coop, barn, silo and well
-  follow, and then whether `buildSite` in note 32 stays only as a default spot.
-- **Map data.** The footprint check needs the tillable, clutter and water layers.
-  Whether a tile type blocks placement (water, paths) beyond what the saved page
-  lists.
-- **Clearing first.** On the dense day 1 farm (note 55) a 4 by 2 free spot must be
-  cleared by the player. Whether a preview shows which clutter blocks it.
+- **Map data.** The footprint check needs the tillable, clutter and water layers,
+  and a way to mark the reserved corridors on each map.
 - **Build time.** Two days for the stable (saved page). Whether the building shows
   as under construction on the map meanwhile.
-- **Painting.** Stardew lets the player paint buildings. Not discussed.
+- **Painting detail.** Colour choices, and whether the house is painted the same
+  way (the saved page allows it only once the house is fully upgraded).
 - **Multiplayer** (note 53, milestone M4): one stable each follows from `59_horse.md`.
 - **Unbuilt UI.** The menu layout and a tablet size check, in a UI note.

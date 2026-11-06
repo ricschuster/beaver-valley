@@ -148,7 +148,8 @@ assumed:
   can stand, using a `buildSite` object class, a small addition to the map
   contract. Changed 2026-11-06: the owner chose player placed buildings on any
   free spot for the stable (`59_horse.md`), as Stardew. Coop and barn are likely
-  to follow, so `buildSite` may become only a default. A placement note settles it.
+  to follow, so `buildSite` is at most a default spot. Note 60 settles it: every farm
+  building is player placed, decided 2026-11-06.
 - **Weeds and clutter:** use the tillable layer, so each map's size already sets
   the weed budget.
 - **Saves:** the save records the farm type id and the map id. The type cannot
