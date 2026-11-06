@@ -80,10 +80,12 @@ cozy hobbit home. This note settles both.
   hardwood, 100,000g, three days each. They are placeholders for
   `07_tuning_numbers.md`, and 65,000g and 100,000g may be too steep for two
   seasons. Check against the playtest income.
-- **One interior map, with sealed earth.** Each tier opens an earth-filled
-  area of the same Tiled map (like the hall's blocked rooms in
-  `40_hall_layout.md`), instead of loading a different map. Positions and saves
-  stay valid across a tier change. The alternative is one map per tier.
+- **One interior map per tier, no sealed earth (owner, 2026-11-06).** This
+  replaces the sealed earth plan. The start, tier 1 and tier 2 each have their
+  own Tiled map. Tier 3 only adds the cellar stairs, so it reuses the tier 2
+  map. Stairs and doors sit at the same tile in every map, and an upgrade moves
+  the player to the same spot, so saves stay valid. The cellar stays a separate
+  small map.
 - **No renovations** in the first version.
 - **The carpenter builds it**, as in Stardew. The first draft said the door is
   closed with scaffold for three days. The owner changed that on 2026-10-31:
@@ -91,11 +93,10 @@ cozy hobbit home. This note settles both.
 
 ## Settled 2026-10-31 (open items)
 
-- **Interior maps.** The above-ground rooms are one Tiled map with sealed
-  earth that each tier opens, and the cellar is a separate small map reached
-  by stairs. Not one map per tier and not one map per room. Stardew: the
-  Farmhouse page shows one connected space that grows, but does not say how it
-  is stored, so that part is not checked.
+- **Interior maps.** Superseded 2026-11-06: one map per tier, no sealed
+  earth (see "Proposed details"). The cellar stays a separate small map reached
+  by stairs. Stardew: the Farmhouse page shows one connected space that grows,
+  but does not say how it is stored, so that part is not checked.
 - **Prices stay at Stardew's** for the first playable: 10,000g and 450 wood,
   65,000g and 100 hardwood, 100,000g, three days each. Tiers 2 and 3 will
   probably be out of reach in two seasons, so they act as long-term goals.

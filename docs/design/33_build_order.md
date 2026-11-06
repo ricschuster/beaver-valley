@@ -35,7 +35,7 @@ on its own.
 ## Before slice 1: the M2 house work
 
 Decided 2026-10-31. M2 still holds house tier 1 (`41_house.md`): the interior
-map with the tier 1 sealed earth (#280), then the carpenter and the 10,000g
+map for tier 1 (#280, one map per tier, no sealed earth), then the carpenter and the 10,000g
 upgrade (#281). It is M2 work, so it comes before slice 1 and does not wait on
 any slice 1 system. The new kitchen has nothing to cook with until slice 4, so
 it reads as waiting until then. The furniture catalogue waits on this tier

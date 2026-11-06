@@ -13,10 +13,13 @@ map work is planned.
 
 ## Decisions (owner, 2026-11-06)
 
-1. **Coop and barn are walked into, one layout per building type.** The big and
-   deluxe tiers add parts to the same base layout, as the farmhouse tiers do
-   (`41_house.md`). So there is one coop map and one barn map, each with tier
-   parts switched on. The owner recalls this as Stardew's way (SC-36).
+1. **Coop and barn are walked into, one map per tier (owner, 2026-11-06,
+   revised).** The first draft said the big and deluxe tiers add parts to one
+   base layout. The owner did not like that and chose a full map per tier, with
+   no sealed earth, for the coop, the barn and the farmhouse (`41_house.md`).
+   So the coop has three maps and the barn three, sized by the table below. They
+   share a template and furniture so the authoring stays light. Whether Stardew
+   stores them this way is not checked (SC-36).
 2. **The greenhouse is walked into.** Note 31 already says "as in Stardew". It
    is one map, locked as a ruin until the Larder room reward.
 3. **Everyone outside Hearthwell with a shop or home gets an interior, and
@@ -85,8 +88,8 @@ screenshots. The owner can still confirm in game.
 | The Outpost | 2 | Post room, and the steward's rooms |
 | Hearthwell burrows | 3 | Gardener, retired couple with grandchild, two young adults (`19_valley_layout.md`, decision 14) |
 | The Long Table (hall) | 1 | Main room and six rooms (`40_hall_layout.md`) |
-| Farm buildings | 3 | Farmhouse (`41_house.md`), farm cave (`55_farm_layout.md`), greenhouse |
-| Coop and barn | 2 | One map each, tier parts added |
+| Farm buildings | 5 | Farmhouse start, tier 1 and tier 2 (tier 3 reuses the tier 2 map and adds the cellar stairs, `41_house.md`), farm cave (`55_farm_layout.md`), greenhouse |
+| Coop and barn | 6 | One map per tier, three each |
 | Outside Hearthwell | 5 | Hermit's tower (Forest), farmstead keeper's house with the animal shop (Forest), smith dwarf's forge (Mountain), fisher's shop and home (River delta), the Beach elf's house and Homeward pin stall (Beach) |
 
 By place:
@@ -95,11 +98,11 @@ By place:
 | --- | --- |
 | Hearthwell | 12 |
 | The Long Table | 1 |
-| Farm (house, cave, greenhouse, coop, barn) | 5 |
+| Farm (house 3, cave, greenhouse, coop 3, barn 3) | 11 |
 | Forest | 2 |
 | Mountain | 1 |
 | River delta (with the Beach) | 2 |
-| **Total** | **23** |
+| **Total** | **29** |
 
 The Mines, the Secret Woods and the Lake cove are areas, not interiors.
 
@@ -123,7 +126,7 @@ courier (lodges at the inn, so she uses its map), and the festival green.
 
 ## Still open
 
-- Which tier parts show in the coop and barn (the sizes are measured, SC-38).
-  Use the table above for those two. The greenhouse placeholder is 18 by 16, and
+- Whether the barn stall wing is built, and the farmhouse tier map sizes. Use
+  the table above for the coop and barn. The greenhouse placeholder is 18 by 16, and
   other interiors keep the 14 by 10 placeholder.
 - Day state and NPC routines inside interiors (`06_map_style.md`).
