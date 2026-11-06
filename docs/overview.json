@@ -211,6 +211,17 @@
         },
         {
           "s": "decided",
+          "t": "Tree types by region are decided for M3, not M2: three types in fixed places outside the farm, regrowing when chopped, some cosmetic and not choppable (owner, from play); names, seeds and yields are open",
+          "ref": "36_gathering_trees_sap_fiber.md#Decisions",
+          "issue": 396
+        },
+        {
+          "s": "decided",
+          "t": "Three woody obstacles, not one: the stump a chopped tree leaves is separate from the starting field's hardwood stumps and the bigger, tougher hollow logs, which need a better axe (owner confirmed; axe tier is partly answered by note 44, yields open)",
+          "ref": "43_wood_source.md#Decisions"
+        },
+        {
+          "s": "decided",
           "t": "Equipment as Stardew: two ring slots, boots (Defense and Immunity), hat, shirt and pants; Stardew's ring list; the slot and the glow and magnet rings are built in slice 3",
           "ref": "37_equipment.md#Decisions"
         },
