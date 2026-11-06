@@ -100,6 +100,16 @@ The farm has three exits, so it is a home between places and not a dead end.
     for tablets (`06_map_style.md`). Whether Stardew shares any maps is unchecked
     (SC-34). The delta map must stay inside the size budget once area sizes are
     set (still open below).
+14. **Every Hearthwell home can be entered (decided with the owner,
+    2026-11-06).** The cast list fixes 11 households, so there are 11 home
+    interiors. Eight are one map with the shop (`20_ring1_cast.md`, decision 2).
+    The other three households each get a small burrow interior of their own: the
+    gardener, the retired couple with the grandchild, and the two young adults.
+    The three burrows stand apart in different parts of town, between the shops,
+    and not in one row. Both follow Stardew (every household has a home you can
+    enter, and the houses stand apart), from memory and unchecked (SC-35). Hearthwell
+    is then 8 shop-and-home maps and 3 burrow maps, plus the town map. Their size
+    still waits on area sizes (below).
 
 ## Hearthwell buildings
 
@@ -118,12 +128,12 @@ From `09_story_and_lore.md`, with the sawmill added:
 - Hatter's shop (added 2026-10-31): sells the hats that achievements unlock
   (`10_customisation.md`)
 - Festival green
-- Homes for the Brimmers (number set by the cast list, #136)
+- Homes for the Brimmers: 11 households (`20_ring1_cast.md`). Eight live in
+  their shop. Three have their own burrows: the gardener, the retired couple
+  with the grandchild, and the two young adults (see decision 14).
 
 ## Still open
 
-- How many homes Hearthwell needs, and which are interiors you can enter. This
-  follows the cast list (#136).
 - What lies beyond the bridge. Ring 2 is a separate design.
 - Size of each area, and the minimum visible tile count for zoom
   (`06_map_style.md`).

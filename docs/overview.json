@@ -308,7 +308,7 @@
         },
         {
           "s": "decided",
-          "t": "Valley map asset (docs/valley-map.html, built from docs/valley-map.json by npm run valley-map): two views, the valley and a zoomed Hearthwell, with area names, main buildings and all 30 people as placeholder role labels; design reference only, positions are diagrammatic, and the three non-shop Hearthwell homes are placeholder burrows; update the JSON when note 19, 20 or 55 changes",
+          "t": "Valley map asset (docs/valley-map.html, built from docs/valley-map.json by npm run valley-map): two views, the valley and a zoomed Hearthwell, with area names, main buildings and all 30 people as placeholder role labels; design reference only, positions are diagrammatic, and the three non-shop Hearthwell homes are enterable burrows that stand apart; update the JSON when note 19, 20 or 55 changes",
           "ref": "56_valley_map.md#Decisions (owner, 2026-11-06)"
         },
         {
@@ -318,7 +318,7 @@
         },
         {
           "s": "open",
-          "t": "Hearthwell size and home count, the Water room ferry route",
+          "t": "Hearthwell size, the Water room ferry route",
           "ref": "19_valley_layout.md#Still open"
         }
       ],

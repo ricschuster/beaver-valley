@@ -478,35 +478,35 @@
         {
           "name": "Gardener's burrow",
           "kind": "building",
-          "x": 900,
+          "x": 700,
           "y": 260,
           "people": [{ "n": "Gardener", "r": "halfling", "c": true }],
-          "note": "Crop hints. Placeholder home.",
+          "note": "Crop hints. Enterable burrow, apart from the others (note 19).",
           "ref": "20_ring1_cast.md"
         },
         {
           "name": "Retired couple's burrow",
           "kind": "building",
-          "x": 900,
-          "y": 400,
+          "x": 780,
+          "y": 640,
           "people": [
             { "n": "Retiree A", "r": "halfling" },
             { "n": "Retiree B", "r": "halfling" },
             { "n": "Grandchild", "r": "halfling" }
           ],
-          "note": "Placeholder home.",
+          "note": "Enterable burrow, apart from the others (note 19).",
           "ref": "20_ring1_cast.md"
         },
         {
           "name": "Young adults' burrow",
           "kind": "building",
-          "x": 900,
-          "y": 650,
+          "x": 130,
+          "y": 420,
           "people": [
             { "n": "Young adult A", "r": "halfling", "c": true },
             { "n": "Young adult B", "r": "halfling", "c": true }
           ],
-          "note": "They work at the inn. Placeholder home.",
+          "note": "They work at the inn. Enterable burrow, apart from the others (note 19).",
           "ref": "20_ring1_cast.md"
         },
         {
