@@ -11,7 +11,7 @@ yields, stumps, growth, spread, regrowth) stay in note 36 and are not repeated.
 
 - **Wood comes from farm trees in the first playable.** The Forest map does not
   exist, so the farm is the only place for trees now. The carpenter sells wood
-  (decided 2026-11-03, `41_house.md`), but chopping is far cheaper. The Forest adds more trees when it is built.
+  (decided 2026-11-03, `41_house.md`), but chopping is far cheaper. The Forest adds more trees when it is built. Owner, 2026-11-06: the Forest is the main wood source once the farm's wood runs out, so it needs a steady supply and room for it (area size in `19_valley_layout.md`). How the supply renews is not designed yet.
 - **Many trees, so wood is plentiful and energy is the limit (revised
   2026-11-03).** The day 1 farm is dense like Stardew's (note 55). The working
   target is about 100 trees: about 80 mature, 12 young and 8 seedlings,
