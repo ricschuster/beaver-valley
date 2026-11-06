@@ -87,7 +87,7 @@ Placeholder names such as "Partner" and "Child" stay until the names are written
 | Healer | Healer (F, elf, candidate) | Runs the healer | |
 | Librarian | Librarian (M, dwarf, candidate) | Runs the library | Favour ledgers |
 | Carpenter household | Carpenter (F, deep), partner (M), child (F), all halfling | Runs the sawmill. Builds and upgrades the coop and barn (`23_animals.md`) | |
-| Hall steward | Hall steward (M, halfling, deep) | Runs the Outpost as postmaster, and opens The Long Table for hall business | Lives at the Outpost (changed 2026-11-06, nobody lives at the hall). Gives the hint toward the hall. Hands out mail and parcels (`51_mail_and_letters.md`) |
+| Hall steward | Hall steward (M, halfling, deep) | Runs the Outpost as postmaster, and opens The Long Table for hall business | Lives at the Outpost (changed 2026-11-06, nobody lives at the hall). Gives the hint toward the hall. Mail and parcels are lore only, the player reads mail at the farm mailbox (`51_mail_and_letters.md`, `57_the_outpost.md`) |
 | Hat-maker household | Hat-maker (F, candidate), sibling (M, candidate), both halfling | Runs the hatter's shop | Hats, the Hat Parade. The shop was added 2026-10-31 (`10_customisation.md`) |
 | Two young adults | Young adult A (F), young adult B (F), both halfling and candidates | Works at the inn | |
 | Retired couple and grandchild | Retiree A (F), retiree B (M), grandchild (M), all halfling | none | |

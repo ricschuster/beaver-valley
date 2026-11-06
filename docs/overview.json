@@ -312,6 +312,11 @@
           "ref": "56_valley_map.md#Decisions (owner, 2026-11-06)"
         },
         {
+          "s": "decided",
+          "t": "The Outpost (draft): two boards (Help Wanted stays at the store, road news at the Outpost from day 1, Special Orders appear later as in Stardew, SC-32), one road trader on Wednesday and Saturday with seeded stock at 1.5 times sell value, the farmhouse TV gives the same forecast (SC-33), road news is gossip plus trader notice plus tomorrow's weather, and a channel table that gives each way of talking to the player one job",
+          "ref": "57_the_outpost.md#Decisions (owner, 2026-11-06)"
+        },
+        {
           "s": "open",
           "t": "Hearthwell size and home count, the Water room ferry route",
           "ref": "19_valley_layout.md#Still open"
