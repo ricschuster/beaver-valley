@@ -144,7 +144,7 @@ which are unscheduled (`24_processing_and_cooking.md`).
 
 Friendship and gift mechanics are settled in `61_friendship_and_gifts.md`
 (2026-11-06). Still needed first: each person's own tastes and the universal
-love list, the birthdays and the heart events. Also the bundle pools for 22 to 26 and the inn kitchen's stock.
+love list, the birthdays and the heart events. The bundle pools for 22 to 26 are drafted in `63_bundle_pools_part_two.md`. Still open: the inn kitchen's stock.
 
 ### Slice 5: the Last Seat
 
