@@ -169,11 +169,14 @@ Each person's own list overrides these.
 
 ## Personal lists (decided 2026-11-06)
 
-- **Size: Stardew-sized, longer for the deep tier.** Up to about eight loves and
-  fifteen likes for the deep tier, fewer for the standard tier, a few dislikes
-  and a few hates. Stardew's counts are from memory (SC-43), so the numbers
-  are a ceiling, not a target. The writing load is held by layer
-  (`18_dialogue.md`).
+- **Size, checked on six saved Stardew pages (SC-43).** Stardew's named loves
+  run 2 to 8 per person, named likes 2 to 5, named dislikes 1 to 3 and named
+  hates 1 to 5. The rest of a person's taste is a short list of category
+  exceptions, such as "dislikes all fruit and all eggs, except these". Ours
+  follows that shape: per person about 3 to 6 loves (up to 8 for the deep
+  tier), 2 to 5 likes, 1 to 3 dislikes, 1 to 3 hates, plus up to three category
+  overrides. A few people (Stardew's doctor is the case) may have a long list.
+  The writing load is held by layer (`18_dialogue.md`).
 - **Written first, for slice 4: the people it touches.** Inn keeper, carpenter,
   keeper of the animal farmstead, hat-maker, store keeper, healer, hall steward
   and the gardener. They run the kitchen, builders, animals, hats and shop.
