@@ -103,6 +103,10 @@ scope is in `13_m3_scope.md` (accepted, #130).
 - Minigames, starting with a festival game (`11_minigames.md`): #134.
 - The neglect rules and tone rules in `09_story_and_lore.md`: #135.
 - The scope note that picks what is in and out of M3: #130.
+- Tree types by region, as Stardew (`36_gathering_trees_sap_fiber.md`, SC-30):
+  three types in fixed places outside the farm, regrowing when chopped, and some
+  cosmetic ones that cannot be chopped. Decided 2026-11-06 for M3, not M2. No
+  issue yet.
 - Later, not M3: marriage, which needs its own design note (#137, parked).
   Also unscheduled: the ring 1 cast list (#136) and the final name (#138).
 
