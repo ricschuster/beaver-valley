@@ -1,0 +1,536 @@
+{
+  "title": "Beaver Valley overview map",
+  "note": "Design reference only. Positions are diagrammatic and decide nothing about tile sizes or real building spots (docs/design/56_valley_map.md). People are role labels from note 20, not names.",
+  "expectedPeople": 30,
+  "expectedCandidates": 14,
+  "kinds": {
+    "building": "Building or interior",
+    "water": "Water",
+    "landmark": "Landmark",
+    "gate": "Gate or crossing",
+    "town": "Zoomed view"
+  },
+  "views": [
+    {
+      "id": "valley",
+      "name": "The valley",
+      "w": 1600,
+      "h": 1240,
+      "regions": [
+        {
+          "id": "secret-woods",
+          "name": "Secret Woods",
+          "tone": "deep",
+          "rect": [40, 70, 280, 260],
+          "seed": 3
+        },
+        {
+          "id": "forest",
+          "name": "Forest",
+          "tone": "wood",
+          "rect": [360, 70, 420, 330],
+          "seed": 5
+        },
+        {
+          "id": "mountain",
+          "name": "Mountain",
+          "tone": "rock",
+          "rect": [880, 70, 400, 330],
+          "seed": 7
+        },
+        {
+          "id": "mines",
+          "name": "Mines",
+          "tone": "stone",
+          "rect": [1320, 70, 240, 250],
+          "seed": 9
+        },
+        {
+          "id": "farm",
+          "labelAt": [450, 512],
+          "name": "Farm",
+          "tone": "field",
+          "rect": [360, 470, 420, 330],
+          "seed": 11
+        },
+        {
+          "id": "hearthwell",
+          "name": "Hearthwell",
+          "tone": "town",
+          "rect": [880, 470, 400, 330],
+          "seed": 13
+        },
+        {
+          "id": "ring2",
+          "name": "Ring 2",
+          "tone": "ghost",
+          "rect": [1400, 470, 170, 330],
+          "seed": 15,
+          "dashed": true,
+          "sub": "beyond the bridge|not designed"
+        },
+        {
+          "id": "delta",
+          "name": "River delta",
+          "tone": "marsh",
+          "rect": [560, 860, 440, 200],
+          "seed": 17
+        },
+        {
+          "id": "beach",
+          "name": "Beach",
+          "tone": "sand",
+          "rect": [1060, 860, 340, 200],
+          "seed": 19
+        },
+        {
+          "id": "cove",
+          "name": "Lake cove",
+          "tone": "marsh",
+          "rect": [640, 1100, 280, 110],
+          "seed": 21
+        }
+      ],
+      "roads": [
+        ["farm", "forest", "road"],
+        ["farm", "hearthwell", "road"],
+        ["farm", "delta", "road"],
+        ["forest", "secret-woods", "road"],
+        ["forest", "mountain", "road"],
+        ["mountain", "mines", "road"],
+        ["mountain", "hearthwell", "road"],
+        ["hearthwell", "delta", "road"],
+        ["hearthwell", "ring2", "road"],
+        ["delta", "beach", "road"],
+        ["delta", "cove", "ferry"]
+      ],
+      "river": [
+        [1090, 110],
+        [1110, 290],
+        [1150, 440],
+        [1150, 570],
+        [1130, 700],
+        [1030, 820],
+        [880, 900],
+        [790, 960]
+      ],
+      "features": [
+        {
+          "name": "Massive log",
+          "kind": "gate",
+          "x": 292,
+          "y": 210,
+          "note": "Blocks the way to the Secret Woods. A steel axe or better clears it.",
+          "ref": "44_tool_upgrades.md"
+        },
+        {
+          "name": "Rare forage glade",
+          "kind": "landmark",
+          "x": 150,
+          "y": 190,
+          "note": "No residents.",
+          "ref": "19_valley_layout.md"
+        },
+        {
+          "name": "Forest lake",
+          "kind": "water",
+          "x": 500,
+          "y": 170,
+          "rx": 70,
+          "ry": 40,
+          "note": "A fishing water, open from the start.",
+          "ref": "19_valley_layout.md"
+        },
+        {
+          "name": "Animal farmstead",
+          "kind": "building",
+          "x": 690,
+          "y": 160,
+          "people": [{ "n": "Farmstead keeper", "r": "halfling", "c": true }],
+          "note": "Holds the animals. Whether it is an interior or its own area is open.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Hermit's hut",
+          "kind": "building",
+          "x": 440,
+          "y": 310,
+          "people": [{ "n": "The hermit (witch)", "r": "wizard" }],
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Wanderer's camp",
+          "kind": "landmark",
+          "x": 690,
+          "y": 320,
+          "people": [{ "n": "The Wanderer (Old Greencoat)", "r": "wizard" }],
+          "note": "Announces that the mines open.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Mountain lake",
+          "kind": "water",
+          "x": 990,
+          "y": 160,
+          "rx": 60,
+          "ry": 36,
+          "note": "The river starts on the Mountain.",
+          "ref": "19_valley_layout.md"
+        },
+        {
+          "name": "Smith dwarf's forge",
+          "kind": "building",
+          "x": 970,
+          "y": 290,
+          "people": [{ "n": "Smith dwarf", "r": "dwarf", "c": true }],
+          "note": "Tool upgrades and lamps.",
+          "ref": "44_tool_upgrades.md"
+        },
+        {
+          "name": "Stonekeeper's yard",
+          "kind": "building",
+          "x": 1210,
+          "y": 290,
+          "people": [{ "n": "Stonekeeper dwarf", "r": "dwarf", "c": true }],
+          "note": "Bridges and stonework.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Mine entrance",
+          "kind": "gate",
+          "x": 1440,
+          "y": 140,
+          "ref": "22_mines.md"
+        },
+        {
+          "name": "Practice dummy",
+          "kind": "landmark",
+          "x": 1440,
+          "y": 250,
+          "people": [{ "n": "Dummy trainer", "r": "human", "c": true }],
+          "ref": "22_mines.md"
+        },
+        {
+          "name": "Farmhouse",
+          "kind": "building",
+          "x": 660,
+          "y": 530,
+          "note": "North-east corner of the farm.",
+          "ref": "55_farm_layout.md"
+        },
+        {
+          "name": "Shipping bin",
+          "kind": "landmark",
+          "x": 735,
+          "y": 585,
+          "ref": "28_shipping_bin.md"
+        },
+        {
+          "name": "Ruined greenhouse",
+          "kind": "building",
+          "x": 500,
+          "y": 570,
+          "note": "Repaired later.",
+          "ref": "31_farm_growth.md"
+        },
+        {
+          "name": "Farm cave",
+          "kind": "gate",
+          "x": 410,
+          "y": 515,
+          "ref": "31_farm_growth.md"
+        },
+        {
+          "name": "Big pond",
+          "kind": "water",
+          "x": 540,
+          "y": 730,
+          "rx": 62,
+          "ry": 32,
+          "note": "South centre. Refills the can, holds fish.",
+          "ref": "55_farm_layout.md"
+        },
+        {
+          "name": "Small pond",
+          "kind": "water",
+          "x": 710,
+          "y": 680,
+          "rx": 46,
+          "ry": 24,
+          "note": "East side. Refills the can, no fish.",
+          "ref": "55_farm_layout.md"
+        },
+        {
+          "name": "Hearthwell town",
+          "kind": "town",
+          "x": 1060,
+          "y": 620,
+          "view": "hearthwell",
+          "note": "22 people live or lodge here. Open the zoomed view.",
+          "ref": "19_valley_layout.md"
+        },
+        {
+          "name": "The Long Table",
+          "kind": "building",
+          "x": 1230,
+          "y": 640,
+          "note": "The village hall, an old road inn at the east end of the town map.",
+          "ref": "40_hall_layout.md"
+        },
+        {
+          "name": "Broken bridge",
+          "kind": "gate",
+          "x": 1360,
+          "y": 640,
+          "note": "Mended by finishing the Last Seat. The single gate to ring 2.",
+          "ref": "19_valley_layout.md"
+        },
+        {
+          "name": "Marsh lake",
+          "kind": "water",
+          "x": 690,
+          "y": 960,
+          "rx": 70,
+          "ry": 34,
+          "note": "Open from the start.",
+          "ref": "19_valley_layout.md"
+        },
+        {
+          "name": "Fisher's hut",
+          "kind": "building",
+          "x": 880,
+          "y": 940,
+          "people": [{ "n": "Fisher", "r": "halfling", "c": true }],
+          "note": "Sells fishing gear. May also keep the ferry.",
+          "ref": "21_fishing.md"
+        },
+        {
+          "name": "Ferry landing",
+          "kind": "gate",
+          "x": 790,
+          "y": 1040,
+          "ref": "19_valley_layout.md"
+        },
+        {
+          "name": "Odd elf's stall",
+          "kind": "building",
+          "x": 1180,
+          "y": 940,
+          "people": [{ "n": "The odd elf", "r": "elf", "c": true }],
+          "note": "Sells the Homeward pin.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "The sea",
+          "kind": "water",
+          "x": 1310,
+          "y": 1010,
+          "rx": 80,
+          "ry": 36,
+          "ref": "19_valley_layout.md"
+        },
+        {
+          "name": "Cove shore",
+          "kind": "landmark",
+          "x": 780,
+          "y": 1160,
+          "note": "Opened by the Water room reward. Reached by ferry.",
+          "ref": "16_bundles.md"
+        }
+      ]
+    },
+    {
+      "id": "hearthwell",
+      "name": "Hearthwell",
+      "w": 1400,
+      "h": 900,
+      "regions": [
+        {
+          "id": "town",
+          "name": "Hearthwell",
+          "tone": "town",
+          "rect": [60, 70, 1280, 760],
+          "seed": 31
+        }
+      ],
+      "roads": [],
+      "streets": [
+        [
+          [390, 90],
+          [390, 820]
+        ],
+        [
+          [120, 200],
+          [640, 200]
+        ],
+        [
+          [120, 400],
+          [640, 400]
+        ],
+        [
+          [120, 600],
+          [640, 600]
+        ],
+        [
+          [640, 500],
+          [1330, 500]
+        ],
+        [
+          [900, 300],
+          [900, 620]
+        ]
+      ],
+      "river": [
+        [700, 60],
+        [670, 250],
+        [725, 450],
+        [690, 650],
+        [735, 850]
+      ],
+      "exits": [
+        { "t": "To the Mountain (river road)", "x": 700, "y": 40 },
+        { "t": "To the Farm", "x": 76, "y": 478, "anchor": "start" },
+        { "t": "To the River delta", "x": 735, "y": 878 },
+        { "t": "To ring 2 (broken bridge)", "x": 1260, "y": 560 }
+      ],
+      "features": [
+        {
+          "name": "Store and carrier post",
+          "kind": "building",
+          "x": 300,
+          "y": 200,
+          "people": [
+            { "n": "Store keeper", "r": "halfling" },
+            { "n": "Store keeper's partner", "r": "halfling" },
+            { "n": "Store keeper's child", "r": "halfling" },
+            { "n": "Courier (works here)", "r": "human" }
+          ],
+          "note": "Gardener works here part-time.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Healer",
+          "kind": "building",
+          "x": 500,
+          "y": 200,
+          "people": [{ "n": "Healer", "r": "elf", "c": true }],
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Inn and kitchen",
+          "kind": "building",
+          "x": 300,
+          "y": 400,
+          "people": [
+            { "n": "Inn keeper", "r": "halfling" },
+            { "n": "Inn keeper's partner", "r": "halfling" },
+            { "n": "Inn keeper's child", "r": "halfling" }
+          ],
+          "note": "The courier lodges here. The two young adults work here part-time.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Library",
+          "kind": "building",
+          "x": 500,
+          "y": 400,
+          "people": [{ "n": "Librarian", "r": "dwarf", "c": true }],
+          "note": "Favour ledgers.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Smithy and mender",
+          "kind": "building",
+          "x": 300,
+          "y": 600,
+          "people": [{ "n": "Smith", "r": "halfling", "c": true }],
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Hatter's shop",
+          "kind": "building",
+          "x": 500,
+          "y": 600,
+          "people": [
+            { "n": "Hat-maker", "r": "halfling", "c": true },
+            { "n": "Hat-maker's sibling", "r": "halfling", "c": true }
+          ],
+          "note": "Sells the hats that achievements unlock.",
+          "ref": "10_customisation.md"
+        },
+        {
+          "name": "Sawmill and carpenter",
+          "kind": "building",
+          "x": 600,
+          "y": 500,
+          "people": [
+            { "n": "Carpenter", "r": "halfling" },
+            { "n": "Carpenter's partner", "r": "halfling" },
+            { "n": "Carpenter's child", "r": "halfling" }
+          ],
+          "note": "On the river. House upgrades and farm buildings.",
+          "ref": "19_valley_layout.md"
+        },
+        {
+          "name": "Gardener's burrow",
+          "kind": "building",
+          "x": 900,
+          "y": 260,
+          "people": [{ "n": "Gardener", "r": "halfling", "c": true }],
+          "note": "Crop hints. Placeholder home.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Retired couple's burrow",
+          "kind": "building",
+          "x": 900,
+          "y": 400,
+          "people": [
+            { "n": "Retiree A", "r": "halfling" },
+            { "n": "Retiree B", "r": "halfling" },
+            { "n": "Grandchild", "r": "halfling" }
+          ],
+          "note": "Placeholder home.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Young adults' burrow",
+          "kind": "building",
+          "x": 900,
+          "y": 650,
+          "people": [
+            { "n": "Young adult A", "r": "halfling", "c": true },
+            { "n": "Young adult B", "r": "halfling", "c": true }
+          ],
+          "note": "They work at the inn. Placeholder home.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "Festival green",
+          "kind": "landmark",
+          "x": 1000,
+          "y": 770,
+          "note": "Where festivals are held.",
+          "ref": "14_festival_calendar.md"
+        },
+        {
+          "name": "The Long Table",
+          "kind": "building",
+          "x": 1180,
+          "y": 400,
+          "people": [{ "n": "Hall steward", "r": "halfling" }],
+          "note": "The village hall. Lives above it.",
+          "ref": "40_hall_layout.md"
+        },
+        {
+          "name": "Broken bridge",
+          "kind": "gate",
+          "x": 1300,
+          "y": 500,
+          "note": "Mended by the Last Seat. Leads to ring 2.",
+          "ref": "19_valley_layout.md"
+        }
+      ]
+    }
+  ]
+}
