@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30",
+  "updated": "2026-11-06",
   "about": "Hand-kept map of the design. Edit this file, then run npm run overview. Issue titles and states come from docs/overview-issues.json, refreshed with npm run overview:refresh (needs gh). npm run overview:check fails if a note, heading, area or issue reference is wrong, or if overview.html is stale.",
   "groups": {
     "core": "Core loop",
@@ -206,7 +206,7 @@
         },
         {
           "s": "decided",
-          "t": "Wood comes from about 30 hand-placed farm trees, chopped with an axe (Stardew's 10 swings a tree, 5 a stump, held to repeat); goods that miss a full bag lie on the ground and walk-over pickup pulls them in",
+          "t": "Wood comes from about 100 farm trees on a dense day 1 farm, so wood is plentiful and energy is the limit; the carpenter also sells wood; trees are chopped with an axe (Stardew's 10 swings a tree, 5 a stump, held to repeat); goods that miss a full bag lie on the ground and walk-over pickup pulls them in",
           "ref": "43_wood_source.md#Decisions"
         },
         {
@@ -279,6 +279,16 @@
           "s": "decided",
           "t": "Farm types: hand-authored maps, less farmland for a perk, two in the first version (Standard, Woodland), about six later; only the three exits are fixed",
           "ref": "25_stardew_system_review.md#Owner decisions, 2026-10-30"
+        },
+        {
+          "s": "decided",
+          "t": "Farm layout (draft): dense day 1 clutter with no cleared plot, about 80 by 65 tiles, house north-east, bin and mailbox by the door, wake at the bed, two ponds (only the big south one holds fish), exits north Forest, east Hearthwell, south River delta, no hidden fourth exit, farm cave a small interior map",
+          "ref": "55_farm_layout.md#Where each thing goes (draft)"
+        },
+        {
+          "s": "open",
+          "t": "Farm layout: exact tillable count, field shape, starting clutter counts; note 19 still says one pond; 80 by 65 size and clutter regrowth are unchecked Stardew claims (SC-24, SC-25, SC-29)",
+          "ref": "55_farm_layout.md#Open"
         },
         {
           "s": "open",
@@ -939,7 +949,7 @@
         },
         {
           "s": "decided",
-          "t": "One tabbed in-game menu on Esc or E (Stardew); a separate journal on J with a quest log and a hall project log; both pause the clock; Eat stays on F; Social and Map tabs are placeholders; Exit saves the day in progress and goes to the title (ours); K is dropped; the wheel scrolls open lists; Pack gets a trash can, Auto-Sort and a bundle shortcut; Page Up and Page Down switch tabs",
+          "t": "One tabbed in-game menu on Esc or E (Stardew), tabs in Stardew order with no Wear tab (equipment sits on the Pack tab); a separate journal on J with a quest log and a hall project log; both pause the clock; Eat stays on F; Social and Map tabs are placeholders; Exit saves the day in progress and goes to the title (ours); K is dropped; the wheel scrolls open lists; Pack gets a trash can, Auto-Sort and a bundle shortcut; Page Up and Page Down switch tabs",
           "ref": "49_menu_and_journal.md#Decisions"
         },
         {
