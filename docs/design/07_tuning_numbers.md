@@ -448,10 +448,12 @@ are ours where stated.
   fits rounding down.
 - **Fixed on purpose:** costs that do not scale make a low margin harder, which
   is the point. Playtest 25 before keeping it.
-- **Changes later (decided 2026-11-03):** the host can change it after the game
-  has started, as Stardew does (owner, from memory, SC-26). In single player the player is the host. Open: where
-  the setting lives (the host screen in multiplayer, Options in single player)
-  and whether a change takes effect at once or at the next dawn.
+- **Fixed at creation (decided 2026-11-06, as Stardew).** This replaces the
+  2026-11-03 decision that the host can change it later. The saved Multiplayer
+  page says Stardew fixes the margin when the farm is made and only save editing
+  changes it (SC-26). Ours is chosen at farm creation (25, 50, 75 or 100
+  percent) and has no in-game setting, so there is no Options entry to design.
+  In single player the player is the host and picks it at the same screen.
 
 ## Farm tools, trees and machines (2026-10-31)
 
