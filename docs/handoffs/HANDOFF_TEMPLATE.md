@@ -21,6 +21,9 @@ One short paragraph: what this session was about and where things stand.
 
 ## Next actions
 
+Update `docs/handoffs/PRIORITIES.md` (tick off, reorder, add) and link to it
+here. Do not copy the list.
+
 1. The most useful thing to pick up next, and why.
 
 ## Risks or decisions needed

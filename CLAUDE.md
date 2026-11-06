@@ -17,8 +17,9 @@ browser with placeholder art, plus some M3 items built early. Design is ahead of
 the build: settled notes in `docs/design/` are not yet built. Roadmap:
 `docs/design/03_milestones.md`; placeholder numbers:
 `docs/design/07_tuning_numbers.md`. GitHub issues are the live tracker. Start
-each session by reading the latest handoff in `docs/handoffs/` and the issues
-labelled `next-payoff`.
+each session by reading the latest handoff in `docs/handoffs/`, the design
+priority list `docs/handoffs/PRIORITIES.md` (update it in each handoff), and the
+issues labelled `next-payoff`.
 
 ## Scope
 
