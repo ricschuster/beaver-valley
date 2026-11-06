@@ -323,8 +323,18 @@
         },
         {
           "s": "open",
-          "t": "Hearthwell size, the Water room ferry route",
+          "t": "Water room ferry route; the minimum visible tile count on the tablet and confirming the area sizes",
           "ref": "19_valley_layout.md#Still open"
+        },
+        {
+          "s": "decided",
+          "t": "Area sizes (draft): Hearthwell 120 by 110 and Forest 120 by 120 match Stardew's totals (owner), Farm 80 by 65, Mountain 80 by 70, Secret Woods 48 by 40, delta with Beach 100 by 70, Lake cove 50 by 40, Mines floor 60 by 40; the last three are our guesses (SC-40)",
+          "ref": "19_valley_layout.md#Area sizes (draft, revised 2026-11-06)"
+        },
+        {
+          "s": "decided",
+          "t": "A stable and a horse as in Stardew: one per player, 10,000g plus Hardwood and iron, speed 6.6 against running at 5, outdoors only, no feeding; extras carrot, book, flute, hats. Walk speed stays at 5 tiles a second as an assumption (SC-41)",
+          "ref": "59_horse.md#Answers (owner, 2026-11-06)"
         }
       ],
       "deps": [],
