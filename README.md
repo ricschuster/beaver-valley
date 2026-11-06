@@ -1,8 +1,7 @@
 # Elderglen
 
 Elderglen is the game's name (ADR 0011,
-`docs/decisions/0011-game-name-elderglen.md`). The repository and its
-save keys still say "beaver-valley" from the working title.
+`docs/decisions/0011-game-name-elderglen.md`). Beaver Valley was the working title.
 
 A cozy farming-life game with its own setting, played in the browser and on
 tablets. The player farms, forages and hands goods in to the village hall to

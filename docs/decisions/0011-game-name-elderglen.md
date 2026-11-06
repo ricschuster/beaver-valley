@@ -32,8 +32,8 @@ Hazelglen) were clear but did not feel right to the owner.
 ## Consequences
 
 - Unblocks the wrapper, store pages and art branding.
-- "Beaver Valley" stays in the repo, package and window title until a rename
-  change is made. That is a separate, small task.
+- Renamed everywhere (page, title screen, package, save keys, repo) in the same
+  session. Old saves still load from the "beaver-valley" keys.
 - Known overlap, accepted by the owner: a Shire-themed fan site (Bramblebury
   Gazette) lists a village called Elderglen. It is a hobby page, not a business,
   game or trademark. Three web searches found no game, farm or brand with the

@@ -5,7 +5,7 @@ context automatically, so keep it to direction and rules, not a task list.
 
 ## Project
 
-Elderglen (ADR 0011; the repo and save keys keep the working title "beaver-valley"). A cozy farming-life game with its own setting,
+Elderglen (ADR 0011; the working title was Beaver Valley). A cozy farming-life game with its own setting,
 played in the browser and on tablets: farm, forage and hand goods in to the
 village hall to finish a chain of community projects. A free hobby project by a
 solo developer. Brief: `docs/design/00_project_brief.md`.
