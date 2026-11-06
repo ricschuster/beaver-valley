@@ -65,6 +65,50 @@ cost is paced:
    scene is mostly text and a few moves. Event sprites (a person sitting, a
    gift, a surprise pose) are the main new art, per person.
 
+## Scene commands (draft, 2026-11-06)
+
+A scene is a list of commands in data. The runner knows only these, so a new
+scene never needs code. Each command has a name and a few fields.
+
+| Group | Commands |
+| --- | --- |
+| Stage | `place` (put a person on a stage mark), `walk` (a person along a named path), `face`, `pose` (an event sprite such as sitting), `hide`, `show` |
+| Camera | `pan` (to a mark or a person), `hold`, `zoom`, `snap` (cut back to the player) |
+| Talk | `say` (person, line id, portrait), `emote` (person, emote name), `choose` (a few answers, each jumping to a label) |
+| Flow | `wait`, `label`, `jump`, `if` (flag or heart test, then jump), `end` |
+| Sound | `music` (play, change or stop), `sfx` |
+| Effects | `fade`, `shake`, `tint`, `weather` (a short local effect only) |
+| Result | `setFlag`, `give` (item, recipe or keepsake), `rise` (the heart speed note of a choice), `unlockMail` |
+
+- **Stage marks and paths are per map,** named in the map data and shared by
+  every scene on that map (the reuse rule above). A scene refers to "counter",
+  "table_a" or "door", never to tile numbers.
+- **Control is taken at `start` and returned at `end`.** `end` always returns
+  control, restores the camera and the time of day, and marks the event seen.
+- **The player is always a stage actor,** moved by `place` and `walk` like
+  anyone else. Their look comes from the save.
+- **No command lowers hearts.** There is no `lose` command. `rise` only sets a
+  speed, in line with the no loss rule.
+- **`give` is skipped on replay,** and so is `setFlag` for story flags. A
+  replay runs the same commands with the Result group turned off.
+
+### Validator rules
+
+Checked at build time and in a unit test, as for conversations
+(`18_dialogue.md`):
+
+1. Every path reaches `end`. No loop without a `wait` or a line.
+2. Every `jump` and `choose` target is a defined `label`, and every label is used.
+3. Every flag read or set is in the flag list, and every flag read is set
+   somewhere.
+4. Every person, stage mark, path, sprite pose, emote, music id and line id
+   exists.
+5. Every `give` names a real item or recipe.
+6. No unreachable commands, and no `choose` with fewer than two answers.
+7. Event conditions use only known flags and hearts. A scene may not set a flag
+   that an earlier layer of the same person reads.
+8. Banned words and the no em dash rule apply to every line, as for talks.
+
 ## Data and build
 
 - **An event record:** id, person, place, heart level, conditions, the script
@@ -79,7 +123,8 @@ cost is paced:
 
 ## Not decided (open)
 
-- The exact scene commands and the validator rules.
+- Whether the command set above is enough once the first scene is written. The
+  proof scene may add or drop commands.
 - Which events give which rewards, and the heart event list per person.
 - How many events a standard tier person gets.
 - Whether the warning is a text line or a short sound and mark on the person.
