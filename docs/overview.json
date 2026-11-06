@@ -268,7 +268,7 @@
       "pos": [260, 60],
       "built": "partial",
       "builtNote": "A placeholder farm map and map loader exist. The layout is designed but no real map is authored.",
-      "summary": "Separate areas joined by exits, buildings as interiors. Nine valley areas, one river line, ring 2 across the bridge.",
+      "summary": "Separate areas joined by exits, buildings as interiors. Nine valley areas on eight maps (the Beach shares the River delta map), one river line, ring 2 across the bridge.",
       "items": [
         {
           "s": "decided",
@@ -277,7 +277,7 @@
         },
         {
           "s": "decided",
-          "t": "Valley layout: nine areas, river from Mountain to delta, farm with three exits",
+          "t": "Valley layout: nine areas on eight maps (Beach shares the River delta map, SC-34), river from Mountain to delta, farm with three exits",
           "ref": "19_valley_layout.md#The areas",
           "issue": 67
         },
