@@ -61,6 +61,7 @@ Read from the image, not from memory. Positions are as seen on screen.
 | Big pond | South centre | Watering can. River fish table (`32_farm_types.md`) |
 | Small pond | East side | Decided 2026-11-03: two ponds. A second refill point, no fish |
 | Exits | See below | `19_valley_layout.md` |
+| Stable | Player placed on any free 4 by 2 spot (decided 2026-11-06, as Stardew) | `59_horse.md`. No fixed site on the map. Placement mode is not designed yet |
 | Trees, stumps, rocks, weeds | Scattered over the field, thinner near the house | See "Starting clutter" |
 
 ## Waking up

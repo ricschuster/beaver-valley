@@ -119,7 +119,11 @@ is our inference, not a source.
 - **Extras.** Parked as placeholders (decided above). Later: where the carrot,
   book and flute come from, and their prices. Is the carrot a crop we grow (no
   note has one yet)? Does a hat fit our hat system?
-- **Placement.** Where the stable stands on the farm, and its size (note 55).
+- **Placement (decided 2026-11-06, owner, as Stardew).** The player places the
+  stable on any free spot of the farm, 4 by 2 tiles (saved Stable page). The
+  spot must be free of rocks, twigs, weeds and placed items, and the building
+  can be moved later. The same placement mode serves the coop and barn, so it
+  needs its own design note (tap placement on a tablet, green and red tiles).
 - **Controls.** Mount and dismount on touch, mouse and keyboard (note 45).
 - **Interior.** Whether the stable is walked into (note 58 lists none).
 - **Price against income.** 10,000g against note 07.

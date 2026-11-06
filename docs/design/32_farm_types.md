@@ -146,7 +146,9 @@ assumed:
   Larder reward in `31_farm_growth.md` has a place on every type.
 - **Animals:** buildings need a free area. A map marks where the coop and barn
   can stand, using a `buildSite` object class, a small addition to the map
-  contract.
+  contract. Changed 2026-11-06: the owner chose player placed buildings on any
+  free spot for the stable (`59_horse.md`), as Stardew. Coop and barn are likely
+  to follow, so `buildSite` may become only a default. A placement note settles it.
 - **Weeds and clutter:** use the tillable layer, so each map's size already sets
   the weed budget.
 - **Saves:** the save records the farm type id and the map id. The type cannot
