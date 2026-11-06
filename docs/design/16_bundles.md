@@ -105,7 +105,7 @@ replaces Stardew's panning, which the owner dislikes. Ring 1 also has a coast
 | --- | --- | --- | --- | --- |
 | 13 | Stream Fish | 3 of 5 | 30 bait | Fishing |
 | 14 | Lake Fish | 3 of 4 | Lure | Fishing, the Forest, Mountain and delta lakes |
-| 15 | Sea Fish | 4 of 6 | 5 warp charms (to change, see `63_bundle_pools_part_two.md`) | Fishing, a coast, travel |
+| 15 | Sea Fish | 4 of 6 | 5 warp totems to the Beach | Fishing, a coast, warp totem |
 | 16 | Night Fishing | 3 of 4 | Glow ring | Fishing, night, equipment slot |
 | 17 | Specialty Fish | All 4: one rare fish each from stream, lake and sea, plus one rare shellfish | 5 fish dishes | Fishing, cooking |
 | 18 | Trap Catch | 5 of 8, fresh and salt water | 3 crab pots | Fishing, traps |
@@ -117,7 +117,7 @@ Room reward: carts between the farm, the hall, the town and the mines.
 | # | Bundle | Rule | Reward | Needs |
 | --- | --- | --- | --- | --- |
 | 19 | Smith's | All: 5 copper bars, 5 iron bars, 3 gold bars | 20 coal | Smelting, ore from the mines or the smith |
-| 20 | Lamplighter's | 2 of 3: 3 lamps, 10 oil, 20 torches | Torches for the mines | Light, crafting, oil maker (slice 4, see `35_bundle_pools.md`) |
+| 20 | Lamplighter's | 2 of 3: 3 lamps, 10 oil, 20 torches | A small glow ring | Light, equipment slot, oil maker (slice 4, see `35_bundle_pools.md`) |
 | 21 | Weaver's | All: 8 wool, 20 fiber (raw goods, since the reward is the loom, see `63_bundle_pools_part_two.md`) | Loom | Wool, animals |
 
 The mines are not unlocked by the Hearth (see "The mines" below).
@@ -145,7 +145,7 @@ Room reward: the bridge is mended and the road to ring 2 opens.
 | --- | --- | --- | --- | --- |
 | 27 | Harvest Feast | All 4: a cooked meal, a preserve, a cheese, a honey. 3 of each. | Crystalarium | Cooking, preserves, animals, bee house, gems from the mines |
 | 28 | The Catch | All 4: a stream, lake, sea and night fish, each gold quality | Magnet ring | Fishing, fish quality, equipment slot, mines |
-| 29 | The Hearth Fire | All 4: 10 bars, 5 lamps, 5 bolts of cloth, 3 dyes | Large chest or storage shed | Smelting, light, cloth, dyes |
+| 29 | The Hearth Fire | All 4: 10 bars, 5 lamps, 5 bolts of cloth, 3 dyes | Large chest | Smelting, light, cloth, dyes |
 | 30 | The Long Road | 100 wood, 100 stone, 20 bars, 10 bolts of cloth and 5,000g | A letter to the elves | A story item only |
 
 - The Long Road is a story reward on purpose: the letter is Old Greencoat's
@@ -159,10 +159,10 @@ Room reward: the bridge is mended and the road to ring 2 opens.
 
 - **Machines and tools:** seed maker, charcoal kiln, bee house, preserving jar,
   cheese press, keg, furnace, loom, dye vat, crystalarium.
-- **Seeds and consumables:** seeds, fertiliser, bait, torches, dishes, crab
-  pots, warp charms.
-- **Wearable equipment:** glow ring and magnet ring. Both need an equipment
-  slot, which has no design yet.
+- **Seeds and consumables:** seeds, fertiliser, bait, dishes, crab
+  pots, warp totems.
+- **Wearable equipment:** small glow ring, glow ring and magnet ring. All need an equipment
+  slot, designed in `37_equipment.md`.
 - **Charm and story:** festival hats, the coop heater, the keepsake and the
   letter to the elves.
 
@@ -184,7 +184,7 @@ placeholders.
 - An equipment slot for rings.
 - A minimum-quality rule on a bundle item (bundle 10), and quality on fish.
 - The greenhouse as a building.
-- Carts, which may also cover the warp charms.
+- Warp totems (bundle 15), a consumable that returns the player to the Beach.
 
 ## The mines
 

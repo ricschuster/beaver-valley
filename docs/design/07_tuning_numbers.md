@@ -45,7 +45,8 @@ Crops (season, days to grow, seed price, sell price):
 - Garlic: spring, 4 days, 40g, 60g. From memory.
 - Hot pepper: summer, 5 days then regrows every 3, 40g, 40g. From memory.
 - Corn: summer, 14 days then regrows every 4, 150g, 50g. From memory.
-- Red cabbage: summer, 9 days, 100g, 260g. From memory.
+- Red cabbage: summer, 9 days, 100g, 260g. Checked against the saved Crops page (2026-11-06). Stardew sells its seed from year two only. We do not.
+- Wheat: summer and fall, 4 days, seeds 10g, sells 25g, inedible, grain for the Fodder bundle (`63_bundle_pools_part_two.md`). Checked against the saved Crops page (2026-11-06).
 
 Fall crops (decided 2026-10-31, `35_bundle_pools.md`). The owner chose to match
 the saved Stardew Fall Crops page for our equivalents, as spring and summer do.
