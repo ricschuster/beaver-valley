@@ -5,6 +5,7 @@ import {
   type SettingsStore,
 } from "../core/bindings";
 
+// Keys keep the working title so existing saves still load (ADR 0011).
 const KEY = "beaver-valley-save";
 
 /** A save store backed by localStorage. Reads and writes never throw. */
