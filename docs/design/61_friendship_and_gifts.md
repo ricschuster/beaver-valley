@@ -222,14 +222,18 @@ everyone unless a row says otherwise.
 
 | Person | Temperament | Loves | Likes | Dislikes | Hates |
 | --- | --- | --- | --- | --- | --- |
-| Inn keeper | Warm, loud, feeds everyone and keeps a mental ledger of who owes whom a pie | Cheese, goat cheese, beer, honey, pickles | All eggs, leek, potato, corn | Raw oil, fiber | Coal, clay |
-| Carpenter | Dry and practical, fond of well made things, dislikes fuss | Copper bar, iron bar, hot pepper, beer, melon | Tomato, cauliflower, wood | Jam, wine | Sweet pea, dandelion |
+| Inn keeper | Warm, loud, feeds everyone and keeps a mental ledger of who owes whom a pie | Cheese, beer, pickles | Honey, goat cheese, all eggs, leek, potato, corn | Raw oil, fiber | Coal, clay |
+| Carpenter | Dry and practical, fond of well made things, dislikes fuss | Copper bar, iron bar, hot pepper, wood | Tomato, cauliflower, beer | Jam, wine | Sweet pea, dandelion |
 | Animal keeper | Shy and gentle, talks to animals more than to people | Goat milk, cloth, egg, flower honey, sweet pea | Wool, milk, hay-free dishes (all dishes except burnt ones) | Wine, beer | Smoked fish, mayonnaise |
 | Hat-maker | Bright, vain and chatty, notices what you wear | Cloth, dye, wine, grape, daffodil | Wool, sweet pea, jam | Coal, clay, hay | Sap, raw stone |
-| Store keeper | Brisk and shrewd, counts coins and admires a good crop | Jam, melon, cauliflower, pickles, wine | All vegetables | All forage except grape and spice berry | Pearlback (hard to price), dandelion |
+| Store keeper | Brisk and shrewd, counts coins and admires a good crop | Jam, melon, cauliflower | All vegetables, wine | All forage except grape and spice berry | Pearlback (hard to price), dandelion |
 | Healer | Calm and precise, mixes tonics, likes quiet things | Flower honey, daffodil, fiddlehead fern, juice, quartz | Garlic, spice berry, dandelion | All alcohol (wine, beer, mead) | Coal, smoked fish |
-| Hall steward | Formal and fond of order, hides a sweet tooth | Mead, goat cheese, melon, cauliflower, cloth | Honey, corn, radish | Hot pepper, garlic | Dandelion, salmonberry |
+| Hall steward | Formal and fond of order, hides a sweet tooth | Mead, goat cheese, honey, radish | Corn, cauliflower, cloth | Hot pepper, garlic | Dandelion, salmonberry |
 | Gardener | Easy going, always in the dirt, hums to the seedlings | Red cabbage, kale, spice berry, salmonberry, garlic | Tomato, green bean, fiddlehead fern, radish | Cheese, mayonnaise | Hot pepper, slime |
+
+Overlaps were spread on 2026-11-06 (owner's choice): melon, beer and honey
+each have one lover, and the steward's sweet tooth now shows through honey.
+Cloth stays shared by the animal keeper and hat-maker on purpose.
 
 Sizes follow the shape above (3 to 6 loves, 2 to 5 likes, 1 to 3 dislikes, 1 to
 3 hates, up to three overrides). The inn keeper's family, the carpenter and
