@@ -18,19 +18,16 @@ Bundles page was read as reference only (ADR 0002). No text is copied.
    when the crop is built.
 3. **Slice 4 stays as note 33 has it.** The Larder's last bundle, the Hearth and
    the Guests' Board all finish there. It is the slice most likely to run long.
-
-Decided later the same day, answering the open items:
-
-4. **Bundle 15 gives warp totems to the Beach, as in Stardew** (the saved
+4. (Later the same day.) **Bundle 15 gives warp totems to the Beach, as in Stardew** (the saved
    Bundles page shows a Beach warp totem as its Ocean Fish reward). The totem is
    a consumable that returns the player to the Beach. Its recipe and count are
    for the crafting note.
-5. **Bundle 20 gives a small glow ring.** It is a plain light ring of radius 5
+5. (Later the same day.) **Bundle 20 gives a small glow ring.** It is a plain light ring of radius 5
    (`37_equipment.md`), not the radius 10 glow ring of bundle 16. Rings of the
    same kind stack, so a player who has both gets the sum. The slot is built in
    slice 3, so the ring is ready when slice 4 hands it out.
-6. **Bundle 29 gives a large chest.**
-7. **Found things come from surface digging and the mines.** The hoe on an
+6. (Later the same day.) **Bundle 29 gives a large chest.**
+7. (Later the same day.) **Found things come from surface digging and the mines.** The hoe on an
    artifact spot gives a find, commoner in winter, as in Stardew (saved
    Artifacts page). The mines add ruins, quiet floors and Old Diggers.
 
