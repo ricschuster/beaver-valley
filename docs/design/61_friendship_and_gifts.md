@@ -126,27 +126,45 @@ objects.
     dialogue tier. They do not count toward the Friends category in note 39 or
     the heart achievements in note 38, as already set.
 
-## Universal tastes (proposed categories)
+## Universal tastes (decided 2026-11-06)
 
-Categories use our own item groups. The lists are data, one per taste, in a
-file under `src/content/`. The first pass sets the shape, not every item.
+**Seven gift categories (Stardew's grouping, our items):** artisan goods,
+dishes, flowers, foraged minerals, tree fruit, gems and vegetables. Each item
+in the game belongs to at most one. Every item carries a `giftCategory` field in
+its data, or none.
 
-| Taste | Category or item (first pass) |
+- **Processed goods count as artisan goods (Stardew).** Wine, jam, honey,
+  cheese, cloth and the rest are liked by default, whatever went in. Exceptions
+  are per item in the data, such as raw oil (disliked).
+- **No universal rule for eggs, milk, fish and other forage (Stardew).** They
+  have no category. Each villager's own list names the ones they love, like,
+  dislike or hate. Anything unlisted is neutral (+20).
+- **Flowers are a category, and a foraged flower is a flower.** The daffodil
+  and the sweet pea are flowers, so liked by default. (This follows from the
+  flower category, and Stardew does the same.)
+- **Six universal loves and a short hate list (Stardew's size).** Six
+  hard-to-get loved items, a few hated items, and one hated flower. They are
+  ours: the elderfruit and a pearl are candidates for the loves, spoiled dishes
+  for the hates. The exact items are still to choose. Exceptions are per
+  villager, as in Stardew where one person hates a universal love.
+
+| Taste | Rule |
 | --- | --- |
-| Love | A few rare goods only: the elderfruit, the golden-crop prize, a pearl. At most six items. Exceptions are per villager |
-| Like | Cooked dishes, artisan goods, flowers, farm vegetables, fruit from trees, gems and foraged minerals |
-| Neutral | Eggs, milk, wheat and grain, most forage, most fish, plain bread and fried egg |
-| Dislike | Raw oil, junk and trash, weeds and raw stone |
-| Hate | Spoiled and burnt dishes, and a very few items the writing chooses |
+| Love | The six rare items. Exceptions per villager |
+| Like | The seven categories |
+| Neutral | Everything else, including eggs, milk, fish, other forage, grain, plain bread and fried egg |
+| Dislike | Raw oil, junk and trash, weeds and raw stone, and a few more per item |
+| Hate | A short list: spoiled and burnt dishes, one flower, a very few more |
 
-Stardew's own lists are a reference for shape only. Our list is built from our
-items (`src/content/`), never a copy of Stardew's. Each of the 30 people gets
-at most a handful of own loves, likes, dislikes and hates that override these.
-Candidates get a few more. The first villager data in slice 4 needs these lists
-for about eight people, with the rest added by layer.
+Our lists are built from our items (`src/content/`), never a copy of Stardew's.
+Each of the 30 people gets a handful of own loves, likes, dislikes and hates that
+override these, and candidates get a few more. Slice 4 needs these lists for
+about eight people, with the rest added by layer.
 
 ## Data and build
 
+- **Item data:** crops, forage and later items gain an optional `giftCategory`
+  (one of the seven). Today `crops.json` and `forage.json` have none.
 - **Villager row:** id, birthday (season and day), tier, candidate flag, heart
   cap (8 or 10), loves, likes, dislikes, hates, family and friends for hints.
   Lists can name an item or a category. Adding a villager never means a code
