@@ -50,15 +50,28 @@ and over carts only. Carts from the hall room reward (`16_bundles.md`) stay.
 - It waits where the player leaves it and returns to the stable the next
   morning if left outside overnight. It cannot pass gaps under two tiles wide
   when moving vertically, except gates.
-- Extras in Stardew: a carrot gives +0.4 speed for a day, a book gives +0.5
-  permanently, a flute warps the horse to the player outdoors, and hats can be
-  worn. Not decided for our game. They stay out until asked for.
+## Extras (owner, 2026-11-06: add them, as in Stardew)
+
+From the saved Animals page. Amounts are Stardew's and our own numbers are not
+set:
+
+- **Carrot:** feed the horse one carrot a day for +0.4 speed for the rest of
+  that day.
+- **Horse book:** reading it adds +0.5 speed for good. Needs a book in our
+  game, and note 25 lists books as absent.
+- **Horse flute:** warps the horse to the player, outdoors only.
+- **Hats:** a hat can be placed on the horse (customisation, note 10).
+- Speed buffs stack with the horse's speed.
+
+Where each is bought or found, and the cost, are open below.
 
 ## Open
 
 - **Our walk speed.** Lower it from 5 tiles a second, then set the horse from
   Stardew's +1.4 once the base is known (SC-41, owner timing).
 - **Indoors and the Mines.** Check whether Stardew allows riding there.
+- **Extras.** Where the carrot, book and flute come from, and their prices. Is
+  the carrot a crop we grow (no note has one yet)? Does a hat fit our hat system?
 - **Placement.** Where the stable stands on the farm, and its size (note 55).
 - **Controls.** Mount and dismount on touch, mouse and keyboard (note 45).
 - **Interior.** Whether the stable is walked into (note 58 lists none).
