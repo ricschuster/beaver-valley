@@ -92,6 +92,8 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 | SC-33 | 57 | Does Stardew's farmhouse TV show tomorrow's weather, and is there a festival heads-up? | no | open | From memory only. The owner chose to follow it (2026-11-06). |
 | SC-34 | 19 | Does Stardew put any of its areas (Town, Mountain, Forest, Beach) on the same playable map, or is each one a separate map? | no | open | From memory: separate maps joined by exits. Owner, 2026-11-06, recalled the Town and Mountain as combined. Unchecked. We chose the Beach into the River delta for our own reasons. |
 | SC-35 | 19 | Does every Stardew household have a home the player can enter, and do the houses stand apart around the town? | no | open | From memory only. The owner chose to follow it for the three Hearthwell burrows (2026-11-06). |
+| SC-36 | 58 | Are Stardew's coop and barn walk-in interiors, with the big and deluxe tiers adding to the base layout or replacing it? Is the greenhouse a walk-in map? | no | open | Owner, 2026-11-06: yes, walk in, and the tiers add parts to one layout per building type. Not checked on the wiki. |
+| SC-37 | 58 | Does any Stardew shop keep its owner's home as a separate map from the shop, or is each one map? | no | open | From memory only. We chose two maps for the Outpost regardless (2026-11-06). |
 
 ## Not Stardew questions
 
