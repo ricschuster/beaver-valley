@@ -527,6 +527,13 @@ Placeholders, not checked against Stardew (`46_desktop_mouse.md`).
 - Wheel step: 100 wheel units make one slot step (`WHEEL_STEP` in
   `FarmScene.ts`), one notch of a mouse wheel.
 
+## The road trader (decided 2026-11-06, ours, placeholder)
+
+Source: `57_the_outpost.md`.
+
+- Visits on Wednesday and Saturday, 4 to 6 items a visit, priced at 1.5 times
+  sell value.
+
 ## Open questions for playtests
 
 First answers are in `08_playtest_personas.md`: 500g is far more than enough
