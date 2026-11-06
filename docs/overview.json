@@ -303,7 +303,7 @@
         },
         {
           "s": "open",
-          "t": "Farm layout: exact tillable count, field shape, starting clutter counts; note 19 still says one pond; 80 by 65 size and clutter regrowth are unchecked Stardew claims (SC-24, SC-25, SC-29)",
+          "t": "Farm layout: exact tillable count, field shape, starting clutter counts; note 19 still says one pond; the 80 by 65 size is an unchecked Stardew claim (SC-25); fixed building positions (SC-24) and clutter regrowth by season (SC-29) are answered, the regrowth amounts are open",
           "ref": "55_farm_layout.md#Open"
         },
         {
