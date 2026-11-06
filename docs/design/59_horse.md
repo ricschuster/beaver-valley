@@ -152,8 +152,12 @@ is our inference, not a source.
   the iron band of the Mines (floors 40 to 80, note 07) and the furnace. So the
   stable is gated by hardwood supply more than by gold. A hardwood source is open
   below.
-- **Hardwood supply.** Where 100 Hardwood comes from on the home farm, renewable
-  (Stardew: Secret Woods and large stumps). Needs a source in notes 43 and 32.
+- **Hardwood supply (decided 2026-11-06, owner, as Stardew).** Six large stumps
+  in our Secret Woods respawn daily, 2 Hardwood each (Copper Axe or better), so
+  about 12 a day and 100 Hardwood in about 9 visits. From the saved Hardwood
+  page. The woods are gated by the massive log (Steel Axe, note 19), so the
+  stable arrives mid game. The Standard farm's own stumps do not respawn
+  (note 43). Notes 19 and 43 still need the stump count and respawn rule added.
 - **Multiplayer** (note 53, milestone M4): one horse each follows from the
   answer above.
 - **Art and sound.** A horse sprite, and a mounted player sprite (note 10).

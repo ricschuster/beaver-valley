@@ -23,7 +23,7 @@ maps. Ring 2 lies beyond them.
 | --- | --- |
 | Farm | The home base: house, fields and two ponds that refill the watering can (`55_farm_layout.md`). |
 | Forest | A lake. The hermit (the witch), the Wanderer (Old Greencoat), and a farmstead with the animals. Rare forage. |
-| Secret Woods | Off the Forest, behind a massive log that an upgraded axe clears. Rare forage. |
+| Secret Woods | Off the Forest, behind a massive log that an upgraded axe clears. Rare forage. Six large stumps that respawn daily, 2 Hardwood each (owner, 2026-11-06, `59_horse.md`). |
 | Mountain | A mountain lake. The smith dwarf and the stonekeeper dwarf. The source of the river. |
 | Mines | Off the Mountain. Ring 1, gentle combat, open early on a fixed day (`16_bundles.md`). |
 | Hearthwell | The crossroads town. Every Brimmer lives here. The shops and services listed below. The river runs through it. |
