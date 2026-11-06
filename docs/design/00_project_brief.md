@@ -6,7 +6,7 @@ template placeholders.
 
 ## What this is
 
-TBD. The game's name is Elderfold (`docs/decisions/0010-game-name-elderfold.md`).
+TBD. The game's name is Elderglen (`docs/decisions/0011-game-name-elderglen.md`).
 "Beaver Valley" survives only as the repo and build working title.
 
 A cozy farming-life game, inspired by Stardew Valley but with its own setting,
@@ -115,7 +115,7 @@ these is ruled out forever.
   villagers.
 - **Copying the original.** No Stardew Valley names, art, audio, characters,
   text or code.
-- **Polish and store release.** The name is chosen (Elderfold). Not before there is a fun
+- **Polish and store release.** The name is chosen (Elderglen). Not before there is a fun
   playable.
 
 ## Design principles

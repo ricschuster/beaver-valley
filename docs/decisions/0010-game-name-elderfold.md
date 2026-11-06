@@ -2,8 +2,8 @@
 
 ## Status
 
-Accepted (owner, 2026-11-06). Closes issue #138. The availability check below is
-open.
+Superseded by ADR 0011 (Elderglen), 2026-11-06. It was accepted the same day,
+then dropped after the name clashes below.
 
 ## Context
 
