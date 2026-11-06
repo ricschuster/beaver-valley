@@ -104,7 +104,7 @@ objects.
    hearts, as in Stardew. Before that the door is shut and the person is met
    outside, at the shop or on the street. It stays open once unlocked
    (`58_interiors.md`).
-7. **Heart events** at 2, 4, 6, 8 and 10 hearts for the 14 candidates and the
+7. **Heart events** (settled in `62_heart_events.md`) at 2, 4, 6, 8 and 10 hearts for the 14 candidates and the
    deep tier, fewer for the rest. They are released in layers: layer 1 for
    everyone before layer 3 for anyone (`18_dialogue.md`). Courtship events
    unlock after the bouquet. Missed events can be seen later, in any order,
@@ -237,7 +237,7 @@ Each person's own list overrides these.
 - Whether the week in our calendar has seven named days (the Sunday rule needs
   one). Check `26_seasons.md` at build.
 - Birthday dates for the other 22 people.
-- Heart event content and which events gate which rewards.
+- Heart event content (see `62_heart_events.md`).
 - The Midwinter assignment rule (who gets whom).
 - The courtship bouquet's flowers and the proposal token's name.
 - Whether telephone-like contact exists. It does not now.
