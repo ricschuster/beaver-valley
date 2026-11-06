@@ -410,8 +410,8 @@
         {
           "name": "The Outpost",
           "kind": "building",
-          "x": 900,
-          "y": 250,
+          "x": 1000,
+          "y": 120,
           "people": [
             { "n": "Hall steward (postmaster, lives here)", "r": "halfling" },
             { "n": "Courier (hangs out here)", "r": "human" }
