@@ -184,8 +184,13 @@ seam.
 - The touch values in note 27 still wait on a real tablet check (#59, #63).
 
 Settled 2026-11-01: Stardew's default keys, mouse use on desktop, fixed menu
-keys, and no run key (we have no run speed, and Stardew's saved pages list no
+keys, and no run key (we had no run speed then, and Stardew's saved pages list no
 run key).
+
+Changed 2026-11-06: the owner chose walk and run, with run the default
+(`59_horse.md`). So the player runs unless a walk key is held. Needs a walk key
+on desktop (to choose, Stardew's saved pages list none, so it is a free key) and
+on touch a stick push strength that sets walk or run. Not built.
 
 ## Not taken from Stardew
 
