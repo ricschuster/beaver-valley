@@ -29,24 +29,75 @@ and over carts only. Carts from the hall room reward (`16_bundles.md`) stay.
 - Not on the page: the horse's speed, where it can and cannot be ridden, and
   whether it needs feeding. These stay open.
 
+## Answers (owner, 2026-11-06)
+
+1. **One stable per player (Stardew).** The owner recalled more than one and
+   was unsure of a limit. The saved page says one normally, and one each in
+   multiplayer, so one per player it is.
+2. **Stardew's cost as is (Stardew):** 10,000g plus Hardwood (100) and iron, two
+   days to build. Hardwood needs a Copper Axe or better (SC-31), so the axe
+   gates it. Whether 10,000g fits our economy is unchecked (note 07).
+3. **Stardew's +1.4 speed (Stardew).** The saved Animals page says the horse
+   adds +1.4 speed and does not slow in crops or grass. The base walk speed is
+   not on the pages read, so the ratio to our walk is unchecked (SC-41).
+4. **Outdoors only, dismount at doors.** Ride anywhere outdoors, crops
+   included. Whether Stardew lets you ride indoors or in the Mines is unchecked.
+
+## More from the saved Animals page (read 2026-11-06)
+
+- The horse needs no feeding (the page says horses and pets do not need to eat),
+  so there is no care system.
+- It waits where the player leaves it and returns to the stable the next
+  morning if left outside overnight. It cannot pass gaps under two tiles wide
+  when moving vertically, except gates.
+
+## Extras (owner, 2026-11-06: add them, as in Stardew)
+
+From the saved Animals page. Amounts are Stardew's and our own numbers are not
+set:
+
+- **Carrot:** feed the horse one carrot a day for +0.4 speed for the rest of
+  that day.
+- **Horse book:** reading it adds +0.5 speed for good. Needs a book in our
+  game, and note 25 lists books as absent.
+- **Horse flute:** warps the horse to the player, outdoors only.
+- **Hats:** a hat can be placed on the horse (customisation, note 10).
+- Speed buffs stack with the horse's speed.
+
+Where each is bought or found, and the cost, are open below.
+
+## Walk speed (owner, 2026-11-06)
+
+The owner picked **2.5 tiles a second** as a placeholder, half of the current 5
+(80 px a second in `FarmScene.ts`, `scripts/sim/world.ts`). It is not applied to
+the code yet. **Revisit it.** It rests on a time budget (a 120 tile crossing in
+48 seconds, about 69 game minutes, and the day clock already matches Stardew's
+at 0.7 real seconds per game minute), not on Stardew.
+
+A web search on 2026-11-06 found a conflicting hint, unverified and from
+secondary sources: Stardew's own speed value is a unitless game number (walking
+2, running 5, horse about 6.6 on that scale), and one hand-timed test gave about
+5 tiles a second. If that holds, our 5 is close to Stardew's and the horse is
+only about 1.3 times faster, which fits neither the owner's feel nor the saved
+page's +1.4 on an unknown base. Do not trust it until the saved Speed page is
+read (SC-41).
+
 ## Open
 
-- **Walk speed and horse speed.** Lower the walk from 5 tiles a second first.
-  The horse is a multiple of it. Time Stardew crossings (SC-41).
-- **Price in our terms.** Stardew's 10,000g is a late-game sum. Check it against
-  the income in note 07 and the carpenter's order of builds.
-- **Hardwood and iron.** Hardwood needs a Large Stump or Log (SC-31), so the
-  stable is gated behind a Copper Axe. Is that the gate we want?
-- **Where it may be ridden.** Outdoors only, not inside buildings, mines or on
-  the festival green? Not checked.
-- **Care.** Does the horse need feeding or friendship? Not checked.
+- **Our walk speed.** Revisit the 2.5 placeholder once the Speed page is read
+  or the owner can time Stardew (SC-41). Then set the horse from +1.4.
+- **Indoors and the Mines.** Check whether Stardew allows riding there.
+- **Extras.** Where the carrot, book and flute come from, and their prices. Is
+  the carrot a crop we grow (no note has one yet)? Does a hat fit our hat system?
 - **Placement.** Where the stable stands on the farm, and its size (note 55).
 - **Controls.** Mount and dismount on touch, mouse and keyboard (note 45).
 - **Interior.** Whether the stable is walked into (note 58 lists none).
-- **Multiplayer** (note 53, milestone M4): one horse each, or shared.
+- **Price against income.** 10,000g against note 07.
+- **Multiplayer** (note 53, milestone M4): one horse each follows from the
+  answer above.
 - **Art and sound.** A horse sprite, and a mounted player sprite (note 10).
 
 ## Next
 
-Settle the open items in a question batch, with a Stardew check for each, then
-update note 55 (placement), note 25 (Horse row), note 07 (price) and note 58.
+Set our walk speed, then update note 55 (placement), note 07 (price) and note
+58 (interior). The extras above are optional.
