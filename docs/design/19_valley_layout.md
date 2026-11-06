@@ -145,22 +145,22 @@ first draft's crossing times felt too quick. So the two big towns match
 Stardew's totals. The Forest is also the main wood supply once the farm's trees
 run out, so it needs room for a steady supply (see note 43).
 
-**Unit.** A screen is what the SM-T500 shows (1920 by 1200, `06_map_style.md`).
-At 3x zoom with 16 px tiles that is 40 by 25 tiles, 1000 tiles. At 4x it is 30
-by 18.75. The minimum visible tile count is still to be tuned on the tablet;
-these sizes assume 3x. Player walk speed is 80 px a second, 5 tiles a second
+**Unit.** A screen is the minimum view, 30 by 17 tiles, about 510 tiles
+(`docs/decisions/0009-view-size-and-aspect.md`, decided 2026-11-06). Wider or
+squarer windows and zoom out show more, so screen counts are an upper bound. An earlier draft
+used 40 by 25, which the game never showed. Player walk speed is 80 px a second, 5 tiles a second
 (`FarmScene.ts`), so 100 tiles take 20 seconds.
 
-| Area | Stardew total | Draft size (tiles) | Tiles | Screens at 3x | Longest crossing | Why |
+| Area | Stardew total | Draft size (tiles) | Tiles | Screens | Longest crossing | Why |
 | --- | --- | --- | --- | --- | --- | --- |
-| Farm | about 5200 (80 by 65, unchecked, SC-25) | 80 by 65 | 5200 | 5 | 16 s | Note 55 decision. The home base. |
-| Hearthwell | 13200 (Pelican Town) | 120 by 110 | 13200 | 13 | 24 s | Stardew's total (owner). 9 shop maps, 3 burrows, river, bridge, hall, green. |
-| Forest | 14400 (Cindersap) | 120 by 120 | 14400 | 14 | 24 s | Stardew's total (owner). Lake, hermit, farmstead, rare forage, three exits, and the steady wood supply. |
-| Mountain | 5535 | 80 by 70 | 5600 | 6 | 16 s | About Stardew's. Lake, two dwarves, the Mines entrance, three exits. |
-| Secret Woods | 1920 | 48 by 40 | 1920 | 2 | 10 s | Stardew's total. Stumps and a pond. |
-| River delta and Beach | none (Beach not saved) | 100 by 70 | 7000 | 7 | 20 s | Marsh lake, ferry landing and the beach in one map (decision 13). Our own guess. |
-| Lake cove | none | 50 by 40 | 2000 | 2 | 10 s | Our own guess. A reward fishing spot, not a trip. |
-| Mines floor | none (levels are generated) | 60 by 40 | 2400 | 2.4 | 12 s | Our own guess. Floor count is for the mines note. |
+| Farm | about 5200 (80 by 65, unchecked, SC-25) | 80 by 65 | 5200 | 10 | 16 s | Note 55 decision. The home base. |
+| Hearthwell | 13200 (Pelican Town) | 120 by 110 | 13200 | 26 | 24 s | Stardew's total (owner). 9 shop maps, 3 burrows, river, bridge, hall, green. |
+| Forest | 14400 (Cindersap) | 120 by 120 | 14400 | 28 | 24 s | Stardew's total (owner). Lake, hermit, farmstead, rare forage, three exits, and the steady wood supply. |
+| Mountain | 5535 | 80 by 70 | 5600 | 11 | 16 s | About Stardew's. Lake, two dwarves, the Mines entrance, three exits. |
+| Secret Woods | 1920 | 48 by 40 | 1920 | 4 | 10 s | Stardew's total. Stumps and a pond. |
+| River delta and Beach | none (Beach not saved) | 100 by 70 | 7000 | 14 | 20 s | Marsh lake, ferry landing and the beach in one map (decision 13). Our own guess. |
+| Lake cove | none | 50 by 40 | 2000 | 4 | 10 s | Our own guess. A reward fishing spot, not a trip. |
+| Mines floor | none (levels are generated) | 60 by 40 | 2400 | 5 | 12 s | Our own guess. Floor count is for the mines note. |
 
 **Cap.** The two big maps (14400 and 13200 tiles) are as large as Stardew's, so
 the cap is the Forest at 14400 until the tablet says otherwise. Load a
@@ -182,8 +182,8 @@ draft of each map.
 ## Still open
 
 - What lies beyond the bridge. Ring 2 is a separate design.
-- Confirm the area sizes in the draft table above, and the minimum visible
-  tile count for zoom (`06_map_style.md`).
+- Confirm the area sizes in the draft table above against the first Tiled
+  drafts (view size is settled, ADR 0009).
 - The transition look between areas.
 - Whether fishing also happens beyond the farm's big south pond, or stays at
   the delta, beach and cove (#181). Only the big farm pond holds fish

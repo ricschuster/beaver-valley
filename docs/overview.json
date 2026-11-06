@@ -323,13 +323,18 @@
         },
         {
           "s": "open",
-          "t": "Water room ferry route; the minimum visible tile count on the tablet and confirming the area sizes",
+          "t": "Water room ferry route; confirming the area sizes against the first Tiled drafts",
           "ref": "19_valley_layout.md#Still open"
         },
         {
           "s": "decided",
           "t": "Area sizes (draft): Hearthwell 120 by 110 and Forest 120 by 120 match Stardew's totals (owner), Farm 80 by 65, Mountain 80 by 70, Secret Woods 48 by 40, delta with Beach 100 by 70, Lake cove 50 by 40, Mines floor 60 by 40; the last three are our guesses (SC-40)",
           "ref": "19_valley_layout.md#Area sizes (draft, revised 2026-11-06)"
+        },
+        {
+          "s": "decided",
+          "t": "View size: default 30 by 17 tiles (about 510), wider or squarer windows show more, player zoom setting plus pinch with a cap each way (placeholder 75 to 125 percent), HUD anchors to the edges, maps need border margins (ADR 0009, SC-42)",
+          "ref": "06_map_style.md#Tile size and zoom"
         },
         {
           "s": "decided",
