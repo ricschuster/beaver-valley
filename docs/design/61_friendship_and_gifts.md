@@ -183,6 +183,32 @@ Each person's own list overrides these.
   The other 22 are added by layer. Stardew has everyone giftable from the
   start, and ours does not.
 
+## Birthdays (decided 2026-11-06)
+
+- **Even spread, one birthday a day.** Two of the first eight per season, and
+  about 7 or 8 a season at 30 people. No two people share a day. Never on a
+  festival day (`14_festival_calendar.md`), on day 1 of a season, or on Spring 5
+  (the day the mines open). Stardew keeps one name a day and puts 8 or 9 in each
+  season, and keeps them off festival days, from the saved Calendar page (SC-44).
+  The day 1 and Spring 5 rules are ours.
+- **The first eight:**
+
+  | Season | Day | Person |
+  | --- | --- | --- |
+  | Spring | 14 | Hat-maker |
+  | Spring | 26 | Healer |
+  | Summer | 13 | Gardener |
+  | Summer | 25 | Store keeper |
+  | Fall | 4 | Carpenter |
+  | Fall | 17 | Animal farmstead keeper |
+  | Winter | 12 | Inn keeper |
+  | Winter | 26 | Hall steward |
+
+- **The calendar shows them.** The farmhouse calendar and the Social tab list a
+  season's birthdays, as Stardew's calendar does. The other 22 dates are set
+  as each person is written, at about 5 or 6 more a season, by the same rules.
+  The hat-maker's sibling stays on a different day from the hat-maker.
+
 ## Data and build
 
 - **Item data:** crops, forage and later items gain an optional `giftCategory`
@@ -210,7 +236,7 @@ Each person's own list overrides these.
   with the cast and the item list.
 - Whether the week in our calendar has seven named days (the Sunday rule needs
   one). Check `26_seasons.md` at build.
-- Birthday dates for the 30 people.
+- Birthday dates for the other 22 people.
 - Heart event content and which events gate which rewards.
 - The Midwinter assignment rule (who gets whom).
 - The courtship bouquet's flowers and the proposal token's name.
