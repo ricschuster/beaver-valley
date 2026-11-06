@@ -50,6 +50,7 @@ and over carts only. Carts from the hall room reward (`16_bundles.md`) stay.
 - It waits where the player leaves it and returns to the stable the next
   morning if left outside overnight. It cannot pass gaps under two tiles wide
   when moving vertically, except gates.
+
 ## Extras (owner, 2026-11-06: add them, as in Stardew)
 
 From the saved Animals page. Amounts are Stardew's and our own numbers are not
@@ -65,10 +66,26 @@ set:
 
 Where each is bought or found, and the cost, are open below.
 
+## Walk speed (owner, 2026-11-06)
+
+The owner picked **2.5 tiles a second** as a placeholder, half of the current 5
+(80 px a second in `FarmScene.ts`, `scripts/sim/world.ts`). It is not applied to
+the code yet. **Revisit it.** It rests on a time budget (a 120 tile crossing in
+48 seconds, about 69 game minutes, and the day clock already matches Stardew's
+at 0.7 real seconds per game minute), not on Stardew.
+
+A web search on 2026-11-06 found a conflicting hint, unverified and from
+secondary sources: Stardew's own speed value is a unitless game number (walking
+2, running 5, horse about 6.6 on that scale), and one hand-timed test gave about
+5 tiles a second. If that holds, our 5 is close to Stardew's and the horse is
+only about 1.3 times faster, which fits neither the owner's feel nor the saved
+page's +1.4 on an unknown base. Do not trust it until the saved Speed page is
+read (SC-41).
+
 ## Open
 
-- **Our walk speed.** Lower it from 5 tiles a second, then set the horse from
-  Stardew's +1.4 once the base is known (SC-41, owner timing).
+- **Our walk speed.** Revisit the 2.5 placeholder once the Speed page is read
+  or the owner can time Stardew (SC-41). Then set the horse from +1.4.
 - **Indoors and the Mines.** Check whether Stardew allows riding there.
 - **Extras.** Where the carrot, book and flute come from, and their prices. Is
   the carrot a crop we grow (no note has one yet)? Does a hat fit our hat system?
