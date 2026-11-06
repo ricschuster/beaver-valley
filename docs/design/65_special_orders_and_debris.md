@@ -1,0 +1,109 @@
+# 65 Special Orders and seasonal debris (draft)
+
+Status: draft, 2026-11-06. The four forks below were decided with the owner.
+The order list, counts, rewards and debris numbers are the assistant's
+proposal, and every number is a placeholder. Nothing here is built. It settles
+the Special Orders that note 57 reserved (SC-32) and the clutter that returns
+each season (SC-29, note 55). Stardew's saved Quests page was read as
+reference only, and its order list is not copied (ADR 0002): our orders have
+our own names, posters and items.
+
+## Decided with the owner (2026-11-06)
+
+1. **The board opens on a fixed day, as Stardew.** A short scene on Fall 2 of
+   year one, in any weather, opens it (checked, SC-32). Each order has its own
+   prerequisite (a system built, a season), so a player only sees orders they
+   can fill. No order needs the hall.
+2. **The clock starts when you accept.** Each order has a fixed window of 7 to
+   28 days from acceptance. Waiting never shortens it. Stardew runs the clock
+   from posting (checked), so this is ours, chosen for the no pressure tone.
+3. **Debris returns each season, in small amounts (Stardew, from memory).**
+   Rocks and twigs return on the farm at season start, with a cap. Nothing
+   returns in winter. Numbers below.
+4. **First time pays a unique reward, repeats pay gold (Stardew).** Our own
+   recipes, machines, hats and scenes. Prize Tickets stay out until a prize
+   list exists (note 50, "For later").
+
+## Special Orders
+
+- **Where.** The Outpost wall, beside road news (note 57). Orders use the note
+  50 quest record with `source: special`. Posters are travellers and carriers,
+  not villagers, as note 57 says.
+- **Pace (as Stardew, checked).** One new order is posted each week, on the
+  first day of the week. A player may accept one new order a week, and may have
+  several active at once. The owner recalls two on the board at once (SC-32,
+  unchecked), so the board shows two and a posted order stays until taken or
+  replaced.
+- **Hand-in.** An order fills itself, with no talking to the poster, as in
+  Stardew. Where it asks for goods in a place (a pantry, a bin), the goods must
+  come from after acceptance, so an order cannot be filled from a full chest.
+- **Failing.** Letting the window run out costs nothing. The order can be
+  offered again, and goods already put in are returned by mail.
+- **Cancel.** Unlike Stardew, an accepted order can be dropped from the journal,
+  since a lapse costs nothing anyway.
+- **Rewards.** First completion: a unique reward (recipe, machine, hat or scene)
+  plus gold. Later completions of a repeatable order pay gold only. Orders that
+  mark "no repeat" show a tick once done.
+- **Counts toward** the Help Wanted achievements, as in Stardew (notes 38, 50).
+
+### First draft of orders
+
+Our own names and numbers. The "needs" column is the slice that makes the order
+possible (`33_build_order.md`). Gold is a placeholder, set when tuning.
+
+| Order | Ask | Window | Needs | First reward | Repeat |
+| --- | --- | --- | --- | --- | --- |
+| Bumper Harvest | Harvest then ship 100 of one crop in season (not winter) | 28 days | Slice 1 | A second shipping bin | Yes |
+| Spring Leeks | Leave 12 leeks at a named house, spring only | 28 days | Slice 1 | A recipe and a scene | No |
+| Fine Vegetables | Ship 25 gold quality vegetables to the store bin | 28 days | Slice 1 | A recipe | Yes |
+| Barrel Batch | Put 12 of one keg drink in a named kitchen | 14 days | Slice 1 (keg) | A recipe and a scene | No |
+| Too Many Fish | Catch 10 of one in season fish | 7 days | Slice 2 | A recipe | Yes |
+| Still Waters | Catch 20 fish of one water type | 7 days | Slice 2 | A machine | Yes |
+| Clean Waters | Fish or collect 20 trash items, then bin them | 7 days | Slice 2 | A recipe and a scene | No |
+| Cave Patrol | Slay 50 of one cave creature | 7 days | Slice 3 | A recipe | Yes |
+| Crystal Gift | Hand over one of each of five gems | 7 days | Slice 3 | A machine and a scene | No |
+| Pantry Stock | Put 24 eggs in the inn pantry | 14 days | Slice 4 | A machine | Yes |
+
+- Stardew's board also has bone, island and later orders. Ours leave out the
+  island (ring 2 has its own board, note 39) and the museum order until the
+  gallery exists. More orders are a data change.
+- Orders that need a system not yet built are simply not drawn. The draw is
+  seeded from the week, so a reload gives the same board (as note 50).
+- Quest record: add `special` to the `source` values, and fields for the
+  window in days, whether it repeats and whether it was done before.
+
+## Seasonal debris
+
+Settles SC-29 and the open clutter rule in note 55. The farm only, as weeds
+are (note 29). All numbers are placeholders.
+
+- **When.** On day 1 of spring, summer and fall. Nothing returns on winter day
+  1, and winter day 1 clears weeds as note 29 says.
+- **What.** Up to 8 rocks and 8 twigs appear on free tillable tiles, and a 10
+  percent chance of one stump a season. There is a standing cap of 25 rocks and
+  25 twigs on the farm, so a skipped season does not bury it.
+- **Where not.** Never on tilled soil, crops, paths, placed objects, furniture
+  or the 3 by 3 around a fruit tree. Debris only takes free tiles, as weeds do.
+- **Spread.** Trees keep the rule in note 36. Grass spreads slowly onto free
+  adjacent tiles outside winter. The grass rate is open (no grass system yet).
+- **Drops.** Unchanged from the clearing rules (stone from rocks, wood from
+  twigs and stumps).
+- **Wood and stone economy.** Returning debris adds a steady wood and stone
+  supply, and note 55 already says the wood economy needs a second look. Check
+  both in play.
+
+## Build order
+
+1. The quest record change and the Special Orders draw, with tests.
+2. The board on the Outpost wall and the Fall 2 scene (needs the Outpost,
+   note 57 build order step 5).
+3. Orders one at a time, as their systems arrive.
+4. Seasonal debris with the weeds work (`29_weeds.md`, slice 1 build 3).
+
+## Still open
+
+- The real list: more orders, final gold, the first rewards and their scenes.
+- The chance a week has an order, and what the board shows if none can be drawn.
+- Whether the board shows two orders or a different number (SC-32).
+- The grass spread rate and whether grass exists as a tile before slice 1.
+- Whether an order's goods can be returned in full if the window lapses.

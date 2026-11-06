@@ -63,7 +63,9 @@ Rules that keep them apart:
   travellers and carriers, not villagers.
 - Shape, count, timers and rewards wait for the Stardew check (SC-32). Until
   then no orders are written and the unlock is a placeholder.
-- Design this properly in its own note once SC-32 is answered.
+- Designed in `65_special_orders_and_debris.md` (2026-11-06): opens Fall 2 of
+  year one, the clock starts on acceptance, first completion pays a unique
+  reward and repeats pay gold.
 
 ## The trader
 
@@ -103,11 +105,11 @@ Rules that keep them apart:
 3. The trader table, the daily draw and the shop screen.
 4. The interior and the steward's counter and schedule, with villager
    schedules.
-5. Special Orders, once SC-32 is answered and a design note exists.
+5. Special Orders, as designed in note 65.
 
 ## Open
 
-- The Special Orders unlock and shape (SC-32).
+- The Special Orders list and numbers (note 65).
 - Stardew's TV also has luck and cooking channels (SC-33). The trader days and markup are
   ours, not Stardew's.
 - Exact lore line cadence, and who writes them.
