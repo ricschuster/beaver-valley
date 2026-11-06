@@ -115,7 +115,14 @@ is our inference, not a source.
   the owner can time Stardew, or the unit is found (SC-41), or at the first
   playtest on the full size maps. Walk and run both exist (decided above). The
   walk key, the touch stick thresholds and the walk speed ratio go in note 45.
-- **Indoors and the Mines.** Check whether Stardew allows riding there.
+- **Indoors and the Mines (decided 2026-11-06, owner, as Stardew, from memory).**
+  Outdoors only. Entering a building or the Mines dismounts the player, and the
+  horse waits outside. The saved pages do not say (searched).
+- **Unlock (decided 2026-11-06, owner, Stardew, unchecked).** The stable is
+  bought at the carpenter from the start. The only gate is the cost, and Hardwood
+  needs a Steel Axe (note 32).
+- **Naming (decided 2026-11-06, owner, saved Stable page).** The player names the
+  horse on the first ride.
 - **Extras.** Parked as placeholders (decided above). Later: where the carrot,
   book and flute come from, and their prices. Is the carrot a crop we grow (no
   note has one yet)? Does a hat fit our hat system?
@@ -142,5 +149,7 @@ is our inference, not a source.
 ## Next
 
 Check the 10,000g price against income in note 07, design the building placement
-mode (note 55 lists the stable as player placed), and update note 45's keys.
+mode (note 55 lists the stable as player placed; owner 2026-11-06: on touch a
+ghost footprint is dragged and confirmed with a button, and buildings can also be
+moved and removed with some resources returned), and update note 45's keys.
 The extras are parked.
