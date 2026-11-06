@@ -154,9 +154,9 @@ its data, or none.
   | Rare sea find | The Pearl Lobster's pearl | Designed (`21_fishing.md`) |
   | Legend fish | The Hearthwell Carp | Designed (`21_fishing.md`) |
   | Late artisan good | Truffle oil | Designed (`24_processing_and_cooking.md`) |
-  | Rare animal product | Moonwool, a rare fleece from a well kept sheep | **New, name is a placeholder.** Chance and rule go in `23_animals.md` |
-  | Prize crop | The Blue Ribbon Melon, the Harvest Showing first prize | **New, name is a placeholder** (`14_festival_calendar.md`) |
-  | Top gem | The Glimmerstone | **New, name is a placeholder.** Waits for the gem list in `22_mines.md` |
+  | Rare animal product | Moonwool, a rare fleece from a well kept sheep | Designed, name is a placeholder (`23_animals.md`) |
+  | Prize crop | The Blue Ribbon Melon, the Harvest Showing first prize | Designed, name is a placeholder (`14_festival_calendar.md`) |
+  | Top gem | The Glimmerstone | Designed, name is a placeholder (`22_mines.md`) |
 
   The common Carp is a universal hate (below) and the Hearthwell Carp a
   universal love. They are different items, as the cove legend is a separate
@@ -306,9 +306,9 @@ likes lean on cooked and made goods. Wheat joins the lists when it exists
 
 ## Not decided (open)
 
-- The final names of Moonwool, the Blue Ribbon Melon and the Glimmerstone, and
-  their systems (animals, the festival, the gem list). The drafts above stand
-  until then.
+- The final names of Moonwool, the Blue Ribbon Melon and the Glimmerstone. Their
+  systems are settled (notes 23, 14 and 22), but the Harvest Showing scoring and
+  the gem list are not.
 - The other 22 people's lists, written by layer. Names and voices for all.
 - Whether the week in our calendar has seven named days (the Sunday rule needs
   one). Check `26_seasons.md` at build.

@@ -125,6 +125,12 @@ Neglect follows the written rule:
   reuse the existing quality system.
 - High friendship and mood give a chance of a large or rare product, such as the
   duck feather.
+- **Moonwool (decided 2026-11-06, name a placeholder).** A sheep at friendship
+  of 8 hearts or more, fed and at 70 mood or more, has a small daily chance
+  (placeholder 5 percent) to leave one Moonwool beside its normal wool. It is
+  the rare animal product and a universal gift love
+  (`61_friendship_and_gifts.md`). It sells high, is never bought, and is not a
+  bundle item. Quality follows the sheep's, as for other products.
 - The first build collects by hand. Auto-collect is a later upgrade.
 
 ## Feed and the silo

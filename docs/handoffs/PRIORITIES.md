@@ -29,8 +29,11 @@ can close once the owner is happy with note 63.
 
 - Friendship loose ends (notes 61 and 62, 2026-11-06): six named universal
   loves, the universal hate list, the Midwinter pairing, the first eight
-  people's draft lists and the scene commands. Still open there: names for the
-  three new items, the other 22 people's lists and the heart event lists.
+  people's draft lists and the scene commands. The first eight lists had their overlaps spread, and the three new items now
+  have homes (Moonwool in note 23, the melon in note 14, the Glimmerstone in
+  note 22). Still open there: final names for the three, the Harvest Showing
+  scoring and the gem list. The other 22 people's lists and the heart event
+  lists wait for their layer.
 - Final game name (#138): Elderglen, ADR 0011. The register check is still open
   (USPTO, UK, Steam, app stores, .com).
 - Bundle item pools and reward rebalance (note 63, 2026-11-06).
