@@ -5,6 +5,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { format } from "prettier";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const dataPath = join(root, "docs/overview.json");
@@ -85,7 +86,7 @@ export function render(data, snapshot) {
   return tpl.replace("/*DATA*/null", json);
 }
 
-function refresh() {
+async function refresh() {
   const out = execFileSync(
     "gh",
     [
@@ -109,15 +110,16 @@ function refresh() {
     };
   }
   const fetched = new Date().toISOString().slice(0, 10);
-  writeFileSync(
-    issuesPath,
-    JSON.stringify({ fetched, issues }, null, 2) + "\n",
-  );
+  // Prettier-formatted, so the format:check gate passes on the snapshot.
+  const text = await format(JSON.stringify({ fetched, issues }), {
+    parser: "json",
+  });
+  writeFileSync(issuesPath, text);
   console.log(`overview: refreshed ${Object.keys(issues).length} issues`);
 }
 
-function main() {
-  if (process.argv.includes("--refresh")) refresh();
+async function main() {
+  if (process.argv.includes("--refresh")) await refresh();
   const data = JSON.parse(readFileSync(dataPath, "utf8"));
   const snapshot = JSON.parse(readFileSync(issuesPath, "utf8"));
   const errors = validate(data, snapshot);
@@ -142,4 +144,4 @@ function main() {
   );
 }
 
-main();
+await main();

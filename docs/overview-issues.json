@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-11-01",
+  "fetched": "2026-11-06",
   "issues": {
     "5": {
       "t": "Design: what is the third community project?",
@@ -98,7 +98,7 @@
     },
     "59": {
       "t": "WP8: Housekeeping: roadmap, status and tuning numbers",
-      "state": "open",
+      "state": "closed",
       "labels": ["work-package"]
     },
     "60": {
@@ -113,7 +113,7 @@
     },
     "62": {
       "t": "WP11: ADR for the installed-app wrapper",
-      "state": "open",
+      "state": "closed",
       "labels": ["work-package"]
     },
     "63": {
@@ -122,7 +122,7 @@
       "labels": ["work-package"]
     },
     "67": {
-      "t": "Design: the home valley map and map style",
+      "t": "Design: the home valley layout, minimum visible tiles and transition look",
       "state": "open",
       "labels": ["design-question"]
     },
@@ -178,7 +178,7 @@
     },
     "155": {
       "t": "Festival marker does nothing before opening time and gives no message",
-      "state": "open",
+      "state": "closed",
       "labels": ["bug"]
     },
     "176": {
@@ -203,7 +203,7 @@
     },
     "180": {
       "t": "WP18: Hall rooms screen and the first buildable bundles",
-      "state": "open",
+      "state": "closed",
       "labels": ["work-package"]
     },
     "181": {
@@ -213,7 +213,7 @@
     },
     "194": {
       "t": "Design: the fifth tool tier above gold",
-      "state": "open",
+      "state": "closed",
       "labels": ["design-question"]
     },
     "196": {
@@ -228,7 +228,7 @@
     },
     "261": {
       "t": "Playtest tiers: a fast run with reduced waits",
-      "state": "open",
+      "state": "closed",
       "labels": ["enhancement"]
     },
     "280": {
@@ -246,20 +246,46 @@
       "state": "open",
       "labels": ["work-package"]
     },
-    "286": {
-      "t": "WP22: House tiers 2 and 3",
-      "state": "open",
-      "labels": []
-    },
+    "286": { "t": "WP22: House tiers 2 and 3", "state": "open", "labels": [] },
     "317": {
       "t": "Playtest: expert bot gets stuck one tile short of targets",
-      "state": "open",
+      "state": "closed",
       "labels": []
     },
     "319": {
       "t": "Explore a faster, headless playtest",
-      "state": "open",
+      "state": "closed",
       "labels": ["design-question"]
+    },
+    "328": {
+      "t": "Calibrate the headless sim's time model against a browser run",
+      "state": "closed",
+      "labels": ["design-question"]
+    },
+    "329": {
+      "t": "Speed up the browser playtests cheaply",
+      "state": "closed",
+      "labels": ["design-question"]
+    },
+    "333": {
+      "t": "Make the browser playtest bot walk reliably at speed",
+      "state": "open",
+      "labels": ["enhancement"]
+    },
+    "335": {
+      "t": "Art: ruined and restored hall rooms and the room reward objects",
+      "state": "open",
+      "labels": ["enhancement"]
+    },
+    "336": {
+      "t": "Check the first playable on a real tablet",
+      "state": "open",
+      "labels": ["enhancement"]
+    },
+    "396": {
+      "t": "Tree types by region (M3)",
+      "state": "open",
+      "labels": ["enhancement"]
     }
   }
 }
