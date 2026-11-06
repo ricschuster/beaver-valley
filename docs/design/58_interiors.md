@@ -126,7 +126,7 @@ courier (lodges at the inn, so she uses its map), and the festival green.
 
 ## Still open
 
-- Whether the barn stall wing is built, and the farmhouse tier map sizes. Use
+- Whether the barn stall wing is built, and the farmhouse tier map sizes (proposed in `41_house.md`). Use
   the table above for the coop and barn. The greenhouse placeholder is 18 by 16, and
   other interiors keep the 14 by 10 placeholder.
 - Day state and NPC routines inside interiors (`06_map_style.md`).
