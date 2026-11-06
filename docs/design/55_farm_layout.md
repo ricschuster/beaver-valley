@@ -107,9 +107,11 @@ screenshot; set them when the first Tiled draft exists and tune in
 ## Clutter after the clear
 
 Once the player clears the dense start, whether rocks, branches and stumps
-return each spring is as Stardew does it (decided 2026-11-03), and unchecked
-(SC-29). Weeds follow `29_weeds.md` either way. Until it is checked, no clutter
-returns except weeds.
+return each spring is as Stardew does it (decided 2026-11-03). The owner says
+rocks and debris return to some extent the next season, and trees and grass
+spread but not in winter (SC-29). How much is still open, so the exact rule needs
+a note. Weeds follow `29_weeds.md` either way. Until then, no clutter returns
+except weeds.
 
 ## The first crops
 
@@ -131,8 +133,8 @@ tillable share per farm type follows `32_farm_types.md`.
 
 - **The exact tillable count and the field shape.**
 - **Starting clutter counts** and the knock-on to note 43's wood economy.
-- **Stardew unchecked:** whether the house, bin, greenhouse and cave positions
-  are fixed on Standard, and how large its field is (SC-24, SC-25).
+- **Stardew unchecked:** how large the Standard field is (SC-25). The house,
+  bin, greenhouse and cave are fixed there (SC-24, owner).
 - **Other farm types** (Woodland, Riverside, Hilltop, Meadow) each need their
   own layout note later. This one covers Standard only.
 

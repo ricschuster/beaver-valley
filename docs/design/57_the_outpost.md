@@ -48,8 +48,9 @@ Rules that keep them apart:
 - **Forecast:** tomorrow's weather. It is a rule in `src/core/` that reads the
   same roll the overnight step uses, so it is never wrong. A festival heads-up
   the day before is also posted.
-- **The farmhouse TV gives the same forecast (Stardew, decided 2026-11-06).** From
-  memory and unchecked (SC-33). It reads the same rule, so the TV, the board and
+- **The farmhouse TV gives the same forecast (Stardew, decided 2026-11-06).** The
+  owner confirmed the forecast and says the real TV also has a luck report and a
+  cooking show, which we do not copy yet (SC-33). It reads the same rule, so the TV, the board and
   the steward never disagree. The bed forecast already in
   `07_tuning_numbers.md` is the same rule too. The TV is the first thing that
   gives the house TV a job, and note 41 should say so when next edited.
@@ -107,6 +108,6 @@ Rules that keep them apart:
 ## Open
 
 - The Special Orders unlock and shape (SC-32).
-- Stardew's TV forecast is unchecked (SC-33). The trader days and markup are
+- Stardew's TV also has luck and cooking channels (SC-33). The trader days and markup are
   ours, not Stardew's.
 - Exact lore line cadence, and who writes them.
