@@ -140,8 +140,20 @@ is our inference, not a source.
   count in note 58 stays 29.
 - **Price (decided 2026-11-06, owner, Stardew numbers from the saved Stable
   page).** 10,000g, Hardwood 100, Iron Bar 5, two days to build, horse included.
-  Hardwood (note 34) and iron bars (notes 22, 34) exist in the design. Still to
-  check the price against income in note 07.
+  Hardwood (note 34) and iron bars (notes 22, 34) exist in the design.
+- **Price check against income (2026-11-06).** An expert run with no upgrades
+  held 7,322g on day 41 after funding every bundle (note 07), so 10,000g is a
+  late goal, out of reach in the two season first playable, like house tier 1
+  (10,000g and 450 wood) and the 10,000g tool tier. That fits a horse that makes
+  long maps quick, since the long maps are later content. The materials are the
+  harder part. 100 Hardwood has no renewable source in the design: the Standard
+  farm's large stumps give 2 each and a Large Log gives 8 once (notes 43 and 54,
+  SC-31), and Hardwood waits for the Woodland farm type (note 32). Iron bars need
+  the iron band of the Mines (floors 40 to 80, note 07) and the furnace. So the
+  stable is gated by hardwood supply more than by gold. A hardwood source is open
+  below.
+- **Hardwood supply.** Where 100 Hardwood comes from on the home farm, renewable
+  (Stardew: Secret Woods and large stumps). Needs a source in notes 43 and 32.
 - **Multiplayer** (note 53, milestone M4): one horse each follows from the
   answer above.
 - **Art and sound.** A horse sprite, and a mounted player sprite (note 10).

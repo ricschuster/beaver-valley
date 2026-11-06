@@ -218,6 +218,10 @@ Source: `src/core/actions.ts` (`eat`), `energy` fields in the content files.
   with their prices above.
 - Silver restores x1.4, gold x1.8.
 
+Stable (decided 2026-11-06, `59_horse.md`): 10,000g, Hardwood 100, Iron Bar 5, two
+days, from the saved Stable page. Against the expert run above (7,322g on day 41)
+it is a late goal, like the 10,000g tool tier. Hardwood supply is the open part.
+
 ## Backpack
 
 Source: `src/core/inventory.ts`, `src/core/upgrades.ts`. The backpack starts at
