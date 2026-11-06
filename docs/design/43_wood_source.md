@@ -163,8 +163,9 @@ is in the toolbar from tier 0. The tiers are #194.
   450 target and the first season's clearing pace.
 - **Where the first crops go on day 1.** A dense field has no free soil. Whether
   a small patch near the house starts cleared is open in note 55.
-- **Hardwood** and large stumps wait for the Woodland farm type
-  (`32_farm_types.md`) and the axe tiers.
+- **Hardwood** and large stumps: the Secret Woods hold six that respawn daily
+  (decided 2026-11-06, `59_horse.md`), and the Woodland farm type
+  (`32_farm_types.md`) adds its own. Axe tiers are in note 44.
 - **Tapper and Lumberjack professions and the sawmill** still wait for a later
   note (note 36).
 
