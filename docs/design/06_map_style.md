@@ -31,8 +31,10 @@ Tiles are 16 px, as in the original (which draws at about 4x). The placeholder
 already uses 16 px at 2x. Zoom is a per device setting, not an art decision:
 
 - Use whole number zoom only, to keep pixels sharp.
-- Pick the largest whole zoom that still shows a minimum number of tiles. The
-  minimum tile count is to be tuned on the SM-T500 (landscape 1920 by 1200).
+- Default to the largest whole zoom that still shows at least 30 by 17 tiles
+  (about 510). Wider or squarer windows show more tiles. The player may zoom in
+  and out in steps (and pinch on touch) within a cap each way. Decided
+  2026-11-06, `docs/decisions/0009-view-size-and-aspect.md`.
 - A different tile size later would mean redrawing the art.
 
 ## Contract changes
@@ -57,7 +59,8 @@ the scene moves to multiple maps. They are a technical interface, not layout.
 
 - The valley layout is decided in `19_valley_layout.md` (areas, exits, river).
   Area sizes and the real Tiled maps are still to do (#67).
-- The minimum visible tile count for the zoom rule.
+- Building the window sized canvas and HUD anchoring (ADR 0009), and the cap
+  on the extra view.
 - The transition look (fade length, a peek at the neighbouring area).
 - Whether the first playable uses a menu stand-in for building interiors.
 - Interiors and day state: how time passes and NPC routines work in interiors.
