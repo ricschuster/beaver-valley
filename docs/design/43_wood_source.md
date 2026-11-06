@@ -66,7 +66,9 @@ is in the toolbar from tier 0. The tiers are #194.
   and hollow logs in Stardew's starting field. Those are hardwood obstacles
   that need a better axe, and a hollow log is a bigger, tougher one. They
   belong with hardwood and the axe tiers, not with the common tree rules. Which
-  axe tier each needs and what each gives is open (SC-31).
+  axe tier is set in note 44 (copper for stumps, steel for logs; owner, SC-31, the
+  Standard farm starts with both). What each gives and whether they return is
+  open (SC-31).
 - Stages in code are 1 (seed), 2 and 3 (seedlings), 4 (young) and 5 (mature).
 - The axe tier ladder is #194 (note 22). Slice 1 builds tier 0 only. The swing
   table above is the contract the ladder fills in.
