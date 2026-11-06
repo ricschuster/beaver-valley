@@ -124,8 +124,8 @@ ring 1 stays finished.
 
 ## Ring 1's finish (settled with the owner, 2026-10-31)
 
-The morning after the total shows 100, the hall steward calls the player in
-(see "How it works"). Stardew's 100 percent adds a stone carving of a stardrop
+The morning after the total shows 100, the hall steward walks over from the
+Outpost and calls the player in (see "How it works"). Stardew's 100 percent adds a stone carving of a stardrop
 above Grandpa's Shrine (checked on the saved Stardrop page). Whether it plays a
 scene is not checked.
 
@@ -160,7 +160,7 @@ scene is not checked.
 - **When it updates.** At day end with the achievement checks
   (`38_achievements.md`).
 - **The reward.** At a true 100 percent the summit achievement fires. The next
-  morning the hall steward calls the player in for the scene, and the hatter
+  morning the hall steward walks over from the Outpost to call the player in for the scene, and the hatter
   sends the hat. The keepsake is placed as furniture by mail.
 - **Not counted.** Money, the house, the festivals and the arcade game give
   achievements but are not in the total, as in Stardew.
