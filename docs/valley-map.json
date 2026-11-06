@@ -395,17 +395,25 @@
       ],
       "features": [
         {
-          "name": "Store and carrier post",
+          "name": "General store",
           "kind": "building",
           "x": 300,
           "y": 200,
           "people": [
             { "n": "Store keeper", "r": "halfling" },
             { "n": "Store keeper's partner", "r": "halfling" },
-            { "n": "Store keeper's child", "r": "halfling" },
-            { "n": "Courier (works here)", "r": "human" }
+            { "n": "Store keeper's child", "r": "halfling" }
           ],
           "note": "Gardener works here part-time.",
+          "ref": "20_ring1_cast.md"
+        },
+        {
+          "name": "The Outpost",
+          "kind": "building",
+          "x": 900,
+          "y": 250,
+          "people": [{ "n": "Courier (hangs out here)", "r": "human" }],
+          "note": "The carrier post. The hall steward is postmaster here by day. Mail and parcels, a notice board, road news and travelling traders. Added 2026-11-06.",
           "ref": "20_ring1_cast.md"
         },
         {
@@ -519,7 +527,7 @@
           "x": 1180,
           "y": 400,
           "people": [{ "n": "Hall steward", "r": "halfling" }],
-          "note": "The village hall. Lives above it.",
+          "note": "The village hall. Lives above it. Works the Outpost counter by day.",
           "ref": "40_hall_layout.md"
         },
         {

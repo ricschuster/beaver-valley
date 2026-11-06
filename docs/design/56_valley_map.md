@@ -29,12 +29,13 @@ looked at together like a map.
 - Areas and exits are note 19. The river is one line from the Mountain through
   Hearthwell to the delta.
 - Hearthwell has 11 households (note 20). Eight are services that live in their
-  shop (store and post, smithy, inn, healer, library, sawmill, hatter, hall).
+  shop (store, smithy, inn, healer, library, sawmill, hatter, hall).
   The other three (retired couple, gardener, young adults) are drawn as
   placeholder burrows, because note 19 says the number of homes is open. Their
   positions are not decided.
-- The courier is drawn at the store and carrier post, where the courier works.
-  The courier lodges at the inn.
+- The courier is drawn at the Outpost, where she hangs out without working.
+  She lodges at the inn. The hall steward is drawn once, at the hall, with a note
+  that they work the Outpost counter by day.
 - Farm positions follow note 55. The two ponds are the big south pond and the
   small east pond.
 

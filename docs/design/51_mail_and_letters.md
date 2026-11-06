@@ -45,8 +45,8 @@ Stardew's mail is the model. Its details here are from memory and unchecked.
 - **There is no cap on kept letters (decided 2026-11-02).** Letters are short
   text and there will be about a hundred across the game, so the save stays
   small. Stardew keeps no archive, so there is no number to copy.
-- **Who carries it is lore only.** The carriers bring it from the post in
-  Hearthwell. The warden head's courier is not tied to the mailbox.
+- **Who carries it is lore only.** The carriers bring it to the Outpost in
+  Hearthwell, where the hall steward is postmaster. The warden head's courier is not tied to the mailbox.
 
 ## The letter record
 

@@ -364,11 +364,11 @@ Stages, each optional and each only adding to what the player knows. The
 timings are placeholders, to be tuned against the seasons we have. The
 mailbox note thread was dropped on 2026-10-29, so the reveal needs no mailbox. Ordinary mail has a mailbox since 2026-11-02 (`51_mail_and_letters.md`).
 
-1. Ring 1, first year: a courier at the carrier post in Hearthwell who is a
+1. Ring 1, first year: a courier who hangs about the Outpost in Hearthwell and is a
    little too watchful. She says little and gives no name. Her only offer is
    a small, odd errand now and then. Nothing marks her as a warden.
-2. Ring 1, middle: one small glimpse at the carrier post, such as a mark she
-   leaves on the board. No ask, no new system. It sets up stage 3.
+2. Ring 1, middle: one small glimpse at the Outpost, such as a mark she
+   leaves on its notice board. No ask, no new system. It sets up stage 3.
 3. End of ring 1, the morning after the bridge is mended (the Last Seat): she
    comes to the farm to talk to the player. She shares a bit more about who she
    is and gives a name that is plainly an alias. No mention of the Dawn
@@ -406,7 +406,7 @@ mixed groups.
 | --- | --- | --- |
 | Smithy and mender (stout craftsperson, tool upgrades) | Hearthwell | Female |
 | Inn and kitchen keeper | Hearthwell | Male |
-| General store and carrier post keeper | Hearthwell | Female |
+| General store keeper | Hearthwell | Female |
 | Healer | Hearthwell | Female |
 | Librarian | Hearthwell | Male |
 | Smith dwarf (tools and lamps) | Mountains | Female |
@@ -434,7 +434,9 @@ Hearthwell. The farm sits out in the quiet valley as a home base.
 
 Buildings chosen:
 
-- General store and carrier post (the couriers are the secret wardens).
+- General store.
+- The Outpost (added 2026-11-06): the carrier post, where the hall steward is
+  postmaster and the couriers, the secret wardens, hang about.
 - Smithy and mender (tool upgrades, run by a stout craftsperson).
 - Inn and kitchen.
 - Healer, library and a festival green.
