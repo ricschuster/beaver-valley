@@ -26,8 +26,8 @@ Start each session by asking which item to take.
 
 ## Remaining bundle work
 
-#181: the Last Seat numbers, the second-year rule and pacing. #201 can close
-once the owner is happy with note 63.
+Issue #181: the Last Seat numbers, the second-year rule and pacing. Issue #201
+can close once the owner is happy with note 63.
 
 ## Done
 
