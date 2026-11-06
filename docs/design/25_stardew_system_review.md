@@ -70,7 +70,7 @@ will correct them.
 | Stardew system | Our area | Status | Where, and what is missing |
 | --- | --- | --- | --- |
 | Villagers | Cast and villagers | Covered | 30 people, 14 candidates (`20_ring1_cast.md`). Names open. |
-| Friendship | Friendship and marriage | Partial | Decided to exist. Gift tastes, heart events and the mechanics are not written down. Page to read: Friendship. |
+| Friendship | Friendship and marriage | Designed | Points, gifts, tastes and birthdays in `61_friendship_and_gifts.md`. Own tastes and heart events still to write. |
 | Marriage | Friendship and marriage | Covered | `12_marriage.md`. |
 | Children | Friendship and marriage | Covered | By player choice only (`12_marriage.md`). Child room upgrade open. |
 | Quests, help-wanted requests | Dialogue and voice | Unclear | Hints only: the hermit's requests, the warden head's errands (`17_call_feedback_2026-10-28.md`). No request board or repeatable quest system is described. |
@@ -128,7 +128,7 @@ Added from what we know of the game, so these need a source check too:
 | Horse | Designed | A stable and a horse, as in Stardew (owner, 2026-11-06). See `59_horse.md`. |
 | Mail | Designed | A farm mailbox, next-morning delivery and a journal Mail section (`51_mail_and_letters.md`). The 2026-10-29 drop only covered the warden reveal. |
 | Calendar board | Partial | The festival calendar exists. The in-world board is not described. |
-| Dating events and gift tastes | Absent | Part of Friendship. Page to read. |
+| Dating events and gift tastes | Partial | Gift rules in `61_friendship_and_gifts.md`. Events and each person's tastes open. |
 
 ## Owner decisions, 2026-10-30
 

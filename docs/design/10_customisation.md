@@ -114,7 +114,7 @@ once the first slice feels good.
   Bundle 24's festival hats and the Hat Parade prize are extra hats outside it.
 - How the standing readout works when the player can pick any hat they own. One
   option is that the Brimmers' dialogue and the parade react to standing, and
-  the hat is only the look. This needs deciding with the friendship note.
+  the hat is only the look. Settled in `61_friendship_and_gifts.md`: the hat is only the look.
 - The furniture pool size, prices, and which house upgrade offers the
   catalogue (the house upgrade list is in `41_house.md`; which tier offers the
   catalogue is still open).

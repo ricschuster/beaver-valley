@@ -47,7 +47,7 @@ Full branching in regular talk, held down by a cap.
   are out for now.
 - Flags are per character by default. A short named list of global flags
   (hall milestones, season events, key story beats) can be read by anyone.
-- Conversations unlock at heart thresholds. Hearts never fall. Choices change
+- Conversations unlock at heart thresholds. Hearts never fall from neglect or from a dialogue choice (a single bad gift can cost points, `61_friendship_and_gifts.md`). Choices change
   how fast hearts rise or which lines appear.
 - A seen conversation leaves the Talk list. A journal or menu lets the player
   reread it.

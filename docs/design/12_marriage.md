@@ -16,7 +16,8 @@ treatment, and some of those can be marriage candidates.
 ## Shape (follows Stardew, in our own content)
 
 1. **Friendship hearts** build as set out in `09_story_and_lore.md`: talk,
-   gifts, events. No decay (see Neglect there).
+   gifts, events. No decay (see Neglect there). The points and gift rules are in
+   `61_friendship_and_gifts.md`.
 2. **Candidates.** A marked subset of villagers can be courted. Not everyone.
    The rest stay friends at any heart level.
 3. **Courtship.** At a set heart level the player can give a courtship gift.

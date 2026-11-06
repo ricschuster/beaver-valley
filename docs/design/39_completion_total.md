@@ -204,8 +204,9 @@ scene is not checked.
   honest but may surprise a finished player, so the page says so. This stands
   unless the owner objects.
 - **Friends' maximum hearts.** Follow Stardew's split: a lower cap for people
-  who can be courted and a higher cap for the rest. The numbers wait for the
-  friendship design.
+  who can be courted and a higher cap for the rest. Set in
+  `61_friendship_and_gifts.md`: 8 hearts for people who can be courted until a
+  bouquet, 10 for the rest.
 
 ## Build notes
 
