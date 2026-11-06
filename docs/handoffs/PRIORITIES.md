@@ -12,11 +12,13 @@ Start each session by asking which item to take.
 1. **Window sized canvas, HUD anchoring and zoom** (ADR 0009). Designed in
    note 64 (2026-11-06), not built. The game still draws a fixed 960 by 540
    canvas, and the build touches every screen.
-2. **Story spine.** The warden head and her staged reveal (#177), the sea elf
-   and Homeward pin (#176), the hermit witch (#178) and the third community
-   project (#5). Together they decide what the ending and the Last Seat mean.
-3. **Special Orders and debris by season** (SC-32, SC-29), then the completion
+2. **Special Orders and debris by season** (SC-32, SC-29), then the completion
    tracker (#196).
+3. **Story spine.** The warden head and her staged reveal (#177), the sea elf
+   and Homeward pin (#176), the hermit witch (#178) and the third community
+   project (#5). Together they decide what the ending and the Last Seat mean. Below Special Orders
+   (2026-11-06): nothing in slices 1 to 3 needs it, and it is only needed
+   before slice 5 (note 33), alongside the heart events. Owner put it before art.
 4. **Art direction and audio plan.** Character art (note 15), ruined and
    restored hall rooms (#335), and the placeholder swap. No audio note exists.
 5. **Ring 2 shape and travel** (#20, M5). Parked until slice 3 is played.
