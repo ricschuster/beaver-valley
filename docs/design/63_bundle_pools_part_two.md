@@ -19,6 +19,21 @@ Bundles page was read as reference only (ADR 0002). No text is copied.
 3. **Slice 4 stays as note 33 has it.** The Larder's last bundle, the Hearth and
    the Guests' Board all finish there. It is the slice most likely to run long.
 
+Decided later the same day, answering the open items:
+
+4. **Bundle 15 gives warp totems to the Beach, as in Stardew** (the saved
+   Bundles page shows a Beach warp totem as its Ocean Fish reward). The totem is
+   a consumable that returns the player to the Beach. Its recipe and count are
+   for the crafting note.
+5. **Bundle 20 gives a small glow ring.** It is a plain light ring of radius 5
+   (`37_equipment.md`), not the radius 10 glow ring of bundle 16. Rings of the
+   same kind stack, so a player who has both gets the sum. The slot is built in
+   slice 3, so the ring is ready when slice 4 hands it out.
+6. **Bundle 29 gives a large chest.**
+7. **Found things come from surface digging and the mines.** The hoe on an
+   artifact spot gives a find, commoner in winter, as in Stardew (saved
+   Artifacts page). The mines add ruins, quiet floors and Old Diggers.
+
 ## A rule the pools follow
 
 A bundle must be fillable before its own reward exists. Bundle 12 already
@@ -93,12 +108,12 @@ Each reward against the system that gives it, and the slice that builds it
 | 12 | Keg | Slice 1 | Fine. |
 | 13 | 30 bait | Slice 2 | Fine. |
 | 14 | Lure | Slice 2 | Fine. |
-| 15 | 5 warp charms | Slice 2 | **Change.** No design says where a warp charm goes, and carts are slice 4. Recommend 20 salted bait (sea fish only, `21_fishing.md`). A warp totem home stays an option once travel is designed. |
+| 15 | 5 warp totems to the Beach | Slice 2 | **Changed** from warp charms (decision 4). The totem recipe is for the crafting note. |
 | 16 | Glow ring | Slice 2 | The equipment slot is settled (`37_equipment.md`) but combat widens in slice 3. A placeholder reward until then, as note 33 says. |
 | 17 | 5 fish dishes | Slice 2 | As bundle 6: raw fish of the same worth until cooking exists. |
 | 18 | 3 crab pots | Slice 2 | Fine. |
 | 19 | 20 coal | Slice 1 | Fine. |
-| 20 | Torches for the mines | Slice 4 | Fine, but the mines are open in slice 1, so the torches arrive after a player has needed them. Ask whether this is a good reward there (open). |
+| 20 | A small glow ring | Slice 4 | **Changed** from torches (decision 5). The mines open in slice 1, so torches would arrive too late to matter. |
 | 21 | Loom | Slice 4 | Fine. |
 | 22 | 3 feast dishes | Slice 4 | Fine. |
 | 23 | Dye vat | Slice 4 | Fine. |
@@ -107,7 +122,7 @@ Each reward against the system that gives it, and the slice that builds it
 | 26 | Old Greencoat's keepsake | Slice 4 | A lore item. Its form is for the story note. |
 | 27 | Crystalarium | Slice 5 | Fine. |
 | 28 | Magnet ring | Slice 5 | Needs the equipment slot, which exists by then. |
-| 29 | Large chest or storage shed | Slice 5 | The two are not the same size of reward. Pick one (open). |
+| 29 | Large chest | Slice 5 | **Decided** (decision 6). |
 | 30 | Letter to the elves | Slice 5 | Story only. |
 
 ### Room rewards
@@ -139,14 +154,16 @@ farming levels, and no bundle gives them.
 
 ## Open
 
-- **Bundle 15's reward.** The recommendation is salted bait. The owner has not
-  chosen.
-- **Bundle 29's reward.** Large chest or storage shed.
-- **Whether bundle 20's torches are still a good reward** when the mines open
-  in slice 1.
-- **The found things for bundle 26** and the surface digging.
-- **Wheat's growth and price**, and red cabbage's, which bundle 8 already
-  assumes.
+- **The found things for bundle 26.** The sources are decided (decision 7). Their
+  names, spawn rates and the artifact spot design stay for the completion tracker
+  note and the gathering notes.
+- **The warp totem recipe and count for bundle 15.**
 - **Bundle counts** (8 wool, 20 fiber, 20 hay, 10 wheat) are placeholders until
   gathering and animal rates are known.
 - The Last Seat numbers and the second-year rule stay in #181.
+
+Settled with the saved Crops page (Stardew, read only): wheat grows in 4 days,
+summer and fall, seeds 10g, sells for 25g. Red cabbage is 9 days, seed 100g, sells
+260g. Both are in `07_tuning_numbers.md`. Stardew sells red cabbage seed only
+from year two, a gate we do not copy. It is only one of Dyer's six dye goods,
+so no bundle needs it.
