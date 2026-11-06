@@ -1,12 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
   BUILD_DAYS,
-  isAreaOpen,
+  houseMapId,
+  isHouseMap,
   MAX_HOUSE_TIER,
-  openAreas,
   orderProblem,
   orderUpgrade,
-  sealedAreas,
   WOOD,
 } from "../src/core/house";
 import { maps } from "../src/content/maps";
@@ -14,26 +13,24 @@ import { festivalToday } from "../src/core/festivals";
 import { deserialize, newGame, serialize } from "../src/core/save";
 import { sleep } from "../src/core/sleep";
 
-describe("house tiers", () => {
-  it("opens only the start room at tier 0", () => {
-    expect(openAreas(0)).toEqual(["start"]);
-    expect(isAreaOpen(0, "kitchen")).toBe(false);
+describe("house map per tier", () => {
+  it("uses the start map at tier 0 and the tier 1 map after", () => {
+    expect(houseMapId(0)).toBe("house");
+    expect(houseMapId(1)).toBe("house-1");
   });
 
-  it("opens the kitchen and bedroom at tier 1", () => {
-    expect(openAreas(1)).toEqual(["start", "kitchen", "bedroom"]);
-    expect(isAreaOpen(1, "bedroom")).toBe(true);
-  });
-
-  it("never closes an area at a higher tier", () => {
-    for (let t = 0; t < MAX_HOUSE_TIER; t++) {
-      for (const a of openAreas(t)) expect(isAreaOpen(t + 1, a)).toBe(true);
-    }
+  it("uses the tier 1 map for later tiers until their maps exist", () => {
+    expect(houseMapId(MAX_HOUSE_TIER)).toBe("house-1");
   });
 
   it("clamps tiers out of range", () => {
-    expect(openAreas(-1)).toEqual(openAreas(0));
-    expect(openAreas(99)).toEqual(openAreas(MAX_HOUSE_TIER));
+    expect(houseMapId(-1)).toBe("house");
+  });
+
+  it("knows which maps are house interiors", () => {
+    expect(isHouseMap("house")).toBe(true);
+    expect(isHouseMap("house-1")).toBe(true);
+    expect(isHouseMap("farm")).toBe(false);
   });
 });
 
@@ -61,37 +58,48 @@ describe("house tier in the save", () => {
   });
 });
 
-describe("house map", () => {
-  const house = () => maps.get("house");
-  const kitchen = { x: 2, y: 3 };
-  const bedroom = { x: 14, y: 3 };
-  const start = house().entry("door")!;
+describe("house maps", () => {
+  const start = () => maps.get(houseMapId(0));
+  const tier1 = () => maps.get(houseMapId(1));
+  const bed = (m: ReturnType<typeof start>) =>
+    m.services.find((s) => s.kind === "bed")!;
 
-  it("blocks the sealed rooms at tier 0 and opens them at tier 1", () => {
-    house().seal(sealedAreas(0));
-    expect(house().isBlocked(kitchen.x, kitchen.y)).toBe(true);
-    expect(house().isBlocked(bedroom.x, bedroom.y)).toBe(true);
-    house().seal(sealedAreas(1));
-    expect(house().isBlocked(kitchen.x, kitchen.y)).toBe(false);
-    expect(house().isBlocked(bedroom.x, bedroom.y)).toBe(false);
+  it("has the planned sizes", () => {
+    expect([start().width, start().height]).toEqual([11, 10]);
+    expect([tier1().width, tier1().height]).toEqual([31, 12]);
   });
 
-  it("lets the player walk from the door to both new rooms at tier 1", () => {
-    house().seal(sealedAreas(1));
-    const walkable = house().reachable(start);
-    expect(walkable.has(`${kitchen.x},${kitchen.y}`)).toBe(true);
-    expect(walkable.has(`${bedroom.x},${bedroom.y}`)).toBe(true);
+  it("has no problems on either map", () => {
+    expect(start().problems()).toEqual([]);
+    expect(tier1().problems()).toEqual([]);
   });
 
-  it("keeps the start room and the bed reachable at tier 0", () => {
-    house().seal(sealedAreas(0));
-    const bed = house().services.find((s) => s.kind === "bed")!;
-    expect(
-      house()
-        .reachable(start)
-        .has(`${bed.x},${bed.y + 1}`),
-    ).toBe(true);
-    expect(house().problems()).toEqual([]);
+  it("leads each door back to the farm's house entry", () => {
+    for (const m of [start(), tier1()]) {
+      const door = m.exits.find((e) => e.map === "farm")!;
+      expect(door.entry).toBe("from_house");
+      expect(m.entry("door")).toBeDefined();
+    }
+  });
+
+  it("keeps the bed reachable from the door on both maps", () => {
+    for (const m of [start(), tier1()]) {
+      const b = bed(m);
+      const walkable = m.reachable(m.entry("door")!);
+      const sides = [
+        [0, 1],
+        [0, -1],
+        [1, 0],
+        [-1, 0],
+      ].some(([dx, dy]) => walkable.has(`${b.x + dx!},${b.y + dy!}`));
+      expect(sides).toBe(true);
+    }
+  });
+
+  it("lets the player walk from the door into the kitchen and bedroom at tier 1", () => {
+    const walkable = tier1().reachable(tier1().entry("door")!);
+    expect(walkable.has("4,5")).toBe(true); // kitchen
+    expect(walkable.has("25,5")).toBe(true); // bedroom
   });
 });
 

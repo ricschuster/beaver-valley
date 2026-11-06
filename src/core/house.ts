@@ -4,35 +4,21 @@ import type { GameState } from "./save";
 /** The house grows in tiers: 0 is the start room, 1 adds a kitchen and a bedroom. */
 export const MAX_HOUSE_TIER = 3;
 
-/** The id of the interior map, whose rooms open by tier. */
+/** The id of the start map, and the target of the farm's house door. */
 export const HOUSE_MAP = "house";
 
-/** The parts of the house interior map. Closed ones are sealed earth. */
-export type HouseArea = "start" | "kitchen" | "bedroom";
-
-/** The tier at which each area opens. Tiers 2 and 3 add areas in M3. */
-const OPENS_AT: Record<HouseArea, number> = {
-  start: 0,
-  kitchen: 1,
-  bedroom: 1,
-};
-
-/** The areas open at a house tier. Tiers out of range are clamped. */
-export function openAreas(tier: number): HouseArea[] {
-  const t = Math.min(Math.max(Math.floor(tier), 0), MAX_HOUSE_TIER);
-  return (Object.keys(OPENS_AT) as HouseArea[]).filter((a) => OPENS_AT[a] <= t);
+/**
+ * The interior map for a house tier: one map per tier, no sealed earth
+ * (`docs/design/41_house.md`). Tiers 2 and 3 get their own maps in M3, so until
+ * then they use the tier 1 map. Tiers out of range are clamped.
+ */
+export function houseMapId(tier: number): string {
+  return Math.floor(tier) >= 1 ? "house-1" : HOUSE_MAP;
 }
 
-export function isAreaOpen(tier: number, area: HouseArea): boolean {
-  return openAreas(tier).includes(area);
-}
-
-/** The areas still sealed with earth at a house tier. */
-export function sealedAreas(tier: number): HouseArea[] {
-  const open = openAreas(tier);
-  return (Object.keys(OPENS_AT) as HouseArea[]).filter(
-    (a) => !open.includes(a),
-  );
+/** True for any of the house interior maps. */
+export function isHouseMap(id: string): boolean {
+  return id === HOUSE_MAP || id.startsWith(`${HOUSE_MAP}-`);
 }
 
 /** What an upgrade costs, to reach the tier at the same index plus one. */

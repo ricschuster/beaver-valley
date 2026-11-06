@@ -1,6 +1,7 @@
 // The headless player: the real core rules, plus the two things the scene
 // supplies, a position on a map and the passing of game time (note 46).
 import { maps } from "../../src/content/maps";
+import { HOUSE_MAP, houseMapId } from "../../src/core/house";
 import type { FarmMap } from "../../src/core/map";
 import type { GameState } from "../../src/core/save";
 
@@ -48,14 +49,15 @@ function steps(dist: Dist, x: number, y: number): number | undefined {
 
 /** Where the player is: a map, and a tile on it. */
 export class Walker {
-  mapId = "house";
+  mapId: string;
   pos: Spot;
   /** Whole game minutes still to pass; the clock moves in whole minutes. */
   private owed = 0;
   minutesWalked = 0;
 
   constructor(private readonly g: GameState) {
-    this.pos = this.adjacentTo(maps.get("house"), bed(maps.get("house")));
+    this.mapId = houseMapId(g.houseTier);
+    this.pos = this.adjacentTo(this.map, bed(this.map));
   }
 
   get map(): FarmMap {
@@ -172,13 +174,15 @@ export class Walker {
     this.spend(this.walkMinutes(best.tiles) + TIME.transition);
     const entry = maps.get(exit.map).entry(exit.entry);
     if (!entry) throw new Error(`no entry ${exit.entry} on ${exit.map}`);
-    this.mapId = exit.map;
+    this.mapId =
+      exit.map === HOUSE_MAP ? houseMapId(this.g.houseTier) : exit.map;
     this.pos = { x: entry.x, y: entry.y };
   }
 
   /** Change to another map, through the farm, which joins them all. */
   enter(dest: string): void {
-    if (this.mapId === dest) return;
+    const target = dest === HOUSE_MAP ? houseMapId(this.g.houseTier) : dest;
+    if (this.mapId === target) return;
     if (this.mapId !== "farm") {
       const back = this.map.exits.find((e) => e.map === "farm");
       if (!back) throw new Error(`${this.mapId} has no way to the farm`);
@@ -199,8 +203,8 @@ export class Walker {
 
   /** Where the player wakes: beside the bed. Called when a day ends. */
   wake(): void {
-    this.mapId = "house";
-    this.pos = this.adjacentTo(maps.get("house"), bed(maps.get("house")));
+    this.mapId = houseMapId(this.g.houseTier);
+    this.pos = this.adjacentTo(this.map, bed(this.map));
   }
 }
 
