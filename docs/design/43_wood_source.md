@@ -87,7 +87,9 @@ is in the toolbar from tier 0. The tiers are #194.
   stops, as note 36.
 - **Valley trees later.** Forest and Mountain are the first valley places, and
   they can carry denser stands. The regrowth rule in note 36 is already for
-  them.
+  them. Decided 2026-11-06 for M3, not M2: three tree types by region as Stardew (SC-30), in
+  fixed places, regrowing when chopped, and some cosmetic trees that cannot be
+  chopped, like the farm border.
 
 ## Supply and demand (slice 1)
 
