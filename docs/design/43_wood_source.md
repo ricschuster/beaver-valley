@@ -67,8 +67,9 @@ is in the toolbar from tier 0. The tiers are #194.
   that need a better axe, and a hollow log is a bigger, tougher one. They
   belong with hardwood and the axe tiers, not with the common tree rules. Which
   axe tier is set in note 44 (copper for stumps, steel for logs; owner, SC-31, the
-  Standard farm starts with both). What each gives and whether they return is
-  open (SC-31).
+  Standard farm starts with both). The saved Hardwood page says a Large Stump
+  gives 2 Hardwood and no daily respawn is listed for the Standard farm, so
+  cleared ones stay cleared by that rule; the log yield is open (SC-31).
 - Stages in code are 1 (seed), 2 and 3 (seedlings), 4 (young) and 5 (mature).
 - The axe tier ladder is #194 (note 22). Slice 1 builds tier 0 only. The swing
   table above is the contract the ladder fills in.

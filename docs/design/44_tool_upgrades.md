@@ -124,7 +124,8 @@ a placeholder by floor band.
   two days before one (Stardew's rule). Festivals are in `14_festival_calendar.md`.
 - One tool at a time, or several (not on a saved page).
 - The large stump swing count, the large log yield, hardwood per stump, and
-  whether cleared stumps and logs return on the Standard farm (SC-31, SC-29).
+  the large log yield (SC-31). The saved Hardwood page lists no daily respawn of
+  stumps or logs on the Standard farm.
 - The young tree and seedling swing counts per grade (above).
 - Whether farm boulders exist, and which pickaxe grade clears them.
 - The Powerful enchantment (a Stardew forge result that lets any axe clear large
