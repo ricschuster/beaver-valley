@@ -107,7 +107,7 @@ One data record covers every quest, whatever its source.
 ## Open
 
 - The chance a day has a request, and the day it begins. Decided 2026-11-03: as
-  Stardew does, but Stardew's chance and start day are unchecked (SC-27). Use a
-  placeholder until it is checked.
+  Stardew does. The owner says most days have a request from early on, but the
+  exact chance and start day are unchecked (SC-27). Use a placeholder.
 - Item pools, count ranges and gathering pay (tuning).
 - Whether the board can hold more than one request at a time: settled (owner, SC-10), it can.

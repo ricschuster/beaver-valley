@@ -449,8 +449,7 @@ are ours where stated.
 - **Fixed on purpose:** costs that do not scale make a low margin harder, which
   is the point. Playtest 25 before keeping it.
 - **Changes later (decided 2026-11-03):** the host can change it after the game
-  has started, as the owner wants Stardew to do. Whether Stardew really allows
-  it is unchecked (SC-26). In single player the player is the host. Open: where
+  has started, as Stardew does (owner, from memory, SC-26). In single player the player is the host. Open: where
   the setting lives (the host screen in multiplayer, Options in single player)
   and whether a change takes effect at once or at the next dawn.
 
