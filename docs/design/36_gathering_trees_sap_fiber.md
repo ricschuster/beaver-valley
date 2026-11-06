@@ -109,5 +109,8 @@ Slice 1 asks for these amounts.
 ## Not taken from Stardew
 
 - Species by region (maple, oak, pine, mahogany) and the mushroom, mystic and
-  green rain trees. Slice 1 has one common kind.
+  green rain trees. Slice 1 has one common kind. Decided 2026-11-06: later,
+  three tree types by region as Stardew (owner, SC-30), with fixed places
+  outside the farm, regrowth after chopping, and some cosmetic trees that
+  cannot be chopped. Names, seeds and yields are open (SC-30).
 - Palm trees, fiddlehead ferns and Qi's Walnut Room seeds.
