@@ -68,6 +68,13 @@ Where each is bought or found, and the cost, are open below.
 
 ## Walk speed (owner, 2026-11-06)
 
+**Walk and run both exist, run by default (owner, 2026-11-06).** As in Stardew
+(walk 2, run 5 on the saved Speed page, auto-run on from the owner's memory, the
+default itself unchecked). The player runs unless they hold a walk key. On touch,
+how far the stick is pushed sets walk or run (to design in note 45). Our current
+5 tiles a second becomes the run speed and walk is 2/5 of it, 2 tiles a second.
+The horse stays 1.3 times run. Not built yet.
+
 **Keep 5 tiles a second for now (owner, 2026-11-06).** The owner first picked 2.5
 as a placeholder, half of the current 5 (80 px a second in `FarmScene.ts` and
 `scripts/sim/world.ts`). After the saved Speed page showed Stardew running at 5
@@ -99,10 +106,10 @@ is our inference, not a source.
 
 ## Open
 
-- **Our walk speed.** Revisit the kept 5 tiles a second once the owner can time
-  Stardew, or the unit is found (SC-41), or at the first playtest on the full
-  size maps. Decide whether we have a walk and a
-  run at all. The horse is then 1.3 times our run speed, from the Speed page.
+- **Our run speed.** Revisit the kept 5 tiles a second (now the run speed) once
+  the owner can time Stardew, or the unit is found (SC-41), or at the first
+  playtest on the full size maps. Walk and run both exist (decided above). The
+  walk key, the touch stick thresholds and the walk speed ratio go in note 45.
 - **Indoors and the Mines.** Check whether Stardew allows riding there.
 - **Extras.** Where the carrot, book and flute come from, and their prices. Is
   the carrot a crop we grow (no note has one yet)? Does a hat fit our hat system?
