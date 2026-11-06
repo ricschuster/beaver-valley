@@ -142,8 +142,12 @@ From `09_story_and_lore.md`, with the sawmill added:
 - Whether fishing also happens beyond the farm's big south pond, or stays at
   the delta, beach and cove (#181). Only the big farm pond holds fish
   (`55_farm_layout.md`).
-- Whether the animals' farmstead is an interior only or a small area with
-  paddocks. The keeper's house and shop is one interior (`58_interiors.md`).
+
+## Farmstead
+
+The Forest farmstead is part of the Forest map: the keeper's house and shop (one
+interior) and a few paddocks outside that are visual only, with no interaction
+(decided 2026-11-06, `58_interiors.md`).
 
 ## Next steps
 

@@ -27,6 +27,32 @@ map work is planned.
    steward's rooms. This is the one place note 20 decision 2 (a shop family is
    one map) does not hold. Stardew is not checked for this (SC-37).
 
+5. **The farmstead has visual paddocks (owner, 2026-11-06).** The Forest
+   farmstead is the keeper's house and shop (one interior) plus a few paddocks
+   outside, with animals drawn in them. They are scenery only: no interaction,
+   no feeding, no selling from them. The farmstead stays part of the Forest map,
+   not its own area.
+
+## Stardew sizes
+
+From the saved wiki pages for the Barn, Coop and Greenhouse (reference only,
+not copied into the repo). The wiki gives outside footprints, not the interior
+maps.
+
+| Building | Footprint outside | Interior |
+| --- | --- | --- |
+| Coop (all 3 tiers) | 6 by 3 tiles | Not on the wiki page. One picture per tier. |
+| Barn (all 3 tiers) | 7 by 4 tiles | Not on the wiki page. One picture per tier. |
+| Greenhouse | 7 by 6 plus 3 by 2 | Soil plot 12 columns by 10 rows. A one tile wood border round it, then a two tile margin to the walls. That works out at about 18 by 16 floor tiles, my sum from the page and not a stated number. |
+
+Capacity by tier (animals): coop 4, 8, 12 and barn 4, 8, 12 on the wiki. Ours
+are in note 23. Footprint is the same at every tier, which fits decision 1: one
+outside sprite per type, only the inside grows.
+
+The interior sizes of the coop and barn are open (SC-38). The Guidebook
+supplement has no building sizes either. The owner can count tiles in game or
+from the saved interior pictures.
+
 ## The count
 
 | Group | Maps | Detail |
@@ -73,7 +99,7 @@ courier (lodges at the inn, so she uses its map), and the festival green.
 
 ## Still open
 
-- Sizes of the coop, barn and greenhouse maps, and which tier parts show.
-- Whether the animals' farmstead is an interior only, or a small area with
-  paddocks (`19_valley_layout.md`, still open).
+- Interior sizes of the coop and barn (SC-38), and which tier parts show.
+  Until checked, use the placeholder of one room about 14 by 10 tiles for the
+  base tier. The greenhouse placeholder is 18 by 16.
 - Day state and NPC routines inside interiors (`06_map_style.md`).
