@@ -29,24 +29,45 @@ and over carts only. Carts from the hall room reward (`16_bundles.md`) stay.
 - Not on the page: the horse's speed, where it can and cannot be ridden, and
   whether it needs feeding. These stay open.
 
+## Answers (owner, 2026-11-06)
+
+1. **One stable per player (Stardew).** The owner recalled more than one and
+   was unsure of a limit. The saved page says one normally, and one each in
+   multiplayer, so one per player it is.
+2. **Stardew's cost as is (Stardew):** 10,000g plus Hardwood (100) and iron, two
+   days to build. Hardwood needs a Copper Axe or better (SC-31), so the axe
+   gates it. Whether 10,000g fits our economy is unchecked (note 07).
+3. **Stardew's +1.4 speed (Stardew).** The saved Animals page says the horse
+   adds +1.4 speed and does not slow in crops or grass. The base walk speed is
+   not on the pages read, so the ratio to our walk is unchecked (SC-41).
+4. **Outdoors only, dismount at doors.** Ride anywhere outdoors, crops
+   included. Whether Stardew lets you ride indoors or in the Mines is unchecked.
+
+## More from the saved Animals page (read 2026-11-06)
+
+- The horse needs no feeding (the page says horses and pets do not need to eat),
+  so there is no care system.
+- It waits where the player leaves it and returns to the stable the next
+  morning if left outside overnight. It cannot pass gaps under two tiles wide
+  when moving vertically, except gates.
+- Extras in Stardew: a carrot gives +0.4 speed for a day, a book gives +0.5
+  permanently, a flute warps the horse to the player outdoors, and hats can be
+  worn. Not decided for our game. They stay out until asked for.
+
 ## Open
 
-- **Walk speed and horse speed.** Lower the walk from 5 tiles a second first.
-  The horse is a multiple of it. Time Stardew crossings (SC-41).
-- **Price in our terms.** Stardew's 10,000g is a late-game sum. Check it against
-  the income in note 07 and the carpenter's order of builds.
-- **Hardwood and iron.** Hardwood needs a Large Stump or Log (SC-31), so the
-  stable is gated behind a Copper Axe. Is that the gate we want?
-- **Where it may be ridden.** Outdoors only, not inside buildings, mines or on
-  the festival green? Not checked.
-- **Care.** Does the horse need feeding or friendship? Not checked.
+- **Our walk speed.** Lower it from 5 tiles a second, then set the horse from
+  Stardew's +1.4 once the base is known (SC-41, owner timing).
+- **Indoors and the Mines.** Check whether Stardew allows riding there.
 - **Placement.** Where the stable stands on the farm, and its size (note 55).
 - **Controls.** Mount and dismount on touch, mouse and keyboard (note 45).
 - **Interior.** Whether the stable is walked into (note 58 lists none).
-- **Multiplayer** (note 53, milestone M4): one horse each, or shared.
+- **Price against income.** 10,000g against note 07.
+- **Multiplayer** (note 53, milestone M4): one horse each follows from the
+  answer above.
 - **Art and sound.** A horse sprite, and a mounted player sprite (note 10).
 
 ## Next
 
-Settle the open items in a question batch, with a Stardew check for each, then
-update note 55 (placement), note 25 (Horse row), note 07 (price) and note 58.
+Set our walk speed, then update note 55 (placement), note 07 (price) and note
+58 (interior). The extras above are optional.
