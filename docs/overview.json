@@ -181,8 +181,8 @@
         },
         {
           "s": "open",
-          "t": "Revisit every bundle reward once more systems are designed; some will need rebalancing",
-          "ref": "16_bundles.md#Open questions"
+          "t": "Rewards pass done against each system; bundle 15 reward, bundle 29 reward and bundle 20 torches still open",
+          "ref": "63_bundle_pools_part_two.md#The rewards pass (#201)"
         },
         {
           "s": "decided",
@@ -234,6 +234,11 @@
           "s": "decided",
           "t": "Greenhouse arrives in slice 4 with the animal bundle, as in Stardew; bundle 20 moves to slice 4; bundle 12's pool avoids keg goods",
           "ref": "35_bundle_pools.md#Decisions (2026-10-31)"
+        },
+        {
+          "s": "decided",
+          "t": "Weaver's and Dyer's ask for raw goods (their rewards are the loom and dye vat); Fodder takes wheat as in Stardew; slice 4 stays as one room per slice",
+          "ref": "63_bundle_pools_part_two.md#Decided with the owner (2026-11-06)"
         },
         {
           "s": "open",

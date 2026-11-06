@@ -105,7 +105,7 @@ replaces Stardew's panning, which the owner dislikes. Ring 1 also has a coast
 | --- | --- | --- | --- | --- |
 | 13 | Stream Fish | 3 of 5 | 30 bait | Fishing |
 | 14 | Lake Fish | 3 of 4 | Lure | Fishing, the Forest, Mountain and delta lakes |
-| 15 | Sea Fish | 4 of 6 | 5 warp charms | Fishing, a coast, travel |
+| 15 | Sea Fish | 4 of 6 | 5 warp charms (to change, see `63_bundle_pools_part_two.md`) | Fishing, a coast, travel |
 | 16 | Night Fishing | 3 of 4 | Glow ring | Fishing, night, equipment slot |
 | 17 | Specialty Fish | All 4: one rare fish each from stream, lake and sea, plus one rare shellfish | 5 fish dishes | Fishing, cooking |
 | 18 | Trap Catch | 5 of 8, fresh and salt water | 3 crab pots | Fishing, traps |
@@ -118,20 +118,20 @@ Room reward: carts between the farm, the hall, the town and the mines.
 | --- | --- | --- | --- | --- |
 | 19 | Smith's | All: 5 copper bars, 5 iron bars, 3 gold bars | 20 coal | Smelting, ore from the mines or the smith |
 | 20 | Lamplighter's | 2 of 3: 3 lamps, 10 oil, 20 torches | Torches for the mines | Light, crafting, oil maker (slice 4, see `35_bundle_pools.md`) |
-| 21 | Weaver's | Both: 10 cloth, 5 thread | Loom | Cloth, tailoring |
+| 21 | Weaver's | All: 8 wool, 20 fiber (raw goods, since the reward is the loom, see `63_bundle_pools_part_two.md`) | Loom | Wool, animals |
 
 The mines are not unlocked by the Hearth (see "The mines" below).
 
 ### 5. Guests' Board
 
-Room reward: a hat standing boost, plus festival extras.
+Room reward: two hearts with every villager who is not a candidate and whom the player has met (`61_friendship_and_gifts.md`).
 
 | # | Bundle | Rule | Reward | Needs |
 | --- | --- | --- | --- | --- |
 | 22 | Cook's | 3 of 5 dishes | 3 feast dishes | Cooking |
-| 23 | Dyer's | 4 of 6 dyes | Dye vat | Dyes, tailoring |
+| 23 | Dyer's | 4 of 6 raw colour goods (flowers, berries, cabbage), not dyes | Dye vat | Dyes, tailoring |
 | 24 | Host's | 3 of 4: bread, cake, tea, a festival treat | Set of festival hats | Cooking, hats, festivals |
-| 25 | Fodder | All: 20 hay, 10 grain, 10 root crops | Coop heater | Animals, coop |
+| 25 | Fodder | All: 20 hay, 10 wheat, 10 root crops | Coop heater | Animals, coop |
 | 26 | Storyteller's | 3 of 5 herbs and old things found in the valley | A keepsake from Old Greencoat | Found items, a lore item |
 
 Storyteller's pool: rare herbs, an old seed packet, a carved bead, a faded
@@ -235,8 +235,9 @@ its room is finished, but the Stardew wiki was not checked for this note.
   the rest need a check against the final bundle data (#179, #180).
 - Whether a player must finish at least one bundle in every room before the
   last room appears.
-- The pool of items for bundles 11 to 18, 22 to 24 and 26. Pools for 1 to 10,
-  12 and 19 are in `35_bundle_pools.md` (2026-10-31).
+- Item pools: 1 to 10, 12 and 19 are in `35_bundle_pools.md`, 13 to 18 in
+  `21_fishing.md`, and 11, 21 and 22 to 26 in `63_bundle_pools_part_two.md`
+  (2026-11-06, which also does the rewards pass of #201).
 - The Last Seat quantities and the bridge cost, once wood, stone and bars
   have real production rates.
 - Whether 30 bundles fit the 1.5 year pacing target. This needs a playtest

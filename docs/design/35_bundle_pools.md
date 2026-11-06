@@ -87,7 +87,7 @@ floors 1 to 10). Moss is not a rare find: it grows on mature trees (see
 | 12 | Artisan Goods | 4 of 6 | Jam, pickles, honey, apple, cherry, wine | Keg |
 | 19 | Smith's | All | 5 copper bars, 5 iron bars, 3 gold bars | 20 coal |
 
-Bundles 11 and 20 to 26 are not slice 1 and keep their rules in
+Bundles 11 and 20 to 26 are not slice 1 (their pools are in `63_bundle_pools_part_two.md`) and keep their rules in
 `16_bundles.md`, except bundle 20 (see Decisions).
 
 ### Notes on the pools
