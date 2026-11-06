@@ -36,22 +36,46 @@ map work is planned.
 ## Stardew sizes
 
 From the saved wiki pages for the Barn, Coop and Greenhouse (reference only,
-not copied into the repo). The wiki gives outside footprints, not the interior
-maps.
+not copied into the repo). The wiki gives outside footprints. The interior
+sizes below are not stated there, so they are measured from the saved
+screenshots (see the interior table).
 
 | Building | Footprint outside | Interior |
 | --- | --- | --- |
-| Coop (all 3 tiers) | 6 by 3 tiles | Not on the wiki page. One picture per tier. |
-| Barn (all 3 tiers) | 7 by 4 tiles | Not on the wiki page. One picture per tier. |
+| Coop (all 3 tiers) | 6 by 3 tiles | Measured, see below. |
+| Barn (all 3 tiers) | 7 by 4 tiles | Measured, see below. |
 | Greenhouse | 7 by 6 plus 3 by 2 | Soil plot 12 columns by 10 rows. A one tile wood border round it, then a two tile margin to the walls. That works out at about 18 by 16 floor tiles, my sum from the page and not a stated number. |
 
 Capacity by tier (animals): coop 4, 8, 12 and barn 4, 8, 12 on the wiki. Ours
 are in note 23. Footprint is the same at every tier, which fits decision 1: one
 outside sprite per type, only the inside grows.
 
-The interior sizes of the coop and barn are open (SC-38). The Guidebook
-supplement has no building sizes either. The owner can count tiles in game or
-from the saved interior pictures.
+Interior sizes, measured from the full size screenshots the owner saved
+(2026-11-06). Method: one feeding bench hay slot is one tile (4 slots on the
+base bench, 8 on big, 12 on deluxe), and the window spacing came out as whole
+tiles in every picture. Width and depth are outer sizes including the walls, give
+or take half a tile, and the depth stops at the bottom wall, so the door notch is
+not counted. The back wall is the top 2 to 3 rows.
+
+| Tier | Coop (width by depth) | Barn (width by depth) |
+| --- | --- | --- |
+| Base | 11 by 8 | 17 by 13 |
+| Big | 15 by 8 | 21 by 13 |
+| Deluxe | 22 by 8 | 24 by 13 |
+
+Depth stays the same across tiers, so each tier grows sideways only. Shape
+notes:
+
+- The feeding bench runs along the back wall, with the hay hopper to its left and
+  the water trough to its right.
+- Each building has a one tile door notch in the bottom wall. Coop: bottom left
+  at every tier. Barn: toward the middle, its position moving by tier (not
+  measured in tiles).
+- The barn has a stall wing in the bottom left corner, about 5 wide by 4 deep in
+  the base barn, cut out of the main rectangle. The coop has no stalls.
+
+The Guidebook supplement has no building sizes. SC-38 is answered from the
+screenshots. The owner can still confirm in game.
 
 ## The count
 
@@ -99,7 +123,7 @@ courier (lodges at the inn, so she uses its map), and the festival green.
 
 ## Still open
 
-- Interior sizes of the coop and barn (SC-38), and which tier parts show.
-  Until checked, use the placeholder of one room about 14 by 10 tiles for the
-  base tier. The greenhouse placeholder is 18 by 16.
+- Which tier parts show in the coop and barn (the sizes are measured, SC-38).
+  Use the table above for those two. The greenhouse placeholder is 18 by 16, and
+  other interiors keep the 14 by 10 placeholder.
 - Day state and NPC routines inside interiors (`06_map_style.md`).

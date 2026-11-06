@@ -94,7 +94,7 @@ Status values: `open`, `asked` (question sent to the owner), `done`.
 | SC-35 | 19 | Does every Stardew household have a home the player can enter, and do the houses stand apart around the town? | no | open | From memory only. The owner chose to follow it for the three Hearthwell burrows (2026-11-06). |
 | SC-36 | 58 | Are Stardew's coop and barn walk-in interiors, with the big and deluxe tiers adding to the base layout or replacing it? Is the greenhouse a walk-in map? | no | open | Owner, 2026-11-06: yes, walk in, and the tiers add parts to one layout per building type. Not checked on the wiki. |
 | SC-37 | 58 | Does any Stardew shop keep its owner's home as a separate map from the shop, or is each one map? | no | open | From memory only. We chose two maps for the Outpost regardless (2026-11-06). |
-| SC-38 | 58 | What are the interior sizes in tiles of the coop, barn, big and deluxe versions, and does each tier keep the same entrance spot? | no | open | The saved Barn and Coop pages give only outside footprints (6 by 3 and 7 by 4) and a picture per tier. Owner can count tiles in game. |
+| SC-38 | 58 | What are the interior sizes in tiles of the coop, barn, big and deluxe versions, and does each tier keep the same entrance spot? | no | done | Measured from the owner's full size screenshots, 2026-11-06, using the feeding bench hay slots (one tile each) and window spacing as the scale. Coop 11 by 8, 15 by 8, 22 by 8. Barn 17 by 13, 21 by 13, 24 by 13, give or take half a tile. Coop door stays bottom left. Barn door moves by tier. Owner can still confirm in game. |
 
 ## Not Stardew questions
 
