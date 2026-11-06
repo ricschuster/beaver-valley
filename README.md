@@ -1,7 +1,7 @@
-# Beaver Valley
+# Elderglen
 
-Beaver Valley is a working title; the name is still a placeholder (see
-`docs/design/00_project_brief.md`).
+Elderglen is the game's name (ADR 0011,
+`docs/decisions/0011-game-name-elderglen.md`). Beaver Valley was the working title.
 
 A cozy farming-life game with its own setting, played in the browser and on
 tablets. The player farms, forages and hands goods in to the village hall to

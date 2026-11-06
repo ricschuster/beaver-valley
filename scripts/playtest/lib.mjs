@@ -120,7 +120,7 @@ export async function launch({
   await p.addInitScript(
     ({ profile, bindings }) => {
       localStorage.setItem(
-        "beaver-valley-settings",
+        "elderglen-settings",
         JSON.stringify({ version: 1, profile, touchScheme: "stick", bindings }),
       );
     },

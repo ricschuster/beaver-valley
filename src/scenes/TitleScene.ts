@@ -31,7 +31,7 @@ export class TitleScene extends Phaser.Scene {
     const raw = browserStore.read();
     const saved = raw === null ? undefined : loadGame(browserStore);
     this.add
-      .text(480, 120, "Beaver Valley", { fontSize: "52px", color: "#ffe9a0" })
+      .text(480, 120, "Elderglen", { fontSize: "52px", color: "#ffe9a0" })
       .setOrigin(0.5);
     this.add
       .text(480, 176, "A quiet farm in a valley.", {

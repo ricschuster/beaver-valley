@@ -5,13 +5,16 @@ import {
   type SettingsStore,
 } from "../core/bindings";
 
-const KEY = "beaver-valley-save";
+const KEY = "elderglen-save";
+// Saves made under the working title "beaver-valley" are still read, and move to
+// the new key on the next write (ADR 0011).
+const LEGACY_KEY = "beaver-valley-save";
 
 /** A save store backed by localStorage. Reads and writes never throw. */
 export const browserStore: SaveStore = {
   read() {
     try {
-      return localStorage.getItem(KEY);
+      return localStorage.getItem(KEY) ?? localStorage.getItem(LEGACY_KEY);
     } catch {
       return null;
     }
@@ -25,13 +28,17 @@ export const browserStore: SaveStore = {
   },
 };
 
-const SETTINGS_KEY = "beaver-valley-settings";
+const SETTINGS_KEY = "elderglen-settings";
+const LEGACY_SETTINGS_KEY = "beaver-valley-settings";
 
 /** The settings record, kept per device and apart from the save. */
 export const browserSettingsStore: SettingsStore = {
   read() {
     try {
-      return localStorage.getItem(SETTINGS_KEY);
+      return (
+        localStorage.getItem(SETTINGS_KEY) ??
+        localStorage.getItem(LEGACY_SETTINGS_KEY)
+      );
     } catch {
       return null;
     }
