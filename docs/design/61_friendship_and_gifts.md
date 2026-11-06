@@ -142,11 +142,19 @@ its data, or none.
 - **Flowers are a category, and a foraged flower is a flower.** The daffodil
   and the sweet pea are flowers, so liked by default. (This follows from the
   flower category, and Stardew does the same.)
-- **Six universal loves and a short hate list (Stardew's size).** Six
-  hard-to-get loved items, a few hated items, and one hated flower. They are
-  ours: the elderfruit and a pearl are candidates for the loves, spoiled dishes
-  for the hates. The exact items are still to choose. Exceptions are per
-  villager, as in Stardew where one person hates a universal love.
+- **Six universal loves: six slots fixed by type, items named later
+  (Stardew has a fixed named list).** The slot types are a rare sea find, a rare
+  animal product, a prize crop, a legend fish, a top gem and a late artisan
+  good. Each is named when its system is built. Candidates already designed:
+  the Pearl Lobster's pearl (`21_fishing.md`), truffle oil
+  (`24_processing_and_cooking.md`), the Hearthwell Carp, and the Harvest Showing
+  prize crop (`14_festival_calendar.md`). Elderfruit is not a gift love, so a
+  boost is never spent as a present. Exceptions are per villager, as in Stardew
+  where one person hates a universal love.
+- **Universal hates: a short named list (Stardew).** Two or three specific
+  items, such as an unpleasant dish, a made good and one flower. They need
+  items we have not designed, so they are named with the cooking and artisan
+  lists. Until then the data holds none.
 
 | Taste | Rule |
 | --- | --- |
@@ -157,9 +165,20 @@ its data, or none.
 | Hate | A short list: spoiled and burnt dishes, one flower, a very few more |
 
 Our lists are built from our items (`src/content/`), never a copy of Stardew's.
-Each of the 30 people gets a handful of own loves, likes, dislikes and hates that
-override these, and candidates get a few more. Slice 4 needs these lists for
-about eight people, with the rest added by layer.
+Each person's own list overrides these.
+
+## Personal lists (decided 2026-11-06)
+
+- **Size: Stardew-sized, longer for the deep tier.** Up to about eight loves and
+  fifteen likes for the deep tier, fewer for the standard tier, a few dislikes
+  and a few hates. Stardew's counts are from memory (SC-43), so the numbers
+  are a ceiling, not a target. The writing load is held by layer
+  (`18_dialogue.md`).
+- **Written first, for slice 4: the people it touches.** Inn keeper, carpenter,
+  keeper of the animal farmstead, hat-maker, store keeper, healer, hall steward
+  and the gardener. They run the kitchen, builders, animals, hats and shop.
+  The other 22 are added by layer. Stardew has everyone giftable from the
+  start, and ours does not.
 
 ## Data and build
 
