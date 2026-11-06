@@ -124,9 +124,17 @@ is our inference, not a source.
   spot must be free of rocks, twigs, weeds and placed items, and the building
   can be moved later. The same placement mode serves the coop and barn, so it
   needs its own design note (tap placement on a tablet, green and red tiles).
-- **Controls.** Mount and dismount on touch, mouse and keyboard (note 45).
-- **Interior.** Whether the stable is walked into (note 58 lists none).
-- **Price against income.** 10,000g against note 07.
+- **Controls (decided 2026-11-06, owner, as Stardew, from memory).** The action
+  on the horse mounts and the same action dismounts: action key or right click on
+  desktop, a tap on the horse when close on touch, no extra button. Unchecked on
+  the saved pages. Note 45 still needs the key list updated when this is built.
+- **Interior (decided 2026-11-06, owner, as Stardew, from memory).** None. The
+  stable is seen from outside and the horse stands beside it, so the interior
+  count in note 58 stays 29.
+- **Price (decided 2026-11-06, owner, Stardew numbers from the saved Stable
+  page).** 10,000g, Hardwood 100, Iron Bar 5, two days to build, horse included.
+  Hardwood (note 34) and iron bars (notes 22, 34) exist in the design. Still to
+  check the price against income in note 07.
 - **Multiplayer** (note 53, milestone M4): one horse each follows from the
   answer above.
 - **Art and sound.** A horse sprite, and a mounted player sprite (note 10).
