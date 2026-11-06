@@ -50,6 +50,10 @@ Node 22 and npm. Gates run in CI and a non-zero exit blocks a merge.
   clickable design map, from the hand-kept `docs/overview.json`. Update the JSON
   when a design decision or open question changes. `npm run overview:refresh`
   re-fetches issue titles and states with `gh`. Open the HTML from disk.
+- `npm run valley-map` (gate: `valley-map:check`): rebuild `docs/valley-map.html`,
+  the overview map of areas, buildings and people, from the hand-kept
+  `docs/valley-map.json`. Update the JSON when note 19, 20 or 55 changes. Design
+  reference only (`docs/design/56_valley_map.md`). Open the HTML from disk.
 - `npm run check`: all of the gates in order. Run before pushing.
 - `npm run playtest -- <expert|intermediate|casual>` and the other
   `playtest:*` scripts, plus `node scripts/playtest/wood.mjs`: scripted browser
