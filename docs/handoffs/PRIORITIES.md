@@ -9,8 +9,9 @@ Start each session by asking which item to take.
 
 ## Open, in order
 
-1. **Window sized canvas, HUD anchoring and zoom** (ADR 0009). The game still
-   draws a fixed 960 by 540 canvas, and this touches every screen.
+1. **Window sized canvas, HUD anchoring and zoom** (ADR 0009). Designed in
+   note 64 (2026-11-06), not built. The game still draws a fixed 960 by 540
+   canvas, and the build touches every screen.
 2. **Story spine.** The warden head and her staged reveal (#177), the sea elf
    and Homeward pin (#176), the hermit witch (#178) and the third community
    project (#5). Together they decide what the ending and the Last Seat mean.
