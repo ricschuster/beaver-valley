@@ -99,7 +99,7 @@ From `09_story_and_lore.md`, with the sawmill added:
 
 - General store
 - The Outpost (added 2026-11-06): the carrier post, moved out of the store. The
-  hall steward works its counter by day as postmaster, and the courier hangs
+  hall steward is postmaster, works and lives there (nobody lives at the hall), and the courier hangs
   about outside and in. It also has a notice board and road news, and travelling
   traders stop there. See `20_ring1_cast.md`.
 - Smithy and mender

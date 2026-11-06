@@ -34,8 +34,8 @@ looked at together like a map.
   placeholder burrows, because note 19 says the number of homes is open. Their
   positions are not decided.
 - The courier is drawn at the Outpost, where she hangs out without working.
-  She lodges at the inn. The hall steward is drawn once, at the hall, with a note
-  that they work the Outpost counter by day.
+  She lodges at the inn. The hall steward is drawn once, at the Outpost, where they work and
+  live. The hall has nobody.
 - Farm positions follow note 55. The two ponds are the big south pond and the
   small east pond.
 

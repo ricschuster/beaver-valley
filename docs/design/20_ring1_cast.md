@@ -25,8 +25,8 @@ copy out. Reset it to its defaults to see this note's cast.
    Other households can work in a shop part-time, as in Stardew's saloon and
    clinic. Each shop family is one interior map (shop and home together).
 3. **The courier lodges at the inn and hangs out at the Outpost** (changed
-   2026-11-06). She does not work there; the hall steward is the postmaster.
-   The courier is the warden
+   2026-11-06). She does not work there; the hall steward is the postmaster
+   and lives at the Outpost. The courier is the warden
    head in her early form. The lore stages are unchanged: she is shown to be
    the head of the Dawn Carriers when ring 2 opens.
 4. **Races are human, elf, dwarf, wizard and halfling.** The Brimmers are
@@ -65,12 +65,12 @@ later.
 | Smithy and mender | Smith household | none |
 | Inn and kitchen | Inn keeper's family | Two young adults |
 | General store | Store keeper's household | Gardener household |
-| The Outpost (carrier post) | Hall steward, by day | none |
+| The Outpost (carrier post) | Hall steward (works and lives here) | none |
 | Healer | Healer | none |
 | Library | Librarian | none |
 | Sawmill and carpenter | Carpenter household | none |
 | Hatter's shop | Hat-maker household | none |
-| The Long Table (hall, east end) | Hall steward | none |
+| The Long Table (hall, east end) | No one lives or works there. The hall steward opens it for hall business | none |
 
 The courier lodges at the inn and spends her days at the Outpost without working
 there: F, human, deep.
@@ -87,7 +87,7 @@ Placeholder names such as "Partner" and "Child" stay until the names are written
 | Healer | Healer (F, elf, candidate) | Runs the healer | |
 | Librarian | Librarian (M, dwarf, candidate) | Runs the library | Favour ledgers |
 | Carpenter household | Carpenter (F, deep), partner (M), child (F), all halfling | Runs the sawmill. Builds and upgrades the coop and barn (`23_animals.md`) | |
-| Hall steward | Hall steward (M, halfling, deep) | Runs The Long Table and, by day, the Outpost counter as postmaster | Lives above the hall. Gives the hint toward the hall. Hands out mail and parcels (`51_mail_and_letters.md`) |
+| Hall steward | Hall steward (M, halfling, deep) | Runs the Outpost as postmaster, and opens The Long Table for hall business | Lives at the Outpost (changed 2026-11-06, nobody lives at the hall). Gives the hint toward the hall. Hands out mail and parcels (`51_mail_and_letters.md`) |
 | Hat-maker household | Hat-maker (F, candidate), sibling (M, candidate), both halfling | Runs the hatter's shop | Hats, the Hat Parade. The shop was added 2026-10-31 (`10_customisation.md`) |
 | Two young adults | Young adult A (F), young adult B (F), both halfling and candidates | Works at the inn | |
 | Retired couple and grandchild | Retiree A (F), retiree B (M), grandchild (M), all halfling | none | |

@@ -412,8 +412,11 @@
           "kind": "building",
           "x": 900,
           "y": 250,
-          "people": [{ "n": "Courier (hangs out here)", "r": "human" }],
-          "note": "The carrier post. The hall steward is postmaster here by day. Mail and parcels, a notice board, road news and travelling traders. Added 2026-11-06.",
+          "people": [
+            { "n": "Hall steward (postmaster, lives here)", "r": "halfling" },
+            { "n": "Courier (hangs out here)", "r": "human" }
+          ],
+          "note": "The carrier post. The hall steward works and lives here. Mail and parcels, a notice board, road news and travelling traders. Added 2026-11-06.",
           "ref": "20_ring1_cast.md"
         },
         {
@@ -526,8 +529,7 @@
           "kind": "building",
           "x": 1180,
           "y": 400,
-          "people": [{ "n": "Hall steward", "r": "halfling" }],
-          "note": "The village hall. Lives above it. Works the Outpost counter by day.",
+          "note": "The village hall. Nobody lives here. The steward from the Outpost opens it.",
           "ref": "40_hall_layout.md"
         },
         {

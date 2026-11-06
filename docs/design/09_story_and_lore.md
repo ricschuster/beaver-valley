@@ -436,7 +436,7 @@ Buildings chosen:
 
 - General store.
 - The Outpost (added 2026-11-06): the carrier post, where the hall steward is
-  postmaster and the couriers, the secret wardens, hang about.
+  postmaster and lives, and the couriers, the secret wardens, hang about.
 - Smithy and mender (tool upgrades, run by a stout craftsperson).
 - Inn and kitchen.
 - Healer, library and a festival green.
