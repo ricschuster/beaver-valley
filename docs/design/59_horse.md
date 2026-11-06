@@ -74,18 +74,32 @@ the code yet. **Revisit it.** It rests on a time budget (a 120 tile crossing in
 48 seconds, about 69 game minutes, and the day clock already matches Stardew's
 at 0.7 real seconds per game minute), not on Stardew.
 
-A web search on 2026-11-06 found a conflicting hint, unverified and from
-secondary sources: Stardew's own speed value is a unitless game number (walking
-2, running 5, horse about 6.6 on that scale), and one hand-timed test gave about
-5 tiles a second. If that holds, our 5 is close to Stardew's and the horse is
-only about 1.3 times faster, which fits neither the owner's feel nor the saved
-page's +1.4 on an unknown base. Do not trust it until the saved Speed page is
-read (SC-41).
+**Saved Speed page, read 2026-11-06 (SC-41).** Player speed is a unitless game
+number, and the page gives no tiles a second:
+
+- Base speed is **2 walking, 5 running, 6.6 on the horse (7 with a carrot that
+  day)**.
+- So the horse is about 1.3 times running and 3.3 times walking. Running is 2.5
+  times walking.
+- Buffs add to the number: coffee and some foods +1, books +0.25 and +0.25 for
+  running, and a horse book +0.5 on the horse only. The maximum with every buff
+  is 15.5.
+- Terrain: grass costs 1 and crops cost 1 (only when running, not on the horse),
+  and farm flooring adds 0.1. The speed never drops below 1. A slime hit costs 4.
+- The Animals page gave +1.4 for the horse. 5 plus 1.4 is 6.4, not 6.6, so the
+  two pages differ a little. We use the Speed page.
+
+Not on any saved page: what the number means in tiles a second, or whether
+walking or running is the default. A web search suggested the game starts in
+auto run (unverified). If the number is pixels a frame at 60 frames a second on
+64 pixel tiles, running is about 4.7 tiles a second and walking about 1.9. That
+is our inference, not a source.
 
 ## Open
 
-- **Our walk speed.** Revisit the 2.5 placeholder once the Speed page is read
-  or the owner can time Stardew (SC-41). Then set the horse from +1.4.
+- **Our walk speed.** Revisit the 2.5 placeholder once the owner can time
+  Stardew, or the unit is found (SC-41). Decide whether we have a walk and a
+  run at all. The horse is then 1.3 times our run speed, from the Speed page.
 - **Indoors and the Mines.** Check whether Stardew allows riding there.
 - **Extras.** Where the carrot, book and flute come from, and their prices. Is
   the carrot a crop we grow (no note has one yet)? Does a hat fit our hat system?
