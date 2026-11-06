@@ -25,7 +25,9 @@ expect to zoom in and out, on a tablet by pinching.
 - Zoom has a cap in both directions. Placeholder range: 75 percent (about 40 by
   22 tiles) to 125 percent (about 24 by 14). Tune on the tablet.
 - Every map must look right at the widest view (the zoom out cap on the widest
-  window), so each map needs a border margin of scenery, not void.
+  window), so each map needs a border margin of scenery, not void. Update
+  2026-11-06: the extra view has no cap (note 64), so a view bigger than a map
+  shows a flat backdrop colour instead of void.
 - The HUD anchors to the screen edges, not to a 960 by 540 box.
 - Stardew's zoom steps and caps are not known (note 54, SC-42). The owner
   recalls a zoom out cap and is unsure about zoom in.
