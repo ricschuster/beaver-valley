@@ -133,11 +133,49 @@ From `09_story_and_lore.md`, with the sawmill added:
   their shop. Three have their own burrows: the gardener, the retired couple
   with the grandchild, and the two young adults (see decision 14).
 
+## Area sizes (draft, 2026-11-06)
+
+Rough first sizes for the owner to correct. Nothing is built. Stardew totals are
+the saved forage footnotes (SC-40): whole map rectangles, so they include water
+and unwalkable tiles, and no widths or heights are given. They are a reference,
+not a target. Our areas differ in content and in the tablet screen.
+
+**Unit.** A screen is what the SM-T500 shows (1920 by 1200, `06_map_style.md`).
+At 3x zoom with 16 px tiles that is 40 by 25 tiles, 1000 tiles. At 4x it is 30
+by 18.75. The minimum visible tile count is still to be tuned on the tablet;
+these sizes assume 3x. Player walk speed is 80 px a second, 5 tiles a second
+(`FarmScene.ts`), so 80 tiles take 16 seconds.
+
+| Area | Stardew total | Draft size (tiles) | Tiles | Screens at 3x | Crossing | Why |
+| --- | --- | --- | --- | --- | --- | --- |
+| Farm | about 5200 (80 by 65, unchecked, SC-25) | 80 by 65 | 5200 | 5 | 16 s | Note 55 decision. The home base. |
+| Hearthwell | 13200 (Pelican Town) | 96 by 64 | 6144 | 6 | 19 s | 9 shop maps and 3 burrows are entered, so the streets can be tighter than Stardew's. River, bridge, hall, green. |
+| Forest | 14400 (Cindersap) | 100 by 70 | 7000 | 7 | 20 s | Lake, hermit, farmstead, rare forage, three exits. About half of Stardew's. |
+| Mountain | 5535 | 80 by 60 | 4800 | 5 | 16 s | Lake, two dwarves, the Mines entrance, three exits. |
+| Secret Woods | 1920 | 48 by 40 | 1920 | 2 | 10 s | Matches Stardew. Stumps and a pond. |
+| River delta and Beach | none (Beach not saved) | 96 by 56 | 5376 | 5 | 19 s | Marsh lake, ferry landing and the beach in one map (decision 13). |
+| Lake cove | none | 40 by 30 | 1200 | 1 | 8 s | One reward screen and a bit. A fishing spot, not a trip. |
+| Mines floor | none (levels are generated) | 50 by 30 | 1500 | 1.5 | 10 s | Ring 1 is gentle. One floor needs no scrolling long. Floor count is for the mines note. |
+
+Total for the seven outdoor maps and one mines floor: about 33,000 tiles. Our
+Forest and Hearthwell are about half of Stardew's, and the Mountain and Secret
+Woods are close to it.
+
+**Cap.** Propose no map above 8000 tiles, to be tested on the SM-T500. Forest
+(7000) is the nearest. The delta is the one most likely to grow, since it holds
+two settings.
+
+**How the draft was built.** Farm from note 55. The others from content lists in
+this note and the cast, a walking time of 8 to 20 seconds to cross, and a
+rough half of the Stardew map where ours has less to hold. These are guesses.
+Correct them against the first Tiled draft of each map, and time a crossing in
+a playtest.
+
 ## Still open
 
 - What lies beyond the bridge. Ring 2 is a separate design.
-- Size of each area, and the minimum visible tile count for zoom
-  (`06_map_style.md`).
+- Confirm the area sizes in the draft table above, and the minimum visible
+  tile count for zoom (`06_map_style.md`).
 - The transition look between areas.
 - Whether fishing also happens beyond the farm's big south pond, or stays at
   the delta, beach and cove (#181). Only the big farm pond holds fish
