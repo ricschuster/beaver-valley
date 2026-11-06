@@ -68,11 +68,13 @@ Where each is bought or found, and the cost, are open below.
 
 ## Walk speed (owner, 2026-11-06)
 
-The owner picked **2.5 tiles a second** as a placeholder, half of the current 5
-(80 px a second in `FarmScene.ts`, `scripts/sim/world.ts`). It is not applied to
-the code yet. **Revisit it.** It rests on a time budget (a 120 tile crossing in
-48 seconds, about 69 game minutes, and the day clock already matches Stardew's
-at 0.7 real seconds per game minute), not on Stardew.
+**Keep 5 tiles a second for now (owner, 2026-11-06).** The owner first picked 2.5
+as a placeholder, half of the current 5 (80 px a second in `FarmScene.ts` and
+`scripts/sim/world.ts`). After the saved Speed page showed Stardew running at 5
+(see below), the owner chose to keep the original speed as an assumption and
+withdrew the 2.5. Nothing in the code changes. Revisit it when the owner can time
+Stardew, or at the first playtest on the full size maps. Our 5 tiles a second
+matching Stardew's 5 is an inference, because the unit is not known.
 
 **Saved Speed page, read 2026-11-06 (SC-41).** Player speed is a unitless game
 number, and the page gives no tiles a second:
@@ -97,8 +99,9 @@ is our inference, not a source.
 
 ## Open
 
-- **Our walk speed.** Revisit the 2.5 placeholder once the owner can time
-  Stardew, or the unit is found (SC-41). Decide whether we have a walk and a
+- **Our walk speed.** Revisit the kept 5 tiles a second once the owner can time
+  Stardew, or the unit is found (SC-41), or at the first playtest on the full
+  size maps. Decide whether we have a walk and a
   run at all. The horse is then 1.3 times our run speed, from the Speed page.
 - **Indoors and the Mines.** Check whether Stardew allows riding there.
 - **Extras.** Where the carrot, book and flute come from, and their prices. Is
