@@ -130,7 +130,7 @@ is our inference, not a source.
   stable on any free spot of the farm, 4 by 2 tiles (saved Stable page). The
   spot must be free of rocks, twigs, weeds and placed items, and the building
   can be moved later. The same placement mode serves the coop and barn, so it
-  needs its own design note (tap placement on a tablet, green and red tiles).
+  is designed in `60_building_placement.md`.
 - **Controls (decided 2026-11-06, owner, as Stardew, from memory).** The action
   on the horse mounts and the same action dismounts: action key or right click on
   desktop, a tap on the horse when close on touch, no extra button. Unchecked on
