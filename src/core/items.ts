@@ -7,6 +7,8 @@ import {
   COAL_BUY_PRICE,
   COAL_SELL_PRICE,
   ORES,
+  QUARTZ,
+  QUARTZ_SELL_PRICE,
   STONE,
   STONE_SELL_PRICE,
 } from "./ore";
@@ -118,6 +120,11 @@ items.set(COAL, {
   name: "Coal",
   sellPrice: COAL_SELL_PRICE,
   buyPrice: COAL_BUY_PRICE,
+});
+items.set(QUARTZ, {
+  id: QUARTZ,
+  name: "Quartz crystal",
+  sellPrice: QUARTZ_SELL_PRICE,
 });
 for (const o of ORES) items.set(o.id, { ...o });
 for (const b of BARS)

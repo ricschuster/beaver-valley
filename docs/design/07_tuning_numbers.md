@@ -688,3 +688,7 @@ Source: `src/content/furniture.json`, `src/core/furniture.ts`.
   (Stardew's rule, from the saved Artisan Goods page).
 - Edible mushrooms: field mushroom, morel, chanterelle, snowcap and cave
   mushroom (`mushroom` flag in `forage.json`).
+
+- Quartz (built 2026-11-07, placeholders): a crystal node is 6 percent of rocks
+  on mine floors 1 to 10, breaks in 1 swing, drops 1 quartz crystal, gives 3
+  mining XP and sells for 25g (Stardew's quartz price, from memory).
