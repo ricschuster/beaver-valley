@@ -8,7 +8,11 @@ export const STACK_SIZE = 999;
 export class Inventory {
   private slots: ({ id: string; count: number } | undefined)[];
 
-  constructor(size = SLOT_COUNT) {
+  /** `max` is the most slots it can ever hold: the backpack's 36, or a big chest's size. */
+  constructor(
+    size = SLOT_COUNT,
+    private readonly max = MAX_SLOTS,
+  ) {
     this.slots = Array.from({ length: size }, () => undefined);
   }
 
@@ -18,7 +22,7 @@ export class Inventory {
 
   /** Make the backpack bigger. Never shrinks it. Returns false if it did not grow. */
   grow(size: number): boolean {
-    if (size <= this.size || size > MAX_SLOTS) return false;
+    if (size <= this.size || size > this.max) return false;
     while (this.slots.length < size) this.slots.push(undefined);
     return true;
   }
@@ -29,7 +33,7 @@ export class Inventory {
   }
 
   load(saved: ({ id: string; count: number } | null)[]): void {
-    const size = Math.min(Math.max(saved.length, SLOT_COUNT), MAX_SLOTS);
+    const size = Math.min(Math.max(saved.length, SLOT_COUNT), this.max);
     this.slots = Array.from({ length: size }, (_, i) => {
       const s = saved[i];
       return s ? { ...s } : undefined;

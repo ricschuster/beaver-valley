@@ -306,5 +306,85 @@
         "level": 4
       }
     ]
+  },
+  {
+    "id": "chest",
+    "ingredients": [
+      {
+        "item": "wood",
+        "count": 50
+      }
+    ],
+    "result": {
+      "item": "chest",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "start"
+      }
+    ]
+  },
+  {
+    "id": "stone-chest",
+    "ingredients": [
+      {
+        "item": "stone",
+        "count": 50
+      }
+    ],
+    "result": {
+      "item": "stone-chest",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "start"
+      }
+    ]
+  },
+  {
+    "id": "big-chest",
+    "ingredients": [
+      {
+        "item": "wood",
+        "count": 120
+      },
+      {
+        "item": "copper-bar",
+        "count": 2
+      }
+    ],
+    "result": {
+      "item": "big-chest",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 4
+      }
+    ]
+  },
+  {
+    "id": "big-stone-chest",
+    "ingredients": [
+      {
+        "item": "stone",
+        "count": 250
+      }
+    ],
+    "result": {
+      "item": "big-stone-chest",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 6
+      }
+    ]
   }
 ]

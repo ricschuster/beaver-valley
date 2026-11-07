@@ -11,6 +11,7 @@ import { Machines, type PlacedMachine } from "./machines";
 import { FarmCave, type CaveSave } from "./cave";
 import { machineById } from "./processing";
 import { Furnace, type FurnaceSave } from "./furnace";
+import { Chests, type ChestSave } from "./chests";
 import { ShippingBin, type BinLine, type BinSave } from "./shipping";
 import { maps } from "../content/maps";
 import { DEFAULT_FARM_TYPE, farmTypeById } from "./farmtypes";
@@ -85,6 +86,8 @@ export interface GameState {
   wardrobe: Wardrobe;
   /** Furniture placed in the house. */
   furniture: Furniture;
+  /** Chests standing on the farm and in the house. */
+  chests: Chests;
   /** Wild goods on the ground today. Not saved: it respawns each morning. */
   forage: ForageField;
 }
@@ -124,6 +127,7 @@ export function newGame(farmType: string = DEFAULT_FARM_TYPE): GameState {
     cave: new FarmCave(),
     wardrobe: new Wardrobe(),
     furniture: new Furniture(),
+    chests: new Chests(),
     forage: new ForageField(),
   };
 }
@@ -188,6 +192,8 @@ interface SaveData {
   wardrobe?: WardrobeSave;
   /** Absent in saves made before furniture. */
   furniture?: FurnitureSave;
+  /** Absent in saves made before chests. */
+  chests?: ChestSave[];
 }
 
 /** Where saves live. The scene supplies one backed by the browser. */
@@ -232,6 +238,7 @@ export function serialize(g: GameState): string {
     cave: g.cave.save(),
     wardrobe: g.wardrobe.save(),
     furniture: g.furniture.save(),
+    chests: g.chests.save(),
   };
   return JSON.stringify(data);
 }
@@ -522,6 +529,7 @@ export function deserialize(text: string): GameState | undefined {
   g.cave.load(raw.cave as Partial<CaveSave> | undefined);
   g.wardrobe.load(raw.wardrobe);
   g.furniture.load(raw.furniture);
+  g.chests.load(raw.chests);
   return g;
 }
 

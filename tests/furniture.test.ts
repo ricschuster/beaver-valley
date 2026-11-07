@@ -110,7 +110,9 @@ describe("the carpenter", () => {
     expect(dailyStock(5)).toHaveLength(DAILY_STOCK);
     const seen = new Set<string>();
     for (let d = 1; d <= 30; d++) for (const f of dailyStock(d)) seen.add(f.id);
-    expect(seen.size).toBe(FURNITURE.filter((f) => !f.festival).length);
+    expect(seen.size).toBe(
+      FURNITURE.filter((f) => !f.festival && !f.station).length,
+    );
     const differs = [2, 3, 4, 5].some(
       (d) =>
         dailyStock(d)

@@ -71,6 +71,7 @@ export function till(
   if (g.weeds.at(x, y)) return fail("a weed is in the way");
   if (g.sprinklers.at(x, y)) return fail("a sprinkler is in the way");
   if (g.machines.at(x, y)) return fail("a machine is in the way");
+  if (g.chests.onFarm(x, y)) return fail("a chest is in the way");
   if (!g.farm.till(x, y)) return fail("already tilled");
   if (g.weather === "rainy") g.farm.water(x, y);
   swing(g, "hoe");
@@ -533,6 +534,7 @@ export function isClear(
     map.serviceAt(x, y) ||
     g.sprinklers.at(x, y) ||
     g.machines.at(x, y) ||
+    g.chests.onFarm(x, y) ||
     g.farm.plotAt(x, y) ||
     g.trees.at(x, y) ||
     g.fruitTrees.at(x, y) ||
