@@ -2,7 +2,13 @@
 // supplies, a position on a map and the passing of game time (note 46).
 import { maps } from "../../src/content/maps";
 import { HOUSE_MAP, houseMapId } from "../../src/core/house";
-import type { FarmMap } from "../../src/core/map";
+import { FarmMap } from "../../src/core/map";
+import {
+  floorLayout,
+  floorMapJson,
+  mineFloorOf,
+  mineMapId,
+} from "../../src/core/mines";
 import type { GameState } from "../../src/core/save";
 
 export interface Spot {
@@ -60,8 +66,36 @@ export class Walker {
     this.pos = this.adjacentTo(this.map, bed(this.map));
   }
 
+  private floorMaps = new Map<string, FarmMap>();
+
   get map(): FarmMap {
-    return maps.get(this.mapId);
+    const floor = mineFloorOf(this.mapId);
+    if (floor === undefined) return maps.get(this.mapId);
+    // A mine floor is made from the day and the floor, as the scene does.
+    const day = this.g.day.clock.day;
+    const key = `${floor}@${day}`;
+    let m = this.floorMaps.get(key);
+    if (!m) {
+      m = FarmMap.fromTiled(floorMapJson(floorLayout(floor, day)));
+      this.floorMaps.set(key, m);
+    }
+    return m;
+  }
+
+  /** The mine floor the player is on, if any. */
+  get floor(): number | undefined {
+    return mineFloorOf(this.mapId);
+  }
+
+  /** Walk to the stairs in the mine hall and go down to a floor. */
+  descend(floor: number): boolean {
+    if (!this.goToService("mine", "stairs")) return false;
+    const day = this.g.day.clock.day;
+    this.g.mines.visit(floor, day);
+    this.spend(TIME.transition);
+    this.mapId = mineMapId(floor);
+    this.pos = floorLayout(floor, day).arrive;
+    return true;
   }
 
   /** Pass game minutes, as whole minutes on the clock. */
@@ -183,6 +217,8 @@ export class Walker {
   enter(dest: string): void {
     const target = dest === HOUSE_MAP ? houseMapId(this.g.houseTier) : dest;
     if (this.mapId === target) return;
+    // Climb out of the mine one floor at a time, by the ladder up.
+    while (this.floor !== undefined) this.through("up");
     if (this.mapId !== "farm") {
       const back = this.map.exits.find((e) => e.map === "farm");
       if (!back) throw new Error(`${this.mapId} has no way to the farm`);
@@ -196,7 +232,12 @@ export class Walker {
 
   /** Walk to a service tile (the shop counter, the bin, a bed) and face it. */
   goToService(mapId: string, id: string): boolean {
-    this.enter(mapId);
+    try {
+      this.enter(mapId);
+    } catch {
+      // A door grown over with trees cannot be reached today.
+      return false;
+    }
     const s = this.map.services.find((x) => x.id === id);
     return !!s && this.goNextTo(s);
   }

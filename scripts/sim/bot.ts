@@ -3,9 +3,30 @@
 // charges the game minutes for walking and key presses.
 import { maps } from "../../src/content/maps";
 import { dateOf, DAYS_PER_SEASON } from "../../src/core/calendar";
-import { harvest, plant, till, water, forage } from "../../src/core/actions";
+import {
+  clearWeed,
+  harvest,
+  plant,
+  till,
+  water,
+  forage,
+} from "../../src/core/actions";
 import { cropById, CROPS } from "../../src/core/crops";
-import { eat } from "../../src/core/actions";
+import { chop, eat } from "../../src/core/actions";
+import { smelt, collect, ready as furnaceReady } from "../../src/core/furnace";
+import { mine } from "../../src/core/mining";
+import { minesOpen } from "../../src/core/mines";
+import { handOverCopper } from "../../src/core/smith";
+import {
+  BARS,
+  COAL,
+  COAL_BUY_PRICE,
+  COPPER_ORE,
+  ORES,
+  ORE_PER_BAR,
+  COAL_PER_BAR,
+} from "../../src/core/ore";
+import { MATURE_STAGE } from "../../src/core/trees";
 import { itemById, seedId } from "../../src/core/items";
 import { QUALITIES, splitQuality, type Quality } from "../../src/core/quality";
 import {
@@ -22,27 +43,28 @@ import { START } from "../../src/core/maps";
 import { TIME, Walker, type Spot } from "./world";
 import type { Persona } from "./personas";
 
+/** Gold the bot keeps back for seeds before it buys ore. */
+const SEED_RESERVE = 1500;
+
+/** Young trees a day the bot cuts back. */
+const TIDY_TREES = 8;
+
 /** Past this time of night a careful player heads for bed (midnight). */
 const BED_TIME = 24 * 60;
 
 /**
- * Bundles the bot does not play for. Winter Foraging (the frost root comes
- * from tilling winter soil), Autumn Crops and Quality Crops (they need fall
- * crops, and the bot's plots stay full of summer corn and uncleared weeds into
- * fall: it models two seasons), Woodland (bulk wood, stone and fiber),
- * Artisan Goods (machines, orchard fruit) and the Smith's (mining and the
- * furnace) need walks the bot has no model for yet. The sim finishes when
- * every other bundle is done, so `allDay` means "the played bundles", not the
- * whole hall. Real play of the whole hall is covered by `tests/bundles.test.ts`.
+ * Bundles the bot does not play for. Only Artisan Goods is left out: it needs
+ * a preserves jar and a bee house run for jam, pickles and honey, and a fruit
+ * tree planted a month ahead. Winter Foraging, Autumn Crops and Quality Crops
+ * are played now that the bot farms through fall and winter (it clears weeds
+ * to find soil). Woodland is played by chopping trees, cutting weeds and
+ * breaking rocks on the farm and on mine floor 1. The Smith's is played by
+ * buying ore and coal from the smith and running the furnace. The sim finishes
+ * when every played bundle is done, so `allDay` means "the played bundles",
+ * not the whole hall. Real play of the whole hall is covered by
+ * `tests/bundles.test.ts`.
  */
-export const UNPLAYED_BUNDLES: readonly string[] = [
-  "winter-foraging",
-  "autumn-crops",
-  "quality-crops",
-  "woodland",
-  "artisan-goods",
-  "smiths",
-];
+export const UNPLAYED_BUNDLES: readonly string[] = ["artisan-goods"];
 
 /** Share of a harvest that is silver or better at a farming level, with plain soil (`cropQuality`). Floored so early planning stays sane. */
 const silverShare = (level: number) =>
@@ -163,7 +185,13 @@ class Bot {
     if (g.weather !== "rainy" && !this.lateNight) this.waterAll();
     if (this.random() < this.p.forageChance) this.sweepForage();
     this.eatIfLow();
+    if (this.p.keepsForHall) {
+      this.tendFurnace();
+      this.gatherWoodland();
+    }
     if (this.dueFor(this.p.hallEvery)) this.visitHall();
+    if (this.p.keepsForHall) this.tendFurnace();
+    this.tidyTrees();
     this.shipSurplus();
   }
 
@@ -238,6 +266,159 @@ class Bot {
       const slot = inv.slot(i);
       if (slot && itemById(slot.id)?.energy && eat(this.g, slot.id).ok) return;
     }
+  }
+
+  // ---- the woodland and the smith ----
+
+  /** Units of an item the hall still wants and the pack does not yet hold. */
+  private shortOf(item: string): number {
+    const owed = this.wanted().filter((w) => w.item === item).length;
+    return Math.max(owed - this.g.inventory.count(item), 0);
+  }
+
+  /** Chop trees, cut weeds and break rocks for the Woodland bundle. */
+  private gatherWoodland(): void {
+    const g = this.g;
+    if (this.lateNight || g.hall.complete("woodland")) return;
+    const spare = () => g.day.energy.current > 30 && !this.lateNight;
+    if (this.shortOf("wood") > 0) {
+      this.walker.enter("farm");
+      while (this.shortOf("wood") > 0 && spare()) {
+        const trees = [...g.trees.each()].filter(
+          (t) => t.stump || t.stage >= MATURE_STAGE,
+        );
+        if (trees.length === 0) break;
+        const costs = this.walker.costsNextTo(trees);
+        const at = costs.indexOf(Math.min(...costs));
+        const t = trees[at] as Spot;
+        if (costs[at] === Infinity) break;
+        let guard = 0;
+        while (g.trees.at(t.x, t.y) && spare() && guard++ < 30)
+          if (!this.act(t, () => chop(g, t.x, t.y, this.random))) break;
+      }
+    }
+    // Weeds spread a little each night, so a patient player lets them grow and
+    // cuts a bunch at once, at the end of a season or when the farm is thick.
+    const season = dateOf(this.day);
+    const ripe =
+      g.weeds.count >= 40 || season.dayOfSeason > DAYS_PER_SEASON - 3;
+    if (this.shortOf("fiber") > 0 && ripe) {
+      this.walker.enter("farm");
+      const weeds = [...g.weeds.each()];
+      this.nearestFirst(weeds, (w) => {
+        if (this.shortOf("fiber") > 0 && spare())
+          this.act(w, () => clearWeed(g, w.x, w.y, "hoe", this.random));
+      });
+    }
+    if (this.shortOf("stone") > 0 && minesOpen(this.day)) {
+      this.walker.enter("farm");
+      this.breakRocks(undefined);
+      if (this.shortOf("stone") > 0 && spare() && this.walker.descend(1))
+        this.breakRocks(1);
+    }
+  }
+
+  /** Cut a few of the nearest young trees each day, so the farm is not grown over and the doors stay open. */
+  private tidyTrees(): void {
+    const g = this.g;
+    if (this.lateNight || g.day.energy.current < 60) return;
+    this.walker.enter("farm");
+    const young = [...g.trees.each()].filter(
+      (t) => !t.large && !t.stump && t.stage < MATURE_STAGE,
+    );
+    const costs = this.walker.costsNextTo(young);
+    const order = young
+      .map((t, i) => ({ t, c: costs[i] as number }))
+      .filter((o) => o.c < Infinity)
+      .sort((a, b) => a.c - b.c)
+      .slice(0, TIDY_TREES);
+    for (const { t } of order)
+      if (g.trees.at(t.x, t.y))
+        this.act(t, () => chop(g, t.x, t.y, this.random));
+  }
+
+  /** Break the nearest rocks on the farm or a mine floor while stone is wanted. */
+  private breakRocks(floor: number | undefined): void {
+    const g = this.g;
+    const rocksOf = () =>
+      floor === undefined ? g.rocks : g.mines.visit(floor, this.day).rocks;
+    while (this.shortOf("stone") > 0) {
+      const rocks = [...rocksOf().each()];
+      if (rocks.length === 0 || !(g.day.energy.current > 30)) return;
+      const costs = this.walker.costsNextTo(rocks);
+      const at = costs.indexOf(Math.min(...costs));
+      const r = rocks[at];
+      if (!r || costs[at] === Infinity) return;
+      let guard = 0;
+      while (rocksOf().at(r.x, r.y) && guard++ < 10) {
+        if (!this.act(r, () => mine(g, r.x, r.y, floor, this.random))) return;
+      }
+    }
+  }
+
+  /** Bars the Smith's bundle still wants, as bar id and how many. */
+  private barsOwed(): { bar: (typeof BARS)[number]; n: number }[] {
+    return BARS.map((bar) => ({
+      bar,
+      n: this.shortOf(bar.id),
+    })).filter((b) => b.n > 0);
+  }
+
+  /** Collect a done bar, shop for ore and coal, and start the next bar. */
+  private tendFurnace(): void {
+    const g = this.g;
+    if (g.hall.complete("smiths") || !minesOpen(this.day) || this.lateNight)
+      return;
+    // Hand over the first copper ore, so the smith brings the furnace.
+    if (!g.mines.copperHandedIn && g.money > 200) {
+      if (!this.walker.goToService("mine", "smith")) return;
+      buy(g.inventory, g, COPPER_ORE, 1);
+      handOverCopper(g);
+      this.walker.enter("farm");
+      return;
+    }
+    if (!g.furnace.gifted) return;
+    if (g.furnace.job && !furnaceReady(g)) return;
+    const owed = this.barsOwed();
+    if (g.furnace.job || owed.length > 0) {
+      if (!this.walker.goToService("farm", "furnace")) return;
+      collect(g);
+    }
+    const next = owed.find((o) => o.n > 0);
+    if (!next || g.furnace.job) return;
+    // Buy what the rest of the bars need in one trip, then smelt.
+    const ore = next.bar.ore;
+    const needsTrip = owed.some(
+      ({ bar, n }) =>
+        g.inventory.count(bar.ore) < n * ORE_PER_BAR ||
+        g.inventory.count(COAL) < n * COAL_PER_BAR,
+    );
+    // A careful farmer keeps money back for seeds, and buys ore with spare gold.
+    const bill = owed.reduce(
+      (t, { bar, n }) =>
+        t +
+        (ORES.find((o) => o.id === bar.ore)?.buyPrice ?? 0) *
+          Math.max(n * ORE_PER_BAR - g.inventory.count(bar.ore), 0) +
+        COAL_BUY_PRICE * n * COAL_PER_BAR,
+      0,
+    );
+    if (
+      needsTrip &&
+      g.money >= bill + SEED_RESERVE &&
+      this.walker.goToService("mine", "smith")
+    ) {
+      for (const { bar, n } of owed) {
+        const def = ORES.find((o) => o.id === bar.ore);
+        const want = n * ORE_PER_BAR - g.inventory.count(bar.ore);
+        if (def && want > 0) buy(g.inventory, g, def.id, want);
+      }
+      const coal = owed.reduce((t, o) => t + o.n * COAL_PER_BAR, 0);
+      if (coal > g.inventory.count(COAL))
+        buy(g.inventory, g, COAL, coal - g.inventory.count(COAL));
+      this.walker.enter("farm");
+    }
+    if (g.inventory.count(ore) < ORE_PER_BAR) return;
+    if (this.walker.goToService("farm", "furnace")) smelt(g, next.bar.id);
   }
 
   // ---- what the hall wants ----
@@ -386,6 +567,10 @@ class Bot {
       if (!spot || this.lateNight) break;
       if (this.g.inventory.count(seedId(crop)) < 1) continue;
       this.walker.enter("farm");
+      if (this.g.weeds.at(spot.x, spot.y))
+        this.act(spot, () =>
+          clearWeed(this.g, spot.x, spot.y, "hoe", this.random),
+        );
       if (!this.g.farm.plotAt(spot.x, spot.y)?.tilled)
         this.act(spot, () => till(this.g, spot.x, spot.y));
       this.act(spot, () => plant(this.g, spot.x, spot.y, seedId(crop)));
@@ -399,8 +584,7 @@ class Bot {
     for (let y = 0; y < map.height; y++)
       for (let x = 0; x < map.width; x++) {
         if (!map.isTillable(x, y) || this.g.trees.at(x, y)) continue;
-        // Weeds block planting and the bot does not clear them, so plant round them.
-        if (this.g.weeds.at(x, y)) continue;
+        // A weed on the tile is cut before planting (`plantWanted`), so it only costs a swing.
         if (this.g.farm.plotAt(x, y)?.crop) continue;
         out.push({ x, y });
       }
@@ -439,6 +623,12 @@ class Bot {
       const { base, quality } = splitQuality(s.id);
       const def = itemById(base);
       if (!def || base.endsWith("-seed") || QUALITIES.indexOf(quality) < 0)
+        continue;
+      // Ore and coal wait for the furnace while the Smith's is open.
+      if (
+        !this.g.hall.complete("smiths") &&
+        (base === COAL || ORES.some((o) => o.id === base))
+      )
         continue;
       // Hold one unit for each open slot this stack could fill.
       let held = 0;

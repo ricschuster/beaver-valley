@@ -170,3 +170,18 @@ skips Woodland, Artisan Goods and the Smith's (`UNPLAYED_BUNDLES` in
 ends when the played seven are done, and `tests/bundles.test.ts` covers the whole
 hall. The expert's median finish is day 54, set by five silver melons and corn.
 The bot now plants round weeds, which it never clears.
+
+Update 2026-11-07 (builder session e): the bot now plays the 112 day year. It
+farms through fall and winter (clearing weeds to find soil), so Winter Foraging,
+Autumn Crops and Quality Crops are played. It chops trees, cuts weeds and breaks
+rocks on the farm and mine floor 1 for Woodland, and buys ore and coal from the
+smith and runs the furnace for the Smith's (it keeps 1,500g back for seeds, and
+cuts a few young trees a day so the doors stay open). Only Artisan Goods is
+skipped (it needs jar and bee house runs and an orchard). Expert medians over 10
+runs: Woodland day 73, Smith's day 57, Autumn Crops day 65, Winter Foraging day
+87, all played bundles day 88, with 9 of 10 runs finishing (one misses the fifth
+silver melon). Woodland is gated by fiber: 30 fiber is about 60 weeds, and only
+20 weeds appear on each of three season starts, so a player must let weeds spread
+and cut them in bulk. That is a tuning flag for note 63. The casual does not play
+Woodland or the Smith's (it sells what it finds). The report now prints four
+seasons of money.
