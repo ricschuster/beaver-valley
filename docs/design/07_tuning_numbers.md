@@ -540,6 +540,27 @@ Source: `57_the_outpost.md`.
 - Visits on Wednesday and Saturday, 4 to 6 items a visit, priced at 1.5 times
   sell value.
 
+## The mines, first part (built 2026-11-07, ours, placeholders)
+
+Source: `22_mines.md`. Code: `mines.ts`, `mining.ts`, `rocks.ts`, `ore.ts`.
+
+- Floor: 20 by 14 tiles, 6 to 9 single pillars, 12 to 16 rocks, made fresh each
+  day from a seed of the day and the floor. 1 floor in 4 shows its ladder.
+- Rock mix on floors 1 to 10: 22 percent copper nodes, 8 percent coal, the rest
+  stone. Swings to break at the basic pickaxe: stone 2, copper 3, coal 3.
+- Drops: stone 1 or 2; copper 1, with a 25 percent (+3 per mining level) chance
+  of 2 or 3; coal 1, 30 percent chance of 2. Prospector adds 1 at 25 percent.
+- Ladder odds: 1 percent, +0.5 percent per miss, cap 25 percent. The last rock
+  on a floor always hides it. Floor 10 has none (nothing below is built).
+- Pickaxe swing: 2 energy, less 0.1 per mining level, never under 0.5. XP per
+  rock: stone 2, copper 5, coal 4.
+- The farm has 16 stone rocks and none respawn yet.
+- Prices: stone sells 2g, coal 15g (smith 50g), copper ore 5g (25g), iron ore 10g
+  (50g), gold ore 25g (100g), bars 60g, 120g and 250g. Smelt: 5 ore and 1 coal,
+  30 minutes, 2 hours and 5 hours of game time, one batch at a time.
+- The furnace gift needs 1 copper ore handed over once, and comes the next
+  morning.
+
 ## Open questions for playtests
 
 First answers are in `08_playtest_personas.md`: 500g is far more than enough

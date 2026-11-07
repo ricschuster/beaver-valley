@@ -1,0 +1,335 @@
+import type { Spot } from "./forage";
+import type { TiledMapJson } from "./map";
+import { Rocks, type Rock, type RockKind } from "./rocks";
+
+/**
+ * The mine (`docs/design/22_mines.md`, build slice 1). Pure rules: a floor is
+ * made fresh each day from a seed of the day and the floor, so a reload gives
+ * the same floor. Rocks and the ladder are saved with the game, so a half dug
+ * floor comes back as it was.
+ */
+
+/** Spring day 5, as in Stardew (decided). Day numbers start at 1 on spring 1. */
+export const MINES_OPEN_DAY = 5;
+/** Floors built so far. The rest of the 120 come with later slices. */
+export const BUILT_FLOORS = 10;
+
+export const FLOOR_WIDTH = 20;
+export const FLOOR_HEIGHT = 14;
+
+/** Chance a floor shows its way down at once, about 1 in 4 (placeholder). */
+export const FREE_LADDER_CHANCE = 0.25;
+/** Dry streak odds for the ladder under a rock (placeholders, note 22). */
+export const LADDER_BASE = 0.01;
+export const LADDER_STEP = 0.005;
+export const LADDER_CAP = 0.25;
+
+/** Rocks on a floor, 12 to 16 (placeholder). */
+export const MIN_ROCKS = 12;
+export const MAX_ROCKS = 16;
+/** Share of rocks that are copper nodes and coal rocks on floors 1 to 10 (placeholders). */
+export const COPPER_SHARE = 0.22;
+export const COAL_SHARE = 0.08;
+
+export const minesOpen = (day: number): boolean => day >= MINES_OPEN_DAY;
+
+export const mineMapId = (floor: number): string => `mine-${floor}`;
+
+/** The floor a map id names, or undefined for any other map. */
+export function mineFloorOf(mapId: string): number | undefined {
+  const m = /^mine-(\d+)$/.exec(mapId);
+  return m ? Number(m[1]) : undefined;
+}
+
+/** The chance the next rock hides the ladder, after `misses` rocks that did not. */
+export function ladderChance(misses: number): number {
+  return Math.min(LADDER_BASE + LADDER_STEP * misses, LADDER_CAP);
+}
+
+/** A small seeded generator, so a floor is the same all day. */
+function seeded(seed: number): () => number {
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+export interface FloorLayout {
+  floor: number;
+  /** True where the map is wall: the border and a few pillars. */
+  walls: boolean[];
+  /** The ladder up, an exit tile. */
+  up: Spot;
+  /** Where the player arrives from above, beside the ladder up. */
+  arrive: Spot;
+  rocks: Rock[];
+  ladder: Spot | undefined;
+}
+
+const UP: Spot = { x: 1, y: 1 };
+const ARRIVE: Spot = { x: 2, y: 1 };
+
+const near = (a: Spot, b: Spot, d: number) =>
+  Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y)) <= d;
+
+/** Build a floor from the day and the floor number alone. */
+export function floorLayout(floor: number, day: number): FloorLayout {
+  const random = seeded(day * 1009 + floor * 7919 + 17);
+  const walls: boolean[] = new Array(FLOOR_WIDTH * FLOOR_HEIGHT).fill(false);
+  const at = (x: number, y: number) => y * FLOOR_WIDTH + x;
+  for (let y = 0; y < FLOOR_HEIGHT; y++)
+    for (let x = 0; x < FLOOR_WIDTH; x++)
+      if (x === 0 || y === 0 || x === FLOOR_WIDTH - 1 || y === FLOOR_HEIGHT - 1)
+        walls[at(x, y)] = true;
+
+  // Single pillars, never touching each other or the border, so every open
+  // tile stays joined to the rest.
+  const pillars: Spot[] = [];
+  const pillarCount = 6 + Math.floor(random() * 4);
+  for (let tries = 0; pillars.length < pillarCount && tries < 400; tries++) {
+    const p = {
+      x: 2 + Math.floor(random() * (FLOOR_WIDTH - 4)),
+      y: 2 + Math.floor(random() * (FLOOR_HEIGHT - 4)),
+    };
+    if (near(p, UP, 3) || pillars.some((q) => near(p, q, 1))) continue;
+    pillars.push(p);
+    walls[at(p.x, p.y)] = true;
+  }
+
+  const free = (x: number, y: number) =>
+    !walls[at(x, y)] && !near({ x, y }, UP, 2);
+  const taken = new Set<string>();
+  const pick = (ok: (s: Spot) => boolean): Spot | undefined => {
+    for (let tries = 0; tries < 400; tries++) {
+      const s = {
+        x: 1 + Math.floor(random() * (FLOOR_WIDTH - 2)),
+        y: 1 + Math.floor(random() * (FLOOR_HEIGHT - 2)),
+      };
+      if (!free(s.x, s.y) || taken.has(`${s.x},${s.y}`) || !ok(s)) continue;
+      taken.add(`${s.x},${s.y}`);
+      return s;
+    }
+    return undefined;
+  };
+
+  const rocks: Rock[] = [];
+  const count = MIN_ROCKS + Math.floor(random() * (MAX_ROCKS - MIN_ROCKS + 1));
+  for (let i = 0; i < count; i++) {
+    const s = pick(() => true);
+    if (!s) break;
+    const r = random();
+    const kind: RockKind =
+      r < COPPER_SHARE
+        ? "copper"
+        : r < COPPER_SHARE + COAL_SHARE
+          ? "coal"
+          : "stone";
+    rocks.push({ ...s, kind, hits: 0 });
+  }
+  // The floor's last floor has no way down yet.
+  const ladder =
+    floor < BUILT_FLOORS && random() < FREE_LADDER_CHANCE
+      ? pick((s) => !near(s, UP, 5))
+      : undefined;
+  return { floor, walls, up: UP, arrive: ARRIVE, rocks, ladder };
+}
+
+/** The same floor as a Tiled map, so the farm scene can walk it. */
+export function floorMapJson(layout: FloorLayout): TiledMapJson & {
+  tilesets: unknown[];
+} {
+  const { walls, floor } = layout;
+  // Tile 7 is wall and tile 3 is path in the placeholder tileset.
+  const ground = walls.map((w) => (w ? 7 : 3));
+  const collision = walls.map((w) => (w ? 1 : 0));
+  const point = (cls: string, name: string, s: Spot) => ({
+    name,
+    class: cls,
+    x: s.x * 16 + 8,
+    y: s.y * 16 + 8,
+    width: 0,
+    height: 0,
+    point: true,
+  });
+  const layer = (id: number, name: string, data: number[], visible = true) => ({
+    id,
+    name,
+    type: "tilelayer",
+    width: FLOOR_WIDTH,
+    height: FLOOR_HEIGHT,
+    x: 0,
+    y: 0,
+    opacity: 1,
+    visible,
+    data,
+  });
+  const json = {
+    type: "map",
+    orientation: "orthogonal",
+    renderorder: "right-down",
+    infinite: false,
+    width: FLOOR_WIDTH,
+    height: FLOOR_HEIGHT,
+    tilewidth: 16,
+    tileheight: 16,
+    layers: [
+      layer(1, "ground", ground),
+      layer(2, "collision", collision, false),
+      {
+        id: 3,
+        name: "markers",
+        type: "objectgroup",
+        draworder: "topdown",
+        opacity: 1,
+        visible: true,
+        x: 0,
+        y: 0,
+        objects: [
+          point("entry", "from_above", layout.arrive),
+          point("entry", "from_below", layout.arrive),
+          {
+            ...point("exit", "up", layout.up),
+            x: layout.up.x * 16,
+            y: layout.up.y * 16,
+            width: 16,
+            height: 16,
+            properties: <{ name: string; value: unknown }[]>[
+              {
+                name: "map",
+                value: floor > 1 ? mineMapId(floor - 1) : "mine",
+              },
+              {
+                name: "entry",
+                value: floor > 1 ? "from_below" : "from_stairs",
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    tilesets: [
+      {
+        firstgid: 1,
+        name: "placeholder",
+        tilewidth: 16,
+        tileheight: 16,
+        tilecount: 12,
+        columns: 10,
+        image: "placeholder-tiles.png",
+        imagewidth: 192,
+        imageheight: 16,
+      },
+    ],
+  };
+  return json as unknown as TiledMapJson & { tilesets: unknown[] };
+}
+
+/** One floor as the player has dug it today. */
+export class Floor {
+  constructor(
+    readonly day: number,
+    readonly rocks: Rocks,
+    public ladder: Spot | undefined,
+  ) {}
+}
+
+export interface FloorSave {
+  day: number;
+  rocks: Rock[];
+  ladder?: Spot;
+}
+
+export interface MinesSave {
+  deepest: number;
+  misses: number;
+  copperHandedIn: boolean;
+  floors: Record<number, FloorSave>;
+}
+
+/** The mine's progress: the deepest floor, the dry streak and the floors dug today. */
+export class Mines {
+  /** The deepest floor reached, 0 before the first visit. The lift stops at every floor up to it. */
+  deepest = 0;
+  /** Rocks broken without a ladder under them. Resets when one is found. */
+  misses = 0;
+  /** True once the smith has been given copper ore (note 22, decision 11). */
+  copperHandedIn = false;
+  private floors = new Map<number, Floor>();
+
+  /**
+   * The floor as dug today, made fresh if it is a new day. Visiting it counts
+   * as reaching it, so the lift stops there from now on.
+   */
+  visit(floor: number, day: number): Floor {
+    this.deepest = Math.max(this.deepest, floor);
+    const have = this.floors.get(floor);
+    if (have && have.day === day) return have;
+    const layout = floorLayout(floor, day);
+    const rocks = new Rocks();
+    for (const r of layout.rocks) rocks.add(r.x, r.y, r.kind);
+    const made = new Floor(day, rocks, layout.ladder);
+    this.floors.set(floor, made);
+    return made;
+  }
+
+  /** The floor as dug today, if it has been visited today. */
+  today(floor: number, day: number): Floor | undefined {
+    const have = this.floors.get(floor);
+    return have && have.day === day ? have : undefined;
+  }
+
+  /**
+   * A rock was broken on a floor. Rolls the dry streak for a ladder under it.
+   * The last rock always hides one, so a floor can always be left by digging.
+   * Returns true if a ladder now shows. Floors with no way down yet never do.
+   */
+  rockBroken(
+    floor: number,
+    day: number,
+    x: number,
+    y: number,
+    random: () => number,
+  ): boolean {
+    const f = this.visit(floor, day);
+    if (f.ladder || floor >= BUILT_FLOORS) return false;
+    if (random() < ladderChance(this.misses) || f.rocks.count === 0) {
+      f.ladder = { x, y };
+      this.misses = 0;
+      return true;
+    }
+    this.misses += 1;
+    return false;
+  }
+
+  save(): MinesSave {
+    const floors: Record<number, FloorSave> = {};
+    for (const [n, f] of this.floors)
+      floors[n] = {
+        day: f.day,
+        rocks: f.rocks.save(),
+        ...(f.ladder ? { ladder: { ...f.ladder } } : {}),
+      };
+    return {
+      deepest: this.deepest,
+      misses: this.misses,
+      copperHandedIn: this.copperHandedIn,
+      floors,
+    };
+  }
+
+  load(saved: MinesSave): void {
+    this.deepest = saved.deepest;
+    this.misses = saved.misses;
+    this.copperHandedIn = saved.copperHandedIn;
+    this.floors = new Map();
+    for (const [n, f] of Object.entries(saved.floors)) {
+      const rocks = new Rocks();
+      rocks.load(f.rocks);
+      this.floors.set(Number(n), new Floor(f.day, rocks, f.ladder));
+    }
+  }
+}

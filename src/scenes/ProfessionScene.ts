@@ -3,7 +3,11 @@ import { choose, optionsFor, pendingChoice } from "../core/professions";
 import type { GameState } from "../core/save";
 import { STATE_KEY } from "./state";
 
-const SKILL_NAMES = { farming: "Farming", foraging: "Foraging" } as const;
+const SKILL_NAMES = {
+  farming: "Farming",
+  foraging: "Foraging",
+  mining: "Mining",
+} as const;
 
 /**
  * Asked when a skill reaches level 5: pick one of two professions. There is no

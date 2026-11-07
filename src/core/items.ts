@@ -1,6 +1,15 @@
 import { CROPS, cropById } from "./crops";
 import { FERTILIZERS } from "./fertilizer";
 import { FORAGE } from "./forage";
+import {
+  BARS,
+  COAL,
+  COAL_BUY_PRICE,
+  COAL_SELL_PRICE,
+  ORES,
+  STONE,
+  STONE_SELL_PRICE,
+} from "./ore";
 import { ENERGY_MULTIPLIER, QUALITY_MULTIPLIER, splitQuality } from "./quality";
 
 /** Item ids: a crop's produce uses the crop id, its seed uses `<id>-seed`. */
@@ -56,6 +65,18 @@ items.set("sap", { id: "sap", name: "Sap", sellPrice: 2 });
 items.set("fiber", { id: "fiber", name: "Fiber", sellPrice: 1 });
 /** Sell price is ours, a placeholder. */
 items.set("tree-seed", { id: "tree-seed", name: "Tree seed", sellPrice: 5 });
+
+/** Mining goods (`docs/design/22_mines.md`). Prices are placeholders, see `ore.ts`. */
+items.set(STONE, { id: STONE, name: "Stone", sellPrice: STONE_SELL_PRICE });
+items.set(COAL, {
+  id: COAL,
+  name: "Coal",
+  sellPrice: COAL_SELL_PRICE,
+  buyPrice: COAL_BUY_PRICE,
+});
+for (const o of ORES) items.set(o.id, { ...o });
+for (const b of BARS)
+  items.set(b.id, { id: b.id, name: b.name, sellPrice: b.sellPrice });
 
 /** Every base item (normal quality), for the dev menu's picker. */
 export function allItems(): ItemDef[] {

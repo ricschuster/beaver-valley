@@ -24,7 +24,7 @@
       "opacity": 1,
       "visible": true,
       "data": [
-        2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 1, 2, 1,
+        2, 1, 1, 2, 2, 1, 2, 2, 1, 1, 2, 2, 1, 1, 2, 2, 1, 2, 2, 1, 9, 1, 2, 1,
         1, 1, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 2, 1, 2, 2, 1, 1, 2,
         2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 1, 2, 2, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2,
         2, 2, 1, 1, 2, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2,
@@ -87,7 +87,7 @@
       "opacity": 1,
       "visible": true,
       "data": [
-        6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+        6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 6, 6, 6,
         6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 6, 6, 0, 0, 0, 8, 8, 8, 8, 8, 8, 0, 0, 0, 0, 0, 0,
@@ -150,7 +150,7 @@
       "opacity": 1,
       "visible": false,
       "data": [
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0,
@@ -377,6 +377,36 @@
         },
         {
           "id": 8,
+          "name": "from_mine",
+          "class": "entry",
+          "type": "entry",
+          "x": 328,
+          "y": 24,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 9,
+          "name": "mine",
+          "class": "exit",
+          "type": "exit",
+          "x": 320,
+          "y": 0,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            { "name": "map", "type": "string", "value": "mine" },
+            { "name": "entry", "type": "string", "value": "door" },
+            { "name": "requires", "type": "string", "value": "mines-open" }
+          ]
+        },
+        {
+          "id": 10,
           "name": "shop",
           "class": "service",
           "type": "service",
@@ -390,7 +420,7 @@
           "properties": [{ "name": "kind", "type": "string", "value": "shop" }]
         },
         {
-          "id": 9,
+          "id": 11,
           "name": "bin",
           "class": "service",
           "type": "service",
@@ -404,7 +434,231 @@
           "properties": [{ "name": "kind", "type": "string", "value": "bin" }]
         },
         {
-          "id": 10,
+          "id": 12,
+          "name": "furnace",
+          "class": "service",
+          "type": "service",
+          "x": 152,
+          "y": 136,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            { "name": "kind", "type": "string", "value": "furnace" }
+          ]
+        },
+        {
+          "id": 13,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 440,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 14,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 312,
+          "y": 408,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 15,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 440,
+          "y": 360,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 16,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 472,
+          "y": 280,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 17,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 248,
+          "y": 136,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 18,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 360,
+          "y": 424,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 19,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 616,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 20,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 40,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 21,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 72,
+          "y": 456,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 22,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 440,
+          "y": 216,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 23,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 456,
+          "y": 168,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 24,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 392,
+          "y": 328,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 25,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 24,
+          "y": 184,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 26,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 24,
+          "y": 392,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 27,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 184,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 28,
+          "name": "rock",
+          "class": "rock",
+          "type": "rock",
+          "x": 344,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "point": true,
+          "rotation": 0,
+          "visible": true
+        },
+        {
+          "id": 29,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -417,7 +671,7 @@
           "visible": true
         },
         {
-          "id": 11,
+          "id": 30,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -430,7 +684,7 @@
           "visible": true
         },
         {
-          "id": 12,
+          "id": 31,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -443,7 +697,7 @@
           "visible": true
         },
         {
-          "id": 13,
+          "id": 32,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -456,7 +710,7 @@
           "visible": true
         },
         {
-          "id": 14,
+          "id": 33,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -469,7 +723,7 @@
           "visible": true
         },
         {
-          "id": 15,
+          "id": 34,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -482,7 +736,7 @@
           "visible": true
         },
         {
-          "id": 16,
+          "id": 35,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -495,7 +749,7 @@
           "visible": true
         },
         {
-          "id": 17,
+          "id": 36,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -508,7 +762,7 @@
           "visible": true
         },
         {
-          "id": 18,
+          "id": 37,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -521,7 +775,7 @@
           "visible": true
         },
         {
-          "id": 19,
+          "id": 38,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -534,7 +788,7 @@
           "visible": true
         },
         {
-          "id": 20,
+          "id": 39,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -547,7 +801,7 @@
           "visible": true
         },
         {
-          "id": 21,
+          "id": 40,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -560,7 +814,7 @@
           "visible": true
         },
         {
-          "id": 22,
+          "id": 41,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -573,7 +827,7 @@
           "visible": true
         },
         {
-          "id": 23,
+          "id": 42,
           "name": "forage",
           "class": "forage",
           "type": "forage",
@@ -586,7 +840,7 @@
           "visible": true
         },
         {
-          "id": 24,
+          "id": 43,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -600,7 +854,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 25,
+          "id": 44,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -614,7 +868,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 26,
+          "id": 45,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -628,7 +882,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 27,
+          "id": 46,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -642,7 +896,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 4 }]
         },
         {
-          "id": 28,
+          "id": 47,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -656,7 +910,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 29,
+          "id": 48,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -670,7 +924,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 30,
+          "id": 49,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -684,7 +938,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 31,
+          "id": 50,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -698,7 +952,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 32,
+          "id": 51,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -712,7 +966,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 33,
+          "id": 52,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -726,7 +980,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 34,
+          "id": 53,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -740,7 +994,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 35,
+          "id": 54,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -754,7 +1008,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 36,
+          "id": 55,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -768,7 +1022,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 37,
+          "id": 56,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -782,7 +1036,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 38,
+          "id": 57,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -796,7 +1050,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 4 }]
         },
         {
-          "id": 39,
+          "id": 58,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -810,7 +1064,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 40,
+          "id": 59,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -824,7 +1078,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 41,
+          "id": 60,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -838,7 +1092,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 42,
+          "id": 61,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -852,7 +1106,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 43,
+          "id": 62,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -866,7 +1120,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 44,
+          "id": 63,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -880,7 +1134,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 45,
+          "id": 64,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -894,7 +1148,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 46,
+          "id": 65,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -908,7 +1162,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 47,
+          "id": 66,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -922,7 +1176,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 48,
+          "id": 67,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -936,7 +1190,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 49,
+          "id": 68,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -950,7 +1204,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 3 }]
         },
         {
-          "id": 50,
+          "id": 69,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -964,7 +1218,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 51,
+          "id": 70,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -978,7 +1232,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 52,
+          "id": 71,
           "name": "tree",
           "class": "tree",
           "type": "tree",
@@ -992,7 +1246,7 @@
           "properties": [{ "name": "stage", "type": "int", "value": 5 }]
         },
         {
-          "id": 53,
+          "id": 72,
           "name": "tree",
           "class": "tree",
           "type": "tree",

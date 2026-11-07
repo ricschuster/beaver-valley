@@ -82,7 +82,7 @@
       "y": 0,
       "objects": [
         {
-          "id": 57,
+          "id": 76,
           "name": "door",
           "class": "entry",
           "type": "entry",
@@ -95,7 +95,7 @@
           "visible": true
         },
         {
-          "id": 58,
+          "id": 77,
           "name": "door",
           "class": "exit",
           "type": "exit",
@@ -111,7 +111,7 @@
           ]
         },
         {
-          "id": 59,
+          "id": 78,
           "name": "bed",
           "class": "service",
           "type": "service",

@@ -115,6 +115,7 @@ export class FarmMap {
     readonly regions: Region[] = [],
     readonly trees: TreeSpot[] = [],
     private readonly paths: boolean[] = [],
+    readonly rocks: Spot[] = [],
   ) {}
 
   /** Read a Tiled map. Throws with a clear message if it breaks the contract. */
@@ -142,6 +143,7 @@ export class FarmMap {
     const services: Service[] = [];
     const regions: Region[] = [];
     const trees: TreeSpot[] = [];
+    const rocks: Spot[] = [];
     for (const layer of json.layers) {
       if (layer.type !== "objectgroup") continue;
       for (const o of layer.objects ?? []) {
@@ -149,6 +151,7 @@ export class FarmMap {
         const spot = { x: tile(o.x), y: tile(o.y) };
         if (cls === "entry") entries.push({ name: o.name, ...spot });
         else if (cls === "forage") forageSpots.push(spot);
+        else if (cls === "rock") rocks.push(spot);
         else if (cls === "tree")
           trees.push({ ...spot, stage: num(o, "stage") ?? 5 });
         else if (cls === "service")
@@ -189,6 +192,7 @@ export class FarmMap {
       regions,
       trees,
       grid(PATHS_LAYER, true),
+      rocks,
     );
   }
 
@@ -314,6 +318,16 @@ export class FarmMap {
       if (!this.canPlantTree(t.x, t.y))
         out.push(`${at} is on a blocked, path, exit, entry or service tile`);
     }
+    for (const r of this.rocks)
+      if (
+        this.isBlocked(r.x, r.y) ||
+        this.exitAt(r.x, r.y) ||
+        this.entries.some((e) => e.x === r.x && e.y === r.y) ||
+        this.serviceAt(r.x, r.y)
+      )
+        out.push(
+          `rock at ${r.x},${r.y} is on a blocked, exit, entry or service tile`,
+        );
     for (const entry of this.entries) {
       if (this.exitAt(entry.x, entry.y))
         out.push(`entry "${entry.name}" is inside an exit`);

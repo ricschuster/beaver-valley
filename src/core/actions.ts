@@ -24,7 +24,13 @@ export const TOOL_ENERGY = 2;
 
 export type Outcome =
   | { ok: false; reason: string }
-  | { ok: true; levelUp?: { skill: Skill; level: number }; item?: string };
+  | {
+      ok: true;
+      levelUp?: { skill: Skill; level: number };
+      item?: string;
+      /** A ladder was revealed under the broken rock. */
+      ladder?: boolean;
+    };
 
 const fail = (reason: string): Outcome => ({ ok: false, reason });
 

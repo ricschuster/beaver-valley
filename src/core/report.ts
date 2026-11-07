@@ -26,6 +26,7 @@ export function reportLines(r: SleepReport): string[] {
   }
   if (r.houseFinished)
     lines.push("The carpenter has finished. Your new rooms are ready.");
+  if (r.furnaceGifted) lines.push("The smith left a furnace by your house.");
   lines.push(
     r.weather === "rainy"
       ? "It is raining. The rain watered your crops."

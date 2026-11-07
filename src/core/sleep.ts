@@ -5,6 +5,7 @@ import type { Spot } from "./forage";
 import type { GameState } from "./save";
 import type { FarmMap } from "./map";
 import { advanceBuild } from "./house";
+import { deliverFurnace } from "./smith";
 import type { Settlement } from "./shipping";
 
 export interface SleepReport {
@@ -20,6 +21,8 @@ export interface SleepReport {
   withered: number;
   /** True when the carpenter finished the house upgrade this morning. */
   houseFinished: boolean;
+  /** True when the smith left the furnace this morning. */
+  furnaceGifted: boolean;
   /** What the shipping bin paid tonight. */
   shipped: Settlement;
 }
@@ -59,6 +62,7 @@ export function sleep(
       !g.farm.plotAt(x, y) &&
       !g.forage.itemAt(x, y) &&
       !g.weeds.at(x, y) &&
+      !g.rocks.at(x, y) &&
       g.ground.at(x, y).length === 0,
   );
   if (map?.hasSoil) {
@@ -72,6 +76,7 @@ export function sleep(
         map.isTillable(x, y) &&
         !map.isBlocked(x, y) &&
         !g.trees.at(x, y) &&
+        !g.rocks.at(x, y) &&
         !g.farm.plotAt(x, y)?.crop &&
         !g.forage.itemAt(x, y) &&
         g.ground.at(x, y).length === 0,
@@ -84,6 +89,7 @@ export function sleep(
     random,
   );
   const houseFinished = advanceBuild(g);
+  const furnaceGifted = deliverFurnace(g);
 
   return {
     passedOut: end.passedOut,
@@ -93,6 +99,7 @@ export function sleep(
     newSeason: season !== before ? season : undefined,
     withered: cropsBefore - g.farm.cropCount,
     houseFinished,
+    furnaceGifted,
     shipped,
   };
 }

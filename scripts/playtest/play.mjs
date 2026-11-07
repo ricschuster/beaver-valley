@@ -9,9 +9,9 @@ const crops = JSON.parse(
   ),
 );
 const cropDef = Object.fromEntries(crops.map((c) => [c.id, c]));
-// Toolbar slots: hoe, can, axe, hand, then the backpack.
-const HAND = 3;
-const FIRST_SLOT = 4;
+// Toolbar slots: hoe, can, axe, pickaxe, hand, then the backpack.
+const HAND = 4;
+const FIRST_SLOT = 5;
 const MAX_DAY = Number(process.env.MAX_DAY ?? 84);
 
 const seasonOf = (d) =>

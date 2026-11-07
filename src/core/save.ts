@@ -3,6 +3,9 @@ import { Farm } from "./farm";
 import { Trees, type Tree } from "./trees";
 import { GroundItems, type Pile } from "./ground";
 import { Weeds, type Weed } from "./weeds";
+import { Rocks, type Rock, ROCK_KINDS } from "./rocks";
+import { Mines, type MinesSave } from "./mines";
+import { Furnace, type FurnaceSave } from "./furnace";
 import { ShippingBin, type BinLine, type BinSave } from "./shipping";
 import { maps } from "../content/maps";
 import { START } from "./maps";
@@ -27,6 +30,12 @@ export interface GameState {
   ground: GroundItems;
   /** Weeds on the farm. */
   weeds: Weeds;
+  /** Rocks on the farm, broken with the pickaxe. */
+  rocks: Rocks;
+  /** The mine: deepest floor, dry streak, today's floors. */
+  mines: Mines;
+  /** The furnace the smith gives. */
+  furnace: Furnace;
   /** Goods shipped today, paid when the day ends. */
   bin: ShippingBin;
   skills: Skills;
@@ -61,6 +70,9 @@ export function newGame(): GameState {
     trees: new Trees(maps.get(START.map).trees),
     ground: new GroundItems(),
     weeds: new Weeds(),
+    rocks: new Rocks(maps.get(START.map).rocks),
+    mines: new Mines(),
+    furnace: new Furnace(),
     bin: new ShippingBin(),
     skills: new Skills(),
     toolTiers: { hoe: 0, can: 0 },
@@ -92,6 +104,12 @@ interface SaveData {
   ground?: Pile[];
   /** Absent in saves made before weeds existed. */
   weeds?: Weed[];
+  /** Absent in saves made before the mines: the map's starting rocks. */
+  rocks?: Rock[];
+  /** Absent in saves made before the mines. */
+  mines?: MinesSave;
+  /** Absent in saves made before the mines. */
+  furnace?: FurnaceSave;
   /** Absent in saves made before the shipping bin. */
   bin?: BinSave;
   skills: ReturnType<Skills["save"]>;
@@ -132,6 +150,9 @@ export function serialize(g: GameState): string {
     trees: g.trees.save(),
     ground: g.ground.save(),
     weeds: g.weeds.save(),
+    rocks: g.rocks.save(),
+    mines: g.mines.save(),
+    furnace: g.furnace.save(),
     bin: g.bin.save(),
     skills: g.skills.save(),
     professions: g.skills.saveProfessions(),
@@ -151,6 +172,19 @@ const isObject = (v: unknown): v is Record<string, unknown> =>
   typeof v === "object" && v !== null && !Array.isArray(v);
 const isCount = (v: unknown): v is number =>
   typeof v === "number" && Number.isFinite(v) && v >= 0;
+
+const isSpot = (v: unknown): v is { x: number; y: number } =>
+  isObject(v) && Number.isInteger(v.x) && Number.isInteger(v.y);
+
+/** The valid rocks in saved data. */
+function rocksFrom(list: unknown[]): Rock[] {
+  return list.filter(
+    (r): r is Rock =>
+      isSpot(r) &&
+      ROCK_KINDS.includes((r as unknown as Rock).kind) &&
+      isCount((r as unknown as Rock).hits),
+  );
+}
 
 /**
  * Load a save. Returns undefined for anything that is not a valid save of
@@ -184,7 +218,13 @@ export function deserialize(text: string): GameState | undefined {
       return undefined;
     }
   }
-  if (!SKILLS.every((k) => isCount(skills[k]))) return undefined;
+  // A save from before mining has no mining row.
+  if (
+    !SKILLS.every(
+      (k) => isCount(skills[k]) || (k === "mining" && skills[k] === undefined),
+    )
+  )
+    return undefined;
   if (
     !Object.values(hall).every(
       (v) =>
@@ -235,6 +275,43 @@ export function deserialize(text: string): GameState | undefined {
           isObject(w) && Number.isInteger(w.x) && Number.isInteger(w.y),
       ),
     );
+  }
+  if (Array.isArray(raw.rocks)) g.rocks.load(rocksFrom(raw.rocks));
+  const mines = raw.mines;
+  if (isObject(mines) && isObject(mines.floors)) {
+    const floors: MinesSave["floors"] = {};
+    for (const [n, f] of Object.entries(mines.floors)) {
+      if (
+        Number.isInteger(Number(n)) &&
+        isObject(f) &&
+        isCount(f.day) &&
+        Array.isArray(f.rocks)
+      )
+        floors[Number(n)] = {
+          day: f.day,
+          rocks: rocksFrom(f.rocks),
+          ...(isSpot(f.ladder)
+            ? { ladder: { x: f.ladder.x, y: f.ladder.y } }
+            : {}),
+        };
+    }
+    g.mines.load({
+      deepest: isCount(mines.deepest) ? Math.floor(mines.deepest) : 0,
+      misses: isCount(mines.misses) ? Math.floor(mines.misses) : 0,
+      copperHandedIn: mines.copperHandedIn === true,
+      floors,
+    });
+  }
+  const furnace = raw.furnace;
+  if (isObject(furnace)) {
+    const job = furnace.job;
+    g.furnace.load({
+      gifted: furnace.gifted === true,
+      job:
+        isObject(job) && typeof job.bar === "string" && isCount(job.doneAt)
+          ? { bar: job.bar, doneAt: job.doneAt }
+          : undefined,
+    });
   }
   const bin = raw.bin;
   if (isObject(bin) && Array.isArray(bin.lines)) {

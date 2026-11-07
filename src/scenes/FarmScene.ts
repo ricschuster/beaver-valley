@@ -12,7 +12,7 @@ import { NOTHING_TO_ACT_ON, act, reasonText, useHeld } from "../core/tools";
 import { cropById } from "../core/crops";
 import { mapFiles, maps } from "../content/maps";
 import { START } from "../core/maps";
-import { exitOpen, type Exit, type FarmMap } from "../core/map";
+import { exitOpen, FarmMap, type Exit } from "../core/map";
 import {
   facingFrom,
   facingTile,
@@ -26,6 +26,17 @@ import { aimAt } from "../core/aim";
 import { createControls, type Controls } from "./controls";
 import { browserStore, loadDeviceSettings } from "./storage";
 import { saveGame } from "../core/save";
+import { absoluteMinutes } from "../core/furnace";
+import {
+  BUILT_FLOORS,
+  floorLayout,
+  floorMapJson,
+  mineFloorOf,
+  mineMapId,
+  minesOpen,
+  type Floor,
+} from "../core/mines";
+import type { Rocks } from "../core/rocks";
 import { HOUSE_MAP, houseMapId, isHouseMap } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
 import {
@@ -33,6 +44,8 @@ import {
   fertKey,
   forageKey,
   iconKey,
+  LADDER_KEY,
+  ROCK_KEYS,
   soilKey,
   stageOf,
   treeKey,
@@ -102,7 +115,12 @@ export class FarmScene extends Phaser.Scene {
   private mapId: string = START.map;
   private entryName: string = START.entry;
   private leaving = false;
-  /** Conditions that currently hold, for gated exits. None exist yet. */
+  /** The mine floor this map is, if it is one. */
+  private floor: number | undefined;
+  private floorState: Floor | undefined;
+  /** False right after arriving on a ladder, until the player steps off it. */
+  private ladderArmed = true;
+  /** Conditions that currently hold, for gated exits: "mines-open" from spring 5. */
   private holds = new Set<string>();
   private message = "";
   private hud!: Hud;
@@ -136,6 +154,12 @@ export class FarmScene extends Phaser.Scene {
     this.selected =
       (this.registry.get(SELECTED_KEY) as number | undefined) ?? 0;
     this.leaving = false;
+    this.ladderArmed = true;
+    this.floor = mineFloorOf(this.mapId);
+    this.floorState = undefined;
+    this.holds = new Set(
+      minesOpen(this.state.day.clock.day) ? ["mines-open"] : [],
+    );
     this.exitId = undefined;
     this.heldMs = 0;
     this.mouseAim = false;
@@ -150,16 +174,24 @@ export class FarmScene extends Phaser.Scene {
     const problems = maps.problems();
     if (problems.length > 0) console.warn("Map problems:", problems.join("; "));
     const id = this.mapId;
-    const json = mapFiles[id]!;
-    this.map = maps.get(id);
-    if (!this.cache.tilemap.exists(id))
-      this.cache.tilemap.add(id, {
+    const day = this.state.day.clock.day;
+    // A mine floor is made from the day and the floor, so it is built here and
+    // cached under a key that holds the day.
+    const mineLayout =
+      this.floor === undefined ? undefined : floorLayout(this.floor, day);
+    const json = mineLayout ? floorMapJson(mineLayout) : mapFiles[id]!;
+    this.map = mineLayout ? FarmMap.fromTiled(json) : maps.get(id);
+    if (this.floor !== undefined)
+      this.floorState = this.state.mines.visit(this.floor, day);
+    const cacheKey = mineLayout ? `${id}@${day}` : id;
+    if (!this.cache.tilemap.exists(cacheKey))
+      this.cache.tilemap.add(cacheKey, {
         format: Phaser.Tilemaps.Formats.TILED_JSON,
         data: json,
       });
 
     // World objects: the tile layers, the player and the facing marker.
-    const tilemap = this.make.tilemap({ key: id });
+    const tilemap = this.make.tilemap({ key: cacheKey });
     const tileset = tilemap.addTilesetImage(TILESET_NAME, TILES_KEY)!;
     const world: Phaser.GameObjects.GameObject[] = [];
     for (const layer of json.layers) {
@@ -174,7 +206,13 @@ export class FarmScene extends Phaser.Scene {
     this.sprites = this.add.container(0, 0);
     this.wash = this.add.graphics();
     world.push(this.ground, this.sprites, this.wash);
-    const spawn = this.map.entry(this.entryName)!;
+    let spawn: { x: number; y: number } = this.map.entry(this.entryName)!;
+    // Coming up from below lands on the ladder that was taken down.
+    const ladder = this.floorState?.ladder;
+    if (this.entryName === "from_below" && ladder) {
+      spawn = ladder;
+      this.ladderArmed = false;
+    }
     this.pos = { x: (spawn.x + 0.5) * ts, y: (spawn.y + 1) * ts - 2 };
     this.player = this.add
       .image(this.pos.x, this.pos.y, PLAYER_KEY)
@@ -307,9 +345,19 @@ export class FarmScene extends Phaser.Scene {
     });
     // Restarting the scene keeps its event listeners, so drop this one on
     // shutdown or each map change would add another and run it twice.
-    const resumed = (_sys: unknown, data?: { sleep?: boolean }) => {
+    const resumed = (
+      _sys: unknown,
+      data?: { sleep?: boolean; goto?: { map: string; entry: string } },
+    ) => {
       if (data?.sleep) return this.endDay();
+      if (data?.goto) return this.travel(data.goto.map, data.goto.entry);
       this.save();
+      // A new day on a mine floor: the floor is gone, so wake at home.
+      if (
+        this.floor !== undefined &&
+        !this.state.mines.today(this.floor, this.state.day.clock.day)
+      )
+        return this.travel(START.map, "from_house");
       // A new house tier (the carpenter finished, or the debug menu) means a
       // new map: reload it at its door.
       if (
@@ -385,7 +433,9 @@ export class FarmScene extends Phaser.Scene {
         ts,
         (x, y) =>
           this.map.isBlocked(x, y) ||
-          (this.map.hasSoil && this.state.trees.blocks(x, y)),
+          (this.map.hasSoil && this.state.trees.blocks(x, y)) ||
+          !!this.rocks()?.at(x, y) ||
+          this.furnaceAt(x, y),
       );
     this.player.setPosition(this.pos.x, this.pos.y);
     this.repeatUse(delta * DEV_SPEED);
@@ -402,6 +452,10 @@ export class FarmScene extends Phaser.Scene {
     );
 
     const here = tileOf(this.pos, PLAYER, ts);
+    const down = this.floorState?.ladder;
+    if (down && here.x === down.x && here.y === down.y) {
+      if (this.ladderArmed) return this.descend();
+    } else this.ladderArmed = true;
     const exit = this.map.exitAt(here.x, here.y);
     if (exit?.id !== this.exitId) {
       this.exitId = exit?.id;
@@ -474,15 +528,40 @@ export class FarmScene extends Phaser.Scene {
   }
 
   private leave(exit: Exit): void {
+    // The farm's house door leads to the map for the current house tier.
+    this.travel(
+      exit.map === HOUSE_MAP ? houseMapId(this.state.houseTier) : exit.map,
+      exit.entry,
+    );
+  }
+
+  /** Fade out and restart the scene on another map. */
+  private travel(map: string, entry: string): void {
     if (this.leaving) return;
     this.leaving = true;
-    // The farm's house door leads to the map for the current house tier.
-    const map =
-      exit.map === HOUSE_MAP ? houseMapId(this.state.houseTier) : exit.map;
-    const data: SceneData = { map, entry: exit.entry };
+    const data: SceneData = { map, entry };
     this.cameras.main.fadeOut(FADE_MS);
     this.cameras.main.once("camerafadeoutcomplete", () =>
       this.scene.restart(data),
+    );
+  }
+
+  /** Take the ladder down. The last built floor has none. */
+  private descend(): void {
+    if (this.floor === undefined || this.floor >= BUILT_FLOORS) return;
+    this.travel(mineMapId(this.floor + 1), "from_above");
+  }
+
+  /** The rocks on this map: the farm's, or this mine floor's. */
+  private rocks(): Rocks | undefined {
+    if (this.floorState) return this.floorState.rocks;
+    return this.mapId === START.map ? this.state.rocks : undefined;
+  }
+
+  /** True on the furnace tile once the smith has given it. */
+  private furnaceAt(x: number, y: number): boolean {
+    return (
+      this.state.furnace.gifted && this.map.serviceAt(x, y)?.kind === "furnace"
     );
   }
 
@@ -506,7 +585,9 @@ export class FarmScene extends Phaser.Scene {
     const front = this.aimTile();
     if (this.map.serviceAt(front.x, front.y)) return;
     const held = heldAt(this.state, this.selected);
-    this.report(useHeld(this.state, this.map, held, front.x, front.y));
+    this.report(
+      useHeld(this.state, this.map, held, front.x, front.y, this.floor),
+    );
   }
 
   /**
@@ -519,6 +600,19 @@ export class FarmScene extends Phaser.Scene {
     const front = this.aimTile();
     const service = this.map.serviceAt(front.x, front.y);
     if (service?.kind === "festival") return this.openFestival();
+    if (service?.kind === "stairs")
+      return this.travel(mineMapId(1), "from_above");
+    if (service?.kind === "furnace") {
+      if (!this.state.furnace.gifted) {
+        this.message = "Nothing is here yet.";
+        this.render();
+        return;
+      }
+      return this.open("furnace");
+    }
+    const ladder = this.floorState?.ladder;
+    if (ladder && ladder.x === front.x && ladder.y === front.y)
+      return this.descend();
     if (service)
       return this.open(
         service.kind,
@@ -538,6 +632,8 @@ export class FarmScene extends Phaser.Scene {
   private report(result: Outcome): void {
     if (!result.ok) {
       this.message = reasonText(result.reason);
+    } else if (result.ladder) {
+      this.message = "A ladder is revealed!";
     } else if (result.levelUp) {
       const { skill, level } = result.levelUp;
       this.message = `${skill} is now level ${level}.`;
@@ -606,13 +702,22 @@ export class FarmScene extends Phaser.Scene {
   private drawGround(): void {
     this.ground.clear();
     this.sprites.removeAll(true);
-    if (!this.map.hasSoil) return;
     const ts = this.map.tileSize;
     const put = (x: number, y: number, key: string) => {
       const image = this.add.image(x * ts, y * ts, key).setOrigin(0);
       this.uiCamera.ignore(image); // the UI camera does not draw the world
       this.sprites.add(image);
+      return image;
     };
+    for (const r of this.rocks()?.each() ?? [])
+      put(r.x, r.y, ROCK_KEYS[r.kind]);
+    if (this.floor !== undefined) {
+      const up = this.map.exits.find((e) => e.id === "up");
+      if (up) put(up.x, up.y, LADDER_KEY).setAlpha(0.6);
+      const down = this.floorState?.ladder;
+      if (down) put(down.x, down.y, LADDER_KEY);
+    }
+    if (!this.map.hasSoil) return;
     for (const { x, y, plot } of this.state.farm.each()) {
       put(x, y, soilKey(plot.wateredToday));
       const fert = fertilizerById(plot.fertilizer);
@@ -726,9 +831,31 @@ export class FarmScene extends Phaser.Scene {
     );
   }
 
+  /** The smith's furnace by the house, once given: dark iron, glowing while it smelts. */
+  private drawFurnace(): void {
+    const f = this.state.furnace;
+    const spot = this.map.services.find((s) => s.kind === "furnace");
+    if (!f.gifted || !spot) return;
+    const ts = this.map.tileSize;
+    const x = spot.x * ts;
+    const y = spot.y * ts;
+    const busy = f.job !== undefined;
+    const done = busy && absoluteMinutes(this.state) >= f.job!.doneAt;
+    const g = this.wash;
+    g.fillStyle(0x3a3a42, 1).fillRect(x + 1, y + 2, ts - 2, ts - 2);
+    g.fillStyle(0x23232a, 1).fillRect(x + 1, y + 2, ts - 2, 3);
+    g.fillStyle(done ? 0x8fd18a : busy ? 0xf08a30 : 0x15151a, 1).fillRect(
+      x + 4,
+      y + 8,
+      ts - 8,
+      5,
+    );
+  }
+
   private render(): void {
     this.drawGround();
     this.drawRooms();
+    this.drawFurnace();
     this.drawBuild();
     this.hud.update(this.state, this.selected, this.message);
   }
