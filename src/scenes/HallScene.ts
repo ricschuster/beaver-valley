@@ -1,6 +1,7 @@
 import Phaser from "phaser";
 import { rewardText, ROOMS, type BundleDef } from "../core/bundles";
 import { itemById } from "../core/items";
+import { CATEGORY_NAMES, type ArtisanCategory } from "../core/artisan";
 import type { GameState } from "../core/save";
 import { endDue } from "../core/sleep";
 import { saveGame } from "../core/save";
@@ -8,7 +9,8 @@ import { browserStore } from "./storage";
 import { frame, Menu, type Row } from "./panel";
 import { STATE_KEY } from "./state";
 
-const name = (id: string) => itemById(id)?.name ?? id;
+const name = (id: string) =>
+  itemById(id)?.name ?? CATEGORY_NAMES[id as ArtisanCategory] ?? id;
 
 /**
  * One hall room's hand-in panel, drawn over the hall map and opened from the

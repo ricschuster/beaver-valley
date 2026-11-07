@@ -11,6 +11,8 @@ import {
   STONE_SELL_PRICE,
 } from "./ore";
 import { SPRINKLERS } from "./sprinklers";
+import { ARTISAN_GOODS } from "./artisan";
+import { MACHINES } from "./processing";
 import { ENERGY_MULTIPLIER, QUALITY_MULTIPLIER, splitQuality } from "./quality";
 
 /** Item ids: a crop's produce uses the crop id, its seed uses `<id>-seed`. */
@@ -61,6 +63,11 @@ for (const f of FERTILIZERS) {
 
 for (const s of SPRINKLERS)
   items.set(s.id, { id: s.id, name: s.name, sellPrice: s.sellPrice });
+
+for (const a of ARTISAN_GOODS)
+  items.set(a.id, { id: a.id, name: a.name, sellPrice: a.sellPrice });
+for (const m of MACHINES)
+  items.set(m.id, { id: m.id, name: m.name, sellPrice: m.sellPrice });
 
 /** Tree goods (`docs/design/36_gathering_trees_sap_fiber.md`). Wood and sap sell as Stardew's do. */
 items.set("wood", { id: "wood", name: "Wood", sellPrice: 2 });

@@ -8,6 +8,8 @@ export interface ForageDef {
   sellPrice: number;
   /** Energy restored when eaten. Absent for goods that are not food. */
   energy?: number;
+  /** Wild fruit can be preserved. Other forage cannot. */
+  produce?: "fruit";
 }
 
 export const FORAGE = forageData as ForageDef[];

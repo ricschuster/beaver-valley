@@ -1,8 +1,11 @@
 # 35 Bundle item pools for slice 1 (draft)
 
 Status: draft. Decided with the owner on 2026-10-31, except the item lists,
-which are the assistant's proposal for the owner to reshape. Nothing here is
-built. It answers the slice 1 half of #181 and the pools that `33_build_order.md`
+which are the assistant's proposal for the owner to reshape. Not built as bundle data: the machine hand-in rules are (an "Any jam" slot takes
+any jam, a finished bundle can teach its machine recipe), but bundles 4, 5, 9,
+10, 12 and 19 are not in `bundles.json`. Adding them would make the end screen
+need them, and the headless sim and the hall tests assume the four bundles are
+the whole hall, so they wait for the owner to choose (build 7, 2026-11-07). It answers the slice 1 half of #181 and the pools that `33_build_order.md`
 lists as design still needed: bundles 1 to 10, 12 and 19, and the fall and
 winter lists they draw on (#61). Every count and item is a placeholder. Prices
 and growth days for new items go in `07_tuning_numbers.md` when the lists are

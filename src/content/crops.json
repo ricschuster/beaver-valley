@@ -33,7 +33,8 @@
     "growDays": 12,
     "seedPrice": 80,
     "sellPrice": 250,
-    "energy": 113
+    "energy": 113,
+    "produce": "fruit"
   },
   {
     "id": "tomato",
@@ -43,7 +44,8 @@
     "regrowDays": 4,
     "seedPrice": 50,
     "sellPrice": 60,
-    "energy": 20
+    "energy": 20,
+    "produce": "fruit"
   },
   {
     "id": "radish",
@@ -90,7 +92,8 @@
     "regrowDays": 3,
     "seedPrice": 40,
     "sellPrice": 40,
-    "energy": 13
+    "energy": 13,
+    "produce": "fruit"
   },
   {
     "id": "corn",

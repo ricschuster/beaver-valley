@@ -6,6 +6,8 @@ import { Weeds, type Weed } from "./weeds";
 import { Rocks, type Rock, ROCK_KINDS } from "./rocks";
 import { Mines, type MinesSave } from "./mines";
 import { Sprinklers, sprinklerById, type PlacedSprinkler } from "./sprinklers";
+import { Machines, type PlacedMachine } from "./machines";
+import { machineById } from "./processing";
 import { Furnace, type FurnaceSave } from "./furnace";
 import { ShippingBin, type BinLine, type BinSave } from "./shipping";
 import { maps } from "../content/maps";
@@ -37,6 +39,8 @@ export interface GameState {
   mines: Mines;
   /** Sprinklers standing on the farm. */
   sprinklers: Sprinklers;
+  /** Machines standing on the farm. */
+  machines: Machines;
   /** The furnace the smith gives. */
   furnace: Furnace;
   /** Goods shipped today, paid when the day ends. */
@@ -76,6 +80,7 @@ export function newGame(): GameState {
     rocks: new Rocks(maps.get(START.map).rocks),
     mines: new Mines(),
     sprinklers: new Sprinklers(),
+    machines: new Machines(),
     furnace: new Furnace(),
     bin: new ShippingBin(),
     skills: new Skills(),
@@ -114,6 +119,8 @@ interface SaveData {
   mines?: MinesSave;
   /** Absent in saves made before sprinklers. */
   sprinklers?: PlacedSprinkler[];
+  /** Absent in saves made before machines. */
+  machines?: PlacedMachine[];
   /** Absent in saves made before the mines. */
   furnace?: FurnaceSave;
   /** Absent in saves made before the shipping bin. */
@@ -159,6 +166,7 @@ export function serialize(g: GameState): string {
     rocks: g.rocks.save(),
     mines: g.mines.save(),
     sprinklers: g.sprinklers.save(),
+    machines: g.machines.save(),
     furnace: g.furnace.save(),
     bin: g.bin.save(),
     skills: g.skills.save(),
@@ -294,6 +302,33 @@ export function deserialize(text: string): GameState | undefined {
           sprinklerById(s.id) !== undefined,
       ),
     );
+  }
+  if (Array.isArray(raw.machines)) {
+    const valid: PlacedMachine[] = [];
+    for (const m of raw.machines) {
+      if (
+        !isObject(m) ||
+        !Number.isInteger(m.x) ||
+        !Number.isInteger(m.y) ||
+        typeof m.id !== "string" ||
+        !machineById(m.id)
+      )
+        continue;
+      const job = m.job;
+      valid.push({
+        x: m.x as number,
+        y: m.y as number,
+        id: m.id,
+        job:
+          isObject(job) &&
+          typeof job.output === "string" &&
+          isCount(job.count) &&
+          isCount(job.doneAt)
+            ? { output: job.output, count: job.count, doneAt: job.doneAt }
+            : undefined,
+      });
+    }
+    g.machines.load(valid);
   }
   if (Array.isArray(raw.rocks)) g.rocks.load(rocksFrom(raw.rocks));
   const mines = raw.mines;

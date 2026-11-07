@@ -54,6 +54,7 @@ export function sleep(
   g.tomorrow = rollWeather(next.season, next.dayOfSeason, random);
   if (g.weather === "rainy") g.farm.waterAll();
   g.sprinklers.water(g.farm);
+  g.machines.endDay(season);
   g.trees.endDay(
     season,
     random,
@@ -65,6 +66,7 @@ export function sleep(
       !g.weeds.at(x, y) &&
       !g.rocks.at(x, y) &&
       !g.sprinklers.at(x, y) &&
+      !g.machines.at(x, y) &&
       g.ground.at(x, y).length === 0,
   );
   if (map?.hasSoil) {
@@ -80,6 +82,7 @@ export function sleep(
         !g.trees.at(x, y) &&
         !g.rocks.at(x, y) &&
         !g.sprinklers.at(x, y) &&
+        !g.machines.at(x, y) &&
         !g.farm.plotAt(x, y)?.crop &&
         !g.forage.itemAt(x, y) &&
         g.ground.at(x, y).length === 0,
@@ -92,7 +95,8 @@ export function sleep(
       (s) =>
         !g.trees.at(s.x, s.y) &&
         !g.weeds.at(s.x, s.y) &&
-        !g.sprinklers.at(s.x, s.y),
+        !g.sprinklers.at(s.x, s.y) &&
+        !g.machines.at(s.x, s.y),
     ),
     random,
   );

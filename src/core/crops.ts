@@ -13,6 +13,8 @@ export interface CropDef {
   sellPrice: number;
   /** Energy restored when eaten. */
   energy?: number;
+  /** Fruit goes to jam and wine, a vegetable to pickles and juice. Crops default to vegetable. */
+  produce?: "fruit" | "vegetable";
 }
 
 export const CROPS = cropData as CropDef[];

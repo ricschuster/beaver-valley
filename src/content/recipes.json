@@ -2,20 +2,257 @@
   {
     "id": "sprinkler",
     "ingredients": [
-      { "item": "copper-bar", "count": 1 },
-      { "item": "iron-bar", "count": 1 }
+      {
+        "item": "copper-bar",
+        "count": 1
+      },
+      {
+        "item": "iron-bar",
+        "count": 1
+      }
     ],
-    "result": { "item": "sprinkler", "count": 1 },
-    "source": { "kind": "level", "skill": "farming", "level": 2 }
+    "result": {
+      "item": "sprinkler",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 2
+      }
+    ]
   },
   {
     "id": "quality-sprinkler",
     "ingredients": [
-      { "item": "iron-bar", "count": 1 },
-      { "item": "gold-bar", "count": 1 },
-      { "item": "quartz-crystal", "count": 1 }
+      {
+        "item": "iron-bar",
+        "count": 1
+      },
+      {
+        "item": "gold-bar",
+        "count": 1
+      },
+      {
+        "item": "quartz-crystal",
+        "count": 1
+      }
     ],
-    "result": { "item": "quality-sprinkler", "count": 1 },
-    "source": { "kind": "level", "skill": "farming", "level": 6 }
+    "result": {
+      "item": "quality-sprinkler",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 6
+      }
+    ]
+  },
+  {
+    "id": "basic-fertilizer",
+    "ingredients": [
+      {
+        "item": "sap",
+        "count": 2
+      }
+    ],
+    "result": {
+      "item": "basic-fertilizer",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "id": "basic-retaining-soil",
+    "ingredients": [
+      {
+        "item": "stone",
+        "count": 2
+      }
+    ],
+    "result": {
+      "item": "basic-retaining-soil",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 4
+      }
+    ]
+  },
+  {
+    "id": "charcoal-kiln",
+    "ingredients": [
+      {
+        "item": "wood",
+        "count": 20
+      },
+      {
+        "item": "copper-bar",
+        "count": 2
+      }
+    ],
+    "result": {
+      "item": "charcoal-kiln",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "foraging",
+        "level": 2
+      },
+      {
+        "kind": "bundle",
+        "bundle": "woodland"
+      }
+    ]
+  },
+  {
+    "id": "bee-house",
+    "ingredients": [
+      {
+        "item": "wood",
+        "count": 40
+      },
+      {
+        "item": "coal",
+        "count": 8
+      },
+      {
+        "item": "iron-bar",
+        "count": 1
+      },
+      {
+        "item": "sap",
+        "count": 1
+      }
+    ],
+    "result": {
+      "item": "bee-house",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 3
+      },
+      {
+        "kind": "bundle",
+        "bundle": "autumn-crops"
+      }
+    ]
+  },
+  {
+    "id": "preserves-jar",
+    "ingredients": [
+      {
+        "item": "wood",
+        "count": 50
+      },
+      {
+        "item": "stone",
+        "count": 40
+      },
+      {
+        "item": "coal",
+        "count": 8
+      }
+    ],
+    "result": {
+      "item": "preserves-jar",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 4
+      },
+      {
+        "kind": "bundle",
+        "bundle": "quality-crops"
+      }
+    ]
+  },
+  {
+    "id": "keg",
+    "ingredients": [
+      {
+        "item": "wood",
+        "count": 30
+      },
+      {
+        "item": "copper-bar",
+        "count": 1
+      },
+      {
+        "item": "iron-bar",
+        "count": 1
+      },
+      {
+        "item": "sap",
+        "count": 1
+      }
+    ],
+    "result": {
+      "item": "keg",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 8
+      },
+      {
+        "kind": "bundle",
+        "bundle": "artisan-goods"
+      }
+    ]
+  },
+  {
+    "id": "seed-maker",
+    "ingredients": [
+      {
+        "item": "wood",
+        "count": 25
+      },
+      {
+        "item": "coal",
+        "count": 10
+      },
+      {
+        "item": "gold-bar",
+        "count": 1
+      }
+    ],
+    "result": {
+      "item": "seed-maker",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "bundle",
+        "bundle": "winter-foraging"
+      },
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 9
+      }
+    ]
   }
 ]

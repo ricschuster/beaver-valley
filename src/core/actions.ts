@@ -29,6 +29,8 @@ export type Outcome =
       ok: true;
       levelUp?: { skill: Skill; level: number };
       item?: string;
+      /** A line to show the player, such as what a machine will make. */
+      note?: string;
       /** A ladder was revealed under the broken rock. */
       ladder?: boolean;
     };
@@ -56,6 +58,7 @@ export function till(g: GameState, x: number, y: number): Outcome {
   if (g.trees.at(x, y)) return fail("a tree is in the way");
   if (g.weeds.at(x, y)) return fail("a weed is in the way");
   if (g.sprinklers.at(x, y)) return fail("a sprinkler is in the way");
+  if (g.machines.at(x, y)) return fail("a machine is in the way");
   if (!g.farm.till(x, y)) return fail("already tilled");
   if (g.weather === "rainy") g.farm.water(x, y);
   swing(g, "hoe");
@@ -336,6 +339,7 @@ export function plantTree(
     g.ground.at(x, y).length > 0 ||
     g.weeds.at(x, y) ||
     g.sprinklers.at(x, y) ||
+    g.machines.at(x, y) ||
     g.farm.plotAt(x, y) ||
     g.forage.itemAt(x, y)
   )
@@ -373,6 +377,31 @@ export function clearWeed(
 }
 
 /**
+ * True when a tile is open, diggable ground with nothing on it: no soil already
+ * dug, crop, tree, weed, rock, forage, sprinkler, machine or goods on the ground.
+ */
+export function isClear(
+  g: GameState,
+  map: FarmMap,
+  x: number,
+  y: number,
+): boolean {
+  return !(
+    !map.isTillable(x, y) ||
+    map.isBlocked(x, y) ||
+    map.serviceAt(x, y) ||
+    g.sprinklers.at(x, y) ||
+    g.machines.at(x, y) ||
+    g.farm.plotAt(x, y) ||
+    g.trees.at(x, y) ||
+    g.weeds.at(x, y) ||
+    g.rocks.at(x, y) ||
+    g.forage.itemAt(x, y) ||
+    g.ground.at(x, y).length > 0
+  );
+}
+
+/**
  * Stand a sprinkler from the backpack on open, diggable ground. It waters the
  * tilled tiles in its reach each morning (`docs/design/31_farm_growth.md`).
  * Free, like planting. The tile must be clear: no soil already dug, crop,
@@ -388,19 +417,7 @@ export function placeSprinkler(
   if (g.day.over) return fail("exhausted");
   if (!sprinklerById(id)) return fail("not a sprinkler");
   if (g.inventory.count(id) < 1) return fail("no sprinkler");
-  if (
-    !map.isTillable(x, y) ||
-    map.isBlocked(x, y) ||
-    map.serviceAt(x, y) ||
-    g.sprinklers.at(x, y) ||
-    g.farm.plotAt(x, y) ||
-    g.trees.at(x, y) ||
-    g.weeds.at(x, y) ||
-    g.rocks.at(x, y) ||
-    g.forage.itemAt(x, y) ||
-    g.ground.at(x, y).length > 0
-  )
-    return fail("cannot place here");
+  if (!isClear(g, map, x, y)) return fail("cannot place here");
   g.inventory.remove(id);
   g.sprinklers.add(x, y, id);
   return { ok: true };

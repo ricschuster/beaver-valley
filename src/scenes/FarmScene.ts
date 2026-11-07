@@ -27,6 +27,7 @@ import { createControls, type Controls } from "./controls";
 import { browserStore, loadDeviceSettings } from "./storage";
 import { saveGame } from "../core/save";
 import { absoluteMinutes } from "../core/furnace";
+import { jobDone, statusText } from "../core/machines";
 import {
   BUILT_FLOORS,
   floorLayout,
@@ -43,6 +44,8 @@ import {
   cropKey,
   fertKey,
   sprinklerKey,
+  machineKey,
+  MACHINE_READY_KEY,
   forageKey,
   iconKey,
   LADDER_KEY,
@@ -439,7 +442,9 @@ export class FarmScene extends Phaser.Scene {
           (this.map.hasSoil && this.state.trees.blocks(x, y)) ||
           !!this.rocks()?.at(x, y) ||
           this.furnaceAt(x, y) ||
-          (this.map.hasSoil && !!this.state.sprinklers.at(x, y)),
+          (this.map.hasSoil &&
+            (!!this.state.sprinklers.at(x, y) ||
+              !!this.state.machines.at(x, y))),
       );
     this.player.setPosition(this.pos.x, this.pos.y);
     this.repeatUse(delta * DEV_SPEED);
@@ -635,7 +640,13 @@ export class FarmScene extends Phaser.Scene {
   /** Show what an action did, then settle the day, a level choice and the screen. */
   private report(result: Outcome): void {
     if (!result.ok) {
-      this.message = reasonText(result.reason);
+      const front = this.aimTile();
+      this.message =
+        result.reason === "machine busy"
+          ? statusText(this.state, front.x, front.y)
+          : reasonText(result.reason);
+    } else if (result.note) {
+      this.message = result.note;
     } else if (result.ladder) {
       this.message = "A ladder is revealed!";
     } else if (result.levelUp) {
@@ -740,6 +751,10 @@ export class FarmScene extends Phaser.Scene {
     for (const w of this.state.weeds.each()) put(w.x, w.y, WEED_KEY);
     for (const s of this.state.sprinklers.each())
       put(s.x, s.y, sprinklerKey(s.id));
+    for (const m of this.state.machines.each()) {
+      put(m.x, m.y, machineKey(m.id));
+      if (jobDone(this.state, m)) put(m.x, m.y, MACHINE_READY_KEY);
+    }
     for (const t of this.state.trees.each())
       put(t.x, t.y, treeKey(t.stage, t.stump));
     for (const p of this.state.ground.each()) {

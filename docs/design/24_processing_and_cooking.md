@@ -3,7 +3,12 @@
 Status: draft. The machine rules, the kitchen and the recipe count were decided
 with the owner on 2026-10-31 (answers to the open questions in the 2026-10-30b
 handoff). Machine numbers, dish lists and prices are our draft and are
-placeholders. Nothing here is built. Stardew facts were checked against the
+placeholders. Built 2026-11-07 (slice 1 build 7): the machine framework and five machines, the
+charcoal kiln, preserves jar, bee house, keg and seed maker, with jam, pickles,
+wine, juice, honey and mead (`src/core/machines.ts`, `processing.ts`,
+`artisan.ts`). Not built: the cheese press, mayonnaise machine, loom, oil maker,
+dye vat, fish smoker, crystalarium, flower honey, beer (no grain), cooking and
+the cask. Unchecked claims are SC-50 and SC-51. Stardew facts were checked against the
 saved wiki pages Artisan Goods and Cooking, read only (ADR 0002). No text or
 tables are copied, and the dish names below are ours.
 

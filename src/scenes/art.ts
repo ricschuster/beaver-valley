@@ -1,5 +1,7 @@
 import { fertilizerById } from "../core/fertilizer";
 import { SPRINKLERS, sprinklerById } from "../core/sprinklers";
+import { categoryOf } from "../core/artisan";
+import { MACHINES, machineById } from "../core/processing";
 import Phaser from "phaser";
 import { CROPS } from "../core/crops";
 import { FORAGE } from "../core/forage";
@@ -431,6 +433,9 @@ function paintSeedIcon(scene: Phaser.Scene, cropId: string): void {
 export const WEED_KEY = "weed";
 
 /** The picture of a sprinkler, on the ground and in the backpack. */
+export const machineKey = (id: string) => `machine-${id}`;
+export const MACHINE_READY_KEY = "machine-ready";
+
 export const sprinklerKey = (id: string) => `sprinkler-${id}`;
 
 /** Small marks over fertilized soil, one per line, so the bed shows what it holds. */
@@ -550,6 +555,59 @@ function paintTrees(scene: Phaser.Scene): void {
         px(c, "#9ad0f0", 11, 4, 1, 1);
       }
     });
+  // Machines: a small body each, with a mark of what it does.
+  for (const m of MACHINES)
+    draw(machineKey(m.id), (c) => {
+      px(c, "#00000044", 2, 14, 12, 1);
+      if (m.id === "charcoal-kiln") {
+        px(c, "#4a4a52", 3, 5, 10, 9);
+        px(c, "#6a6a74", 4, 3, 8, 3);
+        px(c, "#1c1c20", 6, 9, 4, 5);
+        px(c, "#e87a2a", 7, 11, 2, 2);
+      } else if (m.id === "preserves-jar") {
+        px(c, "#7a5a3a", 3, 4, 10, 10);
+        px(c, "#a8784a", 4, 5, 8, 8);
+        px(c, "#7a5a3a", 5, 2, 6, 2);
+        px(c, "#d94a7a", 5, 7, 6, 4);
+      } else if (m.id === "bee-house") {
+        px(c, "#c89a3a", 4, 6, 8, 8);
+        px(c, "#e8c050", 3, 3, 10, 3);
+        px(c, "#3a2a1a", 7, 9, 2, 3);
+        px(c, "#f4e070", 10, 8, 1, 1);
+      } else if (m.id === "keg") {
+        px(c, "#8a5a2a", 3, 3, 10, 11);
+        px(c, "#a8783c", 4, 4, 8, 9);
+        px(c, "#5a5a62", 3, 5, 10, 1);
+        px(c, "#5a5a62", 3, 11, 10, 1);
+        px(c, "#3a2a1a", 7, 8, 2, 2);
+      } else {
+        px(c, "#6a8a4a", 3, 5, 10, 9);
+        px(c, "#8aaa5a", 4, 3, 8, 3);
+        px(c, "#3a5a2a", 6, 8, 4, 4);
+        px(c, "#e8d070", 7, 9, 2, 2);
+      }
+    });
+  draw(MACHINE_READY_KEY, (c) => {
+    px(c, "#ffffff", 11, 0, 5, 5);
+    px(c, "#48c060", 12, 1, 3, 3);
+  });
+  // Artisan goods: one picture per category.
+  const goodColours: Record<string, string> = {
+    jam: "#c0407a",
+    pickles: "#6aa84a",
+    wine: "#7a2a5a",
+    juice: "#e8a030",
+    honey: "#f0c030",
+    mead: "#d89a2a",
+  };
+  for (const [cat, colour] of Object.entries(goodColours))
+    draw(`icon-artisan-${cat}`, (c) => {
+      px(c, "#00000044", 4, 14, 8, 1);
+      px(c, "#d8e8f0", 5, 3, 6, 2);
+      px(c, "#d8e8f0", 4, 5, 8, 9);
+      px(c, colour, 5, 7, 6, 6);
+      px(c, "#ffffff66", 5, 6, 1, 6);
+    });
   draw("icon-fiber", (c) => {
     px(c, "#7ab04a", 4, 4, 2, 9);
     px(c, "#5a9a3a", 7, 3, 2, 10);
@@ -645,6 +703,9 @@ export function iconKey(itemId: string): string | undefined {
   const { base } = splitQuality(itemId);
   if (fertilizerById(base)) return `icon-${base}`;
   if (sprinklerById(base)) return sprinklerKey(base);
+  if (machineById(base)) return machineKey(base);
+  const category = categoryOf(base);
+  if (category) return `icon-artisan-${category}`;
   if (MINE_ICON_IDS.includes(base)) return `icon-${base}`;
   if (base === "wood" || base === "sap" || base === "fiber")
     return `icon-${base}`;
