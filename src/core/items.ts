@@ -42,6 +42,8 @@ for (const f of FORAGE) {
 /** Tree goods (`docs/design/36_gathering_trees_sap_fiber.md`). Wood and sap sell as Stardew's do. */
 items.set("wood", { id: "wood", name: "Wood", sellPrice: 2 });
 items.set("sap", { id: "sap", name: "Sap", sellPrice: 2 });
+/** Fiber comes from weeds and sells for 1g, as Stardew's (`29_weeds.md`). It is always normal quality. */
+items.set("fiber", { id: "fiber", name: "Fiber", sellPrice: 1 });
 /** Sell price is ours, a placeholder. */
 items.set("tree-seed", { id: "tree-seed", name: "Tree seed", sellPrice: 5 });
 

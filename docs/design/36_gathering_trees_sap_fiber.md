@@ -1,6 +1,7 @@
 # 36 Gathering: weeds, fiber, sap and common trees (draft)
 
-Status: draft. Decided with the owner on 2026-10-31. Nothing here is built.
+Status: draft. Decided with the owner on 2026-10-31. Fiber and weeds are built
+(2026-11-07, `29_weeds.md`). Trees and sap were built earlier (#306, #307).
 Reference: the saved Stardew Valley Wiki pages Weeds, Grass, Scythe and Trees,
 read only (ADR 0002). Every choice below is what Stardew does, picked by the
 owner from a labelled option each time. Numbers marked "ours" are placeholders

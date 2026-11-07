@@ -2,6 +2,7 @@ import { Day } from "./day";
 import { Farm } from "./farm";
 import { Trees, type Tree } from "./trees";
 import { GroundItems, type Pile } from "./ground";
+import { Weeds, type Weed } from "./weeds";
 import { ShippingBin, type BinLine, type BinSave } from "./shipping";
 import { maps } from "../content/maps";
 import { START } from "./maps";
@@ -24,6 +25,8 @@ export interface GameState {
   trees: Trees;
   /** Goods that did not fit the backpack, waiting to be picked up. */
   ground: GroundItems;
+  /** Weeds on the farm. */
+  weeds: Weeds;
   /** Goods shipped today, paid when the day ends. */
   bin: ShippingBin;
   skills: Skills;
@@ -57,6 +60,7 @@ export function newGame(): GameState {
     farm: new Farm(),
     trees: new Trees(maps.get(START.map).trees),
     ground: new GroundItems(),
+    weeds: new Weeds(),
     bin: new ShippingBin(),
     skills: new Skills(),
     toolTiers: { hoe: 0, can: 0 },
@@ -86,6 +90,8 @@ interface SaveData {
   trees?: Tree[];
   /** Absent in saves made before goods could lie on the ground. */
   ground?: Pile[];
+  /** Absent in saves made before weeds existed. */
+  weeds?: Weed[];
   /** Absent in saves made before the shipping bin. */
   bin?: BinSave;
   skills: ReturnType<Skills["save"]>;
@@ -125,6 +131,7 @@ export function serialize(g: GameState): string {
     farm: g.farm.save(),
     trees: g.trees.save(),
     ground: g.ground.save(),
+    weeds: g.weeds.save(),
     bin: g.bin.save(),
     skills: g.skills.save(),
     professions: g.skills.saveProfessions(),
@@ -218,6 +225,14 @@ export function deserialize(text: string): GameState | undefined {
           typeof p.id === "string" &&
           isCount(p.count) &&
           (p.count as number) > 0,
+      ),
+    );
+  }
+  if (Array.isArray(raw.weeds)) {
+    g.weeds.load(
+      raw.weeds.filter(
+        (w): w is Weed =>
+          isObject(w) && Number.isInteger(w.x) && Number.isInteger(w.y),
       ),
     );
   }

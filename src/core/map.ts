@@ -201,6 +201,15 @@ export class FarmMap {
     return this.inside(x, y) && this.soil[y * this.width + x] === true;
   }
 
+  /** Every tillable tile, in reading order. */
+  tillableTiles(): { x: number; y: number }[] {
+    const out: { x: number; y: number }[] = [];
+    for (let y = 0; y < this.height; y++)
+      for (let x = 0; x < this.width; x++)
+        if (this.soil[y * this.width + x] === true) out.push({ x, y });
+    return out;
+  }
+
   /** True on a path tile. */
   isPath(x: number, y: number): boolean {
     return this.inside(x, y) && this.paths[y * this.width + x] === true;

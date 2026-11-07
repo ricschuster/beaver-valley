@@ -27,7 +27,15 @@ import { browserStore, loadDeviceSettings } from "./storage";
 import { saveGame } from "../core/save";
 import { HOUSE_MAP, houseMapId, isHouseMap } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
-import { cropKey, forageKey, iconKey, soilKey, stageOf, treeKey } from "./art";
+import {
+  cropKey,
+  forageKey,
+  iconKey,
+  soilKey,
+  stageOf,
+  treeKey,
+  WEED_KEY,
+} from "./art";
 import { giveItem, giveMoney } from "../core/debug";
 import { pickupRadius } from "../core/ground";
 import { Hud } from "./hud";
@@ -616,6 +624,7 @@ export class FarmScene extends Phaser.Scene {
     }
     for (const { x, y, id } of this.state.forage.each())
       put(x, y, forageKey(id));
+    for (const w of this.state.weeds.each()) put(w.x, w.y, WEED_KEY);
     for (const t of this.state.trees.each())
       put(t.x, t.y, treeKey(t.stage, t.stump));
     for (const p of this.state.ground.each()) {

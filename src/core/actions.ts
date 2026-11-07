@@ -16,6 +16,7 @@ import {
   swingsToUproot,
 } from "./trees";
 import { swingCost, type Upgradable } from "./upgrades";
+import { FIBER, FIBER_CHANCE } from "./weeds";
 
 /** Energy per tool swing (hoe, watering can), as in Stardew. Seeds, picking and harvesting are free. */
 export const TOOL_ENERGY = 2;
@@ -45,6 +46,7 @@ function award(g: GameState, skill: Skill, xp: number, item?: string): Outcome {
 export function till(g: GameState, x: number, y: number): Outcome {
   if (g.day.over) return fail("exhausted");
   if (g.trees.at(x, y)) return fail("a tree is in the way");
+  if (g.weeds.at(x, y)) return fail("a weed is in the way");
   if (!g.farm.till(x, y)) return fail("already tilled");
   if (g.weather === "rainy") g.farm.water(x, y);
   swing(g, "hoe");
@@ -72,6 +74,7 @@ export function plant(
   const cropId = cropOfSeed(seed);
   if (!cropId) return fail("not a seed");
   if (g.inventory.count(seed) < 1) return fail("no seeds");
+  if (g.weeds.at(x, y)) return fail("a weed is in the way");
   const season = dateOf(g.day.clock.day).season;
   if (!g.farm.plant(x, y, cropId, season)) return fail("cannot plant here");
   g.inventory.remove(seed);
@@ -302,11 +305,39 @@ export function plantTree(
     !map.canPlantTree(x, y) ||
     g.trees.at(x, y) ||
     g.ground.at(x, y).length > 0 ||
+    g.weeds.at(x, y) ||
     g.farm.plotAt(x, y) ||
     g.forage.itemAt(x, y)
   )
     return fail("cannot plant tree here");
   g.inventory.remove(TREE_SEED);
   g.trees.add(x, y, SEED_STAGE);
+  return { ok: true };
+}
+
+/**
+ * Cut a weed with any tool, in one swing at that tool's energy cost, so a tap
+ * never needs a tool swap (`docs/design/29_weeds.md`). A weed has a 50 percent
+ * chance of 1 fiber. Fiber goes to the backpack, or lands on the ground nearby
+ * if it does not fit. The mixed seed drops wait for crafting.
+ */
+export function clearWeed(
+  g: GameState,
+  x: number,
+  y: number,
+  tool: "hoe" | "can" | "axe",
+  random: () => number = Math.random,
+  map?: FarmMap,
+): Outcome {
+  if (g.day.over) return fail("exhausted");
+  if (!g.weeds.at(x, y)) return fail("no weed");
+  if (tool === "axe")
+    g.day.act(swingCost(TOOL_ENERGY, AXE_TIER, g.skills.level("foraging")), 0);
+  else swing(g, tool);
+  g.weeds.remove(x, y);
+  if (random() >= FIBER_CHANCE) return { ok: true };
+  if (g.inventory.add(FIBER)) return { ok: true, item: FIBER };
+  const spot = dropSpot(g, map, x, y);
+  g.ground.drop(spot.x, spot.y, FIBER, 1);
   return { ok: true };
 }
