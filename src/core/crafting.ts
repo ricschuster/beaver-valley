@@ -2,12 +2,13 @@ import recipeData from "../content/recipes.json";
 import { BUNDLES } from "./bundles";
 import { itemById } from "./items";
 import type { Skill } from "./skills";
+import type { PlacedChest } from "./chests";
 import type { GameState } from "./save";
 
 /**
  * Crafting (`docs/design/34_crafting.md`). Recipes are data in
  * `src/content/recipes.json`. A recipe is known when its source is met; build
- * 7 adds the other sources (shop, gifts, bundles), the workbench and chests.
+ * 7 adds the other sources (shop, gifts, bundles), the workbench and chests (`craft` takes the chests beside a bench).
  * A recipe whose ingredient item does not exist yet is not offered, so the
  * list can name items before they are built. Pure rules.
  */
@@ -77,22 +78,57 @@ export function lockedRecipes(g: GameState): Recipe[] {
   return RECIPES.filter((r) => buildable(r) && !known(g, r));
 }
 
-/** True when the pack holds every ingredient. */
-export function canCraft(g: GameState, r: Recipe): boolean {
-  return r.ingredients.every((i) => g.inventory.count(i.item) >= i.count);
+/** How many of an item the pack and the given chests hold together. */
+export function haveCount(
+  g: GameState,
+  item: string,
+  chests: PlacedChest[] = [],
+): number {
+  return (
+    g.inventory.count(item) +
+    chests.reduce((n, c) => n + c.items.count(item), 0)
+  );
 }
 
-/** Craft one batch. Returns undefined on success, otherwise why not. */
-export function craft(g: GameState, id: string): string | undefined {
+/** True when the pack and any chests beside the workbench hold every ingredient. */
+export function canCraft(
+  g: GameState,
+  r: Recipe,
+  chests: PlacedChest[] = [],
+): boolean {
+  return r.ingredients.every((i) => haveCount(g, i.item, chests) >= i.count);
+}
+
+/**
+ * Craft one batch. Ingredients come from the pack first, then from the chests
+ * beside a workbench. Returns undefined on success, otherwise why not.
+ */
+export function craft(
+  g: GameState,
+  id: string,
+  chests: PlacedChest[] = [],
+): string | undefined {
   const r = recipeById(id);
   if (!r || !buildable(r)) return "no such recipe";
   if (!known(g, r)) return "recipe not known";
-  if (!canCraft(g, r)) return "missing ingredients";
+  if (!canCraft(g, r, chests)) return "missing ingredients";
   // The ingredients leave first, so a stack they empty can hold the result.
   const before = g.inventory.save();
-  for (const i of r.ingredients) g.inventory.remove(i.item, i.count);
+  const chestsBefore = chests.map((c) => c.items.save());
+  for (const i of r.ingredients) {
+    let left = i.count;
+    const fromPack = Math.min(left, g.inventory.count(i.item));
+    g.inventory.remove(i.item, fromPack);
+    left -= fromPack;
+    for (const c of chests) {
+      const take = Math.min(left, c.items.count(i.item));
+      if (take > 0) c.items.remove(i.item, take);
+      left -= take;
+    }
+  }
   if (!g.inventory.add(r.result.item, r.result.count)) {
     g.inventory.load(before);
+    chests.forEach((c, n) => c.items.load(chestsBefore[n]!));
     return "backpack full";
   }
   return undefined;

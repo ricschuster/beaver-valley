@@ -17,6 +17,7 @@ import { FRUIT_TREES, saplingId } from "./fruittrees";
 import furnitureData from "../content/furniture.json";
 import { ARTISAN_GOODS } from "./artisan";
 import { MACHINES } from "./processing";
+import { CHESTS } from "./chestdefs";
 import { ENERGY_MULTIPLIER, QUALITY_MULTIPLIER, splitQuality } from "./quality";
 
 /** Item ids: a crop's produce uses the crop id, its seed uses `<id>-seed`. */
@@ -94,6 +95,10 @@ for (const a of ARTISAN_GOODS)
   });
 for (const m of MACHINES)
   items.set(m.id, { id: m.id, name: m.name, sellPrice: m.sellPrice });
+
+/** Chests are items too. They cannot be sold, so a full chest is never lost to the bin. */
+for (const c of CHESTS)
+  items.set(c.id, { id: c.id, name: c.name, sellPrice: 0, keep: true });
 
 /** Furniture pieces are items, so they ride in the backpack. They cannot be sold (`10_customisation.md`). */
 for (const f of furnitureData)

@@ -23,6 +23,8 @@ export interface FurnitureDef {
   rug?: boolean;
   /** Sold only at a festival counter, never by the carpenter. */
   festival?: boolean;
+  /** A crafting station: Action on it opens crafting with the chests beside it (note 34). Always sold, never in the daily pick. */
+  station?: "workbench";
 }
 
 export const FURNITURE = furnitureData as FurnitureDef[];
@@ -199,17 +201,25 @@ export function carryFurniture(
  * pick on other days. `DAILY_STOCK` of the pool, chosen by a hash of the day.
  */
 export function dailyStock(day: number): FurnitureDef[] {
-  const scored = FURNITURE.filter((f) => !f.festival).map((f, i) => ({
-    f,
-    score: Math.imul(day * 7919 + i * 104729 + 13, 2654435761) >>> 0,
-  }));
+  const scored = FURNITURE.filter((f) => !f.festival && !f.station).map(
+    (f, i) => ({
+      f,
+      score: Math.imul(day * 7919 + i * 104729 + 13, 2654435761) >>> 0,
+    }),
+  );
   scored.sort((a, b) => a.score - b.score);
   return scored.slice(0, DAILY_STOCK).map((s) => s.f);
 }
 
+/** Crafting stations the carpenter always sells, whatever the day. */
+export const stationStock = (): FurnitureDef[] =>
+  FURNITURE.filter((f) => f.station);
+
 /** Why a piece cannot be bought today, or undefined if it can. */
 export function furnitureProblem(g: GameState, id: string): string | undefined {
-  const def = dailyStock(g.day.clock.day).find((f) => f.id === id);
+  const def = [...stationStock(), ...dailyStock(g.day.clock.day)].find(
+    (f) => f.id === id,
+  );
   if (!def) return "The carpenter does not have that today.";
   if (g.money < def.price) return `You need ${def.price - g.money}g more.`;
   if (g.inventory.room(id) < 1) return "Your pack is full.";

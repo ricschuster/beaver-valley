@@ -1,6 +1,11 @@
 import Phaser from "phaser";
 import type { GameState } from "../core/save";
-import { buyFurniture, dailyStock, furnitureProblem } from "../core/furniture";
+import {
+  buyFurniture,
+  dailyStock,
+  furnitureProblem,
+  stationStock,
+} from "../core/furniture";
 import { nextUpgrade, orderProblem, orderUpgrade, WOOD } from "../core/house";
 import { frame, Menu, type Row } from "./panel";
 import { STATE_KEY } from "./state";
@@ -75,7 +80,7 @@ export class CarpenterScene extends Phaser.Scene {
     }
     if (!g.houseBuild) {
       // Today's furniture: a random pick that changes each day.
-      for (const f of dailyStock(g.day.clock.day)) {
+      for (const f of [...stationStock(), ...dailyStock(g.day.clock.day)]) {
         rows.push({
           label: f.name,
           detail: `${f.price}g${f.rug ? "  (rug)" : ""}`,

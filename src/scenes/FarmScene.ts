@@ -31,6 +31,7 @@ import { browserStore, loadDeviceSettings } from "./storage";
 import { saveGame } from "../core/save";
 import { absoluteMinutes } from "../core/furnace";
 import { jobDone, statusText } from "../core/machines";
+import { chestById, pickUpChest, placeChest } from "../core/chests";
 import {
   CAVE_MAP,
   caveDehydratorDone,
@@ -66,6 +67,7 @@ import {
   fruitTreeKey,
   sprinklerKey,
   furnitureKey,
+  chestKey,
   machineKey,
   MACHINE_READY_KEY,
   forageKey,
@@ -500,6 +502,7 @@ export class FarmScene extends Phaser.Scene {
           !!this.rocks()?.at(x, y) ||
           this.furnaceAt(x, y) ||
           this.state.furniture.blocks(this.mapId, x, y) ||
+          !!this.state.chests.at(this.mapId, x, y) ||
           (this.map.hasSoil &&
             (!!this.state.sprinklers.at(x, y) ||
               !!this.state.machines.at(x, y))),
@@ -668,6 +671,17 @@ export class FarmScene extends Phaser.Scene {
     const front = this.aimTile();
     if (this.map.serviceAt(front.x, front.y)) return;
     const held = heldAt(this.state, this.selected);
+    // A chest is stood down from the backpack, and the hand takes an empty one up.
+    if (held.kind === "item" && chestById(held.id))
+      return this.report(
+        placeChest(this.state, this.map, this.mapId, front.x, front.y, held.id),
+      );
+    if (
+      held.kind === "tool" &&
+      held.tool === "hand" &&
+      this.state.chests.at(this.mapId, front.x, front.y)
+    )
+      return this.report(pickUpChest(this.state, this.mapId, front.x, front.y));
     if (isHouseMap(this.mapId)) {
       // In the house the held piece is stood down, and the hand takes one up.
       if (held.kind === "item" && furnitureById(held.id))
@@ -724,6 +738,20 @@ export class FarmScene extends Phaser.Scene {
         service.kind,
         service.kind === "hall" ? { room: service.id } : undefined,
       );
+    if (this.state.chests.at(this.mapId, front.x, front.y))
+      return this.open("chest", {
+        mapId: this.mapId,
+        x: front.x,
+        y: front.y,
+      });
+    if (
+      isHouseMap(this.mapId) &&
+      furnitureById(this.state.furniture.at(this.mapId, front.x, front.y))
+        ?.station === "workbench"
+    )
+      return this.open("crafting", {
+        bench: { mapId: this.mapId, x: front.x, y: front.y },
+      });
     if (
       isHouseMap(this.mapId) &&
       this.state.furniture.at(this.mapId, front.x, front.y)
@@ -864,6 +892,8 @@ export class FarmScene extends Phaser.Scene {
     }
     for (const p of this.state.furniture.each(this.mapId))
       put(p.x, p.y, furnitureKey(p.id));
+    for (const c of this.state.chests.each(this.mapId))
+      put(c.x, c.y, chestKey(c.id));
     if (this.mapId === CAVE_MAP) this.drawCave(put);
     if (!this.map.hasSoil) return;
     for (const { x, y, plot } of this.state.farm.each()) {

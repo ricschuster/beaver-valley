@@ -1,3 +1,4 @@
+import { CHESTS, chestById } from "../core/chestdefs";
 import { FURNITURE, furnitureById } from "../core/furniture";
 import { fertilizerById } from "../core/fertilizer";
 import { SPRINKLERS, sprinklerById } from "../core/sprinklers";
@@ -757,6 +758,7 @@ function paintFruitTrees(scene: Phaser.Scene): void {
 }
 
 export const furnitureKey = (id: string) => `furniture-${id}`;
+export const chestKey = (id: string) => `chest-${id}`;
 
 /** Furniture: a plain shape per piece, in the piece's colour. Placeholders. */
 function paintFurniture(scene: Phaser.Scene): void {
@@ -772,6 +774,25 @@ function paintFurniture(scene: Phaser.Scene): void {
       px(c, "#ffffff44", 4, 6, 8, 2);
       px(c, "#00000033", 3, 12, 10, 2);
     }
+    t.refresh();
+  }
+}
+
+/** Chests: a lidded box, wood or stone, a little wider when big. Placeholders. */
+function paintChests(scene: Phaser.Scene): void {
+  for (const ch of CHESTS) {
+    const t = scene.textures.createCanvas(chestKey(ch.id), SIZE, SIZE)!;
+    const c = t.getContext();
+    const stone = ch.id.includes("stone");
+    const big = ch.id.startsWith("big");
+    const body = stone ? "#8a8a90" : "#8a5a2a";
+    const lid = stone ? "#b4b4ba" : "#b4803c";
+    const x = big ? 1 : 2;
+    const w = big ? 14 : 12;
+    px(c, "#00000044", x, 14, w, 1);
+    px(c, body, x, 7, w, 7);
+    px(c, lid, x, 4, w, 4);
+    px(c, "#2a2a30", 7, 7, 2, 3);
     t.refresh();
   }
 }
@@ -842,6 +863,7 @@ export function iconKey(itemId: string): string | undefined {
   if (sprinklerById(base)) return sprinklerKey(base);
   if (machineById(base)) return machineKey(base);
   if (furnitureById(base)) return furnitureKey(base);
+  if (chestById(base)) return chestKey(base);
   const sapling = treeOfSapling(base);
   if (sapling) return saplingIconKey(sapling.id);
   if (fruitTreeById(base)) return `icon-${base}`;
@@ -877,4 +899,5 @@ export function makeArt(
   paintFruitTrees(scene);
   paintMineArt(scene);
   paintFurniture(scene);
+  paintChests(scene);
 }
