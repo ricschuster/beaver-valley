@@ -12,7 +12,7 @@ pickaxe as a starter tool, the mining skill (Prospector works, Rockhound has
 nothing to act on yet), the smith's ore shop, the furnace gift, smelting and
 bars. The charcoal kiln is built as a machine (2026-11-07, note 24). The Smith's bundle (bundle 19, 20 coal) is in the hall data (2026-11-07). Not built: crafting
 more furnaces (needs crafting, note 34), Old Greencoat's door scene, the rest
-camp chest on floor 10, the mine hall's ore-only bin, the pickaxe tiers, geodes,
+camp chest on floor 10, the mine hall's ore-only bin, geodes,
 and everything from slice 3 on. The mine hall and the mine door are placeholders
 on the farm until the Mountain exists (note 19). Everything else is unbuilt. It answers the design half of the mines item in
 `16_bundles.md` and feeds the fifth tool tier (#194).

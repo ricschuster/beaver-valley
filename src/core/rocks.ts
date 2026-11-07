@@ -18,18 +18,19 @@ export interface Rock {
   hits: number;
 }
 
-/**
- * Swings to break each kind with the basic pickaxe. Ours, placeholders: the
- * pickaxe has no tiers yet, and a deeper rock will take more (note 22, "no
- * gate").
- */
-export const SWINGS_TO_BREAK: Record<RockKind, number> = {
-  stone: 2,
-  copper: 3,
-  coal: 3,
-  /** A crystal cluster: one swing. A placeholder for quartz "lying on the floor" (note 34). */
-  quartz: 1,
+/** Swings to break each kind at each pickaxe grade, Basic to Gold. Ours, placeholders (note 44): a better pickaxe needs fewer swings. */
+const SWINGS_BY_TIER: Record<RockKind, readonly number[]> = {
+  stone: [2, 2, 1, 1],
+  copper: [3, 2, 2, 1],
+  coal: [3, 2, 2, 1],
+  quartz: [1, 1, 1, 1],
 };
+
+/** Swings to break a rock of a kind with a pickaxe of a grade. */
+export function swingsToBreak(kind: RockKind, tier: number): number {
+  const row = SWINGS_BY_TIER[kind];
+  return row[Math.min(tier, row.length - 1)] as number;
+}
 
 export const ROCK_KINDS: RockKind[] = ["stone", "copper", "coal", "quartz"];
 

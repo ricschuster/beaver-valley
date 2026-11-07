@@ -4,6 +4,17 @@ import type { GameState } from "../core/save";
 import { buy } from "../core/shop";
 import { COPPER_ORE } from "../core/ore";
 import { handOverCopper, SMITH_STOCK } from "../core/smith";
+import {
+  collectUpgrade,
+  orderProblem,
+  orderReady,
+  orderUpgrade,
+  TIER_NAMES,
+  UPGRADABLE,
+  UPGRADE_BARS,
+  upgradeBar,
+  upgradeCost,
+} from "../core/upgrades";
 import { frame, Menu, type Row } from "./panel";
 import { STATE_KEY } from "./state";
 
@@ -39,7 +50,12 @@ export class SmithScene extends Phaser.Scene {
         color: "#ffffffaa",
       },
     );
-    this.menu = new Menu(this, { x: 24, y: 64, w: 600, title: "Ore and coal" });
+    this.menu = new Menu(this, {
+      x: 24,
+      y: 64,
+      w: 600,
+      title: "Ore, coal and tools",
+    });
     const kb = this.input.keyboard;
     kb?.on("keydown-UP", () => this.menu.move(-1));
     kb?.on("keydown-DOWN", () => this.menu.move(1));
@@ -94,7 +110,67 @@ export class SmithScene extends Phaser.Scene {
           },
         ],
       });
+    rows.push(...this.toolRows());
     this.menu.setRows(rows);
+  }
+
+  /** The tool upgrade rows: hand a tool over, or collect it (note 44). */
+  private toolRows(): Row[] {
+    const g = this.state;
+    const names = { hoe: "Hoe", can: "Watering can", pickaxe: "Pickaxe" };
+    const order = g.toolOrder;
+    const rows: Row[] = [];
+    if (order && orderReady(g))
+      rows.push({
+        label: `Your ${names[order.tool].toLowerCase()} is ready`,
+        detail: TIER_NAMES[order.tier] ?? "",
+        buttons: [
+          {
+            text: "Collect",
+            run: () => {
+              const tool = collectUpgrade(g);
+              this.say(
+                tool
+                  ? `Your ${names[tool].toLowerCase()} is now ${TIER_NAMES[g.toolTiers[tool]]?.toLowerCase()}.`
+                  : "Nothing to collect.",
+              );
+            },
+          },
+        ],
+      });
+    else if (order)
+      rows.push({
+        label: `${names[order.tool]} at the forge`,
+        detail: `Ready on day ${order.readyDay}`,
+        dim: true,
+        buttons: [],
+      });
+    for (const tool of UPGRADABLE) {
+      const tier = g.toolTiers[tool];
+      const cost = upgradeCost(tier);
+      const bar = upgradeBar(tier);
+      const label = `${names[tool]} (${TIER_NAMES[tier]})`;
+      if (cost === undefined || bar === undefined) {
+        rows.push({ label, detail: "Best", dim: true, buttons: [] });
+        continue;
+      }
+      rows.push({
+        label,
+        detail: `${TIER_NAMES[tier + 1]}: ${cost}g and ${UPGRADE_BARS} ${itemById(bar)?.name.toLowerCase()}s`,
+        dim: orderProblem(g, tool) !== undefined,
+        buttons: [
+          {
+            text: "Hand over",
+            run: () =>
+              this.say(
+                orderUpgrade(g, tool) ??
+                  `She will have it back in two days (day ${g.toolOrder?.readyDay}).`,
+              ),
+          },
+        ],
+      });
+    }
+    return rows;
   }
 
   private close(): void {

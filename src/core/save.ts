@@ -23,7 +23,13 @@ import { professionById } from "./professions";
 import { Furniture, type FurnitureSave } from "./furniture";
 import { Wardrobe, type WardrobeSave } from "./hats";
 import { BUILD_DAYS, MAX_HOUSE_TIER, type HouseBuild } from "./house";
-import { UPGRADABLE, MAX_TIER, type ToolTiers } from "./upgrades";
+import {
+  UPGRADABLE,
+  MAX_TIER,
+  type ToolOrder,
+  type ToolTiers,
+  type Upgradable,
+} from "./upgrades";
 
 /** Everything the player owns and has done. The scene holds one of these. */
 export interface GameState {
@@ -56,6 +62,8 @@ export interface GameState {
   skills: Skills;
   /** Tier of the hoe and can, 0 for basic. */
   toolTiers: ToolTiers;
+  /** The tool the smith is upgrading, if any. */
+  toolOrder: ToolOrder | undefined;
   hall: Hall;
   /** House tier, 0 for the start room only. */
   houseTier: number;
@@ -103,7 +111,8 @@ export function newGame(farmType: string = DEFAULT_FARM_TYPE): GameState {
     furnace: new Furnace(),
     bin: new ShippingBin(),
     skills: new Skills(),
-    toolTiers: { hoe: 0, can: 0 },
+    toolTiers: { hoe: 0, can: 0, pickaxe: 0 },
+    toolOrder: undefined,
     hall: new Hall(),
     houseTier: 0,
     houseBuild: undefined,
@@ -158,6 +167,8 @@ interface SaveData {
   professions?: ReturnType<Skills["saveProfessions"]>;
   /** Absent in saves made before tool upgrades existed. */
   toolTiers?: ToolTiers;
+  /** Absent when no tool is at the smith, and in older saves. */
+  toolOrder?: ToolOrder;
   /** Absent in saves made before the house had tiers. */
   houseTier?: number;
   /** Absent when no upgrade is being built, and in older saves. */
@@ -210,6 +221,7 @@ export function serialize(g: GameState): string {
     professions: g.skills.saveProfessions(),
     hall: g.hall.save(),
     toolTiers: { ...g.toolTiers },
+    toolOrder: g.toolOrder ? { ...g.toolOrder } : undefined,
     houseTier: g.houseTier,
     houseBuild: g.houseBuild ? { ...g.houseBuild } : undefined,
     weather: g.weather,
@@ -465,6 +477,20 @@ export function deserialize(text: string): GameState | undefined {
       if (isCount(v)) g.toolTiers[t] = Math.min(Math.floor(v), MAX_TIER);
     }
   }
+  const order = raw.toolOrder;
+  if (
+    isObject(order) &&
+    (UPGRADABLE as readonly unknown[]).includes(order.tool) &&
+    isCount(order.tier) &&
+    order.tier >= 1 &&
+    order.tier <= MAX_TIER &&
+    isCount(order.readyDay)
+  )
+    g.toolOrder = {
+      tool: order.tool as Upgradable,
+      tier: Math.floor(order.tier),
+      readyDay: Math.floor(order.readyDay),
+    };
   if (isCount(raw.houseTier))
     g.houseTier = Math.min(Math.floor(raw.houseTier), MAX_HOUSE_TIER);
   const build = raw.houseBuild;
