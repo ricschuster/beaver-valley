@@ -12,6 +12,8 @@ export interface ForageDef {
   produce?: "fruit";
   /** A rare find: a small share of spawns in its season, not a common good. */
   rare?: boolean;
+  /** An edible mushroom: the dehydrator takes it, and the mushroom cave grows it. */
+  mushroom?: boolean;
   /** Turned up by tilling farm soil, not found on forage spots. */
   soil?: boolean;
 }

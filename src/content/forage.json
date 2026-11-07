@@ -98,7 +98,8 @@
     "name": "Field mushroom",
     "seasons": ["fall"],
     "sellPrice": 40,
-    "energy": 38
+    "energy": 38,
+    "mushroom": true
   },
   {
     "id": "crab-apple",
@@ -184,7 +185,8 @@
     "seasons": ["spring"],
     "sellPrice": 150,
     "rare": true,
-    "energy": 20
+    "energy": 20,
+    "mushroom": true
   },
   {
     "id": "chanterelle",
@@ -192,7 +194,8 @@
     "seasons": ["fall"],
     "sellPrice": 160,
     "energy": 75,
-    "rare": true
+    "rare": true,
+    "mushroom": true
   },
   {
     "id": "snowcap",
@@ -200,7 +203,8 @@
     "seasons": ["winter"],
     "sellPrice": 140,
     "rare": true,
-    "energy": 15
+    "energy": 15,
+    "mushroom": true
   },
   {
     "id": "wild-ginger",
@@ -215,6 +219,7 @@
     "name": "Cave mushroom",
     "seasons": [],
     "sellPrice": 200,
-    "energy": 25
+    "energy": 25,
+    "mushroom": true
   }
 ]

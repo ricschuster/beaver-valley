@@ -254,5 +254,33 @@
         "level": 9
       }
     ]
+  },
+  {
+    "id": "dehydrator",
+    "ingredients": [
+      {
+        "item": "wood",
+        "count": 30
+      },
+      {
+        "item": "stone",
+        "count": 5
+      },
+      {
+        "item": "iron-bar",
+        "count": 1
+      }
+    ],
+    "result": {
+      "item": "dehydrator",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "farming",
+        "level": 4
+      }
+    ]
   }
 ]

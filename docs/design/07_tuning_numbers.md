@@ -676,3 +676,15 @@ Source: `src/content/furniture.json`, `src/core/furniture.ts`.
   else into the pack, else a stash that empties into the pack when room opens.
 - Not built: the catalogue (copies at 0g), wallpaper and floors, bundle furniture
   rewards (no bundle names one yet), the per-people catalogues.
+
+## Dehydrator (build 5, 2026-11-07, note 66, placeholders)
+
+- Recipe: 30 wood, 5 stone, 1 iron bar, learned at Farming level 4. Machine
+  sell price 300g.
+- Takes 5 of one fruit or edible mushroom (wild fruit, crop fruit and tree
+  fruit count; vegetables and plain forage do not). Done the next morning
+  (1,600 machine minutes). Input quality is ignored, output is normal.
+- Dried good: price 7.5 times the base plus 25g, energy 3 times the base
+  (Stardew's rule, from the saved Artisan Goods page).
+- Edible mushrooms: field mushroom, morel, chanterelle, snowcap and cave
+  mushroom (`mushroom` flag in `forage.json`).

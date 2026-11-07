@@ -1,4 +1,11 @@
-import { artisanId, HONEY, MEAD, produceOf, type ArtisanKind } from "./artisan";
+import {
+  artisanId,
+  HONEY,
+  isMushroom,
+  MEAD,
+  produceOf,
+  type ArtisanKind,
+} from "./artisan";
 import { cropById } from "./crops";
 import { COAL } from "./ore";
 import { splitQuality } from "./quality";
@@ -24,6 +31,7 @@ export const MACHINES: readonly MachineDef[] = [
   { id: "bee-house", name: "Bee house", sellPrice: 200, auto: true },
   { id: "keg", name: "Keg", sellPrice: 250 },
   { id: "seed-maker", name: "Seed maker", sellPrice: 200 },
+  { id: "dehydrator", name: "Dehydrator", sellPrice: 300 },
 ];
 
 export const machineById = (id: string | undefined): MachineDef | undefined =>
@@ -63,6 +71,9 @@ const KEG_MINUTES = { wine: 10000, juice: 6000 } as const;
 const MEAD_MINUTES = 600;
 const KILN_MINUTES = 30;
 const SEED_MINUTES = 20;
+/** The dehydrator takes 5 of one fruit or mushroom and dries them in a day. */
+export const DEHYDRATOR_USE = 5;
+export const DEHYDRATOR_MINUTES = MINUTES_PER_DAY;
 
 /**
  * The batch a machine would run on an item, or undefined if it takes none.
@@ -95,6 +106,16 @@ export function processFor(
           minutes: SEED_MINUTES,
         }
       : undefined;
+  if (machine === "dehydrator") {
+    if (produceOf(input) !== "fruit" && !isMushroom(input)) return undefined;
+    return {
+      input,
+      use: DEHYDRATOR_USE,
+      count: 1,
+      output: artisanId(input, "dried"),
+      minutes: DEHYDRATOR_MINUTES,
+    };
+  }
   if (machine === "preserves-jar") {
     const produce = produceOf(input);
     return produce
