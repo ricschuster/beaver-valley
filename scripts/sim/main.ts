@@ -39,7 +39,7 @@ const env_ = (
 export async function main(args: string[]): Promise<void> {
   const name = args[0] ?? "expert";
   const runs = Number(args[1] ?? 100);
-  const maxDay = Number(args[2] ?? 84);
+  const maxDay = Number(args[2] ?? 112);
   // SIM_ACTION, SIM_DIAGONAL, SIM_TRANSITION override the time model, for
   // checking how much a result depends on it.
   for (const [env, field] of [
@@ -83,7 +83,7 @@ export async function main(args: string[]): Promise<void> {
   console.log(
     `  withered crops per run: median ${median(results.map((r) => r.withered))}`,
   );
-  for (const season of [0, 1]) {
+  for (const season of [0, 1, 2, 3]) {
     const money = results.flatMap((r) =>
       r.moneyAtSeasonEnd.slice(season, season + 1),
     );

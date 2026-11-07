@@ -23,29 +23,22 @@ describe("headless sim", () => {
     );
   });
 
-  it("lets the expert finish the bundles it plays, no sooner than the crops can grow", () => {
-    const r = playGame(PERSONAS.expert!, seeded(1), 84);
-    // Summer crops open on day 29 and the melon takes 12 days, so the summer
-    // crops bundle ends the run (the bot plays two seasons only).
-    expect(r.allDay).toBeGreaterThanOrEqual(41);
-    expect(r.allDay).toBeLessThanOrEqual(70);
+  it("lets the expert finish the bundles it plays over the 112 day year", () => {
+    const r = playGame(PERSONAS.expert!, seeded(2), 112);
+    // Winter Foraging opens in winter (day 85), so it ends the run.
+    expect(r.allDay).toBeGreaterThanOrEqual(85);
+    expect(r.allDay).toBeLessThanOrEqual(112);
     for (const b of BUNDLES) {
       if (UNPLAYED_BUNDLES.includes(b.id))
         expect(r.bundleDays[b.id]).toBeUndefined();
       else expect(r.bundleDays[b.id], b.id).toBeDefined();
     }
+    expect(r.moneyAtSeasonEnd).toHaveLength(3);
   });
 
   it("names the bundles it does not play, all of which exist", () => {
-    // These need bulk gathering, machines or mining that the bot has no model for.
-    expect(UNPLAYED_BUNDLES).toEqual([
-      "winter-foraging",
-      "autumn-crops",
-      "quality-crops",
-      "woodland",
-      "artisan-goods",
-      "smiths",
-    ]);
+    // Artisan Goods needs jar and bee house runs and an orchard the bot lacks.
+    expect(UNPLAYED_BUNDLES).toEqual(["artisan-goods"]);
     for (const id of UNPLAYED_BUNDLES)
       expect(
         BUNDLES.some((b) => b.id === id),
