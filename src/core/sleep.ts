@@ -45,7 +45,7 @@ export function sleep(
   const shipped = g.bin.settle(g);
 
   const { season } = dateOf(g.day.clock.day);
-  g.farm.endDay(season, growthRate(g.skills));
+  g.farm.endDay(season, growthRate(g.skills), random, season !== before);
   g.weather = g.tomorrow;
   const next = dateOf(g.day.clock.day + 1);
   g.tomorrow = rollWeather(next.season, next.dayOfSeason, random);

@@ -1,3 +1,4 @@
+import { fertilizerById } from "../core/fertilizer";
 import Phaser from "phaser";
 import type { GameState } from "../core/save";
 import {
@@ -257,7 +258,11 @@ export class DebugScene extends Phaser.Scene {
   /** Crops and forage carry a quality; seeds, wood and sap do not. */
   private hasQuality(id: string): boolean {
     return (
-      !id.endsWith("-seed") && id !== "wood" && id !== "sap" && id !== "fiber"
+      !id.endsWith("-seed") &&
+      id !== "wood" &&
+      id !== "sap" &&
+      id !== "fiber" &&
+      !fertilizerById(id)
     );
   }
 }

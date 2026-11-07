@@ -53,3 +53,5 @@ export function seedStock(season: Season): string[] {
     seedId(c.id),
   );
 }
+
+export { fertilizerStock } from "./fertilizer";

@@ -1,7 +1,10 @@
 # 31 Farm growth tools (draft)
 
-Status: draft. Decided with the owner on 2026-10-31. Nothing here is built; the
-game has hand watering and plain crops only. Reference: the Stardew Valley Wiki
+Status: draft. Decided with the owner on 2026-10-31. Fertilizer is built
+(2026-11-07, slice 1 build 3, `src/core/fertilizer.ts`): five items from the
+shop only, no crafting yet, applied from the toolbar, one per tile, gone at the
+season change. Sprinklers, the greenhouse, fruit trees and the cave are not
+built; the game has hand watering for the rest. Reference: the Stardew Valley Wiki
 Sprinkler, Scarecrow, Fruit Trees, Greenhouse, The Cave and Fertilizer pages,
 read only (ADR 0002). Costs and recipes are placeholders until the tuning note.
 

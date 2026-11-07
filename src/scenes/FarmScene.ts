@@ -1,3 +1,4 @@
+import { fertilizerById } from "../core/fertilizer";
 import Phaser from "phaser";
 import { sleep } from "../core/sleep";
 import type { GameState } from "../core/save";
@@ -29,6 +30,7 @@ import { HOUSE_MAP, houseMapId, isHouseMap } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
 import {
   cropKey,
+  fertKey,
   forageKey,
   iconKey,
   soilKey,
@@ -613,6 +615,8 @@ export class FarmScene extends Phaser.Scene {
     };
     for (const { x, y, plot } of this.state.farm.each()) {
       put(x, y, soilKey(plot.wateredToday));
+      const fert = fertilizerById(plot.fertilizer);
+      if (fert) put(x, y, fertKey(fert.line));
       const crop = plot.crop;
       const def = crop && cropById(crop.id);
       if (!crop || !def) continue;

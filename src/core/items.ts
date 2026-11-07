@@ -1,4 +1,5 @@
 import { CROPS, cropById } from "./crops";
+import { FERTILIZERS } from "./fertilizer";
 import { FORAGE } from "./forage";
 import { ENERGY_MULTIPLIER, QUALITY_MULTIPLIER, splitQuality } from "./quality";
 
@@ -36,6 +37,15 @@ for (const f of FORAGE) {
     name: f.name,
     sellPrice: f.sellPrice,
     energy: f.energy,
+  });
+}
+
+for (const f of FERTILIZERS) {
+  items.set(f.id, {
+    id: f.id,
+    name: f.name,
+    sellPrice: f.sellPrice,
+    buyPrice: f.buyPrice,
   });
 }
 
