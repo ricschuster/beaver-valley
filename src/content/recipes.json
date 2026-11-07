@@ -282,5 +282,29 @@
         "level": 4
       }
     ]
+  },
+  {
+    "id": "furnace",
+    "ingredients": [
+      {
+        "item": "copper-ore",
+        "count": 20
+      },
+      {
+        "item": "stone",
+        "count": 25
+      }
+    ],
+    "result": {
+      "item": "furnace",
+      "count": 1
+    },
+    "sources": [
+      {
+        "kind": "level",
+        "skill": "mining",
+        "level": 4
+      }
+    ]
   }
 ]
