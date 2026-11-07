@@ -1,13 +1,15 @@
 import Phaser from "phaser";
-import { itemById } from "../core/items";
 import {
+  buyAtCounter,
+  counterName,
+  counterProblem,
   enterFestival,
   enterProblem,
   festivalToday,
   leaveFestival,
 } from "../core/festivals";
 import type { GameState } from "../core/save";
-import { frame } from "./panel";
+import { frame, Menu } from "./panel";
 import { STATE_KEY } from "./state";
 
 /**
@@ -19,6 +21,7 @@ import { STATE_KEY } from "./state";
 export class FestivalScene extends Phaser.Scene {
   private state!: GameState;
   private inside = false;
+  private message!: Phaser.GameObjects.Text;
 
   constructor() {
     super("festival");
@@ -45,9 +48,9 @@ export class FestivalScene extends Phaser.Scene {
     const no = this.button(620, 330, "Not now", 0xa0482e, () =>
       this.close(false),
     );
-    this.input.keyboard?.on("keydown-ENTER", () =>
-      this.inside ? this.close(true) : this.enter(),
-    );
+    this.input.keyboard?.on("keydown-ENTER", () => {
+      if (!this.inside) this.enter();
+    });
     this.add
       .text(480, 500, "Enter: yes   Esc: no", {
         fontSize: "13px",
@@ -75,17 +78,43 @@ export class FestivalScene extends Phaser.Scene {
       color: "#ffffff",
       wordWrap: { width: 900 },
     });
-    const extras: string[] = [];
-    if (f.prizes.length > 0)
-      extras.push(
-        `Prize counter: ${f.prizes.map((p) => itemById(p)?.name ?? p).join(", ")}`,
-      );
-    if (f.minigame) extras.push(`Festival game: ${f.minigame}`);
-    this.add.text(24, 150, extras.join("\n"), {
+    if (f.minigame)
+      this.add.text(24, 150, `Festival game: ${f.minigame}`, {
+        fontSize: "18px",
+        color: "#ffe9a0",
+      });
+    this.message = this.add.text(24, 400, "", {
       fontSize: "18px",
       color: "#ffe9a0",
     });
-    this.button(480, 440, "Leave", 0xa0482e, () => this.close(true));
+    if (f.counter.length > 0) {
+      const menu = new Menu(this, { x: 24, y: 190, w: 700, title: "Counter" });
+      menu.setFocus(true);
+      const kb = this.input.keyboard;
+      kb?.on("keydown-UP", () => menu.move(-1));
+      kb?.on("keydown-DOWN", () => menu.move(1));
+      kb?.on("keydown-SPACE", () => menu.press(0));
+      const rows = () =>
+        f.counter.map((e) => ({
+          label: counterName(e),
+          detail: `${e.price}g`,
+          dim: counterProblem(this.state, f, e) !== undefined,
+          buttons: [
+            {
+              text: "Buy",
+              run: () => {
+                const why = counterProblem(this.state, f, e);
+                if (why === undefined && buyAtCounter(this.state, f, e))
+                  this.message.setText(`You buy the ${counterName(e)}.`);
+                else this.message.setText(why ?? "");
+                menu.setRows(rows());
+              },
+            },
+          ],
+        }));
+      menu.setRows(rows());
+    }
+    this.button(780, 470, "Leave", 0xa0482e, () => this.close(true));
   }
 
   private button(

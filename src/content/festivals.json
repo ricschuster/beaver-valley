@@ -8,7 +8,48 @@
     "closes": 1080,
     "ends": 1320,
     "blurb": "Everyone in the valley shows off their best hat on the green.",
-    "prizes": [],
+    "gift": { "hat": "parade-ribbon" },
+    "counter": [
+      { "hat": "straw-boater", "price": 300 },
+      { "hat": "feathered-cap", "price": 500 },
+      { "hat": "wool-beret", "price": 400 }
+    ],
+    "minigame": null
+  },
+  {
+    "id": "seedswap-fair",
+    "name": "Seedswap Fair",
+    "season": "spring",
+    "day": 21,
+    "opens": 720,
+    "closes": 1080,
+    "ends": 1320,
+    "blurb": "Neighbours swap seeds on the green, and the stalls sell packets you will not find in the shop.",
+    "counter": [{ "item": "mixed-seed", "price": 20 }],
+    "minigame": null
+  },
+  {
+    "id": "cake-day",
+    "name": "Cake Day",
+    "season": "summer",
+    "day": 8,
+    "opens": 720,
+    "closes": 1080,
+    "ends": 1320,
+    "blurb": "The Brimmers dress as food and the green smells of baking.",
+    "counter": [],
+    "minigame": null
+  },
+  {
+    "id": "lamplight-evening",
+    "name": "Lamplight Evening",
+    "season": "summer",
+    "day": 20,
+    "opens": 720,
+    "closes": 1080,
+    "ends": 1320,
+    "blurb": "A quiet lantern gathering on the green as the light goes.",
+    "counter": [],
     "minigame": null
   }
 ]

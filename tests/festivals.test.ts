@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { DAYS_PER_SEASON, SEASONS, dateOf } from "../src/core/calendar";
 import {
   FESTIVALS,
+  buyAtCounter,
+  counterProblem,
   festivalOn,
   festivalOpen,
   festivalToday,
@@ -10,6 +12,7 @@ import {
   leaveFestival,
   nextFestival,
 } from "../src/core/festivals";
+import { hatById } from "../src/core/hats";
 import { itemById } from "../src/core/items";
 import { deserialize, newGame, serialize } from "../src/core/save";
 import { sleep } from "../src/core/sleep";
@@ -31,7 +34,13 @@ describe("festival data", () => {
       expect(f.day, f.id).toBeLessThanOrEqual(DAYS_PER_SEASON - 7);
       expect(f.opens, f.id).toBeLessThan(f.closes);
       expect(f.ends, f.id).toBeGreaterThanOrEqual(f.closes);
-      for (const p of f.prizes) expect(itemById(p), p).toBeDefined();
+      for (const e of f.counter) {
+        expect(e.price, f.id).toBeGreaterThan(0);
+        expect(Boolean(e.item) !== Boolean(e.hat), f.id).toBe(true);
+        if (e.item) expect(itemById(e.item), e.item).toBeDefined();
+        if (e.hat) expect(hatById(e.hat), e.hat).toBeDefined();
+      }
+      if (f.gift) expect(hatById(f.gift.hat), f.id).toBeDefined();
     }
   });
 
@@ -48,11 +57,15 @@ describe("lookup", () => {
     const year2 = DAYS_PER_SEASON * SEASONS.length + 10;
     expect(festivalToday(year2)?.id).toBe("hat-parade");
     expect(festivalOn("summer", 10)).toBeUndefined();
+    expect(festivalOn("spring", 21)?.id).toBe("seedswap-fair");
+    expect(festivalOn("summer", 8)?.id).toBe("cake-day");
+    expect(festivalOn("summer", 20)?.id).toBe("lamplight-evening");
   });
 
   it("finds the next festival, wrapping into the next year", () => {
     expect(nextFestival(1)?.day).toBe(10);
-    const next = nextFestival(10)!;
+    expect(nextFestival(10)?.festival.id).toBe("seedswap-fair");
+    const next = nextFestival(dayOf("summer", 20))!;
     expect(next.festival.id).toBe("hat-parade");
     expect(dateOf(next.day).year).toBe(2);
   });
@@ -133,5 +146,74 @@ describe("save", () => {
     const raw = JSON.parse(serialize(g));
     delete raw.festivalsJoined;
     expect(deserialize(JSON.stringify(raw))!.festivalsJoined).toEqual([]);
+  });
+});
+
+describe("hats and the counter", () => {
+  const joined = () => {
+    const g = newGame();
+    g.day.clock.day = dayOf("spring", parade.day);
+    g.day.clock.minutes = parade.opens;
+    return g;
+  };
+
+  it("gives the parade hat on the first visit, once", () => {
+    const g = joined();
+    expect(g.wardrobe.has("parade-ribbon")).toBe(false);
+    enterFestival(g);
+    enterFestival(g);
+    expect(g.wardrobe.list()).toEqual(["parade-ribbon"]);
+  });
+
+  it("sells hats once, for coin, and only to a visitor", () => {
+    const g = joined();
+    const e = parade.counter[0]!;
+    expect(counterProblem(g, parade, e)).toMatch(/Go to the festival/);
+    enterFestival(g);
+    g.money = e.price - 1;
+    expect(buyAtCounter(g, parade, e)).toBe(false);
+    g.money = e.price + 5;
+    expect(buyAtCounter(g, parade, e)).toBe(true);
+    expect(g.money).toBe(5);
+    expect(g.wardrobe.has(e.hat!)).toBe(true);
+    expect(buyAtCounter(g, parade, e)).toBe(false);
+  });
+
+  it("sells items without limit while the pack has room", () => {
+    const g = newGame();
+    const fair = FESTIVALS.find((f) => f.id === "seedswap-fair")!;
+    g.day.clock.day = dayOf("spring", fair.day);
+    g.day.clock.minutes = fair.opens;
+    enterFestival(g);
+    g.money = 100;
+    expect(buyAtCounter(g, fair, fair.counter[0]!)).toBe(true);
+    expect(buyAtCounter(g, fair, fair.counter[0]!)).toBe(true);
+    expect(g.inventory.count("mixed-seed")).toBe(2);
+    expect(g.money).toBe(60);
+  });
+
+  it("wears only owned hats", () => {
+    const g = newGame();
+    expect(g.wardrobe.wear("wool-beret")).toBe(false);
+    g.wardrobe.add("wool-beret");
+    expect(g.wardrobe.wear("wool-beret")).toBe(true);
+    expect(g.wardrobe.wear(undefined)).toBe(true);
+    expect(g.wardrobe.worn).toBeUndefined();
+  });
+
+  it("saves hats, and old or bad saves load with none", () => {
+    const g = newGame();
+    g.wardrobe.add("straw-boater");
+    g.wardrobe.wear("straw-boater");
+    const back = deserialize(serialize(g))!;
+    expect(back.wardrobe.list()).toEqual(["straw-boater"]);
+    expect(back.wardrobe.worn).toBe("straw-boater");
+    const raw = JSON.parse(serialize(g));
+    delete raw.wardrobe;
+    expect(deserialize(JSON.stringify(raw))!.wardrobe.list()).toEqual([]);
+    raw.wardrobe = { owned: ["nope", 3, "wool-beret"], worn: "straw-boater" };
+    const odd = deserialize(JSON.stringify(raw))!;
+    expect(odd.wardrobe.list()).toEqual(["wool-beret"]);
+    expect(odd.wardrobe.worn).toBeUndefined();
   });
 });
