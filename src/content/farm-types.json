@@ -1,0 +1,22 @@
+[
+  {
+    "id": "standard",
+    "name": "Standard",
+    "theme": "All-rounder",
+    "perk": "The most farmland, nothing special.",
+    "map": "farm",
+    "startSeeds": { "crop": "parsnip", "count": 15 },
+    "mixedSeedChance": 0.05,
+    "stumpRegrowDays": 0
+  },
+  {
+    "id": "woodland",
+    "name": "Woodland",
+    "theme": "Foraging",
+    "perk": "Less farmland. Stumps that regrow, forage clearings, weeds that drop mixed seeds.",
+    "map": "farm-woodland",
+    "startSeeds": { "crop": "parsnip", "count": 15 },
+    "mixedSeedChance": 1,
+    "stumpRegrowDays": 4
+  }
+]

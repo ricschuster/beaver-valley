@@ -1,6 +1,10 @@
 # 32 Farm types (draft)
 
-Status: draft. The Meadow start, fish tables and choice screen were decided
+Status: draft. Built 2026-11-07 (slice 1 build 9): Standard and Woodland, the
+choice screen, the saved type and the data fields `map`, `startSeeds`,
+`mixedSeedChance` and `stumpRegrowDays`. Not built: the other three types, the
+water tile check in `problems`, per-farm fish tables, `startBuildings`,
+`startAnimals`, `grassBonus` and `quarry`. The Meadow start, fish tables and choice screen were decided
 with the owner on 2026-10-31. The layouts, perks and numbers are our draft and
 are placeholders. Nothing here is built. The earlier decisions are in
 `25_stardew_system_review.md` ("Owner decisions, 2026-10-30"), and the check

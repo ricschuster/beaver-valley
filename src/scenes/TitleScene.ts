@@ -1,9 +1,8 @@
 import Phaser from "phaser";
 import { dateOf } from "../core/calendar";
-import { START } from "../core/maps";
+import { farmMapOf, farmTypeById } from "../core/farmtypes";
 import { loadGame, type GameState } from "../core/save";
 import { startGame } from "../core/toolbar";
-import { maps } from "../content/maps";
 import { PROFILE_NAMES } from "./OptionsScene";
 import { browserStore, loadDeviceSettings } from "./storage";
 import { STATE_KEY } from "./state";
@@ -24,8 +23,11 @@ export class TitleScene extends Phaser.Scene {
   create(): void {
     if (location.search.includes("new")) {
       // Drop `?new` so a later reload continues instead of starting over.
+      // `?new&farm=woodland` picks the farm type; Standard otherwise.
+      const farm =
+        new URLSearchParams(location.search).get("farm") ?? undefined;
       history.replaceState(null, "", location.pathname);
-      return this.begin(startGame());
+      return this.begin(startGame(farm));
     }
 
     const raw = browserStore.read();
@@ -49,7 +51,7 @@ export class TitleScene extends Phaser.Scene {
         .text(
           480,
           236,
-          `Saved game: day ${saved.day.clock.day}, year ${year}, ${season} ${dayOfSeason}, ${saved.money}g`,
+          `Saved game: ${farmTypeById(saved.farmType).name} farm, day ${saved.day.clock.day}, year ${year}, ${season} ${dayOfSeason}, ${saved.money}g`,
           { fontSize: "18px", color: "#d8e8c8" },
         )
         .setOrigin(0.5);
@@ -96,13 +98,13 @@ export class TitleScene extends Phaser.Scene {
       );
       return;
     }
-    this.begin(startGame());
+    this.scene.start("farm-choice");
   }
 
   private begin(state: GameState): void {
     state.forage.respawn(
       dateOf(state.day.clock.day).season,
-      maps.get(START.map).forageSpots,
+      farmMapOf(state).forageSpots,
       Math.random,
     );
     this.registry.set(STATE_KEY, state);

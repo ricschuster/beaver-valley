@@ -12,6 +12,7 @@ import { WitchTestScene } from "./scenes/WitchTestScene";
 import { WitchWalkScene } from "./scenes/WitchWalkScene";
 import { OptionsScene } from "./scenes/OptionsScene";
 import { TitleScene } from "./scenes/TitleScene";
+import { FarmChoiceScene } from "./scenes/FarmChoiceScene";
 import { ShopScene } from "./scenes/ShopScene";
 import { CarpenterScene } from "./scenes/CarpenterScene";
 import { DebugScene } from "./scenes/DebugScene";
@@ -38,6 +39,7 @@ new Phaser.Game({
   scene: [
     ...first,
     TitleScene,
+    FarmChoiceScene,
     OptionsScene,
     FarmScene,
     ShopScene,

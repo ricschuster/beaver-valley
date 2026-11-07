@@ -2,7 +2,7 @@
 
 Status: draft. Decided with the owner on 2026-10-31. Weeds and Fiber are built
 (2026-11-07, slice 1 build 3, `src/core/weeds.ts`): day 1 scatter, spread, one
-hit clears, fiber drop, saved. Not built: the mixed seed drops (no crafting
+hit clears, fiber drop, saved. Mixed seed drops built 2026-11-07 with farm types (a 5 percent chance, 100 percent on Woodland; the summer flower seed is not built). Earlier note: (no crafting
 yet) and winter day 1 clear (no winter yet). The fruit tree block is built
 (2026-11-07, `src/core/sleep.ts`). Grass and
 clutter are not in the game. Reference: the Stardew Valley Wiki

@@ -65,6 +65,8 @@ export interface Service extends Spot {
 /** A tree placed on the map at the start of a new game. `stage` is 1 to 5 (`core/trees.ts`). */
 export interface TreeSpot extends Spot {
   stage: number;
+  /** A large stump that regrows after it is chopped (`core/trees.ts`). Stage is 5. */
+  large?: boolean;
 }
 
 /** A named rectangle of tiles, such as one room of the hall. */
@@ -154,6 +156,8 @@ export class FarmMap {
         else if (cls === "rock") rocks.push(spot);
         else if (cls === "tree")
           trees.push({ ...spot, stage: num(o, "stage") ?? 5 });
+        else if (cls === "stump")
+          trees.push({ ...spot, stage: 5, large: true });
         else if (cls === "service")
           services.push({ id: o.name, kind: text(o, "kind") ?? "", ...spot });
         else if (cls === "region")
