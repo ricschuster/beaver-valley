@@ -32,18 +32,17 @@ only, #487), 8 (hats, festival counters, furniture, #490 and #491) and 9
 (Standard and Woodland, #489). Bundles 4, 9, 10 and 12 use spring and summer
 stand-in pools until build 4.
 
-Left in slice 1. Designed in note 66 (2026-11-07), so nothing is blocked on the
-owner now. The #61 numbers were already settled in note 07:
+Build 4 (fall and winter, #495), the fall and winter festivals (#496), the
+dehydrator (#497) and the farm cave (#498) were built on 2026-11-07, so the
+slice 1 build track is done apart from the leftovers below. Nothing built since
+build 4 has been played in the browser yet.
 
-- **Build 4, fall and winter.** Numbers are in note 07, festivals in note 66.
-  It also unblocks the fall trees, fall and winter festivals, winter forage,
-  and swapping the stand-in bundle pools back.
-- **Farm cave** (rest of build 5), with the new dehydrator machine (note 66):
-  the cave map, an earnings counter and the choice screen.
-- Smaller leftovers: mine camp chest and Old Greencoat scene, geodes, pickaxe
-  tiers, extra crafted furnaces, workbench and chests, quartz (quality
-  sprinkler), teaching the sim bot to chop, mine and run machines, the
-  furniture catalogue and the hatter (needs achievements).
+Smaller leftovers: mine camp chest and Old Greencoat scene, geodes, pickaxe
+tiers, extra crafted furnaces, workbench and chests, quartz (quality
+sprinkler), teaching the sim bot to chop, mine, run machines and farm fall
+(it skips three bundles), the furniture catalogue and the hatter (needs
+achievements), festival maps in place of the festival screens, storms, and the
+fruit bat and mushroom art.
 
 ## Remaining bundle work
 
