@@ -43,5 +43,70 @@
     "id": "holly-hat",
     "name": "Holly Hat",
     "color": "#2f7f4a"
+  },
+  {
+    "id": "clay-cap",
+    "name": "Clay Cap",
+    "color": "#a8684a"
+  },
+  {
+    "id": "brass-bow",
+    "name": "Brass Bow",
+    "color": "#c8a23a"
+  },
+  {
+    "id": "slate-cap",
+    "name": "Slate Cap",
+    "color": "#5a6470"
+  },
+  {
+    "id": "gilded-derby",
+    "name": "Gilded Derby",
+    "color": "#d8b84a"
+  },
+  {
+    "id": "grand-sunhat",
+    "name": "Grand Sunhat",
+    "color": "#e8d88a"
+  },
+  {
+    "id": "buttercup-wreath",
+    "name": "Buttercup Wreath",
+    "color": "#f0d040"
+  },
+  {
+    "id": "peaked-cap",
+    "name": "Peaked Cap",
+    "color": "#7a8a5a"
+  },
+  {
+    "id": "tall-red-cap",
+    "name": "Tall Red Cap",
+    "color": "#c0382a"
+  },
+  {
+    "id": "plaid-brim",
+    "name": "Plaid Brim",
+    "color": "#a85a3a"
+  },
+  {
+    "id": "tall-brim",
+    "name": "Tall Brim",
+    "color": "#9a8a5a"
+  },
+  {
+    "id": "craftsmans-cap",
+    "name": "Craftsman's Cap",
+    "color": "#6a7a9a"
+  },
+  {
+    "id": "thatch-pin",
+    "name": "Thatch Pin",
+    "color": "#c8b060"
+  },
+  {
+    "id": "fur-lined-hood",
+    "name": "Fur-lined Hood",
+    "color": "#8a7a6a"
   }
 ]
