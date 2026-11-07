@@ -186,6 +186,7 @@ export class ShopScene extends Phaser.Scene {
             text: "Sell 1",
             run: () => {
               const earned = sell(g.inventory, g, id, 1, mult);
+              g.cave.addEarnings(earned, g.day.clock.day + 1);
               this.say(`Sold 1 ${def?.name} for ${earned}g.`);
             },
           },
@@ -193,6 +194,7 @@ export class ShopScene extends Phaser.Scene {
             text: "Sell all",
             run: () => {
               const earned = sellAll(g.inventory, g, id, mult);
+              g.cave.addEarnings(earned, g.day.clock.day + 1);
               this.say(`Sold ${count} ${def?.name} for ${earned}g.`);
             },
           },

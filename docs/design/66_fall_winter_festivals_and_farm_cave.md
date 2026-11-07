@@ -172,6 +172,15 @@ festival furniture pieces, a pumpkin seed pack), the Hollow Eve hat name, the
 festival furniture and hats. Without a dish group the table tops out at 93
 points, so first place (85) needs five groups of top goods.
 
+The farm cave is built too (2026-11-07). Earnings from the bin and the shop
+count toward 25,000g (bundle rewards do not, SC-54 stays open). The villager
+comes the next morning as a choice screen, once a morning until answered. The
+door sits at the north edge of every farm map (column 36), shut until the
+choice. Fruit bats and mushroom boxes follow the numbers above, picked with
+Action. The free dehydrator lives in the cave as its own state, not in the
+farm's machine list, so it needs no map awareness in `Machines`. The villager's
+name is still open, so the screen says "a neighbour".
+
 ## Still open
 
 - The villager who asks to use the cave, and the Hollow Eve first-time hat.
