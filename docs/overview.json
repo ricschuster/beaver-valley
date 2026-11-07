@@ -939,7 +939,7 @@
       "group": "systems",
       "pos": [500, 680],
       "built": "partial",
-      "builtNote": "A festival calendar and a festival marker exist; no minigame (#134, bug #155).",
+      "builtNote": "All eight festivals are built as screens (2026-11-07): Harvest Showing table and token counter, Hollow Eve maze, Frostday sights, counters. No festival maps. The farm cave is built too (note 66).",
       "summary": "Two festivals a season; the Hat Parade comes first.",
       "items": [
         {
