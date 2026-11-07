@@ -1,6 +1,7 @@
 import {
   chop,
   clearSeedling,
+  clearWeed,
   forage,
   harvest,
   plant,
@@ -38,6 +39,13 @@ export function useHeld(
 ): Outcome {
   if (held.kind === "empty") return fail("nothing held");
   if (!map.hasSoil) return fail("nothing to do here");
+  const weedTool =
+    held.kind === "tool" &&
+    (held.tool === "axe" || held.tool === "hoe" || held.tool === "can")
+      ? held.tool
+      : undefined;
+  if (weedTool && g.weeds.at(x, y))
+    return clearWeed(g, x, y, weedTool, Math.random, map);
   if (held.kind === "tool" && held.tool === "axe")
     return chop(g, x, y, Math.random, map);
   if (held.kind === "tool" && held.tool === "hoe") {
@@ -100,6 +108,8 @@ const REASONS: Record<string, string> = {
   "nothing to do here": "Nothing to do here.",
   "nothing held": "Select a tool or item.",
   "nothing to chop": "Nothing to chop here.",
+  "a weed is in the way": "Clear the weed first.",
+  "no weed": "No weed here.",
   "a tree is in the way": "A tree is in the way.",
   "nothing to shake": "Nothing falls from there.",
   "cannot plant tree here": "A tree cannot grow there.",

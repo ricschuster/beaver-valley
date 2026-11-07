@@ -58,11 +58,29 @@ export function sleep(
       map.canPlantTree(x, y) &&
       !g.farm.plotAt(x, y) &&
       !g.forage.itemAt(x, y) &&
+      !g.weeds.at(x, y) &&
       g.ground.at(x, y).length === 0,
   );
+  if (map?.hasSoil) {
+    const today = dateOf(g.day.clock.day);
+    g.weeds.endDay(
+      season,
+      today.dayOfSeason,
+      g.weather,
+      random,
+      (x, y) =>
+        map.isTillable(x, y) &&
+        !map.isBlocked(x, y) &&
+        !g.trees.at(x, y) &&
+        !g.farm.plotAt(x, y)?.crop &&
+        !g.forage.itemAt(x, y) &&
+        g.ground.at(x, y).length === 0,
+      () => map.tillableTiles(),
+    );
+  }
   g.forage.respawn(
     season,
-    spots.filter((s) => !g.trees.at(s.x, s.y)),
+    spots.filter((s) => !g.trees.at(s.x, s.y) && !g.weeds.at(s.x, s.y)),
     random,
   );
   const houseFinished = advanceBuild(g);

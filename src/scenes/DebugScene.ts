@@ -256,6 +256,8 @@ export class DebugScene extends Phaser.Scene {
 
   /** Crops and forage carry a quality; seeds, wood and sap do not. */
   private hasQuality(id: string): boolean {
-    return !id.endsWith("-seed") && id !== "wood" && id !== "sap";
+    return (
+      !id.endsWith("-seed") && id !== "wood" && id !== "sap" && id !== "fiber"
+    );
   }
 }

@@ -418,6 +418,8 @@ function paintSeedIcon(scene: Phaser.Scene, cropId: string): void {
 
 // ---- trees and tree goods
 
+export const WEED_KEY = "weed";
+
 export const treeKey = (stage: number, stump: boolean) =>
   stump ? "tree-stump" : `tree-${stage}`;
 
@@ -427,6 +429,16 @@ function paintTrees(scene: Phaser.Scene): void {
     paint(t.getContext());
     t.refresh();
   };
+  // A weed: a ragged tuft of leaves, flat enough to walk over.
+  draw(WEED_KEY, (c) => {
+    px(c, "#3a7a2a", 5, 9, 1, 5);
+    px(c, "#4aa03a", 8, 7, 1, 7);
+    px(c, "#3a7a2a", 11, 9, 1, 5);
+    px(c, "#5ab84a", 4, 8, 2, 2);
+    px(c, "#5ab84a", 7, 6, 3, 2);
+    px(c, "#5ab84a", 10, 8, 2, 2);
+    px(c, "#2a5a20", 4, 14, 8, 1);
+  });
   // A seed in the ground: a pale mound and a speck.
   draw(treeKey(1, false), (c) => {
     px(c, "#6b4e2d", 6, 10, 4, 2);
@@ -481,6 +493,12 @@ function paintTrees(scene: Phaser.Scene): void {
     px(c, "#e0a030", 7, 10, 2, 2);
     px(c, "#f8d878", 7, 6, 1, 3);
   });
+  draw("icon-fiber", (c) => {
+    px(c, "#7ab04a", 4, 4, 2, 9);
+    px(c, "#5a9a3a", 7, 3, 2, 10);
+    px(c, "#8cc05a", 10, 5, 2, 8);
+    px(c, "#c9b46a", 3, 11, 10, 1);
+  });
   draw("icon-tree-seed", (c) => {
     px(c, "#7a5a2a", 5, 4, 6, 8);
     px(c, "#9a7a3a", 6, 3, 4, 2);
@@ -492,7 +510,8 @@ function paintTrees(scene: Phaser.Scene): void {
 /** The texture key for a backpack item, or undefined if it has no picture. */
 export function iconKey(itemId: string): string | undefined {
   const { base } = splitQuality(itemId);
-  if (base === "wood" || base === "sap") return `icon-${base}`;
+  if (base === "wood" || base === "sap" || base === "fiber")
+    return `icon-${base}`;
   if (base.endsWith("-seed")) return `icon-${base}`;
   if (CROPS.some((c) => c.id === base)) return cropKey(base, CROP_STAGES - 1);
   if (FORAGE.some((f) => f.id === base)) return forageKey(base);
