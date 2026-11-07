@@ -8,7 +8,7 @@ basic sprinkler, and the quality sprinkler hidden until quartz crystals exist).
 Build 7 (2026-11-07) added the bundle source (a finished bundle teaches its
 machine recipe), several sources per recipe, and recipes for basic fertilizer,
 basic retaining soil and the five farm machines (kiln, jar, bee house, keg, seed
-maker). The five machine bundles are in `bundles.json` now (note 35). Not built: the workbench and chests, the shop and gift sources, fences,
+maker). The five machine bundles are in `bundles.json` now (note 35). Quartz crystals and the quality sprinkler were built 2026-11-07 (session e): quartz is a one swing crystal node on mine floors 1 to 10 (6 percent of rocks, a placeholder for "lying on the floor"), selling for 25g. Not built: the workbench and chests, the shop and gift sources, fences,
 paths, floors, signs, torches and campfires (no placeable objects yet), tree
 fertilizer, wild seeds, speed fertilizer (needs moss), quality retaining soil
 (needs clay) and quality fertilizer (needs fish). The rest of this note is not built.

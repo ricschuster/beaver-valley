@@ -8,7 +8,7 @@ import type { Spot } from "./forage";
  * its own.
  */
 
-export type RockKind = "stone" | "copper" | "coal";
+export type RockKind = "stone" | "copper" | "coal" | "quartz";
 
 export interface Rock {
   x: number;
@@ -27,9 +27,11 @@ export const SWINGS_TO_BREAK: Record<RockKind, number> = {
   stone: 2,
   copper: 3,
   coal: 3,
+  /** A crystal cluster: one swing. A placeholder for quartz "lying on the floor" (note 34). */
+  quartz: 1,
 };
 
-export const ROCK_KINDS: RockKind[] = ["stone", "copper", "coal"];
+export const ROCK_KINDS: RockKind[] = ["stone", "copper", "coal", "quartz"];
 
 const key = (x: number, y: number) => `${x},${y}`;
 

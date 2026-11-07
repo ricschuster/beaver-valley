@@ -21,6 +21,7 @@ import { sleep } from "../src/core/sleep";
 import { heldAt, startGame, TOOLS } from "../src/core/toolbar";
 import { useHeld } from "../src/core/tools";
 import { itemById } from "../src/core/items";
+import { craft } from "../src/core/crafting";
 
 const noSpots = [] as { x: number; y: number }[];
 
@@ -309,5 +310,42 @@ describe("saving the mine", () => {
     expect(g.mines.deepest).toBe(0);
     expect(g.furnace.gifted).toBe(false);
     expect(g.skills.xpOf("mining")).toBe(0);
+  });
+});
+
+describe("quartz and the quality sprinkler", () => {
+  it("lies in the mine as a one swing cluster that drops a crystal", () => {
+    const g = newGame();
+    g.day.clock.day = 5;
+    g.mines.visit(1, 5).rocks.add(2, 2, "quartz");
+    const r = mine(g, 2, 2, 1, () => 0.9);
+    expect(r.ok).toBe(true);
+    expect(g.inventory.count("quartz-crystal")).toBe(1);
+    expect(g.mines.visit(1, 5).rocks.at(2, 2)).toBeUndefined();
+    expect(itemById("quartz-crystal")?.sellPrice).toBe(25);
+  });
+
+  it("shows up on floors 1 to 10 at about 6 percent of rocks", () => {
+    let quartz = 0;
+    let total = 0;
+    for (let day = 5; day < 45; day++)
+      for (let floor = 1; floor <= BUILT_FLOORS; floor++)
+        for (const r of floorLayout(floor, day).rocks) {
+          total++;
+          if (r.kind === "quartz") quartz++;
+        }
+    expect(quartz / total).toBeGreaterThan(0.04);
+    expect(quartz / total).toBeLessThan(0.09);
+  });
+
+  it("makes the quality sprinkler craftable at farming level 6", () => {
+    const g = newGame();
+    for (const id of ["iron-bar", "gold-bar", "quartz-crystal"])
+      g.inventory.add(id);
+    expect(craft(g, "quality-sprinkler")).toBe("recipe not known");
+    g.skills.gain("farming", 100000);
+    expect(craft(g, "quality-sprinkler")).toBeUndefined();
+    expect(g.inventory.count("quality-sprinkler")).toBe(1);
+    expect(g.inventory.count("quartz-crystal")).toBe(0);
   });
 });

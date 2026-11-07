@@ -1,5 +1,5 @@
 import type { Outcome } from "./actions";
-import { COAL, COPPER_ORE, STONE } from "./ore";
+import { COAL, COPPER_ORE, QUARTZ, STONE } from "./ore";
 import { swingCost } from "./upgrades";
 import type { GameState } from "./save";
 import { SWINGS_TO_BREAK, type RockKind, type Rocks } from "./rocks";
@@ -12,6 +12,7 @@ export const ROCK_XP: Record<RockKind, number> = {
   stone: 2,
   copper: 5,
   coal: 4,
+  quartz: 3,
 };
 
 /** A node gives 1 ore, and this chance plus a bit a level that it gives 2 or 3 (note 22, placeholder). */
@@ -33,6 +34,7 @@ export function drops(
   random: () => number,
 ): Drop {
   if (kind === "stone") return { id: STONE, count: random() < 0.5 ? 1 : 2 };
+  if (kind === "quartz") return { id: QUARTZ, count: 1 };
   if (kind === "coal") return { id: COAL, count: 1 + (random() < 0.3 ? 1 : 0) };
   let count = 1;
   if (random() < EXTRA_ORE_BASE + EXTRA_ORE_PER_LEVEL * miningLevel)

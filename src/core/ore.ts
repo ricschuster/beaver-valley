@@ -31,6 +31,10 @@ export const COAL_PER_BAR = 1;
 export const STONE = "stone";
 export const COAL = "coal";
 export const COPPER_ORE = "copper-ore";
+/** The quartz crystal stands in for refined quartz and earth crystals in recipes (note 34). */
+export const QUARTZ = "quartz-crystal";
+/** Stardew's quartz sells for 25g (from memory). */
+export const QUARTZ_SELL_PRICE = 25;
 
 /** Stone sells for 2g. Ours, a placeholder. */
 export const STONE_SELL_PRICE = 2;

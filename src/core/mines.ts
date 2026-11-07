@@ -30,6 +30,8 @@ export const MAX_ROCKS = 16;
 /** Share of rocks that are copper nodes and coal rocks on floors 1 to 10 (placeholders). */
 export const COPPER_SHARE = 0.22;
 export const COAL_SHARE = 0.08;
+/** Share of rocks that are quartz clusters on floors 1 to 10 (placeholder, note 07). */
+export const QUARTZ_SHARE = 0.06;
 
 export const minesOpen = (day: number): boolean => day >= MINES_OPEN_DAY;
 
@@ -127,7 +129,9 @@ export function floorLayout(floor: number, day: number): FloorLayout {
         ? "copper"
         : r < COPPER_SHARE + COAL_SHARE
           ? "coal"
-          : "stone";
+          : r < COPPER_SHARE + COAL_SHARE + QUARTZ_SHARE
+            ? "quartz"
+            : "stone";
     rocks.push({ ...s, kind, hits: 0 });
   }
   // The floor's last floor has no way down yet.

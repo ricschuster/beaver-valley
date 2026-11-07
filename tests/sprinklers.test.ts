@@ -149,8 +149,8 @@ describe("crafting", () => {
     const g = newGame();
     level(g, 10);
     const ids = knownRecipes(g).map((r) => r.id);
-    expect(ids).not.toContain("quality-sprinkler");
-    expect(RECIPES.length).toBeGreaterThan(ids.length);
+    expect(ids).toContain("quality-sprinkler");
+    expect(RECIPES.length).toBeGreaterThanOrEqual(ids.length);
   });
 
   it("takes the bars and gives the sprinkler", () => {

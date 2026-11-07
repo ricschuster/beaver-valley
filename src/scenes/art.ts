@@ -675,12 +675,14 @@ export const ROCK_KEYS = {
   stone: "rock-stone",
   copper: "rock-copper",
   coal: "rock-coal",
+  quartz: "rock-quartz",
 } as const;
 export const LADDER_KEY = "mine-ladder";
 
 const MINE_ICON_IDS = [
   "stone",
   "coal",
+  "quartz-crystal",
   "copper-ore",
   "iron-ore",
   "gold-ore",
@@ -795,6 +797,13 @@ function paintMineArt(scene: Phaser.Scene): void {
     lump(c, "#4a4a52", "#2a2a30", "#6a6a74");
     specks(c, "#16161a");
   });
+  const crystal = (c: Ctx) => {
+    px(c, "#5a5a62", 3, 12, 10, 2);
+    px(c, "#dff2f4", 5, 4, 3, 8);
+    px(c, "#b4dde2", 8, 6, 3, 6);
+    px(c, "#ffffff", 6, 5, 1, 3);
+  };
+  draw(ROCK_KEYS.quartz, crystal);
   draw(LADDER_KEY, (c) => {
     px(c, "#2a1e12", 2, 2, 12, 12);
     px(c, "#a0743c", 4, 1, 2, 14);
@@ -804,6 +813,7 @@ function paintMineArt(scene: Phaser.Scene): void {
   for (const id of MINE_ICON_IDS)
     draw(`icon-${id}`, (c) => {
       if (id === "stone") lump(c, "#8a8a90", "#5a5a62", "#b4b4ba");
+      else if (id === "quartz-crystal") crystal(c);
       else if (id === "coal") {
         lump(c, "#4a4a52", "#2a2a30", "#6a6a74");
         specks(c, "#16161a");
