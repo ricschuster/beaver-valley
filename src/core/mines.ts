@@ -35,6 +35,24 @@ export const QUARTZ_SHARE = 0.06;
 
 export const minesOpen = (day: number): boolean => day >= MINES_OPEN_DAY;
 
+/** A rest camp every 10th floor (note 22). No healing: a chest and a cozy beat. */
+export const CAMP_EVERY = 10;
+export const isCampFloor = (floor: number): boolean =>
+  floor % CAMP_EVERY === 0 && floor <= BUILT_FLOORS;
+
+/**
+ * What the camp chest holds each day, a gift from the old dwarf lamp-keepers
+ * (placeholders, note 07): 2 coal, 3 copper ore and one thing by the day.
+ */
+export function campGift(day: number): { id: string; count: number }[] {
+  const extra = [
+    { id: "quartz-crystal", count: 1 },
+    { id: "stone", count: 5 },
+    { id: "cave-mushroom", count: 1 },
+  ][day % 3] as { id: string; count: number };
+  return [{ id: "coal", count: 2 }, { id: "copper-ore", count: 3 }, extra];
+}
+
 export const mineMapId = (floor: number): string => `mine-${floor}`;
 
 /** The floor a map id names, or undefined for any other map. */
@@ -70,6 +88,8 @@ export interface FloorLayout {
   arrive: Spot;
   rocks: Rock[];
   ladder: Spot | undefined;
+  /** The camp chest, on a camp floor. */
+  camp: Spot | undefined;
 }
 
 const UP: Spot = { x: 1, y: 1 };
@@ -118,6 +138,7 @@ export function floorLayout(floor: number, day: number): FloorLayout {
     return undefined;
   };
 
+  const camp = isCampFloor(floor) ? pick((s) => !near(s, UP, 4)) : undefined;
   const rocks: Rock[] = [];
   const count = MIN_ROCKS + Math.floor(random() * (MAX_ROCKS - MIN_ROCKS + 1));
   for (let i = 0; i < count; i++) {
@@ -139,7 +160,7 @@ export function floorLayout(floor: number, day: number): FloorLayout {
     floor < BUILT_FLOORS && random() < FREE_LADDER_CHANCE
       ? pick((s) => !near(s, UP, 5))
       : undefined;
-  return { floor, walls, up: UP, arrive: ARRIVE, rocks, ladder };
+  return { floor, walls, up: UP, arrive: ARRIVE, rocks, ladder, camp };
 }
 
 /** The same floor as a Tiled map, so the farm scene can walk it. */
@@ -195,6 +216,16 @@ export function floorMapJson(layout: FloorLayout): TiledMapJson & {
         objects: [
           point("entry", "from_above", layout.arrive),
           point("entry", "from_below", layout.arrive),
+          ...(layout.camp
+            ? [
+                {
+                  ...point("service", "camp-chest", layout.camp),
+                  properties: <{ name: string; value: unknown }[]>[
+                    { name: "kind", value: "camp-chest" },
+                  ],
+                },
+              ]
+            : []),
           {
             ...point("exit", "up", layout.up),
             x: layout.up.x * 16,
@@ -248,6 +279,10 @@ export interface FloorSave {
 }
 
 export interface MinesSave {
+  /** True once Old Greencoat has come to the door (note 22). */
+  greeted?: boolean;
+  /** The day the camp chest was last emptied. */
+  campTaken?: number;
   deepest: number;
   misses: number;
   copperHandedIn: boolean;
@@ -262,6 +297,10 @@ export class Mines {
   misses = 0;
   /** True once the smith has been given copper ore (note 22, decision 11). */
   copperHandedIn = false;
+  /** True once Old Greencoat has brought the news at the farm door. */
+  greeted = false;
+  /** The day the camp chest was last emptied, 0 if never. */
+  campTaken = 0;
   private floors = new Map<number, Floor>();
 
   /**
@@ -318,6 +357,8 @@ export class Mines {
         ...(f.ladder ? { ladder: { ...f.ladder } } : {}),
       };
     return {
+      greeted: this.greeted,
+      campTaken: this.campTaken,
       deepest: this.deepest,
       misses: this.misses,
       copperHandedIn: this.copperHandedIn,
@@ -329,6 +370,9 @@ export class Mines {
     this.deepest = saved.deepest;
     this.misses = saved.misses;
     this.copperHandedIn = saved.copperHandedIn;
+    // A save from before the door scene that already dug has no need of the news.
+    this.greeted = saved.greeted ?? this.deepest > 0;
+    this.campTaken = saved.campTaken ?? 0;
     this.floors = new Map();
     for (const [n, f] of Object.entries(saved.floors)) {
       const rocks = new Rocks();

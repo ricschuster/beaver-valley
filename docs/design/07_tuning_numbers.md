@@ -692,3 +692,7 @@ Source: `src/content/furniture.json`, `src/core/furniture.ts`.
 - Quartz (built 2026-11-07, placeholders): a crystal node is 6 percent of rocks
   on mine floors 1 to 10, breaks in 1 swing, drops 1 quartz crystal, gives 3
   mining XP and sells for 25g (Stardew's quartz price, from memory).
+
+- Mine camp chest (built 2026-11-07, placeholders): on every 10th floor (only
+  floor 10 is built), it gives 2 coal, 3 copper ore and one of a quartz crystal,
+  5 stone or a cave mushroom (by the day) once a day, and nothing can be put in.

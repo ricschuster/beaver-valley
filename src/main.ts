@@ -24,6 +24,7 @@ import { HatsScene } from "./scenes/HatsScene";
 import { CaveChoiceScene } from "./scenes/CaveChoiceScene";
 import { FurnaceScene } from "./scenes/FurnaceScene";
 import { ChestScene } from "./scenes/ChestScene";
+import { GreencoatScene } from "./scenes/GreencoatScene";
 
 // Throwaway test scenes, opened first with ?scene=witch or ?scene=witchwalk.
 const tests = { witch: WitchTestScene, witchwalk: WitchWalkScene };
@@ -51,6 +52,7 @@ new Phaser.Game({
     SmithScene,
     FurnaceScene,
     ChestScene,
+    GreencoatScene,
     CraftingScene,
     HatsScene,
     CaveChoiceScene,

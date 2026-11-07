@@ -32,6 +32,7 @@ import { saveGame } from "../core/save";
 import { absoluteMinutes } from "../core/furnace";
 import { jobDone, statusText } from "../core/machines";
 import { chestById, pickUpChest, placeChest } from "../core/chests";
+import { greencoatDue, takeCampGift } from "../core/camp";
 import {
   CAVE_MAP,
   caveDehydratorDone,
@@ -385,7 +386,9 @@ export class FarmScene extends Phaser.Scene {
     this.cameras.main.fadeIn(FADE_MS);
     // The villager at the door asks about the cave, once a morning.
     const today = this.state.day.clock.day;
-    if (isFarmMap(this.mapId) && this.state.cave.due(today)) {
+    if (isFarmMap(this.mapId) && greencoatDue(this.state)) {
+      this.time.delayedCall(400, () => this.open("greencoat"));
+    } else if (isFarmMap(this.mapId) && this.state.cave.due(today)) {
       this.state.cave.shownDay = today;
       this.time.delayedCall(400, () => this.open("cave-choice"));
     }
@@ -503,6 +506,7 @@ export class FarmScene extends Phaser.Scene {
           this.furnaceAt(x, y) ||
           this.state.furniture.blocks(this.mapId, x, y) ||
           !!this.state.chests.at(this.mapId, x, y) ||
+          this.map.serviceAt(x, y)?.kind === "camp-chest" ||
           (this.map.hasSoil &&
             (!!this.state.sprinklers.at(x, y) ||
               !!this.state.machines.at(x, y))),
@@ -719,6 +723,8 @@ export class FarmScene extends Phaser.Scene {
     const front = this.aimTile();
     const service = this.map.serviceAt(front.x, front.y);
     if (service?.kind === "festival") return this.openFestival();
+    if (service?.kind === "camp-chest")
+      return this.report(takeCampGift(this.state));
     if (service?.kind === "stairs")
       return this.travel(mineMapId(1), "from_above");
     if (this.mapId === CAVE_MAP) return this.caveAction(front, service?.kind);
@@ -892,6 +898,8 @@ export class FarmScene extends Phaser.Scene {
     }
     for (const p of this.state.furniture.each(this.mapId))
       put(p.x, p.y, furnitureKey(p.id));
+    for (const s of this.map.services)
+      if (s.kind === "camp-chest") put(s.x, s.y, chestKey("big-chest"));
     for (const c of this.state.chests.each(this.mapId))
       put(c.x, c.y, chestKey(c.id));
     if (this.mapId === CAVE_MAP) this.drawCave(put);

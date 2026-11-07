@@ -9,9 +9,12 @@ import {
   floorMapJson,
   ladderChance,
   mineFloorOf,
+  MINES_OPEN_DAY,
+  campGift,
   mineMapId,
   minesOpen,
 } from "../src/core/mines";
+import { greencoatDue, hearGreencoat, takeCampGift } from "../src/core/camp";
 import { drops, mine } from "../src/core/mining";
 import { collect, minutesLeft, ready, smelt } from "../src/core/furnace";
 import { deliverFurnace, handOverCopper, SMITH_STOCK } from "../src/core/smith";
@@ -347,5 +350,68 @@ describe("quartz and the quality sprinkler", () => {
     expect(craft(g, "quality-sprinkler")).toBeUndefined();
     expect(g.inventory.count("quality-sprinkler")).toBe(1);
     expect(g.inventory.count("quartz-crystal")).toBe(0);
+  });
+});
+
+describe("Old Greencoat and the rest camp", () => {
+  it("brings the news once, on the morning the mines open, and gives nothing", () => {
+    const g = newGame();
+    expect(greencoatDue(g)).toBe(false);
+    g.day.clock.day = MINES_OPEN_DAY;
+    expect(greencoatDue(g)).toBe(true);
+    const money = g.money;
+    hearGreencoat(g);
+    expect(greencoatDue(g)).toBe(false);
+    expect(g.money).toBe(money);
+    expect(deserialize(serialize(g))!.mines.greeted).toBe(true);
+    g.day.clock.day = MINES_OPEN_DAY + 1;
+    expect(greencoatDue(g)).toBe(false);
+  });
+
+  it("does not greet a save that was already digging", () => {
+    const g = newGame();
+    g.mines.visit(1, 8);
+    const raw = JSON.parse(serialize(g));
+    delete raw.mines.greeted;
+    const back = deserialize(JSON.stringify(raw))!;
+    expect(back.mines.greeted).toBe(true);
+  });
+
+  it("puts a camp chest on floor 10 only", () => {
+    for (let day = 5; day < 15; day++) {
+      expect(floorLayout(10, day).camp).toBeDefined();
+      for (let floor = 1; floor < 10; floor++)
+        expect(floorLayout(floor, day).camp).toBeUndefined();
+    }
+    const json = floorMapJson(floorLayout(10, 5));
+    const map = FarmMap.fromTiled(json);
+    const camp = floorLayout(10, 5).camp!;
+    expect(map.serviceAt(camp.x, camp.y)?.kind).toBe("camp-chest");
+    expect(
+      floorLayout(10, 5).rocks.some((r) => r.x === camp.x && r.y === camp.y),
+    ).toBe(false);
+  });
+
+  it("gives a few things once a day and refills in the morning", () => {
+    const g = newGame();
+    g.day.clock.day = 5;
+    expect(takeCampGift(g).ok).toBe(true);
+    expect(g.inventory.count("coal")).toBe(2);
+    expect(g.inventory.count("copper-ore")).toBe(3);
+    expect(takeCampGift(g)).toEqual({ ok: false, reason: "camp chest empty" });
+    g.day.clock.day = 6;
+    expect(takeCampGift(g).ok).toBe(true);
+    expect(g.inventory.count("coal")).toBe(4);
+    expect(deserialize(serialize(g))!.mines.campTaken).toBe(6);
+  });
+
+  it("leaves the gift when the backpack is full, taking nothing", () => {
+    const g = newGame();
+    g.day.clock.day = 5;
+    for (let i = 0; i < g.inventory.size; i++) g.inventory.add(`junk-${i}`);
+    expect(takeCampGift(g)).toEqual({ ok: false, reason: "backpack full" });
+    expect(g.mines.campTaken).toBe(0);
+    expect(g.inventory.count("coal")).toBe(0);
+    expect(campGift(5).every((s) => itemById(s.id))).toBe(true);
   });
 });
