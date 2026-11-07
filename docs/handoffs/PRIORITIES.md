@@ -23,6 +23,13 @@ Start each session by asking which item to take.
    restored hall rooms (#335), and the placeholder swap. No audio note exists.
 5. **Ring 2 shape and travel** (#20, M5). Parked until slice 3 is played.
 
+## Build track (slice 1, note 33)
+
+Owner asked for builds on 2026-11-07. Done: build 1 (bundle model), build 2
+(shipping bin), build 3 weeds, Fiber and fertilizer (#481, #482). Next: sprinklers
+(need mine bars, build 6), build 4 fall and winter (settle #61 numbers first),
+build 5 fruit trees and cave, build 7 crafting, build 9 farm types.
+
 ## Remaining bundle work
 
 Issue #181: the Last Seat numbers, the second-year rule and pacing. Issue #201
