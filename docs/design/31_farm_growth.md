@@ -133,6 +133,7 @@ part that is pure loss. Everything else is a reward the player chooses.
 
 - Settled 2026-10-31 in `07_tuning_numbers.md`: sprinkler and fertilizer prices,
   the shop rule for fertilizer, sapling prices, the fruit table, the cave mark
-  and fruit bat chances. Add-ons wait for Ring 2. Still open: what the mushroom
-  cave gives in place of Stardew's free dehydrator.
+  and fruit bat chances. Add-ons wait for Ring 2. The mushroom cave gives a free
+  dehydrator as in Stardew, and the dehydrator is a new machine
+  (`66_fall_winter_festivals_and_farm_cave.md`, 2026-11-07).
 - Sap and fiber drops are settled in `36_gathering_trees_sap_fiber.md`.

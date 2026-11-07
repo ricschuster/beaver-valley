@@ -32,14 +32,14 @@ only, #487), 8 (hats, festival counters, furniture, #490 and #491) and 9
 (Standard and Woodland, #489). Bundles 4, 9, 10 and 12 use spring and summer
 stand-in pools until build 4.
 
-Left in slice 1, all blocked on owner design:
+Left in slice 1. Designed in note 66 (2026-11-07), so nothing is blocked on the
+owner now. The #61 numbers were already settled in note 07:
 
-- **Build 4, fall and winter.** Settle the #61 crop and forage numbers first.
+- **Build 4, fall and winter.** Numbers are in note 07, festivals in note 66.
   It also unblocks the fall trees, fall and winter festivals, winter forage,
   and swapping the stand-in bundle pools back.
-- **Farm cave** (rest of build 5). Needs the cave map, an earnings counter, the
-  choice screen, and what the mushroom cave gives in place of the free
-  dehydrator (note 31 open item).
+- **Farm cave** (rest of build 5), with the new dehydrator machine (note 66):
+  the cave map, an earnings counter and the choice screen.
 - Smaller leftovers: mine camp chest and Old Greencoat scene, geodes, pickaxe
   tiers, extra crafted furnaces, workbench and chests, quartz (quality
   sprinkler), teaching the sim bot to chop, mine and run machines, the

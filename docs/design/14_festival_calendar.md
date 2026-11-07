@@ -114,6 +114,7 @@ time keeps passing (saved Festivals page). Ours is looser on purpose.
 
 ## Open
 
-- The fall and winter festivals are names and one line each. Their maps,
-  prize counters and minigames need notes before #132 builds them
-  (`11_minigames.md`).
+- The fall and winter festivals are designed in
+  `66_fall_winter_festivals_and_farm_cave.md` (2026-11-07): Harvest Showing
+  display scoring, a Hollow Eve maze, Frostday as an ice sculpture day until
+  fishing arrives. Maps and the prize counter lists are still build tasks.
