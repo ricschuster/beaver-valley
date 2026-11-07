@@ -24,6 +24,10 @@ export function reportLines(r: SleepReport): string[] {
         : `${r.withered} crops withered when the season ended.`,
     );
   }
+  for (const name of r.stuckTrees)
+    lines.push(
+      `Your ${name.toLowerCase()} tree cannot grow. Clear the ground around it.`,
+    );
   if (r.houseFinished)
     lines.push("The carpenter has finished. Your new rooms are ready.");
   if (r.furnaceGifted) lines.push("The smith left a furnace by your house.");

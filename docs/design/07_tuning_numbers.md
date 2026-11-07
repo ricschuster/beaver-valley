@@ -494,6 +494,16 @@ marked ours. Recipes are in `34_crafting.md`.
   apricot 50g, cherry 80g, orange 100g, apple 100g, peach 140g, pomegranate
   140g. A tree's fruit gains one grade per year of age after maturity, to gold
   after two years. A third year waits for the top grade (see Quality).
+- Fruit trees built 2026-11-07 (placeholders, ours unless the line above says
+  otherwise): fruit eats for 38 energy at normal quality (Stardew's figure from
+  memory, SC-52); a tree holds up to 3 fruit; a year for grading is the calendar
+  year (56 days now, so one grade per 56 days after maturity, and it grows as
+  seasons are added); a mature tree falls in as many axe swings as a common tree,
+  gives 12 wood plus foraging level up to 4, 12 foraging experience, and its
+  sapling back; a young tree falls in one swing for 4 wood; a sapling sells for
+  half its price. What blocks a young tree's growth: a weed, rock, tree, another
+  fruit tree, sprinkler, machine, crop or forage item in its 3x3. Planting needs
+  no other tree in the 3x3. Fall trees are not sold until fall exists.
 - Farm cave mark: 25,000g of total earnings over the whole game.
 - Fruit bats: each night an empty cave gets no fruit 48 percent, 1 fruit 25,
   2 fruit 13, 3 fruit 7, 4 or more 7 (about 1.06 a night). Fruit stays until

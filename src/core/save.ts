@@ -5,6 +5,7 @@ import { GroundItems, type Pile } from "./ground";
 import { Weeds, type Weed } from "./weeds";
 import { Rocks, type Rock, ROCK_KINDS } from "./rocks";
 import { Mines, type MinesSave } from "./mines";
+import { FruitTrees, fruitTreeById, type PlacedFruitTree } from "./fruittrees";
 import { Sprinklers, sprinklerById, type PlacedSprinkler } from "./sprinklers";
 import { Machines, type PlacedMachine } from "./machines";
 import { machineById } from "./processing";
@@ -39,6 +40,8 @@ export interface GameState {
   mines: Mines;
   /** Sprinklers standing on the farm. */
   sprinklers: Sprinklers;
+  /** Fruit trees planted on the farm. */
+  fruitTrees: FruitTrees;
   /** Machines standing on the farm. */
   machines: Machines;
   /** The furnace the smith gives. */
@@ -80,6 +83,7 @@ export function newGame(): GameState {
     rocks: new Rocks(maps.get(START.map).rocks),
     mines: new Mines(),
     sprinklers: new Sprinklers(),
+    fruitTrees: new FruitTrees(),
     machines: new Machines(),
     furnace: new Furnace(),
     bin: new ShippingBin(),
@@ -119,6 +123,8 @@ interface SaveData {
   mines?: MinesSave;
   /** Absent in saves made before sprinklers. */
   sprinklers?: PlacedSprinkler[];
+  /** Absent in saves made before fruit trees. */
+  fruitTrees?: PlacedFruitTree[];
   /** Absent in saves made before machines. */
   machines?: PlacedMachine[];
   /** Absent in saves made before the mines. */
@@ -166,6 +172,7 @@ export function serialize(g: GameState): string {
     rocks: g.rocks.save(),
     mines: g.mines.save(),
     sprinklers: g.sprinklers.save(),
+    fruitTrees: g.fruitTrees.save(),
     machines: g.machines.save(),
     furnace: g.furnace.save(),
     bin: g.bin.save(),
@@ -329,6 +336,26 @@ export function deserialize(text: string): GameState | undefined {
       });
     }
     g.machines.load(valid);
+  }
+  if (Array.isArray(raw.fruitTrees)) {
+    g.fruitTrees.load(
+      raw.fruitTrees
+        .filter(
+          (t): t is PlacedFruitTree =>
+            isObject(t) &&
+            Number.isInteger(t.x) &&
+            Number.isInteger(t.y) &&
+            typeof t.id === "string" &&
+            fruitTreeById(t.id) !== undefined &&
+            Number.isInteger(t.age),
+        )
+        .map((t) => ({
+          ...t,
+          age: Math.max(t.age, 0),
+          fruit: Number.isInteger(t.fruit) ? Math.max(t.fruit, 0) : 0,
+          hits: 0,
+        })),
+    );
   }
   if (Array.isArray(raw.rocks)) g.rocks.load(rocksFrom(raw.rocks));
   const mines = raw.mines;

@@ -1,5 +1,6 @@
 import type { Skill, Skills } from "./skills";
 import { cropById } from "./crops";
+import { fruitTreeById } from "./fruittrees";
 import { splitQuality, type Quality } from "./quality";
 
 /** The level at which a skill offers a choice of profession, as in Stardew. */
@@ -85,7 +86,9 @@ export function choose(skills: Skills, skill: Skill, id: string): boolean {
 /** Sell price multiplier for an item: Tillers get more for crops. */
 export function sellMultiplier(skills: Skills, itemId: string): number {
   const { base } = splitQuality(itemId);
-  return skills.has("tiller") && cropById(base) ? 1 + TILLER_BONUS : 1;
+  return skills.has("tiller") && (cropById(base) || fruitTreeById(base))
+    ? 1 + TILLER_BONUS
+    : 1;
 }
 
 /** Crop growth per watered day. */

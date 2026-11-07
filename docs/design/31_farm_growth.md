@@ -1,6 +1,12 @@
 # 31 Farm growth tools (draft)
 
-Status: draft. Decided with the owner on 2026-10-31. Fertilizer is built
+Status: draft. Decided with the owner on 2026-10-31. Fruit trees built 2026-11-07
+(slice 1 build 5, `src/core/fruittrees.ts`, data in
+`src/content/fruit-trees.json`): saplings from the shop, 28 days to mature, the
+clear 3x3 rule, fruit in season held up to 3, grade by age, chopping returns the
+sapling, fruit feeds the jar and keg. The six trees are data; the three fall
+trees wait for fall in the calendar and are not sold yet. The farm cave is not
+built (needs a map, an earnings counter and the choice screen). Fertilizer is built
 (2026-11-07, slice 1 build 3, `src/core/fertilizer.ts`): five items from the
 shop only, no crafting yet, applied from the toolbar, one per tile, gone at the
 season change. Sprinklers, the greenhouse, fruit trees and the cave are not

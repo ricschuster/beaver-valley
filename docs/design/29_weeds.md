@@ -3,7 +3,8 @@
 Status: draft. Decided with the owner on 2026-10-31. Weeds and Fiber are built
 (2026-11-07, slice 1 build 3, `src/core/weeds.ts`): day 1 scatter, spread, one
 hit clears, fiber drop, saved. Not built: the mixed seed drops (no crafting
-yet), winter day 1 clear (no winter yet) and the fruit tree block. Grass and
+yet) and winter day 1 clear (no winter yet). The fruit tree block is built
+(2026-11-07, `src/core/sleep.ts`). Grass and
 clutter are not in the game. Reference: the Stardew Valley Wiki
 Weeds page, read only (ADR 0002).
 
