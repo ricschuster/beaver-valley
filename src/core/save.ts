@@ -68,6 +68,8 @@ export interface GameState {
   endSeen: boolean;
   /** Festivals joined, as `joinKey` strings. */
   festivalsJoined: string[];
+  /** Show tokens from the Harvest Showing, good for the year they were won. */
+  showTokens: { year: number; count: number };
   /** Hats owned and worn. */
   wardrobe: Wardrobe;
   /** Furniture placed in the house. */
@@ -106,6 +108,7 @@ export function newGame(farmType: string = DEFAULT_FARM_TYPE): GameState {
     tomorrow: "sunny",
     endSeen: false,
     festivalsJoined: [],
+    showTokens: { year: 0, count: 0 },
     wardrobe: new Wardrobe(),
     furniture: new Furniture(),
     forage: new ForageField(),
@@ -162,6 +165,8 @@ interface SaveData {
   endSeen?: boolean;
   /** Absent in saves made before festivals existed. */
   festivalsJoined?: string[];
+  /** Absent in saves made before the Harvest Showing. */
+  showTokens?: { year: number; count: number };
   /** Absent in saves made before hats. */
   wardrobe?: WardrobeSave;
   /** Absent in saves made before furniture. */
@@ -205,6 +210,7 @@ export function serialize(g: GameState): string {
     tomorrow: g.tomorrow,
     endSeen: g.endSeen,
     festivalsJoined: [...g.festivalsJoined],
+    showTokens: { ...g.showTokens },
     wardrobe: g.wardrobe.save(),
     furniture: g.furniture.save(),
   };
@@ -477,6 +483,9 @@ export function deserialize(text: string): GameState | undefined {
     g.festivalsJoined = raw.festivalsJoined.filter(
       (k): k is string => typeof k === "string",
     );
+  const tokens = raw.showTokens;
+  if (isObject(tokens) && isCount(tokens.year) && isCount(tokens.count))
+    g.showTokens = { year: tokens.year, count: tokens.count };
   g.wardrobe.load(raw.wardrobe);
   g.furniture.load(raw.furniture);
   return g;

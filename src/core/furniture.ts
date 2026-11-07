@@ -21,6 +21,8 @@ export interface FurnitureDef {
   color: string;
   /** A rug is walked on and does not block. */
   rug?: boolean;
+  /** Sold only at a festival counter, never by the carpenter. */
+  festival?: boolean;
 }
 
 export const FURNITURE = furnitureData as FurnitureDef[];
@@ -197,7 +199,7 @@ export function carryFurniture(
  * pick on other days. `DAILY_STOCK` of the pool, chosen by a hash of the day.
  */
 export function dailyStock(day: number): FurnitureDef[] {
-  const scored = FURNITURE.map((f, i) => ({
+  const scored = FURNITURE.filter((f) => !f.festival).map((f, i) => ({
     f,
     score: Math.imul(day * 7919 + i * 104729 + 13, 2654435761) >>> 0,
   }));

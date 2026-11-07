@@ -1,6 +1,47 @@
 [
-  { "id": "parade-ribbon", "name": "Parade Ribbon", "color": "#d8483a" },
-  { "id": "straw-boater", "name": "Straw Boater", "color": "#e3c76a" },
-  { "id": "feathered-cap", "name": "Feathered Cap", "color": "#3f7d9a" },
-  { "id": "wool-beret", "name": "Wool Beret", "color": "#8a5fa8" }
+  {
+    "id": "parade-ribbon",
+    "name": "Parade Ribbon",
+    "color": "#d8483a"
+  },
+  {
+    "id": "straw-boater",
+    "name": "Straw Boater",
+    "color": "#e3c76a"
+  },
+  {
+    "id": "feathered-cap",
+    "name": "Feathered Cap",
+    "color": "#3f7d9a"
+  },
+  {
+    "id": "wool-beret",
+    "name": "Wool Beret",
+    "color": "#8a5fa8"
+  },
+  {
+    "id": "rosette-hat",
+    "name": "Rosette Hat",
+    "color": "#d8a83a"
+  },
+  {
+    "id": "lantern-hood",
+    "name": "Lantern Hood",
+    "color": "#e8802a"
+  },
+  {
+    "id": "harvest-crown",
+    "name": "Harvest Crown",
+    "color": "#b8782a"
+  },
+  {
+    "id": "snow-cap",
+    "name": "Snow Cap",
+    "color": "#e8f0f8"
+  },
+  {
+    "id": "holly-hat",
+    "name": "Holly Hat",
+    "color": "#2f7f4a"
+  }
 ]

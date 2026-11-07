@@ -3,12 +3,26 @@ import { DAYS_PER_SEASON, SEASONS, dateOf, type Season } from "./calendar";
 import { hatById } from "./hats";
 import { itemById } from "./items";
 import type { GameState } from "./save";
+import { showTokens, spendTokens } from "./showing";
 
 /** One line of a festival's counter: an item or a hat, at a price. */
 export interface CounterEntry {
   item?: string;
   hat?: string;
+  /** How many of the item one purchase gives. Defaults to 1. */
+  count?: number;
+  /** Paid in show tokens (Harvest Showing) instead of gold. */
+  tokens?: boolean;
   price: number;
+}
+
+/** What a festival offers besides its counter. */
+export type FestivalActivity = "showing" | "maze" | "sights";
+
+/** A thing to look at or someone to talk to, with a line. */
+export interface Sight {
+  name: string;
+  line: string;
 }
 
 /** A dated village event. Content lives in `src/content/festivals.json`. */
@@ -26,6 +40,10 @@ export interface Festival {
   blurb: string;
   /** A free hat given the first time the player goes, if any. */
   gift?: { hat: string };
+  /** A festival activity: the Harvest Showing table, the Hollow Eve maze, or things to look at. */
+  activity?: FestivalActivity;
+  /** Things to look at, for the `sights` activity. */
+  sights?: Sight[];
   /** What the festival's counter sells. Hats sell once, items without limit. */
   counter: CounterEntry[];
   /** Id of the festival game, or null for none (see `11_minigames.md`). */
@@ -106,7 +124,8 @@ export function enterFestival(g: GameState): Festival | undefined {
 /** The counter line's name, for the screen. */
 export function counterName(e: CounterEntry): string {
   if (e.hat) return hatById(e.hat)?.name ?? e.hat;
-  return (e.item && itemById(e.item)?.name) || e.item || "";
+  const name = (e.item && itemById(e.item)?.name) || e.item || "";
+  return e.count && e.count > 1 ? `${e.count} ${name.toLowerCase()}` : name;
 }
 
 /** Why the player cannot buy this counter line now, or undefined if they can. */
@@ -119,8 +138,12 @@ export function counterProblem(
   if (!g.festivalsJoined.includes(joinKey(f, g.day.clock.day)))
     return "Go to the festival first.";
   if (e.hat && g.wardrobe.has(e.hat)) return "You already have that hat.";
-  if (g.money < e.price) return `You need ${e.price - g.money}g more.`;
-  if (e.item && g.inventory.room(e.item) < 1) return "Your pack is full.";
+  if (e.tokens) {
+    if (showTokens(g) < e.price)
+      return `You need ${e.price - showTokens(g)} more show tokens.`;
+  } else if (g.money < e.price) return `You need ${e.price - g.money}g more.`;
+  if (e.item && g.inventory.room(e.item) < (e.count ?? 1))
+    return "Your pack is full.";
   return undefined;
 }
 
@@ -132,7 +155,8 @@ export function buyAtCounter(
 ): boolean {
   if (counterProblem(g, f, e) !== undefined) return false;
   if (e.hat) g.wardrobe.add(e.hat);
-  else if (e.item && !g.inventory.add(e.item, 1)) return false;
-  g.money -= e.price;
+  else if (e.item && !g.inventory.add(e.item, e.count ?? 1)) return false;
+  if (e.tokens) spendTokens(g, e.price);
+  else g.money -= e.price;
   return true;
 }

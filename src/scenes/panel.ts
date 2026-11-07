@@ -59,6 +59,13 @@ export class Menu {
     return this.rows[this.cursor];
   }
 
+  /** Remove the menu and its rows from the screen. */
+  destroy(): void {
+    for (const o of this.objects) o.destroy();
+    this.objects.length = 0;
+    this.title.destroy();
+  }
+
   setRows(rows: Row[]): void {
     this.rows = rows;
     this.cursor = Math.min(this.cursor, Math.max(rows.length - 1, 0));
