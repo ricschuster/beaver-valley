@@ -1,12 +1,13 @@
 import Phaser from "phaser";
 import type { GameState } from "../core/save";
+import { buyFurniture, dailyStock, furnitureProblem } from "../core/furniture";
 import { nextUpgrade, orderProblem, orderUpgrade, WOOD } from "../core/house";
 import { frame, Menu, type Row } from "./panel";
 import { STATE_KEY } from "./state";
 
 /**
  * The carpenter's counter, drawn over the sawmill. Orders the next house
- * upgrade. While the work is under way the counter is closed: the carpenter
+ * upgrade and sells today's furniture. While the work is under way the counter is closed: the carpenter
  * is out at the farm. The sawmill is paused behind it.
  */
 export class CarpenterScene extends Phaser.Scene {
@@ -27,11 +28,16 @@ export class CarpenterScene extends Phaser.Scene {
     const { money, message } = frame(this, "Carpenter", () => this.close());
     this.money = money;
     this.message = message;
-    this.add.text(24, 500, "Arrows: move   Enter: order   Esc: close", {
+    this.add.text(24, 500, "Arrows: move   Enter: order or buy   Esc: close", {
       fontSize: "13px",
       color: "#ffffffaa",
     });
-    this.menu = new Menu(this, { x: 24, y: 64, w: 912, title: "House" });
+    this.menu = new Menu(this, {
+      x: 24,
+      y: 64,
+      w: 912,
+      title: "House and furniture",
+    });
     this.menu.setFocus(true);
     const kb = this.input.keyboard;
     kb?.on("keydown-UP", () => this.menu.move(-1));
@@ -67,7 +73,28 @@ export class CarpenterScene extends Phaser.Scene {
         buttons: [{ text: "Order", run: () => this.order() }],
       });
     }
+    if (!g.houseBuild) {
+      // Today's furniture: a random pick that changes each day.
+      for (const f of dailyStock(g.day.clock.day)) {
+        rows.push({
+          label: f.name,
+          detail: `${f.price}g${f.rug ? "  (rug)" : ""}`,
+          dim: furnitureProblem(g, f.id) !== undefined,
+          buttons: [{ text: "Buy", run: () => this.buy(f.id) }],
+        });
+      }
+    }
     this.menu.setRows(rows);
+  }
+
+  private buy(id: string): void {
+    const problem = furnitureProblem(this.state, id);
+    if (problem !== undefined) this.message.setText(problem);
+    else if (buyFurniture(this.state, id))
+      this.message.setText(
+        "Bought. Hold it in the house and press Use to place it.",
+      );
+    this.refresh();
   }
 
   private order(): void {

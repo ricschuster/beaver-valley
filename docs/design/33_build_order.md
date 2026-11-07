@@ -77,7 +77,8 @@ Builds:
 8. The hat parade, hats and a first set of furniture, with a festival per
    season as content once the first works (`13_m3_scope.md`, `14`). Hats, the
    wardrobe and the four spring and summer festivals are built (2026-11-07);
-   furniture is not built.
+   furniture is built (ten pieces, the carpenter's daily stock, placed in the
+   house); the catalogue, wallpaper and floors are not.
 9. Farm types: Standard and Woodland (`32_farm_types.md`). Built 2026-11-07.
 
 Bundles that can be filled: 1 to 10, 12 and 19 (Smith's, from smelted bars).

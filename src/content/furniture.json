@@ -1,0 +1,49 @@
+[
+  {
+    "id": "wooden-stool",
+    "name": "Wooden stool",
+    "price": 60,
+    "color": "#a8784a"
+  },
+  { "id": "oak-chair", "name": "Oak chair", "price": 90, "color": "#8a5a32" },
+  {
+    "id": "round-table",
+    "name": "Round table",
+    "price": 250,
+    "color": "#b88a58"
+  },
+  { "id": "bookshelf", "name": "Bookshelf", "price": 350, "color": "#6a4a2a" },
+  { "id": "armchair", "name": "Armchair", "price": 400, "color": "#a04a3a" },
+  {
+    "id": "clothes-chest",
+    "name": "Clothes chest",
+    "price": 300,
+    "color": "#7a5a3a"
+  },
+  {
+    "id": "potted-fern",
+    "name": "Potted fern",
+    "price": 110,
+    "color": "#3f8a4a"
+  },
+  {
+    "id": "oil-lamp",
+    "name": "Standing lamp",
+    "price": 150,
+    "color": "#e8c050"
+  },
+  {
+    "id": "rag-rug",
+    "name": "Rag rug",
+    "price": 120,
+    "color": "#c06a5a",
+    "rug": true
+  },
+  {
+    "id": "reed-mat",
+    "name": "Reed mat",
+    "price": 80,
+    "color": "#c8b070",
+    "rug": true
+  }
+]

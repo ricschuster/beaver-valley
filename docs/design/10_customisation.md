@@ -1,8 +1,9 @@
 # 10 Customisation and decoration (draft)
 
 Built 2026-11-07: hats (wardrobe on H or the Hats button, a placeholder block on
-the player, hats from the Hat Parade gift and counter). Furniture, the hatter and
-achievement hats are not built.
+the player, hats from the Hat Parade gift and counter). Furniture is built the same day: ten one tile
+pieces sold from the carpenter's daily stock and placed in the house. The
+catalogue, wallpaper, floors, the hatter and achievement hats are not built.
 
 Status: draft. Written from reader 1's feedback (decorating was raised three
 times) and the design talk of 2026-10-27. Nothing here is built. It is outside

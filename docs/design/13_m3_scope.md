@@ -1,7 +1,7 @@
 # 13 M3 scope
 
 Built 2026-11-07: the hat parade, hats, and the other spring and summer
-festivals. Furniture is not built.
+festivals. Furniture is built (ten pieces, no wallpaper or floors).
 
 Status: accepted 2026-10-27 (issue #130). The roadmap says the M3 scope is
 fixed by a design note before building. This is that note. Change it only

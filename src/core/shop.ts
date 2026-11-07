@@ -17,7 +17,7 @@ export function sell(
   multiplier = 1,
 ): number {
   const def = itemById(id);
-  if (!def || !inv.remove(id, n)) return 0;
+  if (!def || def.keep || !inv.remove(id, n)) return 0;
   const earned = Math.floor(def.sellPrice * multiplier) * n;
   wallet.money += earned;
   return earned;

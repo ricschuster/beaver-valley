@@ -40,6 +40,12 @@ import {
   type Floor,
 } from "../core/mines";
 import type { Rocks } from "../core/rocks";
+import {
+  carryFurniture,
+  furnitureById,
+  pickUpFurniture,
+  placeFurniture,
+} from "../core/furniture";
 import { hatById } from "../core/hats";
 import { HOUSE_MAP, houseMapId, isHouseMap } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
@@ -49,6 +55,7 @@ import {
   fruitOnTreeKey,
   fruitTreeKey,
   sprinklerKey,
+  furnitureKey,
   machineKey,
   MACHINE_READY_KEY,
   forageKey,
@@ -193,6 +200,7 @@ export class FarmScene extends Phaser.Scene {
       this.floor === undefined ? undefined : floorLayout(this.floor, day);
     const json = mineLayout ? floorMapJson(mineLayout) : mapFiles[id]!;
     this.map = mineLayout ? FarmMap.fromTiled(json) : maps.get(id);
+    if (isHouseMap(id)) carryFurniture(this.state, this.map, id);
     if (this.floor !== undefined)
       this.floorState = this.state.mines.visit(this.floor, day);
     const cacheKey = mineLayout ? `${id}@${day}` : id;
@@ -455,6 +463,7 @@ export class FarmScene extends Phaser.Scene {
               !!this.state.fruitTrees.at(x, y))) ||
           !!this.rocks()?.at(x, y) ||
           this.furnaceAt(x, y) ||
+          this.state.furniture.blocks(this.mapId, x, y) ||
           (this.map.hasSoil &&
             (!!this.state.sprinklers.at(x, y) ||
               !!this.state.machines.at(x, y))),
@@ -623,6 +632,28 @@ export class FarmScene extends Phaser.Scene {
     const front = this.aimTile();
     if (this.map.serviceAt(front.x, front.y)) return;
     const held = heldAt(this.state, this.selected);
+    if (isHouseMap(this.mapId)) {
+      // In the house the held piece is stood down, and the hand takes one up.
+      if (held.kind === "item" && furnitureById(held.id))
+        return this.report(
+          placeFurniture(
+            this.state,
+            this.map,
+            this.mapId,
+            front.x,
+            front.y,
+            held.id,
+          ),
+        );
+      if (
+        held.kind === "tool" &&
+        held.tool === "hand" &&
+        this.state.furniture.at(this.mapId, front.x, front.y)
+      )
+        return this.report(
+          pickUpFurniture(this.state, this.mapId, front.x, front.y),
+        );
+    }
     this.report(
       useHeld(this.state, this.map, held, front.x, front.y, this.floor),
     );
@@ -655,6 +686,13 @@ export class FarmScene extends Phaser.Scene {
       return this.open(
         service.kind,
         service.kind === "hall" ? { room: service.id } : undefined,
+      );
+    if (
+      isHouseMap(this.mapId) &&
+      this.state.furniture.at(this.mapId, front.x, front.y)
+    )
+      return this.report(
+        pickUpFurniture(this.state, this.mapId, front.x, front.y),
       );
     const result = act(this.state, this.map, front.x, front.y);
     if (!result.ok && result.reason === NOTHING_TO_ACT_ON) {
@@ -757,6 +795,8 @@ export class FarmScene extends Phaser.Scene {
       const down = this.floorState?.ladder;
       if (down) put(down.x, down.y, LADDER_KEY);
     }
+    for (const p of this.state.furniture.each(this.mapId))
+      put(p.x, p.y, furnitureKey(p.id));
     if (!this.map.hasSoil) return;
     for (const { x, y, plot } of this.state.farm.each()) {
       put(x, y, soilKey(plot.wateredToday));

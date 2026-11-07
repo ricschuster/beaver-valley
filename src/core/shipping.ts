@@ -55,7 +55,7 @@ export class ShippingBin {
   ship(inv: Inventory, id: string, n: number, multiplier = 1): number {
     const def = itemById(id);
     const count = Math.min(Math.floor(n), inv.count(id));
-    if (!def || count <= 0 || !inv.remove(id, count)) return 0;
+    if (!def || def.keep || count <= 0 || !inv.remove(id, count)) return 0;
     const unit = Math.floor(def.sellPrice * multiplier);
     const line = this.lines.find((l) => l.id === id && l.unit === unit);
     if (line) line.count += count;
