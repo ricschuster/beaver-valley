@@ -158,6 +158,20 @@ version the next morning (checked on the saved Artisan Goods page).
 4. The earnings counter, the cave map, the choice panel, the two cave
    behaviours and the dehydrator.
 
+## Built so far (2026-11-07)
+
+The four festivals are built as screens over the farm, like the first four (no
+festival maps yet). Harvest Showing: table of up to 9 goods, scoring and places
+as above, show tokens (saved with their year), prize counter in tokens. Hollow
+Eve: a grid maze in `src/content/maze.json` with stationary scares and a talker,
+the chest (Lantern Hood first, then a sack of about 530g once a year), and a
+gold counter. Frostday: sights to look at and a winter decor counter. Midwinter
+Feast: counter only (the gift pairing waits for friendship). Placeholders,
+owner to settle: the Harvest Showing prize counter list (Harvest Crown, two
+festival furniture pieces, a pumpkin seed pack), the Hollow Eve hat name, the
+festival furniture and hats. Without a dish group the table tops out at 93
+points, so first place (85) needs five groups of top goods.
+
 ## Still open
 
 - The villager who asks to use the cave, and the Hollow Eve first-time hat.

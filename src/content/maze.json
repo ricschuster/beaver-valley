@@ -1,0 +1,33 @@
+{
+  "rows": [
+    "###################",
+    "#S..#.....#.......#",
+    "#.#.#.###.#.#####.#",
+    "#.#...#a#...#...#.#",
+    "#.#####.#####.#.#.#",
+    "#.....#.......#...#",
+    "#.###.#.#######.###",
+    "#.#...#.#b....#...#",
+    "#.#.###.#.###.###.#",
+    "#...#...#.#c....#.#",
+    "###.#.###.#.###.#.#",
+    "#...#.....#.#v#...#",
+    "#.#######.###.#.###",
+    "#.......#.....#..E#",
+    "###################"
+  ],
+  "scares": {
+    "a": "A scarecrow turns its head to watch you. It is only straw.",
+    "b": "A pumpkin grins up from the hedge. Its candle gutters, friendly enough.",
+    "c": "A ghost sheet drifts past, wearing a bow tie. It nods politely."
+  },
+  "talkers": {
+    "v": "A villager peeks out between the hedges. \"Did the scarecrow turn for you too? He always does.\""
+  },
+  "chestHat": "lantern-hood",
+  "sack": [
+    { "id": "hazelnut", "count": 3 },
+    { "id": "wild-plum", "count": 2 },
+    { "id": "chestnut", "count": 2 }
+  ]
+}

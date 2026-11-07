@@ -8,11 +8,22 @@
     "closes": 1080,
     "ends": 1320,
     "blurb": "Everyone in the valley shows off their best hat on the green.",
-    "gift": { "hat": "parade-ribbon" },
+    "gift": {
+      "hat": "parade-ribbon"
+    },
     "counter": [
-      { "hat": "straw-boater", "price": 300 },
-      { "hat": "feathered-cap", "price": 500 },
-      { "hat": "wool-beret", "price": 400 }
+      {
+        "hat": "straw-boater",
+        "price": 300
+      },
+      {
+        "hat": "feathered-cap",
+        "price": 500
+      },
+      {
+        "hat": "wool-beret",
+        "price": 400
+      }
     ],
     "minigame": null
   },
@@ -25,7 +36,12 @@
     "closes": 1080,
     "ends": 1320,
     "blurb": "Neighbours swap seeds on the green, and the stalls sell packets you will not find in the shop.",
-    "counter": [{ "item": "mixed-seed", "price": 20 }],
+    "counter": [
+      {
+        "item": "mixed-seed",
+        "price": 20
+      }
+    ],
     "minigame": null
   },
   {
@@ -50,6 +66,144 @@
     "ends": 1320,
     "blurb": "A quiet lantern gathering on the green as the light goes.",
     "counter": [],
+    "minigame": null
+  },
+  {
+    "id": "harvest-showing",
+    "name": "Harvest Showing",
+    "season": "fall",
+    "day": 9,
+    "opens": 720,
+    "closes": 1080,
+    "ends": 1320,
+    "blurb": "The best goods of the valley are set out on the green, and the judge walks the table with a pencil behind her ear.",
+    "activity": "showing",
+    "counter": [
+      {
+        "hat": "harvest-crown",
+        "price": 600,
+        "tokens": true
+      },
+      {
+        "item": "hay-bale-seat",
+        "price": 300,
+        "tokens": true
+      },
+      {
+        "item": "harvest-bench",
+        "price": 400,
+        "tokens": true
+      },
+      {
+        "item": "pumpkin-seed",
+        "price": 150,
+        "tokens": true,
+        "count": 15
+      }
+    ],
+    "minigame": null
+  },
+  {
+    "id": "hollow-eve",
+    "name": "Hollow Eve",
+    "season": "fall",
+    "day": 21,
+    "opens": 1200,
+    "closes": 1410,
+    "ends": 1440,
+    "blurb": "A hedge maze hung with lanterns. The scares are quiet ones, and a chest waits at the far end.",
+    "activity": "maze",
+    "counter": [
+      {
+        "item": "gourd-lamp",
+        "price": 200
+      },
+      {
+        "item": "hay-bale-seat",
+        "price": 140
+      },
+      {
+        "item": "harvest-bench",
+        "price": 260
+      }
+    ],
+    "minigame": null
+  },
+  {
+    "id": "frostday",
+    "name": "Frostday",
+    "season": "winter",
+    "day": 8,
+    "opens": 720,
+    "closes": 1080,
+    "ends": 1320,
+    "blurb": "The river is frozen and the green is full of snowmen and ice sculptures. Fishing through the ice joins in a later season.",
+    "activity": "sights",
+    "sights": [
+      {
+        "name": "The ice swan",
+        "line": "A swan carved from a block of river ice. Its neck has a slight lean, and the carver is pleased with it."
+      },
+      {
+        "name": "A row of snowmen",
+        "line": "Seven snowmen in a line, each wearing a different hat. One wears a bucket."
+      },
+      {
+        "name": "The ice fort",
+        "line": "Children defend the fort with great seriousness. You are told the password is 'cold'."
+      },
+      {
+        "name": "The warm stall",
+        "line": "Someone is handing out mugs of something hot. It tastes mostly of honey."
+      }
+    ],
+    "counter": [
+      {
+        "item": "snow-lamp",
+        "price": 220
+      },
+      {
+        "item": "warm-rug",
+        "price": 180
+      },
+      {
+        "item": "winter-wreath",
+        "price": 120
+      },
+      {
+        "hat": "snow-cap",
+        "price": 350
+      }
+    ],
+    "minigame": null
+  },
+  {
+    "id": "midwinter-feast",
+    "name": "Midwinter Feast",
+    "season": "winter",
+    "day": 20,
+    "opens": 720,
+    "closes": 1080,
+    "ends": 1320,
+    "blurb": "A long table in the hall, a fire in the grate and gifts for the village. The gift pairing comes with friendship, a later layer.",
+    "counter": [
+      {
+        "item": "fireside-chair",
+        "price": 420
+      },
+      {
+        "item": "frost-shelf",
+        "price": 380
+      },
+      {
+        "item": "winter-wreath",
+        "price": 120
+      },
+      {
+        "hat": "holly-hat",
+        "price": 350
+      }
+    ],
     "minigame": null
   }
 ]

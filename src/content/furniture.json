@@ -5,15 +5,30 @@
     "price": 60,
     "color": "#a8784a"
   },
-  { "id": "oak-chair", "name": "Oak chair", "price": 90, "color": "#8a5a32" },
+  {
+    "id": "oak-chair",
+    "name": "Oak chair",
+    "price": 90,
+    "color": "#8a5a32"
+  },
   {
     "id": "round-table",
     "name": "Round table",
     "price": 250,
     "color": "#b88a58"
   },
-  { "id": "bookshelf", "name": "Bookshelf", "price": 350, "color": "#6a4a2a" },
-  { "id": "armchair", "name": "Armchair", "price": 400, "color": "#a04a3a" },
+  {
+    "id": "bookshelf",
+    "name": "Bookshelf",
+    "price": 350,
+    "color": "#6a4a2a"
+  },
+  {
+    "id": "armchair",
+    "name": "Armchair",
+    "price": 400,
+    "color": "#a04a3a"
+  },
   {
     "id": "clothes-chest",
     "name": "Clothes chest",
@@ -45,5 +60,62 @@
     "price": 80,
     "color": "#c8b070",
     "rug": true
+  },
+  {
+    "id": "gourd-lamp",
+    "name": "Carved gourd lamp",
+    "price": 200,
+    "color": "#e8802a",
+    "festival": true
+  },
+  {
+    "id": "harvest-bench",
+    "name": "Harvest bench",
+    "price": 260,
+    "color": "#9a6a3a",
+    "festival": true
+  },
+  {
+    "id": "hay-bale-seat",
+    "name": "Hay bale seat",
+    "price": 140,
+    "color": "#d8b858",
+    "festival": true
+  },
+  {
+    "id": "snow-lamp",
+    "name": "Snow lamp",
+    "price": 220,
+    "color": "#bfe0f0",
+    "festival": true
+  },
+  {
+    "id": "warm-rug",
+    "name": "Warm rug",
+    "price": 180,
+    "color": "#b04a3a",
+    "festival": true,
+    "rug": true
+  },
+  {
+    "id": "winter-wreath",
+    "name": "Winter wreath",
+    "price": 120,
+    "color": "#2f6f3f",
+    "festival": true
+  },
+  {
+    "id": "fireside-chair",
+    "name": "Fireside chair",
+    "price": 420,
+    "color": "#7a3a2a",
+    "festival": true
+  },
+  {
+    "id": "frost-shelf",
+    "name": "Frost shelf",
+    "price": 380,
+    "color": "#9ab0c0",
+    "festival": true
   }
 ]

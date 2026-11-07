@@ -65,9 +65,12 @@ describe("lookup", () => {
   it("finds the next festival, wrapping into the next year", () => {
     expect(nextFestival(1)?.day).toBe(10);
     expect(nextFestival(10)?.festival.id).toBe("seedswap-fair");
-    const next = nextFestival(dayOf("summer", 20))!;
+    const next = nextFestival(dayOf("winter", 20))!;
     expect(next.festival.id).toBe("hat-parade");
     expect(dateOf(next.day).year).toBe(2);
+    expect(nextFestival(dayOf("summer", 20))?.festival.id).toBe(
+      "harvest-showing",
+    );
   });
 
   it("is open only between opening and closing", () => {
