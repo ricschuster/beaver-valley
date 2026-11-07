@@ -3,7 +3,7 @@ import { seedId } from "./items";
 import { newGame, type GameState } from "./save";
 
 /** Tools that are always carried and never run out. */
-export const TOOLS = ["hoe", "can", "axe", "hand"] as const;
+export const TOOLS = ["hoe", "can", "axe", "pickaxe", "hand"] as const;
 export type Tool = (typeof TOOLS)[number];
 
 /** One row of the toolbar: the four tools, then twelve backpack slots. */

@@ -91,7 +91,7 @@ export class DebugScene extends Phaser.Scene {
         this.say("");
       },
     });
-    const xp = (skill: "farming" | "foraging") => ({
+    const xp = (skill: "farming" | "foraging" | "mining") => ({
       text: `+100 ${skill}`,
       run: () => {
         const level = giveXp(g, skill, 100);
@@ -130,7 +130,10 @@ export class DebugScene extends Phaser.Scene {
           },
         ],
       },
-      { label: "Skill XP", buttons: [xp("farming"), xp("foraging")] },
+      {
+        label: "Skill XP",
+        buttons: [xp("farming"), xp("foraging"), xp("mining")],
+      },
       {
         label: "Day",
         detail: "runs the normal sleep",

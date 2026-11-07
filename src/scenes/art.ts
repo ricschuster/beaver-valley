@@ -369,6 +369,7 @@ export const TOOL_ICONS = {
   hoe: "icon-hoe",
   can: "icon-can",
   axe: "icon-axe",
+  pickaxe: "icon-pickaxe",
   hand: "icon-hand",
 };
 
@@ -398,6 +399,13 @@ function paintToolIcons(scene: Phaser.Scene): void {
     px(c, "#b8bcc4", 3, 2, 5, 5);
     px(c, "#8a8e96", 3, 6, 5, 1);
     px(c, "#d8dce4", 4, 3, 2, 1);
+  });
+  draw(TOOL_ICONS.pickaxe, (c) => {
+    px(c, "#8a5c2a", 7, 4, 2, 10);
+    px(c, "#b8bcc4", 2, 3, 12, 2);
+    px(c, "#8a8e96", 2, 5, 2, 2);
+    px(c, "#8a8e96", 12, 5, 2, 2);
+    px(c, "#d8dce4", 5, 3, 3, 1);
   });
   draw(TOOL_ICONS.hand, (c) => {
     px(c, "#f0c8a0", 5, 7, 7, 6);
@@ -537,10 +545,87 @@ function paintTrees(scene: Phaser.Scene): void {
   });
 }
 
+// ---- mining goods and rocks
+
+export const ROCK_KEYS = {
+  stone: "rock-stone",
+  copper: "rock-copper",
+  coal: "rock-coal",
+} as const;
+export const LADDER_KEY = "mine-ladder";
+
+const MINE_ICON_IDS = [
+  "stone",
+  "coal",
+  "copper-ore",
+  "iron-ore",
+  "gold-ore",
+  "copper-bar",
+  "iron-bar",
+  "gold-bar",
+];
+const METAL: Record<string, string> = {
+  "copper-ore": "#c8743c",
+  "iron-ore": "#9aa4b4",
+  "gold-ore": "#e8c040",
+};
+
+function paintMineArt(scene: Phaser.Scene): void {
+  const draw = (key: string, paint: (c: Ctx) => void) => {
+    const t = scene.textures.createCanvas(key, SIZE, SIZE)!;
+    paint(t.getContext());
+    t.refresh();
+  };
+  const lump = (c: Ctx, base: string, dark: string, light: string) => {
+    px(c, dark, 3, 11, 10, 3);
+    px(c, base, 3, 6, 10, 6);
+    px(c, base, 5, 4, 6, 3);
+    px(c, light, 5, 5, 3, 1);
+  };
+  const specks = (c: Ctx, colour: string) => {
+    px(c, colour, 5, 8, 2, 2);
+    px(c, colour, 9, 7, 2, 2);
+    px(c, colour, 8, 10, 2, 1);
+  };
+  draw(ROCK_KEYS.stone, (c) => lump(c, "#8a8a90", "#5a5a62", "#b4b4ba"));
+  draw(ROCK_KEYS.copper, (c) => {
+    lump(c, "#8a8a90", "#5a5a62", "#b4b4ba");
+    specks(c, "#d8803c");
+  });
+  draw(ROCK_KEYS.coal, (c) => {
+    lump(c, "#4a4a52", "#2a2a30", "#6a6a74");
+    specks(c, "#16161a");
+  });
+  draw(LADDER_KEY, (c) => {
+    px(c, "#2a1e12", 2, 2, 12, 12);
+    px(c, "#a0743c", 4, 1, 2, 14);
+    px(c, "#a0743c", 10, 1, 2, 14);
+    for (const y of [3, 6, 9, 12]) px(c, "#c8964c", 4, y, 8, 1);
+  });
+  for (const id of MINE_ICON_IDS)
+    draw(`icon-${id}`, (c) => {
+      if (id === "stone") lump(c, "#8a8a90", "#5a5a62", "#b4b4ba");
+      else if (id === "coal") {
+        lump(c, "#4a4a52", "#2a2a30", "#6a6a74");
+        specks(c, "#16161a");
+      } else if (id.endsWith("-ore")) {
+        lump(c, "#8a8a90", "#5a5a62", "#b4b4ba");
+        specks(c, METAL[id] ?? "#ffffff");
+      } else {
+        const colour = METAL[id.replace("-bar", "-ore")] ?? "#ffffff";
+        px(c, "#00000044", 3, 12, 10, 2);
+        px(c, colour, 3, 7, 10, 5);
+        px(c, "#ffffff88", 4, 8, 6, 1);
+        px(c, "#00000033", 3, 11, 10, 1);
+      }
+    });
+}
+
 /** The texture key for a backpack item, or undefined if it has no picture. */
 export function iconKey(itemId: string): string | undefined {
   const { base } = splitQuality(itemId);
   if (fertilizerById(base)) return `icon-${base}`;
+  if (MINE_ICON_IDS.includes(base)) return `icon-${base}`;
   if (base === "wood" || base === "sap" || base === "fiber")
     return `icon-${base}`;
   if (base.endsWith("-seed")) return `icon-${base}`;
@@ -567,4 +652,5 @@ export function makeArt(
   for (const f of FORAGE) paintForage(scene, f.id);
   paintToolIcons(scene);
   paintTrees(scene);
+  paintMineArt(scene);
 }

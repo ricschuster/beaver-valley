@@ -154,6 +154,41 @@ for (let tries = 0; forage.length < 14 && tries < 5000; tries++) {
     forage.push({ x, y });
 }
 
+// Mine entrance (docs/design/22_mines.md): a gap in the top tree border, shut
+// by a rockfall until the mines open on spring day 5. It sits after every
+// random draw above so the trees and forage do not move.
+objects[idx(20, 0)] = 0;
+ground[idx(20, 0)] = DOOR;
+collision[idx(20, 0)] = 0;
+
+// The furnace the smith gives is a service tile by the house. The game draws
+// it and blocks the tile only once it is a gift.
+services.push({ kind: "furnace", x: 9, y: 8 });
+
+// Rocks on the farm (note 22, decision 6): 16 hand-free points from their own
+// generator, on open grass, off the soil, paths, trees, forage and the ground
+// around buildings and entries.
+let rockSeed = 777;
+const rnd2 = () =>
+  (rockSeed = (rockSeed * 1664525 + 1013904223) % 4294967296) / 4294967296;
+const rocks = [];
+for (let tries = 0; rocks.length < 16 && tries < 20000; tries++) {
+  const x = 1 + Math.floor(rnd2() * (W - 2));
+  const y = 1 + Math.floor(rnd2() * (H - 2));
+  if (
+    ground[idx(x, y)] <= GRASS2 &&
+    !collision[idx(x, y)] &&
+    !objects[idx(x, y)] &&
+    !(x >= 3 && x <= 10 && y >= 1 && y <= 27) &&
+    !(x >= 30 && x <= 38 && y >= 7 && y <= 25) &&
+    !(x >= 18 && x <= 22 && y <= 3) &&
+    !trees.some((t) => Math.max(Math.abs(t.x - x), Math.abs(t.y - y)) < 2) &&
+    !forage.some((f) => f.x === x && f.y === y) &&
+    !rocks.some((r) => Math.max(Math.abs(r.x - x), Math.abs(r.y - y)) < 3)
+  )
+    rocks.push({ x, y });
+}
+
 const tileLayer = (id, name, data, visible = true) => ({
   id,
   name,
@@ -194,7 +229,7 @@ const treePoint = (x, y, stage) => ({
   ...point("tree", "tree", x, y),
   properties: [{ name: "stage", type: "int", value: stage }],
 });
-const exit = (name, x, y, target, entry) => ({
+const exit = (name, x, y, target, entry, requires) => ({
   id: objectId++,
   name,
   class: "exit",
@@ -208,6 +243,9 @@ const exit = (name, x, y, target, entry) => ({
   properties: [
     { name: "map", type: "string", value: target },
     { name: "entry", type: "string", value: entry },
+    ...(requires
+      ? [{ name: "requires", type: "string", value: requires }]
+      : []),
   ],
 });
 
@@ -259,7 +297,10 @@ const farm = {
         exit("hall", 6, 22, "hall", "door"),
         point("entry", "from_sawmill", 33, 12),
         exit("sawmill", 33, 11, "sawmill", "door"),
+        point("entry", "from_mine", 20, 1),
+        exit("mine", 20, 0, "mine", "door", "mines-open"),
         ...services.map((s) => service(s.kind, s.x, s.y)),
+        ...rocks.map((r) => point("rock", "rock", r.x, r.y)),
         ...forage.map((f) => point("forage", "forage", f.x, f.y)),
         ...trees.map((t) => treePoint(t.x, t.y, t.stage)),
       ],
@@ -389,6 +430,46 @@ const sawmill = {
   ],
 };
 
+// The mine hall (docs/design/22_mines.md): the lift, the smith dwarf's counter
+// and the stairs down to floor 1. It stands off the farm until the Mountain
+// exists (note 19).
+const MW = 12;
+const MH = 7;
+const mground = new Array(MW * MH).fill(PATH);
+const mcollision = new Array(MW * MH).fill(0);
+for (let y = 0; y < MH; y++)
+  for (let x = 0; x < MW; x++)
+    if (x === 0 || y === 0 || x === MW - 1 || y === MH - 1) {
+      mground[y * MW + x] = WALL;
+      mcollision[y * MW + x] = 1;
+    }
+mground[(MH - 1) * MW + 6] = DOOR;
+mcollision[(MH - 1) * MW + 6] = 0;
+for (const x of [2, 5, 9]) {
+  mground[1 * MW + x] = SCROLL;
+  mcollision[1 * MW + x] = 1;
+}
+const mine = {
+  ...farm,
+  width: MW,
+  height: MH,
+  layers: [
+    { ...tileLayer(1, "ground", mground), width: MW, height: MH },
+    { ...tileLayer(2, "collision", mcollision, false), width: MW, height: MH },
+    {
+      ...farm.layers[4],
+      objects: [
+        point("entry", "door", 6, MH - 2),
+        point("entry", "from_stairs", 9, 2),
+        exit("door", 6, MH - 1, "farm", "from_mine"),
+        service("lift", 2, 1),
+        service("smith", 5, 1),
+        service("stairs", 9, 1),
+      ],
+    },
+  ],
+};
+
 // The village hall interior (docs/design/40_hall_layout.md): a main room, a
 // corridor to each side, four walled rooms off the corridors, and two alcoves
 // (the tank on the main room's back wall, the board on a corridor wall). Each
@@ -476,6 +557,7 @@ writeFileSync(`${dir}/house.json`, JSON.stringify(house));
 writeFileSync(`${dir}/house-1.json`, JSON.stringify(house1));
 writeFileSync(`${dir}/sawmill.json`, JSON.stringify(sawmill));
 writeFileSync(`${dir}/hall.json`, JSON.stringify(hall));
+writeFileSync(`${dir}/mine.json`, JSON.stringify(mine));
 console.log(
-  `wrote the farm, house (start and tier 1), sawmill and hall maps in ${dir} (placeholders)`,
+  `wrote the farm, house (start and tier 1), sawmill, mine hall and hall maps in ${dir} (placeholders)`,
 );

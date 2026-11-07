@@ -4,7 +4,17 @@ Status: **decided with the owner on 2026-10-30**, in a first round of three big
 choices and a second round of questions on the drafted parts. A few items are
 still our draft and are listed under "Open". Every number is a placeholder.
 Stardew facts are from memory or from unverified search results, and are marked.
-Nothing here is built. It answers the design half of the mines item in
+Build slices 1 and 2 are partly built (2026-11-07, slice 1 build 6,
+`src/core/mines.ts`, `mining.ts`, `rocks.ts`, `furnace.ts`, `smith.ts`): floors 1
+to 10 with no creatures, the dry-streak ladder, copper, coal and stone, the
+lift at every reached floor, the opening on spring day 5, rocks on the farm, the
+pickaxe as a starter tool, the mining skill (Prospector works, Rockhound has
+nothing to act on yet), the smith's ore shop, the furnace gift, smelting and
+bars. Not built: the Smith's bundle with 20 coal, the charcoal kiln, crafting
+more furnaces (needs crafting, note 34), Old Greencoat's door scene, the rest
+camp chest on floor 10, the mine hall's ore-only bin, the pickaxe tiers, geodes,
+and everything from slice 3 on. The mine hall and the mine door are placeholders
+on the farm until the Mountain exists (note 19). Everything else is unbuilt. It answers the design half of the mines item in
 `16_bundles.md` and feeds the fifth tool tier (#194).
 
 ## Why

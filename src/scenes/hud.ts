@@ -24,6 +24,7 @@ const TOOL_LABEL = {
   hoe: "Hoe",
   can: "Can",
   axe: "Axe",
+  pickaxe: "Pickaxe",
   hand: "Hand",
 } as const;
 
@@ -31,7 +32,7 @@ const TOOL_LABEL = {
 function caption(held: Held, g: GameState): string {
   if (held.kind === "tool") {
     const tier =
-      held.tool === "hand" || held.tool === "axe"
+      held.tool === "hand" || held.tool === "axe" || held.tool === "pickaxe"
         ? 0
         : g.toolTiers[held.tool as Upgradable];
     return tier > 0

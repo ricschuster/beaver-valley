@@ -5,7 +5,11 @@ import { MAX_LEVEL, skillRows } from "../core/skills";
 import { frame } from "./panel";
 import { STATE_KEY } from "./state";
 
-const NAMES = { farming: "Farming", foraging: "Foraging" } as const;
+const NAMES = {
+  farming: "Farming",
+  foraging: "Foraging",
+  mining: "Mining",
+} as const;
 
 /** The skills screen, drawn over the paused farm: levels and progress. */
 export class SkillsScene extends Phaser.Scene {
@@ -41,7 +45,7 @@ export class SkillsScene extends Phaser.Scene {
     this.add.text(
       24,
       500,
-      "Better farming means better crop quality and cheaper tool swings. Better foraging means better forage quality.   Esc: close",
+      "Better farming means better crop quality and cheaper tool swings. Better foraging means better forage quality. Better mining means cheaper pickaxe swings and more ore.   Esc: close",
       { fontSize: "13px", color: "#ffffffaa", wordWrap: { width: 780 } },
     );
   }

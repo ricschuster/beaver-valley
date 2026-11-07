@@ -41,6 +41,18 @@ export const PROFESSIONS: ProfessionDef[] = [
     name: "Botanist",
     text: "Foraged goods are always at least silver quality.",
   },
+  {
+    id: "prospector",
+    skill: "mining",
+    name: "Prospector",
+    text: "A node sometimes gives one more ore (25% chance).",
+  },
+  {
+    id: "rockhound",
+    skill: "mining",
+    name: "Rockhound",
+    text: "Geodes and gems drop twice as often (geodes are not dug yet).",
+  },
 ];
 
 export const TILLER_BONUS = 0.1;

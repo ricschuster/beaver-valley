@@ -13,6 +13,7 @@ import {
   type Outcome,
 } from "./actions";
 import { TREE_SEED } from "./trees";
+import { mine } from "./mining";
 import type { FarmMap } from "./map";
 import type { GameState } from "./save";
 import { cropOfSeed } from "./items";
@@ -38,8 +39,12 @@ export function useHeld(
   held: Held,
   x: number,
   y: number,
+  /** The mine floor the player is on, if in the mine. */
+  floor?: number,
 ): Outcome {
   if (held.kind === "empty") return fail("nothing held");
+  if (held.kind === "tool" && held.tool === "pickaxe")
+    return mine(g, x, y, floor);
   if (!map.hasSoil) return fail("nothing to do here");
   const weedTool =
     held.kind === "tool" &&
@@ -120,6 +125,13 @@ const REASONS: Record<string, string> = {
   "already fertilized": "This soil already has fertilizer.",
   "too late to fertilize": "Too late. Use it before the seed sprouts.",
   "a tree is in the way": "A tree is in the way.",
+  "nothing to mine": "Nothing to break here.",
+  "no furnace": "There is no furnace yet.",
+  "furnace busy": "The furnace is busy.",
+  "not enough ore": "You need 5 ore.",
+  "not enough coal": "You need 1 coal.",
+  "nothing smelting": "Nothing is smelting.",
+  "not done": "It is not done yet.",
   "nothing to shake": "Nothing falls from there.",
   "cannot plant tree here": "A tree cannot grow there.",
   "not food": "That cannot be eaten.",
