@@ -30,6 +30,11 @@ can close once the owner is happy with note 63.
 
 ## Done
 
+- Window canvas design (note 64, 2026-11-06): no cap on the extra view, menus
+  keep a centred 960 by 540 box, a separate UI size setting. Not built.
+- Special Orders and seasonal debris design (note 65, 2026-11-06): board opens
+  Fall 2 of year one, clock starts on acceptance, unique first reward and gold
+  repeats, small capped rock and twig return each season but winter. Not built.
 - Friendship loose ends (notes 61 and 62, 2026-11-06): six named universal
   loves, the universal hate list, the Midwinter pairing, the first eight
   people's draft lists and the scene commands. The first eight lists had their overlaps spread, and the three new items now
