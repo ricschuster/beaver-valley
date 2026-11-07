@@ -7,7 +7,7 @@ import { harvest, plant, till, water, forage } from "../../src/core/actions";
 import { cropById, CROPS } from "../../src/core/crops";
 import { eat } from "../../src/core/actions";
 import { itemById, seedId } from "../../src/core/items";
-import { QUALITIES, splitQuality } from "../../src/core/quality";
+import { QUALITIES, splitQuality, type Quality } from "../../src/core/quality";
 import {
   choose,
   optionsFor,
@@ -24,6 +24,23 @@ import type { Persona } from "./personas";
 
 /** Past this time of night a careful player heads for bed (midnight). */
 const BED_TIME = 24 * 60;
+
+/**
+ * Bundles the bot does not play for. Woodland (bulk wood, stone and fiber),
+ * Artisan Goods (machines, orchard fruit) and the Smith's (mining and the
+ * furnace) need walks the bot has no model for yet. The sim finishes when
+ * every other bundle is done, so `allDay` means "the played bundles", not the
+ * whole hall. Real play of the whole hall is covered by `tests/bundles.test.ts`.
+ */
+export const UNPLAYED_BUNDLES: readonly string[] = [
+  "woodland",
+  "artisan-goods",
+  "smiths",
+];
+
+/** Share of a harvest that is silver or better at a farming level, with plain soil (`cropQuality`). Floored so early planning stays sane. */
+const silverShare = (level: number) =>
+  Math.max(0.1, 2 * ((0.2 * level) / 10 + 0.01));
 
 export interface RunResult {
   /** Day each bundle was finished, by bundle id. */
@@ -55,13 +72,13 @@ export function playGame(
     moneyAtSeasonEnd: [],
     lastDay: 1,
   };
-  while (g.day.clock.day <= maxDay && !g.hall.allComplete) {
+  while (g.day.clock.day <= maxDay && !playedDone(g)) {
     const day = g.day.clock.day;
     bot.playDay();
     for (const b of g.hall.bundles)
       if (g.hall.complete(b.id) && !(b.id in result.bundleDays))
         result.bundleDays[b.id] = day;
-    if (g.hall.allComplete) {
+    if (playedDone(g)) {
       result.allDay = day;
       break;
     }
@@ -74,6 +91,20 @@ export function playGame(
     result.lastDay = day;
   }
   return result;
+}
+
+/** True when every bundle the bot plays for is done. */
+function playedDone(g: GameState): boolean {
+  return g.hall.bundles.every(
+    (b) => UNPLAYED_BUNDLES.includes(b.id) || g.hall.complete(b.id),
+  );
+}
+
+interface Want {
+  bundle: string;
+  item: string;
+  room: string;
+  min: Quality;
 }
 
 class Bot {
@@ -205,14 +236,26 @@ class Bot {
 
   // ---- what the hall wants ----
 
-  /** Goods an unfinished bundle still takes, with the quality it needs. */
-  private wanted(): { bundle: string; item: string; room: string }[] {
-    const out: { bundle: string; item: string; room: string }[] = [];
+  /**
+   * Goods an unfinished bundle still takes, one entry for each unit still
+   * owed. A bundle that asks for counts is played for its first `required`
+   * goods only, since a stack of five is a lot of farming.
+   */
+  private wanted(): Want[] {
+    const out: Want[] = [];
     for (const b of this.g.hall.bundles) {
-      if (this.g.hall.complete(b.id)) continue;
-      for (const i of b.items)
-        if (this.g.hall.have(b.id, i.id) < i.count)
-          out.push({ bundle: b.id, item: i.id, room: b.room });
+      if (UNPLAYED_BUNDLES.includes(b.id) || this.g.hall.complete(b.id))
+        continue;
+      const bulk = b.items.some((i) => i.count > 1);
+      const goods = bulk ? b.items.slice(0, b.required) : b.items;
+      for (const i of goods)
+        for (let n = this.g.hall.have(b.id, i.id); n < i.count; n++)
+          out.push({
+            bundle: b.id,
+            item: i.id,
+            room: b.room,
+            min: i.minQuality,
+          });
     }
     return out;
   }
@@ -277,15 +320,37 @@ class Bot {
       const def = cropById(id);
       return !!def && def.seasons.includes(season) && def.growDays <= left;
     };
-    const need = new Set(this.wanted().map((w) => w.item));
+    const wants = this.wanted();
     for (const def of CROPS) {
       if (!fits(def.id)) continue;
-      const have =
-        (inGround.get(def.id) ?? 0) +
-        this.stacks()
-          .filter((s) => splitQuality(s.id).base === def.id)
-          .reduce((n, s) => n + s.count, 0);
-      const want = need.has(def.id) ? this.p.cropsPerBundleCrop : 0;
+      const mine = wants.filter((w) => w.item === def.id);
+      // A silver-only slot needs several plants for each unit.
+      const share = silverShare(this.g.skills.level("farming"));
+      const weight = (m: Quality) => (m === "normal" ? 1 : 1 / share);
+      const owed = mine.reduce((n, w) => n + weight(w.min), 0);
+      const held = this.stacks()
+        .filter((s) => splitQuality(s.id).base === def.id)
+        .reduce(
+          (n, s) =>
+            n +
+            s.count *
+              Math.max(
+                0,
+                ...mine
+                  .filter(
+                    (w) =>
+                      QUALITIES.indexOf(splitQuality(s.id).quality) >=
+                      QUALITIES.indexOf(w.min),
+                  )
+                  .map((w) => weight(w.min)),
+              ),
+          0,
+        );
+      const have = (inGround.get(def.id) ?? 0) + held;
+      const want =
+        mine.length > 0
+          ? Math.max(this.p.cropsPerBundleCrop, Math.ceil(owed))
+          : 0;
       for (let i = have; i < want; i++) plan.push(def.id);
     }
     // Spare plots go to the persona's cash crop.
@@ -328,6 +393,8 @@ class Bot {
     for (let y = 0; y < map.height; y++)
       for (let x = 0; x < map.width; x++) {
         if (!map.isTillable(x, y) || this.g.trees.at(x, y)) continue;
+        // Weeds block planting and the bot does not clear them, so plant round them.
+        if (this.g.weeds.at(x, y)) continue;
         if (this.g.farm.plotAt(x, y)?.crop) continue;
         out.push({ x, y });
       }
@@ -360,19 +427,26 @@ class Bot {
   /** Ship everything the hall does not still want, at the bin by the house. */
   private shipSurplus(): void {
     if (this.lateNight) return;
-    const keep = new Map<string, number>();
-    if (this.p.keepsForHall)
-      for (const w of this.wanted())
-        keep.set(w.item, (keep.get(w.item) ?? 0) + 1);
+    const keep: Want[] = this.p.keepsForHall ? this.wanted() : [];
     const lines: { id: string; n: number }[] = [];
     for (const s of this.stacks()) {
       const { base, quality } = splitQuality(s.id);
       const def = itemById(base);
       if (!def || base.endsWith("-seed") || QUALITIES.indexOf(quality) < 0)
         continue;
-      const held = keep.get(base) ?? 0;
-      const n = held > 0 ? Math.max(0, s.count - held) : s.count;
-      if (held > 0) keep.set(base, Math.max(0, held - s.count));
+      // Hold one unit for each open slot this stack could fill.
+      let held = 0;
+      for (let u = 0; u < s.count; u++) {
+        const at = keep.findIndex(
+          (w) =>
+            w.item === base &&
+            QUALITIES.indexOf(quality) >= QUALITIES.indexOf(w.min),
+        );
+        if (at < 0) break;
+        keep.splice(at, 1);
+        held++;
+      }
+      const n = s.count - held;
       if (n > 0) lines.push({ id: s.id, n });
     }
     if (lines.length === 0) return;

@@ -285,11 +285,28 @@ Source: `21_fishing.md`. All of these are ours and are placeholders.
 
 Source: `src/content/bundles.json`.
 
-- Four bundles (the Pantry was dropped 2026-10-31, see `16_bundles.md`): Spring Foraging (any 4 of 6 goods, reward 15 parsnip seeds),
-  Summer Foraging (any 3 of 4, 15 radish seeds), Spring Crops (any 3 of 3,
-  300g) and Summer Crops (any 3 of 3, 400g). Contents and rewards are ours.
-  The foraging bundles took the new goods; the crop bundles are unchanged, as decided in
+- Ten bundles (the Pantry was dropped 2026-10-31, see `16_bundles.md`). First
+  slice: Spring Foraging (any 4 of 6, 15 parsnip seeds), Summer Foraging (any 3
+  of 4, 15 radish seeds), Spring Crops (3 of 3, 300g) and Summer Crops (3 of 3,
+  400g). Added 2026-11-07 (`35_bundle_pools.md`): Winter Foraging (3 of 5,
+  seed maker), Woodland (50 wood, 50 stone, 30 fiber, charcoal kiln), Autumn
+  Crops (4 of 6, bee house), Quality Crops (3 of 4, 5 each silver or better,
+  preserves jar), Artisan Goods (4 of 5, keg) and the Smith's (5 copper, 5 iron
+  and 3 gold bars, 20 coal). Contents and rewards are ours.
+- **Placeholder pools (owner to check).** The calendar has spring and summer
+  only, so four pools use stand-ins that exist today: Winter Foraging takes
+  spring and summer forage (spring onion, salmonberry, wild grape, spice berry,
+  fiddlehead fern); Autumn Crops takes hot pepper, corn, red cabbage, green
+  bean, kale and garlic; Quality Crops swaps pumpkin for tomato; Artisan Goods
+  swaps apple for peach and drops wine. Swap them back when build 4 adds fall
+  and winter.
+  The foraging bundles took the new goods; the first four crop and forage bundles are unchanged, as decided in
   `08_playtest_personas.md`.
+- Headless sim (`npm run sim`): the bot plays every bundle but Woodland,
+  Artisan Goods and the Smith's, which need bulk gathering, machines and
+  mining. The expert finished those seven in a median of day 54 (44 of 50 runs
+  by day 168, the rest wait on silver melons and corn). Quality Crops ends the
+  run. "All played bundles" in its output is not the whole hall.
 - Foraging bundles are easy (the simulation below ran before the extra goods
   made them easier). A simulation of a player who sweeps all 14 farm
   spots every morning finished Spring Foraging in a median of 5 days (90th

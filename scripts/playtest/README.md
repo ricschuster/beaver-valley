@@ -46,7 +46,8 @@ errors. The game's weather and forage are random, so reruns differ.
 9. `npm run sim -- <expert|intermediate|casual> [runs] [maxDay]` is not a browser
    run. It plays the rules in `src/core/` headless (`docs/design/46_headless_playtest.md`),
    charges game minutes for walking and key presses, and prints the days to each
-   hall bundle over many seeds (default 100 runs to day 84). Runs are exactly
+   hall bundle over many seeds (the bot does not play Woodland, Artisan Goods or
+   the Smith's, and "all played bundles" leaves them out) (default 100 runs to day 84). Runs are exactly
    repeatable: the seed is the run number. It needs no dev server and takes
    about 1 s a run. The time model is in `scripts/sim/world.ts` (`TIME`). Compare
    two builds by running the same personas on both.

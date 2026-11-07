@@ -162,3 +162,11 @@ Checked on 2026-11-01, 40 to 100 seeds a persona.
   Spring Foraging, 4 get Spring Crops, as in note 08's "year 2" and "stuck".
   The sim casual is a little harsher than the browser one, which sold most of
   its forage, not all of it.
+
+Update 2026-11-07: the hall has ten bundles. The bot plays seven of them (the
+forage and crop bundles, including Quality Crops with its silver rule) and
+skips Woodland, Artisan Goods and the Smith's (`UNPLAYED_BUNDLES` in
+`scripts/sim/bot.ts`), since it cannot yet chop, mine or run machines. The sim
+ends when the played seven are done, and `tests/bundles.test.ts` covers the whole
+hall. The expert's median finish is day 54, set by five silver melons and corn.
+The bot now plants round weeds, which it never clears.

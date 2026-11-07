@@ -243,7 +243,7 @@ describe("machine recipes and bundles", () => {
     expect(g.inventory.count("charcoal-kiln")).toBe(1);
   });
 
-  // These bundles are not in the live hall yet (see note 35), so a test hall holds them.
+  // A small test hall with its own cut-down pools, so the tests stay quick and fixed.
   const bundles = [
     {
       id: "woodland",

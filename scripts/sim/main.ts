@@ -3,7 +3,7 @@
 // bundles get done (note 46). Not a gate, like the browser playtests.
 import { BUNDLES } from "../../src/core/bundles";
 import { clockText } from "../../src/core/clock";
-import { playGame, type RunResult } from "./bot";
+import { playGame, UNPLAYED_BUNDLES, type RunResult } from "./bot";
 import { PERSONAS } from "./personas";
 import { TIME } from "./world";
 
@@ -60,7 +60,7 @@ export async function main(args: string[]): Promise<void> {
   console.log(`${name}: ${runs} runs to day ${maxDay}`);
   for (const b of BUNDLES)
     console.log(
-      `  ${b.id}: ${spread(
+      `  ${b.id}${UNPLAYED_BUNDLES.includes(b.id) ? " (not played by the bot)" : ""}: ${spread(
         results.flatMap((r) =>
           b.id in r.bundleDays ? [r.bundleDays[b.id] as number] : [],
         ),
@@ -68,7 +68,7 @@ export async function main(args: string[]): Promise<void> {
       )}`,
     );
   console.log(
-    `  all bundles: ${spread(
+    `  all played bundles: ${spread(
       results.flatMap((r) => (r.allDay ? [r.allDay] : [])),
       runs,
     )}`,
