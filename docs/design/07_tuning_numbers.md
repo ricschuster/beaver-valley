@@ -524,6 +524,32 @@ marked ours. Recipes are in `34_crafting.md`.
   seed results are left out. Both from the saved Charcoal Kiln and Seed Maker
   pages.
 
+## Machines, build 7 (2026-11-07, ours, placeholders)
+
+Source: `24_processing_and_cooking.md`, `34_crafting.md`. Code: `processing.ts`,
+`artisan.ts`, `machines.ts`. Times and artisan prices are the Stardew numbers in
+the farm growth section above; these are the rest.
+
+- Machine time is 1,600 minutes a day (the clock's 1,200 awake plus 400
+  overnight), so a batch finishes overnight. Bee house: honey every 4 days
+  (6,400 machine minutes), 100g, none in winter (a winter night does not count).
+  Flower honey waits for a flower set.
+- Kiln: 10 wood for 1 coal, 30 minutes. Seed maker: crops only for now (no wild
+  seeds item yet), 1 to 3 seeds rolled when the batch starts, 20 minutes.
+- Jar and keg take fruit or vegetable. Fruit is melon, tomato, hot pepper, and
+  the wild grape, spice berry and salmonberry. Every other crop is a vegetable.
+  Jam and wine from fruit, pickles and juice from vegetables. Honey goes to the
+  keg for mead (600 minutes, 300g). Beer waits for a grain crop.
+- Each input makes its own good (`melon-jam`, `parsnip-pickles`), priced from its
+  own base: jam and pickles 2 x base + 50, wine 3 x base, juice 2.25 x base
+  rounded down. A bundle slot such as "Any jam" takes every one.
+- Machine sell prices: kiln 100g, jar 150g, bee house 200g, seed maker 200g, keg
+  250g.
+- Craft costs are note 34's. Sources: kiln Foraging 2, bee house Farming 3, jar
+  Farming 4, keg Farming 8, seed maker Farming 9 (Stardew's; the bundle 4 source
+  is in the data for when that bundle exists), basic fertilizer Farming 1, basic
+  retaining soil Farming 4.
+
 ## Desktop mouse (2026-11-02)
 
 Placeholders, not checked against Stardew (`46_desktop_mouse.md`).

@@ -5,8 +5,13 @@ build 3, the smallest piece sprinklers need): recipes as data in
 `src/content/recipes.json`, `src/core/crafting.ts`, and a Craft screen (key R,
 touch button) that crafts from the pack. Level sources only, two recipes (the
 basic sprinkler, and the quality sprinkler hidden until quartz crystals exist).
-Not built: the workbench and chests, the other sources (shop, gifts, bundles),
-and every other recipe, which is build 7. The rest of this note is not built.
+Build 7 (2026-11-07) added the bundle source (a finished bundle teaches its
+machine recipe), several sources per recipe, and recipes for basic fertilizer,
+basic retaining soil and the five farm machines (kiln, jar, bee house, keg, seed
+maker). Not built: the workbench and chests, the shop and gift sources, fences,
+paths, floors, signs, torches and campfires (no placeable objects yet), tree
+fertilizer, wild seeds, speed fertilizer (needs moss), quality retaining soil
+(needs clay) and quality fertilizer (needs fish). The rest of this note is not built.
 Reference: the Stardew Valley Wiki Crafting, Carpenter's Shop and Sprinkler
 pages, read only (ADR 0002). Costs are Stardew's, with our own items swapped in
 where we lack one, and every number is a placeholder until playtests

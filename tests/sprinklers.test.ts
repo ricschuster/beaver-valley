@@ -139,7 +139,10 @@ describe("crafting", () => {
     const g = newGame();
     expect(knownRecipes(g)).toHaveLength(0);
     level(g, 2);
-    expect(knownRecipes(g).map((r) => r.id)).toEqual(["sprinkler"]);
+    expect(knownRecipes(g).map((r) => r.id)).toEqual([
+      "sprinkler",
+      "basic-fertilizer",
+    ]);
   });
 
   it("hides recipes that need items the game lacks, and every other id exists", () => {

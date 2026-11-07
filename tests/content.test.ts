@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { BUNDLES } from "../src/core/bundles";
 import { SEASONS } from "../src/core/calendar";
+import { CATEGORY_NAMES } from "../src/core/artisan";
 import { CROPS } from "../src/core/crops";
 import { FORAGE } from "../src/core/forage";
 import { itemById, seedId } from "../src/core/items";
@@ -40,7 +41,7 @@ describe("content data", () => {
   it("keeps every bundle completable from known goods", () => {
     for (const b of BUNDLES) {
       expect(
-        b.items.filter((i) => itemById(i.id)).length,
+        b.items.filter((i) => itemById(i.id) || i.id in CATEGORY_NAMES).length,
         b.id,
       ).toBeGreaterThanOrEqual(b.required);
     }

@@ -1,6 +1,7 @@
 import bundleData from "../content/bundles.json";
 import roomData from "../content/rooms.json";
 import type { Inventory } from "./inventory";
+import { categoryOf } from "./artisan";
 import { itemById } from "./items";
 import { QUALITIES, splitQuality, type Quality } from "./quality";
 import type { Wallet } from "./shop";
@@ -80,6 +81,17 @@ export type HandIn = "accepted" | "completed" | "rejected";
  * before counts existed hold a list of goods instead, each one filled.
  */
 export type HallProgress = Record<string, string[] | Record<string, number>>;
+
+/**
+ * The slot of a bundle a good fills: the good itself, else its artisan
+ * category, so "Any jam" takes every jam.
+ */
+function slotFor(def: BundleDef, base: string): BundleItem | undefined {
+  const own = def.items.find((i) => i.id === base);
+  if (own) return own;
+  const category = categoryOf(base);
+  return category ? def.items.find((i) => i.id === category) : undefined;
+}
 
 const qualityRank = (q: Quality) => QUALITIES.indexOf(q);
 
@@ -196,8 +208,8 @@ export class Hall {
     stackId: string,
   ): HandIn {
     if (this.problem(inv, bundleId, stackId)) return "rejected";
-    const itemId = splitQuality(stackId).base;
     const def = this.bundles.find((b) => b.id === bundleId)!;
+    const itemId = slotFor(def, splitQuality(stackId).base)!.id;
     if (!inv.remove(stackId)) return "rejected";
     const counts = this.given.get(bundleId) ?? new Map<string, number>();
     counts.set(itemId, (counts.get(itemId) ?? 0) + 1);
@@ -218,14 +230,14 @@ export class Hall {
     bundleId: string,
     stackId: string,
   ): string | undefined {
-    const { base: itemId, quality } = splitQuality(stackId);
+    const { base, quality } = splitQuality(stackId);
     const def = this.bundles.find((b) => b.id === bundleId);
     if (!def) return "There is no such bundle.";
     if (!this.roomOpen(def.room)) return "That room is not open yet.";
     if (this.complete(bundleId)) return "That bundle is already done.";
-    const item = def.items.find((i) => i.id === itemId);
+    const item = slotFor(def, base);
     if (!item) return "This bundle does not take that.";
-    if (this.have(bundleId, itemId) >= item.count) return "Already handed in.";
+    if (this.have(bundleId, item.id) >= item.count) return "Already handed in.";
     if (qualityRank(quality) < qualityRank(item.minQuality))
       return `This needs ${item.minQuality} quality or better.`;
     if (inv.count(stackId) < 1) return "You do not have one.";

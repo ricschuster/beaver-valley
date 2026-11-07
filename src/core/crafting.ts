@@ -1,4 +1,5 @@
 import recipeData from "../content/recipes.json";
+import { BUNDLES } from "./bundles";
 import { itemById } from "./items";
 import type { Skill } from "./skills";
 import type { GameState } from "./save";
@@ -16,13 +17,17 @@ export interface Ingredient {
 }
 
 export type RecipeSource =
-  { kind: "start" } | { kind: "level"; skill: Skill; level: number };
+  | { kind: "start" }
+  | { kind: "level"; skill: Skill; level: number }
+  /** Known once the hall bundle is finished (note 34: a bundle gives its machine and recipe together). */
+  | { kind: "bundle"; bundle: string };
 
 export interface Recipe {
   id: string;
   ingredients: Ingredient[];
   result: Ingredient;
-  source: RecipeSource;
+  /** Any one source is enough to know the recipe. */
+  sources: RecipeSource[];
 }
 
 export const RECIPES = recipeData as Recipe[];
@@ -38,10 +43,28 @@ export function buildable(r: Recipe): boolean {
 
 /** True when the player has met the recipe's source. */
 export function known(g: GameState, r: Recipe): boolean {
-  return (
-    r.source.kind === "start" ||
-    g.skills.level(r.source.skill) >= r.source.level
+  return r.sources.some((s) =>
+    s.kind === "start"
+      ? true
+      : s.kind === "level"
+        ? g.skills.level(s.skill) >= s.level
+        : g.hall.complete(s.bundle),
   );
+}
+
+/** Words for how a locked recipe is learned, such as "Farming level 4 or the Woodland bundle". */
+export function sourceText(r: Recipe): string {
+  const parts = r.sources.flatMap((s) => {
+    if (s.kind === "level") return [`${s.skill} level ${s.level}`];
+    if (s.kind === "bundle") {
+      const name = BUNDLES.find((b) => b.id === s.bundle)?.name;
+      return name ? [`the ${name} bundle`] : [];
+    }
+    return [];
+  });
+  return parts.length === 0
+    ? "Not known yet"
+    : `Learned at ${parts.join(" or ")}`;
 }
 
 /** Recipes the player knows and the game can make, in list order. */

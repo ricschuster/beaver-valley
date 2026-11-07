@@ -5,6 +5,7 @@ import {
   ingredientText,
   knownRecipes,
   lockedRecipes,
+  sourceText,
 } from "../core/crafting";
 import { itemById } from "../core/items";
 import { reasonText } from "../core/tools";
@@ -75,13 +76,9 @@ export class CraftingScene extends Phaser.Scene {
       };
     });
     for (const r of lockedRecipes(g)) {
-      const s = r.source;
       rows.push({
         label: itemById(r.result.item)?.name ?? r.result.item,
-        detail:
-          s.kind === "level"
-            ? `Learned at ${s.skill} level ${s.level}`
-            : "Not known yet",
+        detail: sourceText(r),
         dim: true,
         buttons: [],
       });

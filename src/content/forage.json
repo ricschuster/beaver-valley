@@ -31,14 +31,16 @@
     "name": "Wild grape",
     "seasons": ["summer"],
     "sellPrice": 80,
-    "energy": 38
+    "energy": 38,
+    "produce": "fruit"
   },
   {
     "id": "spice-berry",
     "name": "Spice berry",
     "seasons": ["summer"],
     "sellPrice": 80,
-    "energy": 25
+    "energy": 25,
+    "produce": "fruit"
   },
   {
     "id": "sweet-pea",
@@ -58,7 +60,8 @@
     "name": "Salmonberry",
     "seasons": ["spring"],
     "sellPrice": 5,
-    "energy": 25
+    "energy": 25,
+    "produce": "fruit"
   },
   {
     "id": "fiddlehead-fern",

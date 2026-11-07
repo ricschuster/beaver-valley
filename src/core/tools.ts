@@ -21,6 +21,8 @@ import type { GameState } from "./save";
 import { cropOfSeed } from "./items";
 import { fertilizerById } from "./fertilizer";
 import { sprinklerById } from "./sprinklers";
+import { handOnMachine, loadMachine, placeMachine } from "./machines";
+import { machineById } from "./processing";
 import type { Held } from "./toolbar";
 
 const fail = (reason: string): Outcome => ({ ok: false, reason });
@@ -66,6 +68,15 @@ export function useHeld(
     return g.trees.at(x, y)
       ? clearSeedling(g, x, y, "can", map)
       : water(g, x, y);
+  if (g.machines.at(x, y)) {
+    // A machine takes the held item, or the hand collects from it.
+    if (held.kind === "item") return loadMachine(g, x, y, held.id);
+    if (held.kind === "tool" && held.tool === "hand")
+      return handOnMachine(g, x, y);
+    return fail("machine in the way");
+  }
+  if (held.kind === "item" && machineById(held.id))
+    return placeMachine(g, map, x, y, held.id);
   if (held.kind === "item" && cropOfSeed(held.id)) {
     return plant(g, x, y, held.id);
   }
@@ -88,6 +99,7 @@ export const NOTHING_TO_ACT_ON = "nothing to act on";
 function pick(g: GameState, x: number, y: number): Outcome {
   if (g.trees.at(x, y)) return shake(g, x, y);
   if (g.sprinklers.at(x, y)) return pickUpSprinkler(g, x, y);
+  if (g.machines.at(x, y)) return handOnMachine(g, x, y);
   return g.forage.itemAt(x, y) ? forage(g, x, y) : harvest(g, x, y);
 }
 
@@ -134,6 +146,16 @@ const REASONS: Record<string, string> = {
   "not a sprinkler": "That is not a sprinkler.",
   "no sprinkler": "Out of sprinklers.",
   "cannot place here": "Place it on clear, diggable ground.",
+  "a machine is in the way": "A machine is there. Pick it up first.",
+  "machine in the way": "A machine is there.",
+  "not a machine": "That is not a machine.",
+  "no machine": "Out of machines.",
+  "no machine here": "No machine here.",
+  "takes nothing": "It works on its own.",
+  "machine busy": "It is still working.",
+  "machine empty": "It is empty.",
+  "machine will not take that": "It cannot use that.",
+  "not enough input": "You need more of that.",
   "no such recipe": "There is no such recipe.",
   "recipe not known": "You do not know that recipe yet.",
   "missing ingredients": "You are missing ingredients.",

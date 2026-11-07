@@ -27,8 +27,9 @@ Start each session by asking which item to take.
 
 Owner asked for builds on 2026-11-07. Done: build 1 (bundle model), build 2
 (shipping bin), build 3 weeds, Fiber and fertilizer (#481, #482) and sprinklers with a minimal
-crafting screen, build 6 the mines. Next: build 4 fall and winter (settle #61 numbers first),
-build 5 fruit trees and cave, build 7 crafting, build 9 farm types.
+crafting screen, build 6 the mines, build 7 the machines (kiln, jar, bee house, keg, seed maker; the bundle data for
+bundles 4, 5, 9, 10, 12 and 19 waits for the owner, note 35). Next: build 4 fall and winter (settle #61 numbers first),
+build 5 fruit trees and cave, build 8 hats and furniture, build 9 farm types.
 
 ## Remaining bundle work
 
