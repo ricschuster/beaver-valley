@@ -8,6 +8,8 @@ import { advanceBuild } from "./house";
 import { deliverFurnace } from "./smith";
 import type { Settlement } from "./shipping";
 import { fruitTreeById } from "./fruittrees";
+import { CAVE_MAP } from "./cave";
+import { maps } from "../content/maps";
 
 /**
  * True when something stands in the 3x3 around a tile that stops a young fruit
@@ -52,6 +54,8 @@ export interface SleepReport {
   furnaceGifted: boolean;
   /** What the shipping bin paid tonight. */
   shipped: Settlement;
+  /** True when tonight's sales passed the earnings mark and the villager will ask about the cave. */
+  caveOffer: boolean;
   /** Names of young fruit trees that could not grow, since something stood in their 3x3. */
   stuckTrees: string[];
 }
@@ -75,6 +79,7 @@ export function sleep(
   g.money -= moneyLost;
   // The bin pays after the pass-out cost, which takes cash carried only.
   const shipped = g.bin.settle(g);
+  const caveOffer = g.cave.addEarnings(shipped.total, g.day.clock.day);
 
   const { season } = dateOf(g.day.clock.day);
   g.farm.endDay(season, growthRate(g.skills), random, season !== before);
@@ -133,6 +138,7 @@ export function sleep(
     ),
     random,
   );
+  g.cave.endDay(season, maps.get(CAVE_MAP).forageSpots, random);
   const houseFinished = advanceBuild(g);
   const furnaceGifted = deliverFurnace(g);
 
@@ -146,6 +152,7 @@ export function sleep(
     houseFinished,
     furnaceGifted,
     shipped,
+    caveOffer,
     stuckTrees: stuck.map((t) => fruitTreeById(t.id)?.name ?? t.id),
   };
 }

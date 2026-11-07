@@ -1,0 +1,610 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.10.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "width": 11,
+  "height": 8,
+  "tilewidth": 16,
+  "tileheight": 16,
+  "nextlayerid": 8,
+  "nextobjectid": 37,
+  "properties": [
+    {
+      "name": "placeholder",
+      "type": "bool",
+      "value": true
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "ground",
+      "type": "tilelayer",
+      "width": 11,
+      "height": 8,
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "data": [
+        7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3,
+        3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3,
+        3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 7, 3, 3, 3, 3, 3,
+        3, 3, 3, 3, 7, 7, 7, 7, 7, 7, 9, 7, 7, 7, 7, 7
+      ]
+    },
+    {
+      "id": 2,
+      "name": "collision",
+      "type": "tilelayer",
+      "width": 11,
+      "height": 8,
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": false,
+      "data": [
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1
+      ]
+    },
+    {
+      "id": 3,
+      "name": "markers",
+      "type": "objectgroup",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "visible": true,
+      "draworder": "topdown",
+      "objects": [
+        {
+          "id": 1,
+          "name": "door",
+          "class": "entry",
+          "type": "entry",
+          "x": 88,
+          "y": 104,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 2,
+          "name": "door",
+          "class": "exit",
+          "type": "exit",
+          "x": 80,
+          "y": 112,
+          "width": 16,
+          "height": 16,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "map",
+              "type": "string",
+              "value": "farm"
+            },
+            {
+              "name": "entry",
+              "type": "string",
+              "value": "from_cave"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "box-1",
+          "class": "service",
+          "type": "service",
+          "x": 40,
+          "y": 24,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushroom-box"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "box-2",
+          "class": "service",
+          "type": "service",
+          "x": 56,
+          "y": 24,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushroom-box"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "box-3",
+          "class": "service",
+          "type": "service",
+          "x": 72,
+          "y": 24,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushroom-box"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "box-4",
+          "class": "service",
+          "type": "service",
+          "x": 88,
+          "y": 24,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushroom-box"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "box-5",
+          "class": "service",
+          "type": "service",
+          "x": 104,
+          "y": 24,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushroom-box"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "box-6",
+          "class": "service",
+          "type": "service",
+          "x": 120,
+          "y": 24,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mushroom-box"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "dehydrator",
+          "class": "service",
+          "type": "service",
+          "x": 152,
+          "y": 24,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true,
+          "properties": [
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "cave-dehydrator"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 24,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 11,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 40,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 12,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 56,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 13,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 72,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 14,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 88,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 15,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 104,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 16,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 120,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 17,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 136,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 18,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 152,
+          "y": 56,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 19,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 24,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 20,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 40,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 21,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 56,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 22,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 72,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 23,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 88,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 24,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 104,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 25,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 120,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 26,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 136,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 27,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 152,
+          "y": 72,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 28,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 24,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 29,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 40,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 30,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 56,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 31,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 72,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 32,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 88,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 33,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 104,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 34,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 120,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 35,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 136,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        },
+        {
+          "id": 36,
+          "name": "forage",
+          "class": "forage",
+          "type": "forage",
+          "x": 152,
+          "y": 88,
+          "width": 0,
+          "height": 0,
+          "rotation": 0,
+          "visible": true,
+          "point": true
+        }
+      ]
+    }
+  ],
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "name": "placeholder",
+      "tilewidth": 16,
+      "tileheight": 16,
+      "tilecount": 12,
+      "columns": 10,
+      "image": "placeholder-tiles.png",
+      "imagewidth": 192,
+      "imageheight": 16
+    }
+  ]
+}

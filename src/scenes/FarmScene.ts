@@ -32,6 +32,15 @@ import { saveGame } from "../core/save";
 import { absoluteMinutes } from "../core/furnace";
 import { jobDone, statusText } from "../core/machines";
 import {
+  CAVE_MAP,
+  caveDehydratorDone,
+  collectCaveDehydrator,
+  hasCaveDehydrator,
+  loadCaveDehydrator,
+  pickBatFruit,
+  pickMushroomBox,
+} from "../core/cave";
+import {
   BUILT_FLOORS,
   floorLayout,
   floorMapJson,
@@ -184,6 +193,7 @@ export class FarmScene extends Phaser.Scene {
     this.holds = new Set(
       minesOpen(this.state.day.clock.day) ? ["mines-open"] : [],
     );
+    if (this.state.cave.open) this.holds.add("cave-open");
     this.exitId = undefined;
     this.heldMs = 0;
     this.mouseAim = false;
@@ -371,6 +381,12 @@ export class FarmScene extends Phaser.Scene {
     }
 
     this.cameras.main.fadeIn(FADE_MS);
+    // The villager at the door asks about the cave, once a morning.
+    const today = this.state.day.clock.day;
+    if (isFarmMap(this.mapId) && this.state.cave.due(today)) {
+      this.state.cave.shownDay = today;
+      this.time.delayedCall(400, () => this.open("cave-choice"));
+    }
     this.time.addEvent({
       delay: TICK_MS / DEV_SPEED,
       loop: true,
@@ -691,6 +707,7 @@ export class FarmScene extends Phaser.Scene {
     if (service?.kind === "festival") return this.openFestival();
     if (service?.kind === "stairs")
       return this.travel(mineMapId(1), "from_above");
+    if (this.mapId === CAVE_MAP) return this.caveAction(front, service?.kind);
     if (service?.kind === "furnace") {
       if (!this.state.furnace.gifted) {
         this.message = "Nothing is here yet.";
@@ -722,6 +739,36 @@ export class FarmScene extends Phaser.Scene {
       return;
     }
     this.report(result);
+  }
+
+  /** Action in the farm cave: pick bat fruit, pick a mushroom box, or use the free dehydrator. */
+  private caveAction(front: Vec, kind: string | undefined): void {
+    const g = this.state;
+    const nothing = (text: string) => {
+      this.message = text;
+      this.render();
+    };
+    if (kind === "mushroom-box") {
+      if (g.cave.choice !== "mushrooms") return nothing("");
+      const index =
+        Number(this.map.serviceAt(front.x, front.y)?.id.split("-")[1]) - 1;
+      if (!g.cave.boxes[index]?.ready)
+        return nothing("The mushrooms are not ready yet.");
+      return this.report(pickMushroomBox(g, index));
+    }
+    if (kind === "cave-dehydrator") {
+      if (!hasCaveDehydrator(g)) return nothing("");
+      if (caveDehydratorDone(g)) return this.report(collectCaveDehydrator(g));
+      if (g.cave.dehydrator)
+        return nothing("The dehydrator is still drying its batch.");
+      const held = heldAt(g, this.selected);
+      if (held.kind !== "item")
+        return nothing("Hold 5 fruit or mushrooms and press Action.");
+      return this.report(loadCaveDehydrator(g, held.id));
+    }
+    if (g.cave.fruitAt(front.x, front.y))
+      return this.report(pickBatFruit(g, front.x, front.y));
+    nothing("");
   }
 
   /** Show what an action did, then settle the day, a level choice and the screen. */
@@ -817,6 +864,7 @@ export class FarmScene extends Phaser.Scene {
     }
     for (const p of this.state.furniture.each(this.mapId))
       put(p.x, p.y, furnitureKey(p.id));
+    if (this.mapId === CAVE_MAP) this.drawCave(put);
     if (!this.map.hasSoil) return;
     for (const { x, y, plot } of this.state.farm.each()) {
       put(x, y, soilKey(plot.wateredToday));
@@ -851,6 +899,33 @@ export class FarmScene extends Phaser.Scene {
       if (key) put(p.x, p.y, key);
     }
     this.drawBunting();
+  }
+
+  /** The cave: bat fruit on the floor, or mushroom boxes and the free dehydrator. */
+  private drawCave(
+    put: (x: number, y: number, key: string) => Phaser.GameObjects.Image,
+  ): void {
+    const cave = this.state.cave;
+    const ts = this.map.tileSize;
+    for (const f of cave.eachFruit()) {
+      const key = iconKey(f.id);
+      if (key) put(f.x, f.y, key);
+    }
+    if (cave.choice !== "mushrooms") return;
+    for (const s of this.map.services) {
+      if (s.kind === "mushroom-box") {
+        const box = cave.boxes[Number(s.id.split("-")[1]) - 1];
+        this.ground
+          .fillStyle(0x6b4a2a, 1)
+          .fillRect(s.x * ts + 1, s.y * ts + 3, ts - 2, ts - 5);
+        this.ground
+          .fillStyle(box?.ready ? 0xe8d8b0 : 0x3a2a1a, 1)
+          .fillRect(s.x * ts + 4, s.y * ts + 5, ts - 8, ts - 9);
+      } else if (s.kind === "cave-dehydrator") {
+        put(s.x, s.y, machineKey("dehydrator"));
+        if (caveDehydratorDone(this.state)) put(s.x, s.y, MACHINE_READY_KEY);
+      }
+    }
   }
 
   /** On a festival day, hang flags over the green so the village looks changed. */

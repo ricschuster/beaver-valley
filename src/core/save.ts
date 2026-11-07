@@ -8,6 +8,7 @@ import { Mines, type MinesSave } from "./mines";
 import { FruitTrees, fruitTreeById, type PlacedFruitTree } from "./fruittrees";
 import { Sprinklers, sprinklerById, type PlacedSprinkler } from "./sprinklers";
 import { Machines, type PlacedMachine } from "./machines";
+import { FarmCave, type CaveSave } from "./cave";
 import { machineById } from "./processing";
 import { Furnace, type FurnaceSave } from "./furnace";
 import { ShippingBin, type BinLine, type BinSave } from "./shipping";
@@ -70,6 +71,8 @@ export interface GameState {
   festivalsJoined: string[];
   /** Show tokens from the Harvest Showing, good for the year they were won. */
   showTokens: { year: number; count: number };
+  /** The farm cave: earnings, the offer and what grows there. */
+  cave: FarmCave;
   /** Hats owned and worn. */
   wardrobe: Wardrobe;
   /** Furniture placed in the house. */
@@ -109,6 +112,7 @@ export function newGame(farmType: string = DEFAULT_FARM_TYPE): GameState {
     endSeen: false,
     festivalsJoined: [],
     showTokens: { year: 0, count: 0 },
+    cave: new FarmCave(),
     wardrobe: new Wardrobe(),
     furniture: new Furniture(),
     forage: new ForageField(),
@@ -167,6 +171,8 @@ interface SaveData {
   festivalsJoined?: string[];
   /** Absent in saves made before the Harvest Showing. */
   showTokens?: { year: number; count: number };
+  /** Absent in saves made before the farm cave. */
+  cave?: CaveSave;
   /** Absent in saves made before hats. */
   wardrobe?: WardrobeSave;
   /** Absent in saves made before furniture. */
@@ -211,6 +217,7 @@ export function serialize(g: GameState): string {
     endSeen: g.endSeen,
     festivalsJoined: [...g.festivalsJoined],
     showTokens: { ...g.showTokens },
+    cave: g.cave.save(),
     wardrobe: g.wardrobe.save(),
     furniture: g.furniture.save(),
   };
@@ -486,6 +493,7 @@ export function deserialize(text: string): GameState | undefined {
   const tokens = raw.showTokens;
   if (isObject(tokens) && isCount(tokens.year) && isCount(tokens.count))
     g.showTokens = { year: tokens.year, count: tokens.count };
+  g.cave.load(raw.cave as Partial<CaveSave> | undefined);
   g.wardrobe.load(raw.wardrobe);
   g.furniture.load(raw.furniture);
   return g;
