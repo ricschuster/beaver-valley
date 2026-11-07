@@ -57,7 +57,7 @@ Builds:
    the soft gate (#179, #180). First, since it is the `next-payoff` item and
    everything else hands goods in through it.
 2. The shipping bin (`28_shipping_bin.md`).
-3. Weeds, then sprinklers and fertilizer, with Fiber and Sap as items
+3. Weeds, then sprinklers and fertilizer (built 2026-11-07, with the minimal crafting screen from note 34), with Fiber and Sap as items
    (`29_weeds.md`, `31_farm_growth.md`).
 4. Fall and winter: crops, forage, nightfall, weather, snow and thunderstorms
    (`26_seasons.md`, #61).

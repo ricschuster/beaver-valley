@@ -71,6 +71,7 @@ export class Hud {
     onUse: () => void,
     onAction: () => void,
     onSkills: () => void,
+    onCraft: () => void,
     onRow: () => void,
     onDebug: (() => void) | undefined,
     settings: Settings,
@@ -168,9 +169,36 @@ export class Hud {
     const skillsText = scene.add
       .text(skills.x + 45, 36, "Skills", { fontSize: "18px", color: "#ffffff" })
       .setOrigin(0.5);
-    this.objects.push(use, useText, eat, eatText, skills, skillsText);
+    const craft = scene.add
+      .rectangle(skills.x - 96, 16, 90, 40, 0x000000, 0.5)
+      .setOrigin(0)
+      .setStrokeStyle(2, 0xffffff, 0.5)
+      .setInteractive({ useHandCursor: true });
+    craft.on("pointerdown", onCraft);
+    const craftText = scene.add
+      .text(craft.x + 45, 36, "Craft", { fontSize: "18px", color: "#ffffff" })
+      .setOrigin(0.5);
+    this.objects.push(
+      use,
+      useText,
+      eat,
+      eatText,
+      skills,
+      skillsText,
+      craft,
+      craftText,
+    );
     if (!this.touch)
-      for (const o of [use, useText, eat, eatText, skills, skillsText])
+      for (const o of [
+        use,
+        useText,
+        eat,
+        eatText,
+        skills,
+        skillsText,
+        craft,
+        craftText,
+      ])
         o.setVisible(false).disableInteractive();
     // Dev builds only: the debug menu's touch button (`42_debug_menu.md`).
     if (onDebug && this.touch && import.meta.env.DEV) {

@@ -1,0 +1,21 @@
+[
+  {
+    "id": "sprinkler",
+    "ingredients": [
+      { "item": "copper-bar", "count": 1 },
+      { "item": "iron-bar", "count": 1 }
+    ],
+    "result": { "item": "sprinkler", "count": 1 },
+    "source": { "kind": "level", "skill": "farming", "level": 2 }
+  },
+  {
+    "id": "quality-sprinkler",
+    "ingredients": [
+      { "item": "iron-bar", "count": 1 },
+      { "item": "gold-bar", "count": 1 },
+      { "item": "quartz-crystal", "count": 1 }
+    ],
+    "result": { "item": "quality-sprinkler", "count": 1 },
+    "source": { "kind": "level", "skill": "farming", "level": 6 }
+  }
+]

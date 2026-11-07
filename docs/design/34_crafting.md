@@ -1,6 +1,12 @@
 # 34 Crafting (draft)
 
-Status: draft. Decided with the owner on 2026-10-31. Nothing here is built.
+Status: draft. Decided with the owner on 2026-10-31. Built 2026-11-07 (slice 1
+build 3, the smallest piece sprinklers need): recipes as data in
+`src/content/recipes.json`, `src/core/crafting.ts`, and a Craft screen (key R,
+touch button) that crafts from the pack. Level sources only, two recipes (the
+basic sprinkler, and the quality sprinkler hidden until quartz crystals exist).
+Not built: the workbench and chests, the other sources (shop, gifts, bundles),
+and every other recipe, which is build 7. The rest of this note is not built.
 Reference: the Stardew Valley Wiki Crafting, Carpenter's Shop and Sprinkler
 pages, read only (ADR 0002). Costs are Stardew's, with our own items swapped in
 where we lack one, and every number is a placeholder until playtests

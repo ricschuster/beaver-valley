@@ -14,6 +14,7 @@ export interface Intents {
   action?: () => void;
   eat?: () => void;
   openSkills?: () => void;
+  openCraft?: () => void;
   endDay?: () => void;
   openDebug?: () => void;
   nextSlot?: () => void;
@@ -66,6 +67,7 @@ class DesktopControls implements Controls {
         action: intents.action,
         eat: intents.eat,
         skills: intents.openSkills,
+        craft: intents.openCraft,
         endDay: intents.endDay,
         nextSlot: intents.nextSlot,
         nextRow: intents.nextRow,
@@ -204,7 +206,7 @@ export function desktopHint(b: Bindings): string {
   const k = (a: string) => keyLabel(b[a]!);
   return (
     `Move: ${k("moveUp")}${k("moveLeft")}${k("moveDown")}${k("moveRight")} or arrows   ` +
-    `Use: ${k("use")}   Action: ${k("action")}   Eat: ${k("eat")}   Skills: ${k("skills")}   ` +
+    `Use: ${k("use")}   Action: ${k("action")}   Eat: ${k("eat")}   Skills: ${k("skills")}   Craft: ${k("craft")}   ` +
     `Sleep: bed or ${k("endDay")}   Tools: 1-9, ${k("nextSlot")}: next, ${k("nextRow")}: row`
   );
 }

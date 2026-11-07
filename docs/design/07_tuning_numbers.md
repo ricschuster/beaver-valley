@@ -466,7 +466,7 @@ Decided with the owner. Prices and formulas are Stardew's, from the saved
 Sprinkler, Fertilizer, Fruit Trees, The Cave and Artisan Goods pages, unless
 marked ours. Recipes are in `34_crafting.md`.
 
-- Sprinkler sell prices: sprinkler 100g, quality sprinkler 450g, iridium
+- Sprinkler sell prices (built 2026-11-07, as items): sprinkler 100g, quality sprinkler 450g, iridium
   sprinkler 1,000g. Sprinklers are crafted and never sold in the shop.
 - Fertilizer shop: basic fertilizer, basic retaining soil and speed-gro cost
   100g from Spring 15 of year 1. Quality fertilizer, quality retaining soil and
