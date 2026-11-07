@@ -10,6 +10,7 @@ const base: SleepReport = {
   houseFinished: false,
   furnaceGifted: false,
   shipped: { lines: [], total: 0 },
+  stuckTrees: [],
 };
 
 describe("overnight report", () => {

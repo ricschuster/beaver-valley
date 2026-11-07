@@ -3,7 +3,14 @@ import { dateOf } from "../core/calendar";
 import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
 import { sellMultiplier } from "../core/professions";
-import { buy, sell, sellAll, seedStock, fertilizerStock } from "../core/shop";
+import {
+  buy,
+  sell,
+  sellAll,
+  seedStock,
+  fertilizerStock,
+  saplingStock,
+} from "../core/shop";
 import {
   nextBackpack,
   TIER_NAMES,
@@ -86,7 +93,11 @@ export class ShopScene extends Phaser.Scene {
     const g = this.state;
     this.money.setText(`Money ${g.money}g`);
     const season = dateOf(g.day.clock.day).season;
-    const stock = [...seedStock(season), ...fertilizerStock(g.day.clock.day)];
+    const stock = [
+      ...seedStock(season),
+      ...saplingStock(),
+      ...fertilizerStock(g.day.clock.day),
+    ];
     const buyRows: Row[] = stock.map((id) => {
       const def = itemById(id)!;
       const price = def.buyPrice ?? 0;

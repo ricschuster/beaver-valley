@@ -1,0 +1,50 @@
+[
+  {
+    "id": "apricot",
+    "name": "Apricot",
+    "season": "spring",
+    "saplingPrice": 2000,
+    "sellPrice": 50,
+    "energy": 38
+  },
+  {
+    "id": "cherry",
+    "name": "Cherry",
+    "season": "spring",
+    "saplingPrice": 3400,
+    "sellPrice": 80,
+    "energy": 38
+  },
+  {
+    "id": "peach",
+    "name": "Peach",
+    "season": "summer",
+    "saplingPrice": 6000,
+    "sellPrice": 140,
+    "energy": 38
+  },
+  {
+    "id": "orange",
+    "name": "Orange",
+    "season": "summer",
+    "saplingPrice": 4000,
+    "sellPrice": 100,
+    "energy": 38
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "season": "fall",
+    "saplingPrice": 4000,
+    "sellPrice": 100,
+    "energy": 38
+  },
+  {
+    "id": "pomegranate",
+    "name": "Pomegranate",
+    "season": "fall",
+    "saplingPrice": 6000,
+    "sellPrice": 140,
+    "energy": 38
+  }
+]

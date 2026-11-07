@@ -1,6 +1,7 @@
 import { fertilizerById } from "../core/fertilizer";
 import Phaser from "phaser";
 import { sleep } from "../core/sleep";
+import { stageOf as fruitStageOf } from "../core/fruittrees";
 import type { GameState } from "../core/save";
 import { cycle, heldAt, nextRow, toolbarSize } from "../core/toolbar";
 import { pendingChoice } from "../core/professions";
@@ -43,6 +44,8 @@ import { SELECTED_KEY, STATE_KEY } from "./state";
 import {
   cropKey,
   fertKey,
+  fruitOnTreeKey,
+  fruitTreeKey,
   sprinklerKey,
   machineKey,
   MACHINE_READY_KEY,
@@ -439,7 +442,9 @@ export class FarmScene extends Phaser.Scene {
         ts,
         (x, y) =>
           this.map.isBlocked(x, y) ||
-          (this.map.hasSoil && this.state.trees.blocks(x, y)) ||
+          (this.map.hasSoil &&
+            (this.state.trees.blocks(x, y) ||
+              !!this.state.fruitTrees.at(x, y))) ||
           !!this.rocks()?.at(x, y) ||
           this.furnaceAt(x, y) ||
           (this.map.hasSoil &&
@@ -524,7 +529,10 @@ export class FarmScene extends Phaser.Scene {
     // tool does. It stops once there is nothing left on the tile.
     if (
       !axe ||
-      !this.state.trees.at(front.x, front.y) ||
+      !(
+        this.state.trees.at(front.x, front.y) ||
+        this.state.fruitTrees.at(front.x, front.y)
+      ) ||
       !(this.controls.useHeld() || this.hud.useHeld || this.mouseHeld)
     ) {
       this.heldMs = 0;
@@ -757,6 +765,10 @@ export class FarmScene extends Phaser.Scene {
     }
     for (const t of this.state.trees.each())
       put(t.x, t.y, treeKey(t.stage, t.stump));
+    for (const t of this.state.fruitTrees.each()) {
+      put(t.x, t.y, fruitTreeKey(fruitStageOf(t.age)));
+      if (t.fruit > 0) put(t.x, t.y, fruitOnTreeKey(t.id));
+    }
     for (const p of this.state.ground.each()) {
       const key = iconKey(p.id);
       if (key) put(p.x, p.y, key);

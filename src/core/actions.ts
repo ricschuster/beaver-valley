@@ -18,6 +18,7 @@ import {
 } from "./trees";
 import { swingCost, type Upgradable } from "./upgrades";
 import { sprinklerById } from "./sprinklers";
+import { isMature, saplingId, treeOfSapling } from "./fruittrees";
 import { FIBER, FIBER_CHANCE } from "./weeds";
 
 /** Energy per tool swing (hoe, watering can), as in Stardew. Seeds, picking and harvesting are free. */
@@ -55,7 +56,8 @@ function award(g: GameState, skill: Skill, xp: number, item?: string): Outcome {
 /** Every action is refused once the day is over, so the scene must sleep first. */
 export function till(g: GameState, x: number, y: number): Outcome {
   if (g.day.over) return fail("exhausted");
-  if (g.trees.at(x, y)) return fail("a tree is in the way");
+  if (g.trees.at(x, y) || g.fruitTrees.at(x, y))
+    return fail("a tree is in the way");
   if (g.weeds.at(x, y)) return fail("a weed is in the way");
   if (g.sprinklers.at(x, y)) return fail("a sprinkler is in the way");
   if (g.machines.at(x, y)) return fail("a machine is in the way");
@@ -261,6 +263,7 @@ export function chop(
   map?: FarmMap,
 ): Outcome {
   if (g.day.over) return fail("exhausted");
+  if (g.fruitTrees.at(x, y)) return chopFruitTree(g, x, y, map);
   const plan = planChop(g, x, y, random);
   const t = g.trees.at(x, y);
   if (!plan || !t) return fail("nothing to chop");
@@ -284,6 +287,87 @@ export function chop(
   return plan.xp > 0
     ? award(g, "foraging", plan.xp, plan.goods[0]?.[0])
     : { ok: true, item: plan.goods[0]?.[0] };
+}
+
+/**
+ * One swing of the axe at a fruit tree. A young tree falls in one swing, a
+ * mature one takes as many as a common tree. It gives wood and returns its
+ * sapling (`docs/design/31_farm_growth.md`); fruit on it is lost. Goods that do
+ * not fit the backpack land on the ground nearby.
+ */
+function chopFruitTree(
+  g: GameState,
+  x: number,
+  y: number,
+  map?: FarmMap,
+): Outcome {
+  const t = g.fruitTrees.at(x, y);
+  if (!t) return fail("nothing to chop");
+  g.day.act(swingCost(TOOL_ENERGY, AXE_TIER, g.skills.level("foraging")), 0);
+  const mature = isMature(t);
+  if (mature && t.hits + 1 < swingsToFell(AXE_TIER)) {
+    t.hits += 1;
+    return { ok: true };
+  }
+  const wood = mature
+    ? TREE_WOOD + Math.min(g.skills.level("foraging"), TREE_WOOD_BONUS_MAX)
+    : YOUNG_WOOD;
+  const sapling = saplingId(t.id);
+  for (const [id, n] of [
+    ["wood", wood],
+    [sapling, 1],
+  ] as const) {
+    const fits = Math.min(n, g.inventory.room(id));
+    if (fits > 0) g.inventory.add(id, fits);
+    if (fits < n) {
+      const spot = dropSpot(g, map, x, y);
+      g.ground.drop(spot.x, spot.y, id, n - fits);
+    }
+  }
+  g.fruitTrees.remove(x, y);
+  return mature
+    ? award(g, "foraging", TREE_XP, "wood")
+    : { ok: true, item: "wood" };
+}
+
+/**
+ * Plant a fruit tree sapling on open ground. The 3x3 around it must hold no
+ * other tree, fruit or common; weeds and objects only stop it growing
+ * afterwards (`docs/design/29_weeds.md`).
+ */
+export function plantFruitTree(
+  g: GameState,
+  map: FarmMap,
+  x: number,
+  y: number,
+  id: string,
+): Outcome {
+  if (g.day.over) return fail("exhausted");
+  const def = treeOfSapling(id);
+  if (!def) return fail("not a sapling");
+  if (g.inventory.count(id) < 1) return fail("no sapling");
+  if (!map.canPlantTree(x, y) || !isClear(g, map, x, y))
+    return fail("cannot plant tree here");
+  for (let dy = -1; dy <= 1; dy++)
+    for (let dx = -1; dx <= 1; dx++)
+      if (g.fruitTrees.at(x + dx, y + dy) || g.trees.blocks(x + dx, y + dy))
+        return fail("too close to another tree");
+  g.inventory.remove(id);
+  g.fruitTrees.add(x, y, def.id);
+  return { ok: true };
+}
+
+/** Shake the fruit off a mature tree by hand, all of it, at the tree's grade. */
+export function pickFruit(g: GameState, x: number, y: number): Outcome {
+  if (g.day.over) return fail("exhausted");
+  const ripe = g.fruitTrees.ripe(x, y);
+  if (!ripe) return fail("nothing ripe");
+  const take = Math.min(ripe.count, g.inventory.room(ripe.item));
+  if (take < 1) return fail("backpack full");
+  g.inventory.add(ripe.item, take);
+  const t = g.fruitTrees.at(x, y);
+  if (t) t.fruit -= take;
+  return { ok: true, item: ripe.item };
 }
 
 /**
@@ -336,6 +420,7 @@ export function plantTree(
   if (
     !map.canPlantTree(x, y) ||
     g.trees.at(x, y) ||
+    g.fruitTrees.at(x, y) ||
     g.ground.at(x, y).length > 0 ||
     g.weeds.at(x, y) ||
     g.sprinklers.at(x, y) ||
@@ -394,6 +479,7 @@ export function isClear(
     g.machines.at(x, y) ||
     g.farm.plotAt(x, y) ||
     g.trees.at(x, y) ||
+    g.fruitTrees.at(x, y) ||
     g.weeds.at(x, y) ||
     g.rocks.at(x, y) ||
     g.forage.itemAt(x, y) ||

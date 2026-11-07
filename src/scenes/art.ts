@@ -5,6 +5,7 @@ import { MACHINES, machineById } from "../core/processing";
 import Phaser from "phaser";
 import { CROPS } from "../core/crops";
 import { FORAGE } from "../core/forage";
+import { FRUIT_TREES, fruitTreeById, treeOfSapling } from "../core/fruittrees";
 import { seedId } from "../core/items";
 import { splitQuality } from "../core/quality";
 
@@ -433,6 +434,20 @@ function paintSeedIcon(scene: Phaser.Scene, cropId: string): void {
 export const WEED_KEY = "weed";
 
 /** The picture of a sprinkler, on the ground and in the backpack. */
+/** Fruit tree pictures: growth stages 0 to 4 and, over a mature crown, the fruit it holds. */
+export const fruitTreeKey = (stage: number) => `fruit-tree-${stage}`;
+export const fruitOnTreeKey = (id: string) => `fruit-on-${id}`;
+export const saplingIconKey = (id: string) => `icon-sapling-${id}`;
+const FRUIT_COLOUR: Record<string, string> = {
+  apricot: "#f0a030",
+  cherry: "#c02040",
+  peach: "#f0a090",
+  orange: "#f08020",
+  apple: "#d83030",
+  pomegranate: "#a01848",
+};
+const fruitColour = (id: string) => FRUIT_COLOUR[id] ?? "#e0b040";
+
 export const machineKey = (id: string) => `machine-${id}`;
 export const MACHINE_READY_KEY = "machine-ready";
 
@@ -647,6 +662,61 @@ const METAL: Record<string, string> = {
   "gold-ore": "#e8c040",
 };
 
+function paintFruitTrees(scene: Phaser.Scene): void {
+  const draw = (key: string, paint: (c: Ctx) => void) => {
+    const t = scene.textures.createCanvas(key, SIZE, SIZE)!;
+    paint(t.getContext());
+    t.refresh();
+  };
+  // Stages: sapling stick, taller sapling, young tree, then the mature crown.
+  draw(fruitTreeKey(0), (c) => {
+    px(c, "#5a3e22", 8, 10, 1, 4);
+    px(c, "#7ac05a", 7, 9, 3, 2);
+  });
+  draw(fruitTreeKey(1), (c) => {
+    px(c, "#5a3e22", 8, 8, 1, 6);
+    px(c, "#7ac05a", 6, 7, 2, 2);
+    px(c, "#7ac05a", 9, 6, 2, 2);
+  });
+  draw(fruitTreeKey(2), (c) => {
+    px(c, "#5a3e22", 8, 7, 1, 7);
+    disc(c, "#4a9a4a", 8, 6, 3);
+  });
+  draw(fruitTreeKey(3), (c) => {
+    px(c, "#5a3e22", 7, 9, 2, 6);
+    disc(c, "#3c8a40", 8, 6, 4);
+    disc(c, "#5ab05a", 7, 5, 2);
+  });
+  draw(fruitTreeKey(4), (c) => {
+    px(c, "#5a3e22", 7, 10, 3, 5);
+    disc(c, "#2f7a38", 8, 7, 7);
+    disc(c, "#4aa04a", 6, 5, 4);
+    disc(c, "#6ac070", 5, 4, 2);
+  });
+  for (const t of FRUIT_TREES) {
+    draw(fruitOnTreeKey(t.id), (c) => {
+      for (const [x, y] of [
+        [5, 6],
+        [10, 5],
+        [8, 9],
+        [11, 9],
+      ] as const)
+        px(c, fruitColour(t.id), x, y, 2, 2);
+    });
+    draw(`icon-${t.id}`, (c) => {
+      disc(c, fruitColour(t.id), 8, 9, 4);
+      px(c, "#4a8a3a", 8, 3, 3, 2);
+      px(c, "#5a3e22", 8, 4, 1, 2);
+    });
+    draw(saplingIconKey(t.id), (c) => {
+      px(c, "#6b4e2d", 5, 12, 6, 2);
+      px(c, "#5a3e22", 8, 6, 1, 6);
+      px(c, fruitColour(t.id), 6, 4, 2, 2);
+      px(c, "#7ac05a", 9, 5, 3, 2);
+    });
+  }
+}
+
 function paintMineArt(scene: Phaser.Scene): void {
   const draw = (key: string, paint: (c: Ctx) => void) => {
     const t = scene.textures.createCanvas(key, SIZE, SIZE)!;
@@ -704,6 +774,9 @@ export function iconKey(itemId: string): string | undefined {
   if (fertilizerById(base)) return `icon-${base}`;
   if (sprinklerById(base)) return sprinklerKey(base);
   if (machineById(base)) return machineKey(base);
+  const sapling = treeOfSapling(base);
+  if (sapling) return saplingIconKey(sapling.id);
+  if (fruitTreeById(base)) return `icon-${base}`;
   const category = categoryOf(base);
   if (category) return `icon-artisan-${category}`;
   if (MINE_ICON_IDS.includes(base)) return `icon-${base}`;
@@ -733,5 +806,6 @@ export function makeArt(
   for (const f of FORAGE) paintForage(scene, f.id);
   paintToolIcons(scene);
   paintTrees(scene);
+  paintFruitTrees(scene);
   paintMineArt(scene);
 }

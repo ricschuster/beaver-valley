@@ -1,5 +1,6 @@
 import { CROPS, cropById } from "./crops";
 import { FORAGE, forageById } from "./forage";
+import { FRUIT_TREES, fruitTreeById } from "./fruittrees";
 import { splitQuality } from "./quality";
 
 /**
@@ -55,21 +56,30 @@ export function produceOf(id: string): "fruit" | "vegetable" | undefined {
   const base = splitQuality(id).base;
   const crop = cropById(base);
   if (crop) return crop.produce ?? "vegetable";
+  if (fruitTreeById(base)) return "fruit";
   return forageById(base)?.produce;
 }
 
 /** The sell price of a raw input at normal quality. */
 function basePrice(id: string): number {
-  return cropById(id)?.sellPrice ?? forageById(id)?.sellPrice ?? 0;
+  return (
+    cropById(id)?.sellPrice ??
+    fruitTreeById(id)?.sellPrice ??
+    forageById(id)?.sellPrice ??
+    0
+  );
 }
 
 function nameOf(id: string): string {
-  return cropById(id)?.name ?? forageById(id)?.name ?? id;
+  return (
+    cropById(id)?.name ?? fruitTreeById(id)?.name ?? forageById(id)?.name ?? id
+  );
 }
 
 const defs = new Map<string, ArtisanDef>();
 const inputs = [
   ...CROPS.map((c) => c.id),
+  ...FRUIT_TREES.map((t) => t.id),
   ...FORAGE.filter((f) => f.produce).map((f) => f.id),
 ];
 for (const input of inputs) {

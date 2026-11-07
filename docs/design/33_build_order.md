@@ -61,7 +61,7 @@ Builds:
    (`29_weeds.md`, `31_farm_growth.md`).
 4. Fall and winter: crops, forage, nightfall, weather, snow and thunderstorms
    (`26_seasons.md`, #61).
-5. Fruit trees and the farm cave (`31_farm_growth.md`). The greenhouse is not
+5. Fruit trees and the farm cave (`31_farm_growth.md`). Fruit trees built 2026-11-07; the cave is not built. The greenhouse is not
    here: it is the Larder reward, which needs the animal bundle, so it
    arrives in slice 4 (`35_bundle_pools.md`).
 6. The mines, first part (built 2026-11-07 except the Smith's bundle, the charcoal kiln and crafted furnaces, see `22_mines.md`; decided 2026-10-31, as in Stardew): floors 1 to 10 with

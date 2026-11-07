@@ -7,6 +7,33 @@ import type { FarmMap } from "./map";
 import { advanceBuild } from "./house";
 import { deliverFurnace } from "./smith";
 import type { Settlement } from "./shipping";
+import { fruitTreeById } from "./fruittrees";
+
+/**
+ * True when something stands in the 3x3 around a tile that stops a young fruit
+ * tree growing: a weed, rock, tree, another fruit tree, sprinkler, machine,
+ * crop or forage item. Grass and bare or tilled soil do not count, and nor does
+ * the tile's own tree (`docs/design/31_farm_growth.md`).
+ */
+export function blocksGrowth(g: GameState, x: number, y: number): boolean {
+  for (let dy = -1; dy <= 1; dy++)
+    for (let dx = -1; dx <= 1; dx++) {
+      const [tx, ty] = [x + dx, y + dy];
+      const self = dx === 0 && dy === 0;
+      if (
+        g.weeds.at(tx, ty) ||
+        g.rocks.at(tx, ty) ||
+        g.trees.at(tx, ty) ||
+        (!self && g.fruitTrees.at(tx, ty)) ||
+        g.sprinklers.at(tx, ty) ||
+        g.machines.at(tx, ty) ||
+        g.farm.plotAt(tx, ty)?.crop ||
+        g.forage.itemAt(tx, ty)
+      )
+        return true;
+    }
+  return false;
+}
 
 export interface SleepReport {
   passedOut: boolean;
@@ -25,6 +52,8 @@ export interface SleepReport {
   furnaceGifted: boolean;
   /** What the shipping bin paid tonight. */
   shipped: Settlement;
+  /** Names of young fruit trees that could not grow, since something stood in their 3x3. */
+  stuckTrees: string[];
 }
 
 /**
@@ -67,6 +96,7 @@ export function sleep(
       !g.rocks.at(x, y) &&
       !g.sprinklers.at(x, y) &&
       !g.machines.at(x, y) &&
+      !g.fruitTrees.at(x, y) &&
       g.ground.at(x, y).length === 0,
   );
   if (map?.hasSoil) {
@@ -80,6 +110,7 @@ export function sleep(
         map.isTillable(x, y) &&
         !map.isBlocked(x, y) &&
         !g.trees.at(x, y) &&
+        !g.fruitTrees.at(x, y) &&
         !g.rocks.at(x, y) &&
         !g.sprinklers.at(x, y) &&
         !g.machines.at(x, y) &&
@@ -89,11 +120,13 @@ export function sleep(
       () => map.tillableTiles(),
     );
   }
+  const stuck = g.fruitTrees.endDay(season, (x, y) => !blocksGrowth(g, x, y));
   g.forage.respawn(
     season,
     spots.filter(
       (s) =>
         !g.trees.at(s.x, s.y) &&
+        !g.fruitTrees.at(s.x, s.y) &&
         !g.weeds.at(s.x, s.y) &&
         !g.sprinklers.at(s.x, s.y) &&
         !g.machines.at(s.x, s.y),
@@ -113,6 +146,7 @@ export function sleep(
     houseFinished,
     furnaceGifted,
     shipped,
+    stuckTrees: stuck.map((t) => fruitTreeById(t.id)?.name ?? t.id),
   };
 }
 

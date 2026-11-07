@@ -11,6 +11,7 @@ import {
   STONE_SELL_PRICE,
 } from "./ore";
 import { SPRINKLERS } from "./sprinklers";
+import { FRUIT_TREES, saplingId } from "./fruittrees";
 import { ARTISAN_GOODS } from "./artisan";
 import { MACHINES } from "./processing";
 import { ENERGY_MULTIPLIER, QUALITY_MULTIPLIER, splitQuality } from "./quality";
@@ -58,6 +59,21 @@ for (const f of FERTILIZERS) {
     name: f.name,
     sellPrice: f.sellPrice,
     buyPrice: f.buyPrice,
+  });
+}
+
+for (const t of FRUIT_TREES) {
+  items.set(t.id, {
+    id: t.id,
+    name: t.name,
+    sellPrice: t.sellPrice,
+    energy: t.energy,
+  });
+  items.set(saplingId(t.id), {
+    id: saplingId(t.id),
+    name: `${t.name} sapling`,
+    sellPrice: Math.floor(t.saplingPrice / 2),
+    buyPrice: t.saplingPrice,
   });
 }
 

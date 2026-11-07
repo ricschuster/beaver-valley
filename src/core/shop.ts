@@ -1,5 +1,6 @@
-import type { Season } from "./calendar";
+import { SEASONS, type Season } from "./calendar";
 import { CROPS } from "./crops";
+import { FRUIT_TREES, saplingId } from "./fruittrees";
 import { itemById, seedId } from "./items";
 import type { Inventory } from "./inventory";
 
@@ -52,6 +53,17 @@ export function seedStock(season: Season): string[] {
   return CROPS.filter((c) => c.seasons.includes(season)).map((c) =>
     seedId(c.id),
   );
+}
+
+/**
+ * Saplings on sale. Pierre's sells every tree all year, but ours list only the
+ * trees whose season is in the calendar, so a tree that could never bear
+ * (fall, until build 4) is not sold yet.
+ */
+export function saplingStock(): string[] {
+  return FRUIT_TREES.filter((t) =>
+    (SEASONS as readonly string[]).includes(t.season),
+  ).map((t) => saplingId(t.id));
 }
 
 export { fertilizerStock } from "./fertilizer";

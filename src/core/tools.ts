@@ -8,6 +8,8 @@ import {
   pickUpSprinkler,
   placeSprinkler,
   plant,
+  plantFruitTree,
+  pickFruit,
   plantTree,
   shake,
   till,
@@ -20,6 +22,7 @@ import type { FarmMap } from "./map";
 import type { GameState } from "./save";
 import { cropOfSeed } from "./items";
 import { fertilizerById } from "./fertilizer";
+import { treeOfSapling } from "./fruittrees";
 import { sprinklerById } from "./sprinklers";
 import { handOnMachine, loadMachine, placeMachine } from "./machines";
 import { machineById } from "./processing";
@@ -62,6 +65,7 @@ export function useHeld(
     return chop(g, x, y, Math.random, map);
   if (held.kind === "tool" && held.tool === "hoe") {
     if (g.trees.at(x, y)) return clearSeedling(g, x, y, "hoe", map);
+    if (g.fruitTrees.at(x, y)) return fail("a tree is in the way");
     return map.isTillable(x, y) ? till(g, x, y) : fail("cannot dig here");
   }
   if (held.kind === "tool" && held.tool === "can")
@@ -86,6 +90,8 @@ export function useHeld(
     return placeSprinkler(g, map, x, y, held.id);
   if (held.kind === "item" && held.id === TREE_SEED)
     return plantTree(g, map, x, y);
+  if (held.kind === "item" && treeOfSapling(held.id))
+    return plantFruitTree(g, map, x, y, held.id);
   // The hand tool keeps its pick-up job; every other item only has the Action
   // button for that (note 47).
   if (held.kind === "tool" && held.tool === "hand") return pick(g, x, y);
@@ -98,6 +104,7 @@ export const NOTHING_TO_ACT_ON = "nothing to act on";
 /** Shake a tree, pick forage or harvest a crop: what the hand does on one tile. */
 function pick(g: GameState, x: number, y: number): Outcome {
   if (g.trees.at(x, y)) return shake(g, x, y);
+  if (g.fruitTrees.at(x, y)) return pickFruit(g, x, y);
   if (g.sprinklers.at(x, y)) return pickUpSprinkler(g, x, y);
   if (g.machines.at(x, y)) return handOnMachine(g, x, y);
   return g.forage.itemAt(x, y) ? forage(g, x, y) : harvest(g, x, y);
@@ -169,6 +176,10 @@ const REASONS: Record<string, string> = {
   "not done": "It is not done yet.",
   "nothing to shake": "Nothing falls from there.",
   "cannot plant tree here": "A tree cannot grow there.",
+  "too close to another tree":
+    "Too close to another tree. Fruit trees need a clear 3x3.",
+  "not a sapling": "That is not a sapling.",
+  "no sapling": "Out of saplings.",
   "not food": "That cannot be eaten.",
   "nothing to eat": "Select food to eat.",
   "not hungry": "You are not tired.",
