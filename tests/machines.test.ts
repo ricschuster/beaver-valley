@@ -296,3 +296,39 @@ describe("machine recipes and bundles", () => {
     expect(g.inventory.count("keg")).toBe(1);
   });
 });
+
+describe("crafted furnaces", () => {
+  it("are crafted at mining level 4 from 20 copper ore and 25 stone", () => {
+    const g = newGame();
+    g.inventory.add("copper-ore", 20);
+    g.inventory.add("stone", 25);
+    expect(craft(g, "furnace")).toBe("recipe not known");
+    g.skills.gain("mining", LEVEL_XP[3]!);
+    expect(craft(g, "furnace")).toBeUndefined();
+    expect(g.inventory.count("furnace")).toBe(1);
+    expect(g.inventory.count("copper-ore")).toBe(0);
+  });
+
+  it("smelt 5 ore and 1 coal into a bar, in the same time as the smith's", () => {
+    const p = processFor("furnace", "iron-ore")!;
+    expect(p).toMatchObject({
+      use: 5,
+      output: "iron-bar",
+      minutes: 120,
+      also: { item: "coal", use: 1 },
+    });
+    expect(processFor("furnace", "stone")).toBeUndefined();
+    const { g } = withMachine("furnace");
+    g.inventory.add("copper-ore", 5);
+    expect(loadMachine(g, 3, 3, "copper-ore")).toEqual({
+      ok: false,
+      reason: "needs 1 coal",
+    });
+    expect(g.inventory.count("copper-ore")).toBe(5);
+    g.inventory.add("coal", 2);
+    expect(loadMachine(g, 3, 3, "copper-ore").ok).toBe(true);
+    expect(g.inventory.count("copper-ore")).toBe(0);
+    expect(g.inventory.count("coal")).toBe(1);
+    expect(g.machines.get(3, 3)?.job?.output).toBe("copper-bar");
+  });
+});

@@ -10,8 +10,9 @@ to 10 with no creatures, the dry-streak ladder, copper, coal and stone, the
 lift at every reached floor, the opening on spring day 5, rocks on the farm, the
 pickaxe as a starter tool, the mining skill (Prospector works, Rockhound has
 nothing to act on yet), the smith's ore shop, the furnace gift, smelting and
-bars. The charcoal kiln is built as a machine (2026-11-07, note 24). The Smith's bundle (bundle 19, 20 coal) is in the hall data (2026-11-07). Not built: crafting
-more furnaces (needs crafting, note 34), Old Greencoat's door scene, the rest
+bars. The charcoal kiln is built as a machine (2026-11-07, note 24). The Smith's bundle (bundle 19, 20 coal) is in the hall data (2026-11-07). Crafted furnaces are built
+(2026-11-07, session e): a placeable machine, mining level 4, 20 copper ore and 25
+stone, 5 ore and 1 coal a bar. Not built: Old Greencoat's door scene, the rest
 camp chest on floor 10, the mine hall's ore-only bin, geodes,
 and everything from slice 3 on. The mine hall and the mine door are placeholders
 on the farm until the Mountain exists (note 19). Everything else is unbuilt. It answers the design half of the mines item in

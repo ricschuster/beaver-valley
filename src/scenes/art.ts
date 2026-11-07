@@ -619,6 +619,11 @@ function paintTrees(scene: Phaser.Scene): void {
         px(c, "#5a5a62", 3, 5, 10, 1);
         px(c, "#5a5a62", 3, 11, 10, 1);
         px(c, "#3a2a1a", 7, 8, 2, 2);
+      } else if (m.id === "furnace") {
+        px(c, "#3a3a42", 3, 4, 10, 10);
+        px(c, "#5a5a64", 4, 2, 8, 3);
+        px(c, "#1c1c20", 5, 8, 6, 5);
+        px(c, "#e87a2a", 6, 10, 4, 2);
       } else {
         px(c, "#6a8a4a", 3, 5, 10, 9);
         px(c, "#8aaa5a", 4, 3, 8, 3);

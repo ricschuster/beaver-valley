@@ -183,7 +183,10 @@ export function loadMachine(
   const p = processFor(m.id, item, random);
   if (!p) return fail("machine will not take that");
   if (g.inventory.count(item) < p.use) return fail("not enough input");
+  if (p.also && g.inventory.count(p.also.item) < p.also.use)
+    return fail(`needs ${p.also.use} ${nameOf(p.also.item).toLowerCase()}`);
   g.inventory.remove(item, p.use);
+  if (p.also) g.inventory.remove(p.also.item, p.also.use);
   m.job = {
     output: p.output,
     count: p.count,

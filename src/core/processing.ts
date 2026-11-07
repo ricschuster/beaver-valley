@@ -7,7 +7,7 @@ import {
   type ArtisanKind,
 } from "./artisan";
 import { cropById } from "./crops";
-import { COAL } from "./ore";
+import { BARS, COAL, COAL_PER_BAR, ORE_PER_BAR, ORES } from "./ore";
 import { splitQuality } from "./quality";
 
 /**
@@ -32,6 +32,8 @@ export const MACHINES: readonly MachineDef[] = [
   { id: "keg", name: "Keg", sellPrice: 250 },
   { id: "seed-maker", name: "Seed maker", sellPrice: 200 },
   { id: "dehydrator", name: "Dehydrator", sellPrice: 300 },
+  /** A crafted furnace, for more batches at once. The first is the smith's gift (`furnace.ts`). */
+  { id: "furnace", name: "Furnace", sellPrice: 150 },
 ];
 
 export const machineById = (id: string | undefined): MachineDef | undefined =>
@@ -55,7 +57,11 @@ export interface Process {
   output: string;
   count: number;
   minutes: number;
+  /** A second input that is used up too, such as the coal in a furnace. */
+  also?: { item: string; use: number };
 }
+
+const barOfOre = (ore: string) => BARS.find((b) => b.ore === ore);
 
 const JAR: Record<"fruit" | "vegetable", ArtisanKind> = {
   fruit: "jam",
@@ -106,6 +112,19 @@ export function processFor(
           minutes: SEED_MINUTES,
         }
       : undefined;
+  if (machine === "furnace") {
+    const bar = ORES.some((o) => o.id === input) ? barOfOre(input) : undefined;
+    return bar
+      ? {
+          input,
+          use: ORE_PER_BAR,
+          output: bar.id,
+          count: 1,
+          minutes: bar.minutes,
+          also: { item: COAL, use: COAL_PER_BAR },
+        }
+      : undefined;
+  }
   if (machine === "dehydrator") {
     if (produceOf(input) !== "fruit" && !isMushroom(input)) return undefined;
     return {
