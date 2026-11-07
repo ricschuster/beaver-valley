@@ -130,7 +130,7 @@
       "group": "core",
       "pos": [260, 330],
       "built": "partial",
-      "builtNote": "Five first-slice bundles work. The 30-bundle design is not built (#179, #180).",
+      "builtNote": "Ten bundles work (four first-slice, six from note 35, some with stand-in pools). The 30-bundle design is not built (#179, #180).",
       "summary": "Six rooms, 30 bundles, ending at The Last Seat, the one gate to ring 2.",
       "items": [
         {

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { playGame } from "../scripts/sim/bot";
+import { BUNDLES } from "../src/core/bundles";
+import { playGame, UNPLAYED_BUNDLES } from "../scripts/sim/bot";
 import { PERSONAS } from "../scripts/sim/personas";
 
 /** Same small generator as `scripts/sim/main.ts`, so a run can be repeated. */
@@ -22,10 +23,26 @@ describe("headless sim", () => {
     );
   });
 
-  it("lets the expert finish the hall, no sooner than the crops can grow", () => {
+  it("lets the expert finish the bundles it plays, no sooner than the crops can grow", () => {
     const r = playGame(PERSONAS.expert!, seeded(1), 84);
-    // Summer crops open on day 29 and the melon takes 12 days.
+    // Summer crops open on day 29 and the melon takes 12 days. Five silver
+    // melons and corn take longer, so the quality bundle ends the run.
     expect(r.allDay).toBeGreaterThanOrEqual(41);
-    expect(r.allDay).toBeLessThanOrEqual(60);
+    expect(r.allDay).toBeLessThanOrEqual(70);
+    for (const b of BUNDLES) {
+      if (UNPLAYED_BUNDLES.includes(b.id))
+        expect(r.bundleDays[b.id]).toBeUndefined();
+      else expect(r.bundleDays[b.id], b.id).toBeDefined();
+    }
+  });
+
+  it("names the bundles it does not play, all of which exist", () => {
+    // These need bulk gathering, machines or mining that the bot has no model for.
+    expect(UNPLAYED_BUNDLES).toEqual(["woodland", "artisan-goods", "smiths"]);
+    for (const id of UNPLAYED_BUNDLES)
+      expect(
+        BUNDLES.some((b) => b.id === id),
+        id,
+      ).toBe(true);
   });
 });

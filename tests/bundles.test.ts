@@ -10,10 +10,29 @@ import {
 } from "../src/core/bundles";
 import { Inventory } from "../src/core/inventory";
 import { itemById } from "../src/core/items";
+import { CROPS } from "../src/core/crops";
+import { FORAGE } from "../src/core/forage";
+import { FRUIT_TREES } from "../src/core/fruittrees";
+import { SEASONS } from "../src/core/calendar";
+import { machineById } from "../src/core/processing";
+import { RECIPES } from "../src/core/crafting";
+import { CATEGORY_NAMES, type ArtisanCategory } from "../src/core/artisan";
+import { fillHall } from "./hall-helpers";
 
 describe("bundle data", () => {
-  it("has four bundles with known items and sane requirements", () => {
-    expect(BUNDLES).toHaveLength(4);
+  it("has the ten slice 1 bundles with known items and sane requirements", () => {
+    expect(BUNDLES.map((b) => b.id)).toEqual([
+      "spring-foraging",
+      "summer-foraging",
+      "winter-foraging",
+      "woodland",
+      "spring-crops",
+      "summer-crops",
+      "autumn-crops",
+      "quality-crops",
+      "artisan-goods",
+      "smiths",
+    ]);
     for (const b of BUNDLES) {
       expect(b.required).toBeGreaterThanOrEqual(1);
       expect(b.required).toBeLessThanOrEqual(b.items.length);
@@ -23,7 +42,10 @@ describe("bundle data", () => {
         b.id,
       ).toBe(true);
       for (const { id, count } of b.items) {
-        expect(itemById(id), `${b.id}: ${id}`).toBeDefined();
+        expect(
+          itemById(id) ?? CATEGORY_NAMES[id as ArtisanCategory],
+          `${b.id}: ${id}`,
+        ).toBeDefined();
         expect(count).toBeGreaterThanOrEqual(1);
       }
       if (b.reward.item) expect(itemById(b.reward.item.id)).toBeDefined();
@@ -125,12 +147,7 @@ describe("Hall", () => {
     );
     expect(again.handedIn("spring-crops")).toEqual(["parsnip"]);
     expect(again.allComplete).toBe(false);
-    for (const b of BUNDLES) {
-      for (const { id } of b.items) {
-        inv.add(id);
-        again.handIn(inv, w, b.id, id);
-      }
-    }
+    fillHall(again, inv, w);
     expect(again.allComplete).toBe(true);
   });
 });
@@ -215,8 +232,10 @@ describe("the soft gate", () => {
     expect(hall.roomStatus("foragers-shelf")).toBe("ready");
     expect(hall.roomStatus("larder")).toBe("locked");
     expect(hall.gateRemaining("larder")).toBe(1);
-    // No bundles are written for the Hearth yet, so it is not ready at all.
-    expect(hall.roomStatus("hearth")).toBe("empty");
+    // The Hearth has the Smith's, and opens after two bundles elsewhere.
+    expect(hall.roomStatus("hearth")).toBe("locked");
+    // No bundles are written for the Water room yet, so it is never ready.
+    expect(hall.roomStatus("water-room")).toBe("empty");
     const inv = new Inventory();
     openLarder(hall, inv, { money: 0 });
     expect(hall.roomStatus("larder")).toBe("ready");
@@ -368,5 +387,104 @@ describe("rooms and the bridge", () => {
     expect(hall.bridgeMended).toBe(false);
     const done = new Hall(bundles, { f1: ["leek"], l1: ["leek"] }, rooms);
     expect(done.bridgeMended).toBe(true);
+  });
+});
+
+describe("the slice 1 hall", () => {
+  const by = (id: string) => BUNDLES.find((b) => b.id === id)!;
+
+  it("matches the pools in notes 16 and 35 for the new bundles", () => {
+    expect(by("woodland").items).toEqual([
+      { id: "wood", count: 50, minQuality: "normal" },
+      { id: "stone", count: 50, minQuality: "normal" },
+      { id: "fiber", count: 30, minQuality: "normal" },
+    ]);
+    expect(by("smiths").required).toBe(3);
+    expect(by("smiths").items.map((i) => `${i.count} ${i.id}`)).toEqual([
+      "5 copper-bar",
+      "5 iron-bar",
+      "3 gold-bar",
+    ]);
+    const quality = by("quality-crops");
+    expect(quality.required).toBe(3);
+    expect(
+      quality.items.every((i) => i.count === 5 && i.minQuality === "silver"),
+    ).toBe(true);
+  });
+
+  it("keeps keg goods out of the bundle that gives the keg", () => {
+    const ids = by("artisan-goods").items.map((i) => i.id);
+    expect(ids).not.toContain("wine");
+    expect(ids).not.toContain("juice");
+    expect(ids).not.toContain("mead");
+    expect(by("artisan-goods").reward.item?.id).toBe("keg");
+  });
+
+  it("gives each bundle's reward item and teaches the machine recipe", () => {
+    const machines: Record<string, string> = {
+      "winter-foraging": "seed-maker",
+      woodland: "charcoal-kiln",
+      "autumn-crops": "bee-house",
+      "quality-crops": "preserves-jar",
+      "artisan-goods": "keg",
+    };
+    for (const [bundle, machine] of Object.entries(machines)) {
+      expect(by(bundle).reward.item, bundle).toEqual({
+        id: machine,
+        count: 1,
+      });
+      expect(machineById(machine), machine).toBeDefined();
+      const recipe = RECIPES.find((r) => r.id === machine)!;
+      expect(
+        recipe.sources.some((s) => s.kind === "bundle" && s.bundle === bundle),
+        machine,
+      ).toBe(true);
+    }
+    expect(by("smiths").reward.item).toEqual({ id: "coal", count: 20 });
+  });
+
+  it("can be finished from goods the two season calendar can supply", () => {
+    // Every good must come from something that exists in spring or summer.
+    const supplied = new Set<string>([
+      "wood",
+      "stone",
+      "fiber",
+      "copper-bar",
+      "iron-bar",
+      "gold-bar",
+      ...CROPS.filter((c) => c.seasons.some((s) => SEASONS.includes(s))).map(
+        (c) => c.id,
+      ),
+      ...FORAGE.filter((f) => f.seasons.some((s) => SEASONS.includes(s))).map(
+        (f) => f.id,
+      ),
+      ...FRUIT_TREES.filter((t) =>
+        (SEASONS as readonly string[]).includes(t.season),
+      ).map((t) => t.id),
+      "jam",
+      "pickles",
+      "honey",
+    ]);
+    for (const b of BUNDLES) {
+      const fillable = b.items.filter((i) => supplied.has(i.id)).length;
+      expect(fillable, `${b.id} needs ${b.required}`).toBeGreaterThanOrEqual(
+        b.required,
+      );
+    }
+  });
+
+  it("finishes in file order, opening each room in turn", () => {
+    const hall = new Hall();
+    const inv = new Inventory();
+    const wallet = { money: 0 };
+    fillHall(hall, inv, wallet);
+    expect(hall.allComplete).toBe(true);
+    expect(hall.completedRooms.map((r) => r.id)).toEqual([
+      "foragers-shelf",
+      "larder",
+      "hearth",
+    ]);
+    expect(inv.count("keg")).toBe(1);
+    expect(inv.count("coal")).toBe(20);
   });
 });

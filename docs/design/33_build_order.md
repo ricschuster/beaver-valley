@@ -64,14 +64,14 @@ Builds:
 5. Fruit trees and the farm cave (`31_farm_growth.md`). Fruit trees built 2026-11-07; the cave is not built. The greenhouse is not
    here: it is the Larder reward, which needs the animal bundle, so it
    arrives in slice 4 (`35_bundle_pools.md`).
-6. The mines, first part (built 2026-11-07 except the Smith's bundle, the charcoal kiln and crafted furnaces, see `22_mines.md`; decided 2026-10-31, as in Stardew): floors 1 to 10 with
+6. The mines, first part (built 2026-11-07, with the Smith's bundle added the same day, except crafted furnaces, see `22_mines.md`; decided 2026-10-31, as in Stardew): floors 1 to 10 with
    no creatures, the lift, copper, the opening day on spring day 5, the smith
    dwarf's ore shop and the furnace gift (mines build slices 1 and 2 in
    `22_mines.md`). This is the bar supply that sprinklers, the keg and the bee
    house need. Iron and gold ore come from her shop until slice 3 adds deeper
    floors.
-7. (Built 2026-11-07 except the bundle data and the seed maker's bundle source,
-   see note 24.) The crafting list and the machines the farm alone can feed: seed maker,
+7. (Built 2026-11-07. The bundle data and the machine bundle sources followed
+   the same day, see note 35.) The crafting list and the machines the farm alone can feed: seed maker,
    charcoal kiln, preserves jar, keg, bee house (`24_processing_and_cooking.md`,
    `34_crafting.md`).
 8. The hat parade, hats and a first set of furniture, with a festival per

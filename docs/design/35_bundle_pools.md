@@ -1,11 +1,12 @@
 # 35 Bundle item pools for slice 1 (draft)
 
 Status: draft. Decided with the owner on 2026-10-31, except the item lists,
-which are the assistant's proposal for the owner to reshape. Not built as bundle data: the machine hand-in rules are (an "Any jam" slot takes
-any jam, a finished bundle can teach its machine recipe), but bundles 4, 5, 9,
-10, 12 and 19 are not in `bundles.json`. Adding them would make the end screen
-need them, and the headless sim and the hall tests assume the four bundles are
-the whole hall, so they wait for the owner to choose (build 7, 2026-11-07). It answers the slice 1 half of #181 and the pools that `33_build_order.md`
+which are the assistant's proposal for the owner to reshape. Built as bundle data on 2026-11-07 (slice 1 hall): bundles 4, 5, 9, 10, 12
+and 19 are in `bundles.json` with the five machine rewards and 20 coal, next to
+the four first-slice bundles, so the hall has ten. The calendar has only spring
+and summer, so some pools use stand-ins, listed under "Placeholders in the built
+data" below. Bundle 4 and bundle 9 are fillable only through those stand-ins.
+It answers the slice 1 half of #181 and the pools that `33_build_order.md`
 lists as design still needed: bundles 1 to 10, 12 and 19, and the fall and
 winter lists they draw on (#61). Every count and item is a placeholder. Prices
 and growth days for new items go in `07_tuning_numbers.md` when the lists are
@@ -125,6 +126,30 @@ Bundles 11 and 20 to 26 are not slice 1 (their pools are in `63_bundle_pools_par
 - **Bundle 19 needs ore bought from the smith dwarf** until slice 3. Her
   prices set how hard it is. With the furnace gift, five copper bars is one
   trip to the mine.
+
+## Placeholders in the built data
+
+Added 2026-11-07. Each is a stand-in for a good the calendar cannot yet supply
+(no fall or winter). When build 4 adds the seasons, swap the pool back to the
+table above. Every stand-in item exists in the game today.
+
+- **Bundle 4 (Winter Foraging), 3 of 5:** spring onion, salmonberry, wild
+  grape, spice berry and fiddlehead fern, in place of crocus, snowdrop, winter
+  cress, pine nut and frost root. The hint no longer names a season.
+- **Bundle 9 (Autumn Crops), 4 of 6:** hot pepper, corn, red cabbage, green
+  bean, kale and garlic, in place of pumpkin, eggplant, sweet potato, beet,
+  cranberry and artichoke. These are the six spring and summer crops that the
+  built Spring Crops and Summer Crops bundles do not use.
+- **Bundle 10 (Quality Crops), 3 of 4, 5 each at silver or better:** parsnip,
+  melon, corn and tomato, with tomato in place of pumpkin.
+- **Bundle 12 (Artisan Goods), 4 of 5:** jam, pickles, honey, cherry and peach.
+  Wine is dropped (the reward is the keg) and peach, which bears in summer,
+  stands in for apple, which bears in fall. Four of five is filled by cherry,
+  peach and two of the three machine goods, so a keg is never needed.
+- **Bundles 7 and 8** stay as built (3 of 3, 300g and 400g), not the 4 of 6
+  pools above, so bundle 9 can use the other six crops.
+- **Bundle 19 (Smith's)** is as designed. Ore comes from the mines or the smith
+  dwarf's shop; the furnace is her gift.
 
 ## Dependencies this creates
 

@@ -188,9 +188,11 @@ function reserve() {
     const need = {};
     for (const b of s.hall.bundles) {
       if (s.hall.complete(b.id)) continue;
-      const got = s.hall.handedIn(b.id);
-      for (const { id } of b.items)
-        if (!got.includes(id)) need[id] = (need[id] ?? 0) + 1;
+      // One for each unit still owed, so a bundle of 50 wood keeps 50 wood.
+      for (const { id, count } of b.items) {
+        const owed = count - s.hall.have(b.id, id);
+        if (owed > 0) need[id] = (need[id] ?? 0) + owed;
+      }
     }
     return need;
   });
@@ -715,14 +717,26 @@ async function main() {
         .join(" ")}`,
     );
     log(`  day took ${((Date.now() - t) / 1000).toFixed(0)}s real`);
-    if (
-      s.hall &&
-      Object.keys(s.hall).length &&
-      (await page.evaluate(
-        () => window.__game.registry.get("state").hall.allComplete,
-      ))
-    ) {
-      log("ALL BUNDLES COMPLETE on day", s.day, "endSeen", s.endSeen);
+    // The browser bot plays crops and forage only. Woodland, Artisan Goods and
+    // the Smith's need bulk gathering, machines and mining, so it stops when
+    // the rest are done (the same split as UNPLAYED_BUNDLES in the headless sim).
+    const hallNow = await page.evaluate(() => {
+      const h = window.__game.registry.get("state").hall;
+      const skipped = ["woodland", "artisan-goods", "smiths"];
+      return {
+        all: h.allComplete,
+        done: h.bundles.filter((b) => h.complete(b.id)).length,
+        total: h.bundles.length,
+        played: h.bundles
+          .filter((b) => !skipped.includes(b.id))
+          .every((b) => h.complete(b.id)),
+      };
+    });
+    if (s.hall && Object.keys(s.hall).length && hallNow.played) {
+      log(
+        `PLAYED BUNDLES COMPLETE on day ${s.day} (${hallNow.done} of ${hallNow.total} bundles, all: ${hallNow.all}) endSeen`,
+        s.endSeen,
+      );
       await bot.shot("all-complete");
       break;
     }

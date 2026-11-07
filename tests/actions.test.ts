@@ -11,7 +11,7 @@ import { MAX_ENERGY } from "../src/core/energy";
 import { newGame } from "../src/core/save";
 import { seedId } from "../src/core/items";
 import { sleep, finished, endDue } from "../src/core/sleep";
-import { BUNDLES } from "../src/core/bundles";
+import { fillHall } from "./hall-helpers";
 import { DAYS_PER_SEASON } from "../src/core/calendar";
 import { seedStock, sellAll } from "../src/core/shop";
 
@@ -173,24 +173,14 @@ describe("selling and finishing", () => {
   it("is finished once every bundle is complete", () => {
     const g = newGame();
     expect(finished(g)).toBe(false);
-    for (const b of BUNDLES) {
-      for (const { id } of b.items) {
-        g.inventory.add(id);
-        g.hall.handIn(g.inventory, g, b.id, id);
-      }
-    }
+    fillHall(g.hall, g.inventory, g);
     expect(finished(g)).toBe(true);
   });
 
   it("shows the end screen once", () => {
     const g = newGame();
     expect(endDue(g)).toBe(false);
-    for (const b of BUNDLES) {
-      for (const { id } of b.items) {
-        g.inventory.add(id);
-        g.hall.handIn(g.inventory, g, b.id, id);
-      }
-    }
+    fillHall(g.hall, g.inventory, g);
     expect(endDue(g)).toBe(true);
     g.endSeen = true;
     expect(endDue(g)).toBe(false);

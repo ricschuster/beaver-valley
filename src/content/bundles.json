@@ -35,6 +35,52 @@
     "hint": "Warm days bring berries and vines to the forage spots."
   },
   {
+    "id": "winter-foraging",
+    "name": "Winter Foraging",
+    "room": "foragers-shelf",
+    "items": [
+      "spring-onion",
+      "salmonberry",
+      "grape",
+      "spice-berry",
+      "fiddlehead-fern"
+    ],
+    "required": 3,
+    "reward": {
+      "item": {
+        "id": "seed-maker",
+        "count": 1
+      }
+    },
+    "hint": "Old Greencoat wants herbs and berries set by against the cold. Gather what the woods give now."
+  },
+  {
+    "id": "woodland",
+    "name": "Woodland",
+    "room": "foragers-shelf",
+    "items": [
+      {
+        "id": "wood",
+        "count": 50
+      },
+      {
+        "id": "stone",
+        "count": 50
+      },
+      {
+        "id": "fiber",
+        "count": 30
+      }
+    ],
+    "reward": {
+      "item": {
+        "id": "charcoal-kiln",
+        "count": 1
+      }
+    },
+    "hint": "Fell trees, break rocks and clear the weeds. The hall needs a great deal of each."
+  },
+  {
     "id": "spring-crops",
     "name": "Spring Crops",
     "items": ["parsnip", "potato", "cauliflower"],
@@ -55,5 +101,101 @@
     },
     "room": "larder",
     "hint": "Summer crops love the heat. Plant them early in the season."
+  },
+  {
+    "id": "autumn-crops",
+    "name": "Autumn Crops",
+    "room": "larder",
+    "items": [
+      "hot-pepper",
+      "corn",
+      "red-cabbage",
+      "green-bean",
+      "kale",
+      "garlic"
+    ],
+    "required": 4,
+    "reward": {
+      "item": {
+        "id": "bee-house",
+        "count": 1
+      }
+    },
+    "hint": "Hardy crops for the larder shelves. The shop sells the seeds, and they keep well."
+  },
+  {
+    "id": "quality-crops",
+    "name": "Quality Crops",
+    "room": "larder",
+    "items": [
+      {
+        "id": "parsnip",
+        "count": 5,
+        "minQuality": "silver"
+      },
+      {
+        "id": "melon",
+        "count": 5,
+        "minQuality": "silver"
+      },
+      {
+        "id": "corn",
+        "count": 5,
+        "minQuality": "silver"
+      },
+      {
+        "id": "tomato",
+        "count": 5,
+        "minQuality": "silver"
+      }
+    ],
+    "required": 3,
+    "reward": {
+      "item": {
+        "id": "preserves-jar",
+        "count": 1
+      }
+    },
+    "hint": "Five of three kinds, each one at least silver. Tend the soil, and fertilizer helps."
+  },
+  {
+    "id": "artisan-goods",
+    "name": "Artisan Goods",
+    "room": "larder",
+    "items": ["jam", "pickles", "honey", "cherry", "peach"],
+    "required": 4,
+    "reward": {
+      "item": {
+        "id": "keg",
+        "count": 1
+      }
+    },
+    "hint": "Jars of jam and pickles, a comb of honey, or fruit from your own orchard."
+  },
+  {
+    "id": "smiths",
+    "name": "Smith's",
+    "room": "hearth",
+    "items": [
+      {
+        "id": "copper-bar",
+        "count": 5
+      },
+      {
+        "id": "iron-bar",
+        "count": 5
+      },
+      {
+        "id": "gold-bar",
+        "count": 3
+      }
+    ],
+    "reward": {
+      "item": {
+        "id": "coal",
+        "count": 20
+      }
+    },
+    "hint": "Bars from the furnace: ore from the mine or the smith, and coal to smelt it."
   }
 ]
