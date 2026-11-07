@@ -10,12 +10,6 @@ import { useHeld } from "../src/core/tools";
 import { heldAt, startGame } from "../src/core/toolbar";
 import { DAY_ONE_WEEDS, FIBER, Weeds } from "../src/core/weeds";
 
-/** A random source whose first draw (the mixed seed roll) misses, then `fiber`. */
-const noMixed = (fiber: number) => {
-  const draws = [0.99, fiber];
-  return () => draws.shift() ?? fiber;
-};
-
 const WIDTH = 10;
 const ROWS = 6;
 
@@ -162,7 +156,7 @@ describe("clearing a weed", () => {
       const g = newGame();
       g.weeds.add(1, 1);
       const before = g.day.energy.current;
-      expect(clearWeed(g, 1, 1, tool, noMixed(0)).ok).toBe(true);
+      expect(clearWeed(g, 1, 1, tool, () => 0).ok).toBe(true);
       expect(g.weeds.at(1, 1)).toBe(false);
       expect(g.inventory.count(FIBER)).toBe(1);
       expect(g.day.energy.current).toBeLessThan(before);
@@ -172,7 +166,7 @@ describe("clearing a weed", () => {
   it("drops fiber half the time", () => {
     const g = newGame();
     g.weeds.add(1, 1);
-    clearWeed(g, 1, 1, "hoe", noMixed(0.5));
+    clearWeed(g, 1, 1, "hoe", () => 0.5);
     expect(g.inventory.count(FIBER)).toBe(0);
   });
 
@@ -183,7 +177,7 @@ describe("clearing a weed", () => {
       /* fill every stack */
     }
     const held = g.inventory.count(FIBER);
-    clearWeed(g, 1, 1, "hoe", noMixed(0), soilMap());
+    clearWeed(g, 1, 1, "hoe", () => 0, soilMap());
     expect(g.inventory.count(FIBER)).toBe(held);
     expect(g.ground.count).toBe(1);
   });

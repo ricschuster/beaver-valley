@@ -146,23 +146,24 @@ describe("large stumps", () => {
 });
 
 describe("weeds and mixed seeds", () => {
-  it("always drop a mixed seed on Woodland, and never fiber with it", () => {
+  it("drop a mixed seed on Woodland whenever they drop no fiber", () => {
     const g = startGame("woodland");
     g.weeds.add(1, 1);
     expect(dropOf(clearWeed(g, 1, 1, "hoe", () => 0.99))).toBe(MIXED_SEED);
-    expect(g.inventory.count(MIXED_SEED)).toBe(1);
-    expect(g.inventory.count("fiber")).toBe(0);
+    g.weeds.add(2, 1);
+    expect(dropOf(clearWeed(g, 2, 1, "hoe", () => 0))).toBe("fiber");
   });
 
-  it("drop one 5 percent of the time on Standard", () => {
+  it("drop one 5 percent of the time when no fiber falls, on Standard", () => {
     const g = startGame();
     g.weeds.add(1, 1);
     g.weeds.add(2, 1);
-    expect(dropOf(clearWeed(g, 1, 1, "hoe", () => 0.04))).toBe(MIXED_SEED);
-    const draws = [0.06, 0.2];
-    expect(dropOf(clearWeed(g, 2, 1, "hoe", () => draws.shift()!))).toBe(
-      "fiber",
+    const a = [0.9, 0.04];
+    expect(dropOf(clearWeed(g, 1, 1, "hoe", () => a.shift()!))).toBe(
+      MIXED_SEED,
     );
+    const b = [0.9, 0.06];
+    expect(dropOf(clearWeed(g, 2, 1, "hoe", () => b.shift()!))).toBeUndefined();
   });
 
   it("plant a random crop that suits the season", () => {

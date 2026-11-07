@@ -638,10 +638,10 @@ Source: `src/content/farm-types.json`, `scripts/gen-farm-map.mjs`.
   (a stump's 5 plus 3), gives 8 to 13 wood and 1 sap (standing in for hardwood)
   and 3 foraging XP. A chopped stump stands aside and regrows after 4 days. It
   blocks movement only while whole and never spreads seeds.
-- Mixed seeds: sell 5g. A weed drops one at 5 percent on Standard (note 29) and
-  always on Woodland, instead of fiber. A mixed seed plants a random crop that
+- Mixed seeds: sell 5g. A weed with no fiber (50 percent chance of fiber, as
+  before) drops one at 5 percent on Standard (note 29) and always on Woodland. A mixed seed plants a random crop that
   suits the season.
 - Starting kit: the same on both types (15 parsnip seeds, 500g).
-- Woodland Bundle (50 wood, 50 stone, 30 fiber): wood is plentiful. Fiber falls
-  to the mixed seed rule on Woodland (a weed drops a mixed seed, not fiber), so
-  Woodland fiber is scarce and needs checking in a playtest.
+- Woodland Bundle (50 wood, 50 stone, 30 fiber): wood is plentiful. Fiber is
+  unchanged (half of cut weeds), but Woodland has 40 soil tiles to grow weeds
+  on, so the 30 fiber may be slow. Needs a playtest.

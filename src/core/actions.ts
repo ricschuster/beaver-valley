@@ -468,7 +468,7 @@ export function plantTree(
  * Cut a weed with any tool, in one swing at that tool's energy cost, so a tap
  * never needs a tool swap (`docs/design/29_weeds.md`). A weed has a 50 percent
  * chance of 1 fiber. Fiber goes to the backpack, or lands on the ground nearby
- * if it does not fit. The mixed seed drops wait for crafting.
+ * if it does not fit. A weed that drops no fiber may drop a mixed seed.
  */
 export function clearWeed(
   g: GameState,
@@ -484,13 +484,13 @@ export function clearWeed(
     g.day.act(swingCost(TOOL_ENERGY, AXE_TIER, g.skills.level("foraging")), 0);
   else swing(g, tool);
   g.weeds.remove(x, y);
-  // A mixed seed first, at the farm type's chance (note 29, note 32). A weed
-  // that drops one drops no fiber.
+  // Fiber at 50 percent. A weed that drops none may drop a mixed seed, at the
+  // farm type's chance (notes 29 and 32).
   const drop =
-    random() < farmTypeById(g.farmType).mixedSeedChance
-      ? MIXED_SEED
-      : random() < FIBER_CHANCE
-        ? FIBER
+    random() < FIBER_CHANCE
+      ? FIBER
+      : random() < farmTypeById(g.farmType).mixedSeedChance
+        ? MIXED_SEED
         : undefined;
   if (!drop) return { ok: true };
   if (g.inventory.add(drop)) return { ok: true, item: drop };
