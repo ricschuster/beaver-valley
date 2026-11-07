@@ -51,6 +51,7 @@ export const ACTIONS: readonly ActionInfo[] = [
   { id: "eat", label: "Eat the held food", key: "KeyF" },
   { id: "skills", label: "Skills", key: "KeyK" },
   { id: "craft", label: "Crafting", key: "KeyR" },
+  { id: "hats", label: "Hats", key: "KeyH" },
   { id: "endDay", label: "End the day", key: "KeyZ" },
 ];
 

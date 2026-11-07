@@ -72,6 +72,7 @@ export class Hud {
     onAction: () => void,
     onSkills: () => void,
     onCraft: () => void,
+    onHats: () => void,
     onRow: () => void,
     onDebug: (() => void) | undefined,
     settings: Settings,
@@ -178,6 +179,15 @@ export class Hud {
     const craftText = scene.add
       .text(craft.x + 45, 36, "Craft", { fontSize: "18px", color: "#ffffff" })
       .setOrigin(0.5);
+    const hats = scene.add
+      .rectangle(craft.x - 96, 16, 90, 40, 0x000000, 0.5)
+      .setOrigin(0)
+      .setStrokeStyle(2, 0xffffff, 0.5)
+      .setInteractive({ useHandCursor: true });
+    hats.on("pointerdown", onHats);
+    const hatsText = scene.add
+      .text(hats.x + 45, 36, "Hats", { fontSize: "18px", color: "#ffffff" })
+      .setOrigin(0.5);
     this.objects.push(
       use,
       useText,
@@ -187,6 +197,8 @@ export class Hud {
       skillsText,
       craft,
       craftText,
+      hats,
+      hatsText,
     );
     if (!this.touch)
       for (const o of [
@@ -198,6 +210,8 @@ export class Hud {
         skillsText,
         craft,
         craftText,
+        hats,
+        hatsText,
       ])
         o.setVisible(false).disableInteractive();
     // Dev builds only: the debug menu's touch button (`42_debug_menu.md`).

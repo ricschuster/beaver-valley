@@ -15,6 +15,7 @@ export interface Intents {
   eat?: () => void;
   openSkills?: () => void;
   openCraft?: () => void;
+  openHats?: () => void;
   endDay?: () => void;
   openDebug?: () => void;
   nextSlot?: () => void;
@@ -68,6 +69,7 @@ class DesktopControls implements Controls {
         eat: intents.eat,
         skills: intents.openSkills,
         craft: intents.openCraft,
+        hats: intents.openHats,
         endDay: intents.endDay,
         nextSlot: intents.nextSlot,
         nextRow: intents.nextRow,

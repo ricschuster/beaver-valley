@@ -19,6 +19,7 @@ import { Hall, type HallProgress } from "./bundles";
 import { Inventory } from "./inventory";
 import { Skills, SKILLS, type Skill } from "./skills";
 import { professionById } from "./professions";
+import { Wardrobe, type WardrobeSave } from "./hats";
 import { BUILD_DAYS, MAX_HOUSE_TIER, type HouseBuild } from "./house";
 import { UPGRADABLE, MAX_TIER, type ToolTiers } from "./upgrades";
 
@@ -66,6 +67,8 @@ export interface GameState {
   endSeen: boolean;
   /** Festivals joined, as `joinKey` strings. */
   festivalsJoined: string[];
+  /** Hats owned and worn. */
+  wardrobe: Wardrobe;
   /** Wild goods on the ground today. Not saved: it respawns each morning. */
   forage: ForageField;
 }
@@ -100,6 +103,7 @@ export function newGame(farmType: string = DEFAULT_FARM_TYPE): GameState {
     tomorrow: "sunny",
     endSeen: false,
     festivalsJoined: [],
+    wardrobe: new Wardrobe(),
     forage: new ForageField(),
   };
 }
@@ -154,6 +158,8 @@ interface SaveData {
   endSeen?: boolean;
   /** Absent in saves made before festivals existed. */
   festivalsJoined?: string[];
+  /** Absent in saves made before hats. */
+  wardrobe?: WardrobeSave;
 }
 
 /** Where saves live. The scene supplies one backed by the browser. */
@@ -193,6 +199,7 @@ export function serialize(g: GameState): string {
     tomorrow: g.tomorrow,
     endSeen: g.endSeen,
     festivalsJoined: [...g.festivalsJoined],
+    wardrobe: g.wardrobe.save(),
   };
   return JSON.stringify(data);
 }
@@ -463,6 +470,7 @@ export function deserialize(text: string): GameState | undefined {
     g.festivalsJoined = raw.festivalsJoined.filter(
       (k): k is string => typeof k === "string",
     );
+  g.wardrobe.load(raw.wardrobe);
   return g;
 }
 

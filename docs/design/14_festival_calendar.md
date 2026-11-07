@@ -1,5 +1,9 @@
 # 14 Festival calendar
 
+Built 2026-11-07: the four spring and summer festivals are in
+`src/content/festivals.json`, each with an optional free hat and a counter.
+Fall and winter wait for those seasons.
+
 Status: accepted 2026-10-27 (issue #131), extended 2026-10-31 to four seasons
 and eight festivals. Design only. The festival system (#132) builds from this.
 Dates are ours and cheap to change; change them with a new dated decision

@@ -40,6 +40,7 @@ import {
   type Floor,
 } from "../core/mines";
 import type { Rocks } from "../core/rocks";
+import { hatById } from "../core/hats";
 import { HOUSE_MAP, houseMapId, isHouseMap } from "../core/house";
 import { SELECTED_KEY, STATE_KEY } from "./state";
 import {
@@ -140,6 +141,8 @@ export class FarmScene extends Phaser.Scene {
   private controls!: Controls;
   private player!: Phaser.GameObjects.Image;
   private target!: Phaser.GameObjects.Rectangle;
+  /** Placeholder hat drawn on the player. */
+  private hat!: Phaser.GameObjects.Rectangle;
   private pos: Vec = { x: 0, y: 0 };
   private facing: Facing = "down";
   private exitId: string | undefined;
@@ -226,11 +229,12 @@ export class FarmScene extends Phaser.Scene {
     this.player = this.add
       .image(this.pos.x, this.pos.y, PLAYER_KEY)
       .setOrigin(0.5, 0.875);
+    this.hat = this.add.rectangle(0, 0, 10, 5, 0xffffff).setVisible(false);
     this.target = this.add
       .rectangle(0, 0, ts, ts)
       .setOrigin(0)
       .setStrokeStyle(1, 0xffffff, 0.6);
-    world.push(this.player, this.target);
+    world.push(this.player, this.hat, this.target);
 
     // UI objects, drawn by a second camera that does not zoom.
     const settings = loadDeviceSettings();
@@ -241,6 +245,7 @@ export class FarmScene extends Phaser.Scene {
       () => this.action(),
       () => this.open("skills"),
       () => this.open("crafting"),
+      () => this.open("hats"),
       () => this.select(nextRow(this.state, this.selected)),
       () => this.open("debug"),
       settings,
@@ -254,6 +259,7 @@ export class FarmScene extends Phaser.Scene {
         eat: () => this.eatHeld(),
         openSkills: () => this.open("skills"),
         openCraft: () => this.open("crafting"),
+        openHats: () => this.open("hats"),
         endDay: () => this.endDay(),
         openDebug: () => this.open("debug"),
         nextSlot: () =>
@@ -454,6 +460,7 @@ export class FarmScene extends Phaser.Scene {
               !!this.state.machines.at(x, y))),
       );
     this.player.setPosition(this.pos.x, this.pos.y);
+    this.drawHat();
     this.repeatUse(delta * DEV_SPEED);
     this.pickUp();
 
@@ -590,6 +597,18 @@ export class FarmScene extends Phaser.Scene {
     this.registry.set(SELECTED_KEY, index);
     this.message = "";
     this.render();
+  }
+
+  /** The worn hat, as a placeholder block on top of the player sprite. */
+  private drawHat(): void {
+    const worn = this.state.wardrobe.worn;
+    const def = worn ? hatById(worn) : undefined;
+    this.hat.setVisible(def !== undefined);
+    if (!def) return;
+    const head = this.pos.y - this.player.displayHeight * 0.875;
+    this.hat
+      .setFillStyle(Phaser.Display.Color.HexStringToColor(def.color).color)
+      .setPosition(this.pos.x, head + 1);
   }
 
   /** Open a screen over the farm. The farm is paused until it closes. */

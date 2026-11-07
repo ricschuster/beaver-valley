@@ -645,3 +645,19 @@ Source: `src/content/farm-types.json`, `scripts/gen-farm-map.mjs`.
 - Woodland Bundle (50 wood, 50 stone, 30 fiber): wood is plentiful. Fiber is
   unchanged (half of cut weeds), but Woodland has 40 soil tiles to grow weeds
   on, so the 30 fiber may be slow. Needs a playtest.
+
+## Hats and festival counters (build 8, placeholders, ours)
+
+Source: `src/content/hats.json`, `src/content/festivals.json`.
+
+- Hats: four placeholders, drawn as a coloured block on the player. The Parade
+  Ribbon is free, given the first time the player goes to the Hat Parade. The
+  Straw Boater (300g), Feathered Cap (500g) and Wool Beret (400g) sell at the
+  parade's counter, once each. The counter only opens after the player has gone
+  in. Stardew's hat prices run from 1,000g up (note 10), so these are low on
+  purpose, since the hatter's shop and achievement hats are not built.
+- Seedswap Fair (spring 21): the counter sells mixed seeds at 20g each, no
+  limit. Mixed seeds sell for 5g, so this is a cheap way to try a random crop.
+- Cake Day (summer 8) and Lamplight Evening (summer 20): in the calendar with
+  a blurb and an empty counter. Their content waits for a note.
+- Fall and winter festivals wait for the seasons (build 4).
