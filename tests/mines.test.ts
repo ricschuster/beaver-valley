@@ -14,6 +14,7 @@ import {
   mineMapId,
   minesOpen,
 } from "../src/core/mines";
+import { crackGeode, crackResult, CRACK_FEE } from "../src/core/geodes";
 import { greencoatDue, hearGreencoat, takeCampGift } from "../src/core/camp";
 import { drops, mine } from "../src/core/mining";
 import { collect, minutesLeft, ready, smelt } from "../src/core/furnace";
@@ -413,5 +414,79 @@ describe("Old Greencoat and the rest camp", () => {
     expect(g.mines.campTaken).toBe(0);
     expect(g.inventory.count("coal")).toBe(0);
     expect(campGift(5).every((s) => itemById(s.id))).toBe(true);
+  });
+});
+
+describe("geodes", () => {
+  it("are dug from a node in three swings and sell for 50g", () => {
+    const g = newGame();
+    g.day.clock.day = 5;
+    g.mines.visit(1, 5).rocks.add(2, 2, "geode");
+    expect(mine(g, 2, 2, 1, () => 0.9).ok).toBe(true);
+    expect(mine(g, 2, 2, 1, () => 0.9).ok).toBe(true);
+    expect(g.inventory.count("geode")).toBe(0);
+    expect(mine(g, 2, 2, 1, () => 0.9).ok).toBe(true);
+    expect(g.inventory.count("geode")).toBe(1);
+    expect(itemById("geode")?.sellPrice).toBe(50);
+  });
+
+  it("show up on floors 1 to 10 at about 5 percent of rocks", () => {
+    let geodes = 0;
+    let total = 0;
+    for (let day = 5; day < 45; day++)
+      for (let floor = 1; floor <= BUILT_FLOORS; floor++)
+        for (const r of floorLayout(floor, day).rocks) {
+          total++;
+          if (r.kind === "geode") geodes++;
+        }
+    expect(geodes / total).toBeGreaterThan(0.03);
+    expect(geodes / total).toBeLessThan(0.08);
+  });
+
+  it("are cracked by the smith for 25g into a stone, ore, gem or found thing", () => {
+    const g = newGame();
+    expect(crackGeode(g)).toEqual({ ok: false, reason: "no geode" });
+    g.inventory.add("geode", 2);
+    g.money = 20;
+    expect(crackGeode(g)).toEqual({ ok: false, reason: "not enough money" });
+    g.money = 100;
+    const r = crackGeode(g, () => 0);
+    expect(r).toEqual({ ok: true, item: "stone", count: 3 });
+    expect(g.money).toBe(100 - CRACK_FEE);
+    expect(g.inventory.count("stone")).toBe(3);
+    expect(g.inventory.count("geode")).toBe(1);
+  });
+
+  it("can give every outcome, all of them real items", () => {
+    const seen = new Set<string>();
+    for (let i = 0; i < 400; i++)
+      seen.add(crackResult(() => (i * 0.6180339) % 1).item);
+    expect(seen.size).toBeGreaterThanOrEqual(6);
+    for (const id of seen) expect(itemById(id), id).toBeDefined();
+  });
+
+  it("leaves the geode and the gold when the backpack is full", () => {
+    const g = newGame();
+    g.money = 100;
+    for (let i = 0; i < g.inventory.size - 1; i++) g.inventory.add(`junk-${i}`);
+    g.inventory.add("geode", 2);
+    expect(crackGeode(g, () => 0)).toEqual({
+      ok: false,
+      reason: "backpack full",
+    });
+    expect(g.inventory.count("geode")).toBe(2);
+    expect(g.money).toBe(100);
+  });
+
+  it("give a rockhound an extra geode from plain rock now and then", () => {
+    const g = newGame();
+    g.day.clock.day = 5;
+    g.skills.gain("mining", 100000);
+    g.skills.setProfession("mining", "rockhound");
+    const f = g.mines.visit(1, 5);
+    f.rocks.add(2, 2, "stone");
+    mine(g, 2, 2, 1, () => 0);
+    mine(g, 2, 2, 1, () => 0);
+    expect(g.inventory.count("geode")).toBe(1);
   });
 });

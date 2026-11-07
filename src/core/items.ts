@@ -18,6 +18,7 @@ import furnitureData from "../content/furniture.json";
 import { ARTISAN_GOODS } from "./artisan";
 import { MACHINES } from "./processing";
 import { CHESTS } from "./chestdefs";
+import { GEODE_ITEMS } from "./geodes";
 import { ENERGY_MULTIPLIER, QUALITY_MULTIPLIER, splitQuality } from "./quality";
 
 /** Item ids: a crop's produce uses the crop id, its seed uses `<id>-seed`. */
@@ -126,6 +127,8 @@ items.set(COAL, {
   sellPrice: COAL_SELL_PRICE,
   buyPrice: COAL_BUY_PRICE,
 });
+for (const i of GEODE_ITEMS)
+  items.set(i.id, { id: i.id, name: i.name, sellPrice: i.sellPrice });
 items.set(QUARTZ, {
   id: QUARTZ,
   name: "Quartz crystal",

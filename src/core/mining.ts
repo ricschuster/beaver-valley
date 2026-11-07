@@ -1,4 +1,5 @@
 import type { Outcome } from "./actions";
+import { GEODE, GEODE_SHARE } from "./geodes";
 import { COAL, COPPER_ORE, QUARTZ, STONE } from "./ore";
 import { swingCost } from "./upgrades";
 import type { GameState } from "./save";
@@ -13,6 +14,7 @@ export const ROCK_XP: Record<RockKind, number> = {
   copper: 5,
   coal: 4,
   quartz: 3,
+  geode: 4,
 };
 
 /** A node gives 1 ore, and this chance plus a bit a level that it gives 2 or 3 (note 22, placeholder). */
@@ -34,6 +36,7 @@ export function drops(
   random: () => number,
 ): Drop {
   if (kind === "stone") return { id: STONE, count: random() < 0.5 ? 1 : 2 };
+  if (kind === "geode") return { id: GEODE, count: 1 };
   if (kind === "quartz") return { id: QUARTZ, count: 1 };
   if (kind === "coal") return { id: COAL, count: 1 + (random() < 0.3 ? 1 : 0) };
   let count = 1;
@@ -86,6 +89,14 @@ export function mine(
   }
   rocks.remove(x, y);
   g.inventory.add(drop.id, drop.count);
+  // Rockhounds also turn up a geode in plain rock, as often as the nodes do (note 22).
+  if (
+    floor !== undefined &&
+    rock.kind === "stone" &&
+    g.skills.has("rockhound") &&
+    random() < GEODE_SHARE
+  )
+    g.inventory.add(GEODE);
   const ladder =
     floor !== undefined && g.mines.rockBroken(floor, day, x, y, random);
   const level = g.skills.gain("mining", ROCK_XP[rock.kind]);
