@@ -18,7 +18,7 @@ describe("dateOf", () => {
   });
 
   it("starts a new year after all seasons", () => {
-    expect(dateOf(2 * DAYS_PER_SEASON + 1)).toEqual({
+    expect(dateOf(4 * DAYS_PER_SEASON + 1)).toEqual({
       season: "spring",
       dayOfSeason: 1,
       year: 2,

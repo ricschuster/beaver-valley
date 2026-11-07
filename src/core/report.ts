@@ -34,7 +34,9 @@ export function reportLines(r: SleepReport): string[] {
   lines.push(
     r.weather === "rainy"
       ? "It is raining. The rain watered your crops."
-      : "The sun is out.",
+      : r.weather === "snowy"
+        ? "Snow is falling."
+        : "The sun is out.",
   );
   return lines;
 }

@@ -26,13 +26,19 @@ import type { Persona } from "./personas";
 const BED_TIME = 24 * 60;
 
 /**
- * Bundles the bot does not play for. Woodland (bulk wood, stone and fiber),
+ * Bundles the bot does not play for. Winter Foraging (the frost root comes
+ * from tilling winter soil), Autumn Crops and Quality Crops (they need fall
+ * crops, and the bot's plots stay full of summer corn and uncleared weeds into
+ * fall: it models two seasons), Woodland (bulk wood, stone and fiber),
  * Artisan Goods (machines, orchard fruit) and the Smith's (mining and the
  * furnace) need walks the bot has no model for yet. The sim finishes when
  * every other bundle is done, so `allDay` means "the played bundles", not the
  * whole hall. Real play of the whole hall is covered by `tests/bundles.test.ts`.
  */
 export const UNPLAYED_BUNDLES: readonly string[] = [
+  "winter-foraging",
+  "autumn-crops",
+  "quality-crops",
   "woodland",
   "artisan-goods",
   "smiths",

@@ -293,16 +293,15 @@ Source: `src/content/bundles.json`.
   Crops (4 of 6, bee house), Quality Crops (3 of 4, 5 each silver or better,
   preserves jar), Artisan Goods (4 of 5, keg) and the Smith's (5 copper, 5 iron
   and 3 gold bars, 20 coal). Contents and rewards are ours.
-- **Placeholder pools (owner to check).** The calendar has spring and summer
-  only, so four pools use stand-ins that exist today: Winter Foraging takes
-  spring and summer forage (spring onion, salmonberry, wild grape, spice berry,
-  fiddlehead fern); Autumn Crops takes hot pepper, corn, red cabbage, green
-  bean, kale and garlic; Quality Crops swaps pumpkin for tomato; Artisan Goods
-  swaps apple for peach and drops wine. Swap them back when build 4 adds fall
-  and winter.
+- **Pools after build 4 (2026-11-07).** The stand-in pools are gone. Winter
+  Foraging takes crocus, snowdrop, winter cress, pine nut and frost root; Autumn
+  Crops the six fall crops; Quality Crops has pumpkin back; Artisan Goods takes
+  apple in place of peach. Wine stays out of Artisan Goods (its reward is the
+  keg), so it is 4 of 5 where note 35 has 4 of 6.
   The foraging bundles took the new goods; the first four crop and forage bundles are unchanged, as decided in
   `08_playtest_personas.md`.
-- Headless sim (`npm run sim`): the bot plays every bundle but Woodland,
+- Headless sim (`npm run sim`): the bot plays every bundle but Winter
+  Foraging, Autumn Crops, Quality Crops (it models two seasons), Woodland,
   Artisan Goods and the Smith's, which need bulk gathering, machines and
   mining. The expert finished those seven in a median of day 54 (44 of 50 runs
   by day 168, the rest wait on silver melons and corn). Quality Crops ends the

@@ -38,13 +38,7 @@
     "id": "winter-foraging",
     "name": "Winter Foraging",
     "room": "foragers-shelf",
-    "items": [
-      "spring-onion",
-      "salmonberry",
-      "grape",
-      "spice-berry",
-      "fiddlehead-fern"
-    ],
+    "items": ["crocus", "snowdrop", "winter-cress", "pine-nut", "frost-root"],
     "required": 3,
     "reward": {
       "item": {
@@ -52,7 +46,7 @@
         "count": 1
       }
     },
-    "hint": "Old Greencoat wants herbs and berries set by against the cold. Gather what the woods give now."
+    "hint": "Old Greencoat wants what the cold season gives: blooms in the snow, nuts and roots turned up by the hoe."
   },
   {
     "id": "woodland",
@@ -107,12 +101,12 @@
     "name": "Autumn Crops",
     "room": "larder",
     "items": [
-      "hot-pepper",
-      "corn",
-      "red-cabbage",
-      "green-bean",
-      "kale",
-      "garlic"
+      "pumpkin",
+      "eggplant",
+      "sweet-potato",
+      "beet",
+      "cranberry",
+      "artichoke"
     ],
     "required": 4,
     "reward": {
@@ -121,7 +115,7 @@
         "count": 1
       }
     },
-    "hint": "Hardy crops for the larder shelves. The shop sells the seeds, and they keep well."
+    "hint": "The autumn harvest for the larder shelves. The shop sells the seeds in fall."
   },
   {
     "id": "quality-crops",
@@ -144,7 +138,7 @@
         "minQuality": "silver"
       },
       {
-        "id": "tomato",
+        "id": "pumpkin",
         "count": 5,
         "minQuality": "silver"
       }
@@ -162,7 +156,7 @@
     "id": "artisan-goods",
     "name": "Artisan Goods",
     "room": "larder",
-    "items": ["jam", "pickles", "honey", "cherry", "peach"],
+    "items": ["jam", "pickles", "honey", "apple", "cherry"],
     "required": 4,
     "reward": {
       "item": {

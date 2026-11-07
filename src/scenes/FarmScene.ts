@@ -6,7 +6,8 @@ import type { GameState } from "../core/save";
 import { cycle, heldAt, nextRow, toolbarSize } from "../core/toolbar";
 import { pendingChoice } from "../core/professions";
 import { eat, type Outcome } from "../core/actions";
-import { clockText } from "../core/clock";
+import { dateOf } from "../core/calendar";
+import { clockText, darkness } from "../core/clock";
 import { festivalOpen, festivalToday } from "../core/festivals";
 import { itemById } from "../core/items";
 import { NOTHING_TO_ACT_ON, act, reasonText, useHeld } from "../core/tools";
@@ -113,6 +114,8 @@ const WHEEL_STEP = 100;
 
 /** Fade time when the player walks through an exit, in milliseconds. */
 const FADE_MS = 200;
+/** Most the night overlay darkens the farm. */
+const NIGHT_ALPHA = 0.5;
 
 /** Where the scene starts. Game state lives in the game registry, not here. */
 interface SceneData {
@@ -144,6 +147,8 @@ export class FarmScene extends Phaser.Scene {
   private sprites!: Phaser.GameObjects.Container;
   private ground!: Phaser.GameObjects.Graphics;
   private wash!: Phaser.GameObjects.Graphics;
+  /** Dusk over the farm: fades in toward nightfall, which moves by season. */
+  private night!: Phaser.GameObjects.Rectangle;
   private map!: FarmMap;
   private controls!: Controls;
   private player!: Phaser.GameObjects.Image;
@@ -243,6 +248,12 @@ export class FarmScene extends Phaser.Scene {
       .setOrigin(0)
       .setStrokeStyle(1, 0xffffff, 0.6);
     world.push(this.player, this.hat, this.target);
+    this.night = this.add
+      .rectangle(0, 0, this.map.width * ts, this.map.height * ts, 0x0a1030)
+      .setOrigin(0)
+      .setAlpha(0)
+      .setDepth(1000);
+    world.push(this.night);
 
     // UI objects, drawn by a second camera that does not zoom.
     const settings = loadDeviceSettings();
@@ -446,6 +457,15 @@ export class FarmScene extends Phaser.Scene {
   update(_time: number, delta: number): void {
     // Cap the step so a stalled frame cannot throw the player across the map.
     const dt = Math.min(delta, 50) / 1000;
+    this.night.setAlpha(
+      this.map.hasSoil
+        ? NIGHT_ALPHA *
+            darkness(
+              dateOf(this.state.day.clock.day).season,
+              this.state.day.clock.minutes,
+            )
+        : 0,
+    );
     const v = this.controls.vector();
     this.facing = facingFrom(v, this.facing);
     if (v.x !== 0 || v.y !== 0) this.keyAim();

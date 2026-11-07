@@ -55,11 +55,7 @@ export function seedStock(season: Season): string[] {
   );
 }
 
-/**
- * Saplings on sale. Pierre's sells every tree all year, but ours list only the
- * trees whose season is in the calendar, so a tree that could never bear
- * (fall, until build 4) is not sold yet.
- */
+/** Saplings on sale: every tree, all year, as Stardew's Pierre does. */
 export function saplingStock(): string[] {
   return FRUIT_TREES.filter((t) =>
     (SEASONS as readonly string[]).includes(t.season),
