@@ -2,7 +2,7 @@ import type { Outcome } from "./actions";
 import { COAL, COPPER_ORE, QUARTZ, STONE } from "./ore";
 import { swingCost } from "./upgrades";
 import type { GameState } from "./save";
-import { SWINGS_TO_BREAK, type RockKind, type Rocks } from "./rocks";
+import { swingsToBreak, type RockKind, type Rocks } from "./rocks";
 
 /** Energy for a pickaxe swing at tier 0 (note 22). The mining level saves some, as farming does for the hoe. */
 export const PICKAXE_ENERGY = 2;
@@ -48,7 +48,7 @@ const fail = (reason: string): Outcome => ({ ok: false, reason });
 /**
  * Swing the pickaxe at a rock. `floor` is the mine floor the player is on, or
  * undefined on the farm, where the rocks are `g.rocks`. A rock breaks after
- * its swings (`SWINGS_TO_BREAK`), gives its drop, and on a mine floor may
+ * its swings (`swingsToBreak`), gives its drop, and on a mine floor may
  * reveal the ladder. A full backpack refuses the breaking swing, so nothing is
  * ever lost.
  */
@@ -65,7 +65,7 @@ export function mine(
     floor === undefined ? g.rocks : g.mines.visit(floor, day).rocks;
   const rock = rocks.at(x, y);
   if (!rock) return fail("nothing to mine");
-  const breaks = rock.hits + 1 >= SWINGS_TO_BREAK[rock.kind];
+  const breaks = rock.hits + 1 >= swingsToBreak(rock.kind, g.toolTiers.pickaxe);
   const drop = breaks
     ? drops(
         rock.kind,
@@ -76,7 +76,10 @@ export function mine(
     : undefined;
   if (drop && g.inventory.room(drop.id) < drop.count)
     return fail("backpack full");
-  g.day.act(swingCost(PICKAXE_ENERGY, 0, g.skills.level("mining")), 0);
+  g.day.act(
+    swingCost(PICKAXE_ENERGY, g.toolTiers.pickaxe, g.skills.level("mining")),
+    0,
+  );
   if (!drop) {
     rock.hits += 1;
     return { ok: true };

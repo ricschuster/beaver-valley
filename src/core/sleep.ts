@@ -6,6 +6,7 @@ import type { GameState } from "./save";
 import type { FarmMap } from "./map";
 import { advanceBuild } from "./house";
 import { deliverFurnace } from "./smith";
+import { orderReady, type Upgradable } from "./upgrades";
 import type { Settlement } from "./shipping";
 import { fruitTreeById } from "./fruittrees";
 import { CAVE_MAP } from "./cave";
@@ -52,6 +53,8 @@ export interface SleepReport {
   houseFinished: boolean;
   /** True when the smith left the furnace this morning. */
   furnaceGifted: boolean;
+  /** The tool the smith has finished, if it is ready to collect this morning. */
+  toolReady: Upgradable | undefined;
   /** What the shipping bin paid tonight. */
   shipped: Settlement;
   /** True when tonight's sales passed the earnings mark and the villager will ask about the cave. */
@@ -151,6 +154,7 @@ export function sleep(
     withered: cropsBefore - g.farm.cropCount,
     houseFinished,
     furnaceGifted,
+    toolReady: g.toolOrder && orderReady(g) ? g.toolOrder.tool : undefined,
     shipped,
     caveOffer,
     stuckTrees: stuck.map((t) => fruitTreeById(t.id)?.name ?? t.id),

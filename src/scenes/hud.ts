@@ -9,7 +9,7 @@ import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
 import type { Settings } from "../core/bindings";
 import { desktopHint } from "./controls";
-import { TIER_NAMES, type Upgradable } from "../core/upgrades";
+import { TIER_NAMES, toolAway, type Upgradable } from "../core/upgrades";
 
 const SLOT = 44;
 const GAP = 4;
@@ -31,8 +31,9 @@ const TOOL_LABEL = {
 /** Short text for a slot, until the art pass gives items icons. */
 function caption(held: Held, g: GameState): string {
   if (held.kind === "tool") {
+    if (toolAway(g, held.tool)) return `${TOOL_LABEL[held.tool]} (smith)`;
     const tier =
-      held.tool === "hand" || held.tool === "axe" || held.tool === "pickaxe"
+      held.tool === "hand" || held.tool === "axe"
         ? 0
         : g.toolTiers[held.tool as Upgradable];
     return tier > 0

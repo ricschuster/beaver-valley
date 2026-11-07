@@ -28,6 +28,7 @@ import { sprinklerById } from "./sprinklers";
 import { handOnMachine, loadMachine, placeMachine } from "./machines";
 import { machineById } from "./processing";
 import type { Held } from "./toolbar";
+import { toolAway } from "./upgrades";
 
 const fail = (reason: string): Outcome => ({ ok: false, reason });
 
@@ -52,6 +53,8 @@ export function useHeld(
   floor?: number,
 ): Outcome {
   if (held.kind === "empty") return fail("nothing held");
+  if (held.kind === "tool" && toolAway(g, held.tool))
+    return fail("at the smith");
   if (held.kind === "tool" && held.tool === "pickaxe")
     return mine(g, x, y, floor);
   if (!map.hasSoil) return fail("nothing to do here");

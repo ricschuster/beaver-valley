@@ -3,30 +3,28 @@ import { till, TOOL_ENERGY } from "../src/core/actions";
 import { MAX_ENERGY } from "../src/core/energy";
 import { deserialize, newGame, serialize } from "../src/core/save";
 import {
+  collectUpgrade,
   MAX_TIER,
   MIN_SWING,
+  orderReady,
+  orderUpgrade,
   swingCost,
-  upgrade,
+  toolAway,
   upgradeCost,
 } from "../src/core/upgrades";
+import { mine } from "../src/core/mining";
+import { swingsToBreak } from "../src/core/rocks";
+import { reportLines } from "../src/core/report";
+import { sleep } from "../src/core/sleep";
+import { useHeld } from "../src/core/tools";
+import { maps } from "../src/content/maps";
+import { START } from "../src/core/maps";
 
 describe("tool upgrades", () => {
   it("costs rise by tier and stop at the top", () => {
     expect(upgradeCost(0)).toBe(2000);
     expect(upgradeCost(2)).toBe(10000);
     expect(upgradeCost(MAX_TIER)).toBeUndefined();
-  });
-
-  it("takes the money once and refuses when short or maxed", () => {
-    const tiers = { hoe: 0, can: 0 };
-    const wallet = { money: 2500 };
-    expect(upgrade(tiers, wallet, "hoe")).toBe(true);
-    expect(tiers.hoe).toBe(1);
-    expect(wallet.money).toBe(500);
-    expect(upgrade(tiers, wallet, "hoe")).toBe(false);
-    const rich = { money: 99999 };
-    for (let i = 0; i < 5; i++) upgrade(tiers, rich, "can");
-    expect(tiers.can).toBe(MAX_TIER);
   });
 
   it("swings cost less with tier and farming level, never under the floor", () => {
@@ -46,12 +44,17 @@ describe("tool upgrades", () => {
   it("tiers survive a save, and old saves load as basic", () => {
     const g = newGame();
     g.toolTiers.can = 3;
-    expect(deserialize(serialize(g))!.toolTiers).toEqual({ hoe: 0, can: 3 });
+    expect(deserialize(serialize(g))!.toolTiers).toEqual({
+      hoe: 0,
+      can: 3,
+      pickaxe: 0,
+    });
     const raw = JSON.parse(serialize(g));
     delete raw.toolTiers;
     expect(deserialize(JSON.stringify(raw))!.toolTiers).toEqual({
       hoe: 0,
       can: 0,
+      pickaxe: 0,
     });
   });
 });
@@ -82,5 +85,91 @@ describe("backpack", () => {
     const back = deserialize(serialize(g))!;
     expect(back.inventory.size).toBe(24);
     expect(back.inventory.count("parsnip")).toBe(1500);
+  });
+});
+
+describe("the smith's tool upgrades", () => {
+  function rich() {
+    const g = newGame();
+    g.money = 20000;
+    g.inventory.add("copper-bar", 5);
+    g.inventory.add("iron-bar", 5);
+    g.inventory.add("gold-bar", 5);
+    return g;
+  }
+
+  it("takes gold and five bars of the grade's metal, and keeps the tool two days", () => {
+    const g = rich();
+    expect(orderUpgrade(g, "pickaxe")).toBeUndefined();
+    expect(g.money).toBe(18000);
+    expect(g.inventory.count("copper-bar")).toBe(0);
+    expect(g.toolOrder).toEqual({ tool: "pickaxe", tier: 1, readyDay: 3 });
+    expect(toolAway(g, "pickaxe")).toBe(true);
+    expect(orderReady(g)).toBe(false);
+  });
+
+  it("refuses when short of gold or bars, when maxed, and with a tool already away", () => {
+    const g = newGame();
+    expect(orderUpgrade(g, "hoe")).toBe("Not enough money.");
+    g.money = 5000;
+    expect(orderUpgrade(g, "hoe")).toBe("You need 5 copper bars.");
+    const r = rich();
+    r.toolTiers.can = MAX_TIER;
+    expect(orderUpgrade(r, "can")).toBe("Already the best.");
+    expect(orderUpgrade(r, "hoe")).toBeUndefined();
+    expect(orderUpgrade(r, "can")).toBe("Already the best.");
+    r.toolTiers.pickaxe = 1;
+    expect(orderUpgrade(r, "pickaxe")).toBe(
+      "She is still working on another tool.",
+    );
+  });
+
+  it("goes in grade order: the second step needs iron", () => {
+    const g = rich();
+    orderUpgrade(g, "hoe");
+    g.day.clock.day = 3;
+    expect(collectUpgrade(g)).toBe("hoe");
+    expect(g.toolTiers.hoe).toBe(1);
+    expect(orderUpgrade(g, "hoe")).toBeUndefined();
+    expect(g.inventory.count("iron-bar")).toBe(0);
+    expect(g.money).toBe(20000 - 2000 - 5000);
+  });
+
+  it("cannot be collected early, and the tool cannot be used while away", () => {
+    const g = rich();
+    orderUpgrade(g, "pickaxe");
+    expect(collectUpgrade(g)).toBeUndefined();
+    const map = maps.get(START.map);
+    const r = useHeld(g, map, { kind: "tool", tool: "pickaxe" }, 1, 1);
+    expect(r).toEqual({ ok: false, reason: "at the smith" });
+    expect(useHeld(g, map, { kind: "tool", tool: "hoe" }, 1, 1)).not.toEqual(r);
+  });
+
+  it("tells the player on the morning it is ready, across a save", () => {
+    const g = rich();
+    orderUpgrade(g, "can");
+    const back = deserialize(serialize(g))!;
+    expect(back.toolOrder).toEqual(g.toolOrder);
+    const none = [] as { x: number; y: number }[];
+    expect(sleep(back, none, () => 0.5).toolReady).toBeUndefined();
+    const r = sleep(back, none, () => 0.5);
+    expect(r.toolReady).toBe("can");
+    expect(reportLines(r)).toContain(
+      "Your watering can is ready at the smith.",
+    );
+  });
+
+  it("makes the pickaxe break rocks in fewer swings and for less energy", () => {
+    expect(swingsToBreak("stone", 0)).toBe(2);
+    expect(swingsToBreak("stone", 2)).toBe(1);
+    expect(swingsToBreak("copper", 0)).toBe(3);
+    expect(swingsToBreak("copper", 3)).toBe(1);
+    const g = newGame();
+    g.toolTiers.pickaxe = 3;
+    g.rocks.add(4, 4, "stone");
+    const e = g.day.energy.current;
+    expect(mine(g, 4, 4, undefined, () => 0.9).ok).toBe(true);
+    expect(g.rocks.at(4, 4)).toBeUndefined();
+    expect(e - g.day.energy.current).toBe(1.25);
   });
 });

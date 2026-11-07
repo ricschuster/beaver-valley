@@ -11,14 +11,7 @@ import {
   fertilizerStock,
   saplingStock,
 } from "../core/shop";
-import {
-  nextBackpack,
-  TIER_NAMES,
-  UPGRADABLE,
-  upgrade,
-  upgradeBackpack,
-  upgradeCost,
-} from "../core/upgrades";
+import { nextBackpack, upgradeBackpack } from "../core/upgrades";
 import { frame, Menu, type Row } from "./panel";
 import { STATE_KEY } from "./state";
 
@@ -115,34 +108,6 @@ export class ShopScene extends Phaser.Scene {
         ],
       };
     });
-    const toolRows: Row[] = UPGRADABLE.map((tool) => {
-      const tier = g.toolTiers[tool];
-      const cost = upgradeCost(tier);
-      const name = tool === "hoe" ? "Hoe" : "Watering can";
-      if (cost === undefined)
-        return {
-          label: `${name} (${TIER_NAMES[tier]})`,
-          detail: "Best",
-          dim: true,
-          buttons: [],
-        };
-      const next = TIER_NAMES[tier + 1];
-      return {
-        label: `${name} (${TIER_NAMES[tier]})`,
-        detail: `${next}: ${cost}g`,
-        buttons: [
-          {
-            text: "Upgrade",
-            run: () =>
-              this.say(
-                upgrade(g.toolTiers, g, tool)
-                  ? `Your ${name.toLowerCase()} is now ${next?.toLowerCase()}.`
-                  : "Not enough money.",
-              ),
-          },
-        ],
-      };
-    });
     const pack = nextBackpack(g.inventory);
     const packRow: Row = pack
       ? {
@@ -166,7 +131,7 @@ export class ShopScene extends Phaser.Scene {
           dim: true,
           buttons: [],
         };
-    this.buyMenu.setRows([...buyRows, ...toolRows, packRow]);
+    this.buyMenu.setRows([...buyRows, packRow]);
 
     const ids: string[] = [];
     for (let i = 0; i < g.inventory.size; i++) {
