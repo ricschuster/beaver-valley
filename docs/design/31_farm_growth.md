@@ -4,7 +4,13 @@ Status: draft. Decided with the owner on 2026-10-31. Fertilizer is built
 (2026-11-07, slice 1 build 3, `src/core/fertilizer.ts`): five items from the
 shop only, no crafting yet, applied from the toolbar, one per tile, gone at the
 season change. Sprinklers, the greenhouse, fruit trees and the cave are not
-built; the game has hand watering for the rest. Reference: the Stardew Valley Wiki
+built; the game has hand watering for the rest. Sprinklers built 2026-11-07 (slice 1 build 3, `src/core/sprinklers.ts`): the
+basic and quality tiers, placed from the toolbar on clear undug ground, picked
+up with the hand or Action, watering their tiles each morning. The 24 tile tier
+needs iridium and waits. Sprinklers built 2026-11-07 (slice 1 build 3, `src/core/sprinklers.ts`): the
+basic and quality tiers, placed from the toolbar on clear undug ground, picked
+up with the hand or Action, watering their tiles each morning. The 24 tile tier
+needs iridium and waits. Reference: the Stardew Valley Wiki
 Sprinkler, Scarecrow, Fruit Trees, Greenhouse, The Cave and Fertilizer pages,
 read only (ADR 0002). Costs and recipes are placeholders until the tuning note.
 
