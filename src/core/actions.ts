@@ -1,6 +1,7 @@
 import { dateOf } from "./calendar";
 import { cropById } from "./crops";
 import { cropOfSeed, itemById } from "./items";
+import { fertilizerById, qualityLevelOf } from "./fertilizer";
 import { MAX_ENERGY } from "./energy";
 import { doubleForageChance, forageFloor } from "./professions";
 import { cropQuality, forageQuality, withQuality } from "./quality";
@@ -81,6 +82,22 @@ export function plant(
   return { ok: true };
 }
 
+/** Mix a fertilizer from the backpack into tilled soil. Free, like planting. */
+export function fertilize(
+  g: GameState,
+  x: number,
+  y: number,
+  id: string,
+): Outcome {
+  if (g.day.over) return fail("exhausted");
+  if (!fertilizerById(id)) return fail("not a fertilizer");
+  if (g.inventory.count(id) < 1) return fail("no fertilizer");
+  const why = g.farm.fertilize(x, y, id);
+  if (why) return fail(why);
+  g.inventory.remove(id);
+  return { ok: true };
+}
+
 export function harvest(
   g: GameState,
   x: number,
@@ -92,7 +109,11 @@ export function harvest(
   if (!cropId || !g.farm.isRipe(x, y)) return fail("nothing ripe");
   const item = withQuality(
     cropId,
-    cropQuality(g.skills.level("farming"), random()),
+    cropQuality(
+      g.skills.level("farming"),
+      random(),
+      qualityLevelOf(g.farm.plotAt(x, y)?.fertilizer),
+    ),
   );
   if (g.inventory.room(item) < 1) return fail("backpack full");
   g.farm.harvest(x, y);

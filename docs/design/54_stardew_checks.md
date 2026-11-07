@@ -110,3 +110,4 @@ settle them: notes 45 to 48 (controls, mouse, action order on one tile), the
 touch quantity prompt in note 28 (#59, #63), and the wheel and Page Up rules in
 note 49 that are marked "ours".
 | SC-46 | 64 | Does Stardew have a UI size setting separate from world zoom, and what are its steps? | no | open | Owner, 2026-11-06, from memory: yes, a separate UI zoom in the options. Steps and range unchecked. Our decision (note 64): a separate UI size setting, saved per device. |
+| SC-47 | 31 | What chance does Stardew's retaining soil have of staying watered overnight, for the basic and quality tiers? | no | open | The saved Fertilizer page gives the effect but no percentages (read 2026-11-07). Ours uses 33 and 66 percent, from memory (`src/core/fertilizer.ts`). Check the saved Retaining Soil pages, or the owner can say. Same read: speed fertilizer gives at least 10 percent, quality fertilizer levels 1 and 2 and the gold formula match the page table. |

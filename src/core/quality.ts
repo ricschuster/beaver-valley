@@ -34,11 +34,13 @@ export function splitQuality(id: string): { base: string; quality: Quality } {
 }
 
 /**
- * Crop quality from farming level, after Stardew without fertiliser: a gold
- * chance of 0.2 * level / 10 + 0.01, then silver at twice that chance.
+ * Crop quality from farming level and the soil's fertilizer level, after
+ * Stardew: a gold chance of 0.2 * level / 10 + 0.2 * soil * (level + 2) / 12
+ * + 0.01 (matches the saved Fertilizer page's table), then silver at twice
+ * that chance.
  */
-export function cropQuality(level: number, roll: number): Quality {
-  const gold = (0.2 * level) / 10 + 0.01;
+export function cropQuality(level: number, roll: number, soil = 0): Quality {
+  const gold = (0.2 * level) / 10 + (0.2 * soil * (level + 2)) / 12 + 0.01;
   if (roll < gold) return "gold";
   if (roll < gold * 2) return "silver";
   return "normal";

@@ -2,6 +2,7 @@ import {
   chop,
   clearSeedling,
   clearWeed,
+  fertilize,
   forage,
   harvest,
   plant,
@@ -15,6 +16,7 @@ import { TREE_SEED } from "./trees";
 import type { FarmMap } from "./map";
 import type { GameState } from "./save";
 import { cropOfSeed } from "./items";
+import { fertilizerById } from "./fertilizer";
 import type { Held } from "./toolbar";
 
 const fail = (reason: string): Outcome => ({ ok: false, reason });
@@ -59,6 +61,8 @@ export function useHeld(
   if (held.kind === "item" && cropOfSeed(held.id)) {
     return plant(g, x, y, held.id);
   }
+  if (held.kind === "item" && fertilizerById(held.id))
+    return fertilize(g, x, y, held.id);
   if (held.kind === "item" && held.id === TREE_SEED)
     return plantTree(g, map, x, y);
   // The hand tool keeps its pick-up job; every other item only has the Action
@@ -110,6 +114,11 @@ const REASONS: Record<string, string> = {
   "nothing to chop": "Nothing to chop here.",
   "a weed is in the way": "Clear the weed first.",
   "no weed": "No weed here.",
+  "not a fertilizer": "That cannot be mixed into soil.",
+  "no fertilizer": "Out of fertilizer.",
+  "nothing to fertilize": "Dig the soil first.",
+  "already fertilized": "This soil already has fertilizer.",
+  "too late to fertilize": "Too late. Use it before the seed sprouts.",
   "a tree is in the way": "A tree is in the way.",
   "nothing to shake": "Nothing falls from there.",
   "cannot plant tree here": "A tree cannot grow there.",

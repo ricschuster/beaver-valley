@@ -1,10 +1,13 @@
 import { cropById } from "./crops";
+import { fertilizerById } from "./fertilizer";
 import type { Season } from "./calendar";
 
 export interface Plot {
   tilled: boolean;
   crop?: { id: string; daysGrown: number; harvests: number };
   wateredToday: boolean;
+  /** The fertilizer mixed into this soil, until the season ends. */
+  fertilizer?: string;
 }
 
 const key = (x: number, y: number) => `${x},${y}`;
@@ -54,6 +57,22 @@ export class Farm {
     return true;
   }
 
+  /**
+   * Mix a fertilizer into tilled soil. Returns undefined on success, or why
+   * not. One per tile. Quality and retaining soil go in before the seed
+   * sprouts; speed fertilizer any time (saved Fertilizer page).
+   */
+  fertilize(x: number, y: number, id: string): string | undefined {
+    const plot = this.plotAt(x, y);
+    const def = fertilizerById(id);
+    if (!plot || !def) return "nothing to fertilize";
+    if (plot.fertilizer) return "already fertilized";
+    if (def.line !== "speed" && plot.crop && plot.crop.daysGrown > 0)
+      return "too late to fertilize";
+    plot.fertilizer = id;
+    return undefined;
+  }
+
   /** Water every plot, as rain does. */
   waterAll(): void {
     for (const plot of this.plots.values()) plot.wateredToday = true;
@@ -98,18 +117,30 @@ export class Farm {
   }
 
   /**
-   * Overnight: watered crops grow a day, then all plots dry out. Crops whose
-   * season has ended wither. Pass the season of the new day.
+   * Overnight: watered crops grow a day, then all plots dry out, except where
+   * retaining soil keeps them wet on a chance. Crops whose season has ended
+   * wither. Pass the season of the new day, and whether it is a new season:
+   * fertilizer wears off then, unless a crop that grows in the new season is
+   * still in the soil. Speed fertilizer adds to `growth`.
    */
-  endDay(newSeason: Season, growth = 1): void {
+  endDay(
+    newSeason: Season,
+    growth = 1,
+    random: () => number = Math.random,
+    seasonChanged = false,
+  ): void {
     for (const plot of this.plots.values()) {
       const crop = plot.crop;
       if (crop) {
         const def = cropById(crop.id);
         if (!def || !def.seasons.includes(newSeason)) delete plot.crop;
-        else if (plot.wateredToday) crop.daysGrown += growth;
+        else if (plot.wateredToday)
+          crop.daysGrown +=
+            growth + (fertilizerById(plot.fertilizer)?.growthBonus ?? 0);
       }
-      plot.wateredToday = false;
+      const keep = fertilizerById(plot.fertilizer)?.keepWet;
+      plot.wateredToday = keep !== undefined && random() < keep;
+      if (seasonChanged && !plot.crop) delete plot.fertilizer;
     }
   }
 }

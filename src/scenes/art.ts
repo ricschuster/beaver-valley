@@ -1,3 +1,4 @@
+import { fertilizerById } from "../core/fertilizer";
 import Phaser from "phaser";
 import { CROPS } from "../core/crops";
 import { FORAGE } from "../core/forage";
@@ -420,6 +421,9 @@ function paintSeedIcon(scene: Phaser.Scene, cropId: string): void {
 
 export const WEED_KEY = "weed";
 
+/** Small marks over fertilized soil, one per line, so the bed shows what it holds. */
+export const fertKey = (line: string) => `fert-${line}`;
+
 export const treeKey = (stage: number, stump: boolean) =>
   stump ? "tree-stump" : `tree-${stage}`;
 
@@ -493,6 +497,32 @@ function paintTrees(scene: Phaser.Scene): void {
     px(c, "#e0a030", 7, 10, 2, 2);
     px(c, "#f8d878", 7, 6, 1, 3);
   });
+  const bag = (id: string, color: string, light: string) =>
+    draw(`icon-${id}`, (c) => {
+      px(c, "#7a6040", 4, 4, 8, 9);
+      px(c, "#9a8058", 4, 3, 8, 2);
+      px(c, color, 5, 7, 6, 4);
+      px(c, light, 6, 8, 2, 1);
+    });
+  bag("basic-fertilizer", "#6a8f3a", "#a0c060");
+  bag("quality-fertilizer", "#3a7fb0", "#80c0e8");
+  bag("speed-fertilizer", "#d8a030", "#f8d878");
+  bag("basic-retaining-soil", "#5a7fa0", "#9cc0e0");
+  bag("quality-retaining-soil", "#3a5f9a", "#78a0d8");
+  const mark = (line: string, color: string) =>
+    draw(fertKey(line), (c) => {
+      for (const [x, y] of [
+        [3, 2],
+        [11, 5],
+        [6, 9],
+        [13, 12],
+        [2, 13],
+      ] as const)
+        px(c, color, x, y, 2, 2);
+    });
+  mark("quality", "#e8d8a0");
+  mark("retaining", "#6ab0e8");
+  mark("speed", "#f0b040");
   draw("icon-fiber", (c) => {
     px(c, "#7ab04a", 4, 4, 2, 9);
     px(c, "#5a9a3a", 7, 3, 2, 10);
@@ -510,6 +540,7 @@ function paintTrees(scene: Phaser.Scene): void {
 /** The texture key for a backpack item, or undefined if it has no picture. */
 export function iconKey(itemId: string): string | undefined {
   const { base } = splitQuality(itemId);
+  if (fertilizerById(base)) return `icon-${base}`;
   if (base === "wood" || base === "sap" || base === "fiber")
     return `icon-${base}`;
   if (base.endsWith("-seed")) return `icon-${base}`;
