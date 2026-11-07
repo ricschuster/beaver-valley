@@ -37,12 +37,16 @@ dehydrator (#497) and the farm cave (#498) were built on 2026-11-07, so the
 slice 1 build track is done apart from the leftovers below. Nothing built since
 build 4 has been played in the browser yet.
 
-Smaller leftovers: mine camp chest and Old Greencoat scene, geodes, pickaxe
-tiers, extra crafted furnaces, workbench and chests, quartz (quality
-sprinkler), teaching the sim bot to chop, mine, run machines and farm fall
-(it skips three bundles), the furniture catalogue and the hatter (needs
-achievements), festival maps in place of the festival screens, storms, and the
-fruit bat and mushroom art.
+Session e (2026-11-07, handoff 2026-11-07e) built the sim bot's full year,
+quartz and the quality sprinkler, pickaxe tiers and the smith's upgrades, crafted
+furnaces, chests and the workbench, Old Greencoat's door scene, the camp chest,
+geodes, and slice 1's achievements with the hatter.
+
+Smaller leftovers still open: the furniture catalogue (needs a design answer:
+where it is sold and its price, note 41), the hatter's letter, mail gifts and the
+achievements that wait for later systems, the axe ladder and the Hearthsilver
+grade, the mine hall's ore-only bin, Artisan Goods in the sim bot, festival maps
+in place of the festival screens, storms, and the fruit bat and mushroom art.
 
 ## Remaining bundle work
 
