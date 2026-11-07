@@ -12,6 +12,7 @@ import {
 } from "./ore";
 import { SPRINKLERS } from "./sprinklers";
 import { FRUIT_TREES, saplingId } from "./fruittrees";
+import furnitureData from "../content/furniture.json";
 import { ARTISAN_GOODS } from "./artisan";
 import { MACHINES } from "./processing";
 import { ENERGY_MULTIPLIER, QUALITY_MULTIPLIER, splitQuality } from "./quality";
@@ -24,6 +25,8 @@ export interface ItemDef {
   name: string;
   sellPrice: number;
   buyPrice?: number;
+  /** Cannot be sold or shipped (furniture). */
+  keep?: boolean;
   /** Energy restored when eaten, at normal quality. Absent if not food. */
   energy?: number;
 }
@@ -84,6 +87,10 @@ for (const a of ARTISAN_GOODS)
   items.set(a.id, { id: a.id, name: a.name, sellPrice: a.sellPrice });
 for (const m of MACHINES)
   items.set(m.id, { id: m.id, name: m.name, sellPrice: m.sellPrice });
+
+/** Furniture pieces are items, so they ride in the backpack. They cannot be sold (`10_customisation.md`). */
+for (const f of furnitureData)
+  items.set(f.id, { id: f.id, name: f.name, sellPrice: 0, keep: true });
 
 /** Tree goods (`docs/design/36_gathering_trees_sap_fiber.md`). Wood and sap sell as Stardew's do. */
 items.set("wood", { id: "wood", name: "Wood", sellPrice: 2 });

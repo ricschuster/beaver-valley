@@ -1,3 +1,4 @@
+import { FURNITURE, furnitureById } from "../core/furniture";
 import { fertilizerById } from "../core/fertilizer";
 import { SPRINKLERS, sprinklerById } from "../core/sprinklers";
 import { categoryOf } from "../core/artisan";
@@ -748,6 +749,26 @@ function paintFruitTrees(scene: Phaser.Scene): void {
   }
 }
 
+export const furnitureKey = (id: string) => `furniture-${id}`;
+
+/** Furniture: a plain shape per piece, in the piece's colour. Placeholders. */
+function paintFurniture(scene: Phaser.Scene): void {
+  for (const f of FURNITURE) {
+    const t = scene.textures.createCanvas(furnitureKey(f.id), SIZE, SIZE)!;
+    const c = t.getContext();
+    if (f.rug) {
+      px(c, f.color, 1, 3, 14, 10);
+      px(c, "#ffffff55", 3, 5, 10, 6);
+    } else {
+      px(c, "#00000044", 2, 14, 12, 1);
+      px(c, f.color, 3, 5, 10, 9);
+      px(c, "#ffffff44", 4, 6, 8, 2);
+      px(c, "#00000033", 3, 12, 10, 2);
+    }
+    t.refresh();
+  }
+}
+
 function paintMineArt(scene: Phaser.Scene): void {
   const draw = (key: string, paint: (c: Ctx) => void) => {
     const t = scene.textures.createCanvas(key, SIZE, SIZE)!;
@@ -805,6 +826,7 @@ export function iconKey(itemId: string): string | undefined {
   if (fertilizerById(base)) return `icon-${base}`;
   if (sprinklerById(base)) return sprinklerKey(base);
   if (machineById(base)) return machineKey(base);
+  if (furnitureById(base)) return furnitureKey(base);
   const sapling = treeOfSapling(base);
   if (sapling) return saplingIconKey(sapling.id);
   if (fruitTreeById(base)) return `icon-${base}`;
@@ -839,4 +861,5 @@ export function makeArt(
   paintTrees(scene);
   paintFruitTrees(scene);
   paintMineArt(scene);
+  paintFurniture(scene);
 }

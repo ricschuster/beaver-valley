@@ -661,3 +661,19 @@ Source: `src/content/hats.json`, `src/content/festivals.json`.
 - Cake Day (summer 8) and Lamplight Evening (summer 20): in the calendar with
   a blurb and an empty counter. Their content waits for a note.
 - Fall and winter festivals wait for the seasons (build 4).
+
+## Furniture (build 8, placeholders, ours)
+
+Source: `src/content/furniture.json`, `src/core/furniture.ts`.
+
+- Ten one tile pieces (stool 60g, chair 90g, mat 80g up to armchair 400g).
+  Prices are placeholders, well under Stardew's. Two are rugs, which can be
+  walked on. No stacking, no multi tile pieces.
+- The carpenter shows 4 of the 10 each day, a hash of the day number, the same
+  all day. The pool is only 2.5 times the stock, so it repeats soon.
+- Furniture is a backpack item with no sell price and cannot be sold or shipped.
+  It is placed with Use in the house and taken up with Action or the hand.
+- A house upgrade moves pieces to the new map at the same tile if it is open,
+  else into the pack, else a stash that empties into the pack when room opens.
+- Not built: the catalogue (copies at 0g), wallpaper and floors, bundle furniture
+  rewards (no bundle names one yet), the per-people catalogues.
