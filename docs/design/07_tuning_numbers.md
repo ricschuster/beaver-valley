@@ -696,3 +696,11 @@ Source: `src/content/furniture.json`, `src/core/furniture.ts`.
 - Mine camp chest (built 2026-11-07, placeholders): on every 10th floor (only
   floor 10 is built), it gives 2 coal, 3 copper ore and one of a quartz crystal,
   5 stone or a cave mushroom (by the day) once a day, and nothing can be put in.
+
+- Geodes (built 2026-11-07, placeholders): a geode node is 5 percent of rocks on
+  floors 1 to 10, takes 3 swings at the basic pickaxe, gives 4 mining XP and sells
+  for 50g. The smith cracks one for 25g. Outcome weights are in
+  `src/content/geodes.json`: stone 30, coal 15, copper ore 15, quartz 15, river
+  garnet 10 (90g), frost opal 5 (120g), old dwarf cup 10 (40g). The gem and found
+  thing names and prices are placeholders. A Rockhound gets an extra geode from
+  5 percent of plain rocks.

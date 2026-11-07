@@ -52,7 +52,7 @@ export const PROFESSIONS: ProfessionDef[] = [
     id: "rockhound",
     skill: "mining",
     name: "Rockhound",
-    text: "Geodes and gems drop twice as often (geodes are not dug yet).",
+    text: "Geodes drop twice as often.",
   },
 ];
 

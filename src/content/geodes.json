@@ -1,0 +1,33 @@
+{
+  "fee": 25,
+  "geode": { "id": "geode", "name": "Geode", "sellPrice": 50 },
+  "items": [
+    {
+      "id": "river-garnet",
+      "name": "River garnet",
+      "sellPrice": 90,
+      "note": "Placeholder gem, the gem list is unwritten (note 22)"
+    },
+    {
+      "id": "frost-opal",
+      "name": "Frost opal",
+      "sellPrice": 120,
+      "note": "Placeholder gem"
+    },
+    {
+      "id": "dwarf-cup",
+      "name": "Old dwarf cup",
+      "sellPrice": 40,
+      "note": "Placeholder found thing from note 22's list"
+    }
+  ],
+  "outcomes": [
+    { "item": "stone", "min": 3, "max": 6, "weight": 30 },
+    { "item": "coal", "min": 1, "max": 3, "weight": 15 },
+    { "item": "copper-ore", "min": 2, "max": 5, "weight": 15 },
+    { "item": "quartz-crystal", "min": 1, "max": 2, "weight": 15 },
+    { "item": "river-garnet", "min": 1, "max": 1, "weight": 10 },
+    { "item": "frost-opal", "min": 1, "max": 1, "weight": 5 },
+    { "item": "dwarf-cup", "min": 1, "max": 1, "weight": 10 }
+  ]
+}

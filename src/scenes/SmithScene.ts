@@ -3,6 +3,7 @@ import { itemById } from "../core/items";
 import type { GameState } from "../core/save";
 import { buy } from "../core/shop";
 import { COPPER_ORE } from "../core/ore";
+import { crackGeode, CRACK_FEE, GEODE } from "../core/geodes";
 import { handOverCopper, SMITH_STOCK } from "../core/smith";
 import {
   collectUpgrade,
@@ -110,6 +111,28 @@ export class SmithScene extends Phaser.Scene {
           },
         ],
       });
+    rows.push({
+      label: "Crack a geode",
+      detail: `${CRACK_FEE}g  have ${g.inventory.count(GEODE)}`,
+      dim: g.inventory.count(GEODE) < 1,
+      buttons: [
+        {
+          text: "Crack",
+          run: () => {
+            const r = crackGeode(g);
+            this.say(
+              r.ok
+                ? `It splits open: ${r.count} ${itemById(r.item ?? "")?.name.toLowerCase()}.`
+                : r.reason === "no geode"
+                  ? "You have no geode."
+                  : r.reason === "backpack full"
+                    ? "Your backpack is full."
+                    : "Not enough money.",
+            );
+          },
+        },
+      ],
+    });
     rows.push(...this.toolRows());
     this.menu.setRows(rows);
   }

@@ -1,4 +1,5 @@
 import type { Spot } from "./forage";
+import { GEODE_SHARE } from "./geodes";
 import type { TiledMapJson } from "./map";
 import { Rocks, type Rock, type RockKind } from "./rocks";
 
@@ -152,7 +153,9 @@ export function floorLayout(floor: number, day: number): FloorLayout {
           ? "coal"
           : r < COPPER_SHARE + COAL_SHARE + QUARTZ_SHARE
             ? "quartz"
-            : "stone";
+            : r < COPPER_SHARE + COAL_SHARE + QUARTZ_SHARE + GEODE_SHARE
+              ? "geode"
+              : "stone";
     rocks.push({ ...s, kind, hits: 0 });
   }
   // The floor's last floor has no way down yet.
