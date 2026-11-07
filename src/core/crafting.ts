@@ -131,6 +131,7 @@ export function craft(
     chests.forEach((c, n) => c.items.load(chestsBefore[n]!));
     return "backpack full";
   }
+  g.achievements.noteCrafted(r.id);
   return undefined;
 }
 

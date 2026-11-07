@@ -10,6 +10,7 @@ const base: SleepReport = {
   houseFinished: false,
   furnaceGifted: false,
   toolReady: undefined,
+  achievements: [],
   caveOffer: false,
   shipped: { lines: [], total: 0 },
   stuckTrees: [],

@@ -31,6 +31,8 @@ export function reportLines(r: SleepReport): string[] {
   if (r.houseFinished)
     lines.push("The carpenter has finished. Your new rooms are ready.");
   if (r.furnaceGifted) lines.push("The smith left a furnace by your house.");
+  for (const name of r.achievements)
+    lines.push(`Achievement: ${name}. The hatter has a new hat on sale.`);
   if (r.toolReady)
     lines.push(
       `Your ${r.toolReady === "can" ? "watering can" : r.toolReady} is ready at the smith.`,

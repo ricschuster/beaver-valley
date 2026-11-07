@@ -5,6 +5,7 @@ import type { Spot } from "./forage";
 import type { GameState } from "./save";
 import type { FarmMap } from "./map";
 import { advanceBuild } from "./house";
+import { checkAchievements } from "./achievements";
 import { deliverFurnace } from "./smith";
 import { orderReady, type Upgradable } from "./upgrades";
 import type { Settlement } from "./shipping";
@@ -54,6 +55,8 @@ export interface SleepReport {
   houseFinished: boolean;
   /** True when the smith left the furnace this morning. */
   furnaceGifted: boolean;
+  /** Achievements earned by tonight's check, whose hats are now on sale. */
+  achievements: string[];
   /** The tool the smith has finished, if it is ready to collect this morning. */
   toolReady: Upgradable | undefined;
   /** What the shipping bin paid tonight. */
@@ -157,6 +160,7 @@ export function sleep(
     withered: cropsBefore - g.farm.cropCount,
     houseFinished,
     furnaceGifted,
+    achievements: checkAchievements(g).map((a) => a.name),
     toolReady: g.toolOrder && orderReady(g) ? g.toolOrder.tool : undefined,
     shipped,
     caveOffer,

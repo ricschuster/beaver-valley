@@ -12,6 +12,11 @@ import { FarmCave, type CaveSave } from "./cave";
 import { machineById } from "./processing";
 import { Furnace, type FurnaceSave } from "./furnace";
 import { Chests, type ChestSave } from "./chests";
+import {
+  Achievements,
+  checkAchievements,
+  type AchievementsSave,
+} from "./achievements";
 import { ShippingBin, type BinLine, type BinSave } from "./shipping";
 import { maps } from "../content/maps";
 import { DEFAULT_FARM_TYPE, farmTypeById } from "./farmtypes";
@@ -88,6 +93,8 @@ export interface GameState {
   furniture: Furniture;
   /** Chests standing on the farm and in the house. */
   chests: Chests;
+  /** Achievements earned and the different recipes crafted. */
+  achievements: Achievements;
   /** Wild goods on the ground today. Not saved: it respawns each morning. */
   forage: ForageField;
 }
@@ -128,6 +135,7 @@ export function newGame(farmType: string = DEFAULT_FARM_TYPE): GameState {
     wardrobe: new Wardrobe(),
     furniture: new Furniture(),
     chests: new Chests(),
+    achievements: new Achievements(),
     forage: new ForageField(),
   };
 }
@@ -194,6 +202,8 @@ interface SaveData {
   furniture?: FurnitureSave;
   /** Absent in saves made before chests. */
   chests?: ChestSave[];
+  /** Absent in saves made before achievements. */
+  achievements?: AchievementsSave;
 }
 
 /** Where saves live. The scene supplies one backed by the browser. */
@@ -239,6 +249,7 @@ export function serialize(g: GameState): string {
     wardrobe: g.wardrobe.save(),
     furniture: g.furniture.save(),
     chests: g.chests.save(),
+    achievements: g.achievements.save(),
   };
   return JSON.stringify(data);
 }
@@ -534,6 +545,9 @@ export function deserialize(text: string): GameState | undefined {
   g.wardrobe.load(raw.wardrobe);
   g.furniture.load(raw.furniture);
   g.chests.load(raw.chests);
+  g.achievements.load(raw.achievements);
+  // Loading rechecks, so a goal met under an older save is granted (note 38).
+  checkAchievements(g);
   return g;
 }
 
