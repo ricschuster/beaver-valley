@@ -166,6 +166,7 @@ const REASONS: Record<string, string> = {
   "not a chest": "That is not a chest.",
   "no chest": "Out of chests.",
   "chest not empty": "Empty the chest before picking it up.",
+  "camp chest empty": "The lamp-keepers have left nothing more today.",
   "not a machine": "That is not a machine.",
   "no machine": "Out of machines.",
   "no machine here": "No machine here.",

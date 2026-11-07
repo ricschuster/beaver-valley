@@ -437,6 +437,10 @@ export function deserialize(text: string): GameState | undefined {
       deepest: isCount(mines.deepest) ? Math.floor(mines.deepest) : 0,
       misses: isCount(mines.misses) ? Math.floor(mines.misses) : 0,
       copperHandedIn: mines.copperHandedIn === true,
+      greeted: typeof mines.greeted === "boolean" ? mines.greeted : undefined,
+      campTaken: isCount(mines.campTaken)
+        ? Math.floor(mines.campTaken)
+        : undefined,
       floors,
     });
   }
