@@ -27,10 +27,11 @@ describe("content data", () => {
 
   it("offers crops and forage in every season", () => {
     for (const s of SEASONS) {
+      // No crop grows outdoors in winter (note 07).
       expect(
         CROPS.some((c) => c.seasons.includes(s)),
         s,
-      ).toBe(true);
+      ).toBe(s !== "winter");
       expect(
         FORAGE.some((f) => f.seasons.includes(s)),
         s,

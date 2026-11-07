@@ -10,6 +10,10 @@ export interface ForageDef {
   energy?: number;
   /** Wild fruit can be preserved. Other forage cannot. */
   produce?: "fruit";
+  /** A rare find: a small share of spawns in its season, not a common good. */
+  rare?: boolean;
+  /** Turned up by tilling farm soil, not found on forage spots. */
+  soil?: boolean;
 }
 
 export const FORAGE = forageData as ForageDef[];
@@ -25,6 +29,9 @@ export interface Spot {
 
 /** Most spots that hold wild goods on one day, as a share of candidate spots. */
 export const MAX_FILL = 0.25;
+
+/** Share of forage spawns that are a rare find, when one is in season. Placeholder (note 07). */
+export const RARE_CHANCE = 0.05;
 
 /** Wild goods lying on the ground. They reset each morning. */
 export class ForageField {
@@ -49,7 +56,9 @@ export class ForageField {
   /** Clear yesterday's leftovers and scatter new goods for the season. */
   respawn(season: Season, spots: Spot[], random: () => number): void {
     this.found.clear();
-    const options = FORAGE.filter((f) => f.seasons.includes(season));
+    const inSeason = FORAGE.filter((f) => f.seasons.includes(season));
+    const options = inSeason.filter((f) => !f.rare);
+    const rares = inSeason.filter((f) => f.rare);
     if (options.length === 0) return;
     const pool = [...spots];
     const target = Math.floor(random() * (pool.length * MAX_FILL + 1));
@@ -58,7 +67,9 @@ export class ForageField {
         Math.floor(random() * pool.length),
         1,
       )[0] as Spot;
-      const def = options[Math.floor(random() * options.length)] as ForageDef;
+      const pickFrom =
+        rares.length > 0 && random() < RARE_CHANCE ? rares : options;
+      const def = pickFrom[Math.floor(random() * pickFrom.length)] as ForageDef;
       this.found.set(`${spot.x},${spot.y}`, def.id);
     }
   }

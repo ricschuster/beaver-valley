@@ -179,12 +179,14 @@ describe("fruit trees on the farm", () => {
 });
 
 describe("fruit tree goods", () => {
-  it("has items, a shop for spring and summer trees only, and feeds the jar and keg", () => {
+  it("has items, a shop for all six trees, and feeds the jar and keg", () => {
     expect(itemById("apricot")?.sellPrice).toBe(50);
     expect(itemById("apricot@gold")?.sellPrice).toBe(75);
     expect(itemById(saplingId("peach"))?.buyPrice).toBe(6000);
     expect(saplingStock().sort()).toEqual(
-      ["apricot", "cherry", "orange", "peach"].map(saplingId).sort(),
+      ["apricot", "cherry", "orange", "peach", "apple", "pomegranate"]
+        .map(saplingId)
+        .sort(),
     );
     expect(processFor("preserves-jar", "cherry")?.output).toBe("cherry-jam");
     expect(processFor("keg", "cherry@silver")?.output).toBe("cherry-wine");

@@ -51,7 +51,8 @@ describe("eating", () => {
   });
 
   it("every crop is food", () => {
-    for (const c of CROPS)
+    // The pumpkin is not food (note 07).
+    for (const c of CROPS.filter((c) => c.id !== "pumpkin"))
       expect(itemById(c.id)?.energy, c.id).toBeGreaterThan(0);
     expect(FORAGE.some((f) => f.energy)).toBe(true);
   });

@@ -98,7 +98,7 @@
   {
     "id": "corn",
     "name": "Corn",
-    "seasons": ["summer"],
+    "seasons": ["summer", "fall"],
     "growDays": 14,
     "regrowDays": 4,
     "seedPrice": 150,
@@ -113,5 +113,62 @@
     "seedPrice": 100,
     "sellPrice": 260,
     "energy": 75
+  },
+  {
+    "id": "pumpkin",
+    "name": "Pumpkin",
+    "seasons": ["fall"],
+    "growDays": 13,
+    "seedPrice": 100,
+    "sellPrice": 320
+  },
+  {
+    "id": "eggplant",
+    "name": "Eggplant",
+    "seasons": ["fall"],
+    "growDays": 5,
+    "regrowDays": 5,
+    "seedPrice": 20,
+    "sellPrice": 60,
+    "energy": 20
+  },
+  {
+    "id": "sweet-potato",
+    "name": "Sweet potato",
+    "seasons": ["fall"],
+    "growDays": 10,
+    "seedPrice": 60,
+    "sellPrice": 160,
+    "energy": 45
+  },
+  {
+    "id": "beet",
+    "name": "Beet",
+    "seasons": ["fall"],
+    "growDays": 6,
+    "seedPrice": 20,
+    "sellPrice": 100,
+    "energy": 30
+  },
+  {
+    "id": "cranberry",
+    "name": "Cranberry",
+    "seasons": ["fall"],
+    "growDays": 7,
+    "regrowDays": 5,
+    "seedPrice": 240,
+    "sellPrice": 75,
+    "energy": 38,
+    "produce": "fruit",
+    "yield": 2
+  },
+  {
+    "id": "artichoke",
+    "name": "Artichoke",
+    "seasons": ["fall"],
+    "growDays": 8,
+    "seedPrice": 30,
+    "sellPrice": 160,
+    "energy": 30
   }
 ]

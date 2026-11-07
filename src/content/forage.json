@@ -69,5 +69,152 @@
     "seasons": ["summer"],
     "sellPrice": 90,
     "energy": 25
+  },
+  {
+    "id": "bramble-berry",
+    "name": "Bramble berry",
+    "seasons": ["fall"],
+    "sellPrice": 20,
+    "energy": 25,
+    "produce": "fruit"
+  },
+  {
+    "id": "hazelnut",
+    "name": "Hazelnut",
+    "seasons": ["fall"],
+    "sellPrice": 90,
+    "energy": 30
+  },
+  {
+    "id": "wild-plum",
+    "name": "Wild plum",
+    "seasons": ["fall"],
+    "sellPrice": 80,
+    "energy": 25,
+    "produce": "fruit"
+  },
+  {
+    "id": "field-mushroom",
+    "name": "Field mushroom",
+    "seasons": ["fall"],
+    "sellPrice": 40,
+    "energy": 38
+  },
+  {
+    "id": "crab-apple",
+    "name": "Crab apple",
+    "seasons": ["fall"],
+    "sellPrice": 30,
+    "energy": 20,
+    "produce": "fruit"
+  },
+  {
+    "id": "rose-hip",
+    "name": "Rose hip",
+    "seasons": ["fall"],
+    "sellPrice": 45,
+    "energy": 15,
+    "produce": "fruit"
+  },
+  {
+    "id": "chestnut",
+    "name": "Chestnut",
+    "seasons": ["fall"],
+    "sellPrice": 50,
+    "energy": 30
+  },
+  {
+    "id": "wild-garlic",
+    "name": "Wild garlic",
+    "seasons": ["fall"],
+    "sellPrice": 35,
+    "energy": 15
+  },
+  {
+    "id": "crocus",
+    "name": "Crocus",
+    "seasons": ["winter"],
+    "sellPrice": 60
+  },
+  {
+    "id": "snowdrop",
+    "name": "Snowdrop",
+    "seasons": ["winter"],
+    "sellPrice": 80
+  },
+  {
+    "id": "winter-cress",
+    "name": "Winter cress",
+    "seasons": ["winter"],
+    "sellPrice": 40,
+    "energy": 20
+  },
+  {
+    "id": "pine-nut",
+    "name": "Pine nut",
+    "seasons": ["winter"],
+    "sellPrice": 70,
+    "energy": 25
+  },
+  {
+    "id": "holly-sprig",
+    "name": "Holly sprig",
+    "seasons": ["winter"],
+    "sellPrice": 80
+  },
+  {
+    "id": "frost-root",
+    "name": "Frost root",
+    "seasons": [],
+    "sellPrice": 70,
+    "energy": 10,
+    "soil": true
+  },
+  {
+    "id": "snow-tuber",
+    "name": "Snow tuber",
+    "seasons": [],
+    "sellPrice": 100,
+    "energy": 30,
+    "soil": true
+  },
+  {
+    "id": "morel",
+    "name": "Morel",
+    "seasons": ["spring"],
+    "sellPrice": 150,
+    "rare": true,
+    "energy": 20
+  },
+  {
+    "id": "chanterelle",
+    "name": "Chanterelle",
+    "seasons": ["fall"],
+    "sellPrice": 160,
+    "energy": 75,
+    "rare": true
+  },
+  {
+    "id": "snowcap",
+    "name": "Snowcap mushroom",
+    "seasons": ["winter"],
+    "sellPrice": 140,
+    "rare": true,
+    "energy": 15
+  },
+  {
+    "id": "wild-ginger",
+    "name": "Wild ginger",
+    "seasons": ["spring", "summer", "fall", "winter"],
+    "sellPrice": 120,
+    "energy": 20,
+    "rare": true
+  },
+  {
+    "id": "cave-mushroom",
+    "name": "Cave mushroom",
+    "seasons": [],
+    "sellPrice": 200,
+    "energy": 25
   }
 ]

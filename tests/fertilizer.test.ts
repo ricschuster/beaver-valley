@@ -198,7 +198,7 @@ describe("the shop", () => {
     expect(fertilizerStock(15).sort()).toEqual(
       ["basic-fertilizer", "basic-retaining-soil", "speed-fertilizer"].sort(),
     );
-    expect(fertilizerStock(DAYS_PER_SEASON * 2 + 1)).toHaveLength(
+    expect(fertilizerStock(DAYS_PER_SEASON * 4 + 1)).toHaveLength(
       FERTILIZERS.length,
     );
   });

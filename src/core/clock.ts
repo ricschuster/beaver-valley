@@ -32,3 +32,21 @@ export function clockText(minutes: number): string {
   const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
   return `${h12}:${String(m).padStart(2, "0")} ${suffix}`;
 }
+
+/** Minutes since midnight when night falls, by season: 8 pm, 8 pm, 7 pm, 6 pm (note 07). */
+export const NIGHTFALL: Record<string, number> = {
+  spring: 20 * 60,
+  summer: 20 * 60,
+  fall: 19 * 60,
+  winter: 18 * 60,
+};
+
+/** Minutes over which the light fades, ending at nightfall plus this much. */
+export const DUSK_MINUTES = 90;
+
+/** How dark it is outdoors, 0 (day) to 1 (full night), fading in from an hour before nightfall. */
+export function darkness(season: string, minutes: number): number {
+  const fall = NIGHTFALL[season] ?? NIGHTFALL.spring!;
+  const start = fall - 60;
+  return Math.min(Math.max((minutes - start) / DUSK_MINUTES, 0), 1);
+}

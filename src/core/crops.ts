@@ -11,6 +11,8 @@ export interface CropDef {
   regrowDays?: number;
   seedPrice: number;
   sellPrice: number;
+  /** Items per harvest, when more than one (the cranberry gives 2). */
+  yield?: number;
   /** Energy restored when eaten. */
   energy?: number;
   /** Fruit goes to jam and wine, a vegetable to pickles and juice. Crops default to vegetable. */

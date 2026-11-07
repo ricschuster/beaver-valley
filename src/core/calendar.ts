@@ -1,8 +1,5 @@
-/**
- * Seasons, in order. The first playable has two; more slot in here later.
- * Day numbers start at 1 (see Clock.day).
- */
-export const SEASONS = ["spring", "summer"] as const;
+/** Seasons, in order, as in note 26. Day numbers start at 1 (see Clock.day). */
+export const SEASONS = ["spring", "summer", "fall", "winter"] as const;
 export type Season = (typeof SEASONS)[number];
 
 export const DAYS_PER_SEASON = 28;

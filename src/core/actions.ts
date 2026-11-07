@@ -55,7 +55,16 @@ function award(g: GameState, skill: Skill, xp: number, item?: string): Outcome {
 }
 
 /** Every action is refused once the day is over, so the scene must sleep first. */
-export function till(g: GameState, x: number, y: number): Outcome {
+/** Chance that tilling winter soil turns something up, and the share of finds that are frost root. Placeholders (note 07). */
+export const WINTER_DIG_CHANCE = 0.03;
+export const FROST_ROOT_SHARE = 2 / 3;
+
+export function till(
+  g: GameState,
+  x: number,
+  y: number,
+  random: () => number = Math.random,
+): Outcome {
   if (g.day.over) return fail("exhausted");
   if (g.trees.at(x, y) || g.fruitTrees.at(x, y))
     return fail("a tree is in the way");
@@ -65,6 +74,14 @@ export function till(g: GameState, x: number, y: number): Outcome {
   if (!g.farm.till(x, y)) return fail("already tilled");
   if (g.weather === "rainy") g.farm.water(x, y);
   swing(g, "hoe");
+  if (
+    dateOf(g.day.clock.day).season === "winter" &&
+    random() < WINTER_DIG_CHANCE
+  ) {
+    const found = random() < FROST_ROOT_SHARE ? "frost-root" : "snow-tuber";
+    if (!g.inventory.add(found)) g.ground.drop(x, y, found, 1);
+    return { ok: true, item: found };
+  }
   return { ok: true };
 }
 
@@ -135,9 +152,10 @@ export function harvest(
       qualityLevelOf(g.farm.plotAt(x, y)?.fertilizer),
     ),
   );
-  if (g.inventory.room(item) < 1) return fail("backpack full");
+  const count = cropById(cropId)?.yield ?? 1;
+  if (g.inventory.room(item) < count) return fail("backpack full");
   g.farm.harvest(x, y);
-  g.inventory.add(item);
+  g.inventory.add(item, count);
   const price = cropById(cropId)?.sellPrice ?? 0;
   return award(g, "farming", harvestXp(price), item);
 }
