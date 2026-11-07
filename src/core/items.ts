@@ -84,7 +84,12 @@ for (const s of SPRINKLERS)
   items.set(s.id, { id: s.id, name: s.name, sellPrice: s.sellPrice });
 
 for (const a of ARTISAN_GOODS)
-  items.set(a.id, { id: a.id, name: a.name, sellPrice: a.sellPrice });
+  items.set(a.id, {
+    id: a.id,
+    name: a.name,
+    sellPrice: a.sellPrice,
+    energy: a.energy,
+  });
 for (const m of MACHINES)
   items.set(m.id, { id: m.id, name: m.name, sellPrice: m.sellPrice });
 

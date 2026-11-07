@@ -10,7 +10,7 @@ import { splitQuality } from "./quality";
  * Prices follow note 07: jam and pickles 2 x base + 50, wine 3 x base, juice
  * 2.25 x base, wild honey 100g, mead 300g. Input quality is ignored. Pure data.
  */
-export type ArtisanKind = "jam" | "pickles" | "wine" | "juice";
+export type ArtisanKind = "jam" | "pickles" | "wine" | "juice" | "dried";
 export type ArtisanCategory = ArtisanKind | "honey" | "mead";
 
 export interface ArtisanDef {
@@ -18,6 +18,8 @@ export interface ArtisanDef {
   name: string;
   category: ArtisanCategory;
   sellPrice: number;
+  /** Energy restored when eaten. Dried goods are food (3 times the input's). */
+  energy?: number;
 }
 
 export const HONEY = "honey";
@@ -31,6 +33,7 @@ export const CATEGORY_NAMES: Record<ArtisanCategory, string> = {
   juice: "Any juice",
   honey: "Honey",
   mead: "Mead",
+  dried: "Any dried goods",
 };
 
 /** Price rule per kind, from the base price of the input. */
@@ -39,6 +42,7 @@ const PRICE: Record<ArtisanKind, (base: number) => number> = {
   pickles: (b) => 2 * b + 50,
   wine: (b) => 3 * b,
   juice: (b) => Math.floor(2.25 * b),
+  dried: (b) => Math.floor(7.5 * b) + 25,
 };
 
 const KIND_WORD: Record<ArtisanKind, string> = {
@@ -46,6 +50,7 @@ const KIND_WORD: Record<ArtisanKind, string> = {
   pickles: "pickles",
   wine: "wine",
   juice: "juice",
+  dried: "dried",
 };
 
 export const artisanId = (input: string, kind: ArtisanKind) =>
@@ -76,22 +81,45 @@ function nameOf(id: string): string {
   );
 }
 
+/** Energy of a raw input at normal quality. */
+function baseEnergy(id: string): number | undefined {
+  return (
+    cropById(id)?.energy ?? fruitTreeById(id)?.energy ?? forageById(id)?.energy
+  );
+}
+
+/** An edible mushroom, which the dehydrator dries. */
+export const isMushroom = (id: string): boolean =>
+  forageById(splitQuality(id).base)?.mushroom === true;
+
 const defs = new Map<string, ArtisanDef>();
 const inputs = [
   ...CROPS.map((c) => c.id),
   ...FRUIT_TREES.map((t) => t.id),
   ...FORAGE.filter((f) => f.produce).map((f) => f.id),
 ];
-for (const input of inputs) {
+for (const input of [
+  ...inputs,
+  ...FORAGE.filter((f) => f.mushroom).map((f) => f.id),
+]) {
   const fruit = produceOf(input) === "fruit";
-  const kinds: ArtisanKind[] = fruit ? ["jam", "wine"] : ["pickles", "juice"];
+  const kinds: ArtisanKind[] = fruit
+    ? ["jam", "wine", "dried"]
+    : isMushroom(input)
+      ? ["dried"]
+      : ["pickles", "juice"];
   for (const kind of kinds) {
     const id = artisanId(input, kind);
+    const energy = baseEnergy(input);
     defs.set(id, {
       id,
-      name: `${nameOf(input)} ${KIND_WORD[kind]}`,
+      name:
+        kind === "dried"
+          ? `Dried ${nameOf(input).toLowerCase()}`
+          : `${nameOf(input)} ${KIND_WORD[kind]}`,
       category: kind,
       sellPrice: PRICE[kind](basePrice(input)),
+      energy: kind === "dried" && energy !== undefined ? 3 * energy : undefined,
     });
   }
 }
