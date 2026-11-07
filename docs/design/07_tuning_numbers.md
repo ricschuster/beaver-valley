@@ -624,3 +624,24 @@ bundles on day 41 of 56.
 - Does energy set the pace, now that forage is plentiful?
 - Is 500g enough to start, and do the later crops pay back their seed?
 - Can all five bundles be finished in the two seasons?
+
+## Farm types (build 9, placeholders, ours)
+
+Source: `src/content/farm-types.json`, `scripts/gen-farm-map.mjs`.
+
+- Woodland farmland: 40 soil tiles (8 by 5) against Standard's 96, about 42
+  percent. Trees: 52 hand-free points on grass, none on the soil, none in the
+  clearings. Rocks: 10 (Standard 16). Pond radius 2.4 (Standard 3.2).
+- Forage clearings: 3 circles, radius 3.2, with 24 forage spots in all
+  (Standard has 14, across the whole map). Forage uses the valley tables.
+- Large stumps: 6 fixed spots, 3 tiles apart. A chop takes 8 swings at tier 0
+  (a stump's 5 plus 3), gives 8 to 13 wood and 1 sap (standing in for hardwood)
+  and 3 foraging XP. A chopped stump stands aside and regrows after 4 days. It
+  blocks movement only while whole and never spreads seeds.
+- Mixed seeds: sell 5g. A weed with no fiber (50 percent chance of fiber, as
+  before) drops one at 5 percent on Standard (note 29) and always on Woodland. A mixed seed plants a random crop that
+  suits the season.
+- Starting kit: the same on both types (15 parsnip seeds, 500g).
+- Woodland Bundle (50 wood, 50 stone, 30 fiber): wood is plentiful. Fiber is
+  unchanged (half of cut weeds), but Woodland has 40 soil tiles to grow weeds
+  on, so the 30 fiber may be slow. Needs a playtest.

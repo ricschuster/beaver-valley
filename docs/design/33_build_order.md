@@ -76,7 +76,7 @@ Builds:
    `34_crafting.md`).
 8. The hat parade, hats and a first set of furniture, with a festival per
    season as content once the first works (`13_m3_scope.md`, `14`).
-9. Farm types: Standard and Woodland (`32_farm_types.md`).
+9. Farm types: Standard and Woodland (`32_farm_types.md`). Built 2026-11-07.
 
 Bundles that can be filled: 1 to 10, 12 and 19 (Smith's, from smelted bars).
 Bundle 12's pool avoids keg goods, since its reward is the keg

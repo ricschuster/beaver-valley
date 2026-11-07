@@ -12,7 +12,7 @@ import { machineById } from "./processing";
 import { Furnace, type FurnaceSave } from "./furnace";
 import { ShippingBin, type BinLine, type BinSave } from "./shipping";
 import { maps } from "../content/maps";
-import { START } from "./maps";
+import { DEFAULT_FARM_TYPE, farmTypeById } from "./farmtypes";
 import { ForageField } from "./forage";
 import { type Weather, WEATHERS } from "./weather";
 import { Hall, type HallProgress } from "./bundles";
@@ -24,6 +24,8 @@ import { UPGRADABLE, MAX_TIER, type ToolTiers } from "./upgrades";
 
 /** Everything the player owns and has done. The scene holds one of these. */
 export interface GameState {
+  /** The farm type id, chosen at a new game and never changed (`core/farmtypes.ts`). */
+  farmType: string;
   day: Day;
   money: number;
   inventory: Inventory;
@@ -71,16 +73,18 @@ export interface GameState {
 /** Starting cash for a new game. */
 export const START_MONEY = 500;
 
-export function newGame(): GameState {
+export function newGame(farmType: string = DEFAULT_FARM_TYPE): GameState {
+  const farmMap = maps.get(farmTypeById(farmType).map);
   return {
+    farmType: farmTypeById(farmType).id,
     day: new Day(),
     money: START_MONEY,
     inventory: new Inventory(),
     farm: new Farm(),
-    trees: new Trees(maps.get(START.map).trees),
+    trees: new Trees(farmMap.trees),
     ground: new GroundItems(),
     weeds: new Weeds(),
-    rocks: new Rocks(maps.get(START.map).rocks),
+    rocks: new Rocks(farmMap.rocks),
     mines: new Mines(),
     sprinklers: new Sprinklers(),
     fruitTrees: new FruitTrees(),
@@ -104,6 +108,8 @@ export const SAVE_VERSION = 2;
 
 interface SaveData {
   version: number;
+  /** Absent in saves made before farm types: Standard. */
+  farmType?: string;
   day: number;
   energy: number;
   /** Minutes since midnight. Absent in saves made before the clock was saved. */
@@ -160,6 +166,7 @@ export interface SaveStore {
 export function serialize(g: GameState): string {
   const data: SaveData = {
     version: SAVE_VERSION,
+    farmType: g.farmType,
     day: g.day.clock.day,
     energy: g.day.energy.current,
     minutes: g.day.clock.minutes,
@@ -255,7 +262,9 @@ export function deserialize(text: string): GameState | undefined {
   )
     return undefined;
 
-  const g = newGame();
+  const g = newGame(
+    typeof raw.farmType === "string" ? raw.farmType : DEFAULT_FARM_TYPE,
+  );
   g.day.restore(day, energy, isCount(raw.minutes) ? raw.minutes : undefined);
   g.money = money;
   g.weather = weather as Weather;
@@ -273,7 +282,9 @@ export function deserialize(text: string): GameState | undefined {
         (t.stage as number) <= 5 &&
         typeof t.stump === "boolean" &&
         typeof t.seed === "boolean" &&
-        isCount(t.hits),
+        isCount(t.hits) &&
+        (t.large === undefined || typeof t.large === "boolean") &&
+        (t.regrow === undefined || isCount(t.regrow)),
     );
     g.trees.load(valid);
   }

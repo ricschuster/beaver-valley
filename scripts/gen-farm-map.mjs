@@ -28,167 +28,6 @@ const BED = 10;
 const SCROLL = 11;
 const BIN = 12;
 
-const idx = (x, y) => y * W + x;
-const grid = () => new Array(W * H).fill(0);
-const ground = grid();
-const objects = grid();
-const collision = grid();
-const soil = grid();
-const paths = grid();
-
-for (let y = 0; y < H; y++)
-  for (let x = 0; x < W; x++) ground[idx(x, y)] = rnd() < 0.5 ? GRASS : GRASS2;
-
-const block = (x, y) => (collision[idx(x, y)] = 1);
-
-// A tree border.
-for (let x = 0; x < W; x++)
-  for (const y of [0, H - 1]) {
-    objects[idx(x, y)] = TREE;
-    block(x, y);
-  }
-for (let y = 0; y < H; y++)
-  for (const x of [0, W - 1]) {
-    objects[idx(x, y)] = TREE;
-    block(x, y);
-  }
-
-// A pond.
-for (let y = 3; y <= 8; y++)
-  for (let x = 30; x <= 35; x++) {
-    if (Math.hypot(x - 32.5, y - 5.5) > 3.2) continue;
-    ground[idx(x, y)] = WATER;
-    block(x, y);
-  }
-
-// A patch of soil that can be tilled.
-for (let y = 10; y <= 17; y++)
-  for (let x = 14; x <= 25; x++) {
-    ground[idx(x, y)] = SOIL;
-    soil[idx(x, y)] = 1;
-  }
-
-// Buildings: a block of wall with a door in one tile of the chosen row.
-const services = [];
-const building = (x0, y0, w, h, doorX, doorY, service) => {
-  for (let y = y0; y < y0 + h; y++)
-    for (let x = x0; x < x0 + w; x++) {
-      objects[idx(x, y)] = y === y0 ? ROOF : WALL;
-      block(x, y);
-    }
-  objects[idx(doorX, doorY)] = DOOR;
-  // A service door is faced and used, not walked through, so it stays blocked.
-  if (service) services.push({ kind: service, x: doorX, y: doorY });
-  else collision[idx(doorX, doorY)] = 0;
-};
-building(4, 2, 6, 4, 6, 5); // house, door on its south face
-building(4, 22, 6, 4, 6, 22); // hall, door on its north face
-building(31, 20, 6, 4, 33, 20, "shop"); // shop, door on its north face
-building(31, 8, 6, 4, 33, 11); // sawmill (the carpenter), door on its south face
-
-// The shipping bin (docs/design/28_shipping_bin.md): one blocked tile just
-// outside the house, beside the door. The player faces it from the south.
-objects[idx(8, 6)] = BIN;
-block(8, 6);
-services.push({ kind: "bin", x: 8, y: 6 });
-
-// Dirt paths joining the doors.
-const path = (x, y) => {
-  if (!collision[idx(x, y)] && !objects[idx(x, y)]) {
-    ground[idx(x, y)] = PATH;
-    paths[idx(x, y)] = 1;
-  }
-};
-for (let y = 6; y <= 21; y++) path(6, y);
-for (let x = 6; x <= 33; x++) path(x, 19);
-path(33, 19);
-for (let y = 12; y <= 18; y++) path(33, y);
-
-// Choppable trees (docs/design/43_wood_source.md): 30 hand-placed points, 8 of
-// them on the soil patch and the rest on open grass. The player cuts these, so
-// they are objects, not tiles. Kept off paths, the border and the ground around
-// buildings. Stage 5 is mature, 4 young, 2 and 3 seedlings.
-const trees = [];
-const treeFree = (x, y, onSoil) =>
-  x >= 1 &&
-  x < W - 1 &&
-  y >= 1 &&
-  y < H - 1 &&
-  !collision[idx(x, y)] &&
-  !objects[idx(x, y)] &&
-  (onSoil
-    ? ground[idx(x, y)] === SOIL && y >= 14 // rows 11 to 13 stay clear for the playtests
-    : ground[idx(x, y)] <= GRASS2) &&
-  !(x >= 3 && x <= 10 && y >= 1 && y <= 27) &&
-  !(x >= 30 && x <= 38 && y >= 7 && y <= 25) &&
-  (onSoil || !(x >= 12 && x <= 27 && y >= 8 && y <= 20)) &&
-  !trees.some((t) => Math.max(Math.abs(t.x - x), Math.abs(t.y - y)) < 2);
-const placeTrees = (count, onSoil) => {
-  for (let tries = 0, n = 0; n < count && tries < 20000; tries++) {
-    const x = 1 + Math.floor(rnd() * (W - 2));
-    const y = 1 + Math.floor(rnd() * (H - 2));
-    if (!treeFree(x, y, onSoil)) continue;
-    trees.push({ x, y, stage: 5 });
-    n++;
-  }
-};
-placeTrees(8, true);
-placeTrees(22, false);
-// A few are still growing. The rest are mature.
-trees[3].stage = 4;
-trees[14].stage = 4;
-trees[25].stage = 3;
-
-// Forage spots: free grass tiles, picked at random.
-const forage = [];
-for (let tries = 0; forage.length < 14 && tries < 5000; tries++) {
-  const x = 1 + Math.floor(rnd() * (W - 2));
-  const y = 1 + Math.floor(rnd() * (H - 2));
-  if (
-    ground[idx(x, y)] <= GRASS2 &&
-    !collision[idx(x, y)] &&
-    !objects[idx(x, y)] &&
-    !trees.some((t) => t.x === x && t.y === y) &&
-    !forage.some((f) => f.x === x && f.y === y)
-  )
-    forage.push({ x, y });
-}
-
-// Mine entrance (docs/design/22_mines.md): a gap in the top tree border, shut
-// by a rockfall until the mines open on spring day 5. It sits after every
-// random draw above so the trees and forage do not move.
-objects[idx(20, 0)] = 0;
-ground[idx(20, 0)] = DOOR;
-collision[idx(20, 0)] = 0;
-
-// The furnace the smith gives is a service tile by the house. The game draws
-// it and blocks the tile only once it is a gift.
-services.push({ kind: "furnace", x: 9, y: 8 });
-
-// Rocks on the farm (note 22, decision 6): 16 hand-free points from their own
-// generator, on open grass, off the soil, paths, trees, forage and the ground
-// around buildings and entries.
-let rockSeed = 777;
-const rnd2 = () =>
-  (rockSeed = (rockSeed * 1664525 + 1013904223) % 4294967296) / 4294967296;
-const rocks = [];
-for (let tries = 0; rocks.length < 16 && tries < 20000; tries++) {
-  const x = 1 + Math.floor(rnd2() * (W - 2));
-  const y = 1 + Math.floor(rnd2() * (H - 2));
-  if (
-    ground[idx(x, y)] <= GRASS2 &&
-    !collision[idx(x, y)] &&
-    !objects[idx(x, y)] &&
-    !(x >= 3 && x <= 10 && y >= 1 && y <= 27) &&
-    !(x >= 30 && x <= 38 && y >= 7 && y <= 25) &&
-    !(x >= 18 && x <= 22 && y <= 3) &&
-    !trees.some((t) => Math.max(Math.abs(t.x - x), Math.abs(t.y - y)) < 2) &&
-    !forage.some((f) => f.x === x && f.y === y) &&
-    !rocks.some((r) => Math.max(Math.abs(r.x - x), Math.abs(r.y - y)) < 3)
-  )
-    rocks.push({ x, y });
-}
-
 const tileLayer = (id, name, data, visible = true) => ({
   id,
   name,
@@ -261,54 +100,271 @@ const tileset = {
   imageheight: T,
 };
 
-const farm = {
-  type: "map",
-  version: "1.10",
-  tiledversion: "1.10.2",
-  orientation: "orthogonal",
-  renderorder: "right-down",
-  infinite: false,
-  width: W,
-  height: H,
-  tilewidth: T,
-  tileheight: T,
-  nextlayerid: 8,
-  nextobjectid: 100,
-  properties: [{ name: "placeholder", type: "bool", value: true }],
-  layers: [
-    tileLayer(1, "ground", ground),
-    tileLayer(2, "objects", objects),
-    tileLayer(3, "collision", collision, false),
-    tileLayer(4, "soil", soil, false),
-    {
-      id: 5,
-      name: "markers",
-      type: "objectgroup",
-      draworder: "topdown",
-      opacity: 1,
-      visible: true,
-      x: 0,
-      y: 0,
-      objects: [
-        point("entry", "start", 6, 7),
-        point("entry", "from_house", 6, 6),
-        exit("house", 6, 5, "house", "door"),
-        point("entry", "from_hall", 6, 21),
-        exit("hall", 6, 22, "hall", "door"),
-        point("entry", "from_sawmill", 33, 12),
-        exit("sawmill", 33, 11, "sawmill", "door"),
-        point("entry", "from_mine", 20, 1),
-        exit("mine", 20, 0, "mine", "door", "mines-open"),
-        ...services.map((s) => service(s.kind, s.x, s.y)),
-        ...rocks.map((r) => point("rock", "rock", r.x, r.y)),
-        ...forage.map((f) => point("forage", "forage", f.x, f.y)),
-        ...trees.map((t) => treePoint(t.x, t.y, t.stage)),
-      ],
-    },
-    tileLayer(6, "paths", paths, false),
-  ],
-  tilesets: [tileset],
-};
+// The farm map. `woodland` builds the Woodland farm (docs/design/32_farm_types.md):
+// a small soil patch, dense trees, large stumps and forage clearings. Standard
+// draws exactly as it always has.
+function buildFarm(woodland) {
+  seed = 4242;
+  const idx = (x, y) => y * W + x;
+  const grid = () => new Array(W * H).fill(0);
+  const ground = grid();
+  const objects = grid();
+  const collision = grid();
+  const soil = grid();
+  const paths = grid();
+
+  for (let y = 0; y < H; y++)
+    for (let x = 0; x < W; x++)
+      ground[idx(x, y)] = rnd() < 0.5 ? GRASS : GRASS2;
+
+  const block = (x, y) => (collision[idx(x, y)] = 1);
+
+  // A tree border.
+  for (let x = 0; x < W; x++)
+    for (const y of [0, H - 1]) {
+      objects[idx(x, y)] = TREE;
+      block(x, y);
+    }
+  for (let y = 0; y < H; y++)
+    for (const x of [0, W - 1]) {
+      objects[idx(x, y)] = TREE;
+      block(x, y);
+    }
+
+  // A pond.
+  for (let y = 3; y <= 8; y++)
+    for (let x = 30; x <= 35; x++) {
+      if (Math.hypot(x - 32.5, y - 5.5) > (woodland ? 2.4 : 3.2)) continue;
+      ground[idx(x, y)] = WATER;
+      block(x, y);
+    }
+
+  // A patch of soil that can be tilled.
+  const [soilX0, soilX1, soilY0, soilY1] = woodland
+    ? [16, 23, 11, 15]
+    : [14, 25, 10, 17];
+  for (let y = soilY0; y <= soilY1; y++)
+    for (let x = soilX0; x <= soilX1; x++) {
+      ground[idx(x, y)] = SOIL;
+      soil[idx(x, y)] = 1;
+    }
+
+  // Buildings: a block of wall with a door in one tile of the chosen row.
+  const services = [];
+  const building = (x0, y0, w, h, doorX, doorY, service) => {
+    for (let y = y0; y < y0 + h; y++)
+      for (let x = x0; x < x0 + w; x++) {
+        objects[idx(x, y)] = y === y0 ? ROOF : WALL;
+        block(x, y);
+      }
+    objects[idx(doorX, doorY)] = DOOR;
+    // A service door is faced and used, not walked through, so it stays blocked.
+    if (service) services.push({ kind: service, x: doorX, y: doorY });
+    else collision[idx(doorX, doorY)] = 0;
+  };
+  building(4, 2, 6, 4, 6, 5); // house, door on its south face
+  building(4, 22, 6, 4, 6, 22); // hall, door on its north face
+  building(31, 20, 6, 4, 33, 20, "shop"); // shop, door on its north face
+  building(31, 8, 6, 4, 33, 11); // sawmill (the carpenter), door on its south face
+
+  // The shipping bin (docs/design/28_shipping_bin.md): one blocked tile just
+  // outside the house, beside the door. The player faces it from the south.
+  objects[idx(8, 6)] = BIN;
+  block(8, 6);
+  services.push({ kind: "bin", x: 8, y: 6 });
+
+  // Dirt paths joining the doors.
+  const path = (x, y) => {
+    if (!collision[idx(x, y)] && !objects[idx(x, y)]) {
+      ground[idx(x, y)] = PATH;
+      paths[idx(x, y)] = 1;
+    }
+  };
+  for (let y = 6; y <= 21; y++) path(6, y);
+  for (let x = 6; x <= 33; x++) path(x, 19);
+  path(33, 19);
+  for (let y = 12; y <= 18; y++) path(33, y);
+
+  // Choppable trees (docs/design/43_wood_source.md): 30 hand-placed points, 8 of
+  // them on the soil patch and the rest on open grass. The player cuts these, so
+  // they are objects, not tiles. Kept off paths, the border and the ground around
+  // buildings. Stage 5 is mature, 4 young, 2 and 3 seedlings.
+  // Woodland forage clearings: three open circles kept free of trees, with
+  // forage spots placed inside them.
+  const clearings = woodland
+    ? [
+        { x: 13, y: 24, r: 3.2 },
+        { x: 26, y: 24, r: 3.2 },
+        { x: 25, y: 4, r: 3.2 },
+      ]
+    : [];
+  const inClearing = (x, y) =>
+    clearings.some((c) => Math.hypot(x - c.x, y - c.y) <= c.r);
+  const trees = [];
+  const treeFree = (x, y, onSoil) =>
+    x >= 1 &&
+    x < W - 1 &&
+    y >= 1 &&
+    y < H - 1 &&
+    !collision[idx(x, y)] &&
+    !objects[idx(x, y)] &&
+    !inClearing(x, y) &&
+    (onSoil
+      ? ground[idx(x, y)] === SOIL && y >= 14 // rows 11 to 13 stay clear for the playtests
+      : ground[idx(x, y)] <= GRASS2) &&
+    !(x >= 3 && x <= 10 && y >= 1 && y <= 27) &&
+    !(x >= 30 && x <= 38 && y >= 7 && y <= 25) &&
+    (onSoil || !(x >= 12 && x <= 27 && y >= 8 && y <= 20)) &&
+    !trees.some((t) => Math.max(Math.abs(t.x - x), Math.abs(t.y - y)) < 2);
+  const placeTrees = (count, onSoil) => {
+    for (let tries = 0, n = 0; n < count && tries < 20000; tries++) {
+      const x = 1 + Math.floor(rnd() * (W - 2));
+      const y = 1 + Math.floor(rnd() * (H - 2));
+      if (!treeFree(x, y, onSoil)) continue;
+      trees.push({ x, y, stage: 5 });
+      n++;
+    }
+  };
+  if (woodland) placeTrees(52, false);
+  else {
+    placeTrees(8, true);
+    placeTrees(22, false);
+    // A few are still growing. The rest are mature.
+    trees[3].stage = 4;
+    trees[14].stage = 4;
+    trees[25].stage = 3;
+  }
+  // Large stumps (Woodland): fixed spots that regrow once chopped. They keep
+  // clear of the other trees.
+  const stumps = [];
+  for (let tries = 0; woodland && stumps.length < 6 && tries < 20000; tries++) {
+    const x = 1 + Math.floor(rnd() * (W - 2));
+    const y = 1 + Math.floor(rnd() * (H - 2));
+    if (
+      treeFree(x, y, false) &&
+      !stumps.some((t) => Math.max(Math.abs(t.x - x), Math.abs(t.y - y)) < 3)
+    )
+      stumps.push({ x, y });
+  }
+  trees.push(...stumps.map((t) => ({ ...t, stage: 5, large: true })));
+
+  // Forage spots: free grass tiles, picked at random.
+  const forage = [];
+  for (
+    let tries = 0;
+    forage.length < (woodland ? 24 : 14) && tries < 5000;
+    tries++
+  ) {
+    const x = 1 + Math.floor(rnd() * (W - 2));
+    const y = 1 + Math.floor(rnd() * (H - 2));
+    // Woodland forage grows in the clearings only.
+    if (woodland && !inClearing(x, y)) continue;
+    if (
+      ground[idx(x, y)] <= GRASS2 &&
+      !collision[idx(x, y)] &&
+      !objects[idx(x, y)] &&
+      !trees.some((t) => t.x === x && t.y === y) &&
+      !forage.some((f) => f.x === x && f.y === y)
+    )
+      forage.push({ x, y });
+  }
+
+  // Mine entrance (docs/design/22_mines.md): a gap in the top tree border, shut
+  // by a rockfall until the mines open on spring day 5. It sits after every
+  // random draw above so the trees and forage do not move.
+  objects[idx(20, 0)] = 0;
+  ground[idx(20, 0)] = DOOR;
+  collision[idx(20, 0)] = 0;
+
+  // The furnace the smith gives is a service tile by the house. The game draws
+  // it and blocks the tile only once it is a gift.
+  services.push({ kind: "furnace", x: 9, y: 8 });
+
+  // Rocks on the farm (note 22, decision 6): 16 hand-free points from their own
+  // generator, on open grass, off the soil, paths, trees, forage and the ground
+  // around buildings and entries.
+  let rockSeed = 777;
+  const rnd2 = () =>
+    (rockSeed = (rockSeed * 1664525 + 1013904223) % 4294967296) / 4294967296;
+  const rocks = [];
+  for (
+    let tries = 0;
+    rocks.length < (woodland ? 10 : 16) && tries < 20000;
+    tries++
+  ) {
+    const x = 1 + Math.floor(rnd2() * (W - 2));
+    const y = 1 + Math.floor(rnd2() * (H - 2));
+    if (
+      ground[idx(x, y)] <= GRASS2 &&
+      !collision[idx(x, y)] &&
+      !objects[idx(x, y)] &&
+      !(x >= 3 && x <= 10 && y >= 1 && y <= 27) &&
+      !(x >= 30 && x <= 38 && y >= 7 && y <= 25) &&
+      !(x >= 18 && x <= 22 && y <= 3) &&
+      !trees.some((t) => Math.max(Math.abs(t.x - x), Math.abs(t.y - y)) < 2) &&
+      !inClearing(x, y) &&
+      !forage.some((f) => f.x === x && f.y === y) &&
+      !rocks.some((r) => Math.max(Math.abs(r.x - x), Math.abs(r.y - y)) < 3)
+    )
+      rocks.push({ x, y });
+  }
+
+  const farm = {
+    type: "map",
+    version: "1.10",
+    tiledversion: "1.10.2",
+    orientation: "orthogonal",
+    renderorder: "right-down",
+    infinite: false,
+    width: W,
+    height: H,
+    tilewidth: T,
+    tileheight: T,
+    nextlayerid: 8,
+    nextobjectid: 100,
+    properties: [{ name: "placeholder", type: "bool", value: true }],
+    layers: [
+      tileLayer(1, "ground", ground),
+      tileLayer(2, "objects", objects),
+      tileLayer(3, "collision", collision, false),
+      tileLayer(4, "soil", soil, false),
+      {
+        id: 5,
+        name: "markers",
+        type: "objectgroup",
+        draworder: "topdown",
+        opacity: 1,
+        visible: true,
+        x: 0,
+        y: 0,
+        objects: [
+          point("entry", "start", 6, 7),
+          point("entry", "from_house", 6, 6),
+          exit("house", 6, 5, "house", "door"),
+          point("entry", "from_hall", 6, 21),
+          exit("hall", 6, 22, "hall", "door"),
+          point("entry", "from_sawmill", 33, 12),
+          exit("sawmill", 33, 11, "sawmill", "door"),
+          point("entry", "from_mine", 20, 1),
+          exit("mine", 20, 0, "mine", "door", "mines-open"),
+          ...services.map((s) => service(s.kind, s.x, s.y)),
+          ...rocks.map((r) => point("rock", "rock", r.x, r.y)),
+          ...forage.map((f) => point("forage", "forage", f.x, f.y)),
+          ...trees.map((t) =>
+            t.large
+              ? point("stump", "stump", t.x, t.y)
+              : treePoint(t.x, t.y, t.stage),
+          ),
+        ],
+      },
+      tileLayer(6, "paths", paths, false),
+    ],
+    tilesets: [tileset],
+  };
+  return farm;
+}
+
+const farm = buildFarm(false);
 
 // The house interiors (docs/design/41_house.md): one map per tier, no sealed
 // earth. The start map is one room, 11 by 10 outer size, with the door notch
@@ -553,11 +609,12 @@ const hall = {
 const dir = "src/content/maps";
 mkdirSync(dir, { recursive: true });
 writeFileSync(`${dir}/farm.json`, JSON.stringify(farm));
+writeFileSync(`${dir}/farm-woodland.json`, JSON.stringify(buildFarm(true)));
 writeFileSync(`${dir}/house.json`, JSON.stringify(house));
 writeFileSync(`${dir}/house-1.json`, JSON.stringify(house1));
 writeFileSync(`${dir}/sawmill.json`, JSON.stringify(sawmill));
 writeFileSync(`${dir}/hall.json`, JSON.stringify(hall));
 writeFileSync(`${dir}/mine.json`, JSON.stringify(mine));
 console.log(
-  `wrote the farm, house (start and tier 1), sawmill, mine hall and hall maps in ${dir} (placeholders)`,
+  `wrote the farm and the Woodland farm, house (start and tier 1), sawmill, mine hall and hall maps in ${dir} (placeholders)`,
 );

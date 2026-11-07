@@ -41,6 +41,13 @@ export interface Tree {
   hits: number;
   /** A mature tree holding a loose seed that shaking drops. */
   seed: boolean;
+  /**
+   * A large stump from the map. It is a stump from the start, and once chopped
+   * it regrows (`docs/design/32_farm_types.md`, Woodland).
+   */
+  large?: boolean;
+  /** Days until a chopped large stump is whole again. Absent while it stands. */
+  regrow?: number;
 }
 
 const key = (x: number, y: number) => `${x},${y}`;
@@ -49,8 +56,19 @@ const key = (x: number, y: number) => `${x},${y}`;
 export class Trees {
   private trees = new Map<string, Tree>();
 
-  constructor(initial: { x: number; y: number; stage: number }[] = []) {
-    for (const t of initial) this.add(t.x, t.y, t.stage);
+  constructor(
+    initial: { x: number; y: number; stage: number; large?: boolean }[] = [],
+  ) {
+    for (const t of initial) {
+      this.add(t.x, t.y, t.stage);
+      if (t.large) {
+        const added = this.at(t.x, t.y);
+        if (added) {
+          added.large = true;
+          added.stump = true;
+        }
+      }
+    }
   }
 
   save(): Tree[] {
@@ -76,7 +94,11 @@ export class Trees {
   /** A seed lies flat in the soil. Anything bigger, and every stump, blocks. */
   blocks(x: number, y: number): boolean {
     const t = this.at(x, y);
-    return t !== undefined && (t.stump || t.stage > SEED_STAGE);
+    return (
+      t !== undefined &&
+      t.regrow === undefined &&
+      (t.stump || t.stage > SEED_STAGE)
+    );
   }
 
   /** Plant a tree at a stage. Returns false if the tile already holds one. */
@@ -118,9 +140,16 @@ export class Trees {
   ): void {
     const grows = !NO_GROWTH.includes(season);
     const list = [...this.trees.values()];
-    const spreaders = list.filter((t) => !t.stump && t.stage === MATURE_STAGE);
+    const spreaders = list.filter(
+      (t) => !t.stump && !t.large && t.stage === MATURE_STAGE,
+    );
     for (const t of list) {
       t.hits = 0;
+      if (t.large) {
+        // A chopped large stump counts down and is whole again at 0.
+        if (t.regrow !== undefined && --t.regrow <= 0) delete t.regrow;
+        continue;
+      }
       if (t.stump) continue;
       if (t.stage < MATURE_STAGE) {
         const chance = t.stage === YOUNG_STAGE ? YOUNG_CHANCE : STAGE_CHANCE;

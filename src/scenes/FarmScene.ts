@@ -13,6 +13,7 @@ import { NOTHING_TO_ACT_ON, act, reasonText, useHeld } from "../core/tools";
 import { cropById } from "../core/crops";
 import { mapFiles, maps } from "../content/maps";
 import { START } from "../core/maps";
+import { farmMapOf, isFarmMap, resolveMapId } from "../core/farmtypes";
 import { exitOpen, FarmMap, type Exit } from "../core/map";
 import {
   facingFrom,
@@ -155,7 +156,8 @@ export class FarmScene extends Phaser.Scene {
   }
 
   init(data: Partial<SceneData>): void {
-    this.mapId = data.map ?? START.map;
+    this.state = this.registry.get(STATE_KEY) as GameState;
+    this.mapId = resolveMapId(data.map ?? START.map, this.state.farmType);
     this.entryName = data.entry ?? START.entry;
     this.state = this.registry.get(STATE_KEY) as GameState;
     this.selected =
@@ -366,7 +368,7 @@ export class FarmScene extends Phaser.Scene {
         this.floor !== undefined &&
         !this.state.mines.today(this.floor, this.state.day.clock.day)
       )
-        return this.travel(START.map, "from_house");
+        return this.travel("farm", "from_house");
       // A new house tier (the carpenter finished, or the debug menu) means a
       // new map: reload it at its door.
       if (
@@ -572,7 +574,7 @@ export class FarmScene extends Phaser.Scene {
   /** The rocks on this map: the farm's, or this mine floor's. */
   private rocks(): Rocks | undefined {
     if (this.floorState) return this.floorState.rocks;
-    return this.mapId === START.map ? this.state.rocks : undefined;
+    return isFarmMap(this.mapId) ? this.state.rocks : undefined;
   }
 
   /** True on the furnace tile once the smith has given it. */
@@ -706,12 +708,8 @@ export class FarmScene extends Phaser.Scene {
 
   private endDay(): void {
     const g = this.state;
-    const report = sleep(
-      g,
-      maps.get(START.map).forageSpots,
-      Math.random,
-      maps.get(START.map),
-    );
+    const farmMap = farmMapOf(g);
+    const report = sleep(g, farmMap.forageSpots, Math.random, farmMap);
     this.message = "";
     this.save();
     this.render();
@@ -764,7 +762,7 @@ export class FarmScene extends Phaser.Scene {
       if (jobDone(this.state, m)) put(m.x, m.y, MACHINE_READY_KEY);
     }
     for (const t of this.state.trees.each())
-      put(t.x, t.y, treeKey(t.stage, t.stump));
+      put(t.x, t.y, treeKey(t.stage, t.stump, t.large, t.regrow !== undefined));
     for (const t of this.state.fruitTrees.each()) {
       put(t.x, t.y, fruitTreeKey(fruitStageOf(t.age)));
       if (t.fruit > 0) put(t.x, t.y, fruitOnTreeKey(t.id));

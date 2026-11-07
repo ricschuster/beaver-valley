@@ -1,5 +1,6 @@
 import { dateOf } from "./calendar";
-import { cropById } from "./crops";
+import { CROPS, cropById } from "./crops";
+import { farmTypeById } from "./farmtypes";
 import { cropOfSeed, itemById } from "./items";
 import { fertilizerById, qualityLevelOf } from "./fertilizer";
 import { MAX_ENERGY } from "./energy";
@@ -19,7 +20,7 @@ import {
 import { swingCost, type Upgradable } from "./upgrades";
 import { sprinklerById } from "./sprinklers";
 import { isMature, saplingId, treeOfSapling } from "./fruittrees";
-import { FIBER, FIBER_CHANCE } from "./weeds";
+import { FIBER, FIBER_CHANCE, MIXED_SEED } from "./weeds";
 
 /** Energy per tool swing (hoe, watering can), as in Stardew. Seeds, picking and harvesting are free. */
 export const TOOL_ENERGY = 2;
@@ -83,13 +84,19 @@ export function plant(
   x: number,
   y: number,
   seed: string,
+  random: () => number = Math.random,
 ): Outcome {
   if (g.day.over) return fail("exhausted");
-  const cropId = cropOfSeed(seed);
+  const season = dateOf(g.day.clock.day).season;
+  // A mixed seed grows a random crop that suits the season.
+  const fits = CROPS.filter((c) => c.seasons.includes(season));
+  const cropId =
+    seed === MIXED_SEED
+      ? fits[Math.floor(random() * fits.length)]?.id
+      : cropOfSeed(seed);
   if (!cropId) return fail("not a seed");
   if (g.inventory.count(seed) < 1) return fail("no seeds");
   if (g.weeds.at(x, y)) return fail("a weed is in the way");
-  const season = dateOf(g.day.clock.day).season;
   if (!g.farm.plant(x, y, cropId, season)) return fail("cannot plant here");
   g.inventory.remove(seed);
   return { ok: true };
@@ -182,6 +189,15 @@ const TREE_XP = 12;
 /** A stump gives 4 to 9 wood, 1 sap and 1 XP. As Stardew. */
 const STUMP_SAP = 1;
 const STUMP_XP = 1;
+/**
+ * A large stump (Woodland) takes 3 more swings than a stump and gives 8 to 13
+ * wood, standing in for hardwood until that exists, and 3 XP. Ours.
+ */
+const LARGE_STUMP_EXTRA_SWINGS = 3;
+const LARGE_STUMP_WOOD = 8;
+const LARGE_STUMP_XP = 3;
+/** Regrow days if the farm type names none. Ours. */
+const DEFAULT_REGROW_DAYS = 4;
 
 /** What a finished chop gives: goods for the backpack and foraging XP. */
 interface Chop {
@@ -200,6 +216,17 @@ function planChop(
   if (!t) return undefined;
   const level = g.skills.level("foraging");
   const goods = (...list: [string, number][]) => list.filter(([, n]) => n > 0);
+  if (t.large) {
+    if (t.regrow !== undefined) return undefined;
+    return {
+      swings: swingsToUproot(AXE_TIER) + LARGE_STUMP_EXTRA_SWINGS,
+      goods: goods(
+        ["wood", LARGE_STUMP_WOOD + Math.floor(random() * 6)],
+        ["sap", STUMP_SAP],
+      ),
+      xp: LARGE_STUMP_XP,
+    };
+  }
   if (t.stump)
     return {
       swings: swingsToUproot(AXE_TIER),
@@ -280,7 +307,10 @@ export function chop(
       g.ground.drop(spot.x, spot.y, id, n - fits);
     }
   }
-  if (!t.stump && t.stage === MATURE_STAGE) {
+  if (t.large) {
+    t.regrow = farmTypeById(g.farmType).stumpRegrowDays || DEFAULT_REGROW_DAYS;
+    t.hits = 0;
+  } else if (!t.stump && t.stage === MATURE_STAGE) {
     t.stump = true;
     t.hits = 0;
   } else g.trees.remove(x, y);
@@ -438,7 +468,7 @@ export function plantTree(
  * Cut a weed with any tool, in one swing at that tool's energy cost, so a tap
  * never needs a tool swap (`docs/design/29_weeds.md`). A weed has a 50 percent
  * chance of 1 fiber. Fiber goes to the backpack, or lands on the ground nearby
- * if it does not fit. The mixed seed drops wait for crafting.
+ * if it does not fit. A weed that drops no fiber may drop a mixed seed.
  */
 export function clearWeed(
   g: GameState,
@@ -454,10 +484,18 @@ export function clearWeed(
     g.day.act(swingCost(TOOL_ENERGY, AXE_TIER, g.skills.level("foraging")), 0);
   else swing(g, tool);
   g.weeds.remove(x, y);
-  if (random() >= FIBER_CHANCE) return { ok: true };
-  if (g.inventory.add(FIBER)) return { ok: true, item: FIBER };
+  // Fiber at 50 percent. A weed that drops none may drop a mixed seed, at the
+  // farm type's chance (notes 29 and 32).
+  const drop =
+    random() < FIBER_CHANCE
+      ? FIBER
+      : random() < farmTypeById(g.farmType).mixedSeedChance
+        ? MIXED_SEED
+        : undefined;
+  if (!drop) return { ok: true };
+  if (g.inventory.add(drop)) return { ok: true, item: drop };
   const spot = dropSpot(g, map, x, y);
-  g.ground.drop(spot.x, spot.y, FIBER, 1);
+  g.ground.drop(spot.x, spot.y, drop, 1);
   return { ok: true };
 }
 

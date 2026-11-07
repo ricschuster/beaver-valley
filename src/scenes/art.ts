@@ -456,8 +456,19 @@ export const sprinklerKey = (id: string) => `sprinkler-${id}`;
 /** Small marks over fertilized soil, one per line, so the bed shows what it holds. */
 export const fertKey = (line: string) => `fert-${line}`;
 
-export const treeKey = (stage: number, stump: boolean) =>
-  stump ? "tree-stump" : `tree-${stage}`;
+export const treeKey = (
+  stage: number,
+  stump: boolean,
+  large = false,
+  cut = false,
+) =>
+  large
+    ? cut
+      ? "stump-cut"
+      : "stump-large"
+    : stump
+      ? "tree-stump"
+      : `tree-${stage}`;
 
 function paintTrees(scene: Phaser.Scene): void {
   const draw = (key: string, paint: (c: Ctx) => void) => {
@@ -514,6 +525,18 @@ function paintTrees(scene: Phaser.Scene): void {
     px(c, "#c9a470", 4, 7, 8, 2);
     px(c, "#a8844f", 6, 7, 4, 1);
     px(c, "#a8844f", 7, 8, 2, 1);
+  });
+  // A large stump (Woodland): wide, with rings on top. Cut, it is a low stub.
+  draw("stump-large", (c) => {
+    px(c, "#5a3e22", 1, 6, 14, 9);
+    px(c, "#3e2a16", 1, 14, 14, 1);
+    px(c, "#c9a470", 1, 4, 14, 3);
+    px(c, "#a8844f", 4, 5, 8, 1);
+    px(c, "#a8844f", 6, 4, 4, 1);
+  });
+  draw("stump-cut", (c) => {
+    px(c, "#5a3e22", 3, 11, 10, 4);
+    px(c, "#c9a470", 3, 10, 10, 1);
   });
   draw("icon-wood", (c) => {
     px(c, "#7a4e26", 2, 5, 12, 3);
@@ -628,6 +651,14 @@ function paintTrees(scene: Phaser.Scene): void {
     px(c, "#5a9a3a", 7, 3, 2, 10);
     px(c, "#8cc05a", 10, 5, 2, 8);
     px(c, "#c9b46a", 3, 11, 10, 1);
+  });
+  draw("icon-mixed-seed", (c) => {
+    px(c, "#e8dcc0", 3, 2, 10, 12);
+    px(c, "#c8bc9c", 3, 2, 10, 1);
+    px(c, "#c0463c", 5, 5, 2, 3);
+    px(c, "#e0b030", 7, 6, 2, 3);
+    px(c, "#5a9a3a", 9, 5, 2, 3);
+    px(c, "#7a5ac0", 6, 9, 3, 2);
   });
   draw("icon-tree-seed", (c) => {
     px(c, "#7a5a2a", 5, 4, 6, 8);

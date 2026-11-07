@@ -21,6 +21,7 @@ import { mine } from "./mining";
 import type { FarmMap } from "./map";
 import type { GameState } from "./save";
 import { cropOfSeed } from "./items";
+import { MIXED_SEED } from "./weeds";
 import { fertilizerById } from "./fertilizer";
 import { treeOfSapling } from "./fruittrees";
 import { sprinklerById } from "./sprinklers";
@@ -81,7 +82,7 @@ export function useHeld(
   }
   if (held.kind === "item" && machineById(held.id))
     return placeMachine(g, map, x, y, held.id);
-  if (held.kind === "item" && cropOfSeed(held.id)) {
+  if (held.kind === "item" && (cropOfSeed(held.id) || held.id === MIXED_SEED)) {
     return plant(g, x, y, held.id);
   }
   if (held.kind === "item" && fertilizerById(held.id))

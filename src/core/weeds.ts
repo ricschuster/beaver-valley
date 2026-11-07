@@ -19,6 +19,8 @@ export const RAIN_SPREAD_CHANCE = 0.2;
 export const FIBER_CHANCE = 0.5;
 /** The item a weed drops. */
 export const FIBER = "fiber";
+/** Wild seeds that plant a random crop for the season. A weed may drop one. */
+export const MIXED_SEED = "mixed-seed";
 
 export interface Weed {
   x: number;

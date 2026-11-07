@@ -1,5 +1,6 @@
 import { SLOT_COUNT } from "./inventory";
 import { seedId } from "./items";
+import { farmTypeById } from "./farmtypes";
 import { newGame, type GameState } from "./save";
 
 /** Tools that are always carried and never run out. */
@@ -50,12 +51,10 @@ export function cycle(
   return (index + step + size) % size;
 }
 
-/** Seeds a new game starts with, so the first day can be played at once. */
-export const START_SEEDS = { crop: "parsnip", count: 15 } as const;
-
-/** A new game with the starting seeds in the backpack. */
-export function startGame(): GameState {
-  const g = newGame();
-  g.inventory.add(seedId(START_SEEDS.crop), START_SEEDS.count);
+/** A new game on a farm type, with its starting seeds in the backpack. */
+export function startGame(farmType?: string): GameState {
+  const g = newGame(farmType);
+  const seeds = farmTypeById(g.farmType).startSeeds;
+  g.inventory.add(seedId(seeds.crop), seeds.count);
   return g;
 }
