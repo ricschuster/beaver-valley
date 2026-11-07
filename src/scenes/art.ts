@@ -1,4 +1,5 @@
 import { fertilizerById } from "../core/fertilizer";
+import { SPRINKLERS, sprinklerById } from "../core/sprinklers";
 import Phaser from "phaser";
 import { CROPS } from "../core/crops";
 import { FORAGE } from "../core/forage";
@@ -429,6 +430,9 @@ function paintSeedIcon(scene: Phaser.Scene, cropId: string): void {
 
 export const WEED_KEY = "weed";
 
+/** The picture of a sprinkler, on the ground and in the backpack. */
+export const sprinklerKey = (id: string) => `sprinkler-${id}`;
+
 /** Small marks over fertilized soil, one per line, so the bed shows what it holds. */
 export const fertKey = (line: string) => `fert-${line}`;
 
@@ -531,6 +535,21 @@ function paintTrees(scene: Phaser.Scene): void {
   mark("quality", "#e8d8a0");
   mark("retaining", "#6ab0e8");
   mark("speed", "#f0b040");
+  // A sprinkler: a short post and a head with spray ticks. Quality has a gold ring.
+  for (const s of SPRINKLERS)
+    draw(sprinklerKey(s.id), (c) => {
+      const quality = s.id !== "sprinkler";
+      px(c, "#5a5a62", 7, 7, 2, 7);
+      px(c, "#8a8a94", 5, 12, 6, 2);
+      px(c, quality ? "#e8c040" : "#c8743c", 5, 5, 6, 3);
+      px(c, "#9ad0f0", 7, 3, 2, 2);
+      px(c, "#9ad0f0", 3, 6, 2, 1);
+      px(c, "#9ad0f0", 11, 6, 2, 1);
+      if (quality) {
+        px(c, "#9ad0f0", 4, 4, 1, 1);
+        px(c, "#9ad0f0", 11, 4, 1, 1);
+      }
+    });
   draw("icon-fiber", (c) => {
     px(c, "#7ab04a", 4, 4, 2, 9);
     px(c, "#5a9a3a", 7, 3, 2, 10);
@@ -625,6 +644,7 @@ function paintMineArt(scene: Phaser.Scene): void {
 export function iconKey(itemId: string): string | undefined {
   const { base } = splitQuality(itemId);
   if (fertilizerById(base)) return `icon-${base}`;
+  if (sprinklerById(base)) return sprinklerKey(base);
   if (MINE_ICON_IDS.includes(base)) return `icon-${base}`;
   if (base === "wood" || base === "sap" || base === "fiber")
     return `icon-${base}`;

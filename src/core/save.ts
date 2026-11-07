@@ -5,6 +5,7 @@ import { GroundItems, type Pile } from "./ground";
 import { Weeds, type Weed } from "./weeds";
 import { Rocks, type Rock, ROCK_KINDS } from "./rocks";
 import { Mines, type MinesSave } from "./mines";
+import { Sprinklers, sprinklerById, type PlacedSprinkler } from "./sprinklers";
 import { Furnace, type FurnaceSave } from "./furnace";
 import { ShippingBin, type BinLine, type BinSave } from "./shipping";
 import { maps } from "../content/maps";
@@ -34,6 +35,8 @@ export interface GameState {
   rocks: Rocks;
   /** The mine: deepest floor, dry streak, today's floors. */
   mines: Mines;
+  /** Sprinklers standing on the farm. */
+  sprinklers: Sprinklers;
   /** The furnace the smith gives. */
   furnace: Furnace;
   /** Goods shipped today, paid when the day ends. */
@@ -72,6 +75,7 @@ export function newGame(): GameState {
     weeds: new Weeds(),
     rocks: new Rocks(maps.get(START.map).rocks),
     mines: new Mines(),
+    sprinklers: new Sprinklers(),
     furnace: new Furnace(),
     bin: new ShippingBin(),
     skills: new Skills(),
@@ -108,6 +112,8 @@ interface SaveData {
   rocks?: Rock[];
   /** Absent in saves made before the mines. */
   mines?: MinesSave;
+  /** Absent in saves made before sprinklers. */
+  sprinklers?: PlacedSprinkler[];
   /** Absent in saves made before the mines. */
   furnace?: FurnaceSave;
   /** Absent in saves made before the shipping bin. */
@@ -152,6 +158,7 @@ export function serialize(g: GameState): string {
     weeds: g.weeds.save(),
     rocks: g.rocks.save(),
     mines: g.mines.save(),
+    sprinklers: g.sprinklers.save(),
     furnace: g.furnace.save(),
     bin: g.bin.save(),
     skills: g.skills.save(),
@@ -273,6 +280,18 @@ export function deserialize(text: string): GameState | undefined {
       raw.weeds.filter(
         (w): w is Weed =>
           isObject(w) && Number.isInteger(w.x) && Number.isInteger(w.y),
+      ),
+    );
+  }
+  if (Array.isArray(raw.sprinklers)) {
+    g.sprinklers.load(
+      raw.sprinklers.filter(
+        (s): s is PlacedSprinkler =>
+          isObject(s) &&
+          Number.isInteger(s.x) &&
+          Number.isInteger(s.y) &&
+          typeof s.id === "string" &&
+          sprinklerById(s.id) !== undefined,
       ),
     );
   }

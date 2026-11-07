@@ -53,6 +53,7 @@ export function sleep(
   const next = dateOf(g.day.clock.day + 1);
   g.tomorrow = rollWeather(next.season, next.dayOfSeason, random);
   if (g.weather === "rainy") g.farm.waterAll();
+  g.sprinklers.water(g.farm);
   g.trees.endDay(
     season,
     random,
@@ -63,6 +64,7 @@ export function sleep(
       !g.forage.itemAt(x, y) &&
       !g.weeds.at(x, y) &&
       !g.rocks.at(x, y) &&
+      !g.sprinklers.at(x, y) &&
       g.ground.at(x, y).length === 0,
   );
   if (map?.hasSoil) {
@@ -77,6 +79,7 @@ export function sleep(
         !map.isBlocked(x, y) &&
         !g.trees.at(x, y) &&
         !g.rocks.at(x, y) &&
+        !g.sprinklers.at(x, y) &&
         !g.farm.plotAt(x, y)?.crop &&
         !g.forage.itemAt(x, y) &&
         g.ground.at(x, y).length === 0,
@@ -85,7 +88,12 @@ export function sleep(
   }
   g.forage.respawn(
     season,
-    spots.filter((s) => !g.trees.at(s.x, s.y) && !g.weeds.at(s.x, s.y)),
+    spots.filter(
+      (s) =>
+        !g.trees.at(s.x, s.y) &&
+        !g.weeds.at(s.x, s.y) &&
+        !g.sprinklers.at(s.x, s.y),
+    ),
     random,
   );
   const houseFinished = advanceBuild(g);

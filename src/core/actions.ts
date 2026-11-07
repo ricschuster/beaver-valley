@@ -17,6 +17,7 @@ import {
   swingsToUproot,
 } from "./trees";
 import { swingCost, type Upgradable } from "./upgrades";
+import { sprinklerById } from "./sprinklers";
 import { FIBER, FIBER_CHANCE } from "./weeds";
 
 /** Energy per tool swing (hoe, watering can), as in Stardew. Seeds, picking and harvesting are free. */
@@ -54,6 +55,7 @@ export function till(g: GameState, x: number, y: number): Outcome {
   if (g.day.over) return fail("exhausted");
   if (g.trees.at(x, y)) return fail("a tree is in the way");
   if (g.weeds.at(x, y)) return fail("a weed is in the way");
+  if (g.sprinklers.at(x, y)) return fail("a sprinkler is in the way");
   if (!g.farm.till(x, y)) return fail("already tilled");
   if (g.weather === "rainy") g.farm.water(x, y);
   swing(g, "hoe");
@@ -333,6 +335,7 @@ export function plantTree(
     g.trees.at(x, y) ||
     g.ground.at(x, y).length > 0 ||
     g.weeds.at(x, y) ||
+    g.sprinklers.at(x, y) ||
     g.farm.plotAt(x, y) ||
     g.forage.itemAt(x, y)
   )
@@ -367,4 +370,49 @@ export function clearWeed(
   const spot = dropSpot(g, map, x, y);
   g.ground.drop(spot.x, spot.y, FIBER, 1);
   return { ok: true };
+}
+
+/**
+ * Stand a sprinkler from the backpack on open, diggable ground. It waters the
+ * tilled tiles in its reach each morning (`docs/design/31_farm_growth.md`).
+ * Free, like planting. The tile must be clear: no soil already dug, crop,
+ * tree, weed, rock, forage or goods on the ground.
+ */
+export function placeSprinkler(
+  g: GameState,
+  map: FarmMap,
+  x: number,
+  y: number,
+  id: string,
+): Outcome {
+  if (g.day.over) return fail("exhausted");
+  if (!sprinklerById(id)) return fail("not a sprinkler");
+  if (g.inventory.count(id) < 1) return fail("no sprinkler");
+  if (
+    !map.isTillable(x, y) ||
+    map.isBlocked(x, y) ||
+    map.serviceAt(x, y) ||
+    g.sprinklers.at(x, y) ||
+    g.farm.plotAt(x, y) ||
+    g.trees.at(x, y) ||
+    g.weeds.at(x, y) ||
+    g.rocks.at(x, y) ||
+    g.forage.itemAt(x, y) ||
+    g.ground.at(x, y).length > 0
+  )
+    return fail("cannot place here");
+  g.inventory.remove(id);
+  g.sprinklers.add(x, y, id);
+  return { ok: true };
+}
+
+/** Take up a sprinkler by hand. It goes to the backpack, or the backpack is full and it stays. */
+export function pickUpSprinkler(g: GameState, x: number, y: number): Outcome {
+  if (g.day.over) return fail("exhausted");
+  const id = g.sprinklers.at(x, y);
+  if (!id) return fail("no sprinkler here");
+  if (g.inventory.room(id) < 1) return fail("backpack full");
+  g.sprinklers.remove(x, y);
+  g.inventory.add(id);
+  return { ok: true, item: id };
 }

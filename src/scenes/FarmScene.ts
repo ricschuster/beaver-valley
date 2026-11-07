@@ -42,6 +42,7 @@ import { SELECTED_KEY, STATE_KEY } from "./state";
 import {
   cropKey,
   fertKey,
+  sprinklerKey,
   forageKey,
   iconKey,
   LADDER_KEY,
@@ -231,6 +232,7 @@ export class FarmScene extends Phaser.Scene {
       () => this.use(),
       () => this.action(),
       () => this.open("skills"),
+      () => this.open("crafting"),
       () => this.select(nextRow(this.state, this.selected)),
       () => this.open("debug"),
       settings,
@@ -243,6 +245,7 @@ export class FarmScene extends Phaser.Scene {
         action: () => (this.keyAim(), this.action()),
         eat: () => this.eatHeld(),
         openSkills: () => this.open("skills"),
+        openCraft: () => this.open("crafting"),
         endDay: () => this.endDay(),
         openDebug: () => this.open("debug"),
         nextSlot: () =>
@@ -435,7 +438,8 @@ export class FarmScene extends Phaser.Scene {
           this.map.isBlocked(x, y) ||
           (this.map.hasSoil && this.state.trees.blocks(x, y)) ||
           !!this.rocks()?.at(x, y) ||
-          this.furnaceAt(x, y),
+          this.furnaceAt(x, y) ||
+          (this.map.hasSoil && !!this.state.sprinklers.at(x, y)),
       );
     this.player.setPosition(this.pos.x, this.pos.y);
     this.repeatUse(delta * DEV_SPEED);
@@ -734,6 +738,8 @@ export class FarmScene extends Phaser.Scene {
     for (const { x, y, id } of this.state.forage.each())
       put(x, y, forageKey(id));
     for (const w of this.state.weeds.each()) put(w.x, w.y, WEED_KEY);
+    for (const s of this.state.sprinklers.each())
+      put(s.x, s.y, sprinklerKey(s.id));
     for (const t of this.state.trees.each())
       put(t.x, t.y, treeKey(t.stage, t.stump));
     for (const p of this.state.ground.each()) {

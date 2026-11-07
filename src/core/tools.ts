@@ -5,6 +5,8 @@ import {
   fertilize,
   forage,
   harvest,
+  pickUpSprinkler,
+  placeSprinkler,
   plant,
   plantTree,
   shake,
@@ -18,6 +20,7 @@ import type { FarmMap } from "./map";
 import type { GameState } from "./save";
 import { cropOfSeed } from "./items";
 import { fertilizerById } from "./fertilizer";
+import { sprinklerById } from "./sprinklers";
 import type { Held } from "./toolbar";
 
 const fail = (reason: string): Outcome => ({ ok: false, reason });
@@ -68,6 +71,8 @@ export function useHeld(
   }
   if (held.kind === "item" && fertilizerById(held.id))
     return fertilize(g, x, y, held.id);
+  if (held.kind === "item" && sprinklerById(held.id))
+    return placeSprinkler(g, map, x, y, held.id);
   if (held.kind === "item" && held.id === TREE_SEED)
     return plantTree(g, map, x, y);
   // The hand tool keeps its pick-up job; every other item only has the Action
@@ -82,6 +87,7 @@ export const NOTHING_TO_ACT_ON = "nothing to act on";
 /** Shake a tree, pick forage or harvest a crop: what the hand does on one tile. */
 function pick(g: GameState, x: number, y: number): Outcome {
   if (g.trees.at(x, y)) return shake(g, x, y);
+  if (g.sprinklers.at(x, y)) return pickUpSprinkler(g, x, y);
   return g.forage.itemAt(x, y) ? forage(g, x, y) : harvest(g, x, y);
 }
 
@@ -124,6 +130,13 @@ const REASONS: Record<string, string> = {
   "nothing to fertilize": "Dig the soil first.",
   "already fertilized": "This soil already has fertilizer.",
   "too late to fertilize": "Too late. Use it before the seed sprouts.",
+  "a sprinkler is in the way": "A sprinkler is there. Pick it up first.",
+  "not a sprinkler": "That is not a sprinkler.",
+  "no sprinkler": "Out of sprinklers.",
+  "cannot place here": "Place it on clear, diggable ground.",
+  "no such recipe": "There is no such recipe.",
+  "recipe not known": "You do not know that recipe yet.",
+  "missing ingredients": "You are missing ingredients.",
   "a tree is in the way": "A tree is in the way.",
   "nothing to mine": "Nothing to break here.",
   "no furnace": "There is no furnace yet.",
