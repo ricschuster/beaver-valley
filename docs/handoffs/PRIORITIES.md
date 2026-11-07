@@ -25,10 +25,25 @@ Start each session by asking which item to take.
 
 ## Build track (slice 1, note 33)
 
-Owner asked for builds on 2026-11-07. Done: build 1 (bundle model), build 2
-(shipping bin), build 3 weeds, Fiber and fertilizer (#481, #482) and sprinklers with a minimal
-crafting screen, build 6 the mines, build 7 the machines (kiln, jar, bee house, keg, seed maker) and the slice 1 bundle data (bundles 4, 5, 9, 10, 12 and 19, 2026-11-07, note 35; bundles 4, 9 and 10 and 12 use spring and summer stand-in pools until build 4). Next: build 4 fall and winter (settle #61 numbers first),
-build 5 the farm cave (fruit trees built), build 8 hats and furniture, build 9 farm types.
+Owner asked for builds on 2026-11-07. Done: builds 1, 2, 3 (weeds, Fiber,
+fertilizer, sprinklers with a minimal crafting screen), 6 (mines part 1),
+7 (machines and recipes), the six slice 1 bundles (#488), 5 (fruit trees
+only, #487), 8 (hats, festival counters, furniture, #490 and #491) and 9
+(Standard and Woodland, #489). Bundles 4, 9, 10 and 12 use spring and summer
+stand-in pools until build 4.
+
+Left in slice 1, all blocked on owner design:
+
+- **Build 4, fall and winter.** Settle the #61 crop and forage numbers first.
+  It also unblocks the fall trees, fall and winter festivals, winter forage,
+  and swapping the stand-in bundle pools back.
+- **Farm cave** (rest of build 5). Needs the cave map, an earnings counter, the
+  choice screen, and what the mushroom cave gives in place of the free
+  dehydrator (note 31 open item).
+- Smaller leftovers: mine camp chest and Old Greencoat scene, geodes, pickaxe
+  tiers, extra crafted furnaces, workbench and chests, quartz (quality
+  sprinkler), teaching the sim bot to chop, mine and run machines, the
+  furniture catalogue and the hatter (needs achievements).
 
 ## Remaining bundle work
 
